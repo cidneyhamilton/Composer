@@ -1,0 +1,77 @@
+{
+    "type": "script",
+    "id": "38b7466a-b058-4ffe-86c8-d2b9563438c8",
+    "name": "_OnLoad",
+    "storyEventId": "32df3697-cde9-48af-82a6-51be5fc65db4",
+    "sceneId": "212f8023-648d-45df-8f16-d56a7f081d41",
+    "trigger": {
+        "type": "triggers.load",
+        "name": "Load"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "1ca11e34-e5da-4821-bf4c-710d778019ed",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.changeTags",
+                    "id": "0b59c83f-4e86-45b4-93d4-256cdc9879a4",
+                    "scope": "storyEvent",
+                    "scopeId": "32df3697-cde9-48af-82a6-51be5fc65db4",
+                    "scopeFilterId": null,
+                    "tagsToAdd": "",
+                    "tagsToRemove": "demo"
+                },
+                {
+                    "type": "nodes.placeActor",
+                    "actorId": "9f5d3ba1-4925-4ddb-9e75-d5304fec4f25",
+                    "spawnId": "44eaa434-1707-4975-a94e-79d36019a0f2",
+                    "pose": "idle",
+                    "behaviour": "Idle",
+                    "immediate": null
+                },
+                {
+                    "type": "nodes.comment",
+                    "message": "If we want to spawn the cat, set LoadCat tag TRUE.",
+                    "commentor": "Cidney"
+                },
+                {
+                    "type": "nodes.changeTags",
+                    "id": "897d8df0-7ee3-41ff-8bb0-aed5a57975a1",
+                    "scope": "scene",
+                    "scopeId": "212f8023-648d-45df-8f16-d56a7f081d41",
+                    "scopeFilterId": null,
+                    "tagsToAdd": "LoadCat",
+                    "tagsToRemove": null
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "scene",
+                                "scopeId": "212f8023-648d-45df-8f16-d56a7f081d41",
+                                "scopeFilterId": null,
+                                "tags": "LoadCat",
+                                "has": true
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.placeActor",
+                                    "actorId": "6367aa71-9355-4199-b390-d30a6ef23c02",
+                                    "spawnId": "3ce1d82b-dff2-4b4e-b95e-84cf9b7f00f9",
+                                    "pose": null,
+                                    "behaviour": "CatPatrol",
+                                    "immediate": null
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

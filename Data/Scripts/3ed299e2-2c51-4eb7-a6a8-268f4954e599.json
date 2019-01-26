@@ -1,0 +1,248 @@
+{
+    "type": "script",
+    "id": "3ed299e2-2c51-4eb7-a6a8-268f4954e599",
+    "name": "Interact with Crate Stack next to candelabrum",
+    "sceneId": "fa26d0aa-8fef-4e8b-8055-ee760fc7b13f",
+    "propId": "6ee17555-5850-480d-8b74-28cec29dd00d",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "f63e5e50-cc33-4691-997a-e0bd69373828",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "bb964019-997a-421c-b5b7-4da5583f8cd8",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "5936e002-5526-42c9-8b87-e5ca5c09c3ac",
+                            "text": "Look at the Crates",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "242d078a-6d63-4fe2-9154-f8410ad36000",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Boy, I can't picture having to carry these crates, especially when they're full, up and down the stairs. They must've broken a lot of backs doing that.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "1b4b6095-0ff3-4e32-aa63-064eacf45d8d",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "'Course, it was all in the service of drinking. So I thank them for it!",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "b7f07dc8-7b87-45e3-ab6b-76b567bf9966",
+                            "text": "Open a Crate",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "target",
+                                                "scopeId": null,
+                                                "scopeFilterId": null,
+                                                "tags": "Opened",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "c3837851-4b0f-4b0c-9cd3-80b06a93df61",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "I bet there's some great stuff in these. Let me check before I figure out a way to open them...",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.playAnimation",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "animationName": "ReachOut"
+                                                },
+                                                {
+                                                    "type": "nodes.wait",
+                                                    "waitForSeconds": "0.2"
+                                                },
+                                                {
+                                                    "type": "nodes.playSoundEffect",
+                                                    "soundEffectName": "Crate_Triple_Knock_Hollow.wav",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "3ac195e6-8ae1-4799-9762-ab3f230b2fe3",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "There's nothing in these.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "e7f317bc-8305-4c05-9548-2d995217794f",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "So much for crate expectations!",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "84662899-fdef-4c8b-963a-d14459e1f09a",
+                                                    "scope": "target",
+                                                    "scopeId": null,
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "Opened",
+                                                    "tagsToRemove": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "target",
+                                                "scopeId": null,
+                                                "scopeFilterId": null,
+                                                "tags": "OpenedTwice",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "80b9b876-f766-44fd-a040-175b3078b246",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "I already checked, they're full of nothing. Or maybe empty bottles.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.playAnimation",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "animationName": "ReachOut"
+                                                },
+                                                {
+                                                    "type": "nodes.wait",
+                                                    "waitForSeconds": "0.2"
+                                                },
+                                                {
+                                                    "type": "nodes.playSoundEffect",
+                                                    "soundEffectName": "Kicking_Crate_w_Empty_Bottles02.wav",
+                                                    "wait": false
+                                                },
+                                                {
+                                                    "type": "nodes.wait",
+                                                    "waitForSeconds": 1
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "6ef3b1d1-5627-4ddb-8711-9817499d51c9",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Okay, they're full of empty bottles.",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "36a99112-7829-4df0-b904-4c3ece92904f",
+                                                    "scope": "script",
+                                                    "scopeId": null,
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "OpenedTwice",
+                                                    "tagsToRemove": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "c32272e9-4795-4058-b685-09979a10e584",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "I'm sure the empties in these crates aren't worth anything to me.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "1",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "ab081a9b-b6c1-4d96-8989-733527aa51e8",
+                            "text": "Take a Crate",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "ed5a4825-4b0e-4b3b-b8f5-0f9dfe01295c",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Wouldn't that blow their stack?",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "1",
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

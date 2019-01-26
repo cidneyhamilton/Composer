@@ -1,0 +1,38 @@
+<div data-bind="compose: { mode:'templated', view:'nodeEditor' }">
+    <div data-part="read" class="text">
+        <!--ko if: node.change == "0"-->
+        <span class="remove">Remove </span>
+        <!--/ko-->
+
+        <!--ko if: node.change == "1"-->
+        <span class="add">Add </span>
+        <!--/ko-->
+
+        <span data-bind="text:node.amount"></span> reputation
+
+        <!--ko if: node.change == "0"-->
+        <span> from </span>
+        <!--/ko-->
+
+        <!--ko if: node.change == "1"-->
+        <span> to </span>
+        <!--/ko-->
+
+        <span class="actor" data-bind="text:actor.name"></span>.
+    </div>
+
+    <div data-part="write">
+        <select data-bind="value: node.change">
+            <option value="0">Remove</option>
+            <option value="1">Add</option>
+        </select>
+
+        <input type="text" data-bind="value: node.amount, valueUpdate: 'afterkeydown'" placeholder="amount" style="float: right"/>
+
+        <select data-bind="options: actors, optionsText: 'name', optionsValue: 'id', value: node.actorId"></select>
+        <div class="form-inline" style="margin-left: 100px; margin-top: 50px;">
+            <input type="checkbox" data-bind="checked: node.notify" />
+            <label>Show Notification?</label>
+        </div>
+    </div>
+</div>

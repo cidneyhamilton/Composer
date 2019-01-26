@@ -1,0 +1,38 @@
+<div data-bind="compose: { mode:'templated', view:'conditionEditor' }">
+    <div data-part="write">
+        <select data-bind="value: expression.scope">
+            <option value="script">Script Scope</option>
+            <option value="storyEvent">Event Scope</option>
+            <option value="scene">Scene Scope</option>
+            <option value="actor">Actor Scope</option>
+            <option value="prop">Prop Scope</option>
+            <option value="target">Target Scope</option>
+        </select>
+
+        <!--ko if: expression.scope == 'prop'-->
+        <select data-bind="options: scenes, optionsText: 'name', optionsValue: 'id', value: expression.scopeFilterId, optionsCaption: 'Select Scene'"></select>
+
+        <!--ko if: expression.scopeFilterId-->
+        <select data-bind="options: scopedProps, optionsText: 'name', optionsValue: 'id', value: expression.scopeId, optionsCaption: 'Select Prop'" style="margin-left: 110px"></select>
+        <!--/ko-->
+        <!--/ko-->
+
+        <!--ko if: expression.scope == 'actor'-->
+        <select data-bind="options: actors, optionsText: 'name', optionsValue: 'id', value: expression.scopeId, optionsCaption: 'Select Actor'"></select>
+        <!--/ko-->
+
+        <!--ko if: expression.scope == 'scene'-->
+        <select data-bind="options: scenes, optionsText: 'name', optionsValue: 'id', value: expression.scopeId, optionsCaption: 'Select Scene'"></select>
+        <!--/ko-->
+
+        <!--ko if: expression.scope == 'storyEvent'-->
+        <select data-bind="options: storyEvents, optionsText: 'name', optionsValue: 'id', value: expression.scopeId, optionsCaption: 'Select Event'"></select>
+        <!--/ko-->
+
+        <div class="form-inline">
+            <input type="text" data-bind="value: expression.tags, valueUpdate: 'afterkeydown'" placeholder="comma delimited tags" />
+            <label>Has</label>
+            <input type="checkbox" data-bind="checked: expression.has" />
+        </div>
+    </div>
+</div>

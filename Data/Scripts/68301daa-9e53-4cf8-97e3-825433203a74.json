@@ -1,0 +1,298 @@
+{
+    "type": "script",
+    "id": "68301daa-9e53-4cf8-97e3-825433203a74",
+    "name": "Interact with the Ladder",
+    "sceneId": "ed2b858e-927a-44b9-86ee-4d3fe4dcfc33",
+    "propId": "cbff5da9-6e63-4d27-99be-3d12dfa85b13",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "ce8f88fe-d44b-452c-8472-ad4a686c04b3",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "589c030e-fdf3-4340-9403-9fa774c66c67",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "b8b7f712-7a46-44a2-ac5f-f5313caeed46",
+                            "text": "Look at the Ladder",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "actor",
+                                                "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                "scopeFilterId": null,
+                                                "tags": "GOT_LIGHT",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "27646907-b717-4e01-b6ff-79f52cf92e01",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "It's a metal ladder - damp, slick, and rusty, but it seems sturdy enough. Look like there's some sort of wooden trapdoor up at the top...",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "b9ca1bad-3970-440c-8eb6-a78a49b49663",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "I guess it's a sort of ladder, but it's hard to tell in this light. I can't see where it goes.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "1",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "2790869f-3a58-4b94-95a1-16e576fb78ea",
+                            "text": "Climb the Ladder",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "actor",
+                                                "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                "scopeFilterId": null,
+                                                "tags": "GOT_LIGHT",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.incrementTime",
+                                                    "id": "2ebc87a0-0242-4d38-9715-6b557db0cf24",
+                                                    "days": 0,
+                                                    "hours": 0,
+                                                    "minutes": "5"
+                                                },
+                                                {
+                                                    "id": "6f8633fd-6662-490b-a8f1-de9fc2e8fe60",
+                                                    "type": "nodes.skillBranch",
+                                                    "skill": "Climbing",
+                                                    "target": "20",
+                                                    "success": {
+                                                        "type": "nodes.block",
+                                                        "nodes": [
+                                                            {
+                                                                "type": "nodes.branch",
+                                                                "sections": [
+                                                                    {
+                                                                        "type": "nodes.branchSection",
+                                                                        "expression": {
+                                                                            "type": "expressions.inTags",
+                                                                            "scope": "target",
+                                                                            "scopeId": null,
+                                                                            "scopeFilterId": null,
+                                                                            "tags": "ClimbedOnce",
+                                                                            "has": false
+                                                                        },
+                                                                        "nodes": [
+                                                                            {
+                                                                                "type": "nodes.speak",
+                                                                                "id": "b8fa35aa-87c7-45a2-a7f1-c60a3b382aa1",
+                                                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                "actorId2": null,
+                                                                                "text": "Let's see where this goes.",
+                                                                                "emotion": "0",
+                                                                                "emotion2": "0",
+                                                                                "device": "0",
+                                                                                "device2": "0"
+                                                                            },
+                                                                            {
+                                                                                "type": "nodes.changeTags",
+                                                                                "id": "ec156774-6e41-4f76-800e-8da771c67ac8",
+                                                                                "scope": "target",
+                                                                                "scopeId": null,
+                                                                                "scopeFilterId": null,
+                                                                                "tagsToAdd": "ClimbedOnce",
+                                                                                "tagsToRemove": null
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    {
+                                                                        "type": "nodes.branchSection",
+                                                                        "expression": null,
+                                                                        "nodes": [
+                                                                            {
+                                                                                "type": "nodes.speak",
+                                                                                "id": "ce937b17-d965-4cf0-b483-1e53c81436bc",
+                                                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                "text": "This goes back up to the courtyard...",
+                                                                                "emotion": "0",
+                                                                                "emotion2": "0",
+                                                                                "device": "0",
+                                                                                "device2": "0"
+                                                                            }
+                                                                        ]
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "type": "nodes.fade",
+                                                                "scope": "FadeOut",
+                                                                "fadeTime": "1",
+                                                                "fadeTime2": 2,
+                                                                "wait": true,
+                                                                "fadeDown": 0.5,
+                                                                "fadeColorR": 0,
+                                                                "fadeColorG": 0,
+                                                                "fadeColorB": 0
+                                                            },
+                                                            {
+                                                                "type": "nodes.playSoundEffect",
+                                                                "soundEffectName": "Climb Ladder.wav",
+                                                                "wait": false
+                                                            },
+                                                            {
+                                                                "type": "nodes.changeTags",
+                                                                "id": "afb29b26-61dd-4dc8-a44d-b242ca2c4ce9",
+                                                                "scope": "scene",
+                                                                "scopeId": "cf824b0f-5af6-4a19-bac8-552a2a1bbebf",
+                                                                "scopeFilterId": null,
+                                                                "tagsToAdd": "TrapdoorFound, TrapdoorOpen",
+                                                                "tagsToRemove": null
+                                                            },
+                                                            {
+                                                                "type": "nodes.playSoundEffect",
+                                                                "soundEffectName": "wooden_door_opening.wav",
+                                                                "wait": false
+                                                            },
+                                                            {
+                                                                "type": "nodes.wait",
+                                                                "waitForSeconds": 1
+                                                            },
+                                                            {
+                                                                "type": "nodes.playMusic",
+                                                                "musicTrack": "Garden_Moira theme.mp3",
+                                                                "channel": "1",
+                                                                "loopType": "2"
+                                                            },
+                                                            {
+                                                                "type": "nodes.changeScene",
+                                                                "sceneId": "cf824b0f-5af6-4a19-bac8-552a2a1bbebf",
+                                                                "spawnId": "7a3ecb48-264a-42b6-857f-df14d4c4fce4",
+                                                                "fadeTime": "0"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "failure": {
+                                                        "type": "nodes.block",
+                                                        "nodes": [
+                                                            {
+                                                                "type": "nodes.playAnimation",
+                                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                "animationName": "Fall Down",
+                                                                "wait": true
+                                                            },
+                                                            {
+                                                                "type": "nodes.speak",
+                                                                "id": "5c86dd17-cf7d-4146-881e-192a1082b6ee",
+                                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                "actorId2": null,
+                                                                "text": "This ladder is slippery... And I'm not steady enough at climbing.",
+                                                                "emotion": "2",
+                                                                "emotion2": "0",
+                                                                "device": "0",
+                                                                "device2": "0"
+                                                            },
+                                                            {
+                                                                "type": "nodes.endScript"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "notify": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "2f47e11d-fdd3-4502-b5a7-ff874f716bee",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "I guess it's a sort of ladder, but it's hard to tell in this light. I can't see where it goes.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "1",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "3d4690b8-73f9-445a-a79b-4bd4d0fe0ad3",
+                            "text": "Take the Ladder",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "d024bf96-e9ba-4345-8aeb-45c9f4817590",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "It's bolted right to the floor, and up at the top. I think this ladder's here 'til the castle falls down.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "1",
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

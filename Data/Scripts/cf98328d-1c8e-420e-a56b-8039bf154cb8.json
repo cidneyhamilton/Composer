@@ -1,0 +1,978 @@
+{
+    "type": "script",
+    "id": "cf98328d-1c8e-420e-a56b-8039bf154cb8",
+    "name": "Interact with GogBarricade",
+    "sceneId": "1b5e1889-5aca-4af5-a616-80fad9d4cfa1",
+    "propId": "a8ab21a0-97fe-4cd6-a250-9fe1f3558926",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "4fe56325-08ca-4743-9dcf-c7a525424cbc",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.onceOnly",
+                    "id": "5bedba8a-f6a8-4c02-bddd-5aa935899681",
+                    "nodes": [
+                        {
+                            "type": "nodes.speak",
+                            "id": "0bfc5d6e-9b6a-4a5b-aa7b-5f8389564b60",
+                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                            "actorId2": null,
+                            "text": "Well this is intimidating. Formidable, even.",
+                            "emotion": "4",
+                            "emotion2": "0",
+                            "device": "0",
+                            "device2": "0"
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.showMenu",
+                    "id": "8ccc764f-92bd-438e-b999-849fb8317ee8",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "00534082-9279-48c5-989c-9f7d8105a186",
+                            "text": "Examine the Barricade",
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "aa4bc2fb-49fe-4052-ae7c-cd0a8b3b6a60",
+                                    "scope": "target",
+                                    "scopeId": null,
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "Examined",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "d0e98d40-ca63-475a-a8af-e15f0cad8dee",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "It looks like something the Gogs have put together. It's basically just a bunch of <i>really</i> sharp, pointed sticks lashed together to make a wall.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "f21e3fff-7956-4ae2-977c-2be649f13f74",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "It's really sturdy and reaches practically all the way to the ceiling. I can't just climb it. I don't have the time to disassemble it before more Gogs come around.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "5",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "70125e43-264e-4c02-94b2-1ae66579e894",
+                            "text": "Listen to Wall",
+                            "nodes": [
+                                {
+                                    "type": "nodes.onceOnly",
+                                    "id": "166f2ab9-f15f-481a-9cb2-bb38b375ad7a",
+                                    "nodes": [
+                                        {
+                                            "id": "43dab31d-ff51-40e3-988c-58e8ce831ac4",
+                                            "type": "nodes.skillBranch",
+                                            "skill": "Perception",
+                                            "target": "45",
+                                            "success": {
+                                                "type": "nodes.block",
+                                                "nodes": []
+                                            },
+                                            "failure": {
+                                                "type": "nodes.block",
+                                                "nodes": []
+                                            },
+                                            "notify": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.skillCheck",
+                                                "skill": "Perception",
+                                                "target": "25"
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "8b7ae154-b140-41fd-9e7d-362eae0b689d",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "It's very faint... but I think I can make out the echoes of a shanty and some shambling. What an odd combination! Especially with the bits of groaning here and there...",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "88c78113-9b06-428c-b7d5-a13ed1150ba9",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Eh, it's no good, I can't hear much of anything. There's too much echo in these caverns.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "4",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "5c18c12e-36d6-4ce4-9e76-08d4497fe183",
+                            "text": "Climb the Wall",
+                            "nodes": [
+                                {
+                                    "type": "nodes.onceOnly",
+                                    "id": "d873ff96-6e83-4cf0-8803-8996e86aa2c8",
+                                    "nodes": [
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "3d9d3041-d946-4479-a3b3-99c8f225510e",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "I'm not sure this is a good idea. I mean, it just looks so pointy...",
+                                            "emotion": "2",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.playSoundEffect",
+                                            "soundEffectName": "Shawn_Sigh.wav",
+                                            "wait": false
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "e3adba31-f17c-4101-bb15-2cf1c2fcf0ac",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "<sigh> ... fine. I'll give it one try.",
+                                            "emotion": "0",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.fade",
+                                            "scope": "FadeOut",
+                                            "fadeTime": "1",
+                                            "fadeTime2": 2,
+                                            "wait": true,
+                                            "fadeDown": 0.5,
+                                            "fadeColorR": 0,
+                                            "fadeColorG": 0,
+                                            "fadeColorB": 0
+                                        },
+                                        {
+                                            "type": "nodes.wait",
+                                            "waitForSeconds": "0.5"
+                                        },
+                                        {
+                                            "id": "440019d1-afa6-466c-8db5-dc3bfa9846e7",
+                                            "type": "nodes.skillBranch",
+                                            "skill": "Climbing",
+                                            "target": "50",
+                                            "success": {
+                                                "type": "nodes.block",
+                                                "nodes": [
+                                                    {
+                                                        "type": "nodes.playSoundEffect",
+                                                        "soundEffectName": "cloth_tear.wav",
+                                                        "wait": false
+                                                    },
+                                                    {
+                                                        "type": "nodes.speak",
+                                                        "id": "0f5efd02-f32a-4ea7-bbc3-43bc696e68ff",
+                                                        "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                        "actorId2": null,
+                                                        "text": "Whoa! That almost cut me!",
+                                                        "emotion": "0",
+                                                        "emotion2": "0",
+                                                        "device": "0",
+                                                        "device2": "0"
+                                                    }
+                                                ]
+                                            },
+                                            "failure": {
+                                                "type": "nodes.block",
+                                                "nodes": [
+                                                    {
+                                                        "type": "nodes.playSoundEffect",
+                                                        "soundEffectName": "Combat_Hit_Default.wav",
+                                                        "wait": false
+                                                    },
+                                                    {
+                                                        "type": "nodes.speak",
+                                                        "id": "ecf5a015-62d8-4993-a1f2-17a0d42ce83d",
+                                                        "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                        "actorId2": null,
+                                                        "text": "Ouch! Who knew wood could be so sharp!",
+                                                        "emotion": "3",
+                                                        "emotion2": "0",
+                                                        "device": "0",
+                                                        "device2": "0"
+                                                    },
+                                                    {
+                                                        "type": "nodes.changeHealth",
+                                                        "id": "21fe4d7f-4bea-42b8-9835-a9769abb3509",
+                                                        "target": "0",
+                                                        "amount": "-5",
+                                                        "canDie": false,
+                                                        "isPercentage": true,
+                                                        "showNotification": true
+                                                    }
+                                                ]
+                                            },
+                                            "notify": true
+                                        },
+                                        {
+                                            "type": "nodes.playAnimation",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "animationName": "JumpScare"
+                                        },
+                                        {
+                                            "type": "nodes.fade",
+                                            "scope": "FadeIn",
+                                            "fadeTime": "1",
+                                            "fadeTime2": "1",
+                                            "wait": true,
+                                            "fadeDown": 0.5,
+                                            "fadeColorR": 0,
+                                            "fadeColorG": 0,
+                                            "fadeColorB": 0
+                                        },
+                                        {
+                                            "type": "nodes.wait",
+                                            "waitForSeconds": "1"
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "b47c98ba-826f-431c-992b-df97e3c9b3a0",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "Ugh... I've got splinters in my hands. Climbing is just too dangerous.",
+                                            "emotion": "2",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.endScript"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "5b752704-0fd3-4a61-ae7b-f1b8e99f055d",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "I'm not trying that again.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "5",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "5805585b-adb0-4131-9e2d-c737299906c8",
+                            "text": "Destroy the Barricade",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "da2a3927-4477-49b0-8a89-ecce90f91197",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "If I want to get past this barrier, I'm going to have to destroy it.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.showMenu",
+                                    "id": "0bc56bae-8942-4985-8794-2fc54066c5c9",
+                                    "options": [
+                                        {
+                                            "type": "options.text",
+                                            "id": "8f3f8dd8-61d5-4fa8-abcc-c1e28ac44ede",
+                                            "text": "Use Flambe",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "32de36ae-7a59-4044-9624-58ffa46c9672",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "There's a great idea! I'll burn this wall to the ground!",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "87aaf355-b2cd-4b3a-956d-ed1f0ff93877",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Wood, meet fire.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.fade",
+                                                    "scope": "FadeOut",
+                                                    "fadeTime": "1",
+                                                    "fadeTime2": 2,
+                                                    "wait": true,
+                                                    "fadeDown": 0.5,
+                                                    "fadeColorR": 0,
+                                                    "fadeColorG": 0,
+                                                    "fadeColorB": 0
+                                                },
+                                                {
+                                                    "type": "nodes.changeInventory",
+                                                    "id": "c40e2a16-3d14-4fa1-bb5c-10abd6fab1d6",
+                                                    "propId": "98432bd0-5252-4bce-a90a-c9243902be62",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "change": "0",
+                                                    "count": 1,
+                                                    "notify": true
+                                                },
+                                                {
+                                                    "type": "nodes.playSoundEffect",
+                                                    "soundEffectName": "Combat_Miss_Default.WAV",
+                                                    "wait": false
+                                                },
+                                                {
+                                                    "type": "nodes.wait",
+                                                    "waitForSeconds": "0.5"
+                                                },
+                                                {
+                                                    "type": "nodes.playSoundEffect",
+                                                    "soundEffectName": "HeroU_VaseBreak_04.wav",
+                                                    "wait": false
+                                                },
+                                                {
+                                                    "type": "nodes.wait",
+                                                    "waitForSeconds": "0.25"
+                                                },
+                                                {
+                                                    "type": "nodes.playSoundEffect",
+                                                    "soundEffectName": "goo_plop.wav",
+                                                    "wait": false
+                                                },
+                                                {
+                                                    "type": "nodes.wait",
+                                                    "waitForSeconds": "0.75"
+                                                },
+                                                {
+                                                    "type": "nodes.playSoundEffect",
+                                                    "soundEffectName": "boiling_oneshot.wav",
+                                                    "wait": false
+                                                },
+                                                {
+                                                    "type": "nodes.wait",
+                                                    "waitForSeconds": "0.25"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "1f8cd030-b28f-41ec-b0ac-c647d26d5bdf",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Yikes! The liquid isn't igniting... it's just... boiling? It's like it's too watery or something.",
+                                                    "emotion": "4",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.fade",
+                                                    "scope": "FadeIn",
+                                                    "fadeTime": "1",
+                                                    "fadeTime2": "1",
+                                                    "wait": true,
+                                                    "fadeDown": 0.5,
+                                                    "fadeColorR": 0,
+                                                    "fadeColorG": 0,
+                                                    "fadeColorB": 0
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "8158c679-5b4e-4ec2-ba4c-08e039c4af60",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Well, that's too bad. I guess a Flambe isn't going to cut it.",
+                                                    "emotion": "2",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ],
+                                            "expression": {
+                                                "type": "expressions.and",
+                                                "left": {
+                                                    "type": "expressions.inInventory",
+                                                    "propId": "98432bd0-5252-4bce-a90a-c9243902be62",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "has": true
+                                                },
+                                                "right": {
+                                                    "type": "expressions.inTags",
+                                                    "scope": "target",
+                                                    "scopeId": null,
+                                                    "scopeFilterId": null,
+                                                    "tags": "Examined",
+                                                    "has": true
+                                                }
+                                            },
+                                            "ignoreChildAvailability": false,
+                                            "minutes": "5",
+                                            "ExitMenu": false
+                                        },
+                                        {
+                                            "type": "options.text",
+                                            "id": "8657a24f-6bf8-421b-aeff-72e26052b931",
+                                            "text": "Use a Boom",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "1debb48e-1f51-42f3-b120-61385e4a0059",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "I'm betting a little boom can go a long way.",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.playAnimation",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "animationName": "KneelDown",
+                                                    "wait": false
+                                                },
+                                                {
+                                                    "type": "nodes.fade",
+                                                    "scope": "FadeOut",
+                                                    "fadeTime": "1",
+                                                    "fadeTime2": 2,
+                                                    "wait": true,
+                                                    "fadeDown": 0.5,
+                                                    "fadeColorR": 0,
+                                                    "fadeColorG": 0,
+                                                    "fadeColorB": 0
+                                                },
+                                                {
+                                                    "type": "nodes.changeInventory",
+                                                    "id": "8b2c0f04-6d74-45aa-9253-f8fbccd750dd",
+                                                    "propId": "f9b2d9af-2da3-4f57-bb7d-00c83690c74c",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "change": "0",
+                                                    "count": 1,
+                                                    "notify": true
+                                                },
+                                                {
+                                                    "type": "nodes.playSoundEffect",
+                                                    "soundEffectName": "lighter_on.wav",
+                                                    "wait": false
+                                                },
+                                                {
+                                                    "type": "nodes.playAnimation",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "animationName": "KneelUp",
+                                                    "wait": false
+                                                },
+                                                {
+                                                    "type": "nodes.wait",
+                                                    "waitForSeconds": "1"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "94d86e4a-6132-409d-8091-c474730e99d2",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Any moment now...",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.wait",
+                                                    "waitForSeconds": "0.5"
+                                                },
+                                                {
+                                                    "type": "nodes.playSoundEffect",
+                                                    "soundEffectName": "thud.wav",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.wait",
+                                                    "waitForSeconds": "0.5"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "965a1cd0-743a-4f72-842f-1e2315e72730",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Um... that didn't sound too effective.",
+                                                    "emotion": "4",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.fade",
+                                                    "scope": "FadeIn",
+                                                    "fadeTime": "1",
+                                                    "fadeTime2": "1",
+                                                    "wait": true,
+                                                    "fadeDown": 0.5,
+                                                    "fadeColorR": 0,
+                                                    "fadeColorG": 0,
+                                                    "fadeColorB": 0
+                                                },
+                                                {
+                                                    "type": "nodes.wait",
+                                                    "waitForSeconds": "1"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "5915c266-66d5-4d03-93df-f1ea5763f4e7",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "The explosion singed the wall a little, but it wasn't nearly powerful enough to do any real damage. It's almost like there's some kind of magic protecting it from minor explosions.",
+                                                    "emotion": "3",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ],
+                                            "expression": {
+                                                "type": "expressions.inInventory",
+                                                "propId": "f9b2d9af-2da3-4f57-bb7d-00c83690c74c",
+                                                "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                "has": true
+                                            },
+                                            "ignoreChildAvailability": false,
+                                            "minutes": "5",
+                                            "ExitMenu": false
+                                        },
+                                        {
+                                            "type": "options.text",
+                                            "id": "f5f416f1-f050-4bcf-b1ac-6b4b2e77180d",
+                                            "text": "Use a Big Boom",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "e62266bd-5bdf-4d97-8c32-d6e604ed9ad7",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "One Big Boom, coming up!",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.playAnimation",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "animationName": "KneelDown",
+                                                    "wait": false
+                                                },
+                                                {
+                                                    "type": "nodes.fade",
+                                                    "scope": "FadeOut",
+                                                    "fadeTime": "1",
+                                                    "fadeTime2": 2,
+                                                    "wait": true,
+                                                    "fadeDown": 0.5,
+                                                    "fadeColorR": 0,
+                                                    "fadeColorG": 0,
+                                                    "fadeColorB": 0
+                                                },
+                                                {
+                                                    "type": "nodes.changeInventory",
+                                                    "id": "243a8a55-e86b-41e0-976a-0f97294af1b3",
+                                                    "propId": "155838d4-c048-4ef4-bc68-1652a785e789",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "change": "0",
+                                                    "count": 1,
+                                                    "notify": true
+                                                },
+                                                {
+                                                    "type": "nodes.playSoundEffect",
+                                                    "soundEffectName": "lighter_on.wav",
+                                                    "wait": false
+                                                },
+                                                {
+                                                    "type": "nodes.playAnimation",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "animationName": "KneelUp",
+                                                    "wait": false
+                                                },
+                                                {
+                                                    "type": "nodes.wait",
+                                                    "waitForSeconds": "1"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "5760d8f7-4c3b-437f-b6dc-41342abb5373",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "And 3... 2... 1...",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.showVignette",
+                                                    "vignetteName": "Gog_Barricade_Explosion.png",
+                                                    "crossFadeTime": 0
+                                                },
+                                                {
+                                                    "type": "nodes.fade",
+                                                    "scope": "FadeIn",
+                                                    "fadeTime": "1",
+                                                    "fadeTime2": ".5",
+                                                    "wait": true,
+                                                    "fadeDown": 0.5,
+                                                    "fadeColorR": 0,
+                                                    "fadeColorG": 0,
+                                                    "fadeColorB": 0
+                                                },
+                                                {
+                                                    "type": "nodes.playSoundEffect",
+                                                    "soundEffectName": "explosion_short.wav",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "0483511d-12f6-4c71-944d-482972d0e6ff",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Wow!",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.changePropVisibility",
+                                                    "id": "7d7da418-c4d7-477a-b501-7e56d08a370c",
+                                                    "propId": "cd9052e3-8dd3-4b86-ac2e-1864ffce19dc",
+                                                    "sceneId": "1b5e1889-5aca-4af5-a616-80fad9d4cfa1",
+                                                    "status": "Visible",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.changePropVisibility",
+                                                    "id": "213abb0b-3f99-4339-93c2-d4f5f56be0e5",
+                                                    "propId": "a8ab21a0-97fe-4cd6-a250-9fe1f3558926",
+                                                    "sceneId": "1b5e1889-5aca-4af5-a616-80fad9d4cfa1",
+                                                    "status": "Hidden",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.invokeCommand",
+                                                    "id": "a0f871ba-a793-44fb-948c-a0ac025dbc4a",
+                                                    "entityType": "prop",
+                                                    "entityFilterId": "1b5e1889-5aca-4af5-a616-80fad9d4cfa1",
+                                                    "entityId": "a8ab21a0-97fe-4cd6-a250-9fe1f3558926",
+                                                    "command": "removeGogs",
+                                                    "resultVariableScope": "script"
+                                                },
+                                                {
+                                                    "type": "nodes.changePropVisibility",
+                                                    "id": "4f7ae2d1-c158-4430-8010-63795dcfabfe",
+                                                    "propId": "c6fc323c-26ef-4f98-934a-ca18d6a424d0",
+                                                    "sceneId": "1b5e1889-5aca-4af5-a616-80fad9d4cfa1",
+                                                    "status": "Hidden",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.changePropVisibility",
+                                                    "id": "78be8335-36d4-48de-b900-6f4f852ab89e",
+                                                    "propId": "1a30046c-47af-4563-9ea2-100495143024",
+                                                    "sceneId": "1b5e1889-5aca-4af5-a616-80fad9d4cfa1",
+                                                    "status": "Hidden",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "815f15dc-274b-4da4-8ada-bd15fb4e8321",
+                                                    "scope": "prop",
+                                                    "scopeId": "a8ab21a0-97fe-4cd6-a250-9fe1f3558926",
+                                                    "scopeFilterId": "1b5e1889-5aca-4af5-a616-80fad9d4cfa1",
+                                                    "tagsToAdd": "bombed",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.wait",
+                                                    "waitForSeconds": ".5"
+                                                },
+                                                {
+                                                    "type": "nodes.hideVignette",
+                                                    "waitForSeconds": 1
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "a6ae2d45-b481-4bb9-9f97-a8c804db172f",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "It disintegrated the whole thing! Amazing!",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.comment",
+                                                    "message": "TODO: Comment if there were gogs that left after the barrier destruction.",
+                                                    "commentor": "Cidney"
+                                                },
+                                                {
+                                                    "type": "nodes.endScript"
+                                                }
+                                            ],
+                                            "expression": {
+                                                "type": "expressions.inInventory",
+                                                "propId": "155838d4-c048-4ef4-bc68-1652a785e789",
+                                                "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                "has": true
+                                            },
+                                            "ignoreChildAvailability": true,
+                                            "minutes": "5",
+                                            "ExitMenu": true
+                                        }
+                                    ],
+                                    "AutoAddDone": true,
+                                    "Unique": false
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "target",
+                                "scopeId": null,
+                                "scopeFilterId": null,
+                                "tags": "examined",
+                                "has": true
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "6c4104fd-83b5-4c33-a5bd-0bb22974d068",
+                            "text": "Sense Magic",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "prop",
+                                                "scopeId": "a8ab21a0-97fe-4cd6-a250-9fe1f3558926",
+                                                "scopeFilterId": "1b5e1889-5aca-4af5-a616-80fad9d4cfa1",
+                                                "tags": "bombed",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "7475db02-b1b5-46aa-97c7-36b4abe51a70",
+                                                    "scriptId": "533e1ce1-13d3-439f-8544-dbdf808d30c4",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "b5f91364-9285-4e93-80fb-44b42f0f5605",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "I guess I blew any magic away with my Boom.",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "12860530-c25b-4144-903d-8c8dbadbde68",
+                                                    "scriptId": "b1c2ecc1-eb00-49ed-a7ba-ea6af625c355",
+                                                    "entryPointId": "4fe56325-08ca-4743-9dcf-c7a525424cbc",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                },
+                                                {
+                                                    "type": "nodes.onceOnly",
+                                                    "id": "41993c41-508c-47e2-9079-68b947028e8c",
+                                                    "nodes": [
+                                                        {
+                                                            "type": "nodes.speak",
+                                                            "id": "746a96d6-4bd0-4b72-8db9-40c9c65841b8",
+                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                            "actorId2": null,
+                                                            "text": "Neat! There's definitely some magic here.",
+                                                            "emotion": "1",
+                                                            "emotion2": "0",
+                                                            "device": "0",
+                                                            "device2": "0"
+                                                        },
+                                                        {
+                                                            "id": "d1e35e5f-3347-435e-8156-9b293cb5c145",
+                                                            "type": "nodes.skillBranch",
+                                                            "skill": "Magic",
+                                                            "target": "25",
+                                                            "success": {
+                                                                "type": "nodes.block",
+                                                                "nodes": []
+                                                            },
+                                                            "failure": {
+                                                                "type": "nodes.block",
+                                                                "nodes": []
+                                                            },
+                                                            "notify": true
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.skillCheck",
+                                                                "skill": "Magic",
+                                                                "target": "45"
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "fce2439a-7f8c-4c10-ac5b-875381097f96",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "It's some sort of watery protection shield placed upon the wood... It makes the wood of the gate resistant to fire. I guess the Gogs must have had some issues with the torches being so close...",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "2a22d2b4-ed59-4574-b2cd-cd68c26e7a42",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "I'm not going to be able to get through this without something that packs a real wallop.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": null,
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "bb623aa9-f6ee-47ff-8b66-987eb6886901",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "It's definitely some kind of watery protection magic, but I can't really tell what it's meant to do.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "actor",
+                                "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                "scopeFilterId": null,
+                                "tags": "sensemagic",
+                                "has": true
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "5",
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

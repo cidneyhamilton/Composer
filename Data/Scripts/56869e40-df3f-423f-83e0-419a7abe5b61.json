@@ -1,0 +1,450 @@
+{
+    "type": "script",
+    "id": "56869e40-df3f-423f-83e0-419a7abe5b61",
+    "name": "Interact Drawers",
+    "sceneId": "47ebdad9-eb30-4230-b1b2-b576e5ccbe0d",
+    "trigger": {
+        "type": "triggers.manual",
+        "name": "Manual"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "ffa59e47-f15d-4a65-8a69-08edd1c68076",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "09bbb2b5-1460-4eb9-bf03-963e82393b46",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "3a2b8e44-797d-4e89-a26e-6d5f0322aafb",
+                            "text": "Examine the Desk Drawers",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "ab1be594-9ef5-48e8-ba89-c581894f2c59",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "The center drawer is locked, but I can open one of the side drawers.",
+                                    "emotion": "0",
+                                    "device": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "3",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "c22d6cd9-48e1-4ac2-b83c-7920e37afe61",
+                            "text": "Unlock the Center Drawer",
+                            "nodes": [
+                                {
+                                    "type": "nodes.onceOnly",
+                                    "id": "d85f1f64-0cfe-4b54-a4c2-a8db43381931",
+                                    "nodes": [
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "03c0f834-b2f4-4647-871f-98a65c8d784c",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "text": "Now's my chance to find out what's in that locked drawer!",
+                                            "emotion": "1",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "36be5acc-a3f4-4d85-8e18-fa9177041c1e",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "text": "This is trivial to unlock, now that I know what I'm doing.",
+                                            "emotion": "0",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.invokeScript",
+                                            "id": "beb2d904-a50d-4953-a80a-8815c2fd1d1a",
+                                            "scriptId": "f214e893-43e1-4ba8-bb48-5ad1177e61de",
+                                            "entryPointId": "ffa59e47-f15d-4a65-8a69-08edd1c68076",
+                                            "currentScope": "Scenes",
+                                            "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                            "currentActorId": null,
+                                            "currentStoryEventId": null,
+                                            "currentPropId": null
+                                        },
+                                        {
+                                            "id": "f937f2d6-f4fc-495f-9d98-b2c1cc158b8c",
+                                            "type": "nodes.improveSkill",
+                                            "skill": "Tool Use",
+                                            "amount": "1",
+                                            "notify": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.playSoundEffect",
+                                    "soundEffectName": "desk_drawer_open.wav",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "target",
+                                                "scopeId": null,
+                                                "scopeFilterId": null,
+                                                "tags": "gotdrawerloot",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "d937632b-0221-478b-b445-38439a38aa94",
+                                                    "scope": "target",
+                                                    "scopeId": null,
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "gotdrawerloot",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "1e8ac363-b86c-4f34-906e-640cab84bab5",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "Well, there's no Raven. But there is a nice dagger and a pretty good cache of Lyra. At least I won't go away from here poor!",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.changeMoney",
+                                                    "id": "52ed16fd-4bc0-43eb-a2b5-0848bc2f48e2",
+                                                    "amount": "50",
+                                                    "change": "1",
+                                                    "currency": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.changeInventory",
+                                                    "id": "e6cae107-7d31-4e99-8720-94bc22be8c13",
+                                                    "propId": "f84a00b4-8d39-4a38-8aef-6835d300f36e",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "change": "1",
+                                                    "count": 1,
+                                                    "notify": true
+                                                },
+                                                {
+                                                    "type": "nodes.playSoundEffect",
+                                                    "soundEffectName": "knife_pickup.wav",
+                                                    "wait": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "1e8ccd92-f6b8-4787-a7e4-1230c55f179c",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Shame that there wasn't anything of any value in this drawer.",
+                                                    "emotion": "2",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.variableComparison",
+                                "variableScope": "global",
+                                "variableName": "ego.haslockpick",
+                                "operator": "eq",
+                                "compareTo": "true",
+                                "sceneId": "47ebdad9-eb30-4230-b1b2-b576e5ccbe0d",
+                                "propId": null
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "5",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "aec29fa3-d984-427b-a2d5-f50902dd9f2f",
+                            "text": "Open the Side Desk Drawer",
+                            "nodes": [
+                                {
+                                    "type": "nodes.changePropVisibility",
+                                    "id": "da04e454-0b3c-4f88-893f-cc051493b49b",
+                                    "propId": "57a2a421-effd-4d69-9ea6-c5a1cca8811b",
+                                    "sceneId": "47ebdad9-eb30-4230-b1b2-b576e5ccbe0d",
+                                    "status": "Opening",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "target",
+                                                "scopeId": null,
+                                                "scopeFilterId": null,
+                                                "tags": "TookLetterOpener",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "cccb0d12-9255-4fee-9d57-d980c4eebeb9",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Hey, look! That silver letter opener is back where it was when I first found it.",
+                                                    "emotion": "4",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "b599b40c-09b9-40b3-af9c-7580ff494eae",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "As is the same junk as the last time.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "62df1c75-12ab-4376-9170-5d07561b7e38",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Nothing else of value here now that I have the letter opener.",
+                                                    "emotion": "0",
+                                                    "device": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "02578864-a861-44af-b3f7-18120c9c8c63",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "I've got a weird sense of Deja vu about all this.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.showMenu",
+                                    "id": "3d8fda6d-9779-4c47-8272-2ccb05e1ee73",
+                                    "options": [
+                                        {
+                                            "type": "options.text",
+                                            "id": "93091a19-8dd2-4694-89c3-f47d04f7e543",
+                                            "text": "Take Paper",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "18369928-9af4-49ed-a498-df023021c3e7",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "I'm afraid my glory days of origami folding are long over. I don't want to take a chance that I'll fold again.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ],
+                                            "expression": null,
+                                            "ignoreChildAvailability": true,
+                                            "minutes": "1",
+                                            "ExitMenu": false
+                                        },
+                                        {
+                                            "type": "options.text",
+                                            "id": "0a63ef20-3a5b-4e76-8c6c-d00cd2d6443b",
+                                            "text": "Take Pen",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "1f63c07b-55da-40da-8567-a311a382bfcd",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "I don't really want to add a broken feather pen to the collection of stuff I don't need.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ],
+                                            "expression": null,
+                                            "ignoreChildAvailability": true,
+                                            "minutes": "2",
+                                            "ExitMenu": false
+                                        },
+                                        {
+                                            "type": "options.text",
+                                            "id": "220d2930-3f3d-46cf-889e-24ead9d678c7",
+                                            "text": "Take Ink",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "ed95f471-894c-4421-bcbb-9ee0bc8d1fb1",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "I can't think of any good use for a dried up inkwell except as a paperweight. ",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ],
+                                            "expression": null,
+                                            "ignoreChildAvailability": true,
+                                            "minutes": "1",
+                                            "ExitMenu": false
+                                        },
+                                        {
+                                            "type": "options.text",
+                                            "id": "4b8b4f47-9f0f-4685-9cca-00d9458ad9ba",
+                                            "text": "Take Letter Opener",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changeInventory",
+                                                    "id": "5add26e5-ee7d-4354-a244-66a776dc6126",
+                                                    "propId": "afda46e2-af95-4485-913b-bc35097ad296",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "change": "1",
+                                                    "count": 1,
+                                                    "notify": true
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "d16b0a53-4c55-41b5-b32b-943510ad5d57",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "With this silver letter opener, I got the Lucky Coin that set everything in motion. So I guess I'll take this as a souvenir of my very first heist.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "d15655fa-6012-4de4-9137-39383b54b0a6",
+                                                    "scope": "target",
+                                                    "scopeId": null,
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "TookLetterOpener",
+                                                    "tagsToRemove": null
+                                                }
+                                            ],
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "target",
+                                                "scopeId": null,
+                                                "scopeFilterId": null,
+                                                "tags": "TookLetterOpener",
+                                                "has": false
+                                            },
+                                            "ignoreChildAvailability": false,
+                                            "minutes": "2",
+                                            "ExitMenu": true
+                                        }
+                                    ],
+                                    "AutoAddDone": true,
+                                    "Unique": false
+                                },
+                                {
+                                    "type": "nodes.changePropVisibility",
+                                    "id": "41bd122b-776a-418e-bbae-3bf3be3b668c",
+                                    "propId": "57a2a421-effd-4d69-9ea6-c5a1cca8811b",
+                                    "sceneId": "47ebdad9-eb30-4230-b1b2-b576e5ccbe0d",
+                                    "status": "Closing",
+                                    "wait": true
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.propStatus",
+                                "propId": "5bdf38cb-afce-4278-84d4-eb3d28793779",
+                                "sceneId": "47ebdad9-eb30-4230-b1b2-b576e5ccbe0d",
+                                "status": "Visible"
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "2",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "ec703be6-2cf8-4972-b588-00b1cd0fa19a",
+                            "text": "Look in the Side Drawer",
+                            "nodes": [
+                                {
+                                    "type": "nodes.changePropVisibility",
+                                    "id": "7dd03510-8db6-4e5f-a2e3-e6cf4608fd33",
+                                    "propId": "57a2a421-effd-4d69-9ea6-c5a1cca8811b",
+                                    "sceneId": "47ebdad9-eb30-4230-b1b2-b576e5ccbe0d",
+                                    "status": "Opening",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "2c5b10dd-555a-4644-9e2b-3899e24f617e",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Darn it, it's too dark to see if there's anything useful in the drawer.",
+                                    "emotion": "2",
+                                    "device": "0"
+                                },
+                                {
+                                    "type": "nodes.changePropVisibility",
+                                    "id": "c234009e-a1bf-445b-a2bb-26542d4b094e",
+                                    "propId": "57a2a421-effd-4d69-9ea6-c5a1cca8811b",
+                                    "sceneId": "47ebdad9-eb30-4230-b1b2-b576e5ccbe0d",
+                                    "status": "Closing",
+                                    "wait": true
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.propStatus",
+                                "propId": "5bdf38cb-afce-4278-84d4-eb3d28793779",
+                                "sceneId": "47ebdad9-eb30-4230-b1b2-b576e5ccbe0d",
+                                "status": "Hidden"
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "2",
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

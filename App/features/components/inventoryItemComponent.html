@@ -1,0 +1,70 @@
+<form>
+    <fieldset>
+
+	 	<label>Item Type</label>
+			<select data-bind="options: inventoryPicklists.itemTypes,
+				optionsText: 'name',
+				optionsValue: 'id',
+				value: ItemType,
+				valueUpdate: 'afterkeydown'"/>
+        <Br/>
+
+		<label>Inventory Bag</label>
+        	<select data-bind="options: inventoryPicklists.inventoryBagTypes,
+				optionsText: 'name',
+				optionsValue: 'id',
+				value: ItemBag,
+				valueUpdate: 'afterkeydown'"/>
+   		<Br/>
+
+		<label>Combat Bag</label>
+        	<select data-bind="options: inventoryPicklists.combatBagTypes,
+				optionsText: 'name',
+				optionsValue: 'id',
+				value: CombatUseFilter,
+				valueUpdate: 'afterkeydown'"/>
+   		<Br/>
+
+		<label>Is Gift</label>
+ 		<input type="checkbox" placeholder="IsPercentage" data-bind="checked: IsGift, valueUpdate: 'afterkeydown'"/>
+		<Br/>
+		<Br/>
+
+		<label>Is Quest Item (cannot discard)</label>
+ 		<input type="checkbox" placeholder="IsPercentage" data-bind="checked: IsQuestItem, valueUpdate: 'afterkeydown'"/>
+		<Br/>
+		<Br/>
+
+		<label>Charges</label>
+        <input type="text" placeholder="Charges" data-bind="value: Charges, valueUpdate: 'afterkeydown'"/>
+		<Br/>
+		<Br/>
+
+		<label>Sound effect for pickup</label>
+		<span>
+	        <select data-bind="options: soundEffects, value: soundEffectName, optionsCaption: 'Default: ' +  defaultSoundEffectName(ItemType)"></select>
+			<!--ko if: soundEffectName -->
+	        <input data-bind="click:  function () { playSound(ko.utils.unwrapObservable(soundEffectName)); }" type="button" value="PLAY"/>
+	        <!-- /ko -->
+			<!--ko ifnot: soundEffectName -->
+	        <input data-bind="click:  function () { playSound(defaultSoundEffectName(ItemType)); }" type="button" value="PLAY"/>
+	        <!-- /ko -->
+    	</span>
+		<Br/>
+		<Br/>
+<!--
+
+		<label>Throwable</label>
+ 		<input type="checkbox" data-bind="checked: IsThrowable, valueUpdate: 'afterkeydown'">
+		<Br/>
+		<Br/>
+
+		<label>Combat Useable</label>
+ 		<input type="checkbox" data-bind="checked: IsCombatItem, valueUpdate: 'afterkeydown'">
+		<Br/>
+		<Br/>
+
+		<label>Stack Size</label>
+        <input type="text" placeholder="Charges" data-bind="value: Stackable, valueUpdate: 'afterkeydown'">
+-->
+</form>

@@ -1,0 +1,325 @@
+{
+    "type": "script",
+    "id": "d5df60cb-edc3-48cc-8179-0a01c1f2c5a2",
+    "name": "Interact with Piano Bench",
+    "storyEventId": "32df3697-cde9-48af-82a6-51be5fc65db4",
+    "sceneId": "212f8023-648d-45df-8f16-d56a7f081d41",
+    "propId": "b7e7878b-198f-4a48-a35c-b41a488c22b0",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "2905ce1b-ce41-4455-99e1-af668047bd64",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "a07e7890-c1ee-45a1-9a6d-44c681785603",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "5944336a-c336-4337-a332-77cfd47c57cb",
+                            "text": "Look at the Piano Bench",
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "1cb2accf-9b76-465f-afc6-30f7c86a7ae6",
+                                    "scope": "target",
+                                    "scopeId": null,
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "examined",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "36df4a07-fb7e-4b0e-9385-6d9e3b709010",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "It's the sort of bench that has hinges on the top so that you can store things in the seat. Maybe the coin is hidden inside it?",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "93927bf4-b735-44f9-94e4-c6459abed35e",
+                            "text": "Look Inside the Piano Bench",
+                            "nodes": [
+                                {
+                                    "type": "nodes.playSoundEffect",
+                                    "soundEffectName": "cabinet_open.wav",
+                                    "wait": false
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "bbe8e672-15c4-4dda-a0ac-b79560f10f75",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Let's see what they've stashed inside the bench...",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inInventory",
+                                                "propId": "4da6de5e-e0fa-4c10-9334-d1b67b84f59a",
+                                                "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "f8927783-7579-4b78-9f16-2d6faf2ad23d",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "It's just a bunch of sheet music, nothing I can use. No sign of the Coin.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "2f450c26-8632-42c6-bc13-bde7882c36cc",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "It's just a bunch of sheet music, nothing I can use.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.showMenu",
+                                    "id": "4e67993a-13cd-4fe3-8af7-637c142abcba",
+                                    "options": [
+                                        {
+                                            "type": "options.text",
+                                            "id": "13f31ae1-d518-443b-98aa-c6509d6ac88e",
+                                            "text": "Search Some More",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.nodeCycle",
+                                                    "id": "750c050e-562b-451b-b997-33a451ab2349",
+                                                    "nodes": [
+                                                        {
+                                                            "type": "nodes.speak",
+                                                            "id": "50d38d80-0d6c-4718-956a-a53cc2d9fe09",
+                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                            "actorId2": null,
+                                                            "text": "Here's \"Toot Suite\" for the Cream Horn. Yum!",
+                                                            "emotion": "0",
+                                                            "device": "0"
+                                                        },
+                                                        {
+                                                            "type": "nodes.speak",
+                                                            "id": "a3554d59-94f9-43b8-909e-f97383dc2cf4",
+                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                            "actorId2": null,
+                                                            "text": "It's the Symphony of Sympathy. Eh, what do I care?",
+                                                            "emotion": "0",
+                                                            "device": "0"
+                                                        },
+                                                        {
+                                                            "type": "nodes.speak",
+                                                            "id": "d4c2c912-3cf2-4258-8a7b-a5b8f9a14c48",
+                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                            "actorId2": null,
+                                                            "text": "\"The Étude Brute\"? Music like that could cause a Caesar!",
+                                                            "emotion": "1",
+                                                            "emotion2": "0",
+                                                            "device": "0",
+                                                            "device2": "0"
+                                                        },
+                                                        {
+                                                            "type": "nodes.speak",
+                                                            "id": "64cce5ef-97bb-4ca2-9c05-52ac77886217",
+                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                            "actorId2": null,
+                                                            "text": "Here's a sheath of music called \"Let's Get Bizet.\" Wow, Carmen get it!",
+                                                            "emotion": "0",
+                                                            "emotion2": "0",
+                                                            "device": "0",
+                                                            "device2": "0"
+                                                        },
+                                                        {
+                                                            "type": "nodes.speak",
+                                                            "id": "cfeda76f-a024-4e70-80ea-ea58511c5c0a",
+                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                            "actorId2": null,
+                                                            "text": "This one's \"Suite 16.\" Looks like party music.",
+                                                            "emotion": "0",
+                                                            "emotion2": "0",
+                                                            "device": "0",
+                                                            "device2": "0"
+                                                        },
+                                                        {
+                                                            "type": "nodes.speak",
+                                                            "id": "344c44b6-4466-45db-917d-b7ecc542c298",
+                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                            "actorId2": null,
+                                                            "text": "\"The Four Seasonings.\" Huh. I didn't know there <i>were</i> four. I thought just salt and pepper.",
+                                                            "emotion": "0",
+                                                            "emotion2": "0",
+                                                            "device": "0",
+                                                            "device2": "0"
+                                                        },
+                                                        {
+                                                            "type": "nodes.speak",
+                                                            "id": "586454f0-2f3d-4cd1-adc3-d8f6e73d54be",
+                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                            "actorId2": null,
+                                                            "text": "Hmm... \"The School of Hard Nocturnes.\" Looks difficult to me, but then, they <i>all</i> do.",
+                                                            "emotion": "0",
+                                                            "emotion2": "0",
+                                                            "device": "0",
+                                                            "device2": "0"
+                                                        },
+                                                        {
+                                                            "type": "nodes.speak",
+                                                            "id": "53836e45-8ed9-4217-8d54-d9228a6bd864",
+                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                            "actorId2": null,
+                                                            "text": "Beethoven's \"Bag of Shells in A Minor.\" What an odd thing to write music about.",
+                                                            "emotion": "0",
+                                                            "emotion2": "0",
+                                                            "device": "0",
+                                                            "device2": "0"
+                                                        },
+                                                        {
+                                                            "type": "nodes.speak",
+                                                            "id": "104ce59e-7064-4686-8d9c-d192e05e21cf",
+                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                            "actorId2": null,
+                                                            "text": "\"The Babar of Seville.\" I wonder if it's anything like the \"Baby Elephant Walk.\"",
+                                                            "emotion": "0",
+                                                            "emotion2": "0",
+                                                            "device": "0",
+                                                            "device2": "0"
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "expression": null,
+                                            "ignoreChildAvailability": true,
+                                            "minutes": 0,
+                                            "ExitMenu": false
+                                        }
+                                    ],
+                                    "AutoAddDone": true,
+                                    "Unique": false
+                                },
+                                {
+                                    "type": "nodes.playSoundEffect",
+                                    "soundEffectName": "cabinet_close.wav",
+                                    "wait": false
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "target",
+                                "scopeId": null,
+                                "scopeFilterId": null,
+                                "tags": "examined",
+                                "has": true
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "3",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "6c6a7efd-d180-4023-88d9-4c0808673bf3",
+                            "text": "Sit on the Piano Bench",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inInventory",
+                                                "propId": "4da6de5e-e0fa-4c10-9334-d1b67b84f59a",
+                                                "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "43d87c3f-fca3-4931-b4f5-23174b0d0578",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "I'm not ready to bench myself. The game is afoot!",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "066f530f-0a45-469b-80c0-efd68bef1c86",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "This is no time for sitting around. I have to plan my escape.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "47077f8f-7d3c-4661-9df7-926200cdae52",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "Um... I think it'll be \"out the window.\"",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "1",
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

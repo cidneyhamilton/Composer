@@ -1,0 +1,665 @@
+{
+    "type": "script",
+    "id": "60842fce-78bf-4f08-993d-f6a0ab16bb23",
+    "name": "Interact with Medal Display Cabinet",
+    "sceneId": "96064b1c-7fee-41c6-ab46-b8425d3af2de",
+    "propId": "4f793a14-c8c9-4bc4-be68-3fd155ab6696",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "74b0882a-7283-4de1-a71a-bdc0f16d2289",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.onceDaily",
+                    "id": "0a4712e0-7a7f-4003-a057-62ac3ab2ad78",
+                    "nodes": [
+                        {
+                            "type": "nodes.changeTags",
+                            "id": "c9e0b19c-e6bf-400a-9cff-ce20818788fd",
+                            "scope": "target",
+                            "scopeId": null,
+                            "scopeFilterId": null,
+                            "tagsToAdd": "locked",
+                            "tagsToRemove": null
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.showCloseUp",
+                    "imageName": "MaskDisplay_closeup.png"
+                },
+                {
+                    "type": "nodes.showMenu",
+                    "id": "919f27c2-cbf4-47c3-b233-30fa6a980f20",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "d317c48c-e339-4741-9aea-29f6d0dae3d5",
+                            "text": "Look at the Display Cabinet",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "1c065761-44c0-487f-b6de-923bb1d4e726",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "The plaque says that these are some items from the castle's past... a stone from the Chaos Gate, pearls from the Gog Temple, the Death Mask of an ancient king, and a medal of honor for someone named Rufus 'Red' MacMurtry.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.hasActiveQuest",
+                                                "propId": "7e4dd865-6cd8-4031-a189-311faca55137",
+                                                "sceneId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                                                "questStatus": "0"
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "a31a00eb-c79f-450a-a6d3-6eebf220f5b1",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Red... Wasn't that the name of Sir Hans' squire?",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "4526f59d-39cb-45e8-ab8f-d2eb91f2f2cf",
+                            "text": "Open the Display Cabinet",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "target",
+                                                "scopeId": null,
+                                                "scopeFilterId": null,
+                                                "tags": "locked",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "7894fe5a-fb99-4a42-9a8f-727bd6aced45",
+                                                    "scriptId": "60842fce-78bf-4f08-993d-f6a0ab16bb23",
+                                                    "entryPointId": "dcb1d967-284a-4e6f-aae7-f6ce73d60a2e",
+                                                    "currentScope": "Current",
+                                                    "currentSceneId": "96064b1c-7fee-41c6-ab46-b8425d3af2de",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "85425950-235b-4c68-8e18-700de081ef1a",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "It's locked.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "1c4801ad-e7da-4420-aa6e-be74546fa56c",
+                                                    "scope": "target",
+                                                    "scopeId": null,
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "triedtoopen",
+                                                    "tagsToRemove": null
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "d8816f27-2308-42f3-99de-0c8cf388a6e5",
+                            "text": "Pick the Lock on the Display Cabinet",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "global",
+                                                "variableName": "ego.haslockpicklevel",
+                                                "operator": "eq",
+                                                "compareTo": "4",
+                                                "sceneId": "96064b1c-7fee-41c6-ab46-b8425d3af2de",
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.hideCloseUp",
+                                                    "waitForSeconds": 1
+                                                },
+                                                {
+                                                    "type": "nodes.onceDaily",
+                                                    "id": "d307e3b2-85f5-4f34-b522-81fb103c94a9",
+                                                    "nodes": [
+                                                        {
+                                                            "type": "nodes.incrementTime",
+                                                            "id": "5ea002da-be0d-473e-a572-ba51c159696d",
+                                                            "days": 0,
+                                                            "hours": 0,
+                                                            "minutes": "10"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "nodes.playAnimation",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "animationName": "KneelDown",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.inTags",
+                                                                "scope": "target",
+                                                                "scopeId": null,
+                                                                "scopeFilterId": null,
+                                                                "tags": "lockpickattempted",
+                                                                "has": false
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "id": "c465bd9d-c9e9-406b-851b-7f0842a13bc4",
+                                                                    "type": "nodes.skillBranch",
+                                                                    "skill": "Tool Use",
+                                                                    "target": "60",
+                                                                    "success": {
+                                                                        "type": "nodes.block",
+                                                                        "nodes": []
+                                                                    },
+                                                                    "failure": {
+                                                                        "type": "nodes.block",
+                                                                        "nodes": []
+                                                                    },
+                                                                    "notify": true
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.skillCheck",
+                                                                "skill": "Tool Use",
+                                                                "target": "60"
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.invokeScript",
+                                                                    "id": "57d84e74-3cb5-4897-a6b4-385ea9961a8f",
+                                                                    "scriptId": "f214e893-43e1-4ba8-bb48-5ad1177e61de",
+                                                                    "entryPointId": "",
+                                                                    "currentScope": "Scenes",
+                                                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                                                    "currentActorId": null,
+                                                                    "currentStoryEventId": null,
+                                                                    "currentPropId": null
+                                                                },
+                                                                {
+                                                                    "type": "nodes.showCloseUp",
+                                                                    "imageName": "MaskDisplay_closeup.png"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.invokeScript",
+                                                                    "id": "bb21fa51-6b55-41d1-b021-92ee9e400773",
+                                                                    "scriptId": "60842fce-78bf-4f08-993d-f6a0ab16bb23",
+                                                                    "entryPointId": "dcb1d967-284a-4e6f-aae7-f6ce73d60a2e",
+                                                                    "currentScope": "Current",
+                                                                    "currentSceneId": "96064b1c-7fee-41c6-ab46-b8425d3af2de",
+                                                                    "currentActorId": null,
+                                                                    "currentStoryEventId": null,
+                                                                    "currentPropId": null
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": null,
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.invokeScript",
+                                                                    "id": "e65a6cd2-2517-4fef-bac0-c965bc1ec766",
+                                                                    "scriptId": "c806f4c0-6bc6-471a-97ab-fc59190de6da",
+                                                                    "entryPointId": "",
+                                                                    "currentScope": "Scenes",
+                                                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                                                    "currentActorId": null,
+                                                                    "currentStoryEventId": null,
+                                                                    "currentPropId": null
+                                                                },
+                                                                {
+                                                                    "type": "nodes.showCloseUp",
+                                                                    "imageName": "MaskDisplay_closeup.png"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "nodes.playAnimation",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "animationName": "KneelUp"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "8afa66de-48d1-4411-be9f-f85bbd934878",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "There's no way I can pick this without better lockpicks.",
+                                                    "emotion": "2",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inTags",
+                                    "scope": "target",
+                                    "scopeId": null,
+                                    "scopeFilterId": null,
+                                    "tags": "locked",
+                                    "has": true
+                                },
+                                "right": {
+                                    "type": "expressions.and",
+                                    "left": {
+                                        "type": "expressions.variableComparison",
+                                        "variableScope": "global",
+                                        "variableName": "ego.haslockpick",
+                                        "operator": "eq",
+                                        "compareTo": "true",
+                                        "sceneId": "96064b1c-7fee-41c6-ab46-b8425d3af2de",
+                                        "propId": null
+                                    },
+                                    "right": {
+                                        "type": "expressions.inTags",
+                                        "scope": "target",
+                                        "scopeId": null,
+                                        "scopeFilterId": null,
+                                        "tags": "triedtoopen",
+                                        "has": true
+                                    }
+                                }
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "3a7b86ef-746b-4fa0-a101-60c65a337f84",
+                            "text": "Sense Magic on the Display Cabinet",
+                            "nodes": [
+                                {
+                                    "type": "nodes.hideCloseUp",
+                                    "waitForSeconds": 1
+                                },
+                                {
+                                    "type": "nodes.invokeScript",
+                                    "id": "be55ca23-bc60-466e-bb3f-dec3b4d51912",
+                                    "scriptId": "533e1ce1-13d3-439f-8544-dbdf808d30c4",
+                                    "entryPointId": "",
+                                    "currentScope": "Scenes",
+                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                    "currentActorId": null,
+                                    "currentStoryEventId": null,
+                                    "currentPropId": null
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inTags",
+                                    "scope": "actor",
+                                    "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "scopeFilterId": null,
+                                    "tags": "sensemagic",
+                                    "has": true
+                                },
+                                "right": {
+                                    "type": "expressions.inTags",
+                                    "scope": "target",
+                                    "scopeId": null,
+                                    "scopeFilterId": null,
+                                    "tags": "sensedmagic",
+                                    "has": false
+                                }
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "2",
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                },
+                {
+                    "type": "nodes.hideCloseUp",
+                    "waitForSeconds": 1
+                }
+            ]
+        },
+        {
+            "type": "scripts.entryPoint",
+            "id": "dcb1d967-284a-4e6f-aae7-f6ce73d60a2e",
+            "name": "Open Case",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "68b485de-367d-477e-85f0-780b45452707",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "08925bc2-0516-409f-9f95-ef2e912fbb88",
+                            "text": "Take MacMurtry's Medal",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.hasActiveQuest",
+                                                "propId": "7e4dd865-6cd8-4031-a189-311faca55137",
+                                                "sceneId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                                                "questStatus": "0"
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.incrementTime",
+                                                    "id": "7eb12800-63c1-4592-bf0e-ad3af90b378c",
+                                                    "days": 0,
+                                                    "hours": 0,
+                                                    "minutes": "2"
+                                                },
+                                                {
+                                                    "type": "nodes.changePropVisibility",
+                                                    "id": "2f23c2c6-cb1e-4746-8e19-555afbc20d98",
+                                                    "propId": "4f793a14-c8c9-4bc4-be68-3fd155ab6696",
+                                                    "sceneId": "96064b1c-7fee-41c6-ab46-b8425d3af2de",
+                                                    "status": "Hidden",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.changePropVisibility",
+                                                    "id": "d95e35cd-75ea-4df5-bae2-f4938cfe8621",
+                                                    "propId": "5a912dc8-1cfc-49f5-a760-78fc4facf1d5",
+                                                    "sceneId": "96064b1c-7fee-41c6-ab46-b8425d3af2de",
+                                                    "status": "Visible",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.showCloseUp",
+                                                    "imageName": "MaskDisplay_closeup_no_medal.png"
+                                                },
+                                                {
+                                                    "type": "nodes.changeInventory",
+                                                    "id": "713963d1-50f5-4f64-84fd-616e62628f2c",
+                                                    "propId": "c1cff2f3-05df-4a6e-a264-e241eeedbb24",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "change": "1",
+                                                    "count": 1,
+                                                    "notify": true
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "0b007db1-5d67-4d3c-af36-25e98a0a32c1",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "I think that Hans will really be happy to learn that Red became a hero - and this will prove it.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.hideCloseUp",
+                                                    "waitForSeconds": 1
+                                                },
+                                                {
+                                                    "type": "nodes.playAnimation",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "animationName": "KneelUp"
+                                                },
+                                                {
+                                                    "type": "nodes.endScript"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "c222f23d-e366-43a2-bada-e0e240d430a1",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "The medal has the word \"Hero\" on the front and the words, \"To Rufus 'Red' MacMurtry for saving Sardonia. Honor, Valor, and Duty.\" Guess the guy really deserved a medal.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.hasActiveQuest",
+                                                                "propId": "7e4dd865-6cd8-4031-a189-311faca55137",
+                                                                "sceneId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                                                                "questStatus": "4"
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "b72941a8-6380-44f6-9342-15a2aefe22fb",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "Shame I don't know a Rufus MacMurtry I could give this medal to. Guess it should just stay in the case until I meet him.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "5",
+                            "ExitMenu": true
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "0976fa1a-b472-4a8a-84d3-4465da119f47",
+                            "text": "Take the Ornate Pot",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "320e5c52-f7ba-4ebe-ae48-03ed010748eb",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "It's decorative, but not very useful. I doubt that anyone would buy it from me.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "5",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "5fa959b2-84a3-4bee-8eed-254c196ba738",
+                            "text": "Take the Ancient Stone",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "d39eba42-7445-4d6f-8b4d-6088f0bfa369",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "Let's see, an ancient stone from something called a \"Chaos Gate.\" That can't be a good thing. It belongs in a museum! And, well, this is close enough to one.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "5",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "2f6589f4-c4b2-4d28-ac60-bfd9dd04e43c",
+                            "text": "Take the Death Mask",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "c5c64574-f473-48c2-9a03-90c7e03f32d2",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "They make death masks from the face of corpses, don't they? Ew. No thanks.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "212e3fa8-3db0-43cc-9db6-3b361ffc1147",
+                            "text": "Take the Necklace",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "3863854a-8fd0-4679-9acb-f6e57b424d7c",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Looks like these pearls are fake. Besides, I don't think it would match my outfit.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "bd05fb04-0d9b-4646-b0b1-134bb3f4f18c",
+                            "text": "Leave the Case Alone",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "ab1d772c-d487-48d2-8067-c6b853a5b114",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "I don't see anything useful to take right now. But if I ever need a Death Mask or a Chaos Gate stone, I'll know where to look.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": true
+                        }
+                    ],
+                    "AutoAddDone": false,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

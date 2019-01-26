@@ -1,0 +1,153 @@
+{
+    "type": "script",
+    "id": "798698e5-51c3-4342-a61d-93389064e480",
+    "name": "Interact with Barrel Stack SE",
+    "sceneId": "e5fc358f-ecf7-41f2-aafa-77ee40ee3829",
+    "propId": "937502ce-fee2-4c4f-9ad1-41ff06babb7f",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "67e26187-2db7-49a7-b0ef-638ac5465315",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "b6d36b50-304a-4f7d-abde-f0b81a7b43ed",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "0df8c71b-3a9d-4949-b778-4185514c8a98",
+                            "text": "Look at the Barrels Upon Barrels",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "cda0125c-acb8-4d3f-8f7c-5f7cd65e486b",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "If I was a winemaker, I guess I'd buy up as many barrels as I could. More for me, fewer for the other winemakers.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "5fdedefc-af28-42a2-978e-74e2fa47701c",
+                            "text": "Knock on a Barrel",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "target",
+                                                "scopeId": null,
+                                                "scopeFilterId": null,
+                                                "tags": "KnockedOnce",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "3765970c-819a-403c-94ee-6d5943611ba7",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Let me guess. They're full of good wine, just waiting for me to pour down my throat!",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.playAnimation",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "animationName": "ReachOut"
+                                                },
+                                                {
+                                                    "type": "nodes.playSoundEffect",
+                                                    "soundEffectName": "Barrel Knock with Rat 02.wav",
+                                                    "wait": false
+                                                },
+                                                {
+                                                    "type": "nodes.wait",
+                                                    "waitForSeconds": 1
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "2af4fe65-f0e7-4941-a612-b401426f16fd",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Yikes! Empty <i>and</i> infested!",
+                                                    "emotion": "3",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "450a3239-43dd-41d4-a675-50cef07c5d15",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "There oughta be a law.",
+                                                    "emotion": "3",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "3a9b5135-28f0-447f-b818-affe1fa7227e",
+                                                    "scope": "target",
+                                                    "scopeId": null,
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "KnockedOnce",
+                                                    "tagsToRemove": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "1c459da2-4fc0-4bd5-82f0-78c4cdb8fd06",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "There's squatters inside! Probably drank my wine... and living in my barrels!",
+                                                    "emotion": "3",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "1",
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

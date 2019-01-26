@@ -1,0 +1,604 @@
+{
+    "type": "script",
+    "id": "253f3a43-2078-4f13-97d3-491848cabf53",
+    "name": "Interact Vase",
+    "sceneId": "3256b6d8-50b9-4764-b016-01ea538ea55f",
+    "propId": "54be93de-a1ef-4b57-8926-c9c3c0cdd53b",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "59e9493a-5df2-4ad7-8d1d-fa8d9a7313ec",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "43afe948-699b-4520-ad85-4f0c760ba961",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "b27df381-4300-4661-9c59-2b9eb12ccfc5",
+                            "text": "Look at the Vase",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "f99005ca-7775-4aa6-b223-f09363d63f2d",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "I only see a little dirt at the bottom of this vase. Or maybe it's somebody's ashes. Let's not dwell on that.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "81c0cec8-3241-4f93-8288-e53723529e6b",
+                            "text": "Sense Magic",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "scene",
+                                                "scopeId": "eceae806-6f55-4cde-b517-c73b1c924fd9",
+                                                "scopeFilterId": null,
+                                                "tags": "GObreakin",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.and",
+                                                                "left": {
+                                                                    "type": "expressions.variableComparison",
+                                                                    "variableScope": "scene",
+                                                                    "variableName": "HiddenKey",
+                                                                    "operator": "eq",
+                                                                    "compareTo": "4",
+                                                                    "sceneId": null,
+                                                                    "propId": null
+                                                                },
+                                                                "right": {
+                                                                    "type": "expressions.and",
+                                                                    "left": {
+                                                                        "type": "expressions.inTags",
+                                                                        "scope": "target",
+                                                                        "scopeId": null,
+                                                                        "scopeFilterId": null,
+                                                                        "tags": "CheckedMagic",
+                                                                        "has": false
+                                                                    },
+                                                                    "right": {
+                                                                        "type": "expressions.inTags",
+                                                                        "scope": "target",
+                                                                        "scopeId": null,
+                                                                        "scopeFilterId": null,
+                                                                        "tags": "GO_breakin_got_envelope",
+                                                                        "has": false
+                                                                    }
+                                                                }
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.changeTags",
+                                                                    "id": "7532476b-b1d8-450a-b1b4-7de30d144d22",
+                                                                    "scope": "script",
+                                                                    "scopeId": null,
+                                                                    "scopeFilterId": null,
+                                                                    "tagsToAdd": "CheckedMagic",
+                                                                    "tagsToRemove": null
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "790a5e9d-40e5-4813-8c89-5d6cf8068d8c",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "I wonder if there is anything magical around this vase...",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.invokeScript",
+                                                                    "id": "f0266a86-c862-426e-8ddb-62816beb963d",
+                                                                    "scriptId": "b1c2ecc1-eb00-49ed-a7ba-ea6af625c355",
+                                                                    "entryPointId": "59e9493a-5df2-4ad7-8d1d-fa8d9a7313ec",
+                                                                    "currentScope": "Scenes",
+                                                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                                                    "currentActorId": null,
+                                                                    "currentStoryEventId": null,
+                                                                    "currentPropId": null
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "6ca2c203-b983-4523-b743-936011f1d01e",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "Hey - there's something glowing inside it...",
+                                                                    "emotion": "1",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.playAnimation",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "animationName": "KneelDown",
+                                                                    "wait": true
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeInventory",
+                                                                    "id": "1446bb3e-60fd-4790-9731-6f0ba533e35d",
+                                                                    "propId": "4424614e-27d0-4397-89ac-9eb0fa059a6d",
+                                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                                    "change": "1",
+                                                                    "count": 1,
+                                                                    "notify": true
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeTags",
+                                                                    "id": "084ef253-42c1-4f7d-b92e-036227a3513a",
+                                                                    "scope": "target",
+                                                                    "scopeId": null,
+                                                                    "scopeFilterId": null,
+                                                                    "tagsToAdd": "GO_breakin_got_envelope",
+                                                                    "tagsToRemove": null
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "00411424-f809-4b43-9792-a6f5ae394c2f",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "It looks like a sealed envelope!",
+                                                                    "emotion": "1",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.playAnimation",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "animationName": "KneelUp",
+                                                                    "wait": true
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "86d6b5c2-3add-4549-8da1-49b43bc47071",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "So why would an envelope show up as magical? Hmmm...",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.and",
+                                                                "left": {
+                                                                    "type": "expressions.inTags",
+                                                                    "scope": "target",
+                                                                    "scopeId": null,
+                                                                    "scopeFilterId": null,
+                                                                    "tags": "CheckedMagic",
+                                                                    "has": true
+                                                                },
+                                                                "right": {
+                                                                    "type": "expressions.variableComparison",
+                                                                    "variableScope": "scene",
+                                                                    "variableName": "HiddenKey",
+                                                                    "operator": "eq",
+                                                                    "compareTo": "4",
+                                                                    "sceneId": null,
+                                                                    "propId": null
+                                                                }
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.invokeScript",
+                                                                    "id": "4f801e58-a06e-495f-8f9e-247a2f99d379",
+                                                                    "scriptId": "533e1ce1-13d3-439f-8544-dbdf808d30c4",
+                                                                    "entryPointId": "",
+                                                                    "currentScope": "Scenes",
+                                                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                                                    "currentActorId": null,
+                                                                    "currentStoryEventId": null,
+                                                                    "currentPropId": null
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "903cc380-9459-4844-852c-c7013dacf247",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "No magic left around here.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": null,
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.invokeScript",
+                                                                    "id": "078406e7-31bf-4911-b41a-6168b30c296e",
+                                                                    "scriptId": "533e1ce1-13d3-439f-8544-dbdf808d30c4",
+                                                                    "entryPointId": "",
+                                                                    "currentScope": "Scenes",
+                                                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                                                    "currentActorId": null,
+                                                                    "currentStoryEventId": null,
+                                                                    "currentPropId": null
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "692d36b3-6844-4f40-9fb9-3d7513064c12",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "No magic here. I don't know if the thing I'm searching for is even magical.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "ed20bf9c-2a8f-482c-9bf0-15019ff79801",
+                                                    "scriptId": "533e1ce1-13d3-439f-8544-dbdf808d30c4",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "a18280d7-50ea-4d1a-8df7-a2ee07a685e7",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "No magic here, my hopes were vaseless.",
+                                                    "emotion": "2",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "actor",
+                                "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                "scopeFilterId": null,
+                                "tags": "SenseMagic",
+                                "has": true
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "3",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "d936dfd9-c637-4895-a666-ef878d4447e0",
+                            "text": "Search the Vase",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "scene",
+                                                "scopeId": "eceae806-6f55-4cde-b517-c73b1c924fd9",
+                                                "scopeFilterId": null,
+                                                "tags": "GObreakin",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.and",
+                                                                "left": {
+                                                                    "type": "expressions.variableComparison",
+                                                                    "variableScope": "scene",
+                                                                    "variableName": "HiddenKey",
+                                                                    "operator": "eq",
+                                                                    "compareTo": "4",
+                                                                    "sceneId": null,
+                                                                    "propId": null
+                                                                },
+                                                                "right": {
+                                                                    "type": "expressions.inTags",
+                                                                    "scope": "target",
+                                                                    "scopeId": null,
+                                                                    "scopeFilterId": null,
+                                                                    "tags": "GO_breakin_got_envelope",
+                                                                    "has": false
+                                                                }
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "4fa0ea34-0be5-4bfa-90c1-2e6201da2ba4",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "Let's see if there's anything hidden away in this vase...",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.playAnimation",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "animationName": "KneelDown",
+                                                                    "wait": true
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "2b69661b-84da-42c1-bf2e-41944e8696fe",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "Hey - there's an envelope!",
+                                                                    "emotion": "1",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeInventory",
+                                                                    "id": "12645b5a-d8a7-43c1-a6aa-135c5caa4d99",
+                                                                    "propId": "4424614e-27d0-4397-89ac-9eb0fa059a6d",
+                                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                                    "change": "1",
+                                                                    "count": 1,
+                                                                    "notify": true
+                                                                },
+                                                                {
+                                                                    "type": "nodes.playAnimation",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "animationName": "KneelUp",
+                                                                    "wait": true
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeTags",
+                                                                    "id": "0636b936-8ba1-4736-8dac-9be3bc4270b0",
+                                                                    "scope": "target",
+                                                                    "scopeId": null,
+                                                                    "scopeFilterId": null,
+                                                                    "tagsToAdd": "GO_breakin_got_envelope",
+                                                                    "tagsToRemove": null
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.variableComparison",
+                                                                "variableScope": "scene",
+                                                                "variableName": "HiddenKey",
+                                                                "operator": "eq",
+                                                                "compareTo": "4",
+                                                                "sceneId": null,
+                                                                "propId": null
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "8b94440a-6c07-4f6c-88af-1eff3df2078b",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "No more mail.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": null,
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "5841fed6-9449-4f86-b56c-ff50e5653245",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "This would be a great place to hide something.,.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.playAnimation",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "animationName": "KneelDown",
+                                                                    "wait": true
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "8c5df0fd-d1f1-4ceb-a736-f1a008e2b615",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "But no one did.",
+                                                                    "emotion": "2",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.playAnimation",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "animationName": "KneelUp",
+                                                                    "wait": true
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "target",
+                                                "scopeId": null,
+                                                "scopeFilterId": null,
+                                                "tags": "hasSearched",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.playAnimation",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "animationName": "KneelDown",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "92d6c0e9-c1e9-4921-afa1-648365119c72",
+                                                    "scope": "target",
+                                                    "scopeId": null,
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "hasSearched",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.changeMoney",
+                                                    "id": "6469c91b-03b3-49f7-83cc-c8b66584fdf3",
+                                                    "amount": "5",
+                                                    "change": "1",
+                                                    "currency": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.playAnimation",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "animationName": "KneelUp",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "30b97b19-a1aa-4236-809f-f822c1fd4896",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "They say a Lyra urned is a Lyra saved, or something like that. And sure enough, I just found five Lyra buried in the dirt inside the vase. And now, they're saved for me!",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.playAnimation",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "animationName": "KneelDown",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "ac5fd028-d853-4ab7-ae2f-e7a97813fd70",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Eh, there's nothing in the vase now but dust.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.playAnimation",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "animationName": "KneelUp",
+                                                    "wait": true
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "5",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "dcca41d7-ddc6-49f6-a103-b06eb066c04d",
+                            "text": "Take the Vase",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "02ee5e05-c41b-4d04-82b0-0940173d6419",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "There's no point in lugging that huge thing around.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

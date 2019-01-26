@@ -1,0 +1,76 @@
+{
+    "type": "script",
+    "id": "b1c2ecc1-eb00-49ed-a7ba-ea6af625c355",
+    "name": "SenseMagicYes",
+    "sceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+    "trigger": {
+        "type": "triggers.manual",
+        "name": "Manual"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "48f78ef6-b4f7-47b4-9d20-6302e1e2b70a",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.incrementTime",
+                    "id": "8ba5531d-0d0e-4156-a2b5-6467b4035629",
+                    "days": 0,
+                    "hours": 0,
+                    "minutes": "5"
+                },
+                {
+                    "type": "nodes.playAnimation",
+                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "animationName": "SenseMagicYes",
+                    "wait": true
+                },
+                {
+                    "type": "nodes.comment",
+                    "message": "Soft, short Sparkly sound",
+                    "commentor": "Play Magic Sound"
+                },
+                {
+                    "type": "nodes.comment",
+                    "message": "Added sound in code, since that's where the FX is kicked off and it needs to line up with the FX",
+                    "commentor": "Charles"
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "target",
+                                "scopeId": null,
+                                "scopeFilterId": null,
+                                "tags": "SensedMagic",
+                                "has": false
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "b27ce1b2-fcd9-48fa-b16c-8f146035683f",
+                                    "scope": "target",
+                                    "scopeId": null,
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "SensedMagic",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "id": "565dc154-f234-4608-a8e0-eedf43fc7c25",
+                                    "type": "nodes.improveSkill",
+                                    "skill": "Magic",
+                                    "amount": "2",
+                                    "notify": true
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

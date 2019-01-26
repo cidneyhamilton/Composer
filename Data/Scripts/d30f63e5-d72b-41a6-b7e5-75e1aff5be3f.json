@@ -1,0 +1,188 @@
+{
+    "type": "script",
+    "id": "d30f63e5-d72b-41a6-b7e5-75e1aff5be3f",
+    "name": "Interact with Fireplace",
+    "storyEventId": "32df3697-cde9-48af-82a6-51be5fc65db4",
+    "sceneId": "212f8023-648d-45df-8f16-d56a7f081d41",
+    "propId": "7b364bb4-86ec-4224-8f97-bc95beff3804",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "9cd210a9-a114-46aa-82b0-7f6ae4b14f16",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "2fe9c9ee-f53a-47a0-a6ee-0047c182c4e8",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "701abfc0-86ca-4be5-8365-f2d1b8011a39",
+                            "text": "Examine the Fireplace",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "5f299146-4ef6-436a-9b84-b93ea33fea38",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "That's a nice warm fire. I don't see anything odd about the fireplace, but...",
+                                    "emotion": "0",
+                                    "device": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "67bd7367-a4c7-4978-91b2-8e8553171886",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "The patterns on the mantel are three-leaf clovers, just like the coin I'm looking for. Coincidence? Maybe.",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "e1274691-dbdc-445e-8df8-d9585def97a1",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "There's a slightly loose stone on the mantel. I'll bet it's concealing something!",
+                                    "emotion": "1",
+                                    "device": "0"
+                                },
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "d93c4bc1-95b0-4947-a4b9-d13f177aa44b",
+                                    "scope": "prop",
+                                    "scopeId": "0ed72d17-0f1f-4d12-9af3-1d0ff76a0053",
+                                    "scopeFilterId": "212f8023-648d-45df-8f16-d56a7f081d41",
+                                    "tagsToAdd": "discoveredpanel",
+                                    "tagsToRemove": null
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inTags",
+                                    "scope": "prop",
+                                    "scopeId": "0ed72d17-0f1f-4d12-9af3-1d0ff76a0053",
+                                    "scopeFilterId": "212f8023-648d-45df-8f16-d56a7f081d41",
+                                    "tags": "discoveredpanel",
+                                    "has": false
+                                },
+                                "right": {
+                                    "type": "expressions.inTags",
+                                    "scope": "prop",
+                                    "scopeId": "0ed72d17-0f1f-4d12-9af3-1d0ff76a0053",
+                                    "scopeFilterId": "212f8023-648d-45df-8f16-d56a7f081d41",
+                                    "tags": "hasopenedpanel",
+                                    "has": false
+                                }
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "5",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "95c500fb-75fa-4f16-85dd-d68708f64961",
+                            "text": "Examine the Fireplace",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "afb4beb7-09a8-4e50-8ede-39a58b3d3b26",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "There's a lovely warm fire in the fireplace and an intriguing mantel above it.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.or",
+                                "left": {
+                                    "type": "expressions.inTags",
+                                    "scope": "prop",
+                                    "scopeId": "0ed72d17-0f1f-4d12-9af3-1d0ff76a0053",
+                                    "scopeFilterId": "212f8023-648d-45df-8f16-d56a7f081d41",
+                                    "tags": "discoveredpanel",
+                                    "has": true
+                                },
+                                "right": {
+                                    "type": "expressions.inTags",
+                                    "scope": "prop",
+                                    "scopeId": "0ed72d17-0f1f-4d12-9af3-1d0ff76a0053",
+                                    "scopeFilterId": "212f8023-648d-45df-8f16-d56a7f081d41",
+                                    "tags": "hasopenedpanel",
+                                    "has": true
+                                }
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "2",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "fc24eac7-e7db-44e8-bdfe-063af7f5ff0d",
+                            "text": "Climb the Fireplace",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "ff935874-a4ae-4ab4-a24f-9da54d1bd426",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Maybe someday the Thieves' Guild will teach me how to climb fireplaces and stuff. For now, I'll keep my feet on the ground.",
+                                    "emotion": "0",
+                                    "device": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "e711b317-ded0-462e-8fd2-c65a98c9a873",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Besides, the stones on the mantelpiece feel a little loose.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "3",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "88f03900-3c19-4d65-97dd-46da5f14686f",
+                            "text": "Put Out the Fire",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "cd5bfc47-207f-4a71-8054-f92047e12be8",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Oh, sure. I should let everyone know that someone has been in here. Besides, I need the light.",
+                                    "emotion": "0",
+                                    "device": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "2",
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,93 @@
+{
+    "type": "script",
+    "id": "9bef2e18-df99-4be5-8647-0500b6326a0c",
+    "name": "OnLoot",
+    "actorId": "1d1d9564-e615-4662-bf0a-f07766d54b6d",
+    "trigger": {
+        "type": "triggers.loot",
+        "name": "Loot"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "af962adb-de4a-431e-9fd9-8c26258c0daf",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.playAnimation",
+                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "animationName": "KneelDown",
+                    "wait": true
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "actor",
+                                "scopeId": "1d1d9564-e615-4662-bf0a-f07766d54b6d",
+                                "scopeFilterId": null,
+                                "tags": "taken_ring",
+                                "has": false
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "62e0f270-3966-4c27-ba5f-0fcc95783c1c",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "Wait a second. I risked my life to take down that powerful Minotaur, and all he has is a stupid brass ring? Well, I guess I'll take it.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.changeInventory",
+                                    "id": "3ba0cbc5-08b4-4baf-bec6-97fbb4d59736",
+                                    "propId": "817e1ffd-e4f5-43b4-9c40-ba7118d180f8",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "change": "1",
+                                    "count": 1,
+                                    "notify": true
+                                },
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "aad48bcc-bba0-46ce-a55f-c0f84dd096da",
+                                    "scope": "actor",
+                                    "scopeId": "1d1d9564-e615-4662-bf0a-f07766d54b6d",
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "taken_ring",
+                                    "tagsToRemove": null
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "aa842128-fb76-4d15-a671-cf436ecf7891",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "There's nothing left but bull parts. Somehow I don't think Ifetaya would rate them Choice grade.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.playAnimation",
+                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "animationName": "KneelUp",
+                    "wait": true
+                }
+            ]
+        }
+    ]
+}

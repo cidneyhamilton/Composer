@@ -1,0 +1,82 @@
+{
+    "type": "script",
+    "id": "52179d7c-dffa-412c-81a2-ed7e4b1259e8",
+    "name": "Check for Specialist",
+    "propId": "01a81476-fdfd-4667-93ea-eaac7319d9e0",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.manual",
+        "name": "Manual"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "4cf72780-1c63-4a33-865c-b9a09aaa5e5a",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.hasAchievement",
+                                "propId": "01a81476-fdfd-4667-93ea-eaac7319d9e0",
+                                "sceneId": "a4d66827-dd60-451f-8015-62b8abb42f0c",
+                                "achievementStatus": "1"
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.or",
+                                                "left": {
+                                                    "type": "expressions.inTags",
+                                                    "scope": "scene",
+                                                    "scopeId": "a4d66827-dd60-451f-8015-62b8abb42f0c",
+                                                    "scopeFilterId": null,
+                                                    "tags": "FirstAidSpecialist",
+                                                    "has": true
+                                                },
+                                                "right": {
+                                                    "type": "expressions.or",
+                                                    "left": {
+                                                        "type": "expressions.inTags",
+                                                        "scope": "scene",
+                                                        "scopeId": "a4d66827-dd60-451f-8015-62b8abb42f0c",
+                                                        "scopeFilterId": null,
+                                                        "tags": "MagicSpecialist",
+                                                        "has": true
+                                                    },
+                                                    "right": {
+                                                        "type": "expressions.inTags",
+                                                        "scope": "scene",
+                                                        "scopeId": "a4d66827-dd60-451f-8015-62b8abb42f0c",
+                                                        "scopeFilterId": null,
+                                                        "tags": "ScienceSpecialist",
+                                                        "has": true
+                                                    }
+                                                }
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.achievements",
+                                                    "id": "08974800-7b3e-408d-a2b7-8d5517176a02",
+                                                    "sceneId": "a4d66827-dd60-451f-8015-62b8abb42f0c",
+                                                    "propId": "01a81476-fdfd-4667-93ea-eaac7319d9e0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

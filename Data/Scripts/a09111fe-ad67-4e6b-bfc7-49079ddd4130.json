@@ -1,0 +1,305 @@
+{
+    "type": "script",
+    "id": "a09111fe-ad67-4e6b-bfc7-49079ddd4130",
+    "name": "Interact with Bookshelf A (Magic)",
+    "sceneId": "981ec865-3e1b-4f3e-bb0d-11df2bc7d593",
+    "propId": "14f17bb7-84fc-471a-b485-d08faa8be214",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "bb81d00a-9368-4baa-86e9-af700f23d888",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "97141b1d-9d2c-4772-b22e-46816fad4aa4",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "9ed4ec73-f5c4-4d2d-9f3c-dc6052a0a59e",
+                            "text": "Examine the Bookshelf",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "54e78958-3d53-4062-b561-d18e207f6a78",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "This section has books like <i>Alchemy for Amateurs</i> and <i>Casting Spells with Zoltar Winkleman</i>. These books must cover Alchemy and Magic.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "1",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "46c4f1d8-5311-4f25-ab22-d179a08d802b",
+                            "text": "Study the Books",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.skillCheck",
+                                                "skill": "Magic",
+                                                "target": "1"
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "11bbfbde-cc58-4e3e-9bae-a01390e1ed51",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "These books sound pretty magical. I might learn something here.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "b548e677-dc7d-4b80-9755-8e55141d77eb",
+                                                    "scriptId": "e49ddd5a-2b32-4b92-bb4b-9e417cc9a181",
+                                                    "entryPointId": "bb81d00a-9368-4baa-86e9-af700f23d888",
+                                                    "currentScope": "Actors",
+                                                    "currentSceneId": "981ec865-3e1b-4f3e-bb0d-11df2bc7d593",
+                                                    "currentActorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.variableComparison",
+                                                                "variableScope": "script",
+                                                                "variableName": "ShawnStudiedThisBook",
+                                                                "operator": "eq",
+                                                                "compareTo": "true",
+                                                                "sceneId": "981ec865-3e1b-4f3e-bb0d-11df2bc7d593",
+                                                                "propId": null
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "id": "d28a0e70-f21a-48c4-a8d2-680fc9e9b453",
+                                                                    "type": "nodes.improveSkill",
+                                                                    "skill": "Magic",
+                                                                    "amount": "1"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.nodeCycle",
+                                                                    "id": "1002e987-05c9-4aec-a4b9-d4c10aa90268",
+                                                                    "nodes": [
+                                                                        {
+                                                                            "type": "nodes.speak",
+                                                                            "id": "93192465-b6bb-4d16-b170-bfd83da6f633",
+                                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                            "text": "Okay, this \"Rituals, Rites, and Runes\" is less than riveting. I think I dozed off during the second chapter.",
+                                                                            "emotion": "0",
+                                                                            "emotion2": "0",
+                                                                            "device": "0",
+                                                                            "device2": "0"
+                                                                        },
+                                                                        {
+                                                                            "type": "nodes.speak",
+                                                                            "id": "f33b5fa6-ba9e-4dab-9275-c27d2d1d2a49",
+                                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                            "actorId2": null,
+                                                                            "text": "That was interesting. I didn't realize that magic worked like that. Who knew you could <i>really</i> pull a rabbit out of a hat?",
+                                                                            "emotion": "0",
+                                                                            "emotion2": "0",
+                                                                            "device": "0",
+                                                                            "device2": "0"
+                                                                        },
+                                                                        {
+                                                                            "type": "nodes.speak",
+                                                                            "id": "1e9ef582-9eb7-476b-8e0f-9698025fe8ff",
+                                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                            "text": "\"The Wizard Way - Rules and Runes\" talked about how Wizards codified the rigid rules of magic. Guess that explains why I'm a Rogue and not a Wizard - I like my rules to be more flexible.",
+                                                                            "emotion": "0",
+                                                                            "emotion2": "0",
+                                                                            "device": "0",
+                                                                            "device2": "0"
+                                                                        },
+                                                                        {
+                                                                            "type": "nodes.speak",
+                                                                            "id": "b47cc8e3-8ff1-49a0-93c6-0f1497315210",
+                                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                            "text": "Hmmm. \"The Way of the Fae\" talks about magic derived from feelings and emotions rather than logical thought. Such chaos would clearly a rule-bound wizard wacky.",
+                                                                            "emotion": "0",
+                                                                            "emotion2": "0",
+                                                                            "device": "0",
+                                                                            "device2": "0"
+                                                                        },
+                                                                        {
+                                                                            "type": "nodes.speak",
+                                                                            "id": "b322288f-1d11-4eab-894b-3056944a9216",
+                                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                            "text": "Okay, the one thing I get from reading all these magic books is that I don't have the discipline or determination to be a real magic user. It's more work, study, and practice than I want to do. I'll just be a dabbling dilettante.",
+                                                                            "emotion": "0",
+                                                                            "emotion2": "0",
+                                                                            "device": "0",
+                                                                            "device2": "0"
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "4cf9dbd1-d9e3-459c-9748-66ab9f438065",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Sounds like something a Wizard would want to read about... but I've got better things to learn.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "1",
+                            "ExitMenu": true
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "36e1d16f-9c54-48ba-a971-b62302446584",
+                            "text": "Pick a Book at Random",
+                            "nodes": [
+                                {
+                                    "type": "nodes.nodeCycle",
+                                    "id": "9c37367a-d8c9-4aba-9713-f5c40d8fdc9a",
+                                    "nodes": [
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "de86c69c-42d1-4187-b1ba-edf3eeeaa5c5",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "I've seen these before: <i>Alchemists' Digest</i>. This month's articles include \"Why Zinc is the Next Copper\" and \"How to Tell Your Parents You're Transmutational.\" I don't bother with the articles, I just enjoy the saucy engravings.",
+                                            "emotion": "1",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.branch",
+                                            "sections": [
+                                                {
+                                                    "type": "nodes.branchSection",
+                                                    "expression": null,
+                                                    "nodes": [
+                                                        {
+                                                            "type": "nodes.branch",
+                                                            "sections": [
+                                                                {
+                                                                    "type": "nodes.branchSection",
+                                                                    "expression": {
+                                                                        "type": "expressions.inTags",
+                                                                        "scope": "prop",
+                                                                        "scopeId": "82bc5149-ca28-4c12-9292-57e8efe40146",
+                                                                        "scopeFilterId": "981ec865-3e1b-4f3e-bb0d-11df2bc7d593",
+                                                                        "tags": "ReadErmahgerd",
+                                                                        "has": true
+                                                                    },
+                                                                    "nodes": [
+                                                                        {
+                                                                            "type": "nodes.speak",
+                                                                            "id": "a97be528-f5d7-42a6-be16-1fa117f0aa4d",
+                                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                            "actorId2": null,
+                                                                            "text": "It's a magic book... sort of: <i>Magical Diversions for Unpopular Boys</i>. But what kind of magic is this, anyway? Decorative scarves changing color? Counting out 21 cards over and over until everyone's asleep? Who would waste their magic doing trifles like <i>that?</i> Ermahgerd!",
+                                                                            "emotion": "3",
+                                                                            "emotion2": "0",
+                                                                            "device": "0",
+                                                                            "device2": "0"
+                                                                        },
+                                                                        {
+                                                                            "type": "nodes.speak",
+                                                                            "id": "0c8d63c0-eee6-4d7c-ae22-4810f853271e",
+                                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                            "actorId2": null,
+                                                                            "text": "I have to try to stop saying Ermahgerd.",
+                                                                            "emotion": "2",
+                                                                            "emotion2": "0",
+                                                                            "device": "0",
+                                                                            "device2": "0"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "type": "nodes.branchSection",
+                                                                    "expression": null,
+                                                                    "nodes": [
+                                                                        {
+                                                                            "type": "nodes.speak",
+                                                                            "id": "aade8903-d52a-4fbe-8c8f-c57b5dd59e61",
+                                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                            "actorId2": null,
+                                                                            "text": "It's a magic book... sort of: <i>Magical Diversions for Unpopular Boys</i>. But what kind of magic is this, anyway? Decorative scarves changing color? Counting out 21 cards over and over until everyone's asleep? Who would waste their magic doing tripe like <i>that?</i> Cripes!",
+                                                                            "emotion": "3",
+                                                                            "emotion2": "0",
+                                                                            "device": "0",
+                                                                            "device2": "0"
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "5180ac52-b87c-4c97-9769-ebd25f5c5fb8",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "This one's a classic: <i>Casting the First Stone: Principles of Offensive Magic</i>, by Rudyard Crippling. I really should read this... sometime. Right after I've read <i>The Autobiography of Malcolm Hex</i>. ",
+                                            "emotion": "0",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "1",
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

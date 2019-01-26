@@ -1,0 +1,644 @@
+{
+    "type": "script",
+    "id": "4fc7fa98-66a1-45e5-821b-3ecaab8ac26a",
+    "name": "Aeolus Include: Forlorn for Moira Script",
+    "sceneId": "9897ecb3-4200-4884-867a-2840471747b8",
+    "trigger": {
+        "type": "triggers.manual",
+        "name": "Manual"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "4c260d04-b23a-4a59-8f6f-c965eb09847d",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.changeTags",
+                    "id": "776e26f2-b2af-4c52-9fdf-0e29be7ada83",
+                    "scope": "actor",
+                    "scopeId": "0661a2f7-5493-46d9-ab58-6e9bff9a5f30",
+                    "scopeFilterId": null,
+                    "tagsToAdd": "HadForlornMoira",
+                    "tagsToRemove": null
+                },
+                {
+                    "type": "nodes.showMenu",
+                    "id": "1890a376-c8db-49e9-a307-0b5cc349a03d",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "f52f801b-505c-4c2e-910d-a748e6443e0b",
+                            "text": "Greet Aeolus",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "262ce9b2-2d25-49c6-b92f-b2eb40e77d54",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "0661a2f7-5493-46d9-ab58-6e9bff9a5f30",
+                                    "text": "Lie? What lie?",
+                                    "emotion": "4",
+                                    "emotion2": "3",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.showMenu",
+                                    "id": "b5d8200c-b721-4235-8808-05b520a5829e",
+                                    "options": [
+                                        {
+                                            "type": "options.text",
+                                            "id": "9f288016-590a-4f18-a4fc-1abf4a090a4b",
+                                            "text": "Bluff About Moira's Affection",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "14ffb6aa-85c8-4ba2-8457-33699ed867d3",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": "0661a2f7-5493-46d9-ab58-6e9bff9a5f30",
+                                                    "text": "When you talked to Moira, didn't she see how clever and kind you are? I can't believe that she did not realize that you were perfect for her. I mean, to know you is to like you.",
+                                                    "emotion": "4",
+                                                    "emotion2": "3",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "id": "6164d865-a5b0-4653-b80c-5fb91826f79f",
+                                                    "type": "nodes.skillBranch",
+                                                    "skill": "Charm",
+                                                    "target": "40",
+                                                    "success": {
+                                                        "type": "nodes.block",
+                                                        "nodes": [
+                                                            {
+                                                                "type": "nodes.changeReputation",
+                                                                "id": "0320bad9-8db4-4c76-8017-e40b2cca57f6",
+                                                                "actorId": "0661a2f7-5493-46d9-ab58-6e9bff9a5f30",
+                                                                "amount": "1",
+                                                                "change": "1",
+                                                                "notify": true
+                                                            },
+                                                            {
+                                                                "type": "nodes.speak",
+                                                                "id": "5d11c605-e7ea-4cfc-bde8-0e4463e952ac",
+                                                                "actorId": "0661a2f7-5493-46d9-ab58-6e9bff9a5f30",
+                                                                "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                "text": "It wasn't that she didn't like me, it was that she didn't want to love me.",
+                                                                "emotion": "2",
+                                                                "emotion2": "0",
+                                                                "device": "0",
+                                                                "device2": "0"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "failure": {
+                                                        "type": "nodes.block",
+                                                        "nodes": [
+                                                            {
+                                                                "type": "nodes.changeReputation",
+                                                                "id": "3134a1ad-9810-46b3-a82c-ffb4a00760a8",
+                                                                "actorId": "0661a2f7-5493-46d9-ab58-6e9bff9a5f30",
+                                                                "amount": "1",
+                                                                "change": "0",
+                                                                "notify": true
+                                                            },
+                                                            {
+                                                                "type": "nodes.speak",
+                                                                "id": "39de5d2c-d22c-4f33-a274-c8dda2a45e89",
+                                                                "actorId": "0661a2f7-5493-46d9-ab58-6e9bff9a5f30",
+                                                                "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                "text": "You didn't have to lie to me about this. ",
+                                                                "emotion": "3",
+                                                                "emotion2": "0",
+                                                                "device": "0",
+                                                                "device2": "0"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "notify": true
+                                                }
+                                            ],
+                                            "expression": null,
+                                            "ignoreChildAvailability": false,
+                                            "minutes": "4",
+                                            "ExitMenu": true
+                                        },
+                                        {
+                                            "type": "options.text",
+                                            "id": "c0624aec-f305-4a17-88a6-9a82599511e9",
+                                            "text": "Lie About the Moira Meeting",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "02d4e479-764a-436c-a94d-af96070f9e7a",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": "0661a2f7-5493-46d9-ab58-6e9bff9a5f30",
+                                                    "text": "Look, I tried to do you a favor and now you are angry at me? I thought Moira liked you. So maybe I was mistaken. But don't get mad at me for trying to help you. ",
+                                                    "emotion": "3",
+                                                    "emotion2": "2",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "id": "9467674f-6903-460f-b777-e56fbb86365d",
+                                                    "type": "nodes.skillBranch",
+                                                    "skill": "Moxie",
+                                                    "target": "40",
+                                                    "success": {
+                                                        "type": "nodes.block",
+                                                        "nodes": [
+                                                            {
+                                                                "type": "nodes.changeReputation",
+                                                                "id": "311a3cc8-fa55-4789-8ca7-e0fe68da5b41",
+                                                                "actorId": "0661a2f7-5493-46d9-ab58-6e9bff9a5f30",
+                                                                "amount": "1",
+                                                                "change": "1",
+                                                                "notify": true
+                                                            },
+                                                            {
+                                                                "type": "nodes.speak",
+                                                                "id": "c6a007a7-98d6-4a23-8d15-7c6a813fe14b",
+                                                                "actorId": "0661a2f7-5493-46d9-ab58-6e9bff9a5f30",
+                                                                "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                "text": "Sorry. I didn't mean to blame you. I'm just hurt by Moira.",
+                                                                "emotion": "2",
+                                                                "emotion2": "0",
+                                                                "device": "0",
+                                                                "device2": "0"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "failure": {
+                                                        "type": "nodes.block",
+                                                        "nodes": [
+                                                            {
+                                                                "type": "nodes.changeReputation",
+                                                                "id": "a603da09-a6d8-4487-8f08-06b6a2395f19",
+                                                                "actorId": "0661a2f7-5493-46d9-ab58-6e9bff9a5f30",
+                                                                "amount": "2",
+                                                                "change": "0",
+                                                                "notify": true
+                                                            },
+                                                            {
+                                                                "type": "nodes.speak",
+                                                                "id": "f1bae1ad-d315-49ea-9e46-1f1e53da9dda",
+                                                                "actorId": "0661a2f7-5493-46d9-ab58-6e9bff9a5f30",
+                                                                "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                "text": "Some help you were - because of what you said, I went to Moira and made a big fool of myself.",
+                                                                "emotion": "3",
+                                                                "emotion2": "0",
+                                                                "device": "0",
+                                                                "device2": "0"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "notify": true
+                                                }
+                                            ],
+                                            "expression": null,
+                                            "ignoreChildAvailability": false,
+                                            "minutes": "3",
+                                            "ExitMenu": true
+                                        }
+                                    ],
+                                    "AutoAddDone": false,
+                                    "Unique": true
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "actor",
+                                "scopeId": "0661a2f7-5493-46d9-ab58-6e9bff9a5f30",
+                                "scopeFilterId": null,
+                                "tags": "MoiraLoves",
+                                "has": true
+                            },
+                            "ignoreChildAvailability": false,
+                            "minutes": "1",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "7dffcc50-f9e7-4275-8bb3-7daaf64a7e6f",
+                            "text": "Greet Aeolus",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "a4bb6387-43ac-4f8f-adf4-5d33c974f4a5",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "0661a2f7-5493-46d9-ab58-6e9bff9a5f30",
+                                    "text": "Hey, Aeolus, I'm sorry that things aren't working out between you and Moira.",
+                                    "emotion": "2",
+                                    "emotion2": "2",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "id": "0f95be37-3cae-467e-9bc6-380bd3085eb1",
+                                    "type": "nodes.skillBranch",
+                                    "skill": "Charm",
+                                    "target": "60",
+                                    "success": {
+                                        "type": "nodes.block",
+                                        "nodes": [
+                                            {
+                                                "type": "nodes.changeReputation",
+                                                "id": "2c1b9d9e-962b-4024-8e18-66387409d887",
+                                                "actorId": "0661a2f7-5493-46d9-ab58-6e9bff9a5f30",
+                                                "amount": "1",
+                                                "change": "1",
+                                                "notify": true
+                                            }
+                                        ]
+                                    },
+                                    "failure": {
+                                        "type": "nodes.block",
+                                        "nodes": []
+                                    },
+                                    "notify": true
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "00fb1e0d-f7f7-47e9-ad80-646647409552",
+                                    "actorId": "0661a2f7-5493-46d9-ab58-6e9bff9a5f30",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "She said that she wasn't the right person for me, that she was married to her duty. She told me to find someone else to love.",
+                                    "emotion": "2",
+                                    "emotion2": "2",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "52b898db-dad1-40f1-a1fb-8cf31064369a",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "0661a2f7-5493-46d9-ab58-6e9bff9a5f30",
+                                    "text": "It is good advice.",
+                                    "emotion": "0",
+                                    "emotion2": "2",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "7ddd7379-85a6-4d86-b1b2-8ba0ba706815",
+                                    "actorId": "0661a2f7-5493-46d9-ab58-6e9bff9a5f30",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "I'll never love anyone again.",
+                                    "emotion": "3",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "actor",
+                                "scopeId": "0661a2f7-5493-46d9-ab58-6e9bff9a5f30",
+                                "scopeFilterId": null,
+                                "tags": "MoiraLoves",
+                                "has": false
+                            },
+                            "ignoreChildAvailability": false,
+                            "minutes": "2",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "2acc726f-9dce-4072-9ff9-76b32fa72a6e",
+                            "text": "Talk About Moira",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "a9fb5419-4776-4035-98df-14a4cde99c5b",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "0661a2f7-5493-46d9-ab58-6e9bff9a5f30",
+                                    "text": "Moira said that she likes you. She thinks you are funny and clever, just not the person for her.",
+                                    "emotion": "0",
+                                    "emotion2": "2",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "8d9d0f3f-3f6e-4270-b99b-07b90de0af85",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "0661a2f7-5493-46d9-ab58-6e9bff9a5f30",
+                                    "text": "I'm sure you can find someone who is right for you.",
+                                    "emotion": "0",
+                                    "emotion2": "2",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.quests",
+                                    "id": "535beddc-1463-448d-b477-48e3fca87570",
+                                    "sceneId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                                    "propId": "3d201792-8993-44d5-bb28-63759b746938",
+                                    "target": "1",
+                                    "notify": true
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.hasActiveQuest",
+                                "propId": "3d201792-8993-44d5-bb28-63759b746938",
+                                "sceneId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                                "questStatus": "0"
+                            },
+                            "ignoreChildAvailability": false,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "7ea89e93-55f2-4de9-bb4d-7787d0ea72fa",
+                            "text": "Console Aeolus",
+                            "nodes": [
+                                {
+                                    "type": "nodes.showMenu",
+                                    "id": "1ece9340-0c77-4aab-ad81-ef320f34269a",
+                                    "options": [
+                                        {
+                                            "type": "options.text",
+                                            "id": "4c1ac62d-9009-494a-b7dc-d380614d616d",
+                                            "text": "Tell Him He'll Find Someone Else",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "9fb17c66-e219-4847-83f4-25ea9a0d0915",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": "0661a2f7-5493-46d9-ab58-6e9bff9a5f30",
+                                                    "text": "So Moira wasn't the right person for you, that's sad. But she's not the only person out there who could be right for you. Don't give up on yourself, Aeolus. Someone out there will see you for the great person you are.",
+                                                    "emotion": "0",
+                                                    "emotion2": "2",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "id": "a6932cce-81d1-4a0e-8d9a-0d5bb98bac7c",
+                                                    "type": "nodes.skillBranch",
+                                                    "skill": "Moxie",
+                                                    "target": "40",
+                                                    "success": {
+                                                        "type": "nodes.block",
+                                                        "nodes": [
+                                                            {
+                                                                "type": "nodes.speak",
+                                                                "id": "0b1a9e87-28e8-4903-bc08-28f298e73efa",
+                                                                "actorId": "0661a2f7-5493-46d9-ab58-6e9bff9a5f30",
+                                                                "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                "text": "Right now, the only person I want in my life doesn't want me. I can't think about anyone else right now.",
+                                                                "emotion": "2",
+                                                                "emotion2": "0",
+                                                                "device": "0",
+                                                                "device2": "0"
+                                                            },
+                                                            {
+                                                                "type": "nodes.changeReputation",
+                                                                "id": "aa7b9b8d-5eb2-41e4-822f-3586017546ff",
+                                                                "actorId": "0661a2f7-5493-46d9-ab58-6e9bff9a5f30",
+                                                                "amount": "1",
+                                                                "change": "1",
+                                                                "notify": true
+                                                            }
+                                                        ]
+                                                    },
+                                                    "failure": {
+                                                        "type": "nodes.block",
+                                                        "nodes": [
+                                                            {
+                                                                "type": "nodes.speak",
+                                                                "id": "285689d7-184c-48f9-9784-563128f3e9c9",
+                                                                "actorId": "0661a2f7-5493-46d9-ab58-6e9bff9a5f30",
+                                                                "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                "text": "I don't want to talk about it now.",
+                                                                "emotion": "2",
+                                                                "emotion2": "0",
+                                                                "device": "0",
+                                                                "device2": "0"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "notify": true
+                                                }
+                                            ],
+                                            "expression": null,
+                                            "ignoreChildAvailability": false,
+                                            "minutes": "4",
+                                            "ExitMenu": true
+                                        },
+                                        {
+                                            "type": "options.text",
+                                            "id": "5909d12c-6833-4468-a2d7-40b5fb6786e3",
+                                            "text": "Tell Him to Write a Song About Moira",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "754e3d6c-e017-4915-9eda-8e8314dbb8be",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": "0661a2f7-5493-46d9-ab58-6e9bff9a5f30",
+                                                    "text": "Look - I know you are hurting, but you shouldn't just dwell on the pain. Write a song about what you are going through. It will make you feel better.",
+                                                    "emotion": "0",
+                                                    "emotion2": "2",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "id": "5dcb3d5e-b142-4b80-8479-e4f618a1dc2b",
+                                                    "type": "nodes.skillBranch",
+                                                    "skill": "Smarts",
+                                                    "target": "40",
+                                                    "success": {
+                                                        "type": "nodes.block",
+                                                        "nodes": [
+                                                            {
+                                                                "type": "nodes.changeReputation",
+                                                                "id": "4ff9347e-725d-4a8b-b9c5-bdd40334cd0c",
+                                                                "actorId": "0661a2f7-5493-46d9-ab58-6e9bff9a5f30",
+                                                                "amount": "1",
+                                                                "change": "1",
+                                                                "notify": true
+                                                            }
+                                                        ]
+                                                    },
+                                                    "failure": {
+                                                        "type": "nodes.block",
+                                                        "nodes": []
+                                                    },
+                                                    "notify": true
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "2355e5ae-ee9c-4d0f-b6a1-adfe35904f9e",
+                                                    "actorId": "0661a2f7-5493-46d9-ab58-6e9bff9a5f30",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "I already wrote a song about it.",
+                                                    "emotion": "2",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "f2691b75-b980-45da-9228-0015878177f4",
+                                                    "actorId": "0661a2f7-5493-46d9-ab58-6e9bff9a5f30",
+                                                    "actorId2": null,
+                                                    "text": "Nothing could be lonelier than to be here in Sardonia\nin the night time.\nNothing could be sadder than to know I almost had her\nlove at first sight time.",
+                                                    "emotion": "4",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "2900abbf-f11c-4064-a861-a96d04f2aab5",
+                                                    "actorId": "0661a2f7-5493-46d9-ab58-6e9bff9a5f30",
+                                                    "actorId2": null,
+                                                    "text": "If only I could hold her all the things I could have told her\nin the right time.\nBut nothing could be lonelier than to be here in Sardonia\nwithout delight time.",
+                                                    "emotion": "4",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "30738714-5336-4dc9-a174-756c89d27085",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": "0661a2f7-5493-46d9-ab58-6e9bff9a5f30",
+                                                    "text": "See? You've channeled your pain into your art.",
+                                                    "emotion": "1",
+                                                    "emotion2": "2",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ],
+                                            "expression": null,
+                                            "ignoreChildAvailability": false,
+                                            "minutes": "6",
+                                            "ExitMenu": true
+                                        },
+                                        {
+                                            "type": "options.text",
+                                            "id": "9e6a8e92-4f30-4189-a621-7c2a2c898363",
+                                            "text": "Let Aeolus Know That You'll Be at His Side",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "7c4fb483-981d-4fef-ad80-a1f53be690e2",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": "0661a2f7-5493-46d9-ab58-6e9bff9a5f30",
+                                                    "text": "I know you are hurting right now. If there's anything I can do to help you, just let me know. I'll be here for you.",
+                                                    "emotion": "2",
+                                                    "emotion2": "2",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "id": "10c2ffd7-337d-4e3d-a85a-d8f0269314cd",
+                                                    "type": "nodes.skillBranch",
+                                                    "skill": "Charm",
+                                                    "target": "40",
+                                                    "success": {
+                                                        "type": "nodes.block",
+                                                        "nodes": [
+                                                            {
+                                                                "type": "nodes.speak",
+                                                                "id": "f6ef5b0b-5972-4d97-b905-dc0fa8190277",
+                                                                "actorId": "0661a2f7-5493-46d9-ab58-6e9bff9a5f30",
+                                                                "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                "text": "Thanks, Shawn. You're a good friend.",
+                                                                "emotion": "2",
+                                                                "emotion2": "0",
+                                                                "device": "0",
+                                                                "device2": "0"
+                                                            },
+                                                            {
+                                                                "type": "nodes.changeReputation",
+                                                                "id": "596d6d81-b41b-4d21-a65c-ffc02090b153",
+                                                                "actorId": "0661a2f7-5493-46d9-ab58-6e9bff9a5f30",
+                                                                "amount": "1",
+                                                                "change": "1",
+                                                                "notify": true
+                                                            }
+                                                        ]
+                                                    },
+                                                    "failure": {
+                                                        "type": "nodes.block",
+                                                        "nodes": [
+                                                            {
+                                                                "type": "nodes.speak",
+                                                                "id": "7a0d4e12-945b-40d8-a13f-ea204774a007",
+                                                                "actorId": "0661a2f7-5493-46d9-ab58-6e9bff9a5f30",
+                                                                "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                "text": "Just leave me alone for now.",
+                                                                "emotion": "2",
+                                                                "emotion2": "2",
+                                                                "device": "0",
+                                                                "device2": "0"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "notify": true
+                                                }
+                                            ],
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "actor",
+                                                "scopeId": "0661a2f7-5493-46d9-ab58-6e9bff9a5f30",
+                                                "scopeFilterId": null,
+                                                "tags": "MoiraLoves",
+                                                "has": false
+                                            },
+                                            "ignoreChildAvailability": false,
+                                            "minutes": "2",
+                                            "ExitMenu": true
+                                        }
+                                    ],
+                                    "AutoAddDone": false,
+                                    "Unique": true
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": false,
+                            "minutes": "0",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "bd0a06f0-0b5e-412a-b570-e70eb9cb152c",
+                            "text": "Say Goodnight",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "2b1e687d-d297-4e39-9f57-90f3856f3d76",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "0661a2f7-5493-46d9-ab58-6e9bff9a5f30",
+                                    "text": "Try to get some rest.",
+                                    "emotion": "0",
+                                    "emotion2": "2",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "ab5a4c78-cd00-4ad7-8fb9-3b1a88648948",
+                                    "actorId": "0661a2f7-5493-46d9-ab58-6e9bff9a5f30",
+                                    "actorId2": null,
+                                    "text": "<shrug>",
+                                    "emotion": "2",
+                                    "device": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "1",
+                            "ExitMenu": true
+                        }
+                    ],
+                    "AutoAddDone": false,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

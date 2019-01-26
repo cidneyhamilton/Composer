@@ -1,0 +1,218 @@
+{
+    "type": "script",
+    "id": "6c5f44b4-9cba-4f00-8c07-1098a2c1dbf6",
+    "name": "Collection_Mineral_Sulphur",
+    "sceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+    "trigger": {
+        "type": "triggers.manual",
+        "name": "Manual"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "e1b97dd0-164b-4d5a-b4ac-eddaf43adca7",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.comment",
+                    "message": "\"rv_collect_mineral\" is the variable to use to check script completion status 1 = harvested 0 = not harvested.",
+                    "commentor": "Joshua"
+                },
+                {
+                    "type": "nodes.setVariable",
+                    "name": "rv_collect_mineral",
+                    "scope": "target",
+                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                    "source": {
+                        "type": "variables.literal",
+                        "value": "0",
+                        "displayName": "Literal"
+                    },
+                    "add": false
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.inInventory",
+                                "propId": "25ab250e-b3d5-4084-bd45-ec6c698e0437",
+                                "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                "has": true
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "prop",
+                                                "variableName": "FillAmount",
+                                                "operator": "gte",
+                                                "compareTo": "3",
+                                                "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                "propId": "25ab250e-b3d5-4084-bd45-ec6c698e0437"
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "c80e3c7b-7598-4bac-b626-ee029b5c24d6",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "My sulphur jar is full to the brim.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "74430b6d-835b-4a73-9ac8-9253f9d65838",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "I'll just put a little sulphur into my jar here...",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.playSoundEffect",
+                                                    "soundEffectName": "Collect Mineral.wav",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.setVariable",
+                                                    "name": "FillAmount",
+                                                    "scope": "prop",
+                                                    "scopeId": "25ab250e-b3d5-4084-bd45-ec6c698e0437",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "source": {
+                                                        "type": "variables.literal",
+                                                        "value": "1",
+                                                        "displayName": "Literal"
+                                                    },
+                                                    "add": true
+                                                },
+                                                {
+                                                    "type": "nodes.setVariable",
+                                                    "name": "rv_collect_mineral",
+                                                    "scope": "target",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "source": {
+                                                        "type": "variables.literal",
+                                                        "value": "1",
+                                                        "displayName": "Literal"
+                                                    },
+                                                    "add": false
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.variableComparison",
+                                                                "variableScope": "prop",
+                                                                "variableName": "FillAmount",
+                                                                "operator": "gte",
+                                                                "compareTo": "3",
+                                                                "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                                "propId": "25ab250e-b3d5-4084-bd45-ec6c698e0437"
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "12bcaba9-0793-4a03-bb02-6b7208f80873",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "There, now I have a full jar of sulphur.",
+                                                                    "emotion": "1",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.variableComparison",
+                                                                "variableScope": "prop",
+                                                                "variableName": "FillAmount",
+                                                                "operator": "eq",
+                                                                "compareTo": "2",
+                                                                "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                                "propId": "25ab250e-b3d5-4084-bd45-ec6c698e0437"
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "52b0ffd5-ed28-4a0f-b756-752e6111b097",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "Now my jar has more sulphur - but I can probably fit more in it.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": null,
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "d776521f-4bee-4f79-a555-a87b85faf733",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "Now I have some sulphur in my jar. It's only about a third full at present.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "e47130ea-e596-4aa8-98df-6b0f4274073b",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "I'm going to need a jar of some kind to store any collected sulphur in.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

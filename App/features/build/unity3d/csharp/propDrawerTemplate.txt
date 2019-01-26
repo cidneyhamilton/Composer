@@ -1,0 +1,98 @@
+using System.Collections.Generic;
+using System.Linq;
+using Assets.Transolar.Runtime.Props;
+using UnityEditor;
+using UnityEngine;
+using Assets.Scripts;
+
+namespace Assets.Editor.Composer {
+    [CustomPropertyDrawer(typeof(PropAttribute))]
+    public class PropDrawer : PropertyDrawer {
+        int sceneIndex = -1;
+        int propIndex;
+
+        public class Item {
+            public string Name;
+
+            public Item(string name) {
+                Name = name;
+                Children = new List<ChildItem>();
+            }
+
+            public List<ChildItem> Children { get; set; }
+
+            public bool ContainsProp(string propId) {
+                return Children.Any(x => x.Id == propId);
+            }
+
+            public class ChildItem {
+                public string Name;
+                public string Id;
+
+                public ChildItem(string id, string name) {
+                    Id = id;
+                    Name = name;
+                }
+            }
+        }
+
+        public static Item[] Items = new Item[] {{list items}
+        };
+
+        public override void OnGUI(Rect position, SerializedProperty property, GUIContent label) {
+            EditorGUI.BeginChangeCheck();
+
+            if (this.sceneIndex == -1)
+            {
+                var sceneManager = Object.FindObjectOfType<SceneManager>();
+                if (sceneManager != null)
+                {
+                  var scenename = sceneManager.name;
+                    var newIndex = 0;
+                for (int i = 0; i < Items.Length; i++)
+                {
+                        if (scenename == Items[i].Name)
+                        {
+                            newIndex = i;
+                            break;
+                        }
+                }
+                 this.sceneIndex = newIndex;
+                }
+            }
+            
+            for(var i = 0; i < Items.Length; i++) {
+                var current = Items[i];
+
+                if(current.ContainsProp(property.stringValue)) {
+                    sceneIndex = i;
+
+                    for(var j = 0; j < current.Children.Count; j++){
+                        if(property.stringValue == current.Children[j].Id) {
+                            propIndex = j;
+                            break;
+                        }
+                    }
+
+                    break;
+                }
+            }
+
+            var first = new Rect(position.x, position.y, position.width, position.height/2);
+            var second = new Rect(position.x, position.y + (position.height/2), position.width, position.height/2);
+
+            sceneIndex = EditorGUI.Popup(first, "Scene", sceneIndex, Items.Select(x => x.Name).ToArray());
+            propIndex = EditorGUI.Popup(second, "Prop", propIndex, Items[sceneIndex].Children.Select(x => x.Name).ToArray());
+
+            if(EditorGUI.EndChangeCheck()) {
+            	if (propIndex >= Items[sceneIndex].Children.Count)
+                    propIndex = 0;
+                property.stringValue = Items[sceneIndex].Children[propIndex].Id;
+            }
+        }
+
+        public override float GetPropertyHeight(SerializedProperty property, GUIContent label) {
+            return base.GetPropertyHeight(property, label)*2;
+        }
+    }
+}

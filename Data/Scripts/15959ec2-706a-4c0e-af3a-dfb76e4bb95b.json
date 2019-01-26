@@ -1,0 +1,436 @@
+{
+    "type": "script",
+    "id": "15959ec2-706a-4c0e-af3a-dfb76e4bb95b",
+    "name": "Interact With Kettlebell",
+    "sceneId": "e8288a23-0b06-4dd7-94d2-9761390d6484",
+    "propId": "305fec21-b53d-4093-b3db-b94f17fd270b",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "dc67f4b9-5d2c-4007-a5db-14fdff872c4c",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "9cded38a-add6-4874-920e-533e55b83652",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "fe0ae79c-e91d-42e9-8c1e-9bcf34697082",
+                            "text": "Look at the Kettlebells",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "09f0851d-8d3a-45eb-a19f-9405009ef0c0",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "If I have to lift weights, I like these the best. There's just something about throwing chunks of iron around that scratches my itch to be destructive.",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "e28f112f-a9bc-40a5-8455-e999acb16b76",
+                            "text": "Practice with the Kettlebell",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.skillCheck",
+                                                "skill": "Fitness",
+                                                "target": "50"
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "4ef8de35-c952-4764-81d7-2838efd57277",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Wow. This feels so light now! I clearly need to step up to the barbells.",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.endScript"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.skillCheck",
+                                                "skill": "Fitness",
+                                                "target": "25"
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.and",
+                                                                "left": {
+                                                                    "type": "expressions.variableComparison",
+                                                                    "variableScope": "global",
+                                                                    "variableName": "time.hour",
+                                                                    "operator": "eq",
+                                                                    "compareTo": "17",
+                                                                    "sceneId": "e8288a23-0b06-4dd7-94d2-9761390d6484",
+                                                                    "propId": null
+                                                                },
+                                                                "right": {
+                                                                    "type": "expressions.variableComparison",
+                                                                    "variableScope": "global",
+                                                                    "variableName": "time.minute",
+                                                                    "operator": "gte",
+                                                                    "compareTo": "30",
+                                                                    "sceneId": "e8288a23-0b06-4dd7-94d2-9761390d6484",
+                                                                    "propId": null
+                                                                }
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "b35cdde0-451e-400c-b82a-ba201b240b49",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "Judging from the rumbling in my tummy, my body has better things to do than lift heavy items right now.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.variableComparison",
+                                                                "variableScope": "global",
+                                                                "variableName": "time.hour",
+                                                                "operator": "lt",
+                                                                "compareTo": "7",
+                                                                "sceneId": "e8288a23-0b06-4dd7-94d2-9761390d6484",
+                                                                "propId": null
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "9a3afc7c-007f-4c6c-b617-1144771b0306",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "I am not going to waste my precious sleeping time exercising!",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": null,
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.branch",
+                                                                    "sections": [
+                                                                        {
+                                                                            "type": "nodes.branchSection",
+                                                                            "expression": {
+                                                                                "type": "expressions.inTags",
+                                                                                "scope": "scene",
+                                                                                "scopeId": "e8288a23-0b06-4dd7-94d2-9761390d6484",
+                                                                                "scopeFilterId": null,
+                                                                                "tags": "liftedweightstoday",
+                                                                                "has": false
+                                                                            },
+                                                                            "nodes": [
+                                                                                {
+                                                                                    "type": "nodes.playMusic",
+                                                                                    "musicTrack": "silence.ogg",
+                                                                                    "channel": "1",
+                                                                                    "loopType": "1"
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.fade",
+                                                                                    "scope": "FadeOut",
+                                                                                    "fadeTime": "1",
+                                                                                    "fadeTime2": "0.5",
+                                                                                    "wait": true,
+                                                                                    "fadeDown": ".25",
+                                                                                    "fadeColorR": 0,
+                                                                                    "fadeColorG": 0,
+                                                                                    "fadeColorB": 0
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.playSoundEffect",
+                                                                                    "soundEffectName": "Lift Weights Medium.wav",
+                                                                                    "wait": false
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.showVignette",
+                                                                                    "vignetteName": "Practice - LiftingHeavyKettlebell.png",
+                                                                                    "crossFadeTime": 0
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.fade",
+                                                                                    "scope": "FadeIn",
+                                                                                    "fadeTime": 2,
+                                                                                    "fadeTime2": ".5",
+                                                                                    "wait": true,
+                                                                                    "fadeDown": ".25",
+                                                                                    "fadeColorR": 0,
+                                                                                    "fadeColorG": 0,
+                                                                                    "fadeColorB": 0
+                                                                                },
+                                                                                {
+                                                                                    "id": "d5861419-fabd-4c61-bc17-5e07208075ea",
+                                                                                    "type": "nodes.improveSkill",
+                                                                                    "skill": "Fitness",
+                                                                                    "amount": "3",
+                                                                                    "notify": true
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.wait",
+                                                                                    "waitForSeconds": 1
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.nodeCycle",
+                                                                                    "id": "43a3e3ae-5bc3-42df-9890-2a083cde8919",
+                                                                                    "nodes": [
+                                                                                        {
+                                                                                            "type": "nodes.speak",
+                                                                                            "id": "0ce88003-dcb8-4897-bd85-8d41764a99af",
+                                                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                            "actorId2": null,
+                                                                                            "text": "Let me show everyone how it's done.",
+                                                                                            "emotion": "0",
+                                                                                            "emotion2": "0",
+                                                                                            "device": "0",
+                                                                                            "device2": "0"
+                                                                                        },
+                                                                                        {
+                                                                                            "type": "nodes.speak",
+                                                                                            "id": "f14f38a4-4124-4cc4-8133-79f25dc9e0ef",
+                                                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                            "actorId2": null,
+                                                                                            "text": "Urggh! Arrgh! Oof!",
+                                                                                            "emotion": "0",
+                                                                                            "emotion2": "0",
+                                                                                            "device": "0",
+                                                                                            "device2": "0"
+                                                                                        },
+                                                                                        {
+                                                                                            "type": "nodes.speak",
+                                                                                            "id": "dd762d1a-29b6-4de2-a95d-421b78637d0f",
+                                                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                            "actorId2": null,
+                                                                                            "text": "Are people supposed to sweat this much?",
+                                                                                            "emotion": "0",
+                                                                                            "emotion2": "0",
+                                                                                            "device": "0",
+                                                                                            "device2": "0"
+                                                                                        },
+                                                                                        {
+                                                                                            "type": "nodes.speak",
+                                                                                            "id": "7656b00d-dab2-4ea0-b3cb-85057b661c20",
+                                                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                            "actorId2": null,
+                                                                                            "text": "I have to remember to do this in the sandpit, just in case I drop something.",
+                                                                                            "emotion": "0",
+                                                                                            "emotion2": "0",
+                                                                                            "device": "0",
+                                                                                            "device2": "0"
+                                                                                        },
+                                                                                        {
+                                                                                            "type": "nodes.speak",
+                                                                                            "id": "847845b4-798b-4ea5-9d03-3f9528d0016a",
+                                                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                            "actorId2": null,
+                                                                                            "text": "Just watch... <gasp> ... watch... <gasp> ... watch how <i>easy</i> I make this look!",
+                                                                                            "emotion": "0",
+                                                                                            "emotion2": "0",
+                                                                                            "device": "0",
+                                                                                            "device2": "0"
+                                                                                        },
+                                                                                        {
+                                                                                            "type": "nodes.speak",
+                                                                                            "id": "8fc6b181-ea92-4c1f-a996-201b84eebe45",
+                                                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                            "actorId2": null,
+                                                                                            "text": "It's a good thing this really builds muscle... because it's boring as hell!",
+                                                                                            "emotion": "0",
+                                                                                            "emotion2": "0",
+                                                                                            "device": "0",
+                                                                                            "device2": "0"
+                                                                                        },
+                                                                                        {
+                                                                                            "type": "nodes.speak",
+                                                                                            "id": "2ee5f70d-9de4-43d7-8485-29cf38f10bd1",
+                                                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                            "actorId2": null,
+                                                                                            "text": "Gotta be careful not to drop this on my foot... it's hard to sneak around with no toes.",
+                                                                                            "emotion": "0",
+                                                                                            "emotion2": "0",
+                                                                                            "device": "0",
+                                                                                            "device2": "0"
+                                                                                        }
+                                                                                    ]
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.changeTags",
+                                                                                    "id": "739bf057-2c94-49d1-834c-a35bdd8f34e4",
+                                                                                    "scope": "scene",
+                                                                                    "scopeId": "e8288a23-0b06-4dd7-94d2-9761390d6484",
+                                                                                    "scopeFilterId": null,
+                                                                                    "tagsToAdd": "liftedweightstoday",
+                                                                                    "tagsToRemove": null
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.incrementTime",
+                                                                                    "id": "3df4c024-93b9-492f-85ca-71894e58a825",
+                                                                                    "days": 0,
+                                                                                    "hours": "1",
+                                                                                    "minutes": "0"
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.fade",
+                                                                                    "scope": "FadeOut",
+                                                                                    "fadeTime": "1",
+                                                                                    "fadeTime2": "0.5",
+                                                                                    "wait": true,
+                                                                                    "fadeDown": ".25",
+                                                                                    "fadeColorR": 0,
+                                                                                    "fadeColorG": 0,
+                                                                                    "fadeColorB": 0
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.hideVignette",
+                                                                                    "waitForSeconds": 1
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.fade",
+                                                                                    "scope": "FadeIn",
+                                                                                    "fadeTime": 2,
+                                                                                    "fadeTime2": ".5",
+                                                                                    "wait": true,
+                                                                                    "fadeDown": ".25",
+                                                                                    "fadeColorR": 0,
+                                                                                    "fadeColorG": 0,
+                                                                                    "fadeColorB": 0
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.invokeScript",
+                                                                                    "id": "c862c433-b65c-43e5-b342-20e42742255b",
+                                                                                    "scriptId": "8bf09f9d-d50b-49a5-a9d7-f60f9e467b4b",
+                                                                                    "entryPointId": "dc67f4b9-5d2c-4007-a5db-14fdff872c4c",
+                                                                                    "currentScope": "Scenes",
+                                                                                    "currentSceneId": "e8288a23-0b06-4dd7-94d2-9761390d6484",
+                                                                                    "currentActorId": null,
+                                                                                    "currentStoryEventId": null,
+                                                                                    "currentPropId": null
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.endScript"
+                                                                                }
+                                                                            ]
+                                                                        },
+                                                                        {
+                                                                            "type": "nodes.branchSection",
+                                                                            "expression": null,
+                                                                            "nodes": [
+                                                                                {
+                                                                                    "type": "nodes.speak",
+                                                                                    "id": "6d687683-afee-4120-8523-b5611318f9ce",
+                                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                    "actorId2": null,
+                                                                                    "text": "No more today, my biceps are killing me.",
+                                                                                    "emotion": "0",
+                                                                                    "emotion2": "0",
+                                                                                    "device": "0",
+                                                                                    "device2": "0"
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "9985d6da-2570-4a3f-975a-0170d7df744a",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Yikes, I can't even lift this thing, let alone practice with it. I clearly need to start smaller.",
+                                                    "emotion": "2",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "5cc72bd6-719c-49aa-a4c9-7cf33767a5bf",
+                            "text": "Steal the Kettlebell",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "0a539879-2c7f-46a2-a739-eca66f9cec5a",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "It would make a great doorstop, but there are things that make better doorstops. Like doorstops.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

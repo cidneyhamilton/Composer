@@ -1,0 +1,274 @@
+{
+    "type": "script",
+    "id": "5591f2b6-ecd7-4e8b-bb1d-dfaea0cf5dcd",
+    "name": "Interact with Kyro's Nightstand",
+    "sceneId": "a64f567d-8023-48af-a8e2-5d876e34cb90",
+    "propId": "3ffabbb7-6941-4f1f-957c-2d348ddf93f0",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "4d3a7578-94f9-41ae-980c-2274216a6ced",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "cb73a291-7c7b-4bea-9ff6-5feb23553fbe",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "b00f369c-0381-4195-ac37-802bebcbfa21",
+                            "text": "Look at the Nightstand",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "1a65be82-4d30-409a-9c0d-285f5f09e69d",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "It's just a basic nightstand. I think we all get the same ones in our rooms.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "1",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "d67327c7-172f-4c51-881e-2bbda8d995cc",
+                            "text": "Search the Nightstand",
+                            "nodes": [
+                                {
+                                    "type": "nodes.playSoundEffect",
+                                    "soundEffectName": "DrawerOpen.ogg",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "prop",
+                                                "scopeId": "3ffabbb7-6941-4f1f-957c-2d348ddf93f0",
+                                                "scopeFilterId": "a64f567d-8023-48af-a8e2-5d876e34cb90",
+                                                "tags": "searched",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "08ea7091-935d-4400-a289-03940fb9e20c",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "There's nothing else interesting in there.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "23d33bee-199d-444a-978e-f253427f0f3b",
+                                                    "scope": "prop",
+                                                    "scopeId": "3ffabbb7-6941-4f1f-957c-2d348ddf93f0",
+                                                    "scopeFilterId": "a64f567d-8023-48af-a8e2-5d876e34cb90",
+                                                    "tagsToAdd": "searched",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.incrementTime",
+                                                    "id": "f31689e3-09ef-49a0-88a2-735e500e8a88",
+                                                    "days": 0,
+                                                    "hours": 0,
+                                                    "minutes": "3"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "0269f658-fd8f-4fa4-b3d5-5e8d16410680",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Oh, there's a book in here. I guess Joel is a reader.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.playSoundEffect",
+                                                    "soundEffectName": "book_open.wav",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "f4bedd59-16c2-4ba7-8091-daae96df11e2",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "\"How to Win Deals and Influence Profits\" - This sound like it could be interesting...",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "d7361f59-e699-4b10-a5e1-33bb759c73da",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Shame I really don't have time to look at this - I don't want to get caught.",
+                                                    "emotion": "2",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.showMenu",
+                                                    "id": "b37fddb3-5d62-4330-8413-3e4f0ec45ddd",
+                                                    "options": [
+                                                        {
+                                                            "type": "options.text",
+                                                            "id": "4859a7bb-1799-4a20-a67e-867f0ca95c49",
+                                                            "text": "Skim the Book for Fifteen Minutes",
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.fade",
+                                                                    "scope": "FadeOut",
+                                                                    "fadeTime": "1",
+                                                                    "fadeTime2": "1",
+                                                                    "wait": true,
+                                                                    "fadeDown": 1,
+                                                                    "fadeColorR": 0,
+                                                                    "fadeColorG": 0,
+                                                                    "fadeColorB": 0
+                                                                },
+                                                                {
+                                                                    "type": "nodes.playSoundEffect",
+                                                                    "soundEffectName": "book_page_turn.wav",
+                                                                    "wait": true
+                                                                },
+                                                                {
+                                                                    "type": "nodes.fade",
+                                                                    "scope": "FadeIn",
+                                                                    "fadeTime": "1",
+                                                                    "fadeTime2": "1",
+                                                                    "wait": true,
+                                                                    "fadeDown": 1,
+                                                                    "fadeColorR": 0,
+                                                                    "fadeColorG": 0,
+                                                                    "fadeColorB": 0
+                                                                },
+                                                                {
+                                                                    "id": "bb808e08-f60e-4909-b0d2-2d5662932436",
+                                                                    "type": "nodes.improveSkill",
+                                                                    "skill": "Charm",
+                                                                    "amount": "1",
+                                                                    "notify": true
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "ae1801a2-7abd-4eb4-a98f-df9210ac3133",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "It's got some good tips in here. I'm going to try them next time I play \"Let's Make a Deal.\"",
+                                                                    "emotion": "1",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.playSoundEffect",
+                                                                    "soundEffectName": "book_close.wav",
+                                                                    "wait": true
+                                                                }
+                                                            ],
+                                                            "expression": null,
+                                                            "ignoreChildAvailability": true,
+                                                            "minutes": "15",
+                                                            "ExitMenu": false
+                                                        },
+                                                        {
+                                                            "type": "options.text",
+                                                            "id": "7068bde0-76dc-46c7-a794-9942c66b4ffd",
+                                                            "text": "Continue with your Nefarious Activities Instead",
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "5bb9bf41-f547-43ad-91fa-24dbf31c3d76",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "I really need to look for Katie's map rather than waste my time looking at books.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ],
+                                                            "expression": null,
+                                                            "ignoreChildAvailability": true,
+                                                            "minutes": 0,
+                                                            "ExitMenu": false
+                                                        }
+                                                    ],
+                                                    "AutoAddDone": false,
+                                                    "Unique": true
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.playSoundEffect",
+                                    "soundEffectName": "DrawerShut.ogg",
+                                    "wait": true
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "2",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "1e55c1be-66f0-4a39-afbf-8778431a9507",
+                            "text": "Steal the Nightstand",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "fc96a2d9-5f84-4ce7-b428-a12cba3cd69e",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "I'm not ready for commitment, I'm more of a one nightstand kind of guy.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "1",
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

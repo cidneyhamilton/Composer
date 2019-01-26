@@ -1,0 +1,127 @@
+{
+    "type": "script",
+    "id": "d540f4d1-ebfa-4501-9ecb-f13077117c60",
+    "name": "Interact with Rogue Practice Exit",
+    "sceneId": "d89cc4ad-2296-471c-9321-6082c2c57962",
+    "propId": "3a20544f-11d6-4352-a00a-3d86fc7e3c20",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "2ebe2cde-0728-46d4-950f-8e1c85eb38b5",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.onceOnly",
+                    "id": "5100aa3d-081c-4be2-84eb-29ec0d0c559a",
+                    "nodes": [
+                        {
+                            "type": "nodes.speak",
+                            "id": "1b350b40-28a5-4aa9-a70e-62afad5708bc",
+                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                            "actorId2": null,
+                            "text": "Okay, this looks like it is the backside to a concealed door. So where does this one go?",
+                            "emotion": "0",
+                            "emotion2": "0",
+                            "device": "0",
+                            "device2": "0"
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.showMenu",
+                    "id": "a45a8265-225a-468d-9216-404fd37c5bc5",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "ea75a573-80e3-46f2-bd4b-bcfbd21f6dea",
+                            "text": "Examine the Door",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "ec9ae8e0-e8f9-48b0-9926-9eb7a9da4e33",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "It's not a door so much as a section of wall with a handle on it. It's also barred so that it can't be opened from the other side.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "00aa8a53-fe82-471e-99fc-f8b5bf266cf1",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "So if I remove the bar, this will probably slide open from either side.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "2",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "2820e18a-7e09-4777-8051-fa74e62104fb",
+                            "text": "Open the Door",
+                            "nodes": [
+                                {
+                                    "type": "nodes.onceOnly",
+                                    "id": "dfe18b3d-0201-4035-84bb-0ee6eba394c2",
+                                    "nodes": [
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "d21e282d-9587-4183-92dd-0498265475e0",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "Okay, removing the bar and sliding the door open... ",
+                                            "emotion": "0",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "d6a091e6-4f76-4c02-9ba4-07d38fe4ffaf",
+                                    "scope": "scene",
+                                    "scopeId": "d89cc4ad-2296-471c-9321-6082c2c57962",
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "OpenedSecretDoor",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.playSoundEffect",
+                                    "soundEffectName": "Lift Heavy Bar.wav",
+                                    "wait": false
+                                },
+                                {
+                                    "type": "nodes.changeScene",
+                                    "sceneId": "e8288a23-0b06-4dd7-94d2-9761390d6484",
+                                    "spawnId": "dad4b5a4-e12c-4bbc-88fd-7ff805b8fddf",
+                                    "fadeTime": 2
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "2",
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

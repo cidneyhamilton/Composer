@@ -1,0 +1,66 @@
+{
+    "type": "script",
+    "id": "b9538c12-4c02-430b-a220-00980437588b",
+    "name": "Exit to Northern Corridor",
+    "sceneId": "9b06cdb4-6d47-4e07-8501-3cb9c5792c09",
+    "propId": "186ef0f5-ef9e-4d06-91b3-64d4e27c048d",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "6da79589-4fb1-4b0d-a689-011b306a8f33",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.playAnimation",
+                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "animationName": "ReachOut"
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "prop",
+                                "scopeId": "5f06f5c0-abf0-45c3-b929-cf29145558e0",
+                                "scopeFilterId": "fa26d0aa-8fef-4e8b-8055-ee760fc7b13f",
+                                "tags": "oiled",
+                                "has": true
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.playSoundEffect",
+                                    "soundEffectName": "wooden_door_opening.wav",
+                                    "wait": false
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.playSoundEffect",
+                                    "soundEffectName": "WineCellarDoor.wav",
+                                    "wait": false
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.changeScene",
+                    "sceneId": "fa26d0aa-8fef-4e8b-8055-ee760fc7b13f",
+                    "spawnId": "28438d53-0e66-40b5-9171-ea078994a2fb",
+                    "fadeTime": 2
+                }
+            ]
+        }
+    ]
+}

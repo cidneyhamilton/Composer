@@ -1,0 +1,83 @@
+{
+    "type": "script",
+    "id": "6eefa04e-c554-41d1-b40f-3e8a95c44538",
+    "name": "Interact with Stairs Up",
+    "sceneId": "981ec865-3e1b-4f3e-bb0d-11df2bc7d593",
+    "propId": "54683374-f825-469c-8f57-124243ebd242",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "91c8faf2-4c88-4454-a5c5-d1d9b807e262",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.variableComparison",
+                                "variableScope": "global",
+                                "variableName": "ego.movementstatus",
+                                "operator": "eq",
+                                "compareTo": "walking",
+                                "sceneId": "981ec865-3e1b-4f3e-bb0d-11df2bc7d593",
+                                "propId": null
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.moveActor",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "propId": "cc1eacc7-d039-48ba-8a4d-f65ccb52e912",
+                                    "movement": "Walking"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.variableComparison",
+                                "variableScope": "global",
+                                "variableName": "ego.movementstatus",
+                                "operator": "eq",
+                                "compareTo": "sneaking",
+                                "sceneId": "981ec865-3e1b-4f3e-bb0d-11df2bc7d593",
+                                "propId": null
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.moveActor",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "propId": "cc1eacc7-d039-48ba-8a4d-f65ccb52e912",
+                                    "movement": "Sneaking"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.comment",
+                                    "message": "Defaulting to run",
+                                    "commentor": "Charkes"
+                                },
+                                {
+                                    "type": "nodes.moveActor",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "propId": "cc1eacc7-d039-48ba-8a4d-f65ccb52e912",
+                                    "movement": "Running"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

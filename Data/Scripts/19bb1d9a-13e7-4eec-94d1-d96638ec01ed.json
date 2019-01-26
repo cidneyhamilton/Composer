@@ -1,0 +1,682 @@
+{
+    "type": "script",
+    "id": "19bb1d9a-13e7-4eec-94d1-d96638ec01ed",
+    "name": "Play Pool with NPC",
+    "sceneId": "84006d08-8e6d-4558-b9b5-101f3c3054fe",
+    "trigger": {
+        "type": "triggers.manual",
+        "name": "Manual"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "37d4f4c7-8a2d-491b-8608-381e0bdbb7f0",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.changeTags",
+                    "id": "a2353262-1af8-4bed-9749-e37cdef5c6d7",
+                    "scope": "scene",
+                    "scopeId": "84006d08-8e6d-4558-b9b5-101f3c3054fe",
+                    "scopeFilterId": null,
+                    "tagsToRemove": "shawnWon"
+                },
+                {
+                    "type": "nodes.playMusic",
+                    "musicTrack": "silence.ogg",
+                    "channel": "1",
+                    "loopType": "1"
+                },
+                {
+                    "type": "nodes.fade",
+                    "scope": "FadeOut",
+                    "fadeTime": "0.5",
+                    "fadeTime2": 2,
+                    "wait": true,
+                    "fadeDown": 1,
+                    "fadeColorR": 0,
+                    "fadeColorG": 0,
+                    "fadeColorB": 0
+                },
+                {
+                    "type": "nodes.showCloseUp",
+                    "imageName": "PoolTableCloseup.png"
+                },
+                {
+                    "type": "nodes.fade",
+                    "scope": "FadeIn",
+                    "fadeTime": "0.5",
+                    "fadeTime2": "0.5",
+                    "wait": true,
+                    "fadeDown": "0",
+                    "fadeColorR": 0,
+                    "fadeColorG": 0,
+                    "fadeColorB": 0
+                },
+                {
+                    "type": "nodes.playSoundEffect",
+                    "soundEffectName": "pool_break.wav",
+                    "wait": false
+                },
+                {
+                    "type": "nodes.wait",
+                    "waitForSeconds": "2.5"
+                },
+                {
+                    "type": "nodes.comment",
+                    "message": "Buffing the Player's skill for this game based on Gaming, but we don't want to award potentially 4 progressions... so just check the value",
+                    "commentor": "Charles"
+                },
+                {
+                    "type": "nodes.comment",
+                    "message": "Using a 1 minute buff so it will expire immediately when leaving this event (due to the time increment below)",
+                    "commentor": "Charles"
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.skillCheck",
+                                "skill": "Gaming",
+                                "target": "80"
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.buffAdd",
+                                    "id": "be7b0462-7c3c-444b-b8b1-6c78b1abd898",
+                                    "buffType": "1",
+                                    "duration": "1",
+                                    "targetData": "12",
+                                    "isPercentage": 0,
+                                    "value": "20",
+                                    "namedSource": "Gaming"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.skillCheck",
+                                "skill": "Gaming",
+                                "target": "60"
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.buffAdd",
+                                    "id": "4a478698-8c49-45b2-8968-05ea87ed58a9",
+                                    "buffType": "1",
+                                    "duration": "1",
+                                    "targetData": "12",
+                                    "isPercentage": 0,
+                                    "value": "15",
+                                    "namedSource": "Gaming"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.skillCheck",
+                                "skill": "Gaming",
+                                "target": "40"
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.buffAdd",
+                                    "id": "b719b3fe-5146-434b-8fc7-5efe0b49cc17",
+                                    "buffType": "1",
+                                    "duration": "1",
+                                    "targetData": "12",
+                                    "isPercentage": 0,
+                                    "value": "10",
+                                    "namedSource": "Gaming"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.skillCheck",
+                                "skill": "Gaming",
+                                "target": "20"
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.buffAdd",
+                                    "id": "3bc06124-c5d5-45c8-91c2-8dc0e3334939",
+                                    "buffType": "1",
+                                    "duration": "1",
+                                    "targetData": "12",
+                                    "isPercentage": 0,
+                                    "value": "5",
+                                    "namedSource": "Gaming"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.comment",
+                    "message": "Agility check below will give progress towards an Agility skill up",
+                    "commentor": "Charles"
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.variableComparison",
+                                "variableScope": "script",
+                                "variableName": "opponent",
+                                "operator": "eq",
+                                "compareTo": "Katie",
+                                "sceneId": null,
+                                "propId": null
+                            },
+                            "nodes": [
+                                {
+                                    "id": "c1a49b81-cdcc-4e22-8f1c-0b19268c659c",
+                                    "type": "nodes.skillBranch",
+                                    "skill": "Agility",
+                                    "target": "30",
+                                    "success": {
+                                        "type": "nodes.block",
+                                        "nodes": [
+                                            {
+                                                "type": "nodes.changeTags",
+                                                "id": "455d4667-2745-432d-8fac-aba83bdeeff1",
+                                                "scope": "scene",
+                                                "scopeId": "84006d08-8e6d-4558-b9b5-101f3c3054fe",
+                                                "scopeFilterId": null,
+                                                "tagsToAdd": "ShawnWon",
+                                                "tagsToRemove": null
+                                            },
+                                            {
+                                                "type": "nodes.invokeScript",
+                                                "id": "7284f3b3-cb63-4edd-8c5d-42f389a6853e",
+                                                "scriptId": "bac723de-74d5-46db-96e2-55331d2024e8",
+                                                "entryPointId": "",
+                                                "currentScope": "Scenes",
+                                                "currentSceneId": "84006d08-8e6d-4558-b9b5-101f3c3054fe",
+                                                "currentActorId": null,
+                                                "currentStoryEventId": null,
+                                                "currentPropId": null
+                                            },
+                                            {
+                                                "type": "nodes.speak",
+                                                "id": "ebbed359-7085-43e5-bff8-25eb178b010b",
+                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                "actorId2": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                                "text": "I win!",
+                                                "emotion": "1",
+                                                "emotion2": "4",
+                                                "device": "0",
+                                                "device2": "0"
+                                            }
+                                        ]
+                                    },
+                                    "failure": {
+                                        "type": "nodes.block",
+                                        "nodes": [
+                                            {
+                                                "type": "nodes.invokeScript",
+                                                "id": "5b362db9-086e-4333-87d3-8204c3220a9c",
+                                                "scriptId": "bac723de-74d5-46db-96e2-55331d2024e8",
+                                                "entryPointId": "",
+                                                "currentScope": "Scenes",
+                                                "currentSceneId": "84006d08-8e6d-4558-b9b5-101f3c3054fe",
+                                                "currentActorId": null,
+                                                "currentStoryEventId": null,
+                                                "currentPropId": null
+                                            },
+                                            {
+                                                "type": "nodes.speak",
+                                                "id": "8d1c8577-9775-4e99-a455-5bea530feea0",
+                                                "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                                "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                "text": "Looks like I beat you at this.",
+                                                "emotion": "1",
+                                                "emotion2": "0",
+                                                "device": "0",
+                                                "device2": "0"
+                                            }
+                                        ]
+                                    },
+                                    "notify": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.variableComparison",
+                                "variableScope": "script",
+                                "variableName": "Opponent",
+                                "operator": "eq",
+                                "compareTo": "Esme",
+                                "sceneId": null,
+                                "propId": null
+                            },
+                            "nodes": [
+                                {
+                                    "id": "45dfc9a1-bf13-44d7-9f94-4fbed8d0f41a",
+                                    "type": "nodes.skillBranch",
+                                    "skill": "Agility",
+                                    "target": "40",
+                                    "success": {
+                                        "type": "nodes.block",
+                                        "nodes": [
+                                            {
+                                                "type": "nodes.changeTags",
+                                                "id": "ed50f2b4-750d-49fb-a1c9-c03997c0fa32",
+                                                "scope": "scene",
+                                                "scopeId": "84006d08-8e6d-4558-b9b5-101f3c3054fe",
+                                                "scopeFilterId": null,
+                                                "tagsToAdd": "ShawnWon",
+                                                "tagsToRemove": null
+                                            },
+                                            {
+                                                "type": "nodes.invokeScript",
+                                                "id": "14950348-9131-4c4d-9e8d-5c5eb498372f",
+                                                "scriptId": "bac723de-74d5-46db-96e2-55331d2024e8",
+                                                "entryPointId": "",
+                                                "currentScope": "Scenes",
+                                                "currentSceneId": "84006d08-8e6d-4558-b9b5-101f3c3054fe",
+                                                "currentActorId": null,
+                                                "currentStoryEventId": null,
+                                                "currentPropId": null
+                                            },
+                                            {
+                                                "type": "nodes.speak",
+                                                "id": "361405c2-03ca-4b4c-a624-0f0784104873",
+                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                "actorId2": "98ea49aa-86cf-4fa9-9bd5-6aa2fe7c809d",
+                                                "text": "I win!",
+                                                "emotion": "1",
+                                                "emotion2": "4",
+                                                "device": "0",
+                                                "device2": "0"
+                                            }
+                                        ]
+                                    },
+                                    "failure": {
+                                        "type": "nodes.block",
+                                        "nodes": [
+                                            {
+                                                "type": "nodes.invokeScript",
+                                                "id": "12c9b846-8406-4740-87f7-26628ba653d4",
+                                                "scriptId": "bac723de-74d5-46db-96e2-55331d2024e8",
+                                                "entryPointId": "",
+                                                "currentScope": "Scenes",
+                                                "currentSceneId": "84006d08-8e6d-4558-b9b5-101f3c3054fe",
+                                                "currentActorId": null,
+                                                "currentStoryEventId": null,
+                                                "currentPropId": null
+                                            },
+                                            {
+                                                "type": "nodes.speak",
+                                                "id": "89362748-b1af-42c8-9f80-4e326e12e6f0",
+                                                "actorId": "98ea49aa-86cf-4fa9-9bd5-6aa2fe7c809d",
+                                                "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                "text": "Vhat do you know? I von!",
+                                                "emotion": "1",
+                                                "emotion2": "1",
+                                                "device": "0",
+                                                "device2": "0"
+                                            }
+                                        ]
+                                    },
+                                    "notify": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.variableComparison",
+                                "variableScope": "script",
+                                "variableName": "opponent",
+                                "operator": "eq",
+                                "compareTo": "Joel",
+                                "sceneId": null,
+                                "propId": null
+                            },
+                            "nodes": [
+                                {
+                                    "id": "58802e3f-e5fa-4757-818e-c4adbdb5e431",
+                                    "type": "nodes.skillBranch",
+                                    "skill": "Agility",
+                                    "target": "50",
+                                    "success": {
+                                        "type": "nodes.block",
+                                        "nodes": [
+                                            {
+                                                "type": "nodes.changeTags",
+                                                "id": "84628ed6-97f0-4a5f-acfa-28a28b5a0f36",
+                                                "scope": "scene",
+                                                "scopeId": "84006d08-8e6d-4558-b9b5-101f3c3054fe",
+                                                "scopeFilterId": null,
+                                                "tagsToAdd": "ShawnWon",
+                                                "tagsToRemove": null
+                                            },
+                                            {
+                                                "type": "nodes.invokeScript",
+                                                "id": "1fc4fd6b-0e8e-4c23-acff-8abbd05aa9e1",
+                                                "scriptId": "bac723de-74d5-46db-96e2-55331d2024e8",
+                                                "entryPointId": "",
+                                                "currentScope": "Scenes",
+                                                "currentSceneId": "84006d08-8e6d-4558-b9b5-101f3c3054fe",
+                                                "currentActorId": null,
+                                                "currentStoryEventId": null,
+                                                "currentPropId": null
+                                            },
+                                            {
+                                                "type": "nodes.speak",
+                                                "id": "5c6dd4fc-65f7-40d0-9b12-3a246d0e1180",
+                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                "actorId2": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                "text": "I win!",
+                                                "emotion": "1",
+                                                "emotion2": "4",
+                                                "device": "0",
+                                                "device2": "0"
+                                            },
+                                            {
+                                                "type": "nodes.speak",
+                                                "id": "9b93d231-2801-4c36-9233-ea90f4a3160a",
+                                                "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                "text": "So it would appear.",
+                                                "emotion": "0",
+                                                "emotion2": "1",
+                                                "device": "0",
+                                                "device2": "0"
+                                            }
+                                        ]
+                                    },
+                                    "failure": {
+                                        "type": "nodes.block",
+                                        "nodes": [
+                                            {
+                                                "type": "nodes.invokeScript",
+                                                "id": "4328dee5-473d-4416-ad8a-6c8b463e689e",
+                                                "scriptId": "bac723de-74d5-46db-96e2-55331d2024e8",
+                                                "entryPointId": "",
+                                                "currentScope": "Scenes",
+                                                "currentSceneId": "84006d08-8e6d-4558-b9b5-101f3c3054fe",
+                                                "currentActorId": null,
+                                                "currentStoryEventId": null,
+                                                "currentPropId": null
+                                            },
+                                            {
+                                                "type": "nodes.speak",
+                                                "id": "b65366d4-054f-4b36-8b02-ce301d28540d",
+                                                "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                "text": "And that would be game. I am good at this, you see.",
+                                                "emotion": "1",
+                                                "emotion2": "2",
+                                                "device": "0",
+                                                "device2": "0"
+                                            }
+                                        ]
+                                    },
+                                    "notify": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.variableComparison",
+                                "variableScope": "script",
+                                "variableName": "opponent",
+                                "operator": "eq",
+                                "compareTo": "Aeolus",
+                                "sceneId": null,
+                                "propId": null
+                            },
+                            "nodes": [
+                                {
+                                    "id": "358d7d9d-c98b-45c3-afac-093ff04fe260",
+                                    "type": "nodes.skillBranch",
+                                    "skill": "Agility",
+                                    "target": "60",
+                                    "success": {
+                                        "type": "nodes.block",
+                                        "nodes": [
+                                            {
+                                                "type": "nodes.changeTags",
+                                                "id": "8fd8ba9d-c872-4c8a-b2fd-485ffa2dfacd",
+                                                "scope": "scene",
+                                                "scopeId": "84006d08-8e6d-4558-b9b5-101f3c3054fe",
+                                                "scopeFilterId": null,
+                                                "tagsToAdd": "ShawnWon",
+                                                "tagsToRemove": null
+                                            },
+                                            {
+                                                "type": "nodes.invokeScript",
+                                                "id": "98796e98-fdd6-423f-b52e-698b3c3be11b",
+                                                "scriptId": "bac723de-74d5-46db-96e2-55331d2024e8",
+                                                "entryPointId": "",
+                                                "currentScope": "Scenes",
+                                                "currentSceneId": "84006d08-8e6d-4558-b9b5-101f3c3054fe",
+                                                "currentActorId": null,
+                                                "currentStoryEventId": null,
+                                                "currentPropId": null
+                                            },
+                                            {
+                                                "type": "nodes.speak",
+                                                "id": "faafe5d3-9bfe-4202-afca-f0488f009fa8",
+                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                "actorId2": "0661a2f7-5493-46d9-ab58-6e9bff9a5f30",
+                                                "text": "I win!",
+                                                "emotion": "1",
+                                                "emotion2": "4",
+                                                "device": "0",
+                                                "device2": "0"
+                                            }
+                                        ]
+                                    },
+                                    "failure": {
+                                        "type": "nodes.block",
+                                        "nodes": [
+                                            {
+                                                "type": "nodes.invokeScript",
+                                                "id": "cabbbcbd-938d-40a0-abda-a461700850aa",
+                                                "scriptId": "bac723de-74d5-46db-96e2-55331d2024e8",
+                                                "entryPointId": "",
+                                                "currentScope": "Scenes",
+                                                "currentSceneId": "84006d08-8e6d-4558-b9b5-101f3c3054fe",
+                                                "currentActorId": null,
+                                                "currentStoryEventId": null,
+                                                "currentPropId": null
+                                            },
+                                            {
+                                                "type": "nodes.speak",
+                                                "id": "8f9d0ded-7b6a-45d3-87e6-4de8c57e512e",
+                                                "actorId": "0661a2f7-5493-46d9-ab58-6e9bff9a5f30",
+                                                "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                "text": "I won this round.",
+                                                "emotion": "1",
+                                                "emotion2": "0",
+                                                "device": "0",
+                                                "device2": "0"
+                                            }
+                                        ]
+                                    },
+                                    "notify": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.variableComparison",
+                                "variableScope": "script",
+                                "variableName": "opponent",
+                                "operator": "eq",
+                                "compareTo": "Sosi",
+                                "sceneId": null,
+                                "propId": null
+                            },
+                            "nodes": [
+                                {
+                                    "id": "11b52186-0ee5-4c05-82cf-7333f86b58ea",
+                                    "type": "nodes.skillBranch",
+                                    "skill": "Agility",
+                                    "target": "80",
+                                    "success": {
+                                        "type": "nodes.block",
+                                        "nodes": [
+                                            {
+                                                "type": "nodes.changeTags",
+                                                "id": "c86dfecf-00dd-425e-b865-ed8c5dbff997",
+                                                "scope": "scene",
+                                                "scopeId": "84006d08-8e6d-4558-b9b5-101f3c3054fe",
+                                                "scopeFilterId": null,
+                                                "tagsToAdd": "ShawnWon",
+                                                "tagsToRemove": null
+                                            },
+                                            {
+                                                "type": "nodes.branch",
+                                                "sections": [
+                                                    {
+                                                        "type": "nodes.branchSection",
+                                                        "expression": {
+                                                            "type": "expressions.inTags",
+                                                            "scope": "scene",
+                                                            "scopeId": "a4d66827-dd60-451f-8015-62b8abb42f0c",
+                                                            "scopeFilterId": null,
+                                                            "tags": "WonPoolVsSosi",
+                                                            "has": false
+                                                        },
+                                                        "nodes": [
+                                                            {
+                                                                "type": "nodes.changeTags",
+                                                                "id": "f08854a7-4f26-4552-b220-9076af194aaf",
+                                                                "scope": "scene",
+                                                                "scopeId": "a4d66827-dd60-451f-8015-62b8abb42f0c",
+                                                                "scopeFilterId": null,
+                                                                "tagsToAdd": "WonPoolVsSosi",
+                                                                "tagsToRemove": null
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "type": "nodes.invokeScript",
+                                                "id": "4f40547a-568a-455f-aaed-16054ab51a63",
+                                                "scriptId": "bac723de-74d5-46db-96e2-55331d2024e8",
+                                                "entryPointId": "",
+                                                "currentScope": "Scenes",
+                                                "currentSceneId": "84006d08-8e6d-4558-b9b5-101f3c3054fe",
+                                                "currentActorId": null,
+                                                "currentStoryEventId": null,
+                                                "currentPropId": null
+                                            },
+                                            {
+                                                "type": "nodes.speak",
+                                                "id": "efe0a425-3493-4bea-84dc-c88c5785b60c",
+                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                "actorId2": "2ae7a408-9338-4b78-af6b-ba7a28e050ac",
+                                                "text": "I win!",
+                                                "emotion": "1",
+                                                "emotion2": "4",
+                                                "device": "0",
+                                                "device2": "0"
+                                            }
+                                        ]
+                                    },
+                                    "failure": {
+                                        "type": "nodes.block",
+                                        "nodes": [
+                                            {
+                                                "type": "nodes.invokeScript",
+                                                "id": "65514c55-9b4c-44e1-9692-10e204254a11",
+                                                "scriptId": "bac723de-74d5-46db-96e2-55331d2024e8",
+                                                "entryPointId": "",
+                                                "currentScope": "Scenes",
+                                                "currentSceneId": "84006d08-8e6d-4558-b9b5-101f3c3054fe",
+                                                "currentActorId": null,
+                                                "currentStoryEventId": null,
+                                                "currentPropId": null
+                                            },
+                                            {
+                                                "type": "nodes.speak",
+                                                "id": "91e262ce-81c8-4935-8187-305b08719b64",
+                                                "actorId": "2ae7a408-9338-4b78-af6b-ba7a28e050ac",
+                                                "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                "text": "You lose again. How typical of you.",
+                                                "emotion": "1",
+                                                "emotion2": "2",
+                                                "device": "0",
+                                                "device2": "0"
+                                            }
+                                        ]
+                                    },
+                                    "notify": true
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "a1748aaf-8d60-424b-bf13-69f8a44ef74d",
+                    "type": "nodes.improveSkill",
+                    "skill": "Agility",
+                    "amount": "1",
+                    "notify": false
+                },
+                {
+                    "type": "nodes.fade",
+                    "scope": "FadeOut",
+                    "fadeTime": "0.5",
+                    "fadeTime2": 2,
+                    "wait": true,
+                    "fadeDown": 1,
+                    "fadeColorR": 0,
+                    "fadeColorG": 0,
+                    "fadeColorB": 0
+                },
+                {
+                    "type": "nodes.hideCloseUp",
+                    "waitForSeconds": 1
+                },
+                {
+                    "type": "nodes.incrementTime",
+                    "id": "5e430a31-3820-4dca-8eda-ca47e65d8e54",
+                    "days": 0,
+                    "hours": 0,
+                    "minutes": "30"
+                },
+                {
+                    "type": "nodes.invokeScript",
+                    "id": "effed4e3-a4c2-44b8-b669-a0a0a2515ed1",
+                    "scriptId": "36fdef9d-1311-419d-accd-bde79296c00d",
+                    "entryPointId": "37d4f4c7-8a2d-491b-8608-381e0bdbb7f0",
+                    "currentScope": "Scenes",
+                    "currentSceneId": "84006d08-8e6d-4558-b9b5-101f3c3054fe",
+                    "currentActorId": null,
+                    "currentStoryEventId": null,
+                    "currentPropId": null
+                },
+                {
+                    "type": "nodes.fade",
+                    "scope": "FadeIn",
+                    "fadeTime": "0.5",
+                    "fadeTime2": "0.5",
+                    "wait": true,
+                    "fadeDown": "0",
+                    "fadeColorR": 0,
+                    "fadeColorG": 0,
+                    "fadeColorB": 0
+                }
+            ]
+        }
+    ]
+}

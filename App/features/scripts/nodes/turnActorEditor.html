@@ -1,0 +1,27 @@
+<div data-bind="compose: { mode:'templated', view:'nodeEditor' }">
+    <div data-part="read" class="text">
+        <span>Turn actor </span><span class="actor" data-bind="text:actor.name"></span><span> to location <span class="prop" data-bind="text: turnToObject.name"></span><span data-bind="visible: node.wait"> (wait)</span>.
+    </div>
+
+    <div data-part="write">
+
+        <span>Using Actor:</span><select data-bind="options: actors, optionsText: 'name', optionsValue: 'id', value: node.actorId, optionsCaption: 'Select Actor'"></select><br>
+
+        <span>Look at Scope:</span><select data-bind="options: availableScope, value: node.scope, optionsCaption: 'Select Scope'"></select><br>
+
+        <!--ko if: node.scope == 'prop'-->
+        <span>Look at prop:</span>
+        <select data-bind="options: availableProps, optionsText: 'name', optionsValue: 'id', value: node.propId, optionsCaption: 'Select Waypoint'"></select><br>
+        <!--/ko-->
+
+         <!--ko if: node.scope == 'actor'-->
+        <span>Look at actor:</span>
+        <select data-bind="options: availableActors, optionsText: 'name', optionsValue: 'id', value: node.targetActorId, optionsCaption: 'Select Actor'"></select><br>
+        <!--/ko-->
+
+        <div class="form-inline" style="margin-left: 130px; margin-top: 8px;">
+            <input type="checkbox" data-bind="checked: node.wait" />
+            <label>Wait for command completion?</label>
+        </div>
+    </div>
+</div>

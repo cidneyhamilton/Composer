@@ -1,0 +1,342 @@
+{
+    "type": "script",
+    "id": "bd9db753-1c5a-4a71-91f0-df365cdae943",
+    "name": "Interact with Outside Door",
+    "sceneId": "905016da-4317-4d06-945d-1357b12b0d73",
+    "propId": "b6e6f548-9beb-4794-b768-b239dd15d004",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "91888d1d-15c8-4ee8-b01b-ca9346beae65",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "71e3556f-f79f-4895-a6ad-5ae9b2c41725",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "1cc5c1a2-1eb4-4ae6-be13-4eb6cce5c02b",
+                            "text": "Look at the Door",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "6dc892fe-03b4-409d-9380-de9cc89a723a",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "It's the front door to this castle. I came in this way when I first got to the school.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "62d1853b-bcb6-44e1-985a-e64a20f3d4bf",
+                            "text": "Open the Door",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.actorPresent",
+                                                "actorId": "6378f038-f4cd-49aa-8357-dcb46a978684"
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "653e1cd8-f724-411b-815a-7895f0a6f1c8",
+                                                    "actorId": "6378f038-f4cd-49aa-8357-dcb46a978684",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "This isn't an open campus, Babycakes. You're in here for the duration of the semester. Unless you get kicked out, of course. I've seen it happen to the best of 'em.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.hasActiveQuest",
+                                                                "propId": "b620a718-603d-4b63-b78f-3483e0148616",
+                                                                "sceneId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                                                                "questStatus": 0
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.quests",
+                                                                    "id": "e4c98be8-c279-4911-94e8-681e742f1abe",
+                                                                    "sceneId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                                                                    "propId": "b620a718-603d-4b63-b78f-3483e0148616",
+                                                                    "target": "2"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.branch",
+                                                                    "sections": [
+                                                                        {
+                                                                            "type": "nodes.branchSection",
+                                                                            "expression": {
+                                                                                "type": "expressions.inTags",
+                                                                                "scope": "prop",
+                                                                                "scopeId": "083f1b18-dfc9-4c7c-b4ef-10448437c9c7",
+                                                                                "scopeFilterId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                                                                                "tags": "completed",
+                                                                                "has": false
+                                                                            },
+                                                                            "nodes": [
+                                                                                {
+                                                                                    "type": "nodes.quests",
+                                                                                    "id": "f5bd07ed-49ad-4037-a554-3c152d22fbed",
+                                                                                    "sceneId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                                                                                    "propId": "083f1b18-dfc9-4c7c-b4ef-10448437c9c7",
+                                                                                    "target": "0"
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.inTags",
+                                                                "scope": "target",
+                                                                "scopeId": null,
+                                                                "scopeFilterId": null,
+                                                                "tags": "Journal_Lockpick",
+                                                                "has": false
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.changeTags",
+                                                                    "id": "be100c18-9761-4166-9a18-d819646176e3",
+                                                                    "scope": "target",
+                                                                    "scopeId": null,
+                                                                    "scopeFilterId": null,
+                                                                    "tagsToAdd": "Journal_Lockpick",
+                                                                    "tagsToRemove": null
+                                                                },
+                                                                {
+                                                                    "type": "nodes.addJournalEntry",
+                                                                    "id": "c74f9c05-0ee8-41ed-a5ea-57e5024414c1",
+                                                                    "name": "No Escape - Maybe",
+                                                                    "description": "I can't leave the school by the front door - at least when Sophia is around. I'll have to check this out later when she's not around. Maybe I can pick the lock... "
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.skillCheck",
+                                                                "skill": "Tool Use",
+                                                                "target": "5"
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "a6c25464-c217-4ea1-b4ec-2d1ea5375def",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "Wait... there's no keyhole! How can I pick a lock when there's no keyhole?",
+                                                                    "emotion": "4",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.branch",
+                                                                    "sections": [
+                                                                        {
+                                                                            "type": "nodes.branchSection",
+                                                                            "expression": {
+                                                                                "type": "expressions.inTags",
+                                                                                "scope": "target",
+                                                                                "scopeId": null,
+                                                                                "scopeFilterId": null,
+                                                                                "tags": "Journal_Lockpick2",
+                                                                                "has": false
+                                                                            },
+                                                                            "nodes": [
+                                                                                {
+                                                                                    "type": "nodes.changeTags",
+                                                                                    "id": "0af450f0-8011-4e46-bc58-c31e52e4b519",
+                                                                                    "scope": "target",
+                                                                                    "scopeId": null,
+                                                                                    "scopeFilterId": null,
+                                                                                    "tagsToAdd": "Journal_Lockpick2",
+                                                                                    "tagsToRemove": null
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.addJournalEntry",
+                                                                                    "id": "ea449d92-7c4d-4cb0-a433-c6202b35ee20",
+                                                                                    "name": "No Way Out",
+                                                                                    "description": "The front door of the castle has no keyhole. What good is it to learn how to pick locks when there's no lock to pick? If I want to get out of here, I'll have to either fail the class early or pass the class later, unless I can find another way out."
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": null,
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "c6864e9d-9f79-4221-839e-700ed120e924",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "It's locked... They really don't want to let me out of here. Hmm... maybe if I learn how to pick locks I can get away.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "67197f50-cd6d-4423-ba0d-c54f92ba013b",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "I might actually learn a useful skill here at this school.",
+                                                                    "emotion": "1",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.branch",
+                                                                    "sections": [
+                                                                        {
+                                                                            "type": "nodes.branchSection",
+                                                                            "expression": {
+                                                                                "type": "expressions.hasActiveQuest",
+                                                                                "propId": "b620a718-603d-4b63-b78f-3483e0148616",
+                                                                                "sceneId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                                                                                "questStatus": 0
+                                                                            },
+                                                                            "nodes": [
+                                                                                {
+                                                                                    "type": "nodes.quests",
+                                                                                    "id": "89236509-199a-46e8-98fd-ba0bd3091fbe",
+                                                                                    "sceneId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                                                                                    "propId": "b620a718-603d-4b63-b78f-3483e0148616",
+                                                                                    "target": "2"
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.branch",
+                                                                                    "sections": [
+                                                                                        {
+                                                                                            "type": "nodes.branchSection",
+                                                                                            "expression": {
+                                                                                                "type": "expressions.inTags",
+                                                                                                "scope": "prop",
+                                                                                                "scopeId": "083f1b18-dfc9-4c7c-b4ef-10448437c9c7",
+                                                                                                "scopeFilterId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                                                                                                "tags": "completed",
+                                                                                                "has": false
+                                                                                            },
+                                                                                            "nodes": [
+                                                                                                {
+                                                                                                    "type": "nodes.quests",
+                                                                                                    "id": "dea69b3f-69ec-4e46-9e90-ede8502428d0",
+                                                                                                    "sceneId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                                                                                                    "propId": "083f1b18-dfc9-4c7c-b4ef-10448437c9c7",
+                                                                                                    "target": "0"
+                                                                                                }
+                                                                                            ]
+                                                                                        }
+                                                                                    ]
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "type": "nodes.branch",
+                                                                    "sections": [
+                                                                        {
+                                                                            "type": "nodes.branchSection",
+                                                                            "expression": {
+                                                                                "type": "expressions.inTags",
+                                                                                "scope": "target",
+                                                                                "scopeId": null,
+                                                                                "scopeFilterId": null,
+                                                                                "tags": "Journal_Lockpick",
+                                                                                "has": false
+                                                                            },
+                                                                            "nodes": [
+                                                                                {
+                                                                                    "type": "nodes.changeTags",
+                                                                                    "id": "7af22bba-d2ba-48e9-9b83-dd4082887d61",
+                                                                                    "scope": "target",
+                                                                                    "scopeId": null,
+                                                                                    "scopeFilterId": null,
+                                                                                    "tagsToAdd": "Journal_Lockpick",
+                                                                                    "tagsToRemove": null
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.addJournalEntry",
+                                                                                    "id": "6b3d1c19-18dc-4c9e-ba2f-db08e6984bb8",
+                                                                                    "name": "No Escape - Maybe",
+                                                                                    "description": "The main door of the school is locked at night. Clearly if I want to get out of here I'm going to have to learn how to pick locks first."
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

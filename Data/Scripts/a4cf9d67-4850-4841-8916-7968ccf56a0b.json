@@ -1,0 +1,220 @@
+{
+    "type": "script",
+    "id": "a4cf9d67-4850-4841-8916-7968ccf56a0b",
+    "name": "Interact with Couch",
+    "storyEventId": "32df3697-cde9-48af-82a6-51be5fc65db4",
+    "sceneId": "212f8023-648d-45df-8f16-d56a7f081d41",
+    "propId": "d0647e19-fe84-4afc-ad3a-ffe3d9f50a75",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "c17e53f6-a54e-4528-9345-54d10b311455",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "56cfa397-4355-4237-8010-9e8c8f91e9a5",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "c81d376e-444c-43a6-aaa4-2c0260676806",
+                            "text": "Look at the Couch",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "8b2dd492-69db-43a0-b793-c008e9164831",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "It's the sort of stuffy, shabby old couch I associate with little old ladies who own a lot of cats. There's even a few well-distributed cat hairs for decoration.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "33e44b5b-01e9-45c9-ac42-27dfda197921",
+                            "text": "Dig Around in the Seat Cushions",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "5a71c8c6-e9d5-44bf-8625-20ae78402080",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "People always lose change and stuff in these comfy chairs. I wonder...",
+                                    "emotion": "0"
+                                },
+                                {
+                                    "type": "nodes.playSoundEffect",
+                                    "soundEffectName": "couch_search.wav",
+                                    "wait": false
+                                },
+                                {
+                                    "type": "nodes.playAnimation",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "animationName": "KneelDown",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.wait",
+                                    "waitForSeconds": "0.5"
+                                },
+                                {
+                                    "type": "nodes.changeMoney",
+                                    "id": "d726e2e2-e9b2-4c46-895c-ee39c3de6b6b",
+                                    "amount": "5",
+                                    "change": "1",
+                                    "currency": "0"
+                                },
+                                {
+                                    "type": "nodes.playAnimation",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "animationName": "KneelUp",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.playAnimation",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "animationName": "Triumphant"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "4e5205d2-56b9-45bf-a3d9-9d35323e7a87",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Yes! There are some loose Lyra coins. I'm a little less broke now. Sofa, so good!",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inInventory",
+                                                "propId": "4da6de5e-e0fa-4c10-9334-d1b67b84f59a",
+                                                "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "049baa37-d3c6-420d-a0d0-b9f90074602e",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Darn. None of them has a shamrock on it. I'll just have to keep looking.",
+                                                    "emotion": "2",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "f1fbe075-d3a0-41a2-a3fe-ea4803353d1b",
+                                    "scope": "scene",
+                                    "scopeId": "212f8023-648d-45df-8f16-d56a7f081d41",
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "GotCouchCoins",
+                                    "tagsToRemove": null
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "scene",
+                                "scopeId": "212f8023-648d-45df-8f16-d56a7f081d41",
+                                "scopeFilterId": null,
+                                "tags": "GotCouchCoins",
+                                "has": false
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "5",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "64e63224-d33e-439b-ae07-b1c8755e353f",
+                            "text": "Dig Around in the Seat Cushions",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "8c33e4d9-984b-4ace-8e97-7d957cf99c20",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Unless I want to save wads of couch lint and cat hair for kindling, which I <i>don't</i>, there's nothing else here that I can use.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "scene",
+                                "scopeId": "212f8023-648d-45df-8f16-d56a7f081d41",
+                                "scopeFilterId": null,
+                                "tags": "GotCouchCoins",
+                                "has": true
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "3",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "4c99f9fd-3321-4736-93fa-74db2546e36b",
+                            "text": "Sit on the Comfy Couch",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "a39ec364-5bc5-474b-b082-eb7b22c20f48",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "No! Not the comfy couch! Anything but the comfy couch!",
+                                    "emotion": "4",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "7ba2b7e3-cc5c-44ff-b00d-a94cb0f43892",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Besides, I'd just get covered with cat hairs...",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "3",
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

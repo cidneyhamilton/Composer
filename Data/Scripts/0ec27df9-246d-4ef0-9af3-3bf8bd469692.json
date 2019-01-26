@@ -1,0 +1,76 @@
+{
+    "type": "script",
+    "id": "0ec27df9-246d-4ef0-9af3-3bf8bd469692",
+    "name": "Interact",
+    "propId": "a7107b16-563d-4e1c-9a6e-f89f8a2f46df",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "bd5c7abd-6aee-473a-a6a0-7653aeaf2f95",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.setVariable",
+                    "name": "r1",
+                    "scope": "script",
+                    "source": {
+                        "type": "variables.random",
+                        "value": "",
+                        "min": 1,
+                        "max": 100,
+                        "displayName": "Random"
+                    },
+                    "add": false
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.variableComparison",
+                                "variableScope": "script",
+                                "variableName": "r1",
+                                "operator": "gte",
+                                "compareTo": "50"
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "dcfefaa6-8f1a-4939-8360-847aae386d9e",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "Comes up Heads!",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "310ce7f6-e486-4ffb-bd00-83f0e1308df9",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "Comes up Tails!",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

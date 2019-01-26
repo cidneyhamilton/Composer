@@ -1,0 +1,279 @@
+{
+    "type": "script",
+    "id": "e0fe90b9-946f-443d-875d-a377503efaa9",
+    "name": "Interact with Nightstand Clutter",
+    "sceneId": "9897ecb3-4200-4884-867a-2840471747b8",
+    "propId": "2a2f1b25-c52a-42c3-8911-97a9a578d0c6",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "c8eabfd5-8801-46d6-835a-d0536fe36685",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "288fde58-249b-476d-aad0-0acefbf40307",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "1a1e207b-1353-4982-9a87-9f69058654da",
+                            "text": "Examine the Clutter",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "c9c885d5-c097-4d22-9586-1961ca81fcd3",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "The clutter is mostly school work, I think. There are poetry books and sheets of music, both stained by what appears to be some unidentified lifeform growing from a neglected stein.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "4a7cff20-db52-4830-9ceb-41b9140f30dc",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Aeolus should know he has to clean things up. This bard's all rhyme, no reason.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "3",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "67a7231c-f4ce-4591-9b08-df115535a167",
+                            "text": "Search the Clutter",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.and",
+                                                "left": {
+                                                    "type": "expressions.inTags",
+                                                    "scope": "prop",
+                                                    "scopeId": "2a2f1b25-c52a-42c3-8911-97a9a578d0c6",
+                                                    "scopeFilterId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                                    "tags": "PipeSearch",
+                                                    "has": false
+                                                },
+                                                "right": {
+                                                    "type": "expressions.and",
+                                                    "left": {
+                                                        "type": "expressions.inTags",
+                                                        "scope": "scene",
+                                                        "scopeId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                                        "scopeFilterId": null,
+                                                        "tags": "ShawnFoundPipes",
+                                                        "has": false
+                                                    },
+                                                    "right": {
+                                                        "type": "expressions.hasActiveQuest",
+                                                        "propId": "12a1b052-b77e-4c93-b1c9-319164dfcadf",
+                                                        "sceneId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                                                        "questStatus": "0"
+                                                    }
+                                                }
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "bafc802f-b806-4982-b703-d9f17dc50fb0",
+                                                    "scope": "prop",
+                                                    "scopeId": "2a2f1b25-c52a-42c3-8911-97a9a578d0c6",
+                                                    "scopeFilterId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                                    "tagsToAdd": "PipeSearch",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.playAnimation",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "animationName": "KneelDown",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "c1c3f4e2-dfd2-4af7-9b0f-ec62268c8d4c",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "The nightstand seems like the obvious place for the pipes to be. Not that he'd ever see them sitting in this mess.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.playSoundEffect",
+                                                    "soundEffectName": "paper_rustle.wav",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "3a4bdc02-aeb8-42dc-be62-80ce55257cb2",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Nope, not here. Unless the ooze has grown over it... but I'm not going to go there.",
+                                                    "emotion": "2",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.playAnimation",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "animationName": "KneelUp",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "79a5480c-8740-4ca0-b682-dd2e54bc51fe",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Oh no. I think I have some kind of weird rash on my hand now.",
+                                                    "emotion": "4",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.nodeCycle",
+                                                    "id": "0cc7a1b6-3cba-4931-a3d4-871cc3c4051a",
+                                                    "nodes": [
+                                                        {
+                                                            "type": "nodes.branch",
+                                                            "sections": [
+                                                                {
+                                                                    "type": "nodes.branchSection",
+                                                                    "expression": null,
+                                                                    "nodes": [
+                                                                        {
+                                                                            "type": "nodes.playSoundEffect",
+                                                                            "soundEffectName": "paper_rustle.wav",
+                                                                            "wait": true
+                                                                        },
+                                                                        {
+                                                                            "type": "nodes.speak",
+                                                                            "id": "a4bef12e-f6fc-435a-9a81-52cebd595007",
+                                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                            "actorId2": null,
+                                                                            "text": "Here's a book titled \"Raise Your Hai-Q: A Bard's Guide to Sly Soliloquy\". Is that anything like Bunny-Fu?",
+                                                                            "emotion": "0",
+                                                                            "emotion2": "0",
+                                                                            "device": "0",
+                                                                            "device2": "0"
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branch",
+                                                            "sections": [
+                                                                {
+                                                                    "type": "nodes.branchSection",
+                                                                    "expression": null,
+                                                                    "nodes": [
+                                                                        {
+                                                                            "type": "nodes.playSoundEffect",
+                                                                            "soundEffectName": "paper_rustle.wav",
+                                                                            "wait": true
+                                                                        },
+                                                                        {
+                                                                            "type": "nodes.speak",
+                                                                            "id": "c9e98570-05ce-4c2b-b390-5c41851c60fb",
+                                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                            "actorId2": null,
+                                                                            "text": "I found some really complex sheet music! Half the notes are wholly covered by stains, though. I can't under stanza it.",
+                                                                            "emotion": "0",
+                                                                            "emotion2": "0",
+                                                                            "device": "0",
+                                                                            "device2": "0"
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branch",
+                                                            "sections": [
+                                                                {
+                                                                    "type": "nodes.branchSection",
+                                                                    "expression": null,
+                                                                    "nodes": [
+                                                                        {
+                                                                            "type": "nodes.speak",
+                                                                            "id": "19c45abe-a044-4a85-94d2-8d3bb1befda5",
+                                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                            "actorId2": null,
+                                                                            "text": "A grimy goblet of grog! Or maybe it's a crud covered chalice. Regardless, I'm not going near any mug muck, even if it is thesaurus of the mess.",
+                                                                            "emotion": "0",
+                                                                            "emotion2": "0",
+                                                                            "device": "0",
+                                                                            "device2": "0"
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "5",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "07ec6075-d2b3-4bca-ab4c-a03244ec36eb",
+                            "text": "Clean Up the Clutter",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "116ad514-97a2-4282-a48d-370451a9f9cc",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "No way I'm touching any more of Aeolus' mess. He needs to do it.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "2",
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

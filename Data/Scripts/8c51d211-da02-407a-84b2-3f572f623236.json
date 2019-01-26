@@ -1,0 +1,338 @@
+{
+    "type": "script",
+    "id": "8c51d211-da02-407a-84b2-3f572f623236",
+    "name": "Interact with Freed Chest",
+    "sceneId": "5bf05db2-b4fe-4863-b426-f058e04e908c",
+    "propId": "fc4263c6-fa7d-475f-b5ce-0d50f6116bb6",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "4221f864-a9b3-4418-b5f7-3b2bd478e542",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "target",
+                                "scopeId": null,
+                                "scopeFilterId": null,
+                                "tags": "seen_chest",
+                                "has": false
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "dcd5347f-cb25-4aa8-a3d1-03f127a75bb1",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Hey - this wasn't here before, was it?",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "2350829f-f004-4645-bde2-95b980f70646",
+                                    "scope": "target",
+                                    "scopeId": "fc4263c6-fa7d-475f-b5ce-0d50f6116bb6",
+                                    "scopeFilterId": "5bf05db2-b4fe-4863-b426-f058e04e908c",
+                                    "tagsToAdd": "seen_chest",
+                                    "tagsToRemove": null
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.showMenu",
+                    "id": "49f2442d-dba1-4f22-8b92-921e1c5ad68a",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "4550c034-f73b-42db-9a99-f66c2965cdbc",
+                            "text": "Look at Chest",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "3c78ca50-2299-4f8d-a256-7271c9a79c64",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Maybe the Sea Serpent was hiding this chest? Who knows? It looks like it has been submerged for years with all the corrosion I see on it. Anything inside has probably dissolved away in the sea.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "1",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "0050ab3d-6daf-4994-a5b3-ef6ced486ac8",
+                            "text": "Open Chest",
+                            "nodes": [
+                                {
+                                    "type": "nodes.playAnimation",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "animationName": "KneelDown",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.playSoundEffect",
+                                    "soundEffectName": "Open Chest Lid.wav",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "target",
+                                                "scopeId": null,
+                                                "scopeFilterId": null,
+                                                "tags": "item_taken",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "36016f69-9cf8-4e37-bc19-097133f45a22",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "There's nothing left in this old chest but murky sea water and rust.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.inTags",
+                                                                "scope": "scene",
+                                                                "scopeId": "5bf05db2-b4fe-4863-b426-f058e04e908c",
+                                                                "scopeFilterId": null,
+                                                                "tags": "sea_serpent_freed",
+                                                                "has": true
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "80af0856-356d-4e80-8308-ad29a4831145",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "There's nothing quite as heroic as feeling around in a chest full of cold, brackish, black water in hopes of finding something useful...",
+                                                                    "emotion": "3",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "e994d9bb-df7e-442e-9285-aeee8b616946",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "Wait - what's this? Feels like a ring.",
+                                                                    "emotion": "4",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.showCloseUp",
+                                                                    "imageName": "CU_WonRing.png"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "d3e52985-c85b-405c-9ad3-646cf6a9ef36",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "It is a ring - and it glows like magic. Awesome!",
+                                                                    "emotion": "1",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeInventory",
+                                                                    "id": "9fa855f6-180b-4c31-881e-721864d3c129",
+                                                                    "propId": "19166871-b5bb-47f4-92f7-dde0b84249b9",
+                                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                                    "change": "1",
+                                                                    "count": 1,
+                                                                    "notify": true
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeTags",
+                                                                    "id": "76125cec-1fc3-4184-9f3c-18dc294581a0",
+                                                                    "scope": "target",
+                                                                    "scopeId": null,
+                                                                    "scopeFilterId": null,
+                                                                    "tagsToAdd": "item_taken",
+                                                                    "tagsToRemove": null
+                                                                },
+                                                                {
+                                                                    "type": "nodes.hideCloseUp",
+                                                                    "waitForSeconds": 1
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.inTags",
+                                                                "scope": "scene",
+                                                                "scopeId": "5bf05db2-b4fe-4863-b426-f058e04e908c",
+                                                                "scopeFilterId": null,
+                                                                "tags": "sea_serpent_dead",
+                                                                "has": true
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "9ae79be5-7411-4dc3-9f15-f1f39f787df5",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "Let's feel around to find out what's hidden in the bottom of this chest of murky water...",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "2cbf4709-4a79-4a62-8922-fe187e30bbf0",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "Ouch! I cut myself on something really sharp...",
+                                                                    "emotion": "4",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.showCloseUp",
+                                                                    "imageName": "cu_SerpentTooth.png"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "04a75e20-fba3-4d8b-986f-2de9a9cab586",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "It's a dagger - a magical dagger. I dub thee \"Serpent's Tooth.\"",
+                                                                    "emotion": "1",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeInventory",
+                                                                    "id": "10b504b0-5878-4f41-9abe-9101569b9265",
+                                                                    "propId": "adfcee68-ce57-40fe-9123-b18b9869eaf6",
+                                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                                    "change": "1",
+                                                                    "count": 1,
+                                                                    "notify": true
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeTags",
+                                                                    "id": "30d96441-df2a-4bac-aef4-02f3b7f0864c",
+                                                                    "scope": "target",
+                                                                    "scopeId": null,
+                                                                    "scopeFilterId": null,
+                                                                    "tagsToAdd": "item_taken",
+                                                                    "tagsToRemove": null
+                                                                },
+                                                                {
+                                                                    "type": "nodes.hideCloseUp",
+                                                                    "waitForSeconds": 1
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "target",
+                                                "scopeId": "fc4263c6-fa7d-475f-b5ce-0d50f6116bb6",
+                                                "scopeFilterId": "5bf05db2-b4fe-4863-b426-f058e04e908c",
+                                                "tags": "item_taken",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "b9c1f95c-8181-4fbc-9a95-ddcf14083d14",
+                                                    "scope": "prop",
+                                                    "scopeId": "fc4263c6-fa7d-475f-b5ce-0d50f6116bb6",
+                                                    "scopeFilterId": "5bf05db2-b4fe-4863-b426-f058e04e908c",
+                                                    "tagsToAdd": "looted",
+                                                    "tagsToRemove": null
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.playSoundEffect",
+                                    "soundEffectName": "Close Chest Lid.wav",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.playAnimation",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "animationName": "KneelUp",
+                                    "wait": true
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "5",
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

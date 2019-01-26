@@ -1,0 +1,689 @@
+{
+    "type": "script",
+    "id": "9156d80b-2d76-40cf-841a-2f8f577c5f13",
+    "name": "Interact with Exit to Wine Press",
+    "sceneId": "fa26d0aa-8fef-4e8b-8055-ee760fc7b13f",
+    "propId": "7720b72c-7cf2-44f4-88fd-ca1f0e47007e",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "cb37d40d-d965-4974-a16d-95c77b92ff69",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "a1896c4a-af61-4804-820a-38f7d33732ff",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "2ff2f0d4-ca07-428a-88b3-1c1c5031e846",
+                            "text": "Examine the Gate",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "4b2a1632-a81b-439f-8376-cda3449b697f",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Hmmm... this looks familiar... Didn't I see something just like it only a minute ago? Not much to see on the other side.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0",
+                                    "notes": ""
+                                },
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "0d86cce5-55bc-4ab7-8151-11239ee62414",
+                                    "scope": "target",
+                                    "scopeId": null,
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "examined",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "target",
+                                                "scopeId": null,
+                                                "scopeFilterId": null,
+                                                "tags": "oiled",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "d256359c-9756-4b10-b4f7-b09fc4749724",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Like everything here, it's a little rusty after all these years.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0",
+                                                    "notes": ""
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.inTags",
+                                                                "scope": "prop",
+                                                                "scopeId": "7720b72c-7cf2-44f4-88fd-ca1f0e47007e",
+                                                                "scopeFilterId": "fa26d0aa-8fef-4e8b-8055-ee760fc7b13f",
+                                                                "tags": "locked",
+                                                                "has": true
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "6851f6cb-8498-4b42-8c78-2919dead9dd9",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "It also seems to be locked. Maybe there's something valuable in there!",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0",
+                                                                    "notes": ""
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "target",
+                                                "scopeId": "7720b72c-7cf2-44f4-88fd-ca1f0e47007e",
+                                                "scopeFilterId": "fa26d0aa-8fef-4e8b-8055-ee760fc7b13f",
+                                                "tags": "locked",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.skillCheck",
+                                                                "skill": "Perception",
+                                                                "target": "20"
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.branch",
+                                                                    "sections": [
+                                                                        {
+                                                                            "type": "nodes.branchSection",
+                                                                            "expression": {
+                                                                                "type": "expressions.skillCheck",
+                                                                                "skill": "Tool Use",
+                                                                                "target": "30"
+                                                                            },
+                                                                            "nodes": [
+                                                                                {
+                                                                                    "type": "nodes.speak",
+                                                                                    "id": "bdb890cb-dcd1-4167-b409-a2810b296b0d",
+                                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                    "actorId2": null,
+                                                                                    "text": "This is a surprisingly complex lock for a wine cellar, but I'm pretty sure my skills are up to it.",
+                                                                                    "emotion": "1",
+                                                                                    "emotion2": "0",
+                                                                                    "device": "0",
+                                                                                    "device2": "0",
+                                                                                    "notes": ""
+                                                                                }
+                                                                            ]
+                                                                        },
+                                                                        {
+                                                                            "type": "nodes.branchSection",
+                                                                            "expression": null,
+                                                                            "nodes": [
+                                                                                {
+                                                                                    "type": "nodes.speak",
+                                                                                    "id": "5e8113a4-ce23-41cd-8ed1-67a2f6ab8ec4",
+                                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                    "actorId2": null,
+                                                                                    "text": "This looks like a really complicated lock. I'm going to have to really work on my tool use to open it.",
+                                                                                    "emotion": "0",
+                                                                                    "emotion2": "0",
+                                                                                    "device": "0",
+                                                                                    "device2": "0",
+                                                                                    "notes": ""
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "1",
+                            "ExitMenu": false,
+                            "notes": ""
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "8021e57c-ff74-4adb-8ac3-0cadbbbe6109",
+                            "text": "Oil Hinges",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inInventory",
+                                                "propId": "fcebe2a5-5808-486b-b633-ebc832524930",
+                                                "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "718ee619-a2bf-468e-b2d4-1b4b51a9f95e",
+                                                    "scriptId": "e5a82559-e549-4aa7-a669-cf0f8abbaef4",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                },
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "ec0668f4-3927-4181-93cc-a04f74642800",
+                                                    "scope": "target",
+                                                    "scopeId": null,
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "oiled",
+                                                    "tagsToRemove": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "c7d0fe70-de35-48fc-883d-d7bdb2694b44",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "If I had some oil, this would be a good place to use it.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0",
+                                                    "notes": ""
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inTags",
+                                    "scope": "target",
+                                    "scopeId": null,
+                                    "scopeFilterId": null,
+                                    "tags": "rusty",
+                                    "has": true
+                                },
+                                "right": {
+                                    "type": "expressions.and",
+                                    "left": {
+                                        "type": "expressions.inTags",
+                                        "scope": "target",
+                                        "scopeId": null,
+                                        "scopeFilterId": null,
+                                        "tags": "oiled",
+                                        "has": false
+                                    },
+                                    "right": {
+                                        "type": "expressions.inTags",
+                                        "scope": "target",
+                                        "scopeId": null,
+                                        "scopeFilterId": null,
+                                        "tags": "examined",
+                                        "has": true
+                                    }
+                                }
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "3",
+                            "ExitMenu": false,
+                            "notes": ""
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "43216b45-ec63-481f-a54a-f3985d98512e",
+                            "text": "Pick the Lock",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "5458d77e-3337-4cd1-a2b6-3dc2301b1a8d",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Okay, let's see if I've got the elite tool use skills to get this lock open.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0",
+                                    "notes": ""
+                                },
+                                {
+                                    "type": "nodes.playAnimation",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "animationName": "KneelDown",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.incrementTime",
+                                    "id": "93c89767-2639-44ca-a7e6-a01c7149f351",
+                                    "days": 0,
+                                    "hours": 0,
+                                    "minutes": "10"
+                                },
+                                {
+                                    "id": "9eac0384-5d01-4a8d-8a79-c027e542d75c",
+                                    "type": "nodes.skillBranch",
+                                    "skill": "Tool Use",
+                                    "target": "30",
+                                    "success": {
+                                        "type": "nodes.block",
+                                        "nodes": [
+                                            {
+                                                "type": "nodes.playSoundEffect",
+                                                "soundEffectName": "lockpick_success.wav",
+                                                "wait": true
+                                            },
+                                            {
+                                                "type": "nodes.changeTags",
+                                                "id": "8e0d125d-d888-49da-9e31-145ba68433d7",
+                                                "scope": "target",
+                                                "scopeId": null,
+                                                "scopeFilterId": null,
+                                                "tagsToRemove": "locked"
+                                            },
+                                            {
+                                                "type": "nodes.speak",
+                                                "id": "0497c4c5-4ee4-410f-b5ad-3ce9962426bc",
+                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                "actorId2": null,
+                                                "text": "Yes! Practice makes perfect. Shawn 1, Lock 0.",
+                                                "emotion": "1",
+                                                "emotion2": "0",
+                                                "device": "0",
+                                                "device2": "0",
+                                                "notes": ""
+                                            },
+                                            {
+                                                "type": "nodes.playAnimation",
+                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                "animationName": "KneelUp",
+                                                "wait": true
+                                            }
+                                        ]
+                                    },
+                                    "failure": {
+                                        "type": "nodes.block",
+                                        "nodes": [
+                                            {
+                                                "type": "nodes.nodeCycle",
+                                                "id": "f7d102af-8267-47f5-8fd4-56e7d5580113",
+                                                "nodes": [
+                                                    {
+                                                        "type": "nodes.speak",
+                                                        "id": "9a1d95bc-df45-4b24-a47c-55cf750ebeda",
+                                                        "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                        "actorId2": null,
+                                                        "text": "That is one really hard lock! I don't have the skill to open it yet.",
+                                                        "emotion": "0",
+                                                        "emotion2": "0",
+                                                        "device": "0",
+                                                        "device2": "0",
+                                                        "notes": ""
+                                                    },
+                                                    {
+                                                        "type": "nodes.speak",
+                                                        "id": "ca413622-a07a-4153-83b8-56070993e6dc",
+                                                        "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                        "actorId2": null,
+                                                        "text": "Wow, this makes no sense at all! Why would anyone put such a difficult lock on a door in the wine cellar?",
+                                                        "emotion": "4",
+                                                        "emotion2": "0",
+                                                        "device": "0",
+                                                        "device2": "0",
+                                                        "notes": ""
+                                                    },
+                                                    {
+                                                        "type": "nodes.speak",
+                                                        "id": "37d813c6-ec71-4b06-b928-f6ff970804e2",
+                                                        "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                        "actorId2": null,
+                                                        "text": "Who could imagine that such a small thing as a lock could overcome a Future Master Rogue such as myself? I guess \"Future\" is the key word.",
+                                                        "emotion": "0",
+                                                        "emotion2": "0",
+                                                        "device": "0",
+                                                        "device2": "0",
+                                                        "notes": ""
+                                                    },
+                                                    {
+                                                        "type": "nodes.speak",
+                                                        "id": "e5216c80-9b81-4a92-b61c-bf880f31b091",
+                                                        "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                        "actorId2": null,
+                                                        "text": "I'm going to have to hit up the practice room if I want to get past this mysterious door.",
+                                                        "emotion": "0",
+                                                        "emotion2": "0",
+                                                        "device": "0",
+                                                        "device2": "0",
+                                                        "notes": ""
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "type": "nodes.playAnimation",
+                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                "animationName": "KneelUp",
+                                                "wait": true
+                                            },
+                                            {
+                                                "type": "nodes.endScript"
+                                            }
+                                        ]
+                                    },
+                                    "notify": true
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "target",
+                                "scopeId": "7720b72c-7cf2-44f4-88fd-ca1f0e47007e",
+                                "scopeFilterId": "fa26d0aa-8fef-4e8b-8055-ee760fc7b13f",
+                                "tags": "locked",
+                                "has": true
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "5",
+                            "ExitMenu": true,
+                            "notes": ""
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "571402a1-13a4-41a1-925f-334a56277929",
+                            "text": "Open the Gate",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "target",
+                                                "scopeId": null,
+                                                "scopeFilterId": null,
+                                                "tags": "firsttime",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "60375d97-216d-4c76-8321-23b7b2ee4874",
+                                                    "scope": "target",
+                                                    "scopeId": null,
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "firsttime",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "7d916fbe-086b-4c3b-ba23-4de37b1c0d53",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Maybe there will be something more exciting on the other side of this gate...",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0",
+                                                    "notes": ""
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.playAnimation",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "animationName": "ReachOut",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "target",
+                                                "scopeId": null,
+                                                "scopeFilterId": null,
+                                                "tags": "oiled",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.playSoundEffect",
+                                                    "soundEffectName": "WineCellarDoor.wav",
+                                                    "wait": false
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.playSoundEffect",
+                                                    "soundEffectName": "wooden_door_opening.wav",
+                                                    "wait": false
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.changeScene",
+                                    "sceneId": "1565f241-1bad-4dc5-acd2-ac931966280f",
+                                    "spawnId": "2756d982-0dfc-4c79-a48f-72b407405235",
+                                    "fadeTime": 2
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "prop",
+                                "scopeId": "7720b72c-7cf2-44f4-88fd-ca1f0e47007e",
+                                "scopeFilterId": "fa26d0aa-8fef-4e8b-8055-ee760fc7b13f",
+                                "tags": "locked",
+                                "has": false
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false,
+                            "notes": ""
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "7f1e2a40-7eae-4867-80dd-f2c04107d7b7",
+                            "text": "Listen at the Gate",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "target",
+                                                "scopeId": null,
+                                                "scopeFilterId": null,
+                                                "tags": "HasListenedToday",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "3183b91d-8639-4277-883e-861cdf27810a",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "I already know there's nothing there. This is getting boring.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0",
+                                                    "notes": ""
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "b4096477-fb27-49f5-bd6a-078f88a5740b",
+                                                    "scope": "target",
+                                                    "scopeId": "7720b72c-7cf2-44f4-88fd-ca1f0e47007e",
+                                                    "scopeFilterId": "fa26d0aa-8fef-4e8b-8055-ee760fc7b13f",
+                                                    "tagsToAdd": "HasListenedToday",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.playAnimation",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "animationName": "KneelDown",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "id": "23201691-84b9-4d76-8541-ad31accbf626",
+                                                    "type": "nodes.skillBranch",
+                                                    "skill": "Perception",
+                                                    "target": "25",
+                                                    "success": {
+                                                        "type": "nodes.block",
+                                                        "nodes": [
+                                                            {
+                                                                "type": "nodes.speak",
+                                                                "id": "5ab98bdc-cdef-471e-b343-f1a106b189f8",
+                                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                "actorId2": null,
+                                                                "text": "I can't hear anything moving around on the other side, but for some reason, it feels colder over there. Weird, the bars of this gate seem warm enough.",
+                                                                "emotion": "0",
+                                                                "emotion2": "0",
+                                                                "device": "0",
+                                                                "device2": "0",
+                                                                "notes": ""
+                                                            }
+                                                        ]
+                                                    },
+                                                    "failure": {
+                                                        "type": "nodes.block",
+                                                        "nodes": [
+                                                            {
+                                                                "type": "nodes.speak",
+                                                                "id": "f57f2ff7-5ad8-48a8-a4cd-5d6277737661",
+                                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                "actorId2": null,
+                                                                "text": "Not a peep. Either listening at doors is useless, or I'm terrible at it. I suspect it's the latter.",
+                                                                "emotion": "0",
+                                                                "emotion2": "0",
+                                                                "device": "0",
+                                                                "device2": "0",
+                                                                "notes": ""
+                                                            }
+                                                        ]
+                                                    },
+                                                    "notify": true
+                                                },
+                                                {
+                                                    "type": "nodes.playAnimation",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "animationName": "KneelUp",
+                                                    "wait": true
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "5",
+                            "ExitMenu": false,
+                            "notes": ""
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "02b4c7fc-b56f-47d3-89e6-9d1eecc3540b",
+                            "text": "Sense Magic",
+                            "nodes": [
+                                {
+                                    "type": "nodes.invokeScript",
+                                    "id": "80f49206-46fb-42ea-8dd9-e87df9b46fb3",
+                                    "scriptId": "533e1ce1-13d3-439f-8544-dbdf808d30c4",
+                                    "entryPointId": "c4dfcf83-762c-4f7e-802a-816d9bf3b40e",
+                                    "currentScope": "Scenes",
+                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                    "currentActorId": null,
+                                    "currentStoryEventId": null,
+                                    "currentPropId": null
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "actor",
+                                "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                "scopeFilterId": null,
+                                "tags": "SenseMagic",
+                                "has": true
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "5",
+                            "ExitMenu": false,
+                            "notes": ""
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

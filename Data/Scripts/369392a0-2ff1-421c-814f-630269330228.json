@@ -1,0 +1,221 @@
+{
+    "type": "script",
+    "id": "369392a0-2ff1-421c-814f-630269330228",
+    "name": "Interact with Morels 1",
+    "sceneId": "c7f12eb6-9936-4c11-8028-d012d60c9ba3",
+    "propId": "25f93084-c534-46a1-937f-ae29f47fdc11",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "c2f2db42-8687-41e7-9808-a4ba9b4afaed",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.playAnimation",
+                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "animationName": "KneelDown"
+                },
+                {
+                    "type": "nodes.showMenu",
+                    "id": "7410d9c9-01c1-4934-8ff3-af649e96e1b2",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "10e1a63a-1d7c-4f88-b92d-6906fd3fe28d",
+                            "text": "Look at the Mushrooms",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "actor",
+                                                "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                "scopeFilterId": null,
+                                                "tags": "MushroomLore",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "934565fa-cc28-43df-b5b6-50ae7f21402e",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "A-ha! Morels! I remember them because they grow so low, and I, too, have low morels!",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "66aa2368-3e17-41c4-891d-de3786f2acd3",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "I should pretend I don't even see those.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "cae7a887-1eb8-4523-9720-18e2e27ce62a",
+                            "text": "Gather Some Mushrooms",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "actor",
+                                                "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                "scopeFilterId": null,
+                                                "tags": "MushroomLore",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.playSoundEffect",
+                                                    "soundEffectName": "Collect Mushrooms.wav",
+                                                    "wait": false
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "87baff3c-fcef-429e-bb7f-eb17134b68da",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "I'm glad to find these. Morels are in short supply these days. And I should know...",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "db8996ac-c803-45f3-8d91-c15fde5ed866",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "... I've been called morelly bankrupt more than once.",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.changeInventory",
+                                                    "id": "d97dcd0c-abaf-4916-91a5-c89018478d13",
+                                                    "propId": "b5cfb598-7611-4fe9-9a5b-6c0a4625931a",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "change": "1",
+                                                    "count": 1,
+                                                    "notify": true
+                                                },
+                                                {
+                                                    "type": "nodes.changePropVisibility",
+                                                    "id": "90ab81b9-cc7b-43ca-8f2c-5c832d848ce1",
+                                                    "propId": "25f93084-c534-46a1-937f-ae29f47fdc11",
+                                                    "sceneId": "c7f12eb6-9936-4c11-8028-d012d60c9ba3",
+                                                    "visible": false,
+                                                    "status": "Hidden",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.setVariable",
+                                                    "name": "respawn_timer",
+                                                    "scope": "prop",
+                                                    "scopeId": "25f93084-c534-46a1-937f-ae29f47fdc11",
+                                                    "sceneId": "c7f12eb6-9936-4c11-8028-d012d60c9ba3",
+                                                    "source": {
+                                                        "type": "variables.random",
+                                                        "value": "",
+                                                        "min": 1,
+                                                        "max": "3",
+                                                        "displayName": "Random"
+                                                    },
+                                                    "add": false
+                                                },
+                                                {
+                                                    "type": "nodes.playAnimation",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "animationName": "KneelUp"
+                                                },
+                                                {
+                                                    "type": "nodes.endScript"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "f971eb88-070f-40dc-a428-24a19d403de1",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "I don't know much about mushrooms, but I know I can't tell one from a poison toadstool. It's looking for trouble, picking these up at random.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "6b53f5b3-7fba-487c-a06b-d8b6198a63a0",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Besides, I've heard stories. You pick up the wrong kind, and it goes <i>poof</i> in your hand, and the next thing you know they're planting 150 pounds of <i>you.</i>",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                },
+                {
+                    "type": "nodes.playAnimation",
+                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "animationName": "KneelUp"
+                }
+            ]
+        }
+    ]
+}

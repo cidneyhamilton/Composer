@@ -1,0 +1,201 @@
+{
+    "type": "script",
+    "id": "f5c688bd-7c55-459d-a286-b889128f0809",
+    "name": "Make Healing Pills",
+    "sceneId": "df6088fa-a6d6-441a-9a00-7af3baa62e14",
+    "trigger": {
+        "type": "triggers.manual",
+        "name": "Manual"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "607eb402-e8ed-43a9-877e-a263352bd510",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.setVariable",
+                    "name": "PuffCount",
+                    "scope": "script",
+                    "source": {
+                        "type": "variables.count",
+                        "target": "414d7c9f-1649-4dae-8ace-96421d0928c9",
+                        "useArticle": false,
+                        "includeText": false,
+                        "text": "",
+                        "displayName": "Count"
+                    },
+                    "add": false
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "script",
+                                "scopeId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                "scopeFilterId": null,
+                                "tags": "ForceCraft",
+                                "has": true
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "11a9e296-f4f2-4fa3-b8c3-5989568970c5",
+                                    "scope": "script",
+                                    "scopeId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                    "scopeFilterId": null,
+                                    "tagsToRemove": "ForceCraft"
+                                },
+                                {
+                                    "type": "nodes.invokeScript",
+                                    "id": "387c8d4e-e4ad-4c01-a829-d4999698a050",
+                                    "scriptId": "f5c688bd-7c55-459d-a286-b889128f0809",
+                                    "entryPointId": "eba438fc-0a66-4f9f-ad96-e9233e204e79",
+                                    "currentScope": "Current",
+                                    "currentSceneId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                    "currentActorId": null,
+                                    "currentStoryEventId": null,
+                                    "currentPropId": null
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.variableComparison",
+                                "variableScope": "script",
+                                "variableName": "PuffCount",
+                                "operator": "gte",
+                                "compareTo": "10",
+                                "sceneId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                "propId": null
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "e2c73348-309b-4a4e-a3cf-0e38f6cb463e",
+                                    "actorId": "38b1ca94-de8c-4873-8810-3d0b02df469a",
+                                    "actorId2": null,
+                                    "text": "It takes 10 Puffballs to make 3 Healing Pills. You have ${script.PuffCount} Puffballs. Continue crafting?",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.showMenu",
+                                    "id": "316ed903-f2fa-48ce-9e2c-fec23268083b",
+                                    "options": [
+                                        {
+                                            "type": "options.text",
+                                            "id": "71bd32ae-fd6e-45f4-b5b6-a8e9749db2c6",
+                                            "text": "Continue Crafting",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.setVariable",
+                                                    "name": "CraftCount",
+                                                    "scope": "script",
+                                                    "source": {
+                                                        "type": "variables.literal",
+                                                        "value": "1",
+                                                        "displayName": "Literal"
+                                                    },
+                                                    "add": true
+                                                },
+                                                {
+                                                    "type": "nodes.changeInventory",
+                                                    "id": "d4436b10-1e0e-4107-a5ee-ab4a9c35308d",
+                                                    "propId": "414d7c9f-1649-4dae-8ace-96421d0928c9",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "change": "0",
+                                                    "count": "10",
+                                                    "notify": true
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "01e714b0-9ccf-4b7c-b423-d22aa2013578",
+                                                    "scriptId": "f5c688bd-7c55-459d-a286-b889128f0809",
+                                                    "entryPointId": "eba438fc-0a66-4f9f-ad96-e9233e204e79",
+                                                    "currentScope": "Current",
+                                                    "currentSceneId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ],
+                                            "expression": null,
+                                            "ignoreChildAvailability": true,
+                                            "minutes": 0,
+                                            "ExitMenu": true
+                                        }
+                                    ],
+                                    "AutoAddDone": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "5213642a-8f1a-46b2-ad8d-0593ae5a5d97",
+                                    "actorId": "38b1ca94-de8c-4873-8810-3d0b02df469a",
+                                    "actorId2": null,
+                                    "text": "You do not have enough materials. It takes 10 Puffballs to make 3 Healing Pills. You have ${script.PuffCount} Puffballs.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "scripts.entryPoint",
+            "id": "eba438fc-0a66-4f9f-ad96-e9233e204e79",
+            "name": "Craft",
+            "nodes": [
+                {
+                    "type": "nodes.playSoundEffect",
+                    "soundEffectName": "mortar_pestle.wav",
+                    "wait": true
+                },
+                {
+                    "type": "nodes.playSoundEffect",
+                    "soundEffectName": "stamp.wav",
+                    "wait": true
+                },
+                {
+                    "type": "nodes.playSoundEffect",
+                    "soundEffectName": "stamp.wav",
+                    "wait": true
+                },
+                {
+                    "type": "nodes.playSoundEffect",
+                    "soundEffectName": "stamp.wav",
+                    "wait": true
+                },
+                {
+                    "type": "nodes.changeInventory",
+                    "id": "ef54755b-a1c0-4203-aa8b-d85c1156c8ae",
+                    "propId": "55629c55-2a14-49f6-8817-dc0a1e647494",
+                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                    "change": "1",
+                    "count": "3",
+                    "notify": true
+                },
+                {
+                    "type": "nodes.wait",
+                    "waitForSeconds": 1
+                }
+            ]
+        }
+    ]
+}

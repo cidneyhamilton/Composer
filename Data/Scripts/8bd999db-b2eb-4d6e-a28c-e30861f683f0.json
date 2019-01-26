@@ -1,0 +1,180 @@
+{
+    "type": "script",
+    "id": "8bd999db-b2eb-4d6e-a28c-e30861f683f0",
+    "name": "Interact with Unflowered Bush (All)",
+    "sceneId": "cf824b0f-5af6-4a19-bac8-552a2a1bbebf",
+    "propId": "8812c920-eb8c-4f29-a028-48e0d9de037d",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "971ad640-38b5-433c-85b7-bf6f580a1ad2",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "382459a0-55e4-4e18-999b-e02b8e89f4c2",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "1c82de81-f85e-44a4-8f7a-6df4f6186014",
+                            "text": "Look at the Bush",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "7d8ece05-c643-4bf4-80ce-87bae3c6cbd2",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Someone puts a lot of time and effort into keeping these bushes nicely trimmed. You have to remember that.",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "e605a827-2147-4a00-bfb7-db4cb0af3c75",
+                            "text": "Search the Bush",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "prop",
+                                                "scopeId": "16e27ef6-589c-40ab-b256-c6dce4919624",
+                                                "scopeFilterId": "0f09f7d6-26b1-438e-aa73-fc5f6065ad9e",
+                                                "tags": "SearchedPlant",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "4d9525a2-bad8-4360-8d2d-466a3057e451",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Branches... leaves... more leaves... more branches. That's it.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "cd86f0e5-a76e-419d-9d55-f0bf74ad10a3",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Not me. Not after what I've been through. Having small animals bent on nothing but feasting, crawling all over your arm... you know, it changes the whole way you view your life.",
+                                                    "emotion": "3",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "00e06703-9283-4413-a7a9-24bb73d66b2a",
+                            "text": "Search Under the Bush for Mushrooms",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "scene",
+                                                "scopeId": "cf824b0f-5af6-4a19-bac8-552a2a1bbebf",
+                                                "scopeFilterId": null,
+                                                "tags": "BushShrooms",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "92193404-1beb-49b0-859d-d6b874447657",
+                                                    "scope": "scene",
+                                                    "scopeId": "cf824b0f-5af6-4a19-bac8-552a2a1bbebf",
+                                                    "scopeFilterId": null,
+                                                    "tagsToRemove": "BushShrooms"
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "f42c6897-240a-4ed3-95dd-a1755d61df32",
+                                                    "scriptId": "6215f323-678d-4ec1-b11f-f677b8f11aab",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "e21fa1d3-2ab4-4969-9234-46015259ab0f",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "6d5834fa-50c7-4a8b-b61e-14f2f0668c62",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "This is a likely place for mushrooms to grow, but there don't seem to be any growing here today. Maybe tomorrow.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "actor",
+                                "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                "scopeFilterId": null,
+                                "tags": "MushroomLore",
+                                "has": true
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "5",
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

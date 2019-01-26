@@ -1,0 +1,194 @@
+{
+    "type": "script",
+    "id": "1bfa7bc5-18f3-4570-8a0a-201e6bb6b5c4",
+    "name": "Sea Caves 1C Load",
+    "sceneId": "d8980246-7825-4b4a-9b40-d814c22486c7",
+    "trigger": {
+        "type": "triggers.load",
+        "name": "Load"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "7500c26e-e05b-4fab-abd6-66207e983d9b",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.onceOnly",
+                    "id": "8a9a7f42-2c49-42d9-9b5f-15f3092b2ecb",
+                    "nodes": [
+                        {
+                            "type": "nodes.setVariable",
+                            "name": "respawn_timer",
+                            "scope": "prop",
+                            "scopeId": "f9d87825-d737-4191-8a0a-aa05ba6cfd83",
+                            "sceneId": "d8980246-7825-4b4a-9b40-d814c22486c7",
+                            "source": {
+                                "type": "variables.literal",
+                                "value": "1",
+                                "displayName": "Literal"
+                            },
+                            "add": false
+                        },
+                        {
+                            "type": "nodes.setVariable",
+                            "name": "respawn_timer",
+                            "scope": "prop",
+                            "scopeId": "11050a67-4baf-40f0-9415-9fed1946db3e",
+                            "sceneId": "d8980246-7825-4b4a-9b40-d814c22486c7",
+                            "source": {
+                                "type": "variables.literal",
+                                "value": "1",
+                                "displayName": "Literal"
+                            },
+                            "add": false
+                        },
+                        {
+                            "type": "nodes.setVariable",
+                            "name": "respawn_timer",
+                            "scope": "prop",
+                            "scopeId": "e06e59a0-42da-4d16-98bb-f69345fa8621",
+                            "sceneId": "d8980246-7825-4b4a-9b40-d814c22486c7",
+                            "source": {
+                                "type": "variables.literal",
+                                "value": "1",
+                                "displayName": "Literal"
+                            },
+                            "add": false
+                        },
+                        {
+                            "type": "nodes.invokeScript",
+                            "id": "426dd7d7-c5ad-4f04-9cf1-346c0afad8d6",
+                            "scriptId": "27f2041f-c7f7-47cf-beeb-129e802658a9",
+                            "entryPointId": "3e8b7bfa-a535-452f-ad48-04a6d69974f3",
+                            "currentScope": "Scenes",
+                            "currentSceneId": "d8980246-7825-4b4a-9b40-d814c22486c7",
+                            "currentActorId": null,
+                            "currentStoryEventId": null,
+                            "currentPropId": null
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "scene",
+                                "scopeId": "46c58bc7-e4b0-4cf3-af42-68930aa03476",
+                                "scopeFilterId": null,
+                                "tags": "SCC_R7_Hidden",
+                                "has": true
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.changePropVisibility",
+                                    "id": "a4fad34f-b8a8-4d19-8c77-7823d3ef2cbf",
+                                    "propId": "91e2bca2-527d-4535-9401-51e1b9e0d732",
+                                    "sceneId": "d8980246-7825-4b4a-9b40-d814c22486c7",
+                                    "status": "Hidden",
+                                    "wait": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.changePropVisibility",
+                                    "id": "f37a5fa9-3935-4425-ac81-d9d78a24cfa2",
+                                    "propId": "91e2bca2-527d-4535-9401-51e1b9e0d732",
+                                    "sceneId": "d8980246-7825-4b4a-9b40-d814c22486c7",
+                                    "status": "Visible",
+                                    "wait": true
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.onceDaily",
+                    "id": "ab69d027-44ae-4a3b-878d-b0d150789c01",
+                    "nodes": [
+                        {
+                            "type": "nodes.comment",
+                            "message": "Once Daily to keep the chest from disappearing until a Reset Day occurs. Putting this here (rather than in \"onResetDay scripts) makes it easier to keep in sync with the SCC_*_Hidden tag setups.",
+                            "commentor": "Charles"
+                        },
+                        {
+                            "type": "nodes.branch",
+                            "sections": [
+                                {
+                                    "type": "nodes.branchSection",
+                                    "expression": {
+                                        "type": "expressions.inTags",
+                                        "scope": "prop",
+                                        "scopeId": "91e2bca2-527d-4535-9401-51e1b9e0d732",
+                                        "scopeFilterId": "d8980246-7825-4b4a-9b40-d814c22486c7",
+                                        "tags": "looted",
+                                        "has": true
+                                    },
+                                    "nodes": [
+                                        {
+                                            "type": "nodes.changePropVisibility",
+                                            "id": "4d05f1d6-5ee7-46b2-9533-c00cb4a9d893",
+                                            "propId": "91e2bca2-527d-4535-9401-51e1b9e0d732",
+                                            "sceneId": "d8980246-7825-4b4a-9b40-d814c22486c7",
+                                            "status": "Hidden",
+                                            "wait": true
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "scene",
+                                "scopeId": "d8980246-7825-4b4a-9b40-d814c22486c7",
+                                "scopeFilterId": null,
+                                "tags": "GrapnelInUse",
+                                "has": true
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.changePropVisibility",
+                                    "id": "6008c178-58de-4aeb-b7b7-732942756e85",
+                                    "propId": "2e62eb9d-9ced-418e-ab66-7e425e2a0672",
+                                    "sceneId": "d8980246-7825-4b4a-9b40-d814c22486c7",
+                                    "visible": true,
+                                    "status": "Visible",
+                                    "wait": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.changePropVisibility",
+                                    "id": "4bba79f2-fce1-41dc-b5b9-0e839349f31e",
+                                    "propId": "2e62eb9d-9ced-418e-ab66-7e425e2a0672",
+                                    "sceneId": "d8980246-7825-4b4a-9b40-d814c22486c7",
+                                    "visible": false,
+                                    "status": "Hidden",
+                                    "wait": true
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

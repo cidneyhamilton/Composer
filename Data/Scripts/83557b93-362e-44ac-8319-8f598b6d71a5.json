@@ -1,0 +1,295 @@
+{
+    "type": "script",
+    "id": "83557b93-362e-44ac-8319-8f598b6d71a5",
+    "name": "Make Healing Potion",
+    "sceneId": "df6088fa-a6d6-441a-9a00-7af3baa62e14",
+    "trigger": {
+        "type": "triggers.manual",
+        "name": "Manual"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "e58909ef-49ce-4004-a59e-25be97f7602f",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.setVariable",
+                    "name": "PuffCount",
+                    "scope": "script",
+                    "source": {
+                        "type": "variables.count",
+                        "target": "414d7c9f-1649-4dae-8ace-96421d0928c9",
+                        "useArticle": false,
+                        "includeText": false,
+                        "text": "",
+                        "displayName": "Count"
+                    },
+                    "add": false
+                },
+                {
+                    "type": "nodes.setVariable",
+                    "name": "FairyCount",
+                    "scope": "script",
+                    "source": {
+                        "type": "variables.count",
+                        "target": "e81826e9-efa7-4dbf-b232-df831c130aa9",
+                        "useArticle": false,
+                        "includeText": false,
+                        "text": "",
+                        "displayName": "Count"
+                    },
+                    "add": false
+                },
+                {
+                    "type": "nodes.setVariable",
+                    "name": "MorelCount",
+                    "scope": "script",
+                    "source": {
+                        "type": "variables.count",
+                        "target": "b5cfb598-7611-4fe9-9a5b-6c0a4625931a",
+                        "useArticle": false,
+                        "includeText": false,
+                        "text": "",
+                        "displayName": "Count"
+                    },
+                    "add": false
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "script",
+                                "scopeId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                "scopeFilterId": null,
+                                "tags": "ForceCraft",
+                                "has": true
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "77642a3e-97c5-410b-b877-5e84df567ca2",
+                                    "scope": "script",
+                                    "scopeId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                    "scopeFilterId": null,
+                                    "tagsToRemove": "ForceCraft"
+                                },
+                                {
+                                    "type": "nodes.invokeScript",
+                                    "id": "60159238-59f6-45a6-8e6d-3e2cb48ef272",
+                                    "scriptId": "83557b93-362e-44ac-8319-8f598b6d71a5",
+                                    "entryPointId": "d4bc7512-4208-4a71-adf4-99f434d2a868",
+                                    "currentScope": "Current",
+                                    "currentSceneId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                    "currentActorId": null,
+                                    "currentStoryEventId": null,
+                                    "currentPropId": null
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.variableComparison",
+                                    "variableScope": "script",
+                                    "variableName": "PuffCount",
+                                    "operator": "gte",
+                                    "compareTo": "5",
+                                    "sceneId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                    "propId": null
+                                },
+                                "right": {
+                                    "type": "expressions.and",
+                                    "left": {
+                                        "type": "expressions.variableComparison",
+                                        "variableScope": "script",
+                                        "variableName": "FairyCount",
+                                        "operator": "gte",
+                                        "compareTo": "3",
+                                        "sceneId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                        "propId": null
+                                    },
+                                    "right": {
+                                        "type": "expressions.variableComparison",
+                                        "variableScope": "script",
+                                        "variableName": "MorelCount",
+                                        "operator": "gte",
+                                        "compareTo": "2",
+                                        "sceneId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                        "propId": null
+                                    }
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "2b4389f0-a22d-4b6a-b70e-21e0fb664f49",
+                                    "actorId": "38b1ca94-de8c-4873-8810-3d0b02df469a",
+                                    "actorId2": null,
+                                    "text": "It takes 5 Puffballs, 3 Fairy Parasols, and 2 Morels to make 1 Healing Potion. You have ${script.PuffCount} Puffballs, ${script.FairyCount} Fairy Parasols, and ${script.MorelCount} Morels. Continue crafting?",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.showMenu",
+                                    "id": "620c3aff-add0-4ad0-80eb-d031ce3f07f0",
+                                    "options": [
+                                        {
+                                            "type": "options.text",
+                                            "id": "d8298c4f-ca56-4117-a675-48d8f5091818",
+                                            "text": "Continue Crafting",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.setVariable",
+                                                    "name": "CraftCount",
+                                                    "scope": "script",
+                                                    "source": {
+                                                        "type": "variables.literal",
+                                                        "value": "1",
+                                                        "displayName": "Literal"
+                                                    },
+                                                    "add": true
+                                                },
+                                                {
+                                                    "type": "nodes.changeInventory",
+                                                    "id": "b33ff31b-34cd-492e-a351-2ad39b25ee66",
+                                                    "propId": "b5cfb598-7611-4fe9-9a5b-6c0a4625931a",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "change": "0",
+                                                    "count": "2",
+                                                    "notify": true
+                                                },
+                                                {
+                                                    "type": "nodes.changeInventory",
+                                                    "id": "7eb4b6b1-a0de-4ae5-ac3f-dc500aa3de63",
+                                                    "propId": "e81826e9-efa7-4dbf-b232-df831c130aa9",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "change": "0",
+                                                    "count": "3",
+                                                    "notify": true
+                                                },
+                                                {
+                                                    "type": "nodes.changeInventory",
+                                                    "id": "f631aeea-728c-453f-929e-99944deafdb1",
+                                                    "propId": "414d7c9f-1649-4dae-8ace-96421d0928c9",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "change": "0",
+                                                    "count": "5",
+                                                    "notify": true
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "91857e8e-32fd-470d-af81-17035d624bcc",
+                                                    "scriptId": "83557b93-362e-44ac-8319-8f598b6d71a5",
+                                                    "entryPointId": "d4bc7512-4208-4a71-adf4-99f434d2a868",
+                                                    "currentScope": "Current",
+                                                    "currentSceneId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ],
+                                            "expression": null,
+                                            "ignoreChildAvailability": true,
+                                            "minutes": 0,
+                                            "ExitMenu": true
+                                        }
+                                    ],
+                                    "AutoAddDone": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "48fecc86-5305-4b24-a704-5945fc9da82f",
+                                    "actorId": "38b1ca94-de8c-4873-8810-3d0b02df469a",
+                                    "actorId2": null,
+                                    "text": "You do not have enough materials. It takes 5 Puffballs, 3 Fairy Parasols, and 2 Morels to make 1 Healing Potion. You have ${script.PuffCount} Puffballs, ${script.FairyCount} Fairy Parasols, and ${script.MorelCount} Morels.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "scripts.entryPoint",
+            "id": "d4bc7512-4208-4a71-adf4-99f434d2a868",
+            "name": "Craft",
+            "nodes": [
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.playSoundEffect",
+                                    "soundEffectName": "mortar_pestle.wav",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.playSoundEffect",
+                                    "soundEffectName": "lighter_on.wav",
+                                    "wait": false
+                                },
+                                {
+                                    "type": "nodes.wait",
+                                    "waitForSeconds": "1.5"
+                                },
+                                {
+                                    "type": "nodes.playSoundEffect",
+                                    "soundEffectName": "boiling_oneshot.wav",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.wait",
+                                    "waitForSeconds": "0.5"
+                                },
+                                {
+                                    "type": "nodes.playSoundEffect",
+                                    "soundEffectName": "stirring_oneshot.wav",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.playSoundEffect",
+                                    "soundEffectName": "cork_bottle.wav",
+                                    "wait": true
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.changeInventory",
+                    "id": "15e5bba0-02c7-4e9f-ab9b-27e484912669",
+                    "propId": "126e380b-ceda-4884-994f-ca03cca884b8",
+                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                    "change": "1",
+                    "count": 1,
+                    "notify": true
+                },
+                {
+                    "type": "nodes.wait",
+                    "waitForSeconds": 1
+                }
+            ]
+        }
+    ]
+}

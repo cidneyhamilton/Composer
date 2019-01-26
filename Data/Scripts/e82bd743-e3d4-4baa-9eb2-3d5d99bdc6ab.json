@@ -1,0 +1,204 @@
+{
+    "type": "script",
+    "id": "e82bd743-e3d4-4baa-9eb2-3d5d99bdc6ab",
+    "name": "Make Magic Pills",
+    "sceneId": "df6088fa-a6d6-441a-9a00-7af3baa62e14",
+    "trigger": {
+        "type": "triggers.manual",
+        "name": "Manual"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "b57f3a77-2771-4e31-836e-24ca54308038",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.setVariable",
+                    "name": "FairyCount",
+                    "scope": "script",
+                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                    "source": {
+                        "type": "variables.count",
+                        "target": "e81826e9-efa7-4dbf-b232-df831c130aa9",
+                        "useArticle": false,
+                        "includeText": false,
+                        "text": "",
+                        "displayName": "Count"
+                    },
+                    "add": false
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "script",
+                                "scopeId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                "scopeFilterId": null,
+                                "tags": "ForceCraft",
+                                "has": true
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "db869f76-4406-4033-aaec-a14ddaef99a4",
+                                    "scope": "script",
+                                    "scopeId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                    "scopeFilterId": null,
+                                    "tagsToRemove": "ForceCraft"
+                                },
+                                {
+                                    "type": "nodes.invokeScript",
+                                    "id": "4687b374-9a6f-40de-97cc-2ffc981b89a2",
+                                    "scriptId": "e82bd743-e3d4-4baa-9eb2-3d5d99bdc6ab",
+                                    "entryPointId": "27d60947-90e8-4550-88b5-59611a20f99c",
+                                    "currentScope": "Current",
+                                    "currentSceneId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                    "currentActorId": null,
+                                    "currentStoryEventId": null,
+                                    "currentPropId": null
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.variableComparison",
+                                "variableScope": "script",
+                                "variableName": "FairyCount",
+                                "operator": "gte",
+                                "compareTo": "10",
+                                "sceneId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                "propId": null
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "9b6bd830-0570-48cd-8333-765c1a14a0af",
+                                    "actorId": "38b1ca94-de8c-4873-8810-3d0b02df469a",
+                                    "actorId2": null,
+                                    "text": "It takes 10 Fairy Parasols to make 3 Magic Pills. You have ${script.FairyCount} Fairy Parasols. Continue crafting?",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.showMenu",
+                                    "id": "090460ff-2692-4cd3-8092-aedde4e5db45",
+                                    "options": [
+                                        {
+                                            "type": "options.text",
+                                            "id": "2e7dc06c-bfef-487f-9d4a-9dd10790ee11",
+                                            "text": "Continue Crafting",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.setVariable",
+                                                    "name": "CraftCount",
+                                                    "scope": "script",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "source": {
+                                                        "type": "variables.literal",
+                                                        "value": "1",
+                                                        "displayName": "Literal"
+                                                    },
+                                                    "add": true
+                                                },
+                                                {
+                                                    "type": "nodes.changeInventory",
+                                                    "id": "7cffb868-5043-47e3-9718-b352ea0a24a3",
+                                                    "propId": "e81826e9-efa7-4dbf-b232-df831c130aa9",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "change": "0",
+                                                    "count": "10",
+                                                    "notify": true
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "e5e0080c-c29d-4de8-9aff-e4df98ddf2f0",
+                                                    "scriptId": "e82bd743-e3d4-4baa-9eb2-3d5d99bdc6ab",
+                                                    "entryPointId": "27d60947-90e8-4550-88b5-59611a20f99c",
+                                                    "currentScope": "Current",
+                                                    "currentSceneId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ],
+                                            "expression": null,
+                                            "ignoreChildAvailability": true,
+                                            "minutes": 0,
+                                            "ExitMenu": true
+                                        }
+                                    ],
+                                    "AutoAddDone": true,
+                                    "Unique": false
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "082e97b1-efcc-40cf-962f-cebc29d8c6d7",
+                                    "actorId": "38b1ca94-de8c-4873-8810-3d0b02df469a",
+                                    "actorId2": null,
+                                    "text": "You do not have enough materials. It takes 10 Fairy Parasols to make 3 Magic Pills. You have ${script.FairyCount} Fairy Parasols.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "scripts.entryPoint",
+            "id": "27d60947-90e8-4550-88b5-59611a20f99c",
+            "name": "Craft",
+            "nodes": [
+                {
+                    "type": "nodes.playSoundEffect",
+                    "soundEffectName": "mortar_pestle.wav",
+                    "wait": true
+                },
+                {
+                    "type": "nodes.playSoundEffect",
+                    "soundEffectName": "stamp.wav",
+                    "wait": true
+                },
+                {
+                    "type": "nodes.playSoundEffect",
+                    "soundEffectName": "stamp.wav",
+                    "wait": true
+                },
+                {
+                    "type": "nodes.playSoundEffect",
+                    "soundEffectName": "stamp.wav",
+                    "wait": true
+                },
+                {
+                    "type": "nodes.changeInventory",
+                    "id": "4516b390-1c7c-4266-ab25-85afe6486393",
+                    "propId": "d323e8e1-98fe-4cb8-b70a-1faa0d3ebb68",
+                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                    "change": "1",
+                    "count": "3",
+                    "notify": true
+                },
+                {
+                    "type": "nodes.wait",
+                    "waitForSeconds": 1
+                }
+            ]
+        }
+    ]
+}

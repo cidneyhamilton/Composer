@@ -1,0 +1,308 @@
+{
+    "type": "script",
+    "id": "bfa95c22-b6b5-4f8a-8125-1cbd418e349d",
+    "name": "Interact with Plaque Pyoter (Ghost)",
+    "sceneId": "8bcd4d6e-ac80-41f9-862b-e5fba80c4928",
+    "propId": "27515e88-c6a4-49ee-9b07-1e9568a4f6f3",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "29a23fc2-f300-45f9-8c02-e6dfd8d5188c",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showCloseUp",
+                    "imageName": "Catacombs_plaque_magicuser_2.png"
+                },
+                {
+                    "type": "nodes.speak",
+                    "id": "e3187a56-45ff-49e2-b37c-872e7596165d",
+                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "actorId2": null,
+                    "text": "The plaque says...",
+                    "emotion": "0",
+                    "emotion2": "0",
+                    "device": "0",
+                    "device2": "0"
+                },
+                {
+                    "type": "nodes.speak",
+                    "id": "7c62964e-d166-4f88-9cd0-2ad8a73e1b0b",
+                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "actorId2": null,
+                    "text": "<i>Here lies Pyoter \nWho fought the good fight...</i>\n",
+                    "emotion": "0",
+                    "emotion2": "0",
+                    "device": "0",
+                    "device2": "0"
+                },
+                {
+                    "type": "nodes.speak",
+                    "id": "7c8cd946-2b5d-422b-a2b5-fa2e5efbb1f0",
+                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "actorId2": null,
+                    "text": "<i>Who brought hope to the hopeless\nAnd to the dark, brought light.</i>\n",
+                    "emotion": "0",
+                    "emotion2": "0",
+                    "device": "0",
+                    "device2": "0"
+                },
+                {
+                    "type": "nodes.hideCloseUp",
+                    "waitForSeconds": 1
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.playSoundEffect",
+                                    "soundEffectName": "creepy_ambient_loop.ogg",
+                                    "wait": false
+                                },
+                                {
+                                    "type": "nodes.placeActor",
+                                    "actorId": "9ccd09b0-021e-45a9-87e7-8c531f8b7e19",
+                                    "spawnId": "6c4615c3-0d26-4602-bea7-49937910c082",
+                                    "pose": null,
+                                    "behaviour": "Ghost",
+                                    "immediate": null
+                                },
+                                {
+                                    "type": "nodes.turnActor",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "propId": "6c4615c3-0d26-4602-bea7-49937910c082",
+                                    "wait": false,
+                                    "scope": "prop",
+                                    "targetActorId": null
+                                },
+                                {
+                                    "type": "nodes.onceOnly",
+                                    "id": "3ec7c96e-1b8f-4de1-8d5a-f4b939e947ba",
+                                    "nodes": [
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "b6b45410-fda5-46be-add5-9fb6856c9471",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "Yikes!",
+                                            "emotion": "4",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inInventory",
+                                                "propId": "34e8cb8d-654c-4e30-81d2-11a9e533e39e",
+                                                "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.and",
+                                                                "left": {
+                                                                    "type": "expressions.variableComparison",
+                                                                    "variableScope": "global",
+                                                                    "variableName": "time.day",
+                                                                    "operator": "gte",
+                                                                    "compareTo": "32",
+                                                                    "sceneId": "8bcd4d6e-ac80-41f9-862b-e5fba80c4928",
+                                                                    "propId": null
+                                                                },
+                                                                "right": {
+                                                                    "type": "expressions.variableComparison",
+                                                                    "variableScope": "global",
+                                                                    "variableName": "time.day",
+                                                                    "operator": "lte",
+                                                                    "compareTo": "33",
+                                                                    "sceneId": "8bcd4d6e-ac80-41f9-862b-e5fba80c4928",
+                                                                    "propId": null
+                                                                }
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "6fd3dc43-6ffd-425a-8f53-9f247d17cbd5",
+                                                                    "actorId": "9ccd09b0-021e-45a9-87e7-8c531f8b7e19",
+                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "text": "The Foul One traps its prey behind a magical barrier - you must defeat it and then destroy its soul.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "4",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": null,
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "c58e9048-52d3-47a3-955d-6dedf3d566e5",
+                                                                    "actorId": "9ccd09b0-021e-45a9-87e7-8c531f8b7e19",
+                                                                    "actorId2": null,
+                                                                    "text": "The darkness rises once again. That which was trapped will be released. Fear and madness shall fill the hearts and minds of men.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.onceOnly",
+                                                                    "id": "78b072e0-581c-4edc-87a0-ad870f6c1beb",
+                                                                    "nodes": [
+                                                                        {
+                                                                            "type": "nodes.speak",
+                                                                            "id": "f4fdf483-5327-4f45-8486-4f28a1c3fb44",
+                                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                            "actorId2": "9ccd09b0-021e-45a9-87e7-8c531f8b7e19",
+                                                                            "text": "Okay. Right. The end of the world as we know it... So, what can I do about it?",
+                                                                            "emotion": "4",
+                                                                            "emotion2": "0",
+                                                                            "device": "0",
+                                                                            "device2": "0"
+                                                                        },
+                                                                        {
+                                                                            "type": "nodes.speak",
+                                                                            "id": "ac8bb93c-e243-4100-b573-d47996cbf40a",
+                                                                            "actorId": "9ccd09b0-021e-45a9-87e7-8c531f8b7e19",
+                                                                            "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                            "text": "There is nought that you can do to stop what will come. Your path is your own.",
+                                                                            "emotion": "0",
+                                                                            "emotion2": "4",
+                                                                            "device": "0",
+                                                                            "device2": "0"
+                                                                        },
+                                                                        {
+                                                                            "type": "nodes.speak",
+                                                                            "id": "f75de23c-b205-4273-907c-b47bf215600b",
+                                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                            "actorId2": "9ccd09b0-021e-45a9-87e7-8c531f8b7e19",
+                                                                            "text": "So why are you telling me this if I can't do anything to stop it?",
+                                                                            "emotion": "3",
+                                                                            "emotion2": "0",
+                                                                            "device": "0",
+                                                                            "device2": "0"
+                                                                        },
+                                                                        {
+                                                                            "type": "nodes.speak",
+                                                                            "id": "cf9529a7-6936-4d79-9c99-46cbba563657",
+                                                                            "actorId": "9ccd09b0-021e-45a9-87e7-8c531f8b7e19",
+                                                                            "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                            "text": "<i>Someone</i> has to clean up the mess afterwards, don't they?",
+                                                                            "emotion": "0",
+                                                                            "emotion2": "4",
+                                                                            "device": "0",
+                                                                            "device2": "0"
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.playSoundEffect",
+                                                    "soundEffectName": "Ghost Wail.wav",
+                                                    "wait": false
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "b698793b-8e91-4f4a-8ce6-dc54c857bd70",
+                                                    "actorId": "9ccd09b0-021e-45a9-87e7-8c531f8b7e19",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "Whoooooooaaaaaaaahhhhhh.",
+                                                    "emotion": "0",
+                                                    "emotion2": "4",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.onceOnly",
+                                                    "id": "aab09b3a-4c7e-4751-9987-eea1d6c6afbb",
+                                                    "nodes": [
+                                                        {
+                                                            "type": "nodes.speak",
+                                                            "id": "565a5876-7274-4ffe-9609-aecbe0fae5a6",
+                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                            "actorId2": null,
+                                                            "text": "I'm sorry, no speakee ghostee.",
+                                                            "emotion": "2",
+                                                            "emotion2": "0",
+                                                            "device": "0",
+                                                            "device2": "0"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "a8c4f31e-5fbc-47d2-a44b-3e0527b56a71",
+                                                    "scriptId": "98bed7e3-6d3d-4482-ae95-e3913dd384ed",
+                                                    "entryPointId": "29a23fc2-f300-45f9-8c02-e6dfd8d5188c",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.playSoundEffect",
+                                    "soundEffectName": "magic_teleport.wav",
+                                    "wait": false
+                                },
+                                {
+                                    "type": "nodes.invokeCommand",
+                                    "id": "07294508-9d89-4246-bd98-3e2f32bb2a01",
+                                    "entityType": "actor",
+                                    "entityId": "9ccd09b0-021e-45a9-87e7-8c531f8b7e19",
+                                    "command": "fadeout",
+                                    "wait": true,
+                                    "resultVariableScope": "script"
+                                },
+                                {
+                                    "type": "nodes.removeActor",
+                                    "id": "5f2c9e40-8bc8-4933-a25a-f39997d9b496",
+                                    "actorId": "9ccd09b0-021e-45a9-87e7-8c531f8b7e19"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.endScript"
+                }
+            ]
+        }
+    ]
+}

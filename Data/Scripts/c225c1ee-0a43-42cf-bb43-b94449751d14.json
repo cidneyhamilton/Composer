@@ -1,0 +1,210 @@
+{
+    "type": "script",
+    "id": "c225c1ee-0a43-42cf-bb43-b94449751d14",
+    "name": "Interact with Fairy Parasols 1",
+    "sceneId": "cf64f464-f1cc-4cd9-8125-3d1c2d8d45f9",
+    "propId": "26d3d2f7-0faa-4feb-8145-e14a8a1062e7",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "e52135fc-85cc-47c9-8d2b-2624f140b997",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.playAnimation",
+                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "animationName": "KneelDown"
+                },
+                {
+                    "type": "nodes.showMenu",
+                    "id": "4fb23d5a-0593-4a78-96a9-a69c8d8eb382",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "435ba57a-4f1f-4b8d-995b-511bbe532cff",
+                            "text": "Look at the Mushrooms",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "actor",
+                                                "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                "scopeFilterId": null,
+                                                "tags": "MushroomLore",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "1784c947-1be3-4cb7-a23e-016dc4c5add9",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "The inimitable fairy parasol mushroom. ",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "6788a7d0-9567-4900-824e-c915385a51b3",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Whatever \"inimitable\" means. I'm a little out of my depth with that one.",
+                                                    "emotion": "2",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "d90d97d4-da2f-46b0-8749-16b2f3d9ddf0",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "I don't know whether these are pretty... or just creepy.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "97cd24b7-98d1-4c87-92fc-dffdefc4eccc",
+                            "text": "Gather Some Mushrooms",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "actor",
+                                                "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                "scopeFilterId": null,
+                                                "tags": "MushroomLore",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.playSoundEffect",
+                                                    "soundEffectName": "Collect Mushrooms.wav",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "471de3c9-3120-4d55-b308-5ef7de51ca19",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "I'm taking the most beautiful one of the bunch. These have all kinds of uses!",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.changeInventory",
+                                                    "id": "90e54a09-9750-4f47-ab74-c5131b728e8a",
+                                                    "propId": "e81826e9-efa7-4dbf-b232-df831c130aa9",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "change": "1",
+                                                    "count": 1,
+                                                    "notify": true
+                                                },
+                                                {
+                                                    "type": "nodes.changePropVisibility",
+                                                    "id": "76eaecb7-3328-46df-9389-95b5250f303a",
+                                                    "propId": "26d3d2f7-0faa-4feb-8145-e14a8a1062e7",
+                                                    "sceneId": "cf64f464-f1cc-4cd9-8125-3d1c2d8d45f9",
+                                                    "visible": false,
+                                                    "status": "Hidden",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.setVariable",
+                                                    "name": "respawn_timer",
+                                                    "scope": "prop",
+                                                    "scopeId": "26d3d2f7-0faa-4feb-8145-e14a8a1062e7",
+                                                    "sceneId": "cf64f464-f1cc-4cd9-8125-3d1c2d8d45f9",
+                                                    "source": {
+                                                        "type": "variables.random",
+                                                        "value": "",
+                                                        "min": 1,
+                                                        "max": "3",
+                                                        "displayName": "Random"
+                                                    },
+                                                    "add": false
+                                                },
+                                                {
+                                                    "type": "nodes.playAnimation",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "animationName": "KneelUp"
+                                                },
+                                                {
+                                                    "type": "nodes.endScript"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "47e61960-9bff-4a8f-8a90-19bb78440636",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "I don't know what it is. It sends shivers up my spine just looking at it. I'm definitely not touching it.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "2",
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                },
+                {
+                    "type": "nodes.playAnimation",
+                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "animationName": "KneelUp"
+                }
+            ]
+        }
+    ]
+}

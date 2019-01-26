@@ -1,0 +1,59 @@
+<div data-bind="compose: { mode:'templated', view:'nodeEditor' }">
+    <div data-part="read" class="text">
+        Change tags for 
+        
+        <span data-bind="text: entity.name, css: node.scope"></span>.
+
+        <!--ko if: node.scope == 'prop' || node.scope == 'scene'||  node.scope == 'actor' ||  node.scope == 'storyEvent' -->
+        (<span data-bind="text: node.scope"></span>)
+        <!--/ko-->
+
+        <!--ko if: node.tagsToRemove--> &nbsp;
+        <span class="remove" data-bind="text: node.tagsToRemove"></span>
+        <!--/ko-->
+        <!--ko if: node.tagsToAdd--> &nbsp;
+        <span class="add" data-bind="text: node.tagsToAdd"></span>
+        <!--/ko-->
+    </div>
+
+    <div data-part="write">
+
+        <select data-bind="value: node.scope, event: { 'change': setDefaultScopeValues }">
+            <option value="script">Script Scope</option>
+            <option value="storyEvent">Event Scope</option>
+            <option value="scene">Scene Scope</option>
+            <option value="actor">Actor Scope</option>
+            <option value="prop">Prop Scope</option>
+            <option value="target">Target Scope</option>
+        </select>
+
+        <!--ko if: node.scope == 'prop'-->
+        <select data-bind="options: scenesWithProps, optionsText: 'name', optionsValue: 'id', value: node.scopeFilterId, optionsCaption: 'Select Scene'" style="float: right"></select>
+
+            <!--ko if: node.scopeFilterId-->
+            <br/>
+            <select data-bind="options: scopedProps, optionsText: 'name', optionsValue: 'id', value: node.scopeId, optionsCaption: 'Select Prop'" style="float: right"></select>
+            <br/>
+            <br/>
+            <!--/ko-->
+
+        <!--/ko-->
+
+        <!--ko if: node.scope == 'actor'-->
+        <select data-bind="options: actors, optionsText: 'name', optionsValue: 'id', value: node.scopeId, optionsCaption: 'Select Actor'" style="float: right"></select>
+        <!--/ko-->
+
+        <!--ko if: node.scope == 'scene'-->
+        <select data-bind="options: scenes, optionsText: 'name', optionsValue: 'id', value: node.scopeId, optionsCaption: 'Select Scene'" style="float: right"></select>
+        <!--/ko-->
+
+        <!--ko if: node.scope == 'storyEvent'-->
+        <select data-bind="options: storyEvents, optionsText: 'name', optionsValue: 'id', value: node.scopeId, optionsCaption: 'Select Event'" style="float: right"></select>
+        <!--/ko-->
+
+        <div>
+            <input type="text" data-bind="value: node.tagsToAdd" placeholder="comma-delimited tags to add" />
+            <input type="text" data-bind="value: node.tagsToRemove, valueUpdate: 'afterkeydown'" placeholder="comma-delimited tags to remove" style="float: right"/>
+        </div>
+    </div>
+</div>

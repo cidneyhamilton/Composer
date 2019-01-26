@@ -1,0 +1,211 @@
+{
+    "type": "script",
+    "id": "088c7cd5-f281-43cf-a51c-2429c91a9f01",
+    "name": "Interact with Green Couch",
+    "sceneId": "47ebdad9-eb30-4230-b1b2-b576e5ccbe0d",
+    "propId": "763bbac0-3b7e-4f59-b4cf-82eb71e11ffb",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "e98d97d6-84f7-42eb-a03f-260f09121940",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "c2179dd1-c623-4759-8640-caaa6dca5f46",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "d049e118-7083-4392-b1df-61f4ff68e933",
+                            "text": "Look at the Couch",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "990f68a9-ebaa-4777-8912-c4fe3dd18b15",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "It's pretty small. I think it secretly wants to be a loveseat.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "adf26561-3144-4731-976f-19c0de9a4440",
+                            "text": "Search the Couch",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "87af0bf6-168e-47e9-8f67-d67b91a6ebc1",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Let's see if there's anything hidden in this upholstery...",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.playSoundEffect",
+                                    "soundEffectName": "couch_search.wav",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "97c3f4fe-10c8-4eff-8d21-3df050d1d5f3",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Alas, there's no Raven here...",
+                                    "emotion": "2",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.onceOnly",
+                                    "id": "a8f4a614-e0f3-40a5-9267-a0ca12515088",
+                                    "nodes": [
+                                        {
+                                            "type": "nodes.playSoundEffect",
+                                            "soundEffectName": "coins_collect.wav",
+                                            "wait": false
+                                        },
+                                        {
+                                            "type": "nodes.changeMoney",
+                                            "id": "4fdd59ad-be0d-40f5-889d-fce2d511783d",
+                                            "amount": "5",
+                                            "change": "1",
+                                            "currency": "0"
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "6515ecfe-37fd-4489-9cd1-c4bb248911e7",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "But I am five Lyra richer.",
+                                            "emotion": "1",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "e7e112fd-b8b4-487e-a70d-dbad7fbc006f",
+                            "text": "Look Under the Couch",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "target",
+                                                "scopeId": null,
+                                                "scopeFilterId": null,
+                                                "tags": "LookedUnder",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.playAnimation",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "animationName": "KneelDown",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.wait",
+                                                    "waitForSeconds": ".5"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "4ff90191-1b6e-4f80-9f16-24fc6d2c24d7",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "There's nothing under it except dust. And the underside is just fabric and wood, nothing hidden in it.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.playAnimation",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "animationName": "KneelUp",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "621f428e-a349-4f16-a09f-e2d1bb129f2d",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "And now my hand is filthy!",
+                                                    "emotion": "3",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "d68e8af7-8711-4249-b771-c88aa155bc91",
+                                                    "scope": "target",
+                                                    "scopeId": null,
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "LookedUnder",
+                                                    "tagsToRemove": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "7ba39aa3-51f4-43b4-9092-3c82be71798e",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "I already checked under this sofa. I didn't find anything under there except a bad time.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": false,
+                            "minutes": "1",
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

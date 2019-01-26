@@ -1,0 +1,78 @@
+{
+    "type": "script",
+    "id": "bb9b26ba-d849-4a61-93ed-be526c06d254",
+    "name": "Interact with Exit to Main Corridor",
+    "sceneId": "fa26d0aa-8fef-4e8b-8055-ee760fc7b13f",
+    "propId": "763193e6-a96e-4ad7-af70-4b1382cb9c1f",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "1085ddf1-054f-4606-88de-d1098c81e557",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "prop",
+                                "scopeId": "dfb3e3da-3563-40e2-b12e-ec104071212f",
+                                "scopeFilterId": "a670cb9b-f14e-4b92-b052-fbb75035f7fe",
+                                "tags": "Oiled",
+                                "has": true
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.playSoundEffect",
+                                    "soundEffectName": "Heavy_Door_Unlock_Muffled.wav",
+                                    "wait": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.playSoundEffect",
+                                    "soundEffectName": "WineCellarDoor.wav",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.onceOnly",
+                                    "id": "98b678a1-1098-4d60-b411-439332c950dd",
+                                    "nodes": [
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "e109dff0-d93f-4fec-b265-b18548fb5351",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "Ugh, that was loud. It probably alerted every Drat in the Wine Cellar.",
+                                            "emotion": "2",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.changeScene",
+                    "sceneId": "a670cb9b-f14e-4b92-b052-fbb75035f7fe",
+                    "spawnId": "d53c1954-7164-4d5a-848d-bdf2a721ab94",
+                    "fadeTime": 2
+                }
+            ]
+        }
+    ]
+}

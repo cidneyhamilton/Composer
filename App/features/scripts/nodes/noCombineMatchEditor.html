@@ -1,0 +1,34 @@
+﻿<div data-bind="compose: { mode:'templated', view:'nodeEditor' }">
+    <div data-part="read" class="text">
+        <span>If no combine match is found, then: </span>
+        <span class="actor" data-bind="text:actor.name"></span>
+        <span data-bind="if: node.device == '1'" style="font-style: italic">(Interior Monologue)</span>
+        <span>: </span><span data-bind="text: node.text"></span>
+        <span>Translation Notes: </span><span data-bind="text: node.notes"></span>
+    </div>
+
+    <div data-part="write">
+        <div>
+            <select data-bind="options: actors, optionsText: 'name', optionsValue: 'id', value: node.actorId, optionsCaption: 'Select Actor'"></select>
+            <select data-bind="value: node.emotion" placeholder="emotion" style="float: right">
+                <option value="0">Neutral</option>
+                <option value="1">Happy</option>
+                <option value="2">Sad</option>
+                <option value="3">Angry</option>
+                <option value="4">Surprised</option>
+            </select>
+            <select data-bind="value: node.device" placeholder="device" style="float: right">
+                <option value="0">Default</option>
+                <option value="1">Interior Monologue</option>
+            </select>
+        </div>
+
+        <div>
+            <textarea rows="3" data-bind="value: node.text, valueUpdate: 'afterkeydown'" placeholder="speech"></textarea>
+        </div>
+
+        <div>
+            <textarea rows="3" data-bind="value: node.notes, valueUpdate: 'afterkeydown'" placeholder="Translation Notes"></textarea>
+        </div>
+    </div>
+</div>

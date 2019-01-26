@@ -1,0 +1,218 @@
+{
+    "type": "script",
+    "id": "4a864929-1259-42b7-ae7e-ef81abb28a19",
+    "name": "Collection_Mineral_Phosphorus",
+    "sceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+    "trigger": {
+        "type": "triggers.manual",
+        "name": "Manual"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "94de3552-d8c3-459a-804a-059779a7b904",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.comment",
+                    "message": "rv_collect_mineral is the variable to check success 1= success 0=failure",
+                    "commentor": "Joshua"
+                },
+                {
+                    "type": "nodes.setVariable",
+                    "name": "rv_collect_mineral",
+                    "scope": "target",
+                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                    "source": {
+                        "type": "variables.literal",
+                        "value": "0",
+                        "displayName": "Literal"
+                    },
+                    "add": false
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.inInventory",
+                                "propId": "d80613f1-d750-4e73-a8f4-802859d4f0c4",
+                                "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                "has": true
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "prop",
+                                                "variableName": "FillAmount",
+                                                "operator": "gte",
+                                                "compareTo": "3",
+                                                "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                "propId": "d80613f1-d750-4e73-a8f4-802859d4f0c4"
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "d1b89ea6-b95a-4085-b913-e768e6242176",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "My mineral jar is full.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "b7e273bc-d6ec-40ca-94b3-676b1abe2af9",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "I'll just scrape off some phosphorus into my jar here...",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.playSoundEffect",
+                                                    "soundEffectName": "Collect Mineral.wav",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.setVariable",
+                                                    "name": "FillAmount",
+                                                    "scope": "prop",
+                                                    "scopeId": "d80613f1-d750-4e73-a8f4-802859d4f0c4",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "source": {
+                                                        "type": "variables.literal",
+                                                        "value": "1",
+                                                        "displayName": "Literal"
+                                                    },
+                                                    "add": true
+                                                },
+                                                {
+                                                    "type": "nodes.setVariable",
+                                                    "name": "rv_collect_mineral",
+                                                    "scope": "target",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "source": {
+                                                        "type": "variables.literal",
+                                                        "value": "1",
+                                                        "displayName": "Literal"
+                                                    },
+                                                    "add": false
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.variableComparison",
+                                                                "variableScope": "prop",
+                                                                "variableName": "FillAmount",
+                                                                "operator": "gte",
+                                                                "compareTo": "3",
+                                                                "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                                "propId": "d80613f1-d750-4e73-a8f4-802859d4f0c4"
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "a9d0c073-7391-44fb-a15b-0f5b20dc4a43",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "There, now I have a full jar of phosphorus.",
+                                                                    "emotion": "1",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.variableComparison",
+                                                                "variableScope": "prop",
+                                                                "variableName": "FillAmount",
+                                                                "operator": "eq",
+                                                                "compareTo": "2",
+                                                                "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                                "propId": "d80613f1-d750-4e73-a8f4-802859d4f0c4"
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "4487f36b-7127-498f-8bee-4a98caaa9047",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "Now my jar is mostly full of phosphorus - but I can fit a touch more in it.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": null,
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "a012f368-5b08-4dae-a565-adb75de8cca9",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "Now I have some phosphorus in my jar. It's only about a third full at present.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "524fc565-14c2-4279-99e1-7c86a43a791c",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "I'm going to need a mineral jar to store any collected phosphorus in.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

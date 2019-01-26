@@ -1,0 +1,231 @@
+{
+    "type": "script",
+    "id": "f51b8d6d-073b-40f4-919f-6396b700e693",
+    "name": "Interact with Suit of Armor",
+    "sceneId": "f1d169df-e10e-451d-8481-0d0290b7cbbe",
+    "propId": "e41ad5b0-d4a3-4ceb-9808-3da25a344cd7",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "222548e7-88fe-451b-b7a6-5478c38ad0da",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "c8c784cf-a35d-414f-a5c8-11e0f04093d8",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "dbb1f77c-8d70-430a-b9f9-8a2f91c84bb1",
+                            "text": "Look at the Suit of Armor",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "2cfda7bb-0618-42eb-8937-a28d6a6af4c2",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "I don't know who owned this suit of armor, but hey, guarding an empty table is quite an honor.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "e34d06bc-dacf-4100-9f63-aadcc4291662",
+                            "text": "Look in the Suit of Armor",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "prop",
+                                                "scopeId": "e41ad5b0-d4a3-4ceb-9808-3da25a344cd7",
+                                                "scopeFilterId": "f1d169df-e10e-451d-8481-0d0290b7cbbe",
+                                                "tags": "LookedInsideAlready",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "78c83e4e-a47a-4bca-9b06-13286c5d05f7",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Just for good measure, I'll look inside this visor...",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.playSoundEffect",
+                                                    "soundEffectName": "Open Viser.wav",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "76d3962d-6a6b-458c-b925-b4ad62b2591b",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Hey! There's a key in here! ",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.changeInventory",
+                                                    "id": "86966bbe-29ae-4ffb-845f-fbf82b46425a",
+                                                    "propId": "0a9e0acb-5512-4713-91f5-b2f56941e122",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "change": "1",
+                                                    "count": 1,
+                                                    "notify": true
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "664146c4-1eab-4f59-8207-f0a0296df4ee",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "I wonder if anyone knows about this! Did some Colonel bequeath it?",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "8448b616-fee6-45f5-95b0-b5a211d5bb43",
+                                                    "scope": "prop",
+                                                    "scopeId": "e41ad5b0-d4a3-4ceb-9808-3da25a344cd7",
+                                                    "scopeFilterId": "f1d169df-e10e-451d-8481-0d0290b7cbbe",
+                                                    "tagsToAdd": "LookedInsideAlready",
+                                                    "tagsToRemove": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.playSoundEffect",
+                                                    "soundEffectName": "Open Viser.wav",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "19547c94-8d45-42e9-892a-066696760c6a",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "There's nothing else inside but stale air. I guess there was a limit of one key per game.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "7c27ae00-105d-44da-b8ee-eda62ef9c602",
+                            "text": "Steal the Suit of Armor",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "99e038a3-c461-45df-9d66-62f5ecd3ed5a",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "You give me far more credit for stealth than I deserve.",
+                                    "emotion": "2",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "74cfe927-ba89-45a7-a1e1-d2e644beb74a",
+                            "text": "Wear the Suit of Armor",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "47bd309b-381d-407f-a0b7-c6c0f20b3d2d",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "I wouldn't look very dashing in it. In fact, these things are so heavy I wouldn't be dashing anywhere.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "603e1354-2809-455d-9e38-9c8be9c397f4",
+                            "text": "Sense Magic on the Suit of Armor",
+                            "nodes": [
+                                {
+                                    "type": "nodes.invokeScript",
+                                    "id": "161bbcae-6097-4afe-8dd5-21ab8811f45a",
+                                    "scriptId": "533e1ce1-13d3-439f-8544-dbdf808d30c4",
+                                    "entryPointId": "",
+                                    "currentScope": "Scenes",
+                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                    "currentActorId": null,
+                                    "currentStoryEventId": null,
+                                    "currentPropId": null
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "actor",
+                                "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                "scopeFilterId": null,
+                                "tags": "sensemagic",
+                                "has": true
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "2",
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

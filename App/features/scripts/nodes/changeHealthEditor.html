@@ -1,0 +1,76 @@
+<div data-bind="compose: { mode:'templated', view:'nodeEditor' }">
+    <div data-part="read" class="text">
+
+        Add <span data-bind="text:node.amount"></span><span data-bind="visible: node.isPercentage">%</span> 
+
+        <!--ko if: node.damageType == "0"-->
+        <span> (Physical)</span>
+        <!--/ko-->
+        <!--ko if: node.damageType == "1"-->
+        <span> (Magical)</span>
+        <!--/ko-->
+        <!--ko if: node.damageType == "2"-->
+        <span> (Fire)</span>
+        <!--/ko-->
+        <!--ko if: node.damageType == "3"-->
+        <span> (Undead)</span>
+        <!--/ko-->
+        <!--ko if: node.damageType == "4"-->
+        <span> (Poison)</span>
+        <!--/ko-->
+        <!--ko if: node.damageType == "5"-->
+        <span> (Water)</span>
+        <!--/ko-->
+        <!--ko if: node.damageType == "6"-->
+        <span> (DrainLife)</span>
+        <!--/ko-->
+		
+		 to Ego's
+		 
+        <!--ko if: node.target == "0"-->
+        <span> Stamina</span>
+        <!--/ko-->
+
+        <!--ko if: node.target == "1"-->
+        <span> Mojo</span>
+        <!--/ko-->
+
+        <!--ko if: node.target == "2"-->
+        <span> Power</span>
+        <!--/ko-->
+        
+        <!--ko if: node.target == "0"-->
+        <span data-bind="visible: node.canDie"> (Can Cause Death)</span>
+        <!--/ko-->
+    </div>
+
+    <div data-part="write">
+
+        <input type="text" data-bind="value: node.amount, valueUpdate: 'afterkeydown'" placeholder="amount" style="float: right"/>
+
+        <select data-bind="value: node.target">
+            <option value="0">Stamina</option>
+            <option value="1">Mojo</option>
+            <option value="2">Power</option>
+        </select>
+        <br/>
+        <select data-bind="value: node.damageType">
+            <option value="-1">None</option>
+            <option value="0">Physical</option>
+            <option value="1">Magical</option>
+            <option value="2">Fire</option>
+            <option value="3">Undead</option>
+            <option value="4">Poison</option>
+            <option value="5">Water</option>
+            <option value="6">DrainLife</option>			
+        </select>
+        <br/>
+        <input type="checkbox" data-bind="checked: node.isPercentage, valueUpdate: 'afterkeydown'"> Is Percentage 
+        <br/>
+        <!--ko if: node.target == "0"-->
+            <input type="checkbox" data-bind="checked: node.canDie, valueUpdate: 'afterkeydown'"> Can Die 
+        <!--/ko-->   
+        <br/>
+        <input type="checkbox" data-bind="checked: node.showNotification, valueUpdate: 'afterkeydown'"> Show Notification   
+    </div>
+</div>

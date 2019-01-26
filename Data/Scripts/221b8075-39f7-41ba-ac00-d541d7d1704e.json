@@ -1,0 +1,923 @@
+{
+    "type": "script",
+    "id": "221b8075-39f7-41ba-ac00-d541d7d1704e",
+    "name": "Interact Ship's Stern Door",
+    "sceneId": "91e73978-0245-4bb2-8c83-eaa7f3954455",
+    "propId": "75d33ebf-4138-4cf7-bab2-00c33503bd7c",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "596a3604-0657-465f-ad5c-8de769da400f",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "scene",
+                                "scopeId": "91e73978-0245-4bb2-8c83-eaa7f3954455",
+                                "scopeFilterId": null,
+                                "tags": "GotTreasure",
+                                "has": true
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.comment",
+                                    "message": "Area is blocked off once treasure has been gotten",
+                                    "commentor": "XXX This Case Should not Occur"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "cf3a3b9c-e3dd-4042-b3df-a8a619b5995e",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "I shouldn't be here - we ransacked it pretty good last time!",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0",
+                                    "notes": ""
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.playMusic",
+                                    "musicTrack": "silence.ogg",
+                                    "channel": "1",
+                                    "loopType": "2"
+                                },
+                                {
+                                    "type": "nodes.playAnimation",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "animationName": "ReachOut"
+                                },
+                                {
+                                    "type": "nodes.wait",
+                                    "waitForSeconds": "0.5"
+                                },
+                                {
+                                    "type": "nodes.fade",
+                                    "scope": "FadeOut",
+                                    "fadeTime": "1",
+                                    "fadeTime2": 2,
+                                    "wait": true,
+                                    "fadeDown": 1,
+                                    "fadeColorR": 0,
+                                    "fadeColorG": 0,
+                                    "fadeColorB": 0
+                                },
+                                {
+                                    "type": "nodes.playSoundEffect",
+                                    "soundEffectName": "Heavy_Door_Unlock.wav",
+                                    "wait": false
+                                },
+                                {
+                                    "type": "nodes.playSoundEffect",
+                                    "soundEffectName": "wooden_door_opening.wav",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "e5c4ca3e-3209-40b5-9d00-3149548eb219",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Whoa!",
+                                    "emotion": "4",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0",
+                                    "notes": ""
+                                },
+                                {
+                                    "type": "nodes.playMusic",
+                                    "musicTrack": "pirate shanty.mp3",
+                                    "channel": "1",
+                                    "loopType": "2"
+                                },
+                                {
+                                    "type": "nodes.showVignette",
+                                    "vignetteName": "TreasureRoom_Katie.png",
+                                    "crossFadeTime": 0
+                                },
+                                {
+                                    "type": "nodes.fade",
+                                    "scope": "FadeIn",
+                                    "fadeTime": "1",
+                                    "fadeTime2": 2,
+                                    "wait": true,
+                                    "fadeDown": "0",
+                                    "fadeColorR": 0,
+                                    "fadeColorG": 0,
+                                    "fadeColorB": 0
+                                },
+                                {
+                                    "type": "nodes.wait",
+                                    "waitForSeconds": "2.5"
+                                },
+                                {
+                                    "type": "nodes.changeReputation",
+                                    "id": "1f972973-605f-4845-8f6b-60bb7268eedb",
+                                    "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                    "amount": "25",
+                                    "change": "1",
+                                    "notify": true
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "44fe5207-2bf6-4de7-8ce1-4dfcc5f9c245",
+                                    "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "We did it!! I've finally found the pirate treasure!",
+                                    "emotion": "1",
+                                    "emotion2": "1",
+                                    "device": "0",
+                                    "device2": "0",
+                                    "notes": ""
+                                },
+                                {
+                                    "type": "nodes.setVariable",
+                                    "name": "extraLoot",
+                                    "scope": "script",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "source": {
+                                        "type": "variables.literal",
+                                        "value": "0",
+                                        "notes": "",
+                                        "displayName": "Literal"
+                                    },
+                                    "add": false
+                                },
+                                {
+                                    "type": "nodes.showMenu",
+                                    "id": "dca1b568-545a-409f-b2fe-37c42222c5de",
+                                    "options": [
+                                        {
+                                            "type": "options.text",
+                                            "id": "c9353390-e12f-4250-be79-c25d5d89981b",
+                                            "text": "Congratulate Katie",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changeReputation",
+                                                    "id": "1e0cb080-9a91-4ae2-8950-70d4506617a1",
+                                                    "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                                    "amount": "5",
+                                                    "change": "1",
+                                                    "notify": true
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "45934664-80fd-472e-b5ae-e8b2b8322c35",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                                    "text": "Congratulations Katie! Your dad is sure to recognize that you can be a pirate too.",
+                                                    "emotion": "1",
+                                                    "emotion2": "1",
+                                                    "device": "0",
+                                                    "device2": "0",
+                                                    "notes": ""
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "4bf7de9c-2466-4214-8583-12ed9c4da06f",
+                                                    "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "Yeah, but funny thing... after all we've been through here, I don't really want to be a pirate.",
+                                                    "emotion": "1",
+                                                    "emotion2": "4",
+                                                    "device": "0",
+                                                    "device2": "0",
+                                                    "notes": ""
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "af2cd726-b6dd-4bd0-b776-8cf8b9d5d41a",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                                    "text": "Wait - What?",
+                                                    "emotion": "4",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0",
+                                                    "notes": ""
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "10143bac-6160-4ae4-ac27-0392ab4b25ab",
+                                                    "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "Yeah, well, we can see what being a pirate is all about - betrayal, death, Zombies... All of this treasure has blood on it.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0",
+                                                    "notes": ""
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "629e8a21-aaa8-4559-b9e5-98f0480f426a",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                                    "text": "We could wash it off...?",
+                                                    "emotion": "2",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0",
+                                                    "notes": ""
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "ac596adf-123f-417a-a0ae-c53b4abb0f3a",
+                                                    "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "I'm going to use this treasure to turn our family inn into a home for old sailors. It will give seamen a place to go when they can't sail any longer. They won't have to wind up dying in a place like this.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0",
+                                                    "notes": ""
+                                                }
+                                            ],
+                                            "expression": null,
+                                            "ignoreChildAvailability": true,
+                                            "minutes": 0,
+                                            "ExitMenu": false,
+                                            "notes": ""
+                                        },
+                                        {
+                                            "type": "options.text",
+                                            "id": "05ac1689-308c-449a-a701-2c75255a64be",
+                                            "text": "Ask for a Share",
+                                            "nodes": [
+                                                {
+                                                    "id": "0427772d-8d4d-498f-9e07-10babdbce19b",
+                                                    "type": "nodes.skillBranch",
+                                                    "skill": "Moxie",
+                                                    "target": "65",
+                                                    "success": {
+                                                        "type": "nodes.block",
+                                                        "nodes": [
+                                                            {
+                                                                "type": "nodes.setVariable",
+                                                                "name": "extraLoot",
+                                                                "scope": "script",
+                                                                "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                                "source": {
+                                                                    "type": "variables.literal",
+                                                                    "value": "1",
+                                                                    "notes": "",
+                                                                    "displayName": "Literal"
+                                                                },
+                                                                "add": false
+                                                            },
+                                                            {
+                                                                "type": "nodes.speak",
+                                                                "id": "f9ad4665-7665-4551-923d-f73da76298b2",
+                                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                "actorId2": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                                                "text": "Man, you're going to have a tough time hauling all of this back yourself. I could probably help you out by taking some off your hands...",
+                                                                "emotion": "1",
+                                                                "emotion2": "0",
+                                                                "device": "0",
+                                                                "device2": "0",
+                                                                "notes": ""
+                                                            },
+                                                            {
+                                                                "type": "nodes.speak",
+                                                                "id": "17ac44a8-ee5c-4887-bf37-945b47372e97",
+                                                                "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                                                "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                "text": "Ha! So you did want some gold afterall, huh Shawn? Guess there might be a little pirate in you, too.",
+                                                                "emotion": "1",
+                                                                "emotion2": "4",
+                                                                "device": "0",
+                                                                "device2": "0",
+                                                                "notes": ""
+                                                            },
+                                                            {
+                                                                "type": "nodes.speak",
+                                                                "id": "5b873795-e055-4636-9253-ab7d507eb315",
+                                                                "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                                                "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                "text": "No. I'm going to wait until my father is back in port. I'll have him and his crew haul this out. ",
+                                                                "emotion": "0",
+                                                                "emotion2": "0",
+                                                                "device": "0",
+                                                                "device2": "0",
+                                                                "notes": ""
+                                                            }
+                                                        ]
+                                                    },
+                                                    "failure": {
+                                                        "type": "nodes.block",
+                                                        "nodes": [
+                                                            {
+                                                                "type": "nodes.setVariable",
+                                                                "name": "extraLoot",
+                                                                "scope": "script",
+                                                                "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                                "source": {
+                                                                    "type": "variables.literal",
+                                                                    "value": "-1",
+                                                                    "notes": "",
+                                                                    "displayName": "Literal"
+                                                                },
+                                                                "add": false
+                                                            },
+                                                            {
+                                                                "type": "nodes.speak",
+                                                                "id": "6c1f9f8d-2d88-4b21-a749-11759d192c0a",
+                                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                "actorId2": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                                                "text": "Since you couldn't have done this without my help, we can just split this treasure. You can have that half of the room, I'll take this half.",
+                                                                "emotion": "1",
+                                                                "emotion2": "4",
+                                                                "device": "0",
+                                                                "device2": "0",
+                                                                "notes": ""
+                                                            },
+                                                            {
+                                                                "type": "nodes.changeReputation",
+                                                                "id": "dbddedc7-2504-4ab6-b910-6ab45a203bf6",
+                                                                "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                                                "amount": "10",
+                                                                "change": "0",
+                                                                "notify": true
+                                                            },
+                                                            {
+                                                                "type": "nodes.speak",
+                                                                "id": "0c4944dd-f3a6-4d29-b6dd-f2fd02d176bc",
+                                                                "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                                                "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                "text": "Ugh... figures. I knew you just wanted the treasure for yourself! ",
+                                                                "emotion": "3",
+                                                                "emotion2": "4",
+                                                                "device": "0",
+                                                                "device2": "0",
+                                                                "notes": ""
+                                                            },
+                                                            {
+                                                                "type": "nodes.speak",
+                                                                "id": "5186200c-f62c-47f9-bcf5-4e301c232479",
+                                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                "actorId2": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                                                "text": "Well, it's only fair...",
+                                                                "emotion": "0",
+                                                                "emotion2": "4",
+                                                                "device": "0",
+                                                                "device2": "0",
+                                                                "notes": ""
+                                                            },
+                                                            {
+                                                                "type": "nodes.speak",
+                                                                "id": "13404eff-9c94-4479-b098-ab7882fea37f",
+                                                                "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                                                "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                "text": "You never would have even known of this treasure if I hadn't told you about it. Nor would you ever have been able to get to it without me.",
+                                                                "emotion": "3",
+                                                                "emotion2": "0",
+                                                                "device": "0",
+                                                                "device2": "0",
+                                                                "notes": ""
+                                                            },
+                                                            {
+                                                                "type": "nodes.speak",
+                                                                "id": "cd6ff198-330e-433d-9303-ea9b48f62a84",
+                                                                "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                                                "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                "text": "I'm going to use this treasure for a good cause - a home for retired sailors. It's probably going to take all of this money and more to do that. ",
+                                                                "emotion": "0",
+                                                                "emotion2": "2",
+                                                                "device": "0",
+                                                                "device2": "0",
+                                                                "notes": ""
+                                                            }
+                                                        ]
+                                                    },
+                                                    "notify": true
+                                                }
+                                            ],
+                                            "expression": null,
+                                            "ignoreChildAvailability": true,
+                                            "minutes": 0,
+                                            "ExitMenu": false,
+                                            "notes": ""
+                                        }
+                                    ],
+                                    "AutoAddDone": false,
+                                    "Unique": true
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "29d03622-5588-4db9-9518-5b43c7c224b6",
+                                    "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "You were a big help, though. I can't let you walk off completely empty-handed.",
+                                    "emotion": "1",
+                                    "emotion2": "1",
+                                    "device": "0",
+                                    "device2": "0",
+                                    "notes": ""
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "0d856ba6-0528-4efa-83b6-ae4cef6078ff",
+                                    "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "Here's your share of the booty. That should cover your losses at Poobah for a few sessions.",
+                                    "emotion": "1",
+                                    "emotion2": "1",
+                                    "device": "0",
+                                    "device2": "0",
+                                    "notes": ""
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "script",
+                                                "variableName": "extraLoot",
+                                                "operator": "gt",
+                                                "compareTo": "0",
+                                                "sceneId": "91e73978-0245-4bb2-8c83-eaa7f3954455",
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.comment",
+                                                    "message": "Loot Bonus!",
+                                                    "commentor": "Charles"
+                                                },
+                                                {
+                                                    "type": "nodes.changeMoney",
+                                                    "id": "ee515502-58e4-4f3b-914b-f46331b1d59c",
+                                                    "amount": "350",
+                                                    "change": "1",
+                                                    "currency": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "4b2ca6fc-cb8a-4a45-9650-dfb96c81881f",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                                    "text": "Three hundred and fifty doubloons... er... Lyra? Wow, I'm rich!",
+                                                    "emotion": "1",
+                                                    "emotion2": "1",
+                                                    "device": "0",
+                                                    "device2": "0",
+                                                    "notes": ""
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "script",
+                                                "variableName": "extraLoot",
+                                                "operator": "lt",
+                                                "compareTo": "0",
+                                                "sceneId": "91e73978-0245-4bb2-8c83-eaa7f3954455",
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.comment",
+                                                    "message": "Loot Penalty!",
+                                                    "commentor": "Charles"
+                                                },
+                                                {
+                                                    "type": "nodes.changeMoney",
+                                                    "id": "4f4d6daf-7bb8-4e0c-8166-dfd20fbb9760",
+                                                    "amount": "250",
+                                                    "change": "1",
+                                                    "currency": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "d8d9c2dc-6ec6-43df-9def-ee50d81e1d87",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                                    "text": "Two hundred and fifty Lyra is a lot of money for me.",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0",
+                                                    "notes": ""
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.comment",
+                                                    "message": "Loot Default",
+                                                    "commentor": "Charles"
+                                                },
+                                                {
+                                                    "type": "nodes.changeMoney",
+                                                    "id": "0476e521-8e4d-47cd-b030-e90c19db62de",
+                                                    "amount": "300",
+                                                    "change": "1",
+                                                    "currency": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "c8049bdd-8904-45bc-bbd8-bc3ac5e325fa",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                                    "text": "Three hundred Lyra will go a long way towards my \"Get-Rich-Quick\" plans.",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0",
+                                                    "notes": ""
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "183bb879-1228-4c95-a935-a6a37b312a5b",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                    "text": "I can put this to good use. ",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0",
+                                    "notes": ""
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "05e746a9-eb98-49d6-a40f-822f414c7dbf",
+                                    "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "There are a few interesting items in that chest near the door. Pick out something that suits your fancy.",
+                                    "emotion": "0",
+                                    "emotion2": "1",
+                                    "device": "0",
+                                    "device2": "0",
+                                    "notes": ""
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "a837ea53-08ef-45a3-a67e-ddaae295d5a2",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Hmm... there's a fancy dagger, an ornate necklace with a purple gem and some sort of rune on it, and a dark grey cloak.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0",
+                                    "notes": ""
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "actor",
+                                                "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                "scopeFilterId": null,
+                                                "tags": "SenseMagic",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "22b23ea9-8dd8-48c8-bf62-56e8dd2c1640",
+                                                    "scriptId": "b1c2ecc1-eb00-49ed-a7ba-ea6af625c355",
+                                                    "entryPointId": "596a3604-0657-465f-ad5c-8de769da400f",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "3db3a18f-42b1-498e-9c40-91bb8ac2052a",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "All of these items are magical!",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0",
+                                                    "notes": ""
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "2a914714-339d-451f-8770-cf2a3d87de28",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "The dagger in the chest was designed to enhance skills of stealth and agility.",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0",
+                                                    "notes": ""
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "6bf246c5-4b03-4a13-86c6-af3839419c48",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "The grey cloak feels like it was specially made for a rogue. It has a strong aura of stealth about it.",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0",
+                                                    "notes": ""
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "7503563f-fd2e-40ea-8221-e78f4652f074",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "The Amulet strongly protects against hostile magic.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0",
+                                                    "notes": ""
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "108566a4-3cb2-40b4-971c-d4160ec2d539",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "They all could be very useful under the right circumstances.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0",
+                                                    "notes": ""
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "71395eca-8fdf-436d-9c2c-049645657342",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "I get the feeling that these are magical. It's going to be hard to choose between them.",
+                                                    "emotion": "4",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0",
+                                                    "notes": ""
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.showMenu",
+                                    "id": "ecee6bdc-0512-4b40-b247-492693bb111b",
+                                    "options": [
+                                        {
+                                            "type": "options.text",
+                                            "id": "d4e8536d-6c8d-4406-8f50-d51cc7f1171a",
+                                            "text": "Take the Sharp, Thin Dagger",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "c3aff7fb-7ddd-4ef1-b655-21708b2b60b5",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "This dagger looks kinda interesting... more of a stabbing weapon than a slicing weapon but it is very sharp.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0",
+                                                    "notes": ""
+                                                },
+                                                {
+                                                    "type": "nodes.changeInventory",
+                                                    "id": "6a39338c-5551-43a3-a7c5-d5defe658fbb",
+                                                    "propId": "93ee7113-bdad-4853-a0ba-f3c8fa1442fb",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "change": "1",
+                                                    "count": 1,
+                                                    "notify": true
+                                                }
+                                            ],
+                                            "expression": null,
+                                            "ignoreChildAvailability": true,
+                                            "minutes": "4",
+                                            "ExitMenu": false,
+                                            "notes": ""
+                                        },
+                                        {
+                                            "type": "options.text",
+                                            "id": "02e7d0d1-efa3-4127-a618-c4c26161bb81",
+                                            "text": "Take the Soft, Grey Cloak",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "d4527ae8-d969-4fc4-8a2b-934483579abc",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "This cloak is soft and warm and fuzzy - It's also charcoal-grey and would be great for being sneaky in dark places.",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0",
+                                                    "notes": ""
+                                                },
+                                                {
+                                                    "type": "nodes.changeInventory",
+                                                    "id": "f7c5b078-1f8e-42cc-9e96-60b713177a8d",
+                                                    "propId": "7cc7ce55-6851-4417-ab9c-be1b43b7a4a7",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "change": "1",
+                                                    "count": 1,
+                                                    "notify": true
+                                                }
+                                            ],
+                                            "expression": null,
+                                            "ignoreChildAvailability": true,
+                                            "minutes": "4",
+                                            "ExitMenu": false,
+                                            "notes": ""
+                                        },
+                                        {
+                                            "type": "options.text",
+                                            "id": "eb74b895-5573-4b7f-9e1a-5088714a84eb",
+                                            "text": "Take the Fancy Amulet",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "7d783cca-6e7b-44fa-b23e-ef613c7745d6",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "The amulet is pretty and looks like it is glowing softly in the dark.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0",
+                                                    "notes": ""
+                                                },
+                                                {
+                                                    "type": "nodes.changeInventory",
+                                                    "id": "87c99a19-53e2-48c0-b3fb-01808dd9e9b1",
+                                                    "propId": "8cf4afa3-33f5-4e1f-9446-805424dd17ae",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "change": "1",
+                                                    "count": 1,
+                                                    "notify": true
+                                                }
+                                            ],
+                                            "expression": null,
+                                            "ignoreChildAvailability": true,
+                                            "minutes": 0,
+                                            "ExitMenu": false,
+                                            "notes": ""
+                                        }
+                                    ],
+                                    "AutoAddDone": false,
+                                    "Unique": true
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "0c172884-44d8-4943-99d0-e07072e53c38",
+                                    "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "We'd better get going - the tide is starting to come in. We don't want to be trapped here.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0",
+                                    "notes": ""
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "9f71cc31-56b9-491b-8eb3-f5c9e9c3cae7",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                    "text": "Last one to the castle is Gog grog!",
+                                    "emotion": "1",
+                                    "emotion2": "1",
+                                    "device": "0",
+                                    "device2": "0",
+                                    "notes": ""
+                                },
+                                {
+                                    "type": "nodes.wait",
+                                    "waitForSeconds": "2"
+                                },
+                                {
+                                    "type": "nodes.fade",
+                                    "scope": "FadeOut",
+                                    "fadeTime": "1",
+                                    "fadeTime2": 2,
+                                    "wait": true,
+                                    "fadeDown": 1,
+                                    "fadeColorR": 0,
+                                    "fadeColorG": 0,
+                                    "fadeColorB": 0
+                                },
+                                {
+                                    "type": "nodes.quests",
+                                    "id": "2c172130-997b-47e2-9771-9594ac0ae43a",
+                                    "sceneId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                                    "propId": "3fd348a3-5683-4af9-8931-00e1b0c72cde",
+                                    "target": "1",
+                                    "notify": true
+                                },
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "5cf533ac-e904-4d0d-9ae7-24671ad62f3e",
+                                    "scope": "scene",
+                                    "scopeId": "91e73978-0245-4bb2-8c83-eaa7f3954455",
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "GotTreasure",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "ba41b9ad-e1f5-4e09-a610-46e919991d61",
+                                    "scope": "actor",
+                                    "scopeId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "treasuretrove",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "global",
+                                                "variableName": "time.hour",
+                                                "operator": "gt",
+                                                "compareTo": "8",
+                                                "sceneId": "91e73978-0245-4bb2-8c83-eaa7f3954455",
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.comment",
+                                                    "message": "This prevents \"go to bed\" trigger which would happen if time incremented after midnight.",
+                                                    "commentor": "Time tweak"
+                                                },
+                                                {
+                                                    "type": "nodes.incrementTime",
+                                                    "id": "0c58e440-526d-45af-ac06-23ce730efccc",
+                                                    "days": "0",
+                                                    "hours": "1",
+                                                    "minutes": 0
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.addJournalEntry",
+                                    "id": "b2616606-780c-4385-bec5-797bbff49327",
+                                    "name": "Treasure Ahoy Maties!",
+                                    "notify": true,
+                                    "description": "We did it! Katie and I defeated a tentacle monster with the help of a few of our Zombie crew members. Katie's got her treasure and I my share of the loot. Woot!",
+                                    "notes": ""
+                                },
+                                {
+                                    "type": "nodes.changeScene",
+                                    "sceneId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                    "spawnId": "ca037257-50fa-40b3-9cc3-d72b9afef5b4",
+                                    "fadeTime": 2
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

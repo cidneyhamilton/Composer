@@ -1,0 +1,107 @@
+{
+    "type": "script",
+    "id": "19f7c770-5b52-4482-a370-fa31bc0690ec",
+    "name": "Interact with Kitchen Door",
+    "sceneId": "bf8b9872-cbdd-47c6-997c-1cd3ad91bc1e",
+    "propId": "f2ee78eb-902b-41b0-b8cf-953dc6127866",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "83a99734-f634-478a-b51a-37c9bfb19b97",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "da5135ae-6293-41dc-a8b1-43bdcc0fa0e6",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "5ebf70b2-3bac-438b-bb36-443ac5621141",
+                            "text": "Look at the Kitchen Door",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "31d8aed9-55e2-4c66-a96f-f7afb75d996a",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "A door that swings in both directions? That's pretty close to magic.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "1",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "fe2f79d6-a956-44bc-a13a-a490730b7052",
+                            "text": "Open the Kitchen Door",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "scene",
+                                                "scopeId": "bf8b9872-cbdd-47c6-997c-1cd3ad91bc1e",
+                                                "scopeFilterId": null,
+                                                "tags": "IfetayaIsHere",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "e1ffd4aa-a890-49b9-a9ba-0fe7229f2b56",
+                                                    "actorId": "a0b548d6-b820-451f-9508-8fc7fcf166bd",
+                                                    "actorId2": null,
+                                                    "text": "You'll go into my kitchen when I <i>say</i> you'll go into my kitchen!",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "7dc47797-5c04-4023-8069-8afe72252dd0",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "If I go in there without Ifetaya's permission, she'll be serving Shawn kebabs tomorrow.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "3",
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true
+                }
+            ]
+        }
+    ]
+}

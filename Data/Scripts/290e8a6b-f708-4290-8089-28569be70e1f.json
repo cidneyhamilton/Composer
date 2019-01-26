@@ -1,0 +1,185 @@
+{
+    "type": "script",
+    "id": "290e8a6b-f708-4290-8089-28569be70e1f",
+    "name": "_Gerhard'sOffice Enter",
+    "sceneId": "eceae806-6f55-4cde-b517-c73b1c924fd9",
+    "trigger": {
+        "type": "triggers.enter",
+        "name": "Enter"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "705b2770-3555-4c09-ab49-f4bf74a2d316",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.or",
+                                "left": {
+                                    "type": "expressions.inInventory",
+                                    "propId": "a6bcab19-4d98-46ab-8fe6-52a4d3761dd4",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "has": true
+                                },
+                                "right": {
+                                    "type": "expressions.or",
+                                    "left": {
+                                        "type": "expressions.inInventory",
+                                        "propId": "1079772f-9fbf-4dad-b7a4-acea22601a60",
+                                        "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                        "has": true
+                                    },
+                                    "right": {
+                                        "type": "expressions.or",
+                                        "left": {
+                                            "type": "expressions.inInventory",
+                                            "propId": "91aa49b0-490a-4448-967d-d97387a985bb",
+                                            "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                            "has": true
+                                        },
+                                        "right": {
+                                            "type": "expressions.or",
+                                            "left": {
+                                                "type": "expressions.inInventory",
+                                                "propId": "a455851a-06a5-45a8-be4f-b1205302e816",
+                                                "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                "has": true
+                                            },
+                                            "right": {
+                                                "type": "expressions.or",
+                                                "left": {
+                                                    "type": "expressions.inInventory",
+                                                    "propId": "101bea4d-a217-47ee-b808-8c24df1454e8",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "has": true
+                                                },
+                                                "right": {
+                                                    "type": "expressions.inInventory",
+                                                    "propId": "6b99d059-b486-4547-abbc-8b3169478a39",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "has": true
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "8b843e61-bd9c-4832-a1ac-3dff989a5773",
+                                    "scope": "actor",
+                                    "scopeId": "b7cbd02d-8e2f-4a8d-99a7-02b132d86e1d",
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "GotGerhardGift",
+                                    "tagsToRemove": null
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "ea299351-dd64-48ca-878a-5b2b139fd2f7",
+                                    "scope": "actor",
+                                    "scopeId": "b7cbd02d-8e2f-4a8d-99a7-02b132d86e1d",
+                                    "scopeFilterId": null,
+                                    "tagsToRemove": "GotGerhardGift"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.changeTags",
+                    "id": "cadb9e93-c58b-4102-9b87-e8db0c4fadc3",
+                    "scope": "target",
+                    "scopeId": null,
+                    "scopeFilterId": null,
+                    "tagsToAdd": "GerhardVisible",
+                    "tagsToRemove": null
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.variableComparison",
+                                    "variableScope": "global",
+                                    "variableName": "time.hour",
+                                    "operator": "lt",
+                                    "compareTo": "19",
+                                    "sceneId": null,
+                                    "propId": null
+                                },
+                                "right": {
+                                    "type": "expressions.variableComparison",
+                                    "variableScope": "global",
+                                    "variableName": "time.hour",
+                                    "operator": "gte",
+                                    "compareTo": "6",
+                                    "sceneId": "eceae806-6f55-4cde-b517-c73b1c924fd9",
+                                    "propId": null
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.placeActor",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "spawnId": "f78007aa-fdcf-42e7-9a35-df5aff26b7d5",
+                                    "pose": null,
+                                    "behaviour": "Sitting",
+                                    "immediate": null
+                                },
+                                {
+                                    "type": "nodes.setCameraTarget",
+                                    "propId": "f499db24-5337-42a5-ac49-9d302dd2dc3d",
+                                    "actorId": null,
+                                    "time": 0,
+                                    "translateX": 0,
+                                    "translateY": 0,
+                                    "translateZ": 0,
+                                    "postWaitTime": 0,
+                                    "scope": "prop"
+                                },
+                                {
+                                    "type": "nodes.setCameraFOV",
+                                    "wait": false,
+                                    "fov": "6",
+                                    "time": 0
+                                },
+                                {
+                                    "type": "nodes.invokeScript",
+                                    "id": "f5aa95ac-9f1e-42d6-9637-6b172c97cc46",
+                                    "scriptId": "682e00b6-28e4-418c-82ba-21231b91952e",
+                                    "entryPointId": "705b2770-3555-4c09-ab49-f4bf74a2d316",
+                                    "currentScope": "Scenes",
+                                    "currentSceneId": "eceae806-6f55-4cde-b517-c73b1c924fd9",
+                                    "currentActorId": null,
+                                    "currentStoryEventId": null,
+                                    "currentPropId": null
+                                },
+                                {
+                                    "type": "nodes.changeScene",
+                                    "sceneId": "3256b6d8-50b9-4764-b016-01ea538ea55f",
+                                    "spawnId": "64e9b47d-81fd-4be0-850a-cbb569910796",
+                                    "fadeTime": 2
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

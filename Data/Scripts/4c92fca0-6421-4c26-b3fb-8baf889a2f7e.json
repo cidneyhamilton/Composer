@@ -1,0 +1,286 @@
+{
+    "type": "script",
+    "id": "4c92fca0-6421-4c26-b3fb-8baf889a2f7e",
+    "name": "Interact with Rose Bush",
+    "sceneId": "cf824b0f-5af6-4a19-bac8-552a2a1bbebf",
+    "propId": "f1fc3016-464d-4475-8d5f-668f4737b8e2",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "5a2c2ab5-842d-4a5a-85c1-7569640001e2",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "17525c70-56b0-40a0-8131-66d72b7b8aae",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "c7555a85-038b-4c39-b575-1a7655068c6f",
+                            "text": "Look at the Rose Bush",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "badfe48d-5598-4a40-b498-8eeed63a34d2",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "They say that if you love a flower that lives on a star, it's sweet to look at the sky at night... and that all the stars are abloom with flowers.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "9931074c-51be-41de-adc5-90463fece3f2",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "I'm not really sure <i>WHO</i> says that, but it's a nice thought.",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "313232cc-163e-413a-ac01-d91973562a57",
+                            "text": "Pick a Rose",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.and",
+                                                "left": {
+                                                    "type": "expressions.hasActiveQuest",
+                                                    "propId": "e009f0c5-f063-4fb3-b116-0ccd3b38329f",
+                                                    "sceneId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                                                    "questStatus": "0"
+                                                },
+                                                "right": {
+                                                    "type": "expressions.inTags",
+                                                    "scope": "target",
+                                                    "scopeId": null,
+                                                    "scopeFilterId": null,
+                                                    "tags": "pickedforMoira",
+                                                    "has": false
+                                                }
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "7872afb3-2820-487d-a71e-48db761ec0ae",
+                                                    "scope": "target",
+                                                    "scopeId": null,
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "pickedforMoira",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "49302b05-c6b7-4b4a-ad05-a35452e50f3f",
+                                                    "scope": "scene",
+                                                    "scopeId": "cf824b0f-5af6-4a19-bac8-552a2a1bbebf",
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "PickedRoseToday",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "ee7f6809-9010-4fbe-82e0-ac7ea94f2dd3",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Let's see, perfect roses... Well, that one looks nice... this other one looks fine. The rest look a little past their prime. So these two roses are good enough to give to Moira.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.changeInventory",
+                                                    "id": "5b132889-8702-4d5b-95bc-bc75f8d439d1",
+                                                    "propId": "6b99d059-b486-4547-abbc-8b3169478a39",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "change": "1",
+                                                    "count": "2",
+                                                    "notify": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.inTags",
+                                                                "scope": "scene",
+                                                                "scopeId": "cf824b0f-5af6-4a19-bac8-552a2a1bbebf",
+                                                                "scopeFilterId": null,
+                                                                "tags": "PickedRoseToday",
+                                                                "has": true
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "d42d1c4e-1b1d-47a8-8270-23b1ddf03686",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "If I pick too many roses today, I'll turn this rose bush into a roseless bush. That's enough.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": null,
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "c14fe7b1-0a59-477d-9b3f-ba41835d2e04",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "Now this is a lovely rose. I'm sure that there's someone who will appreciate it. ",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeTags",
+                                                                    "id": "34ea5669-f401-4d81-a3cb-fa6b9fb06227",
+                                                                    "scope": "scene",
+                                                                    "scopeId": "cf824b0f-5af6-4a19-bac8-552a2a1bbebf",
+                                                                    "scopeFilterId": null,
+                                                                    "tagsToAdd": "PickedRoseToday",
+                                                                    "tagsToRemove": null
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeInventory",
+                                                                    "id": "eb26e501-3d59-44a5-9b8d-c3945b79e820",
+                                                                    "propId": "6b99d059-b486-4547-abbc-8b3169478a39",
+                                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                                    "change": "1",
+                                                                    "count": 1,
+                                                                    "notify": true
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "32f9d680-a543-40ab-bff4-78adb2f71e44",
+                            "text": "Search the Rose Bush",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "prop",
+                                                "scopeId": "16e27ef6-589c-40ab-b256-c6dce4919624",
+                                                "scopeFilterId": "0f09f7d6-26b1-438e-aa73-fc5f6065ad9e",
+                                                "tags": "SearchedPlant",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "f08725cf-a451-4bd4-ab32-e8212b2f854f",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Okay, I'll pull aside a few of the branches...",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.comment",
+                                                    "message": "TODO: Insert leaf rustle sound effect",
+                                                    "commentor": "Cidney"
+                                                },
+                                                {
+                                                    "type": "nodes.playSoundEffect",
+                                                    "soundEffectName": "paper_rustle.wav",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "2a8c6f8c-fb38-446b-80fa-7ae7ef4b2c2d",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "... and I see (<i>ouch!</i>) nothing in there but (<i>ow!</i>) branches and (<i>ow!</i>) thorns! Did I really need to do this?",
+                                                    "emotion": "3",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "88433587-6860-4dc1-bea7-cc2084b494b3",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "They love roses. Aphids love roses. Besides, anyone can see there's nothing in there to find. Unless you like aphids!",
+                                                    "emotion": "3",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

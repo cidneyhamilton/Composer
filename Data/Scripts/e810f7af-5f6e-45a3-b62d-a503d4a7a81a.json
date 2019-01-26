@@ -1,0 +1,71 @@
+{
+    "type": "script",
+    "id": "e810f7af-5f6e-45a3-b62d-a503d4a7a81a",
+    "name": "SpottedEgo",
+    "actorId": "142ca46f-8406-4d7d-a554-a5955f5edf75",
+    "trigger": {
+        "type": "triggers.spottedEgo",
+        "name": "SpottedEgo"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "6563d08a-5d53-4e65-8695-b96267b46b69",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inTags",
+                                    "scope": "actor",
+                                    "scopeId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                    "scopeFilterId": null,
+                                    "tags": "KyroSaved",
+                                    "has": false
+                                },
+                                "right": {
+                                    "type": "expressions.and",
+                                    "left": {
+                                        "type": "expressions.variableComparison",
+                                        "variableScope": "global",
+                                        "variableName": "time.day",
+                                        "operator": "gte",
+                                        "compareTo": "32",
+                                        "sceneId": "e8606d3d-9743-4b44-a3b3-117a393b42ae",
+                                        "propId": null
+                                    },
+                                    "right": {
+                                        "type": "expressions.inTags",
+                                        "scope": "actor",
+                                        "scopeId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                        "scopeFilterId": null,
+                                        "tags": "KyroDead",
+                                        "has": false
+                                    }
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.invokeScript",
+                                    "id": "dc156177-443d-4444-ada3-355346dc058d",
+                                    "scriptId": "de9dd657-6f43-4ccc-92a3-8285dd8a47b4",
+                                    "entryPointId": "6563d08a-5d53-4e65-8695-b96267b46b69",
+                                    "currentScope": "Scenes",
+                                    "currentSceneId": "e8606d3d-9743-4b44-a3b3-117a393b42ae",
+                                    "currentActorId": null,
+                                    "currentStoryEventId": null,
+                                    "currentPropId": null
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

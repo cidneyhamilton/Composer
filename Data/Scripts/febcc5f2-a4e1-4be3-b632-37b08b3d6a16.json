@@ -1,0 +1,211 @@
+{
+    "type": "script",
+    "id": "febcc5f2-a4e1-4be3-b632-37b08b3d6a16",
+    "name": "Interact with F Exit",
+    "sceneId": "72d81484-b84f-475d-940b-c354978b3248",
+    "propId": "d97c3507-c241-4c63-9ac6-f15a0f7083bf",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "99414e16-e9be-4ef2-9d16-28cdb395cb16",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "88a2a61d-2cb1-4432-a2ab-828f17ab27d1",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "d676af1c-ec80-4828-924f-2e754512ef28",
+                            "text": "Examine the Door",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "7e61849b-f28a-40ca-8bac-8e52f7c4774c",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "The plaque on this door says that it leads back to Aedis in Umbra.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "target",
+                                                "scopeId": null,
+                                                "scopeFilterId": null,
+                                                "tags": "marked",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "ae3f66b7-7820-48cf-a900-a2fcd5ac5a7c",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "It's the Fred Door!",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "3",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "ecd95a22-a309-4937-8cb7-16c715776aeb",
+                            "text": "Listen at the Door",
+                            "nodes": [
+                                {
+                                    "type": "nodes.onceDaily",
+                                    "id": "c3538d45-9b52-406b-822c-90776f32a4c5",
+                                    "nodes": [
+                                        {
+                                            "id": "28fdddd7-eba7-4911-84f8-1e713e339ba9",
+                                            "type": "nodes.skillBranch",
+                                            "skill": "Perception",
+                                            "target": "70",
+                                            "success": {
+                                                "type": "nodes.block",
+                                                "nodes": []
+                                            },
+                                            "failure": {
+                                                "type": "nodes.block",
+                                                "nodes": []
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "a9042671-7f7f-4cbe-a820-260d6728b180",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Quiet... maybe too quiet...",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "bc09ab58-a839-48b6-a36c-7700e1014a55",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "I just get a kick out of saying that.",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": false,
+                            "minutes": "3",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "a9517331-8c64-4f01-8681-8a22ed33eaf8",
+                            "text": "Mark the Door",
+                            "nodes": [
+                                {
+                                    "type": "nodes.playSoundEffect",
+                                    "soundEffectName": "Using Chalk.wav",
+                                    "wait": false
+                                },
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "c7033c4e-d99b-43ef-8ff5-5105106b0bd7",
+                                    "scope": "target",
+                                    "scopeId": null,
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "marked",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "a588e8af-ba85-4d99-b245-a555d8ac620f",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "This really needs a friendlier name like Fred.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "target",
+                                "scopeId": null,
+                                "scopeFilterId": null,
+                                "tags": "marked",
+                                "has": false
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "2",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "bcd196a0-b4fa-431a-8e0b-943792899792",
+                            "text": "Open the Door",
+                            "nodes": [
+                                {
+                                    "type": "nodes.incrementTime",
+                                    "id": "94a16593-b3ad-464d-9551-942e614b37cd",
+                                    "days": 0,
+                                    "hours": 0,
+                                    "minutes": "5"
+                                },
+                                {
+                                    "type": "nodes.invokeScript",
+                                    "id": "30c1c6ed-246b-4fa6-bb15-71ff10ad75f6",
+                                    "scriptId": "0742870b-eb5a-49da-bff7-5caf4138f132",
+                                    "entryPointId": "99414e16-e9be-4ef2-9d16-28cdb395cb16",
+                                    "currentScope": "Scenes",
+                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                    "currentActorId": null,
+                                    "currentStoryEventId": null,
+                                    "currentPropId": null
+                                },
+                                {
+                                    "type": "nodes.changeScene",
+                                    "sceneId": "cbb5c07c-7918-4558-8c19-e4ed45b19ba2",
+                                    "spawnId": "43fcc956-7893-4abb-bbb3-812759d2652c",
+                                    "fadeTime": 2
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "2",
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,584 @@
+{
+    "type": "script",
+    "id": "482441ce-2236-46bc-a345-8979f37bee8c",
+    "name": "Dining Hall Ifetaya: Generic Conversation",
+    "sceneId": "bf8b9872-cbdd-47c6-997c-1cd3ad91bc1e",
+    "actorId": "a0b548d6-b820-451f-9508-8fc7fcf166bd",
+    "trigger": {
+        "type": "triggers.manual",
+        "name": "Manual"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "5a7d4ae9-5f11-4384-87d8-28fcb0f65387",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.speak",
+                    "id": "3f3eb9ce-b5e7-4f94-b635-dbb75c7ef233",
+                    "actorId": "a0b548d6-b820-451f-9508-8fc7fcf166bd",
+                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "text": "Ek'abo, Mister Shawn-Shawn.",
+                    "emotion": "1",
+                    "emotion2": "0",
+                    "device": "0",
+                    "device2": "0",
+                    "notes": ""
+                },
+                {
+                    "type": "nodes.speak",
+                    "id": "801d02bc-c665-457f-a952-a8fa40b8812b",
+                    "actorId": "4cc48e56-7f61-4887-ad13-4bf879f29b21",
+                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "text": "Hi-hi!",
+                    "emotion": "1",
+                    "emotion2": "1",
+                    "device": "0",
+                    "device2": "0",
+                    "notes": ""
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.hasActiveQuest",
+                                    "propId": "a304dd75-fa84-4f19-b461-145e74afd8a7",
+                                    "sceneId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                                    "questStatus": "0"
+                                },
+                                "right": {
+                                    "type": "expressions.inTags",
+                                    "scope": "actor",
+                                    "scopeId": "a0b548d6-b820-451f-9508-8fc7fcf166bd",
+                                    "scopeFilterId": null,
+                                    "tags": "DuppyTalk",
+                                    "has": false
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "96ae66d3-ebe1-41a3-83a8-b2e830294ebf",
+                                    "scope": "actor",
+                                    "scopeId": "a0b548d6-b820-451f-9508-8fc7fcf166bd",
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "DuppyTalk",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "2fbdb2eb-1258-4683-be9c-a78ffac259dd",
+                                    "actorId": "a0b548d6-b820-451f-9508-8fc7fcf166bd",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "There is something about you that says that the Duppies, they be wanting to talk to you.",
+                                    "emotion": "0",
+                                    "emotion2": "4",
+                                    "device": "0",
+                                    "device2": "0",
+                                    "notes": ""
+                                },
+                                {
+                                    "type": "nodes.invokeScript",
+                                    "id": "2b06d4f3-f419-4b66-93f9-23f9b5fd93e8",
+                                    "scriptId": "618854f1-7ed9-4746-8b2f-538c33c86c73",
+                                    "entryPointId": "5a7d4ae9-5f11-4384-87d8-28fcb0f65387",
+                                    "currentScope": "Scenes",
+                                    "currentSceneId": "bf8b9872-cbdd-47c6-997c-1cd3ad91bc1e",
+                                    "currentActorId": null,
+                                    "currentStoryEventId": null,
+                                    "currentPropId": null
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.showMenu",
+                    "id": "2f99eec6-f939-485e-981f-92af57d681d8",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "9f5cf5d1-5553-4b5c-8081-6ebd792694b9",
+                            "text": "Ask About Day",
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "76d520b2-68fc-4416-9de2-4824c6233322",
+                                    "scope": "actor",
+                                    "scopeId": "a0b548d6-b820-451f-9508-8fc7fcf166bd",
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "GreetedToday",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "9d135705-e7a9-4675-9922-aadb6fa492b9",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "a0b548d6-b820-451f-9508-8fc7fcf166bd",
+                                    "text": "How are things going for you today?",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0",
+                                    "notes": ""
+                                },
+                                {
+                                    "type": "nodes.changeReputation",
+                                    "id": "c66638c3-4ae2-4a06-bdff-cb6170eb8742",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "amount": "1",
+                                    "change": "1",
+                                    "notify": true
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "d94efe8e-ff48-4994-a3df-ff1dc5d71e08",
+                                    "actorId": "a0b548d6-b820-451f-9508-8fc7fcf166bd",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "Things go well, as usual. E se, Mister Shawn-Shawn, thank you.",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0",
+                                    "notes": ""
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "actor",
+                                "scopeId": "a0b548d6-b820-451f-9508-8fc7fcf166bd",
+                                "scopeFilterId": null,
+                                "tags": "GreetedToday",
+                                "has": false
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "2",
+                            "ExitMenu": false,
+                            "notes": ""
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "a4e2dc2e-05cd-44bb-927a-72cc632ee47a",
+                            "text": "Tell About Joel and the Wraith",
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "4a97704c-524e-419b-9a37-00b3b858918f",
+                                    "scope": "actor",
+                                    "scopeId": "a0b548d6-b820-451f-9508-8fc7fcf166bd",
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "WraithTalk",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "ed67c2a1-9683-49bd-a284-b941d5a06df7",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "a0b548d6-b820-451f-9508-8fc7fcf166bd",
+                                    "text": "I've found my missing classmate in the Catacombs, but he's guarded by a Wraith...",
+                                    "emotion": "0",
+                                    "emotion2": "4",
+                                    "device": "0",
+                                    "device2": "0",
+                                    "notes": ""
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "6a1c7971-4999-45d7-babf-e9ef0e6fdaac",
+                                    "actorId": "a0b548d6-b820-451f-9508-8fc7fcf166bd",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "A Wraith, it is one of the worst of the bad Duppies. It can be defeated by combat, but it cannot be destroyed unless its <i>ọkàn</i> is destroyed as well.",
+                                    "emotion": "3",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0",
+                                    "notes": ""
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "787aa520-1074-4893-aa92-5add45722c0c",
+                                    "actorId": "a0b548d6-b820-451f-9508-8fc7fcf166bd",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "This is not a Duppy to be spoken to, it brings only pain and death. Do not try to face the Wraith, my Shawn-Shawn. Speak with Lady Moira. She will know the way to deal with such a thing.",
+                                    "emotion": "3",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0",
+                                    "notes": ""
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "28994029-8cf0-4996-8641-3499cc0370f4",
+                                    "actorId": "a0b548d6-b820-451f-9508-8fc7fcf166bd",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "I hope that she can save your friend.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0",
+                                    "notes": ""
+                                },
+                                {
+                                    "type": "nodes.changeScene",
+                                    "sceneId": "40f18665-4cc2-4acd-b17e-5189e68b7a33",
+                                    "spawnId": "79718290-002e-41e8-b58f-bb747de925d0",
+                                    "fadeTime": 2
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inTags",
+                                    "scope": "actor",
+                                    "scopeId": "fb00cd5f-e210-44b2-bc7d-5384a9a3db74",
+                                    "scopeFilterId": null,
+                                    "tags": "Encountered",
+                                    "has": true
+                                },
+                                "right": {
+                                    "type": "expressions.and",
+                                    "left": {
+                                        "type": "expressions.variableComparison",
+                                        "variableScope": "global",
+                                        "variableName": "time.day",
+                                        "operator": "lte",
+                                        "compareTo": "33",
+                                        "sceneId": "bf8b9872-cbdd-47c6-997c-1cd3ad91bc1e",
+                                        "propId": null
+                                    },
+                                    "right": {
+                                        "type": "expressions.and",
+                                        "left": {
+                                            "type": "expressions.inTags",
+                                            "scope": "actor",
+                                            "scopeId": "a0b548d6-b820-451f-9508-8fc7fcf166bd",
+                                            "scopeFilterId": null,
+                                            "tags": "WraithTalk",
+                                            "has": false
+                                        },
+                                        "right": {
+                                            "type": "expressions.inTags",
+                                            "scope": "actor",
+                                            "scopeId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                            "scopeFilterId": null,
+                                            "tags": "KyroSaved",
+                                            "has": false
+                                        }
+                                    }
+                                }
+                            },
+                            "ignoreChildAvailability": false,
+                            "minutes": "5",
+                            "ExitMenu": true,
+                            "notes": ""
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "4d56cb0b-e02a-4cde-8b16-25a0e81e8f2f",
+                            "text": "Ask About Working in the Kitchen",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "33cda8df-a7bd-43cc-b303-aaa56ea4050a",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "a0b548d6-b820-451f-9508-8fc7fcf166bd",
+                                    "text": "Do you have some work for me to do?",
+                                    "emotion": "0",
+                                    "emotion2": "1",
+                                    "device": "0",
+                                    "device2": "0",
+                                    "notes": ""
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "global",
+                                                "variableName": "time.hour",
+                                                "operator": "gte",
+                                                "compareTo": "19",
+                                                "sceneId": null,
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.onceOnly",
+                                                    "id": "5d3923f8-f057-4959-b806-68eea7748713",
+                                                    "nodes": [
+                                                        {
+                                                            "type": "nodes.changeReputation",
+                                                            "id": "9583f874-df53-4841-9727-e132dfd33e2e",
+                                                            "actorId": "a0b548d6-b820-451f-9508-8fc7fcf166bd",
+                                                            "amount": "2",
+                                                            "change": "1",
+                                                            "notify": true
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "03c357c9-19ea-4531-b40c-11bfa67b14e4",
+                                                    "actorId": "a0b548d6-b820-451f-9508-8fc7fcf166bd",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "There is much work for you to do. Let us get started...",
+                                                    "emotion": "1",
+                                                    "emotion2": "2",
+                                                    "device": "0",
+                                                    "device2": "0",
+                                                    "notes": ""
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "79b97461-4bc8-4729-b971-65bdb762469b",
+                                                    "scriptId": "6d1f461f-865a-4ee5-9965-0f2b2076b3e1",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "bf8b9872-cbdd-47c6-997c-1cd3ad91bc1e",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "9f73d296-722b-4e07-afd0-52eaaf3a8681",
+                                                    "actorId": "a0b548d6-b820-451f-9508-8fc7fcf166bd",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "Come back after supper and I shall be putting you to work.",
+                                                    "emotion": "1",
+                                                    "emotion2": "2",
+                                                    "device": "0",
+                                                    "device2": "0",
+                                                    "notes": ""
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "scene",
+                                "scopeId": "bf8b9872-cbdd-47c6-997c-1cd3ad91bc1e",
+                                "scopeFilterId": null,
+                                "tags": "WorkedToday",
+                                "has": false
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "1",
+                            "ExitMenu": false,
+                            "notes": ""
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "99492d25-4dd7-4045-be03-e576527a82e7",
+                            "text": "Ask About Talking to Ghosts",
+                            "nodes": [
+                                {
+                                    "type": "nodes.invokeScript",
+                                    "id": "bb643478-f54f-4613-a621-933b277997ed",
+                                    "scriptId": "618854f1-7ed9-4746-8b2f-538c33c86c73",
+                                    "entryPointId": "",
+                                    "currentScope": "Scenes",
+                                    "currentSceneId": "bf8b9872-cbdd-47c6-997c-1cd3ad91bc1e",
+                                    "currentActorId": null,
+                                    "currentStoryEventId": null,
+                                    "currentPropId": null
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inTags",
+                                    "scope": "actor",
+                                    "scopeId": "a0b548d6-b820-451f-9508-8fc7fcf166bd",
+                                    "scopeFilterId": null,
+                                    "tags": "DuppyTalk",
+                                    "has": false
+                                },
+                                "right": {
+                                    "type": "expressions.and",
+                                    "left": {
+                                        "type": "expressions.hasActiveQuest",
+                                        "propId": "a304dd75-fa84-4f19-b461-145e74afd8a7",
+                                        "sceneId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                                        "questStatus": "0"
+                                    },
+                                    "right": {
+                                        "type": "expressions.variableComparison",
+                                        "variableScope": "global",
+                                        "variableName": "time.day",
+                                        "operator": "gte",
+                                        "compareTo": "36",
+                                        "sceneId": "bf8b9872-cbdd-47c6-997c-1cd3ad91bc1e",
+                                        "propId": null
+                                    }
+                                }
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false,
+                            "notes": ""
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "1a209f14-aa30-4437-ba3d-f9192868c5cf",
+                            "text": "Make a Gris-Gris",
+                            "nodes": [
+                                {
+                                    "type": "nodes.invokeScript",
+                                    "id": "e30efefd-b051-4888-8ded-b028ebf058eb",
+                                    "scriptId": "fcdb5d78-b9ac-4ee7-91d8-372dedc09c12",
+                                    "entryPointId": "",
+                                    "currentScope": "Scenes",
+                                    "currentSceneId": "bf8b9872-cbdd-47c6-997c-1cd3ad91bc1e",
+                                    "currentActorId": null,
+                                    "currentStoryEventId": null,
+                                    "currentPropId": null
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inTags",
+                                    "scope": "actor",
+                                    "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "scopeFilterId": null,
+                                    "tags": "fgris",
+                                    "has": true
+                                },
+                                "right": {
+                                    "type": "expressions.inInventory",
+                                    "propId": "34e8cb8d-654c-4e30-81d2-11a9e533e39e",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "has": false
+                                }
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "5",
+                            "ExitMenu": false,
+                            "notes": ""
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "2acf81de-854c-4f84-8cf5-c13cb23b9eaf",
+                            "text": "Ask About Summoning Ghosts",
+                            "nodes": [
+                                {
+                                    "type": "nodes.invokeScript",
+                                    "id": "9c87e3d2-861c-4884-934c-90f6e9a2796e",
+                                    "scriptId": "84e7153e-ef7f-40bb-a459-1a01bbcb57ef",
+                                    "entryPointId": "2e1cc4d7-9408-48e3-8931-d4a8fe0e6183",
+                                    "currentScope": "Scenes",
+                                    "currentSceneId": "bf8b9872-cbdd-47c6-997c-1cd3ad91bc1e",
+                                    "currentActorId": null,
+                                    "currentStoryEventId": null,
+                                    "currentPropId": null
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inTags",
+                                    "scope": "scene",
+                                    "scopeId": "e01d8134-66fb-415c-ada1-c9446206097f",
+                                    "scopeFilterId": null,
+                                    "tags": "summoneddonal",
+                                    "has": false
+                                },
+                                "right": {
+                                    "type": "expressions.and",
+                                    "left": {
+                                        "type": "expressions.inTags",
+                                        "scope": "actor",
+                                        "scopeId": "a0b548d6-b820-451f-9508-8fc7fcf166bd",
+                                        "scopeFilterId": null,
+                                        "tags": "SummoningTalk",
+                                        "has": false
+                                    },
+                                    "right": {
+                                        "type": "expressions.enteredScene",
+                                        "sceneId": "e01d8134-66fb-415c-ada1-c9446206097f",
+                                        "scope": "DuringGame",
+                                        "operator": "gt",
+                                        "count": 0
+                                    }
+                                }
+                            },
+                            "ignoreChildAvailability": false,
+                            "minutes": "15",
+                            "ExitMenu": false,
+                            "notes": ""
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "37877fb8-732b-449f-ae13-c9ce86fc70df",
+                            "text": "Say Goodbye",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "a12ddc13-cf5c-4a03-b970-75baa2b45e50",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "a0b548d6-b820-451f-9508-8fc7fcf166bd",
+                                    "text": "I'll be seeing you later.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0",
+                                    "notes": ""
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "8eb61553-ab4d-4a3b-89e3-cb97d1960c6e",
+                                    "actorId": "a0b548d6-b820-451f-9508-8fc7fcf166bd",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "Mari e laipe, Mister Shawn-Shawn.",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0",
+                                    "notes": ""
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "6fe0c220-1f7e-46c5-bc1f-d06de5900bd5",
+                                    "actorId": "4cc48e56-7f61-4887-ad13-4bf879f29b21",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "Bye-bye.",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0",
+                                    "notes": ""
+                                },
+                                {
+                                    "type": "nodes.endScript"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "2",
+                            "ExitMenu": true,
+                            "notes": ""
+                        }
+                    ],
+                    "AutoAddDone": false,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,334 @@
+{
+    "type": "script",
+    "id": "483a1e62-879c-4137-bf00-f986190388bd",
+    "name": "_Load Winecellar Main",
+    "sceneId": "a670cb9b-f14e-4b92-b052-fbb75035f7fe",
+    "trigger": {
+        "type": "triggers.load",
+        "name": "Load"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "0e87da97-6a33-4e22-808c-f0921bcc21aa",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.changeTags",
+                    "id": "2ff56056-392a-4ab3-95f0-8eb30de249b9",
+                    "scope": "scene",
+                    "scopeId": "a670cb9b-f14e-4b92-b052-fbb75035f7fe",
+                    "scopeFilterId": null,
+                    "tagsToRemove": "noDrats"
+                },
+                {
+                    "type": "nodes.changePropVisibility",
+                    "id": "41955965-fe87-4737-9894-84d61b04736e",
+                    "propId": "d13ff05e-116d-4495-8581-fd457407da9e",
+                    "sceneId": "a670cb9b-f14e-4b92-b052-fbb75035f7fe",
+                    "status": "Hidden",
+                    "wait": false
+                },
+                {
+                    "type": "nodes.changePropVisibility",
+                    "id": "a9763694-5fe0-4cec-9134-591cb11286a5",
+                    "propId": "5e57880e-0418-4884-872b-c5da709ff47d",
+                    "sceneId": "a670cb9b-f14e-4b92-b052-fbb75035f7fe",
+                    "status": "Hidden",
+                    "wait": false
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.variableComparison",
+                                    "variableScope": "global",
+                                    "variableName": "time.day",
+                                    "operator": "gte",
+                                    "compareTo": "6",
+                                    "sceneId": null,
+                                    "propId": null
+                                },
+                                "right": {
+                                    "type": "expressions.and",
+                                    "left": {
+                                        "type": "expressions.variableComparison",
+                                        "variableScope": "global",
+                                        "variableName": "time.day",
+                                        "operator": "lte",
+                                        "compareTo": "8",
+                                        "sceneId": null,
+                                        "propId": null
+                                    },
+                                    "right": {
+                                        "type": "expressions.and",
+                                        "left": {
+                                            "type": "expressions.inTags",
+                                            "scope": "scene",
+                                            "scopeId": "a670cb9b-f14e-4b92-b052-fbb75035f7fe",
+                                            "scopeFilterId": null,
+                                            "tags": "metWolf1",
+                                            "has": false
+                                        },
+                                        "right": {
+                                            "type": "expressions.and",
+                                            "left": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "global",
+                                                "variableName": "time.hour",
+                                                "operator": "gte",
+                                                "compareTo": "10",
+                                                "sceneId": "a670cb9b-f14e-4b92-b052-fbb75035f7fe",
+                                                "propId": null
+                                            },
+                                            "right": {
+                                                "type": "expressions.inTags",
+                                                "scope": "scene",
+                                                "scopeId": "af912e02-46a1-4d88-a547-59f3d2093c7b",
+                                                "scopeFilterId": null,
+                                                "tags": "EsmeLeftStore",
+                                                "has": false
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.comment",
+                                    "message": "Making sure it's not after midnight. This prevents you from running into Esme on your way back after entering the Wine Cellar late on Day 5.",
+                                    "commentor": "Cidney"
+                                },
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "6e83fd10-90c4-4f5f-8c29-b29e61c64948",
+                                    "scope": "scene",
+                                    "scopeId": "a670cb9b-f14e-4b92-b052-fbb75035f7fe",
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "noDrats",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.changePropVisibility",
+                                    "id": "6320d6f2-b319-4476-97d3-bc359e0f9324",
+                                    "propId": "5e57880e-0418-4884-872b-c5da709ff47d",
+                                    "sceneId": "a670cb9b-f14e-4b92-b052-fbb75035f7fe",
+                                    "status": "Visible",
+                                    "wait": false
+                                },
+                                {
+                                    "type": "nodes.placeActor",
+                                    "actorId": "4abf0da8-6b3f-48f1-9f9c-aa04cbb4d11e",
+                                    "spawnId": "6f1ff0f3-bf22-4914-9ff9-0d8ef6cf6b3b",
+                                    "pose": null,
+                                    "behaviour": "Sitting",
+                                    "immediate": null
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.variableComparison",
+                                    "variableScope": "global",
+                                    "variableName": "time.day",
+                                    "operator": "gte",
+                                    "compareTo": "11",
+                                    "sceneId": null,
+                                    "propId": null
+                                },
+                                "right": {
+                                    "type": "expressions.and",
+                                    "left": {
+                                        "type": "expressions.variableComparison",
+                                        "variableScope": "global",
+                                        "variableName": "time.day",
+                                        "operator": "lte",
+                                        "compareTo": "14",
+                                        "sceneId": null,
+                                        "propId": null
+                                    },
+                                    "right": {
+                                        "type": "expressions.and",
+                                        "left": {
+                                            "type": "expressions.inTags",
+                                            "scope": "scene",
+                                            "scopeId": "a670cb9b-f14e-4b92-b052-fbb75035f7fe",
+                                            "scopeFilterId": null,
+                                            "tags": "metWolf2",
+                                            "has": false
+                                        },
+                                        "right": {
+                                            "type": "expressions.and",
+                                            "left": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "global",
+                                                "variableName": "time.hour",
+                                                "operator": "gte",
+                                                "compareTo": "10",
+                                                "sceneId": "a670cb9b-f14e-4b92-b052-fbb75035f7fe",
+                                                "propId": null
+                                            },
+                                            "right": {
+                                                "type": "expressions.inTags",
+                                                "scope": "scene",
+                                                "scopeId": "af912e02-46a1-4d88-a547-59f3d2093c7b",
+                                                "scopeFilterId": null,
+                                                "tags": "EsmeLeftStore",
+                                                "has": false
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.comment",
+                                    "message": "Making sure it's not after midnight. This prevents you from running into Esme on your way back after entering the Wine Cellar late on Day 9.",
+                                    "commentor": "Cidney"
+                                },
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "9e217e8a-c627-4f16-a2f4-739d06cb0e0e",
+                                    "scope": "scene",
+                                    "scopeId": "a670cb9b-f14e-4b92-b052-fbb75035f7fe",
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "noDrats",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.changePropVisibility",
+                                    "id": "0d519f9c-59ae-4b1c-a664-bf1586755b30",
+                                    "propId": "5e57880e-0418-4884-872b-c5da709ff47d",
+                                    "sceneId": "a670cb9b-f14e-4b92-b052-fbb75035f7fe",
+                                    "status": "Visible",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.placeActor",
+                                    "actorId": "4abf0da8-6b3f-48f1-9f9c-aa04cbb4d11e",
+                                    "spawnId": "6f1ff0f3-bf22-4914-9ff9-0d8ef6cf6b3b",
+                                    "pose": null,
+                                    "behaviour": "Sitting",
+                                    "immediate": null
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.variableComparison",
+                                    "variableScope": "global",
+                                    "variableName": "time.day",
+                                    "operator": "gte",
+                                    "compareTo": "41",
+                                    "sceneId": "a670cb9b-f14e-4b92-b052-fbb75035f7fe",
+                                    "propId": null
+                                },
+                                "right": {
+                                    "type": "expressions.variableComparison",
+                                    "variableScope": "global",
+                                    "variableName": "time.day",
+                                    "operator": "lte",
+                                    "compareTo": "43",
+                                    "sceneId": "a670cb9b-f14e-4b92-b052-fbb75035f7fe",
+                                    "propId": null
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.changePropVisibility",
+                                    "id": "a6cd4ebd-8ff0-47d3-ad12-01bd470bfc1f",
+                                    "propId": "1734b6db-3097-4371-a10f-d1bd9131b183",
+                                    "sceneId": "a670cb9b-f14e-4b92-b052-fbb75035f7fe",
+                                    "status": "Visible",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.changePropVisibility",
+                                    "id": "deb88225-191b-4817-ab9e-b8613c57c043",
+                                    "propId": "521e3095-a1a9-457d-936d-f838a447a09e",
+                                    "sceneId": "a670cb9b-f14e-4b92-b052-fbb75035f7fe",
+                                    "status": "Hidden",
+                                    "wait": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.changePropVisibility",
+                                    "id": "849e6baf-d840-4cec-bb8c-0b7b63110f6b",
+                                    "propId": "1734b6db-3097-4371-a10f-d1bd9131b183",
+                                    "sceneId": "a670cb9b-f14e-4b92-b052-fbb75035f7fe",
+                                    "status": "Hidden",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "scene",
+                                                "scopeId": "a670cb9b-f14e-4b92-b052-fbb75035f7fe",
+                                                "scopeFilterId": null,
+                                                "tags": "noDrats",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changePropVisibility",
+                                                    "id": "59e27feb-f7c7-4f48-bfd8-ce7db713669b",
+                                                    "propId": "521e3095-a1a9-457d-936d-f838a447a09e",
+                                                    "sceneId": "a670cb9b-f14e-4b92-b052-fbb75035f7fe",
+                                                    "status": "Hidden",
+                                                    "wait": false
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changePropVisibility",
+                                                    "id": "dec8af5e-68e0-4436-944a-30430afbf2bb",
+                                                    "propId": "521e3095-a1a9-457d-936d-f838a447a09e",
+                                                    "sceneId": "a670cb9b-f14e-4b92-b052-fbb75035f7fe",
+                                                    "status": "Visible",
+                                                    "wait": false
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,1730 @@
+{
+    "type": "script",
+    "id": "17ce6462-ec1f-4bb7-8b2f-77d786fd540e",
+    "name": "Interact with Locks Room Door",
+    "sceneId": "3256b6d8-50b9-4764-b016-01ea538ea55f",
+    "propId": "5f27a0af-9741-4d40-a128-2918de24572a",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "5d71cb8e-bcbb-486e-84c3-a8f94922a322",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "efae3d93-51e8-409c-b38a-0fa45ef489e3",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "f4ca7b77-ecb4-4aba-b2ce-4822f5743488",
+                            "text": "Look at the Door",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "global",
+                                                "variableName": "time.day",
+                                                "operator": "lt",
+                                                "compareTo": "10",
+                                                "sceneId": "3256b6d8-50b9-4764-b016-01ea538ea55f",
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "81dae9bb-4900-43ab-99bc-4ff6bec573ae",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "A locked door. It says \"Locks\" on it. Seems appropriate to me.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0",
+                                                    "notes": ""
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "3c819a65-66b3-4aca-b3f3-e8044888c85c",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "I'm supposed to go in there to practice my lockpicking skills, but I might need to practice just to get inside!",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0",
+                                                    "notes": ""
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "2",
+                            "ExitMenu": false,
+                            "notes": ""
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "2855ced3-b037-4801-8a83-dec5c08e2bab",
+                            "text": "Knock on the Door",
+                            "nodes": [
+                                {
+                                    "type": "nodes.comment",
+                                    "message": "Allowing Shawn to knock multiple times; he'll get the same response.",
+                                    "commentor": "Cidney"
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "target",
+                                                "scopeId": null,
+                                                "scopeFilterId": null,
+                                                "tags": "hasKnocked",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.incrementTime",
+                                                    "id": "4615c7f0-a6ba-4935-8fa2-b6b8e5f34d53",
+                                                    "days": 0,
+                                                    "hours": 0,
+                                                    "minutes": "3"
+                                                },
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "70c002a6-7375-4a7c-bcfb-1b72f1393f2a",
+                                                    "scope": "target",
+                                                    "scopeId": null,
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "hasKnocked",
+                                                    "tagsToRemove": null
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "e1997bc4-53e2-405b-bba6-ea2d684b27ab",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Well, if anyone is in there, maybe they can just let me in.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0",
+                                    "notes": ""
+                                },
+                                {
+                                    "type": "nodes.invokeScript",
+                                    "id": "a5771e29-34e8-43a2-96ca-75029a8a37d2",
+                                    "scriptId": "2ac786eb-d545-4fdc-8ccf-9202b275283b",
+                                    "entryPointId": "5d71cb8e-bcbb-486e-84c3-a8f94922a322",
+                                    "currentScope": "Scenes",
+                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                    "currentActorId": null,
+                                    "currentStoryEventId": null,
+                                    "currentPropId": null
+                                },
+                                {
+                                    "type": "nodes.comment",
+                                    "message": "Doing these as simple conversations, but we could expand it to include Skill checks (charm, smarts, etc) or Rep checks to actually let Shawn in if he succeeds.",
+                                    "commentor": "Charles"
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.or",
+                                                "left": {
+                                                    "type": "expressions.variableComparison",
+                                                    "variableScope": "global",
+                                                    "variableName": "time.hour",
+                                                    "operator": "lte",
+                                                    "compareTo": "6",
+                                                    "sceneId": "3256b6d8-50b9-4764-b016-01ea538ea55f",
+                                                    "propId": null
+                                                },
+                                                "right": {
+                                                    "type": "expressions.variableComparison",
+                                                    "variableScope": "global",
+                                                    "variableName": "time.hour",
+                                                    "operator": "gte",
+                                                    "compareTo": "17",
+                                                    "sceneId": "3256b6d8-50b9-4764-b016-01ea538ea55f",
+                                                    "propId": null
+                                                }
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.wait",
+                                                    "waitForSeconds": "2"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "72208f76-7b3d-4b38-a220-9dd395340608",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "I guess no one is in there right now.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0",
+                                                    "notes": ""
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "global",
+                                                "variableName": "time.day",
+                                                "operator": "eq",
+                                                "compareTo": "10",
+                                                "sceneId": "3256b6d8-50b9-4764-b016-01ea538ea55f",
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "4a4a86e4-f80e-4819-937f-a0b10c473870",
+                                                    "scope": "target",
+                                                    "scopeId": "5f27a0af-9741-4d40-a128-2918de24572a",
+                                                    "scopeFilterId": "3256b6d8-50b9-4764-b016-01ea538ea55f",
+                                                    "tagsToAdd": "knocked_Day10",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "24ebe953-c673-4913-a3c9-98b89034779e",
+                                                    "actorId": "bdddd1b1-bbf3-4dd5-bbd6-0ef3115d8b66",
+                                                    "actorId2": null,
+                                                    "text": "Hello? Who's there?",
+                                                    "emotion": "4",
+                                                    "emotion2": "0",
+                                                    "device": "1",
+                                                    "device2": "0",
+                                                    "notes": ""
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "e21725fd-51cd-4f9b-b34c-c7ecd4731576",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Hey Thomas! It's Shawn! I seem to have lost my key... can you let me in?",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0",
+                                                    "notes": ""
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "56d5cde4-fda8-4ab8-a48a-fcc18b685b08",
+                                                    "actorId": "bdddd1b1-bbf3-4dd5-bbd6-0ef3115d8b66",
+                                                    "actorId2": null,
+                                                    "text": "I'm sorry, Shawn, but I believe Master Urwald meant for each of us to pick the lock to gain access this room. ",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "1",
+                                                    "device2": "0",
+                                                    "notes": ""
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "439833af-c5f2-44b8-b711-cb1ef60098da",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "But how can I practice and actually learn to pick locks without access to the lock room?",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0",
+                                                    "notes": ""
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "4e80992d-d1d2-4986-af8d-23f092701ae4",
+                                                    "actorId": "bdddd1b1-bbf3-4dd5-bbd6-0ef3115d8b66",
+                                                    "actorId2": null,
+                                                    "text": "All I can say is that if you can't pick the lock on the door, there's little this room will be able to offer you but more frustration. I'd suggest you find a good book in the library on the matter.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "1",
+                                                    "device2": "0",
+                                                    "notes": ""
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "global",
+                                                "variableName": "time.day",
+                                                "operator": "eq",
+                                                "compareTo": "17",
+                                                "sceneId": "3256b6d8-50b9-4764-b016-01ea538ea55f",
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "224cc94d-0205-44ac-b253-f829af41217d",
+                                                    "scope": "target",
+                                                    "scopeId": "5f27a0af-9741-4d40-a128-2918de24572a",
+                                                    "scopeFilterId": "3256b6d8-50b9-4764-b016-01ea538ea55f",
+                                                    "tagsToAdd": "knocked_Day17",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "e56611d5-7bbd-4b93-83f9-5109ca4634aa",
+                                                    "actorId": "98ea49aa-86cf-4fa9-9bd5-6aa2fe7c809d",
+                                                    "actorId2": null,
+                                                    "text": "Yes? Who is there?",
+                                                    "emotion": "4",
+                                                    "emotion2": "0",
+                                                    "device": "1",
+                                                    "device2": "0",
+                                                    "notes": ""
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "40d9af0b-4eec-4ae8-814b-57d14671625e",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Esme! It's Shawn! I'm a bit stuck out here... can you open the door?",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0",
+                                                    "notes": ""
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.inTags",
+                                                                "scope": "target",
+                                                                "scopeId": null,
+                                                                "scopeFilterId": null,
+                                                                "tags": "knocked_day10",
+                                                                "has": true
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "1e317a82-79e9-46fc-8b1f-aa44dd618978",
+                                                                    "actorId": "bdddd1b1-bbf3-4dd5-bbd6-0ef3115d8b66",
+                                                                    "actorId2": null,
+                                                                    "text": "You still can't manage the lock Shawn? You really need to study the book about lockpicking. It's in the library.",
+                                                                    "emotion": "2",
+                                                                    "emotion2": "0",
+                                                                    "device": "1",
+                                                                    "device2": "0",
+                                                                    "notes": ""
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "a6cc38fa-e447-4426-986f-860cbe68e853",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "Oh, Thomas... you're in there too?",
+                                                                    "emotion": "4",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0",
+                                                                    "notes": ""
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "fbf58ded-ceec-426a-9338-9d90be4d9fa0",
+                                                    "actorId": "98ea49aa-86cf-4fa9-9bd5-6aa2fe7c809d",
+                                                    "actorId2": null,
+                                                    "text": "Silly Shawn, ve can't just let you in - that vould be cheating.",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "1",
+                                                    "device2": "0",
+                                                    "notes": ""
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "bc718f1e-a41e-4082-98c9-40103c7c6e90",
+                                                    "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                                    "actorId2": null,
+                                                    "text": "Yeah. Some of us worked really hard to get in here, you can't just get a free pass.",
+                                                    "emotion": "4",
+                                                    "emotion2": "0",
+                                                    "device": "1",
+                                                    "device2": "0",
+                                                    "notes": ""
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "global",
+                                                "variableName": "time.day",
+                                                "operator": "eq",
+                                                "compareTo": "18",
+                                                "sceneId": "3256b6d8-50b9-4764-b016-01ea538ea55f",
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "c7ea0b93-62f1-4e10-8110-f98af5b189ff",
+                                                    "scope": "target",
+                                                    "scopeId": "5f27a0af-9741-4d40-a128-2918de24572a",
+                                                    "scopeFilterId": "3256b6d8-50b9-4764-b016-01ea538ea55f",
+                                                    "tagsToAdd": "knocked_Day18",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "8f17d9b4-3a95-433c-b64b-1142151625a1",
+                                                    "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                                    "actorId2": null,
+                                                    "text": "Who is it?",
+                                                    "emotion": "4",
+                                                    "emotion2": "0",
+                                                    "device": "1",
+                                                    "device2": "0",
+                                                    "notes": ""
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "9b504ff7-2c6d-44c4-bcee-addba8da5c30",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Hey Katie! It's Shawn! Would you let me in?",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0",
+                                                    "notes": ""
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.inTags",
+                                                                "scope": "target",
+                                                                "scopeId": null,
+                                                                "scopeFilterId": null,
+                                                                "tags": "knocked_day17",
+                                                                "has": true
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "58b022d0-3aab-4479-80f0-21f411668b09",
+                                                                    "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                                                    "actorId2": null,
+                                                                    "text": "You still have trouble with that lock? It's the simplest one!",
+                                                                    "emotion": "2",
+                                                                    "emotion2": "0",
+                                                                    "device": "1",
+                                                                    "device2": "0",
+                                                                    "notes": ""
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.inTags",
+                                                                "scope": "actor",
+                                                                "scopeId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                                                "scopeFilterId": null,
+                                                                "tags": "lockpickhelp",
+                                                                "has": true
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "45aec39d-543e-4058-afff-8abd0044a50d",
+                                                                    "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                                                    "actorId2": null,
+                                                                    "text": "Geez, weren't you the one trying to tell me how to pick locks? And now you can't even make it in here yourself?",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "1",
+                                                                    "device2": "0",
+                                                                    "notes": ""
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "8bf69731-4461-4be6-a946-b2d218349fec",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "I just though maybe you could save me the trouble...",
+                                                                    "emotion": "2",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0",
+                                                                    "notes": ""
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "974c173d-7f78-4015-aa92-64f91ba3804f",
+                                                    "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                                    "actorId2": null,
+                                                    "text": "You know I can't just let you in. If the Master found out, we'd both get in trouble.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "1",
+                                                    "device2": "0",
+                                                    "notes": ""
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "global",
+                                                "variableName": "time.day",
+                                                "operator": "eq",
+                                                "compareTo": "22",
+                                                "sceneId": "3256b6d8-50b9-4764-b016-01ea538ea55f",
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "932b0cde-fdc4-4e25-aa2f-c324c55d40d0",
+                                                    "actorId": "98ea49aa-86cf-4fa9-9bd5-6aa2fe7c809d",
+                                                    "actorId2": null,
+                                                    "text": "Yes? Is someone there?",
+                                                    "emotion": "4",
+                                                    "emotion2": "0",
+                                                    "device": "1",
+                                                    "device2": "0",
+                                                    "notes": ""
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "12347207-1659-4262-b1d6-c0a8c3bff496",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Hi Esme. Think you could open the door for me?",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0",
+                                                    "notes": ""
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.inTags",
+                                                                "scope": "target",
+                                                                "scopeId": null,
+                                                                "scopeFilterId": null,
+                                                                "tags": "knocked_day17",
+                                                                "has": true
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "5d59d458-99d8-4079-8fa4-13840ea7b368",
+                                                                    "actorId": "98ea49aa-86cf-4fa9-9bd5-6aa2fe7c809d",
+                                                                    "actorId2": null,
+                                                                    "text": "Are you skulking out there again? Vhy don't you just learn how to pick the lock like you are supposed to?",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "1",
+                                                                    "device2": "0",
+                                                                    "notes": ""
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.inTags",
+                                                                "scope": "target",
+                                                                "scopeId": null,
+                                                                "scopeFilterId": null,
+                                                                "tags": "knocked_day10",
+                                                                "has": true
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "41d83fab-dd4c-4f9d-9bc0-4d67746682f6",
+                                                                    "actorId": "bdddd1b1-bbf3-4dd5-bbd6-0ef3115d8b66",
+                                                                    "actorId2": null,
+                                                                    "text": "We still can't let you in here, Shawn. You really should study up in the Library.",
+                                                                    "emotion": "2",
+                                                                    "emotion2": "0",
+                                                                    "device": "1",
+                                                                    "device2": "0",
+                                                                    "notes": ""
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.inTags",
+                                                                "scope": "target",
+                                                                "scopeId": null,
+                                                                "scopeFilterId": null,
+                                                                "tags": "knocked_day18",
+                                                                "has": true
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "3431f521-358c-419a-ac04-a78550794162",
+                                                                    "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                                                    "actorId2": null,
+                                                                    "text": "Even I can get in here without much trouble now. You're really just being lazy at this point.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "1",
+                                                                    "device2": "0",
+                                                                    "notes": ""
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "7230a947-581f-440f-a94c-f15880c4b153",
+                                                    "actorId": "98ea49aa-86cf-4fa9-9bd5-6aa2fe7c809d",
+                                                    "actorId2": null,
+                                                    "text": "Just pick the lock like you're meant to. It's easier than trying to convince anyone to let you in.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "1",
+                                                    "device2": "0",
+                                                    "notes": ""
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "global",
+                                                "variableName": "time.day",
+                                                "operator": "eq",
+                                                "compareTo": "43",
+                                                "sceneId": "3256b6d8-50b9-4764-b016-01ea538ea55f",
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "288e788e-2772-4a13-a49b-e8059ca785f5",
+                                                    "actorId": "b7cbd02d-8e2f-4a8d-99a7-02b132d86e1d",
+                                                    "actorId2": null,
+                                                    "text": "If you are meant to be in here, I expect you can manage to open the door yourself.",
+                                                    "emotion": "3",
+                                                    "emotion2": "0",
+                                                    "device": "1",
+                                                    "device2": "0",
+                                                    "notes": ""
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.wait",
+                                                    "waitForSeconds": "2"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "53a8ff9b-95da-498e-b643-3281baf5f121",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "I guess no one is in there right now.",
+                                                    "emotion": "2",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0",
+                                                    "notes": ""
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "0",
+                            "ExitMenu": false,
+                            "notes": ""
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "00718fa7-f5bc-46c6-b0ef-2cb19610f536",
+                            "text": "Listen at the Door",
+                            "nodes": [
+                                {
+                                    "type": "nodes.playAnimation",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "animationName": "KneelDown",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.comment",
+                                    "message": "Adding these to fit the situation best I can, but maybe be off slightly.",
+                                    "commentor": "Charles"
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "target",
+                                                "scopeId": null,
+                                                "scopeFilterId": null,
+                                                "tags": "hasListened",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.incrementTime",
+                                                    "id": "993b5b47-4ec6-470d-8913-4c2bd6fe0232",
+                                                    "days": 0,
+                                                    "hours": 0,
+                                                    "minutes": "5"
+                                                },
+                                                {
+                                                    "id": "d9c95879-28f1-4e44-9c16-48c5d7c9b416",
+                                                    "type": "nodes.skillBranch",
+                                                    "skill": "Perception",
+                                                    "target": "20",
+                                                    "success": {
+                                                        "type": "nodes.block",
+                                                        "nodes": []
+                                                    },
+                                                    "failure": {
+                                                        "type": "nodes.block",
+                                                        "nodes": []
+                                                    },
+                                                    "notify": true
+                                                },
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "72171f07-21c0-48e0-92b1-a47172ab89e9",
+                                                    "scope": "target",
+                                                    "scopeId": null,
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "hasListened",
+                                                    "tagsToRemove": null
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.skillCheck",
+                                                "skill": "Perception",
+                                                "target": "20"
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.or",
+                                                                "left": {
+                                                                    "type": "expressions.variableComparison",
+                                                                    "variableScope": "global",
+                                                                    "variableName": "time.hour",
+                                                                    "operator": "lte",
+                                                                    "compareTo": "6",
+                                                                    "sceneId": "3256b6d8-50b9-4764-b016-01ea538ea55f",
+                                                                    "propId": null
+                                                                },
+                                                                "right": {
+                                                                    "type": "expressions.variableComparison",
+                                                                    "variableScope": "global",
+                                                                    "variableName": "time.hour",
+                                                                    "operator": "gte",
+                                                                    "compareTo": "18",
+                                                                    "sceneId": "3256b6d8-50b9-4764-b016-01ea538ea55f",
+                                                                    "propId": null
+                                                                }
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "5a3ab498-7c5f-47cf-b73a-655d070d1e0c",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "I don't hear anything.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0",
+                                                                    "notes": ""
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.variableComparison",
+                                                                "variableScope": "global",
+                                                                "variableName": "time.day",
+                                                                "operator": "eq",
+                                                                "compareTo": "10",
+                                                                "sceneId": "3256b6d8-50b9-4764-b016-01ea538ea55f",
+                                                                "propId": null
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "b8992382-075e-436f-9500-6152dd32f3b3",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "I can't really make it out, but there are some minor noises in there. Perhaps someone is practicing with their Thieves' Tools?",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0",
+                                                                    "notes": ""
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.variableComparison",
+                                                                "variableScope": "global",
+                                                                "variableName": "time.day",
+                                                                "operator": "eq",
+                                                                "compareTo": "17",
+                                                                "sceneId": "3256b6d8-50b9-4764-b016-01ea538ea55f",
+                                                                "propId": null
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "85784294-4311-4ff8-9f6b-4a33704a3ea2",
+                                                                    "actorId": "98ea49aa-86cf-4fa9-9bd5-6aa2fe7c809d",
+                                                                    "actorId2": null,
+                                                                    "text": "There! It is done. You see? It is not hard to learn. You just need practice.",
+                                                                    "emotion": "1",
+                                                                    "emotion2": "0",
+                                                                    "device": "1",
+                                                                    "device2": "0",
+                                                                    "notes": ""
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "8b6fccc4-243e-4377-b7db-6f7d59d02a98",
+                                                                    "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                                                    "actorId2": null,
+                                                                    "text": "You make it look so easy, Esme. ",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "1",
+                                                                    "device2": "0",
+                                                                    "notes": ""
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.variableComparison",
+                                                                "variableScope": "global",
+                                                                "variableName": "time.day",
+                                                                "operator": "eq",
+                                                                "compareTo": "18",
+                                                                "sceneId": "3256b6d8-50b9-4764-b016-01ea538ea55f",
+                                                                "propId": null
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "3d656389-0ba2-4835-8223-c55ccda14200",
+                                                                    "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                                                    "actorId2": null,
+                                                                    "text": "Come on... just a little more... ugh. Why won't you just open?!",
+                                                                    "emotion": "4",
+                                                                    "emotion2": "0",
+                                                                    "device": "1",
+                                                                    "device2": "0",
+                                                                    "notes": ""
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.variableComparison",
+                                                                "variableScope": "global",
+                                                                "variableName": "time.day",
+                                                                "operator": "eq",
+                                                                "compareTo": "22",
+                                                                "sceneId": "3256b6d8-50b9-4764-b016-01ea538ea55f",
+                                                                "propId": null
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "8fe6dd32-345b-48e4-8da5-75780f01d696",
+                                                                    "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                                                    "actorId2": null,
+                                                                    "text": "You look like you really enjoy disarming traps, Thomas. ",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "1",
+                                                                    "device2": "0",
+                                                                    "notes": ""
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "2df79742-4bc8-4509-966f-e63f65bd8452",
+                                                                    "actorId": "98ea49aa-86cf-4fa9-9bd5-6aa2fe7c809d",
+                                                                    "actorId2": null,
+                                                                    "text": "Yes, Thomas. You are alvays so serious, but when you are vorking on that trap I think I see a bit of a smile, no?",
+                                                                    "emotion": "1",
+                                                                    "emotion2": "0",
+                                                                    "device": "1",
+                                                                    "device2": "0",
+                                                                    "notes": ""
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "9f29bdc1-e9a4-41cd-895b-eeb3905f6c13",
+                                                                    "actorId": "bdddd1b1-bbf3-4dd5-bbd6-0ef3115d8b66",
+                                                                    "actorId2": null,
+                                                                    "text": "Well, I do find disarming traps to be quite fun and mentally engaging.",
+                                                                    "emotion": "1",
+                                                                    "emotion2": "0",
+                                                                    "device": "1",
+                                                                    "device2": "0",
+                                                                    "notes": ""
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.variableComparison",
+                                                                "variableScope": "global",
+                                                                "variableName": "time.day",
+                                                                "operator": "eq",
+                                                                "compareTo": "43",
+                                                                "sceneId": "3256b6d8-50b9-4764-b016-01ea538ea55f",
+                                                                "propId": null
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "e93ca06e-7682-4e6e-8b8b-19b91882bd6b",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "It's eerily quiet in there... quiet enough to make me wonder if Master Urwald could be trying to listen through the door as well.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0",
+                                                                    "notes": ""
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "c5598abb-778e-4688-bb31-4cc485b6b34e",
+                                                                    "actorId": "b7cbd02d-8e2f-4a8d-99a7-02b132d86e1d",
+                                                                    "actorId2": null,
+                                                                    "text": "I'm sure I have better things to do than listen to the hallway. However, Herr O'Conner, you have an unfortunate tendency to talk to yourself out loud. Not a good trait for a rogue...",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "1",
+                                                                    "device2": "0",
+                                                                    "notes": ""
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "2c7f224d-9d29-43a4-a093-013ba867188d",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "R-right... sorry, sir.",
+                                                                    "emotion": "4",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0",
+                                                                    "notes": ""
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": null,
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "06703dc0-c003-468e-9db2-2e9142b938c9",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "I don't hear anything.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0",
+                                                                    "notes": ""
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "47f2c76b-d6d4-482c-bfe3-cd5b05c1d0f9",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "I can't tell if anyone is in there or not.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0",
+                                                    "notes": ""
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.playAnimation",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "animationName": "KneelUp",
+                                    "wait": true
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "0",
+                            "ExitMenu": false,
+                            "notes": ""
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "3539e8d1-419e-46af-85f9-eacc280ef90d",
+                            "text": "Open the Door",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "scene",
+                                                "scopeId": "eceae806-6f55-4cde-b517-c73b1c924fd9",
+                                                "scopeFilterId": null,
+                                                "tags": "GObreakin",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "ab7c6fdf-bec9-4a2f-8d53-8bbd68b54438",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "I don't have the time to search in other rooms right now. Hopefully, whatever I'm searching for is hidden around here somewhere.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0",
+                                                    "notes": ""
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "target",
+                                                "scopeId": null,
+                                                "scopeFilterId": null,
+                                                "tags": "locked",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.comment",
+                                                    "message": "Currently this should never be getting hit... see comment on Pick Lock below",
+                                                    "commentor": "Charles"
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "d18dc537-32ed-4fbf-a505-da9743bcf311",
+                                                    "scriptId": "a1004657-984b-46ba-8870-9550cbfb4b35",
+                                                    "entryPointId": "5d71cb8e-bcbb-486e-84c3-a8f94922a322",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                },
+                                                {
+                                                    "type": "nodes.changeScene",
+                                                    "sceneId": "5c81204b-2c5b-4eb0-9e84-85acb2fc9d13",
+                                                    "spawnId": "8d08d543-700d-445c-adce-dafdfd2fb5ff",
+                                                    "fadeTime": 2
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "fa484b97-093c-4e55-8aa1-9c362c7e82a1",
+                                                    "scriptId": "07efa0fa-4d32-4765-ad95-5e9b6c2d6933",
+                                                    "entryPointId": "5d71cb8e-bcbb-486e-84c3-a8f94922a322",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.enteredScene",
+                                                                "sceneId": "5c81204b-2c5b-4eb0-9e84-85acb2fc9d13",
+                                                                "scope": "DuringGame",
+                                                                "operator": "gt",
+                                                                "count": 0
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "46c961da-8a2d-4d28-9090-792a519566c2",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "It seems the door automatically relocks itself when it shuts. How... convenient.",
+                                                                    "emotion": "3",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0",
+                                                                    "notes": ""
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": null,
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "a1341529-439c-4e73-ac7f-7ea51f35fef3",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "What do you know? The door to the lock room is locked. Great.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0",
+                                                                    "notes": ""
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.variableComparison",
+                                                                "variableScope": "global",
+                                                                "variableName": "ego.haslockpick",
+                                                                "operator": "eq",
+                                                                "compareTo": "false",
+                                                                "sceneId": "3256b6d8-50b9-4764-b016-01ea538ea55f",
+                                                                "propId": null
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "188031c8-830e-45a1-8c0d-0aee4622640f",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "I guess I'll need to find some lockpicks to get in here.",
+                                                                    "emotion": "2",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0",
+                                                                    "notes": ""
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "1",
+                            "ExitMenu": false,
+                            "notes": ""
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "538b46e5-2b20-4ca3-ab6f-f8bdebf2a226",
+                            "text": "Sense Magic",
+                            "nodes": [
+                                {
+                                    "type": "nodes.invokeScript",
+                                    "id": "e247e54a-60b6-41aa-bfa2-12a8b61a4c7f",
+                                    "scriptId": "533e1ce1-13d3-439f-8544-dbdf808d30c4",
+                                    "entryPointId": "",
+                                    "currentScope": "Scenes",
+                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                    "currentActorId": null,
+                                    "currentStoryEventId": null,
+                                    "currentPropId": null
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inTags",
+                                    "scope": "actor",
+                                    "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "scopeFilterId": null,
+                                    "tags": "SenseMagic",
+                                    "has": true
+                                },
+                                "right": {
+                                    "type": "expressions.inTags",
+                                    "scope": "target",
+                                    "scopeId": null,
+                                    "scopeFilterId": null,
+                                    "tags": "sensedmagic",
+                                    "has": false
+                                }
+                            },
+                            "ignoreChildAvailability": false,
+                            "minutes": "2",
+                            "ExitMenu": false,
+                            "notes": ""
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "bfbf0960-34d4-414b-8d4a-a385e8e74c04",
+                            "text": "Pick the Lock",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "scene",
+                                                "scopeId": "eceae806-6f55-4cde-b517-c73b1c924fd9",
+                                                "scopeFilterId": null,
+                                                "tags": "GOBreakIn",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "eef32674-92e8-43ab-bfc3-64823a05177e",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "I don't have the time to search in other rooms right now. Hopefully, whatever I'm searching for is hidden around here somewhere.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0",
+                                                    "notes": ""
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "global",
+                                                "variableName": "time.hour",
+                                                "operator": "lt",
+                                                "compareTo": "8",
+                                                "sceneId": "3256b6d8-50b9-4764-b016-01ea538ea55f",
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "55a51e2c-8dff-4294-aadb-e2319fe3553d",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "It's getting late. I'm too tired to mess around in the Locks Room.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0",
+                                                    "notes": ""
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.and",
+                                                "left": {
+                                                    "type": "expressions.variableComparison",
+                                                    "variableScope": "global",
+                                                    "variableName": "time.day",
+                                                    "operator": "eq",
+                                                    "compareTo": "43",
+                                                    "sceneId": "3256b6d8-50b9-4764-b016-01ea538ea55f",
+                                                    "propId": null
+                                                },
+                                                "right": {
+                                                    "type": "expressions.variableComparison",
+                                                    "variableScope": "global",
+                                                    "variableName": "time.hour",
+                                                    "operator": "lte",
+                                                    "compareTo": "17",
+                                                    "sceneId": "3256b6d8-50b9-4764-b016-01ea538ea55f",
+                                                    "propId": null
+                                                }
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "ed4ba624-d78b-4c85-9fa6-e47ab7e881cf",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "I really don't want to disturb Master von Urwald during a test. It could be hazardous to my grade.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0",
+                                                    "notes": ""
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.incrementTime",
+                                                    "id": "ab4daa89-c591-4fc9-9925-d96afbfbdf7b",
+                                                    "days": 0,
+                                                    "hours": 0,
+                                                    "minutes": "10"
+                                                },
+                                                {
+                                                    "id": "68961be6-7d87-4458-9d25-e832c6f0dd8c",
+                                                    "type": "nodes.skillBranch",
+                                                    "skill": "Tool Use",
+                                                    "target": "1",
+                                                    "success": {
+                                                        "type": "nodes.block",
+                                                        "nodes": [
+                                                            {
+                                                                "type": "nodes.playAnimation",
+                                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                "animationName": "KneelDown",
+                                                                "wait": true
+                                                            },
+                                                            {
+                                                                "type": "nodes.playSoundEffect",
+                                                                "soundEffectName": "lockpick_success.wav",
+                                                                "wait": true
+                                                            },
+                                                            {
+                                                                "type": "nodes.comment",
+                                                                "message": "Not removing the locked tag here so the door always requires picking the lock - an idea that stems from Lori saying the room should \"always\" be locked and plays well into the events I've added above and gets around the weird \"why is it locked when people are inside?\" issue. I also think it adds a bit of mystique - I just hope it doesn't become frustrating.",
+                                                                "commentor": "Charles"
+                                                            },
+                                                            {
+                                                                "type": "nodes.speak",
+                                                                "id": "80ddd9e0-e9c7-4ba3-9bde-8ac75a6b24d6",
+                                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                "actorId2": null,
+                                                                "text": "I'm in!",
+                                                                "emotion": "1",
+                                                                "emotion2": "0",
+                                                                "device": "0",
+                                                                "device2": "0",
+                                                                "notes": ""
+                                                            },
+                                                            {
+                                                                "type": "nodes.playAnimation",
+                                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                "animationName": "KneelUp",
+                                                                "wait": true
+                                                            },
+                                                            {
+                                                                "type": "nodes.invokeScript",
+                                                                "id": "d8b97bdc-a0fc-4e6e-b7bd-503a3d38ab17",
+                                                                "scriptId": "a1004657-984b-46ba-8870-9550cbfb4b35",
+                                                                "entryPointId": "5d71cb8e-bcbb-486e-84c3-a8f94922a322",
+                                                                "currentScope": "Scenes",
+                                                                "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                                                "currentActorId": null,
+                                                                "currentStoryEventId": null,
+                                                                "currentPropId": null
+                                                            },
+                                                            {
+                                                                "type": "nodes.changeScene",
+                                                                "sceneId": "5c81204b-2c5b-4eb0-9e84-85acb2fc9d13",
+                                                                "spawnId": "8d08d543-700d-445c-adce-dafdfd2fb5ff",
+                                                                "fadeTime": 2
+                                                            }
+                                                        ]
+                                                    },
+                                                    "failure": {
+                                                        "type": "nodes.block",
+                                                        "nodes": [
+                                                            {
+                                                                "type": "nodes.playAnimation",
+                                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                "animationName": "KneelDown",
+                                                                "wait": true
+                                                            },
+                                                            {
+                                                                "type": "nodes.playSoundEffect",
+                                                                "soundEffectName": "lockpick_failure.wav",
+                                                                "wait": true
+                                                            },
+                                                            {
+                                                                "type": "nodes.speak",
+                                                                "id": "85003b27-27e5-4c25-ad82-ea1bb4374704",
+                                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                "actorId2": null,
+                                                                "text": "I just can't seem to get it.",
+                                                                "emotion": "3",
+                                                                "emotion2": "0",
+                                                                "device": "0",
+                                                                "device2": "0",
+                                                                "notes": ""
+                                                            },
+                                                            {
+                                                                "type": "nodes.playAnimation",
+                                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                "animationName": "KneelUp"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "notify": true
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inTags",
+                                    "scope": "target",
+                                    "scopeId": null,
+                                    "scopeFilterId": null,
+                                    "tags": "locked",
+                                    "has": true
+                                },
+                                "right": {
+                                    "type": "expressions.variableComparison",
+                                    "variableScope": "global",
+                                    "variableName": "ego.haslockpick",
+                                    "operator": "eq",
+                                    "compareTo": "true",
+                                    "sceneId": "3256b6d8-50b9-4764-b016-01ea538ea55f",
+                                    "propId": null
+                                }
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "0",
+                            "ExitMenu": false,
+                            "notes": ""
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "6503be46-ade6-4de3-8fa7-0320ef50cc65",
+                            "text": "DEBUG Locks Room",
+                            "nodes": [
+                                {
+                                    "type": "nodes.showMenu",
+                                    "id": "0b31fb33-24d6-499b-9d39-6c3189915e2b",
+                                    "options": [
+                                        {
+                                            "type": "options.text",
+                                            "id": "5080b9f5-aa28-410f-bdf2-021c8d79c66b",
+                                            "text": "Prep LockA (Day 10)",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.setTime",
+                                                    "id": "a051b444-eb63-469f-b74c-f900aca4e08f",
+                                                    "day": "10",
+                                                    "hour": "15",
+                                                    "minute": 0,
+                                                    "notify": false
+                                                },
+                                                {
+                                                    "type": "nodes.changeStoryEvent",
+                                                    "storyEventId": "e587965d-4831-4f97-89f6-93d601991fb3"
+                                                },
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "9f865399-5c66-4252-b62d-80b28f8eac82",
+                                                    "scope": "scene",
+                                                    "scopeId": "5c81204b-2c5b-4eb0-9e84-85acb2fc9d13",
+                                                    "scopeFilterId": null,
+                                                    "tagsToRemove": "Locka"
+                                                }
+                                            ],
+                                            "expression": null,
+                                            "ignoreChildAvailability": true,
+                                            "minutes": 0,
+                                            "ExitMenu": true,
+                                            "notes": ""
+                                        },
+                                        {
+                                            "type": "options.text",
+                                            "id": "ed205453-e458-4874-bcdb-4cd630481f8d",
+                                            "text": "Prep Lock1 (Day 17)",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.setTime",
+                                                    "id": "be462211-bb39-46da-a2fa-1b975e4de6ff",
+                                                    "day": "17",
+                                                    "hour": "13",
+                                                    "minute": 0,
+                                                    "notify": false
+                                                },
+                                                {
+                                                    "type": "nodes.changeStoryEvent",
+                                                    "storyEventId": "21dd9f5b-dd40-42e8-9d7e-4027f3f4bc34"
+                                                },
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "228cebec-7e03-4734-82c6-cdf00de89f44",
+                                                    "scope": "scene",
+                                                    "scopeId": "e8288a23-0b06-4dd7-94d2-9761390d6484",
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "Lockropetricks",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "77ac60e1-ab87-485e-a021-6f7f4a0e571e",
+                                                    "scope": "scene",
+                                                    "scopeId": "5c81204b-2c5b-4eb0-9e84-85acb2fc9d13",
+                                                    "scopeFilterId": null,
+                                                    "tagsToRemove": "Lock1"
+                                                }
+                                            ],
+                                            "expression": null,
+                                            "ignoreChildAvailability": true,
+                                            "minutes": 0,
+                                            "ExitMenu": true,
+                                            "notes": ""
+                                        },
+                                        {
+                                            "type": "options.text",
+                                            "id": "5e1787cb-2cfd-489c-b000-08d84224dd24",
+                                            "text": "Prep Lock2 (Day 18)",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.setTime",
+                                                    "id": "4cff0b8d-17d6-41c0-9e1d-6ad04a096b93",
+                                                    "day": "18",
+                                                    "hour": "15",
+                                                    "minute": 0,
+                                                    "notify": false
+                                                },
+                                                {
+                                                    "type": "nodes.changeStoryEvent",
+                                                    "storyEventId": "aaf9e5c5-7a44-4060-ac7c-f34b923f8663"
+                                                },
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "9b400f9d-5569-49ca-96a1-a7e32a5a726d",
+                                                    "scope": "scene",
+                                                    "scopeId": "5c81204b-2c5b-4eb0-9e84-85acb2fc9d13",
+                                                    "scopeFilterId": null,
+                                                    "tagsToRemove": "Lock2"
+                                                }
+                                            ],
+                                            "expression": null,
+                                            "ignoreChildAvailability": true,
+                                            "minutes": 0,
+                                            "ExitMenu": true,
+                                            "notes": ""
+                                        },
+                                        {
+                                            "type": "options.text",
+                                            "id": "a8aca339-e293-4ec2-9569-466ef441950a",
+                                            "text": "Prep Lock3 (Day 22)",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.setTime",
+                                                    "id": "edcebb91-d70c-4b14-8314-74576551649b",
+                                                    "day": "22",
+                                                    "hour": "15",
+                                                    "minute": 0,
+                                                    "notify": false
+                                                },
+                                                {
+                                                    "type": "nodes.changeStoryEvent",
+                                                    "storyEventId": "b8404522-1cdc-4f60-b2fe-ff0b4b724691"
+                                                },
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "0d9c40fd-4d54-4fa8-8249-d46e65934726",
+                                                    "scope": "scene",
+                                                    "scopeId": "5c81204b-2c5b-4eb0-9e84-85acb2fc9d13",
+                                                    "scopeFilterId": null,
+                                                    "tagsToRemove": "Lock3"
+                                                }
+                                            ],
+                                            "expression": null,
+                                            "ignoreChildAvailability": true,
+                                            "minutes": 0,
+                                            "ExitMenu": true,
+                                            "notes": ""
+                                        },
+                                        {
+                                            "type": "options.text",
+                                            "id": "8b1083e8-b6f0-40fe-934a-01e016c08548",
+                                            "text": "Prep Lock4 (Day 43)",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.setTime",
+                                                    "id": "1e0cc9a3-640d-4d6c-9e03-1d72a40a604d",
+                                                    "day": "43",
+                                                    "hour": "15",
+                                                    "minute": 0,
+                                                    "notify": false
+                                                },
+                                                {
+                                                    "type": "nodes.changeStoryEvent",
+                                                    "storyEventId": "e27eeea1-0257-4cec-91c6-510d968c94ae"
+                                                },
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "fd5c7a5b-0c49-4341-a8c2-c4b25483b2a8",
+                                                    "scope": "scene",
+                                                    "scopeId": "5c81204b-2c5b-4eb0-9e84-85acb2fc9d13",
+                                                    "scopeFilterId": null,
+                                                    "tagsToRemove": "Lock4"
+                                                }
+                                            ],
+                                            "expression": null,
+                                            "ignoreChildAvailability": true,
+                                            "minutes": 0,
+                                            "ExitMenu": true,
+                                            "notes": ""
+                                        }
+                                    ],
+                                    "AutoAddDone": true,
+                                    "Unique": false
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.debugOnly"
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false,
+                            "notes": ""
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,283 @@
+{
+    "type": "script",
+    "id": "835c5d55-caa8-4bd2-8616-f9736cdbb083",
+    "name": "Interact with Bookshelf P1 (Paladins)",
+    "sceneId": "981ec865-3e1b-4f3e-bb0d-11df2bc7d593",
+    "propId": "0c7ab48c-77d7-4c99-9257-0937dab83f8a",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "0814f5e7-4b38-4b7d-8da9-56ca4219d0af",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "b4ee3412-ade0-4c11-a8b1-c5b55ba6cd3a",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "8ab35b4c-8e89-4747-a2f2-5a822dc4a4ac",
+                            "text": "Examine the Bookshelf",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "30cff044-bdb8-497a-bc69-02451db0753b",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "These books are all about law, justice, virtue... and Paladins. I always thought of Paladins as self-righteous, better-than-thou, goody-two-shoes warriors... But then again, I never met a real Paladin before coming to this school.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "1",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "4a827401-c180-4c09-a75b-b6de7cb3ca5c",
+                            "text": "Study the Books",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "actor",
+                                                "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                "scopeFilterId": null,
+                                                "tags": "StudiedBookMoxieWill",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "b060a2fe-801a-4432-899a-7a7365f53f98",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "There are a lot of boring-sounding books here - <i>Paladin: Have Sword, Will Travel</i>; <i>Truth, Justice, and the Paladin Way</i>; and <i>Justice for All.</i>",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "d2d8ee28-0530-47e3-81b2-9717e6919b3b",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Hmmm. Here's a book called <i>Where there's a Will, There's a Way.</i> Apparently, strength of character and moxie are important when influencing others.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "8fc49360-7cd9-49ea-bff2-9a06c7681234",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "It's all about \"moxie\" and knowing how to use it. Sounds like something a Rogue could use.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "49b75170-98d2-47c5-9692-feb4adcf0a3d",
+                                                    "scriptId": "e49ddd5a-2b32-4b92-bb4b-9e417cc9a181",
+                                                    "entryPointId": "b88ebea9-25f1-4ef5-a073-8fedfbf18916",
+                                                    "currentScope": "Actors",
+                                                    "currentSceneId": "981ec865-3e1b-4f3e-bb0d-11df2bc7d593",
+                                                    "currentActorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.variableComparison",
+                                                                "variableScope": "script",
+                                                                "variableName": "ShawnStudiedThisBook",
+                                                                "operator": "eq",
+                                                                "compareTo": "true",
+                                                                "sceneId": null,
+                                                                "propId": null
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.changeTags",
+                                                                    "id": "8b48212c-16c3-4072-bb87-abf4ffa6fb7e",
+                                                                    "scope": "actor",
+                                                                    "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "scopeFilterId": null,
+                                                                    "tagsToAdd": "StudiedBookMoxieWill",
+                                                                    "tagsToRemove": null
+                                                                },
+                                                                {
+                                                                    "id": "b357ba55-4616-4b99-b3e6-a0d580895efe",
+                                                                    "type": "nodes.improveSkill",
+                                                                    "skill": "Moxie",
+                                                                    "amount": "5",
+                                                                    "notify": true
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "85b192df-4b1a-4f07-8536-c9377d2f231a",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "Well, before the book started going off on how Paladins use self-discipline and Will to cast spells and other paladin-y stuff, the book talks about showing self-confidence and believing in one's own abilities. Attitude and confidence are important for everyone.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": null,
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "2638532e-6b3a-431b-a232-7a6020e1f317",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "I'll check it out some other time.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "2108e6b0-a2cd-47d9-a568-3c537499617c",
+                                                    "scriptId": "e49ddd5a-2b32-4b92-bb4b-9e417cc9a181",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Actors",
+                                                    "currentSceneId": "981ec865-3e1b-4f3e-bb0d-11df2bc7d593",
+                                                    "currentActorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.variableComparison",
+                                                                "variableScope": "script",
+                                                                "variableName": "ShawnStudiedThisBook",
+                                                                "operator": "eq",
+                                                                "compareTo": "true",
+                                                                "sceneId": null,
+                                                                "propId": null
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "d799204d-ca20-43d1-ad42-ae614ccc7aee",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "Most of these books seem to just be about Paladins and not very useful.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "3",
+                            "ExitMenu": true
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "80da1d2e-5375-495e-b1dc-68df06ae43fe",
+                            "text": "Pick a Book at Random",
+                            "nodes": [
+                                {
+                                    "type": "nodes.nodeCycle",
+                                    "id": "e07525bd-b73a-44e7-b259-c00cbe579d41",
+                                    "nodes": [
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "dfd0ce5a-f868-4cfa-b945-dcd74a126957",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "<i>Good vs. the Law - Bringing Justice to an Injust World</i>. Hmmm. Seems that Paladins break the law as often as Rogues do... and for many of the same reasons.",
+                                            "emotion": "1",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "5a616964-5561-4f9c-a06b-d555f77fad0f",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "<i>Paladins, Vigilantes, and Vengeance</i> - seems to be about the fine line between a Paladin and a vigilante. One brings goodness and hope, the other spreads anger and fear, both in the name of Justice.",
+                                            "emotion": "0",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "3474782b-23c9-4d53-a9f9-d9d0245844b1",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "According to the binding, this is Book 5 in the \"Dialogues on Virtue\" Series: <i>Going to War for Peace - Is a Righteous War ever Right?</i>",
+                                            "emotion": "0",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "1",
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

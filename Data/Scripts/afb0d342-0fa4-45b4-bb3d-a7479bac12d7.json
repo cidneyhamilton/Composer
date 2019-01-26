@@ -1,0 +1,99 @@
+{
+    "type": "script",
+    "id": "afb0d342-0fa4-45b4-bb3d-a7479bac12d7",
+    "name": "Warrior Drat Zone Trigger",
+    "sceneId": "ed2b858e-927a-44b9-86ee-4d3fe4dcfc33",
+    "trigger": {
+        "type": "triggers.zone",
+        "name": "Zone"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "bf1b656a-30e5-4cbc-a7d5-c8595a33fe2b",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.onceDaily",
+                    "id": "c4ec264e-6eac-4650-8980-5b500acfddac",
+                    "nodes": [
+                        {
+                            "type": "nodes.branch",
+                            "sections": [
+                                {
+                                    "type": "nodes.branchSection",
+                                    "expression": {
+                                        "type": "expressions.and",
+                                        "left": {
+                                            "type": "expressions.variableComparison",
+                                            "variableScope": "global",
+                                            "variableName": "time.day",
+                                            "operator": "eq",
+                                            "compareTo": "41",
+                                            "sceneId": "ed2b858e-927a-44b9-86ee-4d3fe4dcfc33",
+                                            "propId": null
+                                        },
+                                        "right": {
+                                            "type": "expressions.variableComparison",
+                                            "variableScope": "global",
+                                            "variableName": "time.hour",
+                                            "operator": "gte",
+                                            "compareTo": "17",
+                                            "sceneId": "ed2b858e-927a-44b9-86ee-4d3fe4dcfc33",
+                                            "propId": null
+                                        }
+                                    },
+                                    "nodes": [
+                                        {
+                                            "type": "nodes.invokeCommand",
+                                            "id": "bc10f2cf-12ee-4ddb-bba0-f47c1ed4177a",
+                                            "entityType": "prop",
+                                            "entityFilterId": "ed2b858e-927a-44b9-86ee-4d3fe4dcfc33",
+                                            "entityId": "efa39bff-4f4d-497b-83cc-c0e2ce219cdd",
+                                            "command": "ambush",
+                                            "resultVariableScope": "script"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.branchSection",
+                                    "expression": {
+                                        "type": "expressions.and",
+                                        "left": {
+                                            "type": "expressions.variableComparison",
+                                            "variableScope": "global",
+                                            "variableName": "time.day",
+                                            "operator": "gte",
+                                            "compareTo": "42",
+                                            "sceneId": "ed2b858e-927a-44b9-86ee-4d3fe4dcfc33",
+                                            "propId": null
+                                        },
+                                        "right": {
+                                            "type": "expressions.inTags",
+                                            "scope": "actor",
+                                            "scopeId": "3ec7237c-65ea-4a23-9e21-697f17a2dbe8",
+                                            "scopeFilterId": null,
+                                            "tags": "QueenDone",
+                                            "has": false
+                                        }
+                                    },
+                                    "nodes": [
+                                        {
+                                            "type": "nodes.invokeCommand",
+                                            "id": "a9944309-71b6-4cb3-89df-d681ca9041dd",
+                                            "entityType": "prop",
+                                            "entityFilterId": "ed2b858e-927a-44b9-86ee-4d3fe4dcfc33",
+                                            "entityId": "efa39bff-4f4d-497b-83cc-c0e2ce219cdd",
+                                            "command": "ambush",
+                                            "resultVariableScope": "script"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,67 @@
+{
+    "type": "script",
+    "id": "c7a597e9-e5b0-4841-a3b9-c474f5d1bc98",
+    "name": "New Script",
+    "propId": "31d4992d-04a9-4cbb-be27-a1037490949e",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "33692e56-582e-4b53-9f52-9ceeba7ac098",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.variableComparison",
+                                    "variableScope": "global",
+                                    "variableName": "time.day",
+                                    "operator": "eq",
+                                    "compareTo": "2"
+                                },
+                                "right": {
+                                    "type": "expressions.and",
+                                    "left": {
+                                        "type": "expressions.variableComparison",
+                                        "variableScope": "global",
+                                        "variableName": "time.hour",
+                                        "operator": "gte",
+                                        "compareTo": "17"
+                                    },
+                                    "right": {
+                                        "type": "expressions.variableComparison",
+                                        "variableScope": "global",
+                                        "variableName": "time.hour",
+                                        "operator": "lt",
+                                        "compareTo": "18"
+                                    }
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "6ef643e2-e0d4-48ec-afab-7397a0bf01f3",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "It's getting close to dinner time. Boy I'm hungry, I wonder what's for dinner, I hope it's not Saurus-on-a-stick again.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

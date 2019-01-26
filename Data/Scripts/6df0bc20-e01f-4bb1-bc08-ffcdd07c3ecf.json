@@ -1,0 +1,1550 @@
+{
+    "type": "script",
+    "id": "6df0bc20-e01f-4bb1-bc08-ffcdd07c3ecf",
+    "name": "Interact with the Display Book",
+    "sceneId": "981ec865-3e1b-4f3e-bb0d-11df2bc7d593",
+    "propId": "26c573b1-14df-4163-88ff-4fc9944391e8",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "4f82d04b-94b2-4e38-8a8e-b6342133aa3f",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "c399adc1-ee82-41ef-8ef6-05c218c67e94",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "d227e9d5-86fa-4696-ad3f-dfb12737ebc4",
+                            "text": "Look at the Book",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "25612adc-cca0-480b-89f7-ecfe87a72c89",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Yikes. This book is massive and looks like it was handwritten. The pages are yellowed and it's hard to make out the writing. It's not something I'd want to read in bed - I'd be squashed by it.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "2",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "0f4db996-5a9a-4ee5-b48e-3f34e123da89",
+                            "text": "Ask About the Book",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "569be795-1a1c-4143-932c-f1a353cd207a",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "I wonder what makes that book special?",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.actorPresent",
+                                                "actorId": "84d47ff5-c737-42b6-9e21-e8b7413ce007",
+                                                "hasNot": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.inTags",
+                                                                "scope": "actor",
+                                                                "scopeId": "84d47ff5-c737-42b6-9e21-e8b7413ce007",
+                                                                "scopeFilterId": null,
+                                                                "tags": "ExplainedBooksOnce",
+                                                                "has": false
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "5811b931-3cd0-4eec-a93f-76c65c889c45",
+                                                                    "actorId": "84d47ff5-c737-42b6-9e21-e8b7413ce007",
+                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "text": "That book is the \"The Rise and Fall of the Knights Luminar and the Founding of Castle Luminar.\" You are not expected to read the entire book. However, it will regularly be turned to a significant page in the text if you care to keep up with your history lessons.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "4",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeTags",
+                                                                    "id": "46d88099-fcb6-48fa-a53b-0c7358c79bfa",
+                                                                    "scope": "actor",
+                                                                    "scopeId": "84d47ff5-c737-42b6-9e21-e8b7413ce007",
+                                                                    "scopeFilterId": null,
+                                                                    "tagsToAdd": "ExplainedBooksOnce",
+                                                                    "tagsToRemove": null
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": null,
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "49064767-a3de-4df3-ad89-e639456a16e9",
+                                                                    "actorId": "84d47ff5-c737-42b6-9e21-e8b7413ce007",
+                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "text": "This history of the castle was handwritten years ago by Sir Sheraton Burgundy, just before his mysterious disappearance. This is the original manuscript.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "3da86bf3-4375-4ac2-b7fa-ce2fcf6e6860",
+                                                                    "actorId": "84d47ff5-c737-42b6-9e21-e8b7413ce007",
+                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "text": "Sadly, while this book is unique and invaluable, the book is of little interest to the outside world. Most of the history of the Knights Luminar has been forgotten by all but a few scholars.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "2",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "5",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "1bbf7269-1982-46de-973d-af5471bd6a90",
+                            "text": "Read the Book",
+                            "nodes": [
+                                {
+                                    "type": "nodes.invokeScript",
+                                    "id": "47bb3645-388b-4a03-819e-db87d146d921",
+                                    "scriptId": "6df0bc20-e01f-4bb1-bc08-ffcdd07c3ecf",
+                                    "entryPointId": "766ffef3-2c41-43c0-b433-931a03ce9118",
+                                    "currentScope": "Current",
+                                    "currentSceneId": null,
+                                    "currentActorId": null,
+                                    "currentStoryEventId": null,
+                                    "currentPropId": null
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "7cd9d8ae-06f7-4818-9bfa-479b9e1ec766",
+                            "text": "Steal the Book",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.actorPresent",
+                                                "actorId": "84d47ff5-c737-42b6-9e21-e8b7413ce007",
+                                                "hasNot": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "ecbd49c8-d373-44a4-9213-b3970ab047d4",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": "84d47ff5-c737-42b6-9e21-e8b7413ce007",
+                                                    "text": "This book is clearly very... something.  I would never steal it. Even if the Librarian weren't watching me out of the corner of his eye. Constantly.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "24c1a296-949a-48ca-8e2f-2c6765ce3cd7",
+                                                    "actorId": "84d47ff5-c737-42b6-9e21-e8b7413ce007",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "Indeed.",
+                                                    "emotion": "0",
+                                                    "emotion2": "1",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "ad139f1a-6168-4009-8d1f-fb0d324fc71a",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "This book is clearly very... something. I would never steal it. Although, since the Librarian isn't here, maybe I could get away with it. ",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "94975747-d0ce-494a-ab93-b4a219819087",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "But I have too much respect for the printed word!",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "ff1b6829-b50c-4d3f-8219-faf653b216b4",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "...",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "3072860f-0f34-4849-9f95-a1ec2a994bde",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "I just thought he might be somewhere in the stacks, listening to me. I guess he's not.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "38672ffb-9a4f-4a40-8ec2-3017673b805c",
+                            "text": "Sense Magic on the Book",
+                            "nodes": [
+                                {
+                                    "type": "nodes.invokeScript",
+                                    "id": "d6e229be-755a-46a7-a5ba-cd11d3b8b1f4",
+                                    "scriptId": "b1c2ecc1-eb00-49ed-a7ba-ea6af625c355",
+                                    "entryPointId": "4f82d04b-94b2-4e38-8a8e-b6342133aa3f",
+                                    "currentScope": "Scenes",
+                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                    "currentActorId": null,
+                                    "currentStoryEventId": null,
+                                    "currentPropId": null
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "c027f730-ae78-463c-86f2-6120aadaa944",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "There's some sort of magical spell that preserves the book and occasionally turns the pages. I can't actually touch the book, I'm touching the spell.",
+                                    "emotion": "4",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.actorPresent",
+                                                "actorId": "84d47ff5-c737-42b6-9e21-e8b7413ce007",
+                                                "hasNot": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "3637cb88-0e9c-441c-8c27-bbd1bfb7c515",
+                                                    "actorId": "84d47ff5-c737-42b6-9e21-e8b7413ce007",
+                                                    "actorId2": null,
+                                                    "text": "Did you really think that something as invaluable and precious as that book would be left to be desecrated and pawed upon by a pack of ignorant savages at this school? Of course, there would be a protective spell upon it.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "actor",
+                                "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                "scopeFilterId": null,
+                                "tags": "sensemagic",
+                                "has": true
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "2",
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        },
+        {
+            "type": "scripts.entryPoint",
+            "id": "766ffef3-2c41-43c0-b433-931a03ce9118",
+            "name": "Read The Book",
+            "nodes": [
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "prop",
+                                "scopeId": "26c573b1-14df-4163-88ff-4fc9944391e8",
+                                "scopeFilterId": "981ec865-3e1b-4f3e-bb0d-11df2bc7d593",
+                                "tags": "ReadToday",
+                                "has": false
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "de2ed7b7-9323-4888-8c16-cee5fea98260",
+                                    "scope": "prop",
+                                    "scopeId": "26c573b1-14df-4163-88ff-4fc9944391e8",
+                                    "scopeFilterId": "981ec865-3e1b-4f3e-bb0d-11df2bc7d593",
+                                    "tagsToAdd": "ReadToday",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.incrementTime",
+                                    "id": "1b262e00-b85a-48d2-b542-6a0b415a5b96",
+                                    "days": 0,
+                                    "hours": "0",
+                                    "minutes": "5"
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "prop",
+                                                "scopeId": "26c573b1-14df-4163-88ff-4fc9944391e8",
+                                                "scopeFilterId": "981ec865-3e1b-4f3e-bb0d-11df2bc7d593",
+                                                "tags": "read1",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "4101479a-3689-4317-aa1e-5794db464d0e",
+                                                    "scope": "prop",
+                                                    "scopeId": "26c573b1-14df-4163-88ff-4fc9944391e8",
+                                                    "scopeFilterId": "981ec865-3e1b-4f3e-bb0d-11df2bc7d593",
+                                                    "tagsToAdd": "read1",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "1e5ae421-221f-4373-a858-ce260e9d7942",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "This book talks about an invasion by creatures of Chaos from a rift between worlds. I've never heard of this before; it must have happened a long time ago.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.playSoundEffect",
+                                                    "soundEffectName": "book_page_turn.wav",
+                                                    "wait": false
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "a9391253-ba5f-4bbf-95bf-b234f032d04a",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "The Seeress Velyana had a vision that the Dark Ones, Gor-Goloth and Gog'Sosloth, would invade our world from the realm of Chaos.  She called for heroes to help drive them back.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.playSoundEffect",
+                                                    "soundEffectName": "book_page_turn.wav",
+                                                    "wait": false
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "5617f901-0b99-4795-8de0-1b1a292daffa",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Only three answered her call: the Wizard Mortuai, the Knight Errant Sir Hans, and the Paladin Jamus with his magical steed, Whim. ",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.playSoundEffect",
+                                                    "soundEffectName": "book_page_turn.wav",
+                                                    "wait": false
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "e4a4987c-6a2f-41ed-b2aa-bb16e2b6fe97",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Velyana prophecied that each Dark One would create a rift - a Chaos Gate - to bridge the worlds of the living, the dead, and the demonic. From the first Gate, Gor-Goloth would emerge to flood Albion with demons, death, and despair.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.playSoundEffect",
+                                                    "soundEffectName": "book_page_turn.wav",
+                                                    "wait": false
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "e9730a22-5026-4bb1-bd2d-9b7421e6877e",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Even as she spoke, the ground shook, the skies darkened, and the first wave of the demonic invasion poured upon the land of Albion...",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "6db9b674-1791-4df1-9f88-7cc820f57703",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Wait... what happened next? I can't seem to turn the page...",
+                                                    "emotion": "4",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.actorPresent",
+                                                                "actorId": "84d47ff5-c737-42b6-9e21-e8b7413ce007",
+                                                                "hasNot": false
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.changeReputation",
+                                                                    "id": "036c65bd-8d23-46c3-81b2-87f8e9168f5b",
+                                                                    "actorId": "84d47ff5-c737-42b6-9e21-e8b7413ce007",
+                                                                    "amount": "2",
+                                                                    "change": "1",
+                                                                    "notify": true
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "451234bc-8935-4a86-a026-2942ecabdb2c",
+                                                                    "actorId": "84d47ff5-c737-42b6-9e21-e8b7413ce007",
+                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "text": "The page will turn when it is ready to turn.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "4",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": null,
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "58beca3b-f7a8-45c6-a8f5-38f1f643aad4",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "Now I really want to know what happened to the heroes... stupid book. Who knew that a history book could be exciting to read?",
+                                                                    "emotion": "2",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "prop",
+                                                "scopeId": "26c573b1-14df-4163-88ff-4fc9944391e8",
+                                                "scopeFilterId": "981ec865-3e1b-4f3e-bb0d-11df2bc7d593",
+                                                "tags": "read2",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "14716447-d639-464c-b028-fedc59430337",
+                                                    "scope": "prop",
+                                                    "scopeId": "26c573b1-14df-4163-88ff-4fc9944391e8",
+                                                    "scopeFilterId": "981ec865-3e1b-4f3e-bb0d-11df2bc7d593",
+                                                    "tagsToAdd": "read2",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "2c2a4698-c1ee-44bb-85ef-89235baff239",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Hey, the book has turned to another page!",
+                                                    "emotion": "4",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "245f83a9-4d5b-4337-aae1-5c83b7f8f1a0",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Together with the High Prince of Albion and a young warlock named Aquino, Seeress Velyana, Wizard Mortuai, Sir Hans, Sir Jamus, and Whim desparately fought their way to the Chaos Gate.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "424239de-fa70-4d67-8d93-e65be5c229e7",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "The battle between the forces of Chaos and the heroes shook the world and obliterated the city of Londinium. The High Prince of Albion fell beneath a demon's claws just as they reached the Gate.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "a831c888-2208-4d64-8f41-bd72b6ab44a3",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "While Sir Hans, Sir Jamus, and Whim desperately fought to hold the demonic hordes at bay, Velyana, Aquino, and Mortuai began the ritual to close the Chaos Gate. But even as they chanted, the Gate bulged and Gor-Goloth began to ooze into our world...",
+                                                    "emotion": "2",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "92a97422-658f-4a87-9adb-5517bb8af06f",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "And... I can't turn the page to find out whether they drove Gor-Goloth back to the Chaos Realm or not!",
+                                                    "emotion": "3",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.actorPresent",
+                                                                "actorId": "84d47ff5-c737-42b6-9e21-e8b7413ce007",
+                                                                "hasNot": false
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.changeReputation",
+                                                                    "id": "af312562-bc39-4f4b-be71-4fa0bcd4ce6c",
+                                                                    "actorId": "84d47ff5-c737-42b6-9e21-e8b7413ce007",
+                                                                    "amount": "2",
+                                                                    "change": "1",
+                                                                    "notify": true
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "f19d997f-1ba3-40fa-94d1-2eb29cb71ff1",
+                                                                    "actorId": "84d47ff5-c737-42b6-9e21-e8b7413ce007",
+                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "text": "Given that this happened in the past, you can reasonably assume that they succeeded.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "4",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "bd5c85d6-ddcb-49eb-8822-3441aacc98a1",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": "84d47ff5-c737-42b6-9e21-e8b7413ce007",
+                                                                    "text": "Hey, no spoilers!",
+                                                                    "emotion": "3",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": null,
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "c5e7fe91-4b67-45f3-b1eb-f29899c1e3f8",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "I guess I'll have to wait for another day to learn what went on at the Chaos Gate.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "prop",
+                                                "scopeId": "26c573b1-14df-4163-88ff-4fc9944391e8",
+                                                "scopeFilterId": "981ec865-3e1b-4f3e-bb0d-11df2bc7d593",
+                                                "tags": "read3",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "9d286fbf-c948-4f1b-b235-316c6220e297",
+                                                    "scope": "prop",
+                                                    "scopeId": "26c573b1-14df-4163-88ff-4fc9944391e8",
+                                                    "scopeFilterId": "981ec865-3e1b-4f3e-bb0d-11df2bc7d593",
+                                                    "tagsToAdd": "read3",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "e7c05b78-3c6e-4895-bcf0-b462fbaa29f2",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Yes! There are a couple of new pages to read!",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "70224489-b4df-4352-8769-356754635be2",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Velyana, Mortuai, and Aquino intoned the last words of the ritual of closing as Sir Hans, Sir Jamus, and Whim fought valiantly to drive the Dark One back to the Chaos Realm.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "c0319b6c-a20e-4c4c-8a79-7964740eadc7",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Suddenly, Gor-Goloth reached out a tentacle and seized Velyana. As it dragged her toward the gate, it fed upon her soul...",
+                                                    "emotion": "4",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "eceaaea6-08fd-480a-9111-91e8ba821160",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "With a mighty spell, Mortuai blasted the tentacle, tearing it asunder. Sir Jamus and Sir Hans closed the Gate, banishing the Dark One back to the Chaos Realm.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "be6f1a11-b82c-4192-8243-6f982c2b8635",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "But Velyana lay lifeless upon the ritual floor in a pool of ichor. Despite the power of Mortuai's magic and Sir Jamus' faith, they could not restore the Seeress' soul...",
+                                                    "emotion": "2",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "0ce064ee-344d-40d9-a686-3c1092c13cb7",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "And... that's all I can read right now.",
+                                                    "emotion": "2",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.actorPresent",
+                                                                "actorId": "84d47ff5-c737-42b6-9e21-e8b7413ce007",
+                                                                "hasNot": false
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "c1f786cf-6e62-4544-b517-dc983b5f86a6",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": "84d47ff5-c737-42b6-9e21-e8b7413ce007",
+                                                                    "text": "At least let me know if they save Velyana?",
+                                                                    "emotion": "4",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "98063769-da09-4388-8753-c0d1e13ffeb3",
+                                                                    "actorId": "84d47ff5-c737-42b6-9e21-e8b7413ce007",
+                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "text": "Not all heroic tales have happy endings.",
+                                                                    "emotion": "2",
+                                                                    "emotion2": "2",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeReputation",
+                                                                    "id": "4242b8cc-d836-4e1f-85bf-f0ff62d85d17",
+                                                                    "actorId": "84d47ff5-c737-42b6-9e21-e8b7413ce007",
+                                                                    "amount": "5",
+                                                                    "change": "1",
+                                                                    "notify": false
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": null,
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "97ef8961-99a3-41d9-b0d0-c9763e7e3ab7",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "Why does saving the world seem so sad?",
+                                                                    "emotion": "2",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "prop",
+                                                "scopeId": "26c573b1-14df-4163-88ff-4fc9944391e8",
+                                                "scopeFilterId": "981ec865-3e1b-4f3e-bb0d-11df2bc7d593",
+                                                "tags": "read4",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "adfe433c-234b-40ac-91f5-0678b4b0effb",
+                                                    "scope": "prop",
+                                                    "scopeId": "26c573b1-14df-4163-88ff-4fc9944391e8",
+                                                    "scopeFilterId": "981ec865-3e1b-4f3e-bb0d-11df2bc7d593",
+                                                    "tagsToAdd": "read4",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "e139d052-d4f3-44f0-9647-d24824c7dcbb",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Hey, it looks like there are a few more pages!",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "6fba0605-5ad4-4e6e-91e7-f4e397640739",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Despite all futile attempts to restore the lifeless Velyana, Mortuai refused to accept that she was lost. He cast a spell and vanished with Velyana's soulless body.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "e1b76f11-b7df-4cbe-9c00-2ce4d7098630",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Sir Hans and Sir Jamus were summoned before the High King of Albion.  Londinium had been destroyed and the High Prince was dead; the High King blamed the knights for those tragedies, and banished them from Albion...",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "ff393535-d7f7-4140-94b2-28afd5f8fe98",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "That's not fair! They just saved the world!",
+                                                    "emotion": "3",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.actorPresent",
+                                                                "actorId": "84d47ff5-c737-42b6-9e21-e8b7413ce007",
+                                                                "hasNot": false
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "66df8243-f5e5-44e7-949c-430ebbbb9e3a",
+                                                                    "actorId": "84d47ff5-c737-42b6-9e21-e8b7413ce007",
+                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "text": "Unfortunately, all too often, no good deed goes unpunished.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "2",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeReputation",
+                                                                    "id": "3b1a1db8-7caa-4045-9cdf-71d9357b1d53",
+                                                                    "actorId": "84d47ff5-c737-42b6-9e21-e8b7413ce007",
+                                                                    "amount": "5",
+                                                                    "change": "1",
+                                                                    "notify": false
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "e0a5848e-b13d-4f22-a341-4d6d9f481084",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "And that's all I can read for now.",
+                                                    "emotion": "2",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "prop",
+                                                "scopeId": "26c573b1-14df-4163-88ff-4fc9944391e8",
+                                                "scopeFilterId": "981ec865-3e1b-4f3e-bb0d-11df2bc7d593",
+                                                "tags": "read5",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "05dca915-4f8e-416f-bdc8-5cacd21b9ea5",
+                                                    "scope": "prop",
+                                                    "scopeId": "26c573b1-14df-4163-88ff-4fc9944391e8",
+                                                    "scopeFilterId": "981ec865-3e1b-4f3e-bb0d-11df2bc7d593",
+                                                    "tagsToAdd": "read5",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "3bfd6707-0bc7-40f9-87bb-5f81b7af9579",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "New pages!",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "bb9aa4a3-a71d-45cd-8107-7f7b2b42c2a9",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "According to Velyana's prophecy, even as the Dark One Gor-Goloth invaded Albion, the Dark One Gog'Sosloth would open a second Chaos Gate in Sardonia.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "8e498c56-789a-4332-bb37-8130bfafd5cd",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Tendrils of Gog'Sosloth's power had already begun to seep into this world.  They twisted everything and everyone they touched.  Men were transformed into Gogs and other unnatural creatures, and worshipped the Dark One.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "13bd8e6b-7e04-4b76-9261-5b5af6749808",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Sir Hans, Sir Jamus, and Aquino rushed to Sardonia. There, they reunited with Mortuai, who had discovered a Chaos Gate below what would become the city of Caligari. The four heroes fought against the tide of Darkness and sealed the Demon Gate. However, the prophecy warned that the Gate would be reopened.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "a72ddae5-5bfe-40f1-b551-2c0c1a1f089d",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Sir Hans and Sir Jamus formed the Order of the Knights Luminar to stand vigilant against the forces of Darkness. They built Castle Luminar to be a bastion of the Light...  And that's the end of the page.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "c5a67ec4-21f7-4ce8-9bd6-d70a96427eaf",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "This castle was supposed to protect against the Dark Ones? But it's been wrecked and abandoned until the University moved in. What could have happened to the Order?",
+                                                    "emotion": "4",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.actorPresent",
+                                                                "actorId": "84d47ff5-c737-42b6-9e21-e8b7413ce007",
+                                                                "hasNot": false
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "7fd2de07-0c27-4d5a-8565-632f94e7248e",
+                                                                    "actorId": "84d47ff5-c737-42b6-9e21-e8b7413ce007",
+                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "text": "That part of the tale shall have to wait for another day.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "2",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeReputation",
+                                                                    "id": "811c4c2f-5f6a-46f8-b9a3-6b611a6791c4",
+                                                                    "actorId": "84d47ff5-c737-42b6-9e21-e8b7413ce007",
+                                                                    "amount": "2",
+                                                                    "change": "1",
+                                                                    "notify": false
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "prop",
+                                                "scopeId": "26c573b1-14df-4163-88ff-4fc9944391e8",
+                                                "scopeFilterId": "981ec865-3e1b-4f3e-bb0d-11df2bc7d593",
+                                                "tags": "read6",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "5c47a59c-3072-47c4-b9f2-c9dce0b94db4",
+                                                    "scope": "prop",
+                                                    "scopeId": "26c573b1-14df-4163-88ff-4fc9944391e8",
+                                                    "scopeFilterId": "981ec865-3e1b-4f3e-bb0d-11df2bc7d593",
+                                                    "tagsToAdd": "read6",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "b01f7ba7-7608-487c-a0d7-2c9d1882a889",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Yes, some new pages!",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "abab1780-bbc8-45ec-9fef-77a3a068c7fa",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "The Order of the Knights Luminar expanded their ranks and became the center of heroism for Sardonia. The Order helped build the city of Caligari, and was renowned throughout the world for its principles of knightly honor.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "8e7dde91-df91-497d-a79f-1336623fe27d",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "However, they did not know the halls of Castle Luminar harboured a traitor who sought to betray everything that the Knights Luminar had sworn to protect.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "61e288b0-8bd9-46db-b5a6-bbb8fb355039",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "The Warlock Aquino was disillusioned by his banishment from Albion. He silently seethed that he had helped to save the world twice, yet only the knights received the honor and the glory.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "b413eadc-f348-4453-b220-3e8499d4a7cf",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Moreover, his research into the Dark Ones slowly corrupted his soul. With dark magic, he sought to gain power from the Dark Ones. ",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "38559432-6700-4f13-a064-13765f8034c5",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Then one day, Gog'Sosloth began to whisper to Aquino...",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "56eed4e0-e074-447b-977e-883aaa5c8765",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "The page ends there. This can't end well.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.actorPresent",
+                                                                "actorId": "84d47ff5-c737-42b6-9e21-e8b7413ce007",
+                                                                "hasNot": false
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "862aec5e-1973-4def-be99-b579a2f2a624",
+                                                                    "actorId": "84d47ff5-c737-42b6-9e21-e8b7413ce007",
+                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "text": "It does not.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "2",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeReputation",
+                                                                    "id": "a7b2be32-a1db-4cbf-ba13-3172f42ffac4",
+                                                                    "actorId": "84d47ff5-c737-42b6-9e21-e8b7413ce007",
+                                                                    "amount": "2",
+                                                                    "change": "1",
+                                                                    "notify": false
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "378cb379-3291-4fc6-bb1d-0239231c5641",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Well, that probably explains why this castle was abandoned for so long.",
+                                                    "emotion": "2",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "prop",
+                                                "scopeId": "26c573b1-14df-4163-88ff-4fc9944391e8",
+                                                "scopeFilterId": "981ec865-3e1b-4f3e-bb0d-11df2bc7d593",
+                                                "tags": "read7",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "72c4f02f-edd3-4563-8ca3-0b1a809a6376",
+                                                    "scope": "prop",
+                                                    "scopeId": "26c573b1-14df-4163-88ff-4fc9944391e8",
+                                                    "scopeFilterId": "981ec865-3e1b-4f3e-bb0d-11df2bc7d593",
+                                                    "tagsToAdd": "read7",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "00babdb9-0fd0-4271-b39b-bb89616b58bc",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Ah, there are a few new pages to read now.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "ddfb5c10-7774-4067-a486-e61c48936263",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "In the Dark One's name, Aquino formed a cult of worshippers. They sought to unleash the bonds of magic sealing the Chaos Gate, and free Gog'Sosloth to enter this world.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "cd11e6e9-71ac-4694-aafd-47f83a3665dd",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "In return for his services, Aquino was granted his wish to never die.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.actorPresent",
+                                                                "actorId": "84d47ff5-c737-42b6-9e21-e8b7413ce007",
+                                                                "hasNot": false
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "e00264fd-da40-487b-aff5-984af8eda90f",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": "84d47ff5-c737-42b6-9e21-e8b7413ce007",
+                                                                    "text": "Wait... if Aquino was granted that wish, does that mean he's still alive?",
+                                                                    "emotion": "4",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "2dbf7e3c-a040-47d5-9761-1bdc2f12ebe3",
+                                                                    "actorId": "84d47ff5-c737-42b6-9e21-e8b7413ce007",
+                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "text": "The castle holds many secrets. That is one of them.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "4",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeReputation",
+                                                                    "id": "ee7bb05f-9dfb-43d3-9c85-84bd1753ca9d",
+                                                                    "actorId": "84d47ff5-c737-42b6-9e21-e8b7413ce007",
+                                                                    "amount": "5",
+                                                                    "change": "1",
+                                                                    "notify": false
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "54c68f2c-b691-4277-902b-1e9fd40ef31f",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Aquino's cultists slowly infiltrated the castle, and members of the Knights Luminar \"mysteriously\" began to die or disappear.  As the cultists weakened the bindings sealing the Chaos Gate, ghosts and foul spirits began to haunt the castle and Caligari.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "d30833e9-30f7-4d61-a7fa-ebaf64afb5ef",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Fear spread across Sardonia. Rumors - started by Aquino - blamed the Knights Luminar for the hauntings. Aquino's cult claimed to offer sanctuary from the spirits, so their membership grew as the power of the Dark One spread...",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "15627da0-bbef-45f1-bc8f-0a6cfc564ed4",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "And that is all I can read now.",
+                                                    "emotion": "2",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "prop",
+                                                "scopeId": "26c573b1-14df-4163-88ff-4fc9944391e8",
+                                                "scopeFilterId": "981ec865-3e1b-4f3e-bb0d-11df2bc7d593",
+                                                "tags": "read8",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "79fe3814-ee1e-43d2-ae8f-16a94ec810ae",
+                                                    "scope": "prop",
+                                                    "scopeId": "26c573b1-14df-4163-88ff-4fc9944391e8",
+                                                    "scopeFilterId": "981ec865-3e1b-4f3e-bb0d-11df2bc7d593",
+                                                    "tagsToAdd": "read8",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "1a877f21-c086-43e8-a296-172eb79d6175",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "New pages!",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "e8d2a2fa-11e1-4e9a-a4ea-1f06a55ebdf2",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "It was Mortuai who exposed Aquino's betrayal before the High Council of the Knights Luminar - the Illuminari. Aquino fled the castle to the Sea Caves below.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "9aa3eeb8-e676-4b99-8383-5063891a56d7",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "The Knights Luminar pursued the Warlock through the twisting passages of the caverns.  They fought the grotesque monsters and Dark magic that had been summoned from the realm of Gog'Sosloth. ",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "e1861df5-8d07-4dcb-8950-84cfd7ca7316",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "There too, they found the fanatical followers of the Dark One. Men they had once called brothers now raised weapons against them for the glory of Gog'Sosloth. The waters ran crimson with the blood of both friend and foe.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "752285ab-9ddd-4a28-aece-689568b92300",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "At last, Mortuai, Sir Hans, and Sir Jamus confronted Aquino in the ruins of a Gog temple. Aquino fell before the onslaught of magic and weaponry. Yet, despite his grievous wounds, Aquino refused to yield. He tried to call upon the Dark One for aid.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "37fb21e2-2abb-4927-a50b-650a0baa48ef",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "But Mortuai cast a spell which silenced Aquino's voice and magic. With his followers defeated and no Dark One to save him, Aquino was brought to justice at last.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "f568bf80-3078-4398-8c37-e6e11c06ff6b",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "The surviving knights returned to the castle, but the faith and trust that the people of Sardonia once had in the Knights Luminar was damaged beyond repair.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.actorPresent",
+                                                                "actorId": "84d47ff5-c737-42b6-9e21-e8b7413ce007",
+                                                                "hasNot": false
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "2a342885-2bad-4e1f-aaae-062ba93b5c52",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": "84d47ff5-c737-42b6-9e21-e8b7413ce007",
+                                                                    "text": "That's it? That's the end of the story?",
+                                                                    "emotion": "4",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "e6830759-8482-4bcc-8367-6d4e57c6e96d",
+                                                                    "actorId": "84d47ff5-c737-42b6-9e21-e8b7413ce007",
+                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "text": "It is the end of the book. The story is still being written.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "4",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeReputation",
+                                                                    "id": "a966a270-bc91-4dde-8750-d25dc1ff9edd",
+                                                                    "actorId": "84d47ff5-c737-42b6-9e21-e8b7413ce007",
+                                                                    "amount": "5",
+                                                                    "change": "1",
+                                                                    "notify": false
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": null,
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "e8935127-4259-443b-884d-d2e51c8c04d7",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "The Knights Luminar gave their lives to save the world and no one even remembers them now. All that's left is this castle.",
+                                                                    "emotion": "2",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "573220ff-36ef-407e-aaf4-805653882b67",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "And maybe that's the spirit of true heroism.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "60accf2d-1d75-41a9-8bb8-7834cede4b6a",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "I seem to have reached the end of the book. I guess that was as much of the story as they recorded.",
+                                                    "emotion": "2",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "755da325-b827-442d-96f3-67e5ebcac74a",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "I'll get serious eyestrain and a backache if I try to read any more of this book today.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

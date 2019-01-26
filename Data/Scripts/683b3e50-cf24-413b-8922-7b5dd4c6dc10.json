@@ -1,0 +1,1045 @@
+{
+    "type": "script",
+    "id": "683b3e50-cf24-413b-8922-7b5dd4c6dc10",
+    "name": "Interact with Phylactery",
+    "sceneId": "65bf97bc-9989-4004-b745-6bc20dd3cac7",
+    "propId": "2a23505e-a9cb-4ed7-a78e-5ea1eaf3c9a4",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "59b8019a-3942-427a-9b13-891bf3da8b4d",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "actor",
+                                "scopeId": "fb00cd5f-e210-44b2-bc7d-5384a9a3db74",
+                                "scopeFilterId": null,
+                                "tags": "bottledup",
+                                "has": true
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "global",
+                                                "variableName": "time.hour",
+                                                "operator": "lt",
+                                                "compareTo": "2",
+                                                "sceneId": "91e73978-0245-4bb2-8c83-eaa7f3954455",
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.comment",
+                                                    "message": "This little time warp gives the player some more time...",
+                                                    "commentor": "Joshua"
+                                                },
+                                                {
+                                                    "type": "nodes.setTime",
+                                                    "id": "fe8fe25c-dfca-4917-a0d7-821624371d61",
+                                                    "day": -1,
+                                                    "hour": 0,
+                                                    "minute": 0,
+                                                    "notify": false
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.showMenu",
+                                    "id": "9ccdbeb5-391f-48a1-9b76-46df7c74e38c",
+                                    "options": [
+                                        {
+                                            "type": "options.text",
+                                            "id": "5e26543d-e16e-4f59-8979-eb682834ea51",
+                                            "text": "Look at Phylactery",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "da8318c9-13d4-4bef-84dc-492ba49d3b5d",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "It's glowing! This must be the Wraith's Phylactery!",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ],
+                                            "expression": null,
+                                            "ignoreChildAvailability": true,
+                                            "minutes": 0,
+                                            "ExitMenu": false
+                                        },
+                                        {
+                                            "type": "options.text",
+                                            "id": "29746c99-35a9-4d6d-9b27-a8a27735450e",
+                                            "text": "Destroy Phylactery",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "4c4bdf94-16ef-408f-bc60-db1e534d621b",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Okay, here I go!",
+                                                    "emotion": "3",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.playAnimation",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "animationName": "ComposerCombat",
+                                                    "wait": false
+                                                },
+                                                {
+                                                    "type": "nodes.wait",
+                                                    "waitForSeconds": "1.5"
+                                                },
+                                                {
+                                                    "type": "nodes.playAnimation",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "animationName": "ComposerSlash",
+                                                    "wait": false
+                                                },
+                                                {
+                                                    "type": "nodes.wait",
+                                                    "waitForSeconds": "0.8"
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.or",
+                                                                "left": {
+                                                                    "type": "expressions.isEquipped",
+                                                                    "propId": "c83c3be1-8cb1-40c0-b14a-adca0384ddae",
+                                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4"
+                                                                },
+                                                                "right": {
+                                                                    "type": "expressions.or",
+                                                                    "left": {
+                                                                        "type": "expressions.isEquipped",
+                                                                        "propId": "5446156d-e529-4db1-8a8c-e2b1e100323a",
+                                                                        "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4"
+                                                                    },
+                                                                    "right": {
+                                                                        "type": "expressions.or",
+                                                                        "left": {
+                                                                            "type": "expressions.isEquipped",
+                                                                            "propId": "c45e6d78-c628-4f5d-bcb0-c6f3bf34cdae",
+                                                                            "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4"
+                                                                        },
+                                                                        "right": {
+                                                                            "type": "expressions.or",
+                                                                            "left": {
+                                                                                "type": "expressions.isEquipped",
+                                                                                "propId": "93ee7113-bdad-4853-a0ba-f3c8fa1442fb",
+                                                                                "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4"
+                                                                            },
+                                                                            "right": {
+                                                                                "type": "expressions.isEquipped",
+                                                                                "propId": "adfcee68-ce57-40fe-9123-b18b9869eaf6",
+                                                                                "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.quests",
+                                                                    "id": "2adb7242-ca64-4dba-bdc1-96d7ed49ef5a",
+                                                                    "sceneId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                                                                    "propId": "5e54bcb0-dac3-4345-b9bc-1862233c666c",
+                                                                    "target": "1",
+                                                                    "notify": true
+                                                                },
+                                                                {
+                                                                    "type": "nodes.invokeCommand",
+                                                                    "id": "9e7a6f8a-9b44-418f-951a-c43767a83161",
+                                                                    "entityType": "actor",
+                                                                    "entityId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "command": "StopComposerCombat",
+                                                                    "wait": true,
+                                                                    "resultVariableScope": "script"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeTags",
+                                                                    "id": "941678cb-fcb9-4870-a2f7-6e86757ea7fe",
+                                                                    "scope": "actor",
+                                                                    "scopeId": "fb00cd5f-e210-44b2-bc7d-5384a9a3db74",
+                                                                    "scopeFilterId": null,
+                                                                    "tagsToAdd": "destroyed",
+                                                                    "tagsToRemove": null
+                                                                },
+                                                                {
+                                                                    "type": "nodes.playSoundEffect",
+                                                                    "soundEffectName": "explosion.wav",
+                                                                    "wait": false
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changePropVisibility",
+                                                                    "id": "7cddba19-d62a-4f64-9ae0-5622a32e0ec9",
+                                                                    "propId": "6248ac47-c299-4e9f-9840-37ebb0926209",
+                                                                    "sceneId": "65bf97bc-9989-4004-b745-6bc20dd3cac7",
+                                                                    "status": "Visible",
+                                                                    "wait": true
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changePropVisibility",
+                                                                    "id": "f1a585ff-9ff1-4ef6-9114-b63ea0f167af",
+                                                                    "propId": "a86bc037-2923-4528-b5d9-e8b6161f6b08",
+                                                                    "sceneId": "65bf97bc-9989-4004-b745-6bc20dd3cac7",
+                                                                    "status": "Hidden",
+                                                                    "wait": true
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changePropVisibility",
+                                                                    "id": "136a1a99-a88f-4543-a08a-6c7ef7323140",
+                                                                    "propId": "2a23505e-a9cb-4ed7-a78e-5ea1eaf3c9a4",
+                                                                    "sceneId": "65bf97bc-9989-4004-b745-6bc20dd3cac7",
+                                                                    "status": "Hidden",
+                                                                    "wait": true
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changePropVisibility",
+                                                                    "id": "74c4dce3-3a53-4079-b51f-73bb90aa6320",
+                                                                    "propId": "20d75a2f-1898-4870-8ccd-5bfbf96e1f2d",
+                                                                    "sceneId": "65bf97bc-9989-4004-b745-6bc20dd3cac7",
+                                                                    "status": "Visible",
+                                                                    "wait": true
+                                                                },
+                                                                {
+                                                                    "type": "nodes.branch",
+                                                                    "sections": [
+                                                                        {
+                                                                            "type": "nodes.branchSection",
+                                                                            "expression": {
+                                                                                "type": "expressions.propStatus",
+                                                                                "propId": "d1ec17cb-769d-4c44-aeb9-32060a4c6c68",
+                                                                                "sceneId": "65bf97bc-9989-4004-b745-6bc20dd3cac7",
+                                                                                "status": "Visible"
+                                                                            },
+                                                                            "nodes": [
+                                                                                {
+                                                                                    "type": "nodes.playSoundEffect",
+                                                                                    "soundEffectName": "magic_teleport.wav",
+                                                                                    "wait": false
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.changePropVisibility",
+                                                                                    "id": "ecc10a92-476f-4a69-9d15-1c63c5eb929e",
+                                                                                    "propId": "d1ec17cb-769d-4c44-aeb9-32060a4c6c68",
+                                                                                    "sceneId": "65bf97bc-9989-4004-b745-6bc20dd3cac7",
+                                                                                    "status": "Hidden",
+                                                                                    "wait": true
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.playAnimation",
+                                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                    "animationName": "JumpScare",
+                                                                                    "wait": false
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.wait",
+                                                                                    "waitForSeconds": "1.0"
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.invokeScript",
+                                                                                    "id": "268f4295-805e-4895-b874-0d29e3d3c260",
+                                                                                    "scriptId": "683b3e50-cf24-413b-8922-7b5dd4c6dc10",
+                                                                                    "entryPointId": "fa6bf3fd-54ee-48be-a2a8-2085ba6940ea",
+                                                                                    "currentScope": "Current",
+                                                                                    "currentSceneId": null,
+                                                                                    "currentActorId": null,
+                                                                                    "currentStoryEventId": null,
+                                                                                    "currentPropId": null
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.speak",
+                                                                                    "id": "a34d2942-d189-40c5-af51-af358face26b",
+                                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                    "actorId2": null,
+                                                                                    "text": "Whoa, that was close. It didn't even leave a trace of the Null Runestone! Glad I set that up in advance. It probably saved my life.",
+                                                                                    "emotion": "4",
+                                                                                    "emotion2": "0",
+                                                                                    "device": "0",
+                                                                                    "device2": "0"
+                                                                                }
+                                                                            ]
+                                                                        },
+                                                                        {
+                                                                            "type": "nodes.branchSection",
+                                                                            "expression": {
+                                                                                "type": "expressions.isEquipped",
+                                                                                "propId": "840c8a59-3e39-4ede-aa2a-4201ae7ac891",
+                                                                                "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4"
+                                                                            },
+                                                                            "nodes": [
+                                                                                {
+                                                                                    "type": "nodes.changeHealth",
+                                                                                    "id": "de4a19b6-9e0f-40d5-b6b6-060de66b303c",
+                                                                                    "target": "0",
+                                                                                    "damageType": "1",
+                                                                                    "amount": "-30",
+                                                                                    "canDie": false,
+                                                                                    "isPercentage": false,
+                                                                                    "showNotification": true
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.invokeCommand",
+                                                                                    "id": "70a2f75e-c1f3-422d-8020-b832456d9fce",
+                                                                                    "entityType": "actor",
+                                                                                    "entityId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                    "command": "VariableKnockback",
+                                                                                    "parameter": "2.5,0.5",
+                                                                                    "resultVariableScope": "script"
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.wait",
+                                                                                    "waitForSeconds": "0.8"
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.invokeScript",
+                                                                                    "id": "80ae19c2-1014-42d1-8d9f-ce232acc1da4",
+                                                                                    "scriptId": "683b3e50-cf24-413b-8922-7b5dd4c6dc10",
+                                                                                    "entryPointId": "fa6bf3fd-54ee-48be-a2a8-2085ba6940ea",
+                                                                                    "currentScope": "Current",
+                                                                                    "currentSceneId": null,
+                                                                                    "currentActorId": null,
+                                                                                    "currentStoryEventId": null,
+                                                                                    "currentPropId": null
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.speak",
+                                                                                    "id": "a1ce556d-9a5c-4923-8d25-cd1032e820d2",
+                                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                    "actorId2": null,
+                                                                                    "text": "Ugh!",
+                                                                                    "emotion": "0",
+                                                                                    "emotion2": "0",
+                                                                                    "device": "0",
+                                                                                    "device2": "0"
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.speak",
+                                                                                    "id": "c308e23f-43ed-4657-97ee-e42415064f8e",
+                                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                    "actorId2": null,
+                                                                                    "text": "Ouch!! That really hurt! Good thing I was wearing the Necramulet... I could've died.",
+                                                                                    "emotion": "0",
+                                                                                    "emotion2": "0",
+                                                                                    "device": "0",
+                                                                                    "device2": "0"
+                                                                                }
+                                                                            ]
+                                                                        },
+                                                                        {
+                                                                            "type": "nodes.branchSection",
+                                                                            "expression": null,
+                                                                            "nodes": [
+                                                                                {
+                                                                                    "type": "nodes.changeHealth",
+                                                                                    "id": "91075394-bc8f-4f28-aa53-8f51b0339c27",
+                                                                                    "target": "0",
+                                                                                    "damageType": "1",
+                                                                                    "amount": "-65",
+                                                                                    "canDie": false,
+                                                                                    "isPercentage": false,
+                                                                                    "showNotification": true
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.invokeCommand",
+                                                                                    "id": "48125555-89ef-46ff-be39-b119b761ddad",
+                                                                                    "entityType": "actor",
+                                                                                    "entityId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                    "command": "VariableKnockback",
+                                                                                    "parameter": "3.5,0.5",
+                                                                                    "resultVariableScope": "script"
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.wait",
+                                                                                    "waitForSeconds": "0.8"
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.invokeScript",
+                                                                                    "id": "e4013fc8-bf24-4c42-abd0-764ff0427436",
+                                                                                    "scriptId": "683b3e50-cf24-413b-8922-7b5dd4c6dc10",
+                                                                                    "entryPointId": "fa6bf3fd-54ee-48be-a2a8-2085ba6940ea",
+                                                                                    "currentScope": "Current",
+                                                                                    "currentSceneId": null,
+                                                                                    "currentActorId": null,
+                                                                                    "currentStoryEventId": null,
+                                                                                    "currentPropId": null
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.speak",
+                                                                                    "id": "01126365-3501-4023-9897-c8d1c143781d",
+                                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                    "actorId2": null,
+                                                                                    "text": "Argh!!",
+                                                                                    "emotion": "4",
+                                                                                    "emotion2": "0",
+                                                                                    "device": "0",
+                                                                                    "device2": "0"
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.playAnimation",
+                                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                    "animationName": "Exhausted"
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.resetCamera",
+                                                                                    "wait": false,
+                                                                                    "time": "1"
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.speak",
+                                                                                    "id": "45acae4d-8c6e-4e82-93b8-2a553834fdd2",
+                                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                    "actorId2": null,
+                                                                                    "text": "I guess attacking magical artifacts can be dangerous.",
+                                                                                    "emotion": "2",
+                                                                                    "emotion2": "0",
+                                                                                    "device": "0",
+                                                                                    "device2": "0"
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "type": "nodes.invokeCommand",
+                                                                    "id": "d18235b4-4def-4182-be11-f404f3ebd47b",
+                                                                    "entityType": "actor",
+                                                                    "entityId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "command": "HideDagger",
+                                                                    "resultVariableScope": "script"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.branch",
+                                                                    "sections": [
+                                                                        {
+                                                                            "type": "nodes.branchSection",
+                                                                            "expression": {
+                                                                                "type": "expressions.inTags",
+                                                                                "scope": "actor",
+                                                                                "scopeId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                                                "scopeFilterId": null,
+                                                                                "tags": "KyroDead",
+                                                                                "has": true
+                                                                            },
+                                                                            "nodes": [
+                                                                                {
+                                                                                    "type": "nodes.comment",
+                                                                                    "message": "It's after Day 34; Kyro is already dead, and can't be rescued.",
+                                                                                    "commentor": "Cidney"
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.invokeScript",
+                                                                                    "id": "a8d61fcd-c160-4932-b1e5-96808ee4ad5f",
+                                                                                    "scriptId": "cd66ed96-3dd0-4ea7-958f-6966e8e2a8d2",
+                                                                                    "entryPointId": "59b8019a-3942-427a-9b13-891bf3da8b4d",
+                                                                                    "currentScope": "Scenes",
+                                                                                    "currentSceneId": "65bf97bc-9989-4004-b745-6bc20dd3cac7",
+                                                                                    "currentActorId": null,
+                                                                                    "currentStoryEventId": null,
+                                                                                    "currentPropId": null
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.endScript"
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "97f74750-2f0c-4007-a394-6f14918e1db9",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "I'd better get back and make sure that Joel is still alive now. If not, at least I will have avenged his death.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.fade",
+                                                                    "scope": "FadeOut",
+                                                                    "fadeTime": "1",
+                                                                    "fadeTime2": 2,
+                                                                    "wait": true,
+                                                                    "fadeDown": 0.5,
+                                                                    "fadeColorR": 0,
+                                                                    "fadeColorG": 0,
+                                                                    "fadeColorB": 0
+                                                                },
+                                                                {
+                                                                    "type": "nodes.quests",
+                                                                    "id": "167e7a58-bbc1-4771-8576-72377caec4ad",
+                                                                    "sceneId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                                                                    "propId": "63c9eaa8-929d-4dd5-ad28-2ff7c908fefe",
+                                                                    "target": "1",
+                                                                    "notify": true
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeScene",
+                                                                    "sceneId": "e8606d3d-9743-4b44-a3b3-117a393b42ae",
+                                                                    "spawnId": "c0c61631-3673-41d1-b46c-186da61600c4",
+                                                                    "fadeTime": "0"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": null,
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.invokeCommand",
+                                                                    "id": "4bf9d366-9584-4a2c-97a4-137b14e07dad",
+                                                                    "entityType": "actor",
+                                                                    "entityId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "command": "StopComposerCombat",
+                                                                    "wait": true,
+                                                                    "resultVariableScope": "script"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "c28c5914-22fa-4f79-a3d6-b553e1219016",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "It's no good. My weapons don't seem to even scratch it. It's going to take a powerful magical weapon to destroy that phylactery.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.addJournalEntry",
+                                                                    "id": "1d81fc32-5543-46f7-914f-bcd2b6deb107",
+                                                                    "name": "Destroying the Phylactery",
+                                                                    "notify": true,
+                                                                    "description": "My dagger won't even scratch the phylactery. I need to find a magical weapon to break it."
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "expression": null,
+                                            "ignoreChildAvailability": true,
+                                            "minutes": 0,
+                                            "ExitMenu": false
+                                        },
+                                        {
+                                            "type": "options.text",
+                                            "id": "69bf1daf-7577-4834-a39d-fd215cafeec1",
+                                            "text": "Place Null Runestone",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "0b5c44e3-609c-4076-8244-898c7c4d12ea",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Placing this runestone should help protect me from whatever it is Zac has cooked up for me. Or so I can hope.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.playAnimation",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "animationName": "KneelDown",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.changeInventory",
+                                                    "id": "2426e254-f823-4fbd-871f-190102d34d95",
+                                                    "propId": "c9f6f853-dd16-44fd-a266-f0b40d63fc98",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "change": "0",
+                                                    "count": 1,
+                                                    "notify": true
+                                                },
+                                                {
+                                                    "type": "nodes.changePropVisibility",
+                                                    "id": "fcc2aaad-8745-4f02-ad42-ec8459eba136",
+                                                    "propId": "d1ec17cb-769d-4c44-aeb9-32060a4c6c68",
+                                                    "sceneId": "65bf97bc-9989-4004-b745-6bc20dd3cac7",
+                                                    "status": "Visible",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.playAnimation",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "animationName": "KneelUp",
+                                                    "wait": false
+                                                }
+                                            ],
+                                            "expression": {
+                                                "type": "expressions.and",
+                                                "left": {
+                                                    "type": "expressions.inInventory",
+                                                    "propId": "c9f6f853-dd16-44fd-a266-f0b40d63fc98",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "has": true
+                                                },
+                                                "right": {
+                                                    "type": "expressions.propStatus",
+                                                    "propId": "d1ec17cb-769d-4c44-aeb9-32060a4c6c68",
+                                                    "sceneId": "65bf97bc-9989-4004-b745-6bc20dd3cac7",
+                                                    "status": "Hidden"
+                                                }
+                                            },
+                                            "ignoreChildAvailability": true,
+                                            "minutes": 0,
+                                            "ExitMenu": false
+                                        },
+                                        {
+                                            "type": "options.text",
+                                            "id": "288dbcb8-7501-4c93-8ae6-c9e82f742f2c",
+                                            "text": "Pick up Null Runestone",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "87c97732-ef68-4884-84f7-4f2c10e4219f",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Then again... maybe I should hold on to this.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.playAnimation",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "animationName": "KneelDown",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.changeInventory",
+                                                    "id": "89c795a9-56fa-4712-9be7-c90ae5289bbc",
+                                                    "propId": "c9f6f853-dd16-44fd-a266-f0b40d63fc98",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "change": "1",
+                                                    "count": 1,
+                                                    "notify": true
+                                                },
+                                                {
+                                                    "type": "nodes.changePropVisibility",
+                                                    "id": "34b546f6-6590-45e3-ae24-b7ad2aa4bb40",
+                                                    "propId": "d1ec17cb-769d-4c44-aeb9-32060a4c6c68",
+                                                    "sceneId": "65bf97bc-9989-4004-b745-6bc20dd3cac7",
+                                                    "status": "Hidden",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.playAnimation",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "animationName": "KneelUp",
+                                                    "wait": false
+                                                }
+                                            ],
+                                            "expression": {
+                                                "type": "expressions.propStatus",
+                                                "propId": "d1ec17cb-769d-4c44-aeb9-32060a4c6c68",
+                                                "sceneId": "65bf97bc-9989-4004-b745-6bc20dd3cac7",
+                                                "status": "Visible"
+                                            },
+                                            "ignoreChildAvailability": true,
+                                            "minutes": 0,
+                                            "ExitMenu": false
+                                        },
+                                        {
+                                            "type": "options.text",
+                                            "id": "70774e1f-1ba4-4be7-aa33-885a487d8d11",
+                                            "text": "Take Phylactery",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "0a8ab394-12f8-4c14-b5bb-1abd4ab431ef",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "There's a terrifying Wraith in there! It could just pop out and eat my face at any time! I can't risk carrying that thing around.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ],
+                                            "expression": null,
+                                            "ignoreChildAvailability": false,
+                                            "minutes": 0,
+                                            "ExitMenu": false
+                                        },
+                                        {
+                                            "type": "options.text",
+                                            "id": "0e5cde04-b500-4803-9dbb-b64a77ecfff0",
+                                            "text": "Sense Magic",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "598eda37-e5c4-4e3b-87a3-d9efa083ede1",
+                                                    "scriptId": "b1c2ecc1-eb00-49ed-a7ba-ea6af625c355",
+                                                    "entryPointId": "59b8019a-3942-427a-9b13-891bf3da8b4d",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "b91fd2d7-8c4b-477f-aa1e-02782316e2a3",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "I mean, it should be obvious with the radianting energy and all, but that is some powerfully dark energy I'm feeling.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ],
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "actor",
+                                                "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                "scopeFilterId": null,
+                                                "tags": "sensemagic",
+                                                "has": true
+                                            },
+                                            "ignoreChildAvailability": true,
+                                            "minutes": 0,
+                                            "ExitMenu": false
+                                        }
+                                    ],
+                                    "AutoAddDone": true,
+                                    "Unique": false
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.variableComparison",
+                                    "variableScope": "global",
+                                    "variableName": "time.day",
+                                    "operator": "gte",
+                                    "compareTo": "32",
+                                    "sceneId": "65bf97bc-9989-4004-b745-6bc20dd3cac7",
+                                    "propId": null
+                                },
+                                "right": {
+                                    "type": "expressions.variableComparison",
+                                    "variableScope": "global",
+                                    "variableName": "time.day",
+                                    "operator": "lte",
+                                    "compareTo": "33",
+                                    "sceneId": "65bf97bc-9989-4004-b745-6bc20dd3cac7",
+                                    "propId": null
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.showMenu",
+                                    "id": "2c5e78c7-597c-481e-973a-07825534319e",
+                                    "options": [
+                                        {
+                                            "type": "options.text",
+                                            "id": "651d2972-4c3d-4260-abe2-ff02199f8789",
+                                            "text": "Look at Phylactery",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "55a1bcd2-3519-49b2-9730-b3ceddd78af0",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "It looks like a really dull canopic jar. Could this really be the Phylactery for the Wraith?",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "81fb355c-96e6-4fc5-ac6e-896ecd51443e",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Then again, why is it get colder the nearer I get to it? It's very scary.",
+                                                    "emotion": "2",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ],
+                                            "expression": null,
+                                            "ignoreChildAvailability": true,
+                                            "minutes": 0,
+                                            "ExitMenu": false
+                                        },
+                                        {
+                                            "type": "options.text",
+                                            "id": "b100b4eb-2662-4eb6-bcf2-02a725abae74",
+                                            "text": "Destroy Phylactery",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "a4046a86-bab0-4be4-b272-396c1a4afef5",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "It wouldn't do me any good to destroy it now, the Wraith hasn't been defeated yet! He'd probably just make a new one somewhere else.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ],
+                                            "expression": null,
+                                            "ignoreChildAvailability": true,
+                                            "minutes": 0,
+                                            "ExitMenu": false
+                                        },
+                                        {
+                                            "type": "options.text",
+                                            "id": "23844bcb-e976-4f71-91cb-49824c7241e2",
+                                            "text": "Take Phylactery",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "cda4427b-c5b0-4830-b5b1-08e4d02c74ca",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Nope, nope, nope. I'm not touching that thing. It's got to be cursed.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ],
+                                            "expression": null,
+                                            "ignoreChildAvailability": false,
+                                            "minutes": 0,
+                                            "ExitMenu": false
+                                        },
+                                        {
+                                            "type": "options.text",
+                                            "id": "ae718e63-f81b-43e4-b3f2-7b00ea3b19f1",
+                                            "text": "Sense Magic",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "ac3c7e6d-d60b-402d-b008-bfc7050f2c53",
+                                                    "scriptId": "b1c2ecc1-eb00-49ed-a7ba-ea6af625c355",
+                                                    "entryPointId": "59b8019a-3942-427a-9b13-891bf3da8b4d",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "3c1a9cd6-b51c-4918-a56a-e31a3498f949",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Even though the Wraith isn't occupying the vessel right now, I can still feel dark energy eminating from it.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "a61a6db3-01ac-4c55-b9c4-cc18ddcd478d",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "It is designed to trap souls, and it would be happy to trap mine, too.",
+                                                    "emotion": "2",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ],
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "actor",
+                                                "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                "scopeFilterId": null,
+                                                "tags": "sensemagic",
+                                                "has": true
+                                            },
+                                            "ignoreChildAvailability": true,
+                                            "minutes": 0,
+                                            "ExitMenu": false
+                                        }
+                                    ],
+                                    "AutoAddDone": true,
+                                    "Unique": false
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.variableComparison",
+                                "variableScope": "global",
+                                "variableName": "time.day",
+                                "operator": "lte",
+                                "compareTo": "32",
+                                "sceneId": "65bf97bc-9989-4004-b745-6bc20dd3cac7",
+                                "propId": null
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "f006dfb4-060d-41c6-9504-75f547e4ed3b",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "It's just an ugly looking jar that makes this entire area feel like a giant scary icicle.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "4d4f656d-53f5-4f20-b731-426503dd9e50",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Nothing too unusual about that.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "cb5fdce1-13c8-499f-bf7d-0db59eb0eed5",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Wait - what am I talking about? I don't know, but I don't want to hang around here to find out. I should get away from here.",
+                                    "emotion": "4",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "de283cd9-d745-4bb2-9169-3916f2bf9355",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "I don't know why - but I don't want to have anything to do with that canopic jar.",
+                                    "emotion": "3",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "scripts.entryPoint",
+            "id": "fa6bf3fd-54ee-48be-a2a8-2085ba6940ea",
+            "name": "ShowVignette",
+            "nodes": [
+                {
+                    "type": "nodes.playMusic",
+                    "musicTrack": "Boss Battle Catacombs.mp3",
+                    "channel": "1",
+                    "loopType": "1"
+                },
+                {
+                    "type": "nodes.fade",
+                    "scope": "FadeOut",
+                    "fadeTime": "0.3",
+                    "fadeTime2": 2,
+                    "wait": true,
+                    "fadeDown": 0.5,
+                    "fadeColorR": 0,
+                    "fadeColorG": 0,
+                    "fadeColorB": 0
+                },
+                {
+                    "type": "nodes.showVignette",
+                    "vignetteName": "Catacombs_PhylacteryDestruction.png",
+                    "crossFadeTime": 0
+                },
+                {
+                    "type": "nodes.fade",
+                    "scope": "FadeIn",
+                    "fadeTime": "1",
+                    "fadeTime2": "0.3",
+                    "wait": true,
+                    "fadeDown": "0",
+                    "fadeColorR": 0,
+                    "fadeColorG": 0,
+                    "fadeColorB": 0
+                },
+                {
+                    "type": "nodes.wait",
+                    "waitForSeconds": "3"
+                },
+                {
+                    "type": "nodes.fade",
+                    "scope": "FadeOut",
+                    "fadeTime": "1",
+                    "fadeTime2": 2,
+                    "wait": true,
+                    "fadeDown": 0.5,
+                    "fadeColorR": 0,
+                    "fadeColorG": 0,
+                    "fadeColorB": 0
+                },
+                {
+                    "type": "nodes.hideVignette",
+                    "waitForSeconds": 1
+                },
+                {
+                    "type": "nodes.fade",
+                    "scope": "FadeIn",
+                    "fadeTime": "1",
+                    "fadeTime2": "1",
+                    "wait": true,
+                    "fadeDown": "0",
+                    "fadeColorR": 0,
+                    "fadeColorG": 0,
+                    "fadeColorB": 0
+                }
+            ]
+        }
+    ]
+}

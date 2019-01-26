@@ -1,0 +1,233 @@
+{
+    "type": "script",
+    "id": "7e1dd33e-cd9f-4c72-ad7a-7c4c240855c5",
+    "name": "Interact with F Exit",
+    "sceneId": "5c27608b-ff6a-4fdc-8ce0-63e0866acb19",
+    "propId": "efbc143d-2c45-45a9-9a85-840ddf6f7192",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "87a6c030-01a5-4276-99f3-e4e73a142826",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "a16893d7-fc2e-466d-b2fa-c0277cf9aaeb",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "a9f42bf1-731d-46ba-b673-55147b3a32a2",
+                            "text": "Examine the Door",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "8e5a4f29-5c0d-432b-95c1-29dd5632e337",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "The plaque on this door says that it leads to the \"Aedis in Umbra.\"",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "ec2b7545-a01e-4dfc-a449-0313441ed2ac",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Don't people realize that a \"Fred\" room wouldn't sound nearly as scary?",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "target",
+                                                "scopeId": null,
+                                                "scopeFilterId": null,
+                                                "tags": "marked",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "568e8d3d-9fdc-41ad-adde-6db01563769c",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Don't worry, Fred door, I got you marked.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "3",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "b9946feb-6f9e-46e9-8275-2fd167afd402",
+                            "text": "Listen at the Door",
+                            "nodes": [
+                                {
+                                    "type": "nodes.playAnimation",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "animationName": "KneelDown",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.onceDaily",
+                                    "id": "ace131ee-e6d5-4e37-b0a5-cfcfbdb4209e",
+                                    "nodes": [
+                                        {
+                                            "id": "e1f17011-6fa7-4632-9cb7-0c6d348d729b",
+                                            "type": "nodes.skillBranch",
+                                            "skill": "Perception",
+                                            "target": "70",
+                                            "success": {
+                                                "type": "nodes.block",
+                                                "nodes": []
+                                            },
+                                            "failure": {
+                                                "type": "nodes.block",
+                                                "nodes": []
+                                            },
+                                            "notify": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "05cb8418-e2e3-4a53-ba6e-8cd55a2bea40",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Bleh. There could be an army of skeletal Warriors on the other side, but I can't hear them. ",
+                                    "emotion": "2",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.playAnimation",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "animationName": "KneelUp",
+                                    "wait": true
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "3",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "448123ee-b86f-49ab-b455-546b38ad5c2a",
+                            "text": "Mark the Door",
+                            "nodes": [
+                                {
+                                    "type": "nodes.playSoundEffect",
+                                    "soundEffectName": "Using Chalk.wav",
+                                    "wait": false
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "69a5496f-12b6-4d7d-804a-e6162b943f3c",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "This is Fred's door. It's good to be on a first named basis with this place.",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "af7e2337-5dff-449c-a402-69c96ec76130",
+                                    "scope": "target",
+                                    "scopeId": null,
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "marked",
+                                    "tagsToRemove": null
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inInventory",
+                                    "propId": "646cea66-c6c6-4dba-b093-6ec5b7e987a5",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "has": true
+                                },
+                                "right": {
+                                    "type": "expressions.inTags",
+                                    "scope": "target",
+                                    "scopeId": null,
+                                    "scopeFilterId": null,
+                                    "tags": "marked",
+                                    "has": false
+                                }
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "5",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "73ad0fa0-a9d2-47b8-9073-b80c5752d1bb",
+                            "text": "Open the Door",
+                            "nodes": [
+                                {
+                                    "type": "nodes.incrementTime",
+                                    "id": "3b123230-d762-4c87-b3b3-7a44e9e7c9dd",
+                                    "days": 0,
+                                    "hours": 0,
+                                    "minutes": "5"
+                                },
+                                {
+                                    "type": "nodes.invokeScript",
+                                    "id": "85ef4062-dbab-4718-82a5-9502dfb49f3d",
+                                    "scriptId": "a1004657-984b-46ba-8870-9550cbfb4b35",
+                                    "entryPointId": "87a6c030-01a5-4276-99f3-e4e73a142826",
+                                    "currentScope": "Scenes",
+                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                    "currentActorId": null,
+                                    "currentStoryEventId": null,
+                                    "currentPropId": null
+                                },
+                                {
+                                    "type": "nodes.changeScene",
+                                    "sceneId": "cbb5c07c-7918-4558-8c19-e4ed45b19ba2",
+                                    "spawnId": "29de553c-457a-4898-b2ea-a771ec800eac",
+                                    "fadeTime": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "2",
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

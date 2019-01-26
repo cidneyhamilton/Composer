@@ -1,0 +1,1564 @@
+{
+    "type": "script",
+    "id": "8f85ff12-824e-4d06-8983-104bafe0086d",
+    "name": "Moira Interact",
+    "sceneId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "2ecc2c44-9d05-4dcb-85f1-175810220914",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.turnActor",
+                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                    "propId": null,
+                    "scope": "actor",
+                    "targetActorId": "30ee2636-15e3-452e-a2db-09cbb9012970"
+                },
+                {
+                    "type": "nodes.changeTags",
+                    "id": "32a98ac7-69f5-4ab4-bd0b-85fb288aaf07",
+                    "scope": "actor",
+                    "scopeId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                    "scopeFilterId": null,
+                    "tagsToAdd": "hasMet",
+                    "tagsToRemove": null
+                },
+                {
+                    "type": "nodes.setVariable",
+                    "name": "rosecount",
+                    "scope": "script",
+                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                    "source": {
+                        "type": "variables.count",
+                        "target": "6b99d059-b486-4547-abbc-8b3169478a39",
+                        "useArticle": false,
+                        "includeText": false,
+                        "text": "",
+                        "displayName": "Count"
+                    },
+                    "add": false
+                },
+                {
+                    "type": "nodes.invokeScript",
+                    "id": "a22bcc9f-119c-4687-b00d-4f0676e59ee2",
+                    "scriptId": "8f85ff12-824e-4d06-8983-104bafe0086d",
+                    "entryPointId": "d62a84c8-dfb6-4408-a39d-4f47e57d4edf",
+                    "currentScope": "Current",
+                    "currentSceneId": null,
+                    "currentActorId": null,
+                    "currentStoryEventId": null,
+                    "currentPropId": null
+                },
+                {
+                    "type": "nodes.showMenu",
+                    "id": "037fdfc5-fb8c-4146-b213-9608edd9d211",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "93a039cc-5bb4-4f50-b8b4-a8171c204d05",
+                            "text": "Talk to Moira About Joel and the Wraith",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "757d914f-b7cc-49ce-be24-5dd4881b7b4e",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                    "text": "There's a Wraith in the Catacombs that has Joel Kyro trapped...",
+                                    "emotion": "0",
+                                    "emotion2": "4",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.comment",
+                                    "message": "This should not happen - covered in greeting messages.",
+                                    "commentor": "Lori"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "2f0a5b13-701b-4057-80bd-c9903e80cb79",
+                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "A Wraith! We have to save him.",
+                                    "emotion": "3",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "0a681834-3957-4d7a-8066-8b75ea79a0ff",
+                                    "scope": "scene",
+                                    "scopeId": "e8606d3d-9743-4b44-a3b3-117a393b42ae",
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "MoiraToRescue",
+                                    "tagsToRemove": null
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inTags",
+                                    "scope": "actor",
+                                    "scopeId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                    "scopeFilterId": null,
+                                    "tags": "TalkedWraith",
+                                    "has": false
+                                },
+                                "right": {
+                                    "type": "expressions.inTags",
+                                    "scope": "scene",
+                                    "scopeId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                    "scopeFilterId": null,
+                                    "tags": "WraithCall",
+                                    "has": true
+                                }
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "10",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "7c98f5a0-219a-4294-98bf-8b8f62095440",
+                            "text": "Talk to Moira About Joel and the Wraith",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "b8e407ec-866e-487c-88a9-62b58ecb1ed8",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                    "text": "Joel could be dying! Why aren't we rescuing him now?",
+                                    "emotion": "0",
+                                    "emotion2": "2",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "980d6d76-3d9a-48f8-b241-0f88c5ea0a48",
+                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "I can probably defeat a Wraith in combat. However, judging from what you have said, this is a Master Wraith. It's not enough to just defeat it. The magical barrier will remain.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "9d0a9f77-e2ec-4c35-b0b8-796c2f78c360",
+                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "To destroy the Wraith, I will need to find and destroy its soul container. That means I'll need to defeat it in combat, find the phylactery, and destroy that while the Wraith is contained.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "cc48c9c9-4239-41d8-83c9-58a6969ab61c",
+                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "However, I hope that Silvia... Professor Featherspoonhaugh... can come up with something to disrupt the Wraith long enough for you to rescue Joel while I'm fighting the Wraith.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inTags",
+                                    "scope": "actor",
+                                    "scopeId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                    "scopeFilterId": null,
+                                    "tags": "TalkedWraith",
+                                    "has": true
+                                },
+                                "right": {
+                                    "type": "expressions.inTags",
+                                    "scope": "scene",
+                                    "scopeId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                    "scopeFilterId": null,
+                                    "tags": "WraithCall",
+                                    "has": true
+                                }
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "7",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "f252a093-a935-4d60-b61d-66c929881329",
+                            "text": "Tell About Gregor's Cloth Shipment",
+                            "nodes": [
+                                {
+                                    "type": "nodes.quests",
+                                    "id": "029dd186-62e6-4234-aa41-c7430c2320fb",
+                                    "sceneId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                                    "propId": "53a90c6a-1f1a-40d7-89cd-aba40d789b42",
+                                    "target": "1",
+                                    "notify": true
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "2d1168d4-a9ed-4787-a39d-d9119b4108f9",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                    "text": "I asked Gregor about the cloth shipment for you. he said that it would be in soon and he would deliver it to you personally.",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "6c7bec95-1cf2-41e1-99f6-f98be8b484ed",
+                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "Thank you, Shawn, I knew that Gregor could be counted upon, but I was afraid that the shipment might arrive too late for the First Aid Class. It's good to know that it will be here on schedule.",
+                                    "emotion": "1",
+                                    "emotion2": "1",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "c3cddec8-272a-4eab-8a65-2aff38c4c9ad",
+                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "It was kind of you to go out of your way for this favor. ",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.changeReputation",
+                                    "id": "c85907e5-975b-4ac6-8de1-c25802dbd517",
+                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                    "amount": "2",
+                                    "change": "1",
+                                    "notify": true
+                                },
+                                {
+                                    "type": "nodes.showMenu",
+                                    "id": "d29d05f7-86e0-4d9e-8bd6-6157611e5c3f",
+                                    "options": [
+                                        {
+                                            "type": "options.text",
+                                            "id": "b53328a7-36bc-4714-9821-ebe60890f182",
+                                            "text": "Volunteer to Do Something Else for Her",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "f9143dab-bd66-46bd-b5a1-e02bc109f07f",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                    "text": "If there's anything else you need, I'll be happy to do it for you.",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "2d2550a1-4784-4e61-8660-bf787a581465",
+                                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "If you are in for another favor, I'll be needing some ingredients for making up some healing salve. I could use five fresh red roses from the courtyard.",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "778d3de5-fe57-4102-af86-9d33f59afcbd",
+                                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "You'll need to be quite picky about it. Only the brightest and nicest will do for the salve, so don't just grab any rose willy-nilly. ",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "eacc60d9-df53-421d-9bcb-b5ee2293c5a1",
+                                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "I'd really appreciate that if you could get them to me soon.",
+                                                    "emotion": "1",
+                                                    "emotion2": "1",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.showMenu",
+                                                    "id": "ba1d9afe-a955-4b33-9949-d3b2f7e9c954",
+                                                    "options": [
+                                                        {
+                                                            "type": "options.text",
+                                                            "id": "75e27146-c219-49d1-8d16-561a98bb5f79",
+                                                            "text": "Agree to Get Roses",
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "8c38e9f3-659f-4207-aa29-ac126d69f99e",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                                    "text": "I'll be happy to get some roses for you, Lady Moira.",
+                                                                    "emotion": "1",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "7d6122b7-ac77-446f-a18c-a33384bd4dae",
+                                                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "text": "Thank you, Shawn, That will be very kind of you.",
+                                                                    "emotion": "1",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.addJournalEntry",
+                                                                    "id": "6b70b8d0-da40-46a5-95b8-e4828c068e46",
+                                                                    "name": "Roses for Moira",
+                                                                    "notify": true,
+                                                                    "description": "I need to bring her back five perfect red roses. That shouldn't be too hard, should it?"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.quests",
+                                                                    "id": "4944079f-8575-4f6d-a477-c9df3173dcc7",
+                                                                    "sceneId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                                                                    "propId": "e009f0c5-f063-4fb3-b116-0ccd3b38329f",
+                                                                    "target": "0",
+                                                                    "notify": true
+                                                                }
+                                                            ],
+                                                            "expression": null,
+                                                            "ignoreChildAvailability": false,
+                                                            "minutes": "2",
+                                                            "ExitMenu": false
+                                                        },
+                                                        {
+                                                            "type": "options.text",
+                                                            "id": "92bd23dd-0baf-48ff-a6fc-98b907f6929d",
+                                                            "text": "Give a Non-Committal Answer",
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "c3ac3b45-0c71-4a71-ba98-2fe2ea83770e",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                                    "text": "Maybe later. I'm busy right now.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ],
+                                                            "expression": null,
+                                                            "ignoreChildAvailability": false,
+                                                            "minutes": "1",
+                                                            "ExitMenu": false
+                                                        }
+                                                    ],
+                                                    "AutoAddDone": false,
+                                                    "Unique": true
+                                                }
+                                            ],
+                                            "expression": null,
+                                            "ignoreChildAvailability": false,
+                                            "minutes": 0,
+                                            "ExitMenu": false
+                                        },
+                                        {
+                                            "type": "options.text",
+                                            "id": "04220cbd-735b-43a5-99d2-3e98cad9f5d0",
+                                            "text": "Just Say She's Welcome",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "d0594702-100d-46eb-8d9a-5e7ec153b2d0",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                    "text": "You're quite welcome. It was no problem. I see Gregor regularly.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "6f068519-fa8f-41b5-82f9-0027d903949b",
+                                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "Gregor is a very sweet person. He's always so helpful.",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ],
+                                            "expression": null,
+                                            "ignoreChildAvailability": false,
+                                            "minutes": 0,
+                                            "ExitMenu": false
+                                        }
+                                    ],
+                                    "AutoAddDone": false,
+                                    "Unique": true
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.hasActiveQuest",
+                                "propId": "53a90c6a-1f1a-40d7-89cd-aba40d789b42",
+                                "sceneId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                                "questStatus": "0"
+                            },
+                            "ignoreChildAvailability": false,
+                            "minutes": "5",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "9196c8ac-3225-443c-910d-a4f2c18c916d",
+                            "text": "Give Moira Roses",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "e10b880b-b486-4718-82aa-99d288850049",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                    "text": "I brought you the roses you asked me to get for you.",
+                                    "emotion": "1",
+                                    "emotion2": "4",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "1ac14e8b-25ad-4064-ad8c-ebeac87ba12f",
+                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "Why, thank you, Shawn! They are perfect. Seems a shame to pull them all to pieces to make the salve, but they will help heal a wound some day.",
+                                    "emotion": "1",
+                                    "emotion2": "1",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.quests",
+                                    "id": "31c31eb4-9975-4219-ad26-9d49069878c5",
+                                    "sceneId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                                    "propId": "e009f0c5-f063-4fb3-b116-0ccd3b38329f",
+                                    "target": "1",
+                                    "notify": true
+                                },
+                                {
+                                    "type": "nodes.changeReputation",
+                                    "id": "5ed51d2f-d608-4ecc-b4c5-0e7cde77f1bb",
+                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                    "amount": "2",
+                                    "change": "1",
+                                    "notify": true
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "1a8ef536-939d-4878-92f4-184ba3c1f32f",
+                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "Here - take this Magical Bandage to use if you ever are injured. ",
+                                    "emotion": "1",
+                                    "emotion2": "1",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.changeInventory",
+                                    "id": "a3ed5d35-0719-4adb-a7c6-1234783afb38",
+                                    "propId": "6b99d059-b486-4547-abbc-8b3169478a39",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "change": "0",
+                                    "count": "5",
+                                    "notify": false
+                                },
+                                {
+                                    "type": "nodes.changeInventory",
+                                    "id": "9e347090-4b30-46ce-bad5-2a6e3bc4bada",
+                                    "propId": "df614b92-e485-45b2-a6ad-be3ef31c0c9a",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "change": "1",
+                                    "count": "1",
+                                    "notify": true
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "58750292-bc89-4886-a67c-d46fe1553c3c",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                    "text": "Thank you for the bandages. Let me know if I can do anything else for you.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "f2b1936e-997d-433b-99d4-28030469fa0a",
+                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "Well, then, as long as you are offering... I need to send some more bandages down to Chef Kinah to use in the kitchen. Would you be a dearling and take them to her?",
+                                    "emotion": "1",
+                                    "emotion2": "1",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "66e8522a-8ab7-410f-9555-5a6243454da6",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                    "text": "Of course!",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "1102341f-aeab-4bef-a2c1-9ba932dfc6ae",
+                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "Here then, please take these five bandages to her. Her students sometimes get a little carried away with their carving skills.",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.changeInventory",
+                                    "id": "f5ae517e-f851-41f9-be87-50e45b84dddb",
+                                    "propId": "3b162492-1e04-40c6-aaec-febce2d3b5a9",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "change": "1",
+                                    "count": "5",
+                                    "notify": true
+                                },
+                                {
+                                    "type": "nodes.quests",
+                                    "id": "c7e69d47-f225-4eae-95bc-a7dd6f84a432",
+                                    "sceneId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                                    "propId": "17ca0cb3-7f90-4879-b0fb-a41499eacef1",
+                                    "target": "0",
+                                    "notify": true
+                                },
+                                {
+                                    "type": "nodes.addJournalEntry",
+                                    "id": "593bc6cf-c8ae-410b-b907-b85fa96705c6",
+                                    "name": "Bandages for Ifetaya",
+                                    "notify": true,
+                                    "description": "I offered to take some bandages to the kitchen for Moira. No biggie."
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.hasActiveQuest",
+                                    "propId": "e009f0c5-f063-4fb3-b116-0ccd3b38329f",
+                                    "sceneId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                                    "questStatus": "0"
+                                },
+                                "right": {
+                                    "type": "expressions.and",
+                                    "left": {
+                                        "type": "expressions.inInventory",
+                                        "propId": "6b99d059-b486-4547-abbc-8b3169478a39",
+                                        "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                        "has": true
+                                    },
+                                    "right": {
+                                        "type": "expressions.variableComparison",
+                                        "variableScope": "script",
+                                        "variableName": "rosecount",
+                                        "operator": "gte",
+                                        "compareTo": "5",
+                                        "sceneId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                        "propId": null
+                                    }
+                                }
+                            },
+                            "ignoreChildAvailability": false,
+                            "minutes": "8",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "4bc4efd4-eba3-4416-819e-eb31d05a3cbf",
+                            "text": "Tell About Giving Bandages to Ifetaya",
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "77c5df47-751f-4f5e-b19b-9810bd2b6055",
+                                    "scope": "actor",
+                                    "scopeId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "bandageover",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "1b4b34b1-de46-4e01-a45f-9e9df334a51f",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                    "text": "I delivered your bandages to Ifetaya as you asked.",
+                                    "emotion": "1",
+                                    "emotion2": "1",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "28684ad7-4ac3-470d-b819-55aff2f008a9",
+                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "'tis sweet and kind of you to do these errands for me.",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.changeReputation",
+                                    "id": "37315ac4-bf6e-4dd2-b5c2-c96bddde5040",
+                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                    "amount": "5",
+                                    "change": "1",
+                                    "notify": true
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "76484acd-596b-4e7d-b151-0a043b7fdfe5",
+                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "Here, take this Healing Potion. May it ease your pain in time of need.",
+                                    "emotion": "1",
+                                    "emotion2": "1",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.changeInventory",
+                                    "id": "7655cdd2-57d1-46a4-b3df-37ee28c7d21f",
+                                    "propId": "126e380b-ceda-4884-994f-ca03cca884b8",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "change": "1",
+                                    "count": "1",
+                                    "notify": true
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "810a8f2f-c542-474d-bfb2-4638e856adfd",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                    "text": "Is there anything else I can do for you?",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "8d57f105-3f36-428b-9ca4-60d6153fd9e6",
+                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "Surely, Shawn, you have better things to do with your time than to be my messenger. You've done more than enough for me with all your kindness.",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "2a093343-397c-45d7-9136-cb111ba07787",
+                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "Thank you for everything.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.hasActiveQuest",
+                                    "propId": "17ca0cb3-7f90-4879-b0fb-a41499eacef1",
+                                    "sceneId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                                    "questStatus": "1"
+                                },
+                                "right": {
+                                    "type": "expressions.inTags",
+                                    "scope": "actor",
+                                    "scopeId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                    "scopeFilterId": null,
+                                    "tags": "bandageover",
+                                    "has": false
+                                }
+                            },
+                            "ignoreChildAvailability": false,
+                            "minutes": "7",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "7738f0d3-a4f8-49c4-b8e3-b79a79cb9de5",
+                            "text": "Talk About Aeolus",
+                            "nodes": [
+                                {
+                                    "type": "nodes.invokeScript",
+                                    "id": "65e9b700-c245-493c-b917-a81b56b49db1",
+                                    "scriptId": "fccc3169-abba-4ec3-ba42-038bf679fe63",
+                                    "entryPointId": "533e3e35-6479-4e0a-a3fc-fab5d827f1f8",
+                                    "currentScope": "Scenes",
+                                    "currentSceneId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                    "currentActorId": null,
+                                    "currentStoryEventId": null,
+                                    "currentPropId": null
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.hasActiveQuest",
+                                    "propId": "d9b131eb-091d-45ad-ba39-ed93bda720a9",
+                                    "sceneId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                                    "questStatus": "0"
+                                },
+                                "right": {
+                                    "type": "expressions.inTags",
+                                    "scope": "actor",
+                                    "scopeId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                    "scopeFilterId": null,
+                                    "tags": "MoiraAeolusTalk5",
+                                    "has": true
+                                }
+                            },
+                            "ignoreChildAvailability": false,
+                            "minutes": "5",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "8dbe4d00-7210-4a92-9e14-5eeae3855771",
+                            "text": "Talk to Moira",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "scene",
+                                                "variableName": "CurrentEvent",
+                                                "operator": "eq",
+                                                "compareTo": "1",
+                                                "sceneId": null,
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "aae68eaf-2145-4047-bc73-6af86866aa83",
+                                                    "scope": "actor",
+                                                    "scopeId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "MoiraMeeting1",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "6c7c8ef1-6442-4d34-8fe7-bd18d124f7a8",
+                                                    "scriptId": "56efdb30-09fb-4199-9f9c-1d9442c2d066",
+                                                    "entryPointId": "2ecc2c44-9d05-4dcb-85f1-175810220914",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "scene",
+                                                "variableName": "CurrentEvent",
+                                                "operator": "eq",
+                                                "compareTo": "2",
+                                                "sceneId": null,
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "6ff97092-891a-4862-a50a-d829fe2ab574",
+                                                    "scope": "actor",
+                                                    "scopeId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "Moira2ndTalk",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "905b720e-efc9-4e9b-8082-72c621150cf0",
+                                                    "scriptId": "43649009-c12d-479d-84f8-6183039c0851",
+                                                    "entryPointId": "2ecc2c44-9d05-4dcb-85f1-175810220914",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "scene",
+                                                "variableName": "CurrentEvent",
+                                                "operator": "eq",
+                                                "compareTo": "3",
+                                                "sceneId": null,
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "bc453a38-74f0-4f09-8c1e-573fed0d6aa2",
+                                                    "scope": "actor",
+                                                    "scopeId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "Moira3rdTalk",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "65fa9f15-3dd4-4be4-8781-eea489b8d900",
+                                                    "scriptId": "5bc8286a-5c64-40bd-b797-9b49c76b86f0",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "scene",
+                                                "variableName": "CurrentEvent",
+                                                "operator": "eq",
+                                                "compareTo": "4",
+                                                "sceneId": null,
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "b351ee75-251a-40df-8881-32d3474a072d",
+                                                    "scope": "actor",
+                                                    "scopeId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "MoiraThiefTalk4",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "adef6de6-bf6b-43af-97b6-e2068dcf8146",
+                                                    "scriptId": "fe9f2f43-c770-4147-88d1-b06dfe1b026c",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "scene",
+                                                "variableName": "CurrentEvent",
+                                                "operator": "eq",
+                                                "compareTo": "5",
+                                                "sceneId": null,
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "c2a9b688-c723-4b53-b527-434097770983",
+                                                    "scope": "actor",
+                                                    "scopeId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "MoiraAeolusTalk5",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "651ffab8-111d-481b-8988-160b3c7d87fa",
+                                                    "scriptId": "8523fdb0-c6e6-42e1-9f37-d62fbbd1cdd9",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "scene",
+                                                "variableName": "CurrentEvent",
+                                                "operator": "eq",
+                                                "compareTo": "6",
+                                                "sceneId": null,
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "8f93a2cb-54cd-4c24-afbb-60e0be22063f",
+                                                    "scope": "actor",
+                                                    "scopeId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "MoiraMidtermTalk6",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "c1852565-e4d3-4481-9e5c-aecf4df61aa1",
+                                                    "scriptId": "729d300b-c660-495a-9a1f-544b96169b78",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "scene",
+                                                "variableName": "CurrentEvent",
+                                                "operator": "eq",
+                                                "compareTo": "7",
+                                                "sceneId": null,
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "a8d20fa5-271a-4398-9d08-972c8501bdc2",
+                                                    "scope": "actor",
+                                                    "scopeId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "MoiraDangerTalk7",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "bdd6c08c-156a-40e0-ba1d-e882a20a0586",
+                                                    "scriptId": "27cc3477-79ac-4b2b-bb88-ad07649b73a9",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "scene",
+                                                "variableName": "CurrentEvent",
+                                                "operator": "eq",
+                                                "compareTo": "8",
+                                                "sceneId": null,
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "d99900ea-e770-47c8-b66e-44cc0a8eb1ee",
+                                                    "scope": "actor",
+                                                    "scopeId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "MoiraKyroTalk8",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "997bf3ef-1189-4975-a8d6-6b53a696f9d4",
+                                                    "scriptId": "38661b46-7e73-4fd9-a9af-0efad7e2adb3",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "scene",
+                                                "variableName": "CurrentEvent",
+                                                "operator": "eq",
+                                                "compareTo": "9",
+                                                "sceneId": null,
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "48dd7c86-976a-4134-86ef-4446ddcd433e",
+                                                    "scope": "actor",
+                                                    "scopeId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "MoiraKyroEndTalk9",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "c67ba9ab-6085-48e3-bc52-a0fb0cefa608",
+                                                    "scriptId": "f3610982-7724-46b9-ba23-ed1954507a91",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "scene",
+                                                "variableName": "CurrentEvent",
+                                                "operator": "eq",
+                                                "compareTo": "10",
+                                                "sceneId": null,
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "f3d97efc-81bb-44ba-856d-8114a21cad1e",
+                                                    "scope": "actor",
+                                                    "scopeId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "MoiraDeadTalk10",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "5750103a-3a15-4546-92de-cce42b32a633",
+                                                    "scriptId": "c0ad4e78-8495-4f99-a28a-17cc9448d9be",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "scene",
+                                                "variableName": "CurrentEvent",
+                                                "operator": "eq",
+                                                "compareTo": "11",
+                                                "sceneId": null,
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "09585a78-e364-4e4f-925b-d30e1cb10c3a",
+                                                    "scope": "actor",
+                                                    "scopeId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "MoiraDratTalk11",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "2e44d04b-e9ca-4e42-9996-05691af4bef1",
+                                                    "scriptId": "938a9e44-76f0-41c6-9cd8-65ee36ec5150",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "scene",
+                                                "variableName": "CurrentEvent",
+                                                "operator": "eq",
+                                                "compareTo": "12",
+                                                "sceneId": null,
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "6bd56f62-8c5e-4467-9936-baa1f334e9fd",
+                                                    "scope": "actor",
+                                                    "scopeId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "MoiraFutureTalk12",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "80bb0077-269e-4af4-ba11-0a201c5b1fc1",
+                                                    "scriptId": "b8d0fca9-39b5-42d0-9e6b-7ead8467dbbb",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "713ccbdd-1266-411f-8121-feeba09a54e2",
+                                                    "scriptId": "e77fe321-230c-4640-8b22-6e8a32f62f9c",
+                                                    "entryPointId": "2ecc2c44-9d05-4dcb-85f1-175810220914",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "48fa04b8-8121-4426-92d5-fa5768787e25",
+                            "text": "Give a Gift",
+                            "nodes": [
+                                {
+                                    "type": "nodes.invokeScript",
+                                    "id": "1c6a0a41-7e7c-48b3-8b65-debd7ecc2f5e",
+                                    "scriptId": "56b9c955-a0a8-4e26-bfeb-b40276fe7e32",
+                                    "entryPointId": "",
+                                    "currentScope": "Actors",
+                                    "currentSceneId": null,
+                                    "currentActorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                    "currentStoryEventId": null,
+                                    "currentPropId": null
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inTags",
+                                    "scope": "actor",
+                                    "scopeId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                    "scopeFilterId": null,
+                                    "tags": "GotGift",
+                                    "has": true
+                                },
+                                "right": {
+                                    "type": "expressions.inTags",
+                                    "scope": "actor",
+                                    "scopeId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                    "scopeFilterId": null,
+                                    "tags": "GaveGift",
+                                    "has": false
+                                }
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        },
+        {
+            "type": "scripts.entryPoint",
+            "id": "d62a84c8-dfb6-4408-a39d-4f47e57d4edf",
+            "name": "Set GotGift Tag",
+            "nodes": [
+                {
+                    "type": "nodes.changeTags",
+                    "id": "82694af3-a46d-45a7-b336-0300715242bf",
+                    "scope": "actor",
+                    "scopeId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                    "scopeFilterId": null,
+                    "tagsToAdd": "",
+                    "tagsToRemove": "GotGift"
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inInventory",
+                                    "propId": "13351bce-2263-456d-8387-f85cb9af24c4",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "has": true
+                                },
+                                "right": {
+                                    "type": "expressions.inTags",
+                                    "scope": "actor",
+                                    "scopeId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                    "scopeFilterId": null,
+                                    "tags": "GaveBeads",
+                                    "has": false
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "556be586-3858-4648-90af-3eb93172ea7c",
+                                    "scope": "actor",
+                                    "scopeId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "GotGift",
+                                    "tagsToRemove": null
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.or",
+                                "left": {
+                                    "type": "expressions.inInventory",
+                                    "propId": "11a064c2-3772-4053-95f7-0787ec5d013a",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "has": true
+                                },
+                                "right": {
+                                    "type": "expressions.inInventory",
+                                    "propId": "f4878a88-8673-495e-9227-2ddf9c1910f5",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "has": true
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "93e1a0f0-15b1-4c31-b0f7-0b057e076578",
+                                    "scope": "actor",
+                                    "scopeId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "GotGift",
+                                    "tagsToRemove": null
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inInventory",
+                                    "propId": "a6bcab19-4d98-46ab-8fe6-52a4d3761dd4",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "has": true
+                                },
+                                "right": {
+                                    "type": "expressions.inTags",
+                                    "scope": "actor",
+                                    "scopeId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                    "scopeFilterId": null,
+                                    "tags": "GaveDryad",
+                                    "has": false
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "0f029263-6f06-4c28-a507-7764e083c556",
+                                    "scope": "actor",
+                                    "scopeId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "GotGift",
+                                    "tagsToRemove": null
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inInventory",
+                                    "propId": "91aa49b0-490a-4448-967d-d97387a985bb",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "has": true
+                                },
+                                "right": {
+                                    "type": "expressions.inTags",
+                                    "scope": "actor",
+                                    "scopeId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                    "scopeFilterId": null,
+                                    "tags": "GaveGolden",
+                                    "has": false
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "7a6c9980-f82e-4cce-9347-2d13da82a7af",
+                                    "scope": "actor",
+                                    "scopeId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "GotGift",
+                                    "tagsToRemove": null
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inInventory",
+                                    "propId": "76257aa9-d897-448e-a63e-dfee065c45e8",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "has": true
+                                },
+                                "right": {
+                                    "type": "expressions.inTags",
+                                    "scope": "actor",
+                                    "scopeId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                    "scopeFilterId": null,
+                                    "tags": "GaveBallads",
+                                    "has": false
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "1f299ce5-f9c7-4b45-a9fa-cda2fc9db1f5",
+                                    "scope": "actor",
+                                    "scopeId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "GotGift",
+                                    "tagsToRemove": null
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inInventory",
+                                    "propId": "126e380b-ceda-4884-994f-ca03cca884b8",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "has": true
+                                },
+                                "right": {
+                                    "type": "expressions.inTags",
+                                    "scope": "actor",
+                                    "scopeId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                    "scopeFilterId": null,
+                                    "tags": "GaveHealing",
+                                    "has": false
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "aff46532-b4b6-4a43-921c-dc66a0ca846a",
+                                    "scope": "actor",
+                                    "scopeId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "GotGift",
+                                    "tagsToRemove": null
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inInventory",
+                                    "propId": "b248f032-3cc9-4b99-9859-a447dab661a1",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "has": true
+                                },
+                                "right": {
+                                    "type": "expressions.inTags",
+                                    "scope": "actor",
+                                    "scopeId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                    "scopeFilterId": null,
+                                    "tags": "GaveOne",
+                                    "has": false
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "cf17c20a-f4c4-4591-b7fa-8d6e0e3155a8",
+                                    "scope": "actor",
+                                    "scopeId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "GotGift",
+                                    "tagsToRemove": null
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inInventory",
+                                    "propId": "6b99d059-b486-4547-abbc-8b3169478a39",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "has": true
+                                },
+                                "right": {
+                                    "type": "expressions.and",
+                                    "left": {
+                                        "type": "expressions.inTags",
+                                        "scope": "actor",
+                                        "scopeId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                        "scopeFilterId": null,
+                                        "tags": "GaveRose",
+                                        "has": false
+                                    },
+                                    "right": {
+                                        "type": "expressions.hasActiveQuest",
+                                        "propId": "e009f0c5-f063-4fb3-b116-0ccd3b38329f",
+                                        "sceneId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                                        "questStatus": "3"
+                                    }
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "02b72c68-6e18-48b0-a772-84513b6e62f5",
+                                    "scope": "actor",
+                                    "scopeId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "GotGift",
+                                    "tagsToRemove": null
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inInventory",
+                                    "propId": "1079772f-9fbf-4dad-b7a4-acea22601a60",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "has": true
+                                },
+                                "right": {
+                                    "type": "expressions.inTags",
+                                    "scope": "actor",
+                                    "scopeId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                    "scopeFilterId": null,
+                                    "tags": "GaveFineWine",
+                                    "has": false
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "90813941-b396-4613-b824-2942980408b6",
+                                    "scope": "actor",
+                                    "scopeId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "GotGift",
+                                    "tagsToRemove": null
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

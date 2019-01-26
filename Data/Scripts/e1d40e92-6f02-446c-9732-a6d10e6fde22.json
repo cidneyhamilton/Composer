@@ -1,0 +1,192 @@
+{
+    "type": "script",
+    "id": "e1d40e92-6f02-446c-9732-a6d10e6fde22",
+    "name": "Interact with Half Pirate Map",
+    "propId": "24120d94-40b7-46f0-8dfe-c8633935992b",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "13767b6e-b5a7-49d1-b1ad-1cd42b209362",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "edf8142b-895b-47eb-8529-7ad0ca743d13",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "ee35ae44-ee34-497e-b393-854d9049f732",
+                            "text": "Examine the Half Pirate Map",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.or",
+                                                "left": {
+                                                    "type": "expressions.inTags",
+                                                    "scope": "prop",
+                                                    "scopeId": "181634f8-d4b9-4abf-9d35-ef2a55b11cf6",
+                                                    "scopeFilterId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "tags": "Acquired",
+                                                    "has": true
+                                                },
+                                                "right": {
+                                                    "type": "expressions.or",
+                                                    "left": {
+                                                        "type": "expressions.inInventory",
+                                                        "propId": "181634f8-d4b9-4abf-9d35-ef2a55b11cf6",
+                                                        "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                        "has": true
+                                                    },
+                                                    "right": {
+                                                        "type": "expressions.inTags",
+                                                        "scope": "actor",
+                                                        "scopeId": "2ae7a408-9338-4b78-af6b-ba7a28e050ac",
+                                                        "scopeFilterId": null,
+                                                        "tags": "ShawnCaughtBySosi",
+                                                        "has": true
+                                                    }
+                                                }
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.comment",
+                                                    "message": "The complicated expression supports older saved games where Acquired wasn't set",
+                                                    "commentor": "Shawn has both map halves"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "3206298d-f3a9-49ff-8799-0af0e87711d1",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "This piece of a map is just confusing... but put it together with Katie's piece and it's just cryptic. I've made a copy of the full map in my journal just in case I lose either half.",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "6ddf6d9d-1f2e-41cb-9691-b80e2ad05ba3",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "This map isn't much use by itself, but combined with the other half, it might lead to an amazing treasure.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.inTags",
+                                                                "scope": "target",
+                                                                "scopeId": null,
+                                                                "scopeFilterId": null,
+                                                                "tags": "sawjoke",
+                                                                "has": false
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.changeTags",
+                                                                    "id": "9b8a823d-5cf9-4471-adcd-b496240e0aa1",
+                                                                    "scope": "target",
+                                                                    "scopeId": null,
+                                                                    "scopeFilterId": null,
+                                                                    "tagsToAdd": "sawjoke",
+                                                                    "tagsToRemove": null
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "af9322b7-69bb-4496-ab5e-eb060c6dd8b8",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "I like the sound of \"amazing treasure.\" That is one of the most beautiful phrases ever invented.",
+                                                                    "emotion": "1",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "946d31fa-1fad-44b9-8632-91e5d6fb37db",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "Along with \"strudel dough.\"",
+                                                                    "emotion": "1",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "f317c852-d9e0-4f42-a06c-ea77364de42d",
+                            "text": "Tear up the Half Pirate Map",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "56a8db0d-6d0e-4b7b-b792-04818033cc9a",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "I really shouldn't let my frustrations boil over. I worked too hard and too long to get this half-a-map.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "121f2e16-f6a4-4505-9e87-adad892cae04",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Besides, you never know when a map might contain invisible moon letters that can only be deciphered by a High Elf.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "0",
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

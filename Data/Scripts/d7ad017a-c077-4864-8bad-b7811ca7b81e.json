@@ -1,0 +1,476 @@
+{
+    "type": "script",
+    "id": "d7ad017a-c077-4864-8bad-b7811ca7b81e",
+    "name": "OnLoot",
+    "actorId": "89d18e72-6739-41a4-84ff-1268b7a6a763",
+    "trigger": {
+        "type": "triggers.loot",
+        "name": "Loot"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "ec6aa89c-b0f5-448b-a86d-eed3bad0c662",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.playAnimation",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "animationName": "KneelDown",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "target",
+                                                "scopeId": null,
+                                                "scopeFilterId": null,
+                                                "tags": "U_LOOTED",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "d695ec88-7fe9-4778-b6bf-142e3400d38f",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "There's nothing left to loot of this Gog.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.setVariable",
+                                                    "name": "hasloot",
+                                                    "scope": "script",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "source": {
+                                                        "type": "variables.random",
+                                                        "value": "",
+                                                        "min": 1,
+                                                        "max": 100,
+                                                        "displayName": "Random"
+                                                    },
+                                                    "add": false
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.variableComparison",
+                                                                "variableScope": "script",
+                                                                "variableName": "hasloot",
+                                                                "operator": "lte",
+                                                                "compareTo": "20",
+                                                                "sceneId": null,
+                                                                "propId": null
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "15c98635-3bd4-4c09-8d39-60dc367c75c7",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "The gog was carrying a dried fish. It was probably his late-night snack.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "cffeeac5-79da-4252-bed3-141115479a2e",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "It was also carrying ten Lyra.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeMoney",
+                                                                    "id": "3ca3c955-7fe3-41e8-a5d1-f612c6bb7b20",
+                                                                    "amount": "10",
+                                                                    "change": "1",
+                                                                    "currency": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeInventory",
+                                                                    "id": "b2e09f0a-4214-4283-bc29-43a0e9cecea3",
+                                                                    "propId": "247c7690-2a0c-48d5-86a3-3aa68f9850d0",
+                                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                                    "change": "1",
+                                                                    "count": 1,
+                                                                    "notify": true
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.variableComparison",
+                                                                "variableScope": "script",
+                                                                "variableName": "hasloot",
+                                                                "operator": "lt",
+                                                                "compareTo": "45",
+                                                                "sceneId": null,
+                                                                "propId": null
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "19e3b5c0-1aeb-4e62-9013-a09e10c80ba3",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "This Gog had a few Lyra in a pouch.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.branch",
+                                                                    "sections": [
+                                                                        {
+                                                                            "type": "nodes.branchSection",
+                                                                            "expression": {
+                                                                                "type": "expressions.variableComparison",
+                                                                                "variableScope": "script",
+                                                                                "variableName": "hasloot",
+                                                                                "operator": "lt",
+                                                                                "compareTo": "30",
+                                                                                "sceneId": null,
+                                                                                "propId": null
+                                                                            },
+                                                                            "nodes": [
+                                                                                {
+                                                                                    "type": "nodes.speak",
+                                                                                    "id": "bd1bba3d-fbd4-4533-9119-881d5d490119",
+                                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                    "actorId2": null,
+                                                                                    "text": "I can add 15 Lyra to my own coin pouch.",
+                                                                                    "emotion": "0",
+                                                                                    "emotion2": "0",
+                                                                                    "device": "0",
+                                                                                    "device2": "0"
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.changeMoney",
+                                                                                    "id": "68c0b3ed-1560-49c4-8c61-df4cb84ecc4e",
+                                                                                    "amount": "15",
+                                                                                    "change": "1",
+                                                                                    "currency": "0"
+                                                                                }
+                                                                            ]
+                                                                        },
+                                                                        {
+                                                                            "type": "nodes.branchSection",
+                                                                            "expression": {
+                                                                                "type": "expressions.variableComparison",
+                                                                                "variableScope": "script",
+                                                                                "variableName": "hasloot",
+                                                                                "operator": "lte",
+                                                                                "compareTo": "35",
+                                                                                "sceneId": null,
+                                                                                "propId": null
+                                                                            },
+                                                                            "nodes": [
+                                                                                {
+                                                                                    "type": "nodes.speak",
+                                                                                    "id": "e6715439-5d9c-4d0a-82c6-210f76e0430a",
+                                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                    "actorId2": null,
+                                                                                    "text": "Now I'm richer by 8 Lyra.",
+                                                                                    "emotion": "0",
+                                                                                    "emotion2": "0",
+                                                                                    "device": "0",
+                                                                                    "device2": "0"
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.changeMoney",
+                                                                                    "id": "f970672c-d4ab-47b1-89d0-9e963fe83eb1",
+                                                                                    "amount": "8",
+                                                                                    "change": "1",
+                                                                                    "currency": "0"
+                                                                                }
+                                                                            ]
+                                                                        },
+                                                                        {
+                                                                            "type": "nodes.branchSection",
+                                                                            "expression": null,
+                                                                            "nodes": [
+                                                                                {
+                                                                                    "type": "nodes.speak",
+                                                                                    "id": "f22fead8-7811-4b14-ba03-29b1d7a88149",
+                                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                    "actorId2": null,
+                                                                                    "text": "This Gog had 20 Lyra. That's enough to buy myself a Healing Potion.",
+                                                                                    "emotion": "0",
+                                                                                    "emotion2": "0",
+                                                                                    "device": "0",
+                                                                                    "device2": "0"
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.changeMoney",
+                                                                                    "id": "c894366c-ab2f-48ab-9714-7c1efbe516b5",
+                                                                                    "amount": "20",
+                                                                                    "change": "1",
+                                                                                    "currency": "0"
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.variableComparison",
+                                                                "variableScope": "script",
+                                                                "variableName": "hasloot",
+                                                                "operator": "lt",
+                                                                "compareTo": "75",
+                                                                "sceneId": null,
+                                                                "propId": null
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "eeec2112-f90d-4416-9bdf-08bbd2b4cc03",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "This Gog had some Lyra in a pouch.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.branch",
+                                                                    "sections": [
+                                                                        {
+                                                                            "type": "nodes.branchSection",
+                                                                            "expression": {
+                                                                                "type": "expressions.variableComparison",
+                                                                                "variableScope": "script",
+                                                                                "variableName": "hasloot",
+                                                                                "operator": "lt",
+                                                                                "compareTo": "60",
+                                                                                "sceneId": null,
+                                                                                "propId": null
+                                                                            },
+                                                                            "nodes": [
+                                                                                {
+                                                                                    "type": "nodes.speak",
+                                                                                    "id": "5bfdb05a-df65-4e9e-92c2-6861ad3db46c",
+                                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                    "actorId2": null,
+                                                                                    "text": "I can add 12 Lyra to my own coin pouch.",
+                                                                                    "emotion": "0",
+                                                                                    "emotion2": "0",
+                                                                                    "device": "0",
+                                                                                    "device2": "0"
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.changeMoney",
+                                                                                    "id": "9a29dbc1-3b97-4487-848c-4c5ef53cfe5c",
+                                                                                    "amount": "12",
+                                                                                    "change": "1",
+                                                                                    "currency": "0"
+                                                                                }
+                                                                            ]
+                                                                        },
+                                                                        {
+                                                                            "type": "nodes.branchSection",
+                                                                            "expression": {
+                                                                                "type": "expressions.variableComparison",
+                                                                                "variableScope": "script",
+                                                                                "variableName": "hasloot",
+                                                                                "operator": "lte",
+                                                                                "compareTo": "70",
+                                                                                "sceneId": null,
+                                                                                "propId": null
+                                                                            },
+                                                                            "nodes": [
+                                                                                {
+                                                                                    "type": "nodes.speak",
+                                                                                    "id": "ab2d50ae-373b-450c-a87b-e99e2c04cc6b",
+                                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                    "actorId2": null,
+                                                                                    "text": "Now I'm richer by 15 Lyra.",
+                                                                                    "emotion": "1",
+                                                                                    "emotion2": "0",
+                                                                                    "device": "0",
+                                                                                    "device2": "0"
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.changeMoney",
+                                                                                    "id": "04c976fe-ccac-4425-8497-f7fedee548aa",
+                                                                                    "amount": "15",
+                                                                                    "change": "1",
+                                                                                    "currency": "0"
+                                                                                }
+                                                                            ]
+                                                                        },
+                                                                        {
+                                                                            "type": "nodes.branchSection",
+                                                                            "expression": null,
+                                                                            "nodes": [
+                                                                                {
+                                                                                    "type": "nodes.speak",
+                                                                                    "id": "e4a9c39c-2273-4703-8aef-076244274607",
+                                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                    "actorId2": null,
+                                                                                    "text": "This Gog had 22 Lyra. It's better than a Dead Fish by a fair margin.",
+                                                                                    "emotion": "0",
+                                                                                    "emotion2": "0",
+                                                                                    "device": "0",
+                                                                                    "device2": "0"
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.changeMoney",
+                                                                                    "id": "3f4031bb-baa9-4f57-ba2a-5774f0e155ec",
+                                                                                    "amount": "22",
+                                                                                    "change": "1",
+                                                                                    "currency": "0"
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.variableComparison",
+                                                                "variableScope": "script",
+                                                                "variableName": "hasloot",
+                                                                "operator": "lte",
+                                                                "compareTo": "90",
+                                                                "sceneId": null,
+                                                                "propId": null
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "238843fd-f155-4808-b262-66ac124d607d",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "This Gog has a Healing Potion and a pouch full of 5 coins.",
+                                                                    "emotion": "1",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeMoney",
+                                                                    "id": "0accfe4c-db89-47db-a35c-27055597f903",
+                                                                    "amount": "5",
+                                                                    "change": "1",
+                                                                    "currency": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeInventory",
+                                                                    "id": "07164f5a-5605-4ab4-b9be-2c20bcfa8257",
+                                                                    "propId": "126e380b-ceda-4884-994f-ca03cca884b8",
+                                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                                    "change": "1",
+                                                                    "count": 1,
+                                                                    "notify": true
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": null,
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "0e33af84-0b6a-4767-b6f8-3d742b496692",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "Nice. This Gog has a trap, some beads, and a pouch with 9 coins in it.",
+                                                                    "emotion": "1",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeMoney",
+                                                                    "id": "0703002d-6c4a-4b62-9519-783035af70de",
+                                                                    "amount": "9",
+                                                                    "change": "1",
+                                                                    "currency": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeInventory",
+                                                                    "id": "f2b9793e-617c-49af-8ca7-4840081aaafa",
+                                                                    "propId": "9d51808d-0eb7-4182-b826-d83390ba4121",
+                                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                                    "change": "1",
+                                                                    "count": 1,
+                                                                    "notify": true
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeInventory",
+                                                                    "id": "9a55b6d0-8e03-4837-886f-c4f1626d3fcb",
+                                                                    "propId": "13351bce-2263-456d-8387-f85cb9af24c4",
+                                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                                    "change": "1",
+                                                                    "count": 1,
+                                                                    "notify": true
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "9b59d5fb-4adc-4976-b6b5-dcbb477905c1",
+                                                    "scope": "target",
+                                                    "scopeId": null,
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "U_LOOTED",
+                                                    "tagsToRemove": null
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.playAnimation",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "animationName": "KneelUp",
+                                    "wait": true
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

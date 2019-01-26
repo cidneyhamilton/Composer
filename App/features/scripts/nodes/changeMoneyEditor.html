@@ -1,0 +1,45 @@
+<div data-bind="compose: { mode:'templated', view:'nodeEditor' }">
+    <div data-part="read" class="text">
+        <!--ko if: node.change == "0"-->
+        <span class="remove">Remove </span>
+        <!--/ko-->
+
+        <!--ko if: node.change == "1"-->
+        <span class="add">Add </span>
+        <!--/ko-->
+
+        <span data-bind="text:node.amount"></span> to 
+
+        <!--ko if: node.currency == "0"-->
+        <span>Lyra (money)</span>
+        <!--/ko-->
+
+        <!--ko if: node.currency == "1"-->
+        <span>Deeds</span>
+        <!--/ko-->
+
+        <!--ko if: node.currency == "2"-->
+        <span>Demerits</span>
+        <!--/ko-->
+
+        <!--ko if: node.currency == "3"-->
+        <span>Health</span>
+        <!--/ko-->
+    </div>
+
+    <div data-part="write">
+        <select data-bind="value: node.change">
+            <option value="0">Remove</option>
+            <option value="1">Add</option>
+        </select>
+
+        <input type="text" data-bind="value: node.amount, valueUpdate: 'afterkeydown'" placeholder="amount" style="float: right"/>
+
+        <select data-bind="value: node.currency">
+            <option value="0">Lyra (money)</option>
+            <option value="1">Deeds</option>
+            <option value="2">Demerits</option>
+            <option value="3">Health</option>
+        </select>
+    </div>
+</div>

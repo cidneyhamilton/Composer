@@ -1,0 +1,29 @@
+<div data-bind="compose: { mode:'templated', view:'nodeEditor' }">
+    <div data-part="read" class="text">
+        <!--ko if: node.target == "0"-->
+        Add Quest <span class="prop" data-bind="text:prop.name"></span> 
+        <!--/ko-->
+
+        <!--ko if: node.target == "1"-->
+        Complete Quest <span class="prop" data-bind="text:prop.name"></span> 
+        <!--/ko-->
+
+        <!--ko if: node.target == "2"-->
+        Fail Quest <span class="prop" data-bind="text:prop.name"></span> 
+        <!--/ko-->
+    </div>
+
+    
+    <div data-part="write">
+        <select data-bind="value: node.target">
+            <option value="0">Add Quest</option>
+            <option value="1">Complete Quest</option>
+            <option value="2">Fail Quest</option>
+        </select>
+        <select data-bind="options: props, optionsText: 'name', optionsValue: 'id', value: node.propId, optionsCaption: 'Select Achievement'"></select>
+        <div class="form-inline" style="margin-left: 100px; margin-top: 50px;">
+            <input type="checkbox" data-bind="checked: node.notify" />
+            <label>Show Notification?</label>
+        </div>
+    </div>
+</div>

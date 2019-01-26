@@ -1,0 +1,338 @@
+{
+    "type": "script",
+    "id": "1a216f20-e6e4-4f23-bfcc-8b065688ca45",
+    "name": "Make Big Boom",
+    "sceneId": "4c80661d-0537-46d4-b6d6-422313186fac",
+    "trigger": {
+        "type": "triggers.manual",
+        "name": "Manual"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "1937e6f3-5caf-4f1c-ab76-5b954f150116",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inInventory",
+                                    "propId": "25ab250e-b3d5-4084-bd45-ec6c698e0437",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "has": true
+                                },
+                                "right": {
+                                    "type": "expressions.and",
+                                    "left": {
+                                        "type": "expressions.inInventory",
+                                        "propId": "45d0b999-a434-427e-8410-14c34295cb61",
+                                        "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                        "has": true
+                                    },
+                                    "right": {
+                                        "type": "expressions.and",
+                                        "left": {
+                                            "type": "expressions.inInventory",
+                                            "propId": "d80613f1-d750-4e73-a8f4-802859d4f0c4",
+                                            "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                            "has": true
+                                        },
+                                        "right": {
+                                            "type": "expressions.and",
+                                            "left": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "prop",
+                                                "variableName": "FillAmount",
+                                                "operator": "gte",
+                                                "compareTo": "3",
+                                                "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                "propId": "45d0b999-a434-427e-8410-14c34295cb61"
+                                            },
+                                            "right": {
+                                                "type": "expressions.and",
+                                                "left": {
+                                                    "type": "expressions.variableComparison",
+                                                    "variableScope": "prop",
+                                                    "variableName": "FillAmount",
+                                                    "operator": "gte",
+                                                    "compareTo": "3",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "propId": "d80613f1-d750-4e73-a8f4-802859d4f0c4"
+                                                },
+                                                "right": {
+                                                    "type": "expressions.variableComparison",
+                                                    "variableScope": "prop",
+                                                    "variableName": "FillAmount",
+                                                    "operator": "gte",
+                                                    "compareTo": "3",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "propId": "25ab250e-b3d5-4084-bd45-ec6c698e0437"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.setVariable",
+                                    "name": "sulphurAmount",
+                                    "scope": "script",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "source": {
+                                        "type": "variables.scopedVariable",
+                                        "name": "FillAmount",
+                                        "scope": "prop",
+                                        "scopeId": "25ab250e-b3d5-4084-bd45-ec6c698e0437",
+                                        "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                        "displayName": "Variable Value"
+                                    },
+                                    "add": false
+                                },
+                                {
+                                    "type": "nodes.setVariable",
+                                    "name": "charcoalAmount",
+                                    "scope": "script",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "source": {
+                                        "type": "variables.scopedVariable",
+                                        "name": "FillAmount",
+                                        "scope": "prop",
+                                        "scopeId": "45d0b999-a434-427e-8410-14c34295cb61",
+                                        "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                        "displayName": "Variable Value"
+                                    },
+                                    "add": false
+                                },
+                                {
+                                    "type": "nodes.setVariable",
+                                    "name": "mineralAmount",
+                                    "scope": "script",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "source": {
+                                        "type": "variables.scopedVariable",
+                                        "name": "FillAmount",
+                                        "scope": "prop",
+                                        "scopeId": "d80613f1-d750-4e73-a8f4-802859d4f0c4",
+                                        "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                        "displayName": "Variable Value"
+                                    },
+                                    "add": false
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "3ffc751b-127c-4143-9407-898e6e54cdb6",
+                                    "actorId": "38b1ca94-de8c-4873-8810-3d0b02df469a",
+                                    "actorId2": null,
+                                    "text": "It takes 3 portions of Sulphur, 3 portions of Charcoal, and 3 portions of Phosphorous to make a Big Boom over 30 minutes. You have ${script.sulphurAmount} portions of Sulphur, ${script.charcoalAmount} portions of Charcoal, and ${script.mineralAmount} portions of Phosphorous with ${scene.craftTimeRemaining} minutes remaining. Continue crafting?",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.showMenu",
+                                    "id": "29dfcd4a-1ca4-4fc0-bd2e-a5e92140ac6d",
+                                    "options": [
+                                        {
+                                            "type": "options.text",
+                                            "id": "b357e930-94af-429a-9914-7b467b0e92c1",
+                                            "text": "Continue Crafting",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.setVariable",
+                                                    "name": "ItemsMade",
+                                                    "scope": "scene",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "source": {
+                                                        "type": "variables.literal",
+                                                        "value": "3",
+                                                        "displayName": "Literal"
+                                                    },
+                                                    "add": false
+                                                },
+                                                {
+                                                    "type": "nodes.setVariable",
+                                                    "name": "craftTimeRemaining",
+                                                    "scope": "scene",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "source": {
+                                                        "type": "variables.literal",
+                                                        "value": "-30",
+                                                        "displayName": "Literal"
+                                                    },
+                                                    "add": true
+                                                },
+                                                {
+                                                    "type": "nodes.setVariable",
+                                                    "name": "FillAmount",
+                                                    "scope": "prop",
+                                                    "scopeId": "25ab250e-b3d5-4084-bd45-ec6c698e0437",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "source": {
+                                                        "type": "variables.literal",
+                                                        "value": "-3",
+                                                        "displayName": "Literal"
+                                                    },
+                                                    "add": true
+                                                },
+                                                {
+                                                    "type": "nodes.setVariable",
+                                                    "name": "FillAmount",
+                                                    "scope": "prop",
+                                                    "scopeId": "45d0b999-a434-427e-8410-14c34295cb61",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "source": {
+                                                        "type": "variables.literal",
+                                                        "value": "-3",
+                                                        "displayName": "Literal"
+                                                    },
+                                                    "add": true
+                                                },
+                                                {
+                                                    "type": "nodes.setVariable",
+                                                    "name": "FillAmount",
+                                                    "scope": "prop",
+                                                    "scopeId": "d80613f1-d750-4e73-a8f4-802859d4f0c4",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "source": {
+                                                        "type": "variables.literal",
+                                                        "value": "-3",
+                                                        "displayName": "Literal"
+                                                    },
+                                                    "add": true
+                                                },
+                                                {
+                                                    "type": "nodes.changeInventory",
+                                                    "id": "a921279c-c263-4d96-88f2-787b613a93bc",
+                                                    "propId": "155838d4-c048-4ef4-bc68-1652a785e789",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "change": "1",
+                                                    "count": 1,
+                                                    "notify": true
+                                                }
+                                            ],
+                                            "expression": null,
+                                            "ignoreChildAvailability": true,
+                                            "minutes": 0,
+                                            "ExitMenu": true
+                                        }
+                                    ],
+                                    "AutoAddDone": true,
+                                    "Unique": false
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.or",
+                                "left": {
+                                    "type": "expressions.inInventory",
+                                    "propId": "25ab250e-b3d5-4084-bd45-ec6c698e0437",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "has": false
+                                },
+                                "right": {
+                                    "type": "expressions.or",
+                                    "left": {
+                                        "type": "expressions.inInventory",
+                                        "propId": "d80613f1-d750-4e73-a8f4-802859d4f0c4",
+                                        "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                        "has": false
+                                    },
+                                    "right": {
+                                        "type": "expressions.inInventory",
+                                        "propId": "45d0b999-a434-427e-8410-14c34295cb61",
+                                        "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                        "has": false
+                                    }
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "1c9977ed-0db3-4c47-85dd-bd80d16295e5",
+                                    "actorId": "38b1ca94-de8c-4873-8810-3d0b02df469a",
+                                    "actorId2": null,
+                                    "text": "You do not have enough materials. It takes 3 portions of Sulphur, 3 portions of Charcoal, and 3 portions of Phosphorous to make a Big Boom - but you need a Sulphur Jar, Charcoal Jar, and Phosphorous Jar to collect them.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.setVariable",
+                                    "name": "sulphurAmount",
+                                    "scope": "script",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "source": {
+                                        "type": "variables.scopedVariable",
+                                        "name": "FillAmount",
+                                        "scope": "prop",
+                                        "scopeId": "25ab250e-b3d5-4084-bd45-ec6c698e0437",
+                                        "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                        "displayName": "Variable Value"
+                                    },
+                                    "add": false
+                                },
+                                {
+                                    "type": "nodes.setVariable",
+                                    "name": "charcoalAmount",
+                                    "scope": "script",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "source": {
+                                        "type": "variables.scopedVariable",
+                                        "name": "FillAmount",
+                                        "scope": "prop",
+                                        "scopeId": "45d0b999-a434-427e-8410-14c34295cb61",
+                                        "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                        "displayName": "Variable Value"
+                                    },
+                                    "add": false
+                                },
+                                {
+                                    "type": "nodes.setVariable",
+                                    "name": "mineralAmount",
+                                    "scope": "script",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "source": {
+                                        "type": "variables.scopedVariable",
+                                        "name": "FillAmount",
+                                        "scope": "prop",
+                                        "scopeId": "d80613f1-d750-4e73-a8f4-802859d4f0c4",
+                                        "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                        "displayName": "Variable Value"
+                                    },
+                                    "add": false
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "76256f9d-3c0e-4747-9968-395f0b0860e1",
+                                    "actorId": "38b1ca94-de8c-4873-8810-3d0b02df469a",
+                                    "actorId2": null,
+                                    "text": "You do not have enough materials.It takes 3 portions of Sulphur, 3 portions of Charcoal, and 3 portions of Phosphorous to make a Big Boom. You have ${script.sulphurAmount} portions of Sulphur, ${script.charcoalAmount} portions of Charcoal, and ${script.mineralAmount} portions of Phosphorous.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

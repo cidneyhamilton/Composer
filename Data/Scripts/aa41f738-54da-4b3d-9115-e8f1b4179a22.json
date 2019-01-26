@@ -1,0 +1,79 @@
+{
+    "type": "script",
+    "id": "aa41f738-54da-4b3d-9115-e8f1b4179a22",
+    "name": "Make Gooey",
+    "sceneId": "4c80661d-0537-46d4-b6d6-422313186fac",
+    "trigger": {
+        "type": "triggers.manual",
+        "name": "Manual"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "711d0a32-21d9-4608-84ea-748619b53861",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.speak",
+                    "id": "12aac69b-c457-4c25-a416-b86474b15e18",
+                    "actorId": "38b1ca94-de8c-4873-8810-3d0b02df469a",
+                    "actorId2": null,
+                    "text": "It takes 10 minutes to make Gooey. You have ${scene.craftTimeRemaining} minutes remaining. Continue crafting?",
+                    "emotion": "0",
+                    "emotion2": "0",
+                    "device": "0",
+                    "device2": "0"
+                },
+                {
+                    "type": "nodes.showMenu",
+                    "id": "e8a3c80a-42cd-483f-a336-5217fa0a3254",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "b7c30cf5-ee14-47c6-9b21-563237dbe0f9",
+                            "text": "Continue crafting",
+                            "nodes": [
+                                {
+                                    "type": "nodes.setVariable",
+                                    "name": "craftTimeRemaining",
+                                    "scope": "scene",
+                                    "source": {
+                                        "type": "variables.literal",
+                                        "value": "-10",
+                                        "displayName": "Literal"
+                                    },
+                                    "add": true
+                                },
+                                {
+                                    "type": "nodes.setVariable",
+                                    "name": "ItemsMade",
+                                    "scope": "scene",
+                                    "source": {
+                                        "type": "variables.literal",
+                                        "value": "1",
+                                        "displayName": "Literal"
+                                    },
+                                    "add": true
+                                },
+                                {
+                                    "type": "nodes.changeInventory",
+                                    "id": "3e404e8f-5ddf-42fe-b808-dd1bc0c35430",
+                                    "propId": "80355c35-99af-4aad-a628-b180a2904692",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "change": "1",
+                                    "count": 1,
+                                    "notify": true
+                                }
+                            ],
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": true
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

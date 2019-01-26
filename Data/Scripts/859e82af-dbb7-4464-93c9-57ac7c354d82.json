@@ -1,0 +1,560 @@
+{
+    "type": "script",
+    "id": "859e82af-dbb7-4464-93c9-57ac7c354d82",
+    "name": "Practice Cards",
+    "sceneId": "84006d08-8e6d-4558-b9b5-101f3c3054fe",
+    "trigger": {
+        "type": "triggers.manual",
+        "name": "Manual"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "916e05e1-e2af-4017-8e4a-5c877ad052e3",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.variableComparison",
+                                "variableScope": "ego",
+                                "variableName": "cardspracticecount",
+                                "operator": "gte",
+                                "compareTo": "3",
+                                "sceneId": "84006d08-8e6d-4558-b9b5-101f3c3054fe",
+                                "propId": null
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "9973d387-555e-4e22-988f-da9e447847da",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "I hit my limit. I'm cashing out for today.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0",
+                                    "notes": ""
+                                },
+                                {
+                                    "type": "nodes.endScript"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.setVariable",
+                    "name": "cardspracticecount",
+                    "scope": "ego",
+                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                    "source": {
+                        "type": "variables.literal",
+                        "value": "1",
+                        "notes": "",
+                        "displayName": "Literal"
+                    },
+                    "add": true
+                },
+                {
+                    "type": "nodes.incrementTime",
+                    "id": "a77c3d59-43a7-45cb-9490-23a10b8d7bf5",
+                    "days": 0,
+                    "hours": 0,
+                    "minutes": "30"
+                },
+                {
+                    "type": "nodes.speak",
+                    "id": "ab37db92-ec9f-4066-9d00-6a2ba020c9da",
+                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "actorId2": null,
+                    "text": "If I play my cards right, I bet I can raise my game.",
+                    "emotion": "0",
+                    "emotion2": "0",
+                    "device": "0",
+                    "device2": "0",
+                    "notes": ""
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.playMusic",
+                                    "musicTrack": "silence.ogg",
+                                    "channel": "1",
+                                    "loopType": "1"
+                                },
+                                {
+                                    "type": "nodes.fade",
+                                    "scope": "FadeOut",
+                                    "fadeTime": "0.5",
+                                    "fadeTime2": 2,
+                                    "wait": true,
+                                    "fadeDown": 1,
+                                    "fadeColorR": 0,
+                                    "fadeColorG": 0,
+                                    "fadeColorB": 0
+                                },
+                                {
+                                    "type": "nodes.showCloseUp",
+                                    "imageName": "CardTableCloseup.png"
+                                },
+                                {
+                                    "type": "nodes.fade",
+                                    "scope": "FadeIn",
+                                    "fadeTime": 2,
+                                    "fadeTime2": "0.5",
+                                    "wait": true,
+                                    "fadeDown": "0",
+                                    "fadeColorR": 0,
+                                    "fadeColorG": 0,
+                                    "fadeColorB": 0
+                                },
+                                {
+                                    "type": "nodes.playSoundEffect",
+                                    "soundEffectName": "cards_shuffle-n-deal.wav",
+                                    "wait": false
+                                },
+                                {
+                                    "type": "nodes.wait",
+                                    "waitForSeconds": "2.5"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "ecc3fd18-480e-45e9-a4b8-8f2d8517b740",
+                    "type": "nodes.improveSkill",
+                    "skill": "Luck",
+                    "amount": "1",
+                    "notify": true
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.comment",
+                                    "message": "Random Chance to increase Gaming on Practice - mostly here to give a difference to practicing in the Rec Room versus the Rogue Practice Room",
+                                    "commentor": "Charles"
+                                },
+                                {
+                                    "type": "nodes.setVariable",
+                                    "name": "rand",
+                                    "scope": "script",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "source": {
+                                        "type": "variables.random",
+                                        "value": "",
+                                        "min": 1,
+                                        "max": 100,
+                                        "displayName": "Random"
+                                    },
+                                    "add": false
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "script",
+                                                "variableName": "rand",
+                                                "operator": "gt",
+                                                "compareTo": "50",
+                                                "sceneId": "84006d08-8e6d-4558-b9b5-101f3c3054fe",
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "id": "47d39df5-57c1-468d-87b5-20bf876f422a",
+                                                    "type": "nodes.improveSkill",
+                                                    "skill": "Gaming",
+                                                    "amount": "1",
+                                                    "notify": true
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.nodeCycle",
+                    "id": "b8d15a96-cf8b-4dd1-930d-3bad6b28b8f3",
+                    "nodes": [
+                        {
+                            "type": "nodes.speak",
+                            "id": "ec66461c-86d8-438a-b320-ecca46b7d9a9",
+                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                            "actorId2": null,
+                            "text": "So if I pull this, my odds increase to...",
+                            "emotion": "0",
+                            "emotion2": "0",
+                            "device": "0",
+                            "device2": "0",
+                            "notes": ""
+                        },
+                        {
+                            "type": "nodes.speak",
+                            "id": "a263dc27-9203-46a4-bfe8-aa963e140bd7",
+                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                            "actorId2": null,
+                            "text": "So it seems that a good fold is as important as a win. Sometimes more important.",
+                            "emotion": "0",
+                            "emotion2": "0",
+                            "device": "0",
+                            "device2": "0",
+                            "notes": ""
+                        },
+                        {
+                            "type": "nodes.speak",
+                            "id": "cfd97060-6801-4153-81f2-a67e7a873107",
+                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                            "actorId2": null,
+                            "text": "It's pretty clear that in cards, the deadly sin is to mistake bad play for bad luck.",
+                            "emotion": "0",
+                            "emotion2": "0",
+                            "device": "0",
+                            "device2": "0",
+                            "notes": ""
+                        },
+                        {
+                            "type": "nodes.speak",
+                            "id": "d6e224d0-de45-494d-976d-1d52064cecde",
+                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                            "actorId2": null,
+                            "text": "This'd be so much easier if Gregor sold marked cards...",
+                            "emotion": "0",
+                            "emotion2": "0",
+                            "device": "0",
+                            "device2": "0",
+                            "notes": ""
+                        },
+                        {
+                            "type": "nodes.speak",
+                            "id": "31c8aa7e-d135-46fb-9f55-33c9de327a79",
+                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                            "actorId2": null,
+                            "text": " Unfortunately, I can't learn their \"tells\" by practicing alone...",
+                            "emotion": "0",
+                            "emotion2": "0",
+                            "device": "0",
+                            "device2": "0",
+                            "notes": ""
+                        },
+                        {
+                            "type": "nodes.speak",
+                            "id": "3a68cc60-dd03-4553-9fcb-adf6b4dbce27",
+                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                            "actorId2": null,
+                            "text": "I gotta know when to walk away, and know when to run.",
+                            "emotion": "0",
+                            "emotion2": "0",
+                            "device": "0",
+                            "device2": "0",
+                            "notes": ""
+                        },
+                        {
+                            "type": "nodes.speak",
+                            "id": "145d315e-75a9-4935-a559-8042fc1dbacf",
+                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                            "actorId2": null,
+                            "text": "I have to learn not to make the same mistakes over and over...",
+                            "emotion": "0",
+                            "emotion2": "0",
+                            "device": "0",
+                            "device2": "0",
+                            "notes": ""
+                        },
+                        {
+                            "type": "nodes.speak",
+                            "id": "551fa9dd-0616-4e02-b665-ee5f86525ac6",
+                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                            "actorId2": null,
+                            "text": "If I got better with every hand I lost, I'd be unbeatable by now.",
+                            "emotion": "0",
+                            "emotion2": "0",
+                            "device": "0",
+                            "device2": "0",
+                            "notes": ""
+                        },
+                        {
+                            "type": "nodes.speak",
+                            "id": "f3132db0-d399-46fa-9ae8-1767d4b4baef",
+                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                            "actorId2": null,
+                            "text": "Just trying to figure out a winning strategy here...",
+                            "emotion": "0",
+                            "emotion2": "0",
+                            "device": "0",
+                            "device2": "0",
+                            "notes": ""
+                        },
+                        {
+                            "type": "nodes.speak",
+                            "id": "a1584edb-b568-4dd3-b4b1-e3d5155dd838",
+                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                            "actorId2": null,
+                            "text": "Unfortunately, counting cards doesn't help in Poobah...",
+                            "emotion": "0",
+                            "emotion2": "0",
+                            "device": "0",
+                            "device2": "0",
+                            "notes": ""
+                        },
+                        {
+                            "type": "nodes.speak",
+                            "id": "b3963f1f-9a12-4852-a603-6cedb9335ab0",
+                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                            "actorId2": null,
+                            "text": "If I can crack this game, I'm set for life!",
+                            "emotion": "1",
+                            "emotion2": "0",
+                            "device": "0",
+                            "device2": "0",
+                            "notes": ""
+                        },
+                        {
+                            "type": "nodes.speak",
+                            "id": "7a9d34b3-956e-4a42-888a-fed2914d71f1",
+                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                            "actorId2": null,
+                            "text": "I need to stop letting my hand show on my face...",
+                            "emotion": "0",
+                            "emotion2": "0",
+                            "device": "0",
+                            "device2": "0",
+                            "notes": ""
+                        },
+                        {
+                            "type": "nodes.speak",
+                            "id": "d8c2c320-00b3-42a5-a7e8-6e01e4583e17",
+                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                            "actorId2": null,
+                            "text": "If I can win without cheating, so much the better.",
+                            "emotion": "0",
+                            "emotion2": "0",
+                            "device": "0",
+                            "device2": "0",
+                            "notes": ""
+                        },
+                        {
+                            "type": "nodes.speak",
+                            "id": "e4e66a38-7c0c-44c1-834b-25653172ff1f",
+                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                            "actorId2": null,
+                            "text": "This game is half luck, half psychology, and half mathematics.",
+                            "emotion": "0",
+                            "emotion2": "0",
+                            "device": "0",
+                            "device2": "0",
+                            "notes": ""
+                        },
+                        {
+                            "type": "nodes.speak",
+                            "id": "375c3dc9-550d-4a15-96e3-c8aaf0c99201",
+                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                            "actorId2": null,
+                            "text": "I want to get good enough so that even <i>I</i> wouldn't want to play against me.",
+                            "emotion": "0",
+                            "emotion2": "0",
+                            "device": "0",
+                            "device2": "0",
+                            "notes": ""
+                        },
+                        {
+                            "type": "nodes.speak",
+                            "id": "45298352-656b-4b35-965e-44fa74e5f48e",
+                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                            "actorId2": null,
+                            "text": "If I can just learn to get a Grand Poobah without getting royally flushed...",
+                            "emotion": "0",
+                            "emotion2": "0",
+                            "device": "0",
+                            "device2": "0",
+                            "notes": ""
+                        },
+                        {
+                            "type": "nodes.speak",
+                            "id": "331fd89f-6515-4a2e-a38d-26a6a04899d7",
+                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                            "actorId2": null,
+                            "text": "I'm shooting for complete and total mastery here.",
+                            "emotion": "0",
+                            "emotion2": "0",
+                            "device": "0",
+                            "device2": "0",
+                            "notes": ""
+                        },
+                        {
+                            "type": "nodes.speak",
+                            "id": "8ca038b6-e323-475e-9c75-5506944e47ac",
+                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                            "actorId2": null,
+                            "text": "I'm sure my classmates will love and respect me if I win all their money...",
+                            "emotion": "0",
+                            "emotion2": "0",
+                            "device": "0",
+                            "device2": "0",
+                            "notes": ""
+                        },
+                        {
+                            "type": "nodes.speak",
+                            "id": "271ee743-d59f-4dd3-b875-f6ffee0d1a58",
+                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                            "actorId2": null,
+                            "text": "Even the smallest advantage could make a big difference.",
+                            "emotion": "0",
+                            "emotion2": "0",
+                            "device": "0",
+                            "device2": "0",
+                            "notes": ""
+                        },
+                        {
+                            "type": "nodes.speak",
+                            "id": "dcf0df29-72f1-4d6e-a24a-09436538261e",
+                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                            "actorId2": null,
+                            "text": "Either everyone else is getting a little worse, or I'm getting a little better...",
+                            "emotion": "0",
+                            "emotion2": "0",
+                            "device": "0",
+                            "device2": "0",
+                            "notes": ""
+                        },
+                        {
+                            "type": "nodes.speak",
+                            "id": "18646c59-ec95-4eb4-8729-7dd3a9d01b50",
+                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                            "actorId2": null,
+                            "text": "I can't control the hands I'm dealt, but I can be smarter about what I do with 'em...",
+                            "emotion": "0",
+                            "emotion2": "0",
+                            "device": "0",
+                            "device2": "0",
+                            "notes": ""
+                        },
+                        {
+                            "type": "nodes.speak",
+                            "id": "34435488-217f-4e98-933e-d893f53e061a",
+                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                            "actorId2": null,
+                            "text": "My bluffing needs work.",
+                            "emotion": "0",
+                            "emotion2": "0",
+                            "device": "0",
+                            "device2": "0",
+                            "notes": ""
+                        },
+                        {
+                            "type": "nodes.speak",
+                            "id": "ba95c3fc-7a0c-43d4-91c1-e4aeb6e9a441",
+                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                            "actorId2": null,
+                            "text": "I think the key is to win as often as possible.",
+                            "emotion": "0",
+                            "emotion2": "0",
+                            "device": "0",
+                            "device2": "0",
+                            "notes": ""
+                        },
+                        {
+                            "type": "nodes.speak",
+                            "id": "0f59fdca-76ca-4de0-8604-5e2d6a06d328",
+                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                            "actorId2": null,
+                            "text": "I'll wipe the grins off their smug faces next time!",
+                            "emotion": "0",
+                            "emotion2": "0",
+                            "device": "0",
+                            "device2": "0",
+                            "notes": ""
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.fade",
+                                    "scope": "FadeOut",
+                                    "fadeTime": "0.5",
+                                    "fadeTime2": 2,
+                                    "wait": true,
+                                    "fadeDown": 1,
+                                    "fadeColorR": 0,
+                                    "fadeColorG": 0,
+                                    "fadeColorB": 0
+                                },
+                                {
+                                    "type": "nodes.hideCloseUp",
+                                    "waitForSeconds": 1
+                                },
+                                {
+                                    "type": "nodes.invokeScript",
+                                    "id": "b4647a08-7c36-43b0-a92d-8f8fff1d378a",
+                                    "scriptId": "36fdef9d-1311-419d-accd-bde79296c00d",
+                                    "entryPointId": "916e05e1-e2af-4017-8e4a-5c877ad052e3",
+                                    "currentScope": "Scenes",
+                                    "currentSceneId": "84006d08-8e6d-4558-b9b5-101f3c3054fe",
+                                    "currentActorId": null,
+                                    "currentStoryEventId": null,
+                                    "currentPropId": null
+                                },
+                                {
+                                    "type": "nodes.fade",
+                                    "scope": "FadeIn",
+                                    "fadeTime": 2,
+                                    "fadeTime2": "0.5",
+                                    "wait": true,
+                                    "fadeDown": "0",
+                                    "fadeColorR": 0,
+                                    "fadeColorG": 0,
+                                    "fadeColorB": 0
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.onceOnly",
+                    "id": "069824bb-d2cf-48eb-a4c5-dc5256cec2c5",
+                    "nodes": [
+                        {
+                            "type": "nodes.speak",
+                            "id": "767bbbc4-3c5a-491c-87e4-1d99437eb305",
+                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                            "actorId2": null,
+                            "text": "Odds are I've improved!",
+                            "emotion": "1",
+                            "emotion2": "0",
+                            "device": "0",
+                            "device2": "0",
+                            "notes": ""
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

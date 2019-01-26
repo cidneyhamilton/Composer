@@ -1,0 +1,218 @@
+{
+    "type": "script",
+    "id": "f11ec6c9-d590-4bc0-9a02-9aa117e778bf",
+    "name": "Interact with Bookshelf E (Religion)",
+    "sceneId": "981ec865-3e1b-4f3e-bb0d-11df2bc7d593",
+    "propId": "82bc5149-ca28-4c12-9292-57e8efe40146",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "0a0ad9d2-0f38-4d4a-8798-8c81daf08b11",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "4003c1ab-6047-4b2c-b090-f31b41f78cbf",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "720b3b11-f865-4f0c-bbf8-ee998e59e3c0",
+                            "text": "Examine the Bookshelf",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "7b1c1ca1-3b82-40f3-b212-a45fc3a2ebac",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "There are an awful lot of books on different religions and philosophies. ",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "1",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "26ea8752-f9db-4c80-b7f9-d4a9306e0180",
+                            "text": "Study the Books",
+                            "nodes": [
+                                {
+                                    "type": "nodes.invokeScript",
+                                    "id": "52d8444d-7c8f-442c-b07c-915ea7bc12f0",
+                                    "scriptId": "e49ddd5a-2b32-4b92-bb4b-9e417cc9a181",
+                                    "entryPointId": "43bb3b5f-782b-457d-b609-e28040b16b74",
+                                    "currentScope": "Actors",
+                                    "currentSceneId": "981ec865-3e1b-4f3e-bb0d-11df2bc7d593",
+                                    "currentActorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "currentStoryEventId": null,
+                                    "currentPropId": null
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "script",
+                                                "variableName": "ShawnStudiedThisBook",
+                                                "operator": "eq",
+                                                "compareTo": "true",
+                                                "sceneId": "981ec865-3e1b-4f3e-bb0d-11df2bc7d593",
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "4edd76de-7767-4741-9dcd-7751108fa489",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "I guess I'm not cut out to be a Priest if I keep napping reading the scriptures.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "d5d53c70-ebdb-44e2-9a19-d4bf27e8b419",
+                                                    "scope": "actor",
+                                                    "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "readreligion",
+                                                    "tagsToRemove": null
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "actor",
+                                "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                "scopeFilterId": null,
+                                "tags": "readreligion",
+                                "has": false
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "1",
+                            "ExitMenu": true
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "76952b7e-735a-4f23-9ef1-fe5944b5df41",
+                            "text": "Read a Religious Book",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "63c3058b-882d-4c78-9e45-38285338ceb3",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "No thanks. This isn't my favorite subject matter.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "actor",
+                                "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                "scopeFilterId": null,
+                                "tags": "readreligion",
+                                "has": true
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "1",
+                            "ExitMenu": true
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "abe7c734-1c0a-4fbe-a032-5b574863bf1a",
+                            "text": "Pick a Book at Random",
+                            "nodes": [
+                                {
+                                    "type": "nodes.nodeCycle",
+                                    "id": "4152c1cf-1410-42c0-8596-ea2786dbc55f",
+                                    "nodes": [
+                                        {
+                                            "type": "nodes.branch",
+                                            "sections": [
+                                                {
+                                                    "type": "nodes.branchSection",
+                                                    "expression": null,
+                                                    "nodes": [
+                                                        {
+                                                            "type": "nodes.speak",
+                                                            "id": "9576daa3-f030-4e74-8f68-e89ba5be4e93",
+                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                            "actorId2": null,
+                                                            "text": "<i>The Teachings of Ermahgerd, Goddess of Disbelief</i>. \"Ermagherd\"? I like her name. \"By Ermahgerd!\" \"Ermahgerddammit!\" \"Oh, my Ermagherd!\" I'm enjoying this!",
+                                                            "emotion": "0",
+                                                            "emotion2": "0",
+                                                            "device": "0",
+                                                            "device2": "0"
+                                                        },
+                                                        {
+                                                            "type": "nodes.changeTags",
+                                                            "id": "dee31fd9-4eb8-4f06-a0ae-18e2eca1e284",
+                                                            "scope": "prop",
+                                                            "scopeId": "82bc5149-ca28-4c12-9292-57e8efe40146",
+                                                            "scopeFilterId": "981ec865-3e1b-4f3e-bb0d-11df2bc7d593",
+                                                            "tagsToAdd": "ReadErmahgerd",
+                                                            "tagsToRemove": null
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "396e4b48-32d0-4935-b094-ac2c783ba4c4",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "It's a complete bound collection, every single issue, of <i>Necronomicon Monthly</i>. You know, the magazine they put out before they published the book? The book was originally called <i>The Best from Necronomicon Magazine</i>, then they renamed it something shorter to make it catchy.",
+                                            "emotion": "1",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "32a62809-f140-4e5c-88a2-04168f4076c8",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "From the back cover: \"The most fun you'll ever have reading about the joyful depravity described and permitted by our sacred texts.\" It's called <i>Children of a Lecher God</i>. Ermahgerd!",
+                                            "emotion": "0",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "1",
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

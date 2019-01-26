@@ -1,0 +1,70 @@
+{
+    "type": "script",
+    "id": "3c41991c-7266-4377-9a80-97d07ba080e3",
+    "name": "Check Explore Castle",
+    "propId": "f21009e3-d6e3-4057-b788-59a7084d3aa6",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.manual",
+        "name": "Manual"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "f08f7bb0-7b40-499b-b8f6-fe2669e4d675",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.hasAchievement",
+                                "propId": "f21009e3-d6e3-4057-b788-59a7084d3aa6",
+                                "sceneId": "a4d66827-dd60-451f-8015-62b8abb42f0c",
+                                "achievementStatus": "1"
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "scene",
+                                                "scopeId": "a4d66827-dd60-451f-8015-62b8abb42f0c",
+                                                "scopeFilterId": null,
+                                                "tags": "ExploredBasement,ExploredWineCellar,ExploredFirstFloor,ExploredSecondFloor",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.comment",
+                                                    "message": "All normally accessible areas of the castle have been visited.",
+                                                    "commentor": "Explored Castle"
+                                                },
+                                                {
+                                                    "type": "nodes.achievements",
+                                                    "id": "99a1cb37-4e35-402a-8768-d877e664040e",
+                                                    "sceneId": "a4d66827-dd60-451f-8015-62b8abb42f0c",
+                                                    "propId": "f21009e3-d6e3-4057-b788-59a7084d3aa6"
+                                                },
+                                                {
+                                                    "type": "nodes.comment",
+                                                    "message": "Add Steam Achievement Explore the Castle",
+                                                    "commentor": "TODO"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

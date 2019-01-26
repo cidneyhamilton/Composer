@@ -1,0 +1,607 @@
+{
+    "type": "script",
+    "id": "e37ebeab-f771-4e0e-98e6-dffa1acb0fe0",
+    "name": "OnLoot",
+    "actorId": "30f86a26-c7ec-4093-8eef-c111eb9e19dd",
+    "trigger": {
+        "type": "triggers.loot",
+        "name": "Loot"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "d2c5649e-9279-41da-a067-abe40503607b",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.playAnimation",
+                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "animationName": "KneelDown",
+                    "wait": true
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "target",
+                                "scopeId": null,
+                                "scopeFilterId": null,
+                                "tags": "U_LOOTED",
+                                "has": true
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "abf6397e-5c30-4a68-addd-bbec56165d2f",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "It's nothing but a worthless skull.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "5ca163c6-9533-4212-bec9-185527cfdedd",
+                                    "scope": "target",
+                                    "scopeId": null,
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "U_LOOTED",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.onceOnly",
+                                    "id": "006999dd-5eed-4004-8b97-52db0851bb20",
+                                    "nodes": [
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "e2659c9b-2f18-41fa-9767-e5f21ecd94a5",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "Now that I've defeated it, there's nothing left but a simple skull and some wings.",
+                                            "emotion": "2",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "91d2a97b-4fa7-4c52-b45b-cdddf0118450",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "Maybe Gregor will buy the wings for Skatter Stew, or something equally unappetizing.",
+                                            "emotion": "2",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "511f6e78-3f24-43af-a2b6-bd8b75aec7d7",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "Wait... there's something inside the skull.",
+                                            "emotion": "0",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.nodeCycle",
+                                    "id": "536405e5-605a-4fe3-ae14-e9854cd11438",
+                                    "nodes": [
+                                        {
+                                            "type": "nodes.branch",
+                                            "sections": [
+                                                {
+                                                    "type": "nodes.branchSection",
+                                                    "expression": null,
+                                                    "nodes": [
+                                                        {
+                                                            "type": "nodes.speak",
+                                                            "id": "b48d4110-ddec-4f19-8903-b52206c7e361",
+                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                            "actorId2": null,
+                                                            "text": "There are 5 Lyra inside the skull.",
+                                                            "emotion": "0",
+                                                            "emotion2": "0",
+                                                            "device": "0",
+                                                            "device2": "0"
+                                                        },
+                                                        {
+                                                            "type": "nodes.changeMoney",
+                                                            "id": "86caec2d-afab-4b2b-8eb9-5e4f521b15a3",
+                                                            "amount": "5",
+                                                            "change": "1",
+                                                            "currency": "0"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branch",
+                                            "sections": [
+                                                {
+                                                    "type": "nodes.branchSection",
+                                                    "expression": null,
+                                                    "nodes": [
+                                                        {
+                                                            "type": "nodes.speak",
+                                                            "id": "13eefd04-396c-4b69-9f78-44e45e8a2677",
+                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                            "actorId2": null,
+                                                            "text": "There are 4 Lyra inside the skull.",
+                                                            "emotion": "0",
+                                                            "emotion2": "0",
+                                                            "device": "0",
+                                                            "device2": "0"
+                                                        },
+                                                        {
+                                                            "type": "nodes.changeMoney",
+                                                            "id": "1972856a-a2ac-4e8f-b8fd-85acf779e0fd",
+                                                            "amount": "4",
+                                                            "change": "1",
+                                                            "currency": "0"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branch",
+                                            "sections": [
+                                                {
+                                                    "type": "nodes.branchSection",
+                                                    "expression": null,
+                                                    "nodes": [
+                                                        {
+                                                            "type": "nodes.speak",
+                                                            "id": "b91d394b-d52d-4000-a37f-b94cd1a083c6",
+                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                            "actorId2": null,
+                                                            "text": "There are 8 Lyra inside the skull.",
+                                                            "emotion": "0",
+                                                            "emotion2": "0",
+                                                            "device": "0",
+                                                            "device2": "0"
+                                                        },
+                                                        {
+                                                            "type": "nodes.changeMoney",
+                                                            "id": "e9155221-5848-48b2-ab1b-252a76e5947d",
+                                                            "amount": "8",
+                                                            "change": "1",
+                                                            "currency": "0"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branch",
+                                            "sections": [
+                                                {
+                                                    "type": "nodes.branchSection",
+                                                    "expression": null,
+                                                    "nodes": [
+                                                        {
+                                                            "type": "nodes.speak",
+                                                            "id": "cdd4fda1-3495-4544-9880-c2d41549c44a",
+                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                            "actorId2": null,
+                                                            "text": "There are 10 Lyra inside the skull.",
+                                                            "emotion": "0",
+                                                            "emotion2": "0",
+                                                            "device": "0",
+                                                            "device2": "0"
+                                                        },
+                                                        {
+                                                            "type": "nodes.changeMoney",
+                                                            "id": "777749d2-cf2e-486d-a170-e13c8ca82c15",
+                                                            "amount": "10",
+                                                            "change": "1",
+                                                            "currency": "0"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branch",
+                                            "sections": [
+                                                {
+                                                    "type": "nodes.branchSection",
+                                                    "expression": null,
+                                                    "nodes": [
+                                                        {
+                                                            "type": "nodes.speak",
+                                                            "id": "cf831b3c-c4fb-447d-aea3-05d13ae16a7c",
+                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                            "actorId2": null,
+                                                            "text": "There are 9 Lyra inside the skull.",
+                                                            "emotion": "0",
+                                                            "emotion2": "0",
+                                                            "device": "0",
+                                                            "device2": "0"
+                                                        },
+                                                        {
+                                                            "type": "nodes.changeMoney",
+                                                            "id": "fd83b1d3-f3c2-4f30-95f1-9f14cf3e4b45",
+                                                            "amount": "9",
+                                                            "change": "1",
+                                                            "currency": "0"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.nodeCycle",
+                                    "id": "72a9536d-721c-45c5-9ad9-4b2878e5bbf4",
+                                    "nodes": [
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "a8de1f9b-ec2e-476e-87f7-12ced0ad1aba",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "And there's a nice pair of Skatter Wings to sell to Gregor.",
+                                            "emotion": "1",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "7f7b1413-dca3-4169-b388-37ca6d90564c",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "Of course, now I've got Skatter Brains all over myself.",
+                                            "emotion": "3",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "d90a31cb-15d4-4f74-a4a8-26100e65b1ad",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "I wonder how Gregor uses these wings. There's not much meat on them.",
+                                            "emotion": "0",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "2d8494af-ae0f-493e-a800-e48eeddaf6e7",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "I'll save the wings for Gregor's dinner. I wonder what he likes to eat for <i>dessert.</i> Orat pudding? Lark's vomit?",
+                                            "emotion": "0",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "6f21df67-d6a9-4b22-9cba-47bc019e5f95",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "I like wings as much as the next guy, but not <i>these</i> kind.",
+                                            "emotion": "2",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "138c562d-6025-4ac5-84d1-81504cc157f8",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "I bet Gregor doesn't even wash these before he eats them.",
+                                            "emotion": "0",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "85945350-e305-4e5a-bd25-598eaca9a44b",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "Just how many of these wings Gregor can eat at one sitting, anyway? They can't be very filling.",
+                                            "emotion": "1",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "29bccff2-7a52-455b-803c-ec3ffc5513dd",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "And it won't mean a thing if I ain't got that wing...",
+                                            "emotion": "1",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "c78eb775-1cea-4dac-a8f1-730c14b2945f",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "text": "Every time a Skatter dies, a Ratty gets his wings!",
+                                            "emotion": "1",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "ec6947cf-7bd4-434a-b2fb-874c665ccc90",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "I guess I should think of myself as Gregor's wingman.",
+                                            "emotion": "0",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "b0e3f34b-f01c-4665-9093-edfa57a671ee",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "I'm sure this pair of Skatter wings will whet Gregor's appetite. I guess that makes them whetting wings.",
+                                            "emotion": "1",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "33c2446e-b4de-4e60-9e99-9008b1457ce1",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "Pulling off these wings is the most satisfying part of my day.",
+                                            "emotion": "1",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "3d5dd208-9f01-4da7-a57d-44ae0a51a813",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "I'm not sure the best way to dismember these Skatters. Guess I'll just have to wing it.",
+                                            "emotion": "0",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "27da9b1e-cf71-4851-b356-ab3f8c9faadc",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "Ecch. These wings are so... so <i>veiny.</i>",
+                                            "emotion": "2",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "dafc7944-6ce2-4549-8818-e837bbe66d0a",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "Taking off the wings has made this Skatter gory.",
+                                            "emotion": "1",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "b0662858-8e45-42a8-bf7d-f3ec2e785dc7",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "You won't be needing these wings anymore...",
+                                            "emotion": "0",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "094256ec-bada-4623-b83f-c8874a720683",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "And now it's time to take wing. In fact, I'll take <i>both</i> wings.",
+                                            "emotion": "0",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "292432bd-720c-4cc8-9f39-662b0e5ef1cd",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "text": "...and two nice, plump wings for my favorite Ratty.",
+                                            "emotion": "0",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "5b5ab035-019e-4a8d-86aa-67529b264248",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "And a couple of wings. Nice and leathery, suitable for Skatter Wing Jerky, maybe.",
+                                            "emotion": "0",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "fe1e6c9e-a425-4c73-b531-3f57d9c5706a",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "I'll just take these wings for Gregor. This Skatter won't be needing them anymore.",
+                                            "emotion": "0",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "0459c694-0cda-4df2-8c87-f89d2088bcac",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "I wonder what it would take to make these wings extra-crispy.",
+                                            "emotion": "0",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "9a18fa61-b443-4579-b657-bf47ef9ade38",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "This pair of wings looks nutritious <i>and</i> delicious.",
+                                            "emotion": "0",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "cbdda89a-6116-465a-bd0b-51f501dd0c13",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "And won't Gregor be thrilled with these wings?",
+                                            "emotion": "0",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "3c27e43c-ac4a-4c08-aaa3-f269a3b37581",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "I'll just clip these wings and take them with me.",
+                                            "emotion": "0",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "510e6785-f440-48e7-b7fb-ebbd292e1596",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "This Skatter looks kinda naked without his wings.",
+                                            "emotion": "0",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "01a991f2-cfad-44c1-90de-65375bf5caf4",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "These wings have a lot of little bones. Gregor probably loves to gnaw on them.",
+                                            "emotion": "2",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "1b8eb482-c508-42ee-ad52-76165a8d83b0",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "Some more wings for Gregor. I have to say, these look very hard to peel.",
+                                            "emotion": "0",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "0e6fa1c9-e3d6-4143-abcf-ff4b08a0f0e6",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "Gregor can put these wings to good use. Waste not, want not!",
+                                            "emotion": "1",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "968b92d0-e648-4243-897b-9d870ed26fcf",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "text": "I know a Ratty who's going to like these wings.",
+                                            "emotion": "0",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "5f4303d4-eef5-447f-93b8-f16713128514",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "And these wings... I can practically hear Gregor's stomach rumbling now. Urg.",
+                                            "emotion": "0",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.changeInventory",
+                                    "id": "142d7460-c256-4b59-a4e0-61f8666b310d",
+                                    "propId": "644087ea-01bd-4226-b800-311e3ed4d2fc",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "change": "1",
+                                    "count": "2",
+                                    "notify": true
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.playAnimation",
+                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "animationName": "KneelUp",
+                    "wait": true
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,210 @@
+{
+    "type": "script",
+    "id": "aefd7e3a-aa77-49fc-8350-0d772bbae0ed",
+    "name": "Envelope Action",
+    "propId": "4424614e-27d0-4397-89ac-9eb0fa059a6d",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "67fd9686-cce4-40f2-ae69-dfcb71b26b58",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "a84e68d0-7a29-4930-8f3f-0130e11472f5",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "4ab0449a-65c0-4e85-af4e-82a35f9ca2b1",
+                            "text": "Examine the Envelope",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "prop",
+                                                "scopeId": "4424614e-27d0-4397-89ac-9eb0fa059a6d",
+                                                "scopeFilterId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                "tags": "openedenvelope",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "e7199049-8789-4172-bdf2-5620481cd061",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "This is just an opened, empty envelope now. No point keeping it.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.changeInventory",
+                                                    "id": "538230e6-82ec-4233-b783-52bf70f3375f",
+                                                    "propId": "4424614e-27d0-4397-89ac-9eb0fa059a6d",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "change": "0",
+                                                    "count": 1,
+                                                    "notify": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "5eed9c9a-be27-474e-b0ca-8b5413a19824",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "This envelope is plain with no marks. Even the sealing wax was just dripped on it. Guess Terk doesn't want anyone to know it was from him. ",
+                                                    "emotion": "0",
+                                                    "device": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "2b0aa9e6-fc69-411e-9c7d-5e5bf4f4dd48",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "There's something small but heavy in it.",
+                                                    "emotion": "4",
+                                                    "device": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "0",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "37eb0ecd-994f-4c44-b0d5-45508a0e804e",
+                            "text": "Open the Envelope",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "167f5754-4cfe-4873-831e-d476a70c4cbc",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Let's see what's inside this thing...",
+                                    "emotion": "0",
+                                    "device": "0"
+                                },
+                                {
+                                    "type": "nodes.playSoundEffect",
+                                    "soundEffectName": "Open Envelope.wav",
+                                    "wait": false
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "8f9662ae-032c-42ed-8d10-03918203ff4c",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "A key! Wow, this key looks almost magical! Hmmm... I wonder what this will open?",
+                                    "emotion": "4",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.changeInventory",
+                                    "id": "11d55748-d39c-4bfe-9c2f-f47e0768bd74",
+                                    "propId": "9660eaf9-ae37-4505-93e5-dcb351a96742",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "change": "1",
+                                    "count": 1,
+                                    "notify": true
+                                },
+                                {
+                                    "type": "nodes.changeInventory",
+                                    "id": "69df8a09-2e74-4d27-914e-dcb79d75b336",
+                                    "propId": "4424614e-27d0-4397-89ac-9eb0fa059a6d",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "change": "0",
+                                    "count": 1,
+                                    "notify": true
+                                },
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "0e8002ce-5b6c-4c85-840d-143706920e8c",
+                                    "scope": "prop",
+                                    "scopeId": "4424614e-27d0-4397-89ac-9eb0fa059a6d",
+                                    "scopeFilterId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "tagsToAdd": "openedenvelope",
+                                    "tagsToRemove": null
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "prop",
+                                "scopeId": "4424614e-27d0-4397-89ac-9eb0fa059a6d",
+                                "scopeFilterId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                "tags": "openedenvelope",
+                                "has": false
+                            },
+                            "ignoreChildAvailability": false,
+                            "minutes": "0",
+                            "ExitMenu": true
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "f5f1bebe-f55f-4d52-95f5-16a669c6973c",
+                            "text": "Sense Magic on the Envelope",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "080d2c77-3686-424a-94b7-439217c9085a",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "The thing inside the envelope is slightly magical. It feels like... a key... a magical key!",
+                                    "emotion": "4",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inTags",
+                                    "scope": "prop",
+                                    "scopeId": "4424614e-27d0-4397-89ac-9eb0fa059a6d",
+                                    "scopeFilterId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "tags": "openedenvelope",
+                                    "has": false
+                                },
+                                "right": {
+                                    "type": "expressions.inTags",
+                                    "scope": "actor",
+                                    "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "scopeFilterId": null,
+                                    "tags": "SenseMagic",
+                                    "has": true
+                                }
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "0",
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

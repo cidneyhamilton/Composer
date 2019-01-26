@@ -1,0 +1,149 @@
+{
+    "type": "script",
+    "id": "7b212728-4f2f-4a99-ad10-ba1544387007",
+    "name": "Interact with Barrel Stack",
+    "sceneId": "1565f241-1bad-4dc5-acd2-ac931966280f",
+    "propId": "b4bfa9a8-0090-414e-951c-c65c7445b7c0",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "a5ea7e6b-f480-4695-82bf-6b87a2ce2dee",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "ba4c93df-c994-4450-ae86-dc884bd7af6a",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "52b5a2ab-b7cf-42c9-a202-32823a32969b",
+                            "text": "Look at the Barrels",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "5f443157-2b0e-461f-8963-2a5f18138919",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "These barrels might make great weapons... if they were a lot lighter, smaller, and sharper.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "20c53b0f-83a8-45eb-8954-c0c20c8273f0",
+                            "text": "Knock on a Barrel",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "target",
+                                                "scopeId": null,
+                                                "scopeFilterId": null,
+                                                "tags": "AlreadyKnocked",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.playAnimation",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "animationName": "ReachOut"
+                                                },
+                                                {
+                                                    "type": "nodes.playSoundEffect",
+                                                    "soundEffectName": "barrel_knock.mp3",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "e709e9e0-d077-44a8-91e4-8157cf7c82ba",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Empty. Somewhere, an oak tree is rolling over in its grave... or something.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "2fb4eea9-198f-4c9e-a67e-59324e2659c5",
+                                                    "scope": "target",
+                                                    "scopeId": null,
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "AlreadyKnocked",
+                                                    "tagsToRemove": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "78dae222-e2e8-4ed9-ab53-afee417546ae",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "I don't see the point to knocking on all of these. If one of them is empty, all of them are probably empty.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "cc331367-ba64-4a66-ac51-8bb873afe212",
+                            "text": "Steal a Barrel",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "101e67ff-0e41-4ef4-bb46-d5bbc50a7b1e",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "My options for hiding a stolen barrel are kind of limited. My motivations for stealing an old barrel are even more limited.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

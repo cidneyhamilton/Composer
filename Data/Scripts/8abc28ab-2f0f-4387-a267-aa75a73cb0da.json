@@ -1,0 +1,95 @@
+{
+    "type": "script",
+    "id": "8abc28ab-2f0f-4387-a267-aa75a73cb0da",
+    "name": "Zone Trigger Thomas Notices If Shawn Isn't Sneaking",
+    "sceneId": "25782df1-4461-4651-9bab-1fb4e1b4e366",
+    "trigger": {
+        "type": "triggers.zone",
+        "name": "Zone"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "6fe6b21f-f450-44f5-93ee-b518caef3105",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.or",
+                                "left": {
+                                    "type": "expressions.movementStatus",
+                                    "propId": null,
+                                    "sceneId": "25782df1-4461-4651-9bab-1fb4e1b4e366",
+                                    "status": "Walking"
+                                },
+                                "right": {
+                                    "type": "expressions.movementStatus",
+                                    "propId": null,
+                                    "sceneId": "25782df1-4461-4651-9bab-1fb4e1b4e366",
+                                    "status": "Running"
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.comment",
+                                    "message": "Thomas Notices",
+                                    "commentor": "Cidney"
+                                },
+                                {
+                                    "type": "nodes.invokeScript",
+                                    "id": "50b24a85-f334-487a-bd65-16496d7e331c",
+                                    "scriptId": "1164689b-f0f5-4959-80d9-9ac0a1d41542",
+                                    "entryPointId": "6fe6b21f-f450-44f5-93ee-b518caef3105",
+                                    "currentScope": "Scenes",
+                                    "currentSceneId": "25782df1-4461-4651-9bab-1fb4e1b4e366",
+                                    "currentActorId": null,
+                                    "currentStoryEventId": null,
+                                    "currentPropId": null
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.skillCheck",
+                                "skill": "Stealth",
+                                "target": "20"
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.comment",
+                                    "message": "Potential TODO: increase the difficulty as Thomas gets better at Perception?",
+                                    "commentor": "Cidney"
+                                },
+                                {
+                                    "type": "nodes.endScript"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.invokeScript",
+                                    "id": "2408b013-f96f-4a7a-a8fa-ee86259bb601",
+                                    "scriptId": "1164689b-f0f5-4959-80d9-9ac0a1d41542",
+                                    "entryPointId": "6fe6b21f-f450-44f5-93ee-b518caef3105",
+                                    "currentScope": "Scenes",
+                                    "currentSceneId": "25782df1-4461-4651-9bab-1fb4e1b4e366",
+                                    "currentActorId": null,
+                                    "currentStoryEventId": null,
+                                    "currentPropId": null
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

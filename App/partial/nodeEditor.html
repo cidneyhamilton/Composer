@@ -1,0 +1,82 @@
+<div class="node" data-bind="css: { writing: mode == 'write'}">
+    <!--ko if: mode == 'read'-->
+    <table class="read">
+        <tr>
+            <td style="vertical-align: top">
+                <div class="toolbar">
+                    <div class="btn-group">
+                        <button class="dropdown-toggle hint--rounded hint--right" data-hint="Options" data-toggle="dropdown">
+                            <i class="icon-cog"></i>
+                        </button>
+                        <ul class="dropdown-menu pull-left" role="menu" aria-labelledby="dropdownMenu">
+                            <li class="dropdown-submenu">
+                                <a href="#">Insert Before</a>
+                                <ul class="dropdown-menu scrollable-list">
+                                    <!--ko foreach: availableNodes-->
+                                    <li href="#">
+                                        <a href="#" data-bind="text:$data.displayName, click:function(){$parent.insertBefore($data); }"></a>
+                                    </li>
+                                    <!--/ko-->
+                                </ul>
+                            </li>
+                            <li class="dropdown-submenu">
+                                <a href="#">Insert After</a>
+                                <ul class="dropdown-menu scrollable-list">
+                                    <!--ko foreach: availableNodes-->
+                                    <li href="#">
+                                        <a href="#" data-bind="text:$data.displayName, click:function(){$parent.insertAfter($data); }"></a>
+                                    </li>
+                                    <!--/ko-->
+                                </ul>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#" data-bind="click:copy">Copy</a>
+                            </li>
+                            <li>
+                                <a href="#" data-bind="click:cut">Cut</a>
+                            </li>
+                            <!--ko if: clipboard-->
+                            <li class="dropdown-submenu">
+                                <a href="#">Paste</a>
+                                <ul class="dropdown-menu">
+                                    <li href="#"><a href="#" data-bind="click: pasteBefore">Before</a></li>
+                                    <li href="#"><a href="#" data-bind="click: pasteAfter">After</a></li>
+                                </ul>
+                            </li>
+                            <!--/ko-->
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#" data-bind="click: remove">Remove</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <button class="hint--rounded hint--right" data-hint="Edit" data-bind="click: beginEdit">
+                        <i class="icon-pencil"></i>
+                    </button>
+                </div>
+            </td>
+            <td>
+                <div data-part="read"></div>
+            </td>
+        </tr>
+    </table>
+    <!--/ko-->
+
+    <!--ko if: mode == 'write'-->
+    <div class="write">
+        <div class="displayName" data-bind="text: node.constructor.displayName"></div>
+
+        <div data-part="write"></div>
+
+        <div class="done">
+            <button class="btn btn-danger" data-bind="click: remove">Remove</button>
+            <button class="btn" data-bind="click: endEdit">Done</button>
+        </div>
+
+        <div class="clearfix"></div>
+    </div>
+    <!--/ko-->
+
+    <div class="clearfix"></div>
+</div>

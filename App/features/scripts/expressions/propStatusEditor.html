@@ -1,0 +1,17 @@
+<div data-bind="compose: { mode:'templated', view:'conditionEditor' }">
+    <div data-part="write" class="form-inline">
+        <select data-bind="options: scenes, optionsText: 'name', optionsValue: 'id', value: expression.sceneId, optionsCaption: 'Select Scene'"></select>
+
+        <!--ko if: expression.sceneId-->
+        <select data-bind="options: props, optionsText: 'name', optionsValue: 'id', value: expression.propId, optionsCaption: 'Select Prop'" style="float: right"></select>
+        <!--/ko-->
+
+		<select data-bind="options: statuses, value: expression.status, valueUpdate: 'afterkeydown'">
+		</select>
+
+        <!--<div class="form-inline" style="margin-left: 130px; margin-top: 8px;">
+            <input type="checkbox" data-bind="checked: expression.has" />
+            <label>Has in their possession?</label>
+        </div>-->
+    </div>
+</div>

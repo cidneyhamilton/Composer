@@ -1,0 +1,513 @@
+{
+    "type": "script",
+    "id": "72e3f71a-80ed-4af2-baf2-0586b7e0f83c",
+    "name": "Interact with Shawn's Bed",
+    "sceneId": "9897ecb3-4200-4884-867a-2840471747b8",
+    "propId": "d85154df-527a-4245-8931-e2698874a6d2",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "05bbcc55-8638-4ac1-aa6f-0df2afe63726",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.variableComparison",
+                                    "variableScope": "global",
+                                    "variableName": "time.day",
+                                    "operator": "gte",
+                                    "compareTo": "14",
+                                    "sceneId": "40f18665-4cc2-4acd-b17e-5189e68b7a33",
+                                    "propId": null
+                                },
+                                "right": {
+                                    "type": "expressions.and",
+                                    "left": {
+                                        "type": "expressions.variableComparison",
+                                        "variableScope": "global",
+                                        "variableName": "time.day",
+                                        "operator": "lte",
+                                        "compareTo": "16",
+                                        "sceneId": "40f18665-4cc2-4acd-b17e-5189e68b7a33",
+                                        "propId": null
+                                    },
+                                    "right": {
+                                        "type": "expressions.and",
+                                        "left": {
+                                            "type": "expressions.variableComparison",
+                                            "variableScope": "global",
+                                            "variableName": "time.hour",
+                                            "operator": "lt",
+                                            "compareTo": "4",
+                                            "sceneId": "40f18665-4cc2-4acd-b17e-5189e68b7a33",
+                                            "propId": null
+                                        },
+                                        "right": {
+                                            "type": "expressions.inTags",
+                                            "scope": "scene",
+                                            "scopeId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                            "scopeFilterId": null,
+                                            "tags": "KwirkNoise",
+                                            "has": true
+                                        }
+                                    }
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.comment",
+                                    "message": "Kwirk Events",
+                                    "commentor": "Joshua"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "47b083b3-5327-4a0d-9646-d1be171ceb20",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "It's really late, should I just end my investigation and head back to bed?",
+                                    "emotion": "5",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.showMenu",
+                                    "id": "d95b8fae-1ec1-43dd-8166-517c2c0bf168",
+                                    "options": [
+                                        {
+                                            "type": "options.text",
+                                            "id": "b55828a8-ac7b-4ebd-ba83-38e4e9e5e9cc",
+                                            "text": "Stay and investigate",
+                                            "nodes": [],
+                                            "expression": null,
+                                            "ignoreChildAvailability": true,
+                                            "minutes": 0,
+                                            "ExitMenu": true
+                                        },
+                                        {
+                                            "type": "options.text",
+                                            "id": "06c042ef-73e1-46ea-a77c-94db3168d802",
+                                            "text": "Go back to sleep.",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.fade",
+                                                    "scope": "FadeOut",
+                                                    "fadeTime": 2,
+                                                    "fadeTime2": 2,
+                                                    "wait": true,
+                                                    "fadeDown": 1,
+                                                    "fadeColorR": 0,
+                                                    "fadeColorG": 0,
+                                                    "fadeColorB": 0
+                                                },
+                                                {
+                                                    "type": "nodes.playSoundEffect",
+                                                    "soundEffectName": "Snore_long.wav",
+                                                    "wait": false
+                                                },
+                                                {
+                                                    "type": "nodes.changeScene",
+                                                    "sceneId": "afb9f72c-1888-43db-ac71-fb6a81d41f47",
+                                                    "spawnId": null,
+                                                    "fadeTime": 2
+                                                }
+                                            ],
+                                            "expression": null,
+                                            "ignoreChildAvailability": true,
+                                            "minutes": 0,
+                                            "ExitMenu": false
+                                        }
+                                    ],
+                                    "AutoAddDone": false,
+                                    "Unique": false
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.setVariable",
+                                    "name": "hour",
+                                    "scope": "script",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "source": {
+                                        "type": "variables.hour",
+                                        "displayName": "Hour"
+                                    },
+                                    "add": false
+                                },
+                                {
+                                    "type": "nodes.showMenu",
+                                    "id": "feb43662-89d3-4437-84f2-4604ec24d42c",
+                                    "options": [
+                                        {
+                                            "type": "options.text",
+                                            "id": "37c9ecfd-6bf0-47c3-a79c-89802e545e14",
+                                            "text": "Read the Letter",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.propStatus",
+                                                                "propId": "65da51e3-807d-4682-9eda-b71690061b9d",
+                                                                "sceneId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                                                "status": "Visible"
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.invokeScript",
+                                                                    "id": "34d2afd2-71c1-49e1-b0c4-1d6ad6b10d82",
+                                                                    "scriptId": "7a86181e-2086-45e8-b3b2-d4d25f50ff2c",
+                                                                    "entryPointId": "",
+                                                                    "currentScope": "Scenes",
+                                                                    "currentSceneId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                                                    "currentActorId": null,
+                                                                    "currentStoryEventId": null,
+                                                                    "currentPropId": null
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.propStatus",
+                                                                "propId": "044cf9a0-49b8-479b-96a1-f05b65daa19b",
+                                                                "sceneId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                                                "status": "Visible"
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.invokeScript",
+                                                                    "id": "132e72a3-4ecf-4c77-b978-a409e6c29686",
+                                                                    "scriptId": "a357f17f-fd69-4869-b5cc-3a480c19ccac",
+                                                                    "entryPointId": "",
+                                                                    "currentScope": "Scenes",
+                                                                    "currentSceneId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                                                    "currentActorId": null,
+                                                                    "currentStoryEventId": null,
+                                                                    "currentPropId": null
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.propStatus",
+                                                                "propId": "e7e504f5-d079-4878-9b29-1af839913154",
+                                                                "sceneId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                                                "status": "Visible"
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.invokeScript",
+                                                                    "id": "7f9af14e-ac76-4310-9ad7-b144393aea92",
+                                                                    "scriptId": "3e585ea0-b186-44ff-948a-6264afef3a08",
+                                                                    "entryPointId": "",
+                                                                    "currentScope": "Scenes",
+                                                                    "currentSceneId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                                                    "currentActorId": null,
+                                                                    "currentStoryEventId": null,
+                                                                    "currentPropId": null
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "expression": {
+                                                "type": "expressions.or",
+                                                "left": {
+                                                    "type": "expressions.propStatus",
+                                                    "propId": "65da51e3-807d-4682-9eda-b71690061b9d",
+                                                    "sceneId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                                    "status": "Visible"
+                                                },
+                                                "right": {
+                                                    "type": "expressions.or",
+                                                    "left": {
+                                                        "type": "expressions.propStatus",
+                                                        "propId": "044cf9a0-49b8-479b-96a1-f05b65daa19b",
+                                                        "sceneId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                                        "status": "Visible"
+                                                    },
+                                                    "right": {
+                                                        "type": "expressions.propStatus",
+                                                        "propId": "e7e504f5-d079-4878-9b29-1af839913154",
+                                                        "sceneId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                                        "status": "Visible"
+                                                    }
+                                                }
+                                            },
+                                            "ignoreChildAvailability": true,
+                                            "minutes": 0,
+                                            "ExitMenu": false
+                                        },
+                                        {
+                                            "type": "options.text",
+                                            "id": "8ca831de-d58b-45f0-87ce-252cec2a28e2",
+                                            "text": "Examine the Poster",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "357fa7db-60de-45bd-81d4-e1211c30cabc",
+                                                    "scriptId": "55e1dc6e-1553-4f5f-8211-8befbfc59d8d",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ],
+                                            "expression": {
+                                                "type": "expressions.propStatus",
+                                                "propId": "d18526dc-3a53-4622-8728-6cedd2333958",
+                                                "sceneId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                                "status": "Visible"
+                                            },
+                                            "ignoreChildAvailability": true,
+                                            "minutes": 0,
+                                            "ExitMenu": false
+                                        },
+                                        {
+                                            "type": "options.text",
+                                            "id": "2d758dba-a738-469e-9fea-839768625960",
+                                            "text": "Take a Short Nap",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "7281ad5d-5ce6-421d-96ee-470f46519954",
+                                                    "scriptId": "",
+                                                    "entryPointId": "03d5e0e9-f936-4419-93dd-b6d437a93591",
+                                                    "currentScope": "Current",
+                                                    "currentSceneId": null,
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ],
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "script",
+                                                "variableName": "hour",
+                                                "operator": "gte",
+                                                "compareTo": "8",
+                                                "sceneId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                                "propId": null
+                                            },
+                                            "ignoreChildAvailability": true,
+                                            "minutes": 0,
+                                            "ExitMenu": true
+                                        },
+                                        {
+                                            "type": "options.text",
+                                            "id": "a51f308a-0b1e-4e20-ba89-3a8076c27c7b",
+                                            "text": "Go to Sleep",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "b125d7f8-1fd2-4e7e-b901-f0b47a9df11a",
+                                                    "scriptId": "",
+                                                    "entryPointId": "c658f63a-0e92-467a-8be0-87cff48b2ca6",
+                                                    "currentScope": "Current",
+                                                    "currentSceneId": null,
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ],
+                                            "expression": {
+                                                "type": "expressions.or",
+                                                "left": {
+                                                    "type": "expressions.variableComparison",
+                                                    "variableScope": "script",
+                                                    "variableName": "hour",
+                                                    "operator": "lt",
+                                                    "compareTo": "8",
+                                                    "sceneId": null,
+                                                    "propId": null
+                                                },
+                                                "right": {
+                                                    "type": "expressions.variableComparison",
+                                                    "variableScope": "script",
+                                                    "variableName": "hour",
+                                                    "operator": "gte",
+                                                    "compareTo": "20",
+                                                    "sceneId": null,
+                                                    "propId": null
+                                                }
+                                            },
+                                            "ignoreChildAvailability": true,
+                                            "minutes": 0,
+                                            "ExitMenu": true
+                                        }
+                                    ],
+                                    "AutoAddDone": true,
+                                    "Unique": false
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": []
+                }
+            ]
+        },
+        {
+            "type": "scripts.entryPoint",
+            "id": "c658f63a-0e92-467a-8be0-87cff48b2ca6",
+            "name": "Go to Sleep",
+            "nodes": [
+                {
+                    "type": "nodes.changeScene",
+                    "sceneId": "afb9f72c-1888-43db-ac71-fb6a81d41f47",
+                    "spawnId": null,
+                    "fadeTime": "0"
+                }
+            ]
+        },
+        {
+            "type": "scripts.entryPoint",
+            "id": "03d5e0e9-f936-4419-93dd-b6d437a93591",
+            "name": "Take a Nap",
+            "nodes": [
+                {
+                    "type": "nodes.speak",
+                    "id": "9cd4dcad-fc00-4c34-b8ab-a645535f0363",
+                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "actorId2": null,
+                    "text": "I'll just catch a few winks for a bit.",
+                    "emotion": "0",
+                    "emotion2": "0",
+                    "device": "0",
+                    "device2": "0"
+                },
+                {
+                    "type": "nodes.playMusic",
+                    "musicTrack": "silence.ogg",
+                    "channel": "1",
+                    "loopType": "1"
+                },
+                {
+                    "type": "nodes.playSoundEffect",
+                    "soundEffectName": "nap_stinger.wav",
+                    "wait": false
+                },
+                {
+                    "type": "nodes.fade",
+                    "scope": "FadeOut",
+                    "fadeTime": "0.5",
+                    "fadeTime2": 2,
+                    "wait": true,
+                    "fadeDown": 1,
+                    "fadeColorR": 0,
+                    "fadeColorG": 0,
+                    "fadeColorB": 0
+                },
+                {
+                    "type": "nodes.invokeCommand",
+                    "id": "c896fc83-f1e0-42bf-b4ff-75e91555f885",
+                    "entityType": "actor",
+                    "entityId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "command": "restorestamina",
+                    "parameter": "10",
+                    "resultVariableScope": "script"
+                },
+                {
+                    "type": "nodes.incrementTime",
+                    "id": "fb988576-63c0-4c0d-b523-afe5e8c8ec64",
+                    "days": 0,
+                    "hours": "1",
+                    "minutes": 0
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "actor",
+                                "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                "scopeFilterId": null,
+                                "tags": "sleepy",
+                                "has": true
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.comment",
+                                    "message": "Remove the \"Tired\" status effect if Shawn naps.",
+                                    "commentor": "Cidney"
+                                },
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "68412f5d-2999-4244-882f-26bc6ec09737",
+                                    "scope": "actor",
+                                    "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "scopeFilterId": null,
+                                    "tagsToRemove": "sleepy"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.fade",
+                    "scope": "FadeIn",
+                    "fadeTime": 2,
+                    "fadeTime2": "0.5",
+                    "wait": true,
+                    "fadeDown": "0.5",
+                    "fadeColorR": 0,
+                    "fadeColorG": 0,
+                    "fadeColorB": 0
+                },
+                {
+                    "type": "nodes.playSoundEffect",
+                    "soundEffectName": "yawn.wav",
+                    "wait": false
+                },
+                {
+                    "type": "nodes.speak",
+                    "id": "ffdbaf2a-02af-42bc-ba9e-22b23ae73acd",
+                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "actorId2": null,
+                    "text": "(yawn) That was refreshing!",
+                    "emotion": "5",
+                    "emotion2": "0",
+                    "device": "0",
+                    "device2": "0"
+                },
+                {
+                    "type": "nodes.invokeScript",
+                    "id": "e68e4959-f2c4-4943-b7e9-6e3664819a8e",
+                    "scriptId": "05f69bc0-8fdd-4b56-99d2-b2ded1bc8a74",
+                    "entryPointId": "05bbcc55-8638-4ac1-aa6f-0df2afe63726",
+                    "currentScope": "Scenes",
+                    "currentSceneId": "9897ecb3-4200-4884-867a-2840471747b8",
+                    "currentActorId": null,
+                    "currentStoryEventId": null,
+                    "currentPropId": null
+                }
+            ]
+        }
+    ]
+}

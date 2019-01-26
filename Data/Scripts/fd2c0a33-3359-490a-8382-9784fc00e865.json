@@ -1,0 +1,219 @@
+{
+    "type": "script",
+    "id": "fd2c0a33-3359-490a-8382-9784fc00e865",
+    "name": "Interact with Sulphur",
+    "sceneId": "1b5e1889-5aca-4af5-a616-80fad9d4cfa1",
+    "propId": "682c1af4-e785-46b0-82ba-6fce74cb1af5",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "9ce0d898-cc3a-400d-a8de-b082977a4d54",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "da8957a5-f40a-4890-8238-76f9da68c988",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "392fca1c-c628-4f0d-a64a-9fdd74c80814",
+                            "text": "Look at the Sulphur",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "40f009ff-b525-43b9-b2b4-c33c187c4180",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "I could smell this from halfway across the room. It's sulphur.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "99f79971-769e-4bb8-8d77-571af4299f8f",
+                            "text": "Take the Sulphur",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "prop",
+                                                "variableName": "mineral_count",
+                                                "operator": "lte",
+                                                "compareTo": "0",
+                                                "sceneId": "1b5e1889-5aca-4af5-a616-80fad9d4cfa1",
+                                                "propId": "682c1af4-e785-46b0-82ba-6fce74cb1af5"
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "0bee5306-5978-44bc-bb67-c6846c1703b5",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "I'm just scraping rock now. I've taken all I can.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "7e4866a3-5c72-4799-940b-54a3cef9e835",
+                                                    "scriptId": "6c5f44b4-9cba-4f00-8c07-1098a2c1dbf6",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.variableComparison",
+                                                                "variableScope": "target",
+                                                                "variableName": "rv_collect_mineral",
+                                                                "operator": "eq",
+                                                                "compareTo": "1",
+                                                                "sceneId": null,
+                                                                "propId": null
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.setVariable",
+                                                                    "name": "mineral_count",
+                                                                    "scope": "prop",
+                                                                    "scopeId": "682c1af4-e785-46b0-82ba-6fce74cb1af5",
+                                                                    "sceneId": "1b5e1889-5aca-4af5-a616-80fad9d4cfa1",
+                                                                    "source": {
+                                                                        "type": "variables.literal",
+                                                                        "value": "-1",
+                                                                        "displayName": "Literal"
+                                                                    },
+                                                                    "add": true
+                                                                },
+                                                                {
+                                                                    "type": "nodes.branch",
+                                                                    "sections": [
+                                                                        {
+                                                                            "type": "nodes.branchSection",
+                                                                            "expression": {
+                                                                                "type": "expressions.variableComparison",
+                                                                                "variableScope": "prop",
+                                                                                "variableName": "mineral_count",
+                                                                                "operator": "lte",
+                                                                                "compareTo": "0",
+                                                                                "sceneId": "1b5e1889-5aca-4af5-a616-80fad9d4cfa1",
+                                                                                "propId": "682c1af4-e785-46b0-82ba-6fce74cb1af5"
+                                                                            },
+                                                                            "nodes": [
+                                                                                {
+                                                                                    "type": "nodes.changePropVisibility",
+                                                                                    "id": "a2febabd-d687-42ee-81d1-5e4103a64d52",
+                                                                                    "propId": "682c1af4-e785-46b0-82ba-6fce74cb1af5",
+                                                                                    "sceneId": "1b5e1889-5aca-4af5-a616-80fad9d4cfa1",
+                                                                                    "status": "Hidden",
+                                                                                    "wait": true
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.setVariable",
+                                                                                    "name": "mineral_respawn",
+                                                                                    "scope": "prop",
+                                                                                    "scopeId": "682c1af4-e785-46b0-82ba-6fce74cb1af5",
+                                                                                    "sceneId": "1b5e1889-5aca-4af5-a616-80fad9d4cfa1",
+                                                                                    "source": {
+                                                                                        "type": "variables.random",
+                                                                                        "value": "",
+                                                                                        "min": "2",
+                                                                                        "max": "4",
+                                                                                        "displayName": "Random"
+                                                                                    },
+                                                                                    "add": false
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.endScript"
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "1",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "17d47a71-12da-4f56-b4f6-d75074dad5b1",
+                            "text": "Sulphur in Silence",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "9afd57b6-7d6e-46d7-bf5b-cb208b99a20b",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "I'm not very good at staying silent.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "5e64854b-6d86-417c-8972-78727bc93d04",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "But if I were able to collect a whole lot of this stuff, I wonder how much it would sulphur!",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "1",
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

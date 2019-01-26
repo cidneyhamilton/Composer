@@ -1,0 +1,280 @@
+{
+    "type": "script",
+    "id": "71215213-54b6-44e1-bad4-99fedc7d57bc",
+    "name": "Make Magical Bandages",
+    "sceneId": "df6088fa-a6d6-441a-9a00-7af3baa62e14",
+    "trigger": {
+        "type": "triggers.manual",
+        "name": "Manual"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "099b60b0-20f1-46d4-a29e-a84725ec6f48",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.setVariable",
+                    "name": "PuffCount",
+                    "scope": "script",
+                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                    "source": {
+                        "type": "variables.count",
+                        "target": "414d7c9f-1649-4dae-8ace-96421d0928c9",
+                        "useArticle": false,
+                        "includeText": false,
+                        "text": "",
+                        "displayName": "Count"
+                    },
+                    "add": false
+                },
+                {
+                    "type": "nodes.setVariable",
+                    "name": "FairyCount",
+                    "scope": "script",
+                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                    "source": {
+                        "type": "variables.count",
+                        "target": "e81826e9-efa7-4dbf-b232-df831c130aa9",
+                        "useArticle": false,
+                        "includeText": false,
+                        "text": "",
+                        "displayName": "Count"
+                    },
+                    "add": false
+                },
+                {
+                    "type": "nodes.setVariable",
+                    "name": "BandageCount",
+                    "scope": "script",
+                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                    "source": {
+                        "type": "variables.count",
+                        "target": "3b162492-1e04-40c6-aaec-febce2d3b5a9",
+                        "useArticle": false,
+                        "includeText": false,
+                        "text": "",
+                        "displayName": "Count"
+                    },
+                    "add": false
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "script",
+                                "scopeId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                "scopeFilterId": null,
+                                "tags": "ForceCraft",
+                                "has": true
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "3cfc45bb-2013-41b0-92a4-4f046156ea1e",
+                                    "scope": "script",
+                                    "scopeId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "",
+                                    "tagsToRemove": "ForceCraft"
+                                },
+                                {
+                                    "type": "nodes.invokeScript",
+                                    "id": "d194bb86-e6f9-4249-b837-cc5a74068dc0",
+                                    "scriptId": "71215213-54b6-44e1-bad4-99fedc7d57bc",
+                                    "entryPointId": "1409f23b-35cc-44bc-9f1f-dbec3446ff48",
+                                    "currentScope": "Current",
+                                    "currentSceneId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                    "currentActorId": null,
+                                    "currentStoryEventId": null,
+                                    "currentPropId": null
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.variableComparison",
+                                    "variableScope": "script",
+                                    "variableName": "PuffCount",
+                                    "operator": "gte",
+                                    "compareTo": "3",
+                                    "sceneId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                    "propId": null
+                                },
+                                "right": {
+                                    "type": "expressions.and",
+                                    "left": {
+                                        "type": "expressions.variableComparison",
+                                        "variableScope": "script",
+                                        "variableName": "FairyCount",
+                                        "operator": "gte",
+                                        "compareTo": "2",
+                                        "sceneId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                        "propId": null
+                                    },
+                                    "right": {
+                                        "type": "expressions.variableComparison",
+                                        "variableScope": "script",
+                                        "variableName": "BandageCount",
+                                        "operator": "gte",
+                                        "compareTo": "6",
+                                        "sceneId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                        "propId": null
+                                    }
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "c2235d57-3664-4e95-a62c-e27e85b40d81",
+                                    "actorId": "38b1ca94-de8c-4873-8810-3d0b02df469a",
+                                    "actorId2": null,
+                                    "text": "It takes 3 Puffballs, 2 Fairy Parasols, and 6 bandages to make 3 Magical Bandages. You have ${script.PuffCount} Puffballs, ${script.FairyCount} Fairy Parasols, and ${script.BandageCount} Bandages. Continue crafting?",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.showMenu",
+                                    "id": "23f3def1-a6e2-458f-bf87-75161f232e82",
+                                    "options": [
+                                        {
+                                            "type": "options.text",
+                                            "id": "da706f7b-104d-43d8-8482-730ee1e41207",
+                                            "text": "Continue Crafting",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.setVariable",
+                                                    "name": "CraftCount",
+                                                    "scope": "script",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "source": {
+                                                        "type": "variables.literal",
+                                                        "value": "1",
+                                                        "displayName": "Literal"
+                                                    },
+                                                    "add": true
+                                                },
+                                                {
+                                                    "type": "nodes.changeInventory",
+                                                    "id": "38916e04-1b52-4ecc-87e0-12ec482e771f",
+                                                    "propId": "414d7c9f-1649-4dae-8ace-96421d0928c9",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "change": "0",
+                                                    "count": "3",
+                                                    "notify": true
+                                                },
+                                                {
+                                                    "type": "nodes.changeInventory",
+                                                    "id": "584053de-0f12-4634-85c4-66dcc616c722",
+                                                    "propId": "e81826e9-efa7-4dbf-b232-df831c130aa9",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "change": "0",
+                                                    "count": "2",
+                                                    "notify": true
+                                                },
+                                                {
+                                                    "type": "nodes.changeInventory",
+                                                    "id": "c7394bd9-0856-4d6a-b280-8ebfb1269e8b",
+                                                    "propId": "3b162492-1e04-40c6-aaec-febce2d3b5a9",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "change": "0",
+                                                    "count": "6",
+                                                    "notify": true
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "ab3bcf8f-4e4c-4517-bc33-2641e8acc3d2",
+                                                    "scriptId": "71215213-54b6-44e1-bad4-99fedc7d57bc",
+                                                    "entryPointId": "1409f23b-35cc-44bc-9f1f-dbec3446ff48",
+                                                    "currentScope": "Current",
+                                                    "currentSceneId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ],
+                                            "expression": null,
+                                            "ignoreChildAvailability": true,
+                                            "minutes": 0,
+                                            "ExitMenu": true
+                                        }
+                                    ],
+                                    "AutoAddDone": true,
+                                    "Unique": false
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "d334bda1-e3aa-4864-aa28-a661c8d27447",
+                                    "actorId": "38b1ca94-de8c-4873-8810-3d0b02df469a",
+                                    "actorId2": null,
+                                    "text": "You do not have enough materials. It takes 3 Puffballs, 2 Fairy Parasols, and 6 bandages to make 3 Magical Bandages. You have ${script.PuffCount} Puffballs, ${script.FairyCount} Fairy Parasols, and ${script.BandageCount} Bandages.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "scripts.entryPoint",
+            "id": "1409f23b-35cc-44bc-9f1f-dbec3446ff48",
+            "name": "Craft",
+            "nodes": [
+                {
+                    "type": "nodes.playSoundEffect",
+                    "soundEffectName": "cloth_tear.wav",
+                    "wait": true
+                },
+                {
+                    "type": "nodes.wait",
+                    "waitForSeconds": "0.5"
+                },
+                {
+                    "type": "nodes.playSoundEffect",
+                    "soundEffectName": "mortar_pestle.wav",
+                    "wait": true
+                },
+                {
+                    "type": "nodes.playSoundEffect",
+                    "soundEffectName": "salve_spread.wav",
+                    "wait": true
+                },
+                {
+                    "type": "nodes.wait",
+                    "waitForSeconds": "0.5"
+                },
+                {
+                    "type": "nodes.changeInventory",
+                    "id": "c173b282-7b0e-4794-9431-a5be0ffd02b3",
+                    "propId": "df614b92-e485-45b2-a6ad-be3ef31c0c9a",
+                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                    "change": "1",
+                    "count": "3",
+                    "notify": true
+                },
+                {
+                    "type": "nodes.wait",
+                    "waitForSeconds": 1
+                }
+            ]
+        }
+    ]
+}

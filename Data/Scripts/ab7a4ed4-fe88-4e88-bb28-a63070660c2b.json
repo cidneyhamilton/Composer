@@ -1,0 +1,656 @@
+{
+    "type": "script",
+    "id": "ab7a4ed4-fe88-4e88-bb28-a63070660c2b",
+    "name": "Interact with Men's Room",
+    "sceneId": "82da26e2-b64a-4951-bca9-a3e78101825e",
+    "propId": "65a19e13-79a9-4bc1-a440-3e0a31609178",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "c02a5a1e-c9ff-4e5e-9bb5-650d965c3cf1",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "2f16616a-c3d8-44e0-a622-a4e31b07c543",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "b813057a-0ff1-4a27-a9a1-c2fcef806328",
+                            "text": "Look at the Door",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "f0d1b7e7-e694-4565-9264-ef1e27e9d826",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "It's the door to the gentlemen's bathroom.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "11b8f300-1d89-44ad-9fa0-c5877117b58d",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "\"Gentlemen\"? Hey, that's me!",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "1",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "d0b45cb5-1a82-46eb-82d0-a6330ef840a7",
+                            "text": "Freshen Up",
+                            "nodes": [
+                                {
+                                    "type": "nodes.invokeScript",
+                                    "id": "38b6cef7-bcc4-4b59-8da7-d8da9af88cae",
+                                    "scriptId": "a1004657-984b-46ba-8870-9550cbfb4b35",
+                                    "entryPointId": "c02a5a1e-c9ff-4e5e-9bb5-650d965c3cf1",
+                                    "currentScope": "Scenes",
+                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                    "currentActorId": null,
+                                    "currentStoryEventId": null,
+                                    "currentPropId": null
+                                },
+                                {
+                                    "type": "nodes.fade",
+                                    "scope": "FadeOutAndIn",
+                                    "fadeTime": "1",
+                                    "fadeTime2": "1",
+                                    "wait": true,
+                                    "fadeDown": 1,
+                                    "fadeColorR": 0,
+                                    "fadeColorG": 0,
+                                    "fadeColorB": 0
+                                },
+                                {
+                                    "type": "nodes.incrementTime",
+                                    "id": "92c8c313-2772-4154-9ead-2459105535c7",
+                                    "days": "0",
+                                    "hours": 0,
+                                    "minutes": "10"
+                                },
+                                {
+                                    "type": "nodes.buffAdd",
+                                    "id": "ab858d23-bf1f-45d5-8766-7552e725e9c9",
+                                    "buffType": "1",
+                                    "duration": "30",
+                                    "targetData": "13",
+                                    "isPercentage": 0,
+                                    "value": "3",
+                                    "namedSource": "Bath"
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.hasActiveQuest",
+                                                "propId": "b64f5673-a59e-434d-a0ec-5a2c5c7c8a64",
+                                                "sceneId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                                                "questStatus": "0"
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.quests",
+                                                    "id": "6124035d-1aa3-4c89-a438-e49dba45a945",
+                                                    "sceneId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                                                    "propId": "b64f5673-a59e-434d-a0ec-5a2c5c7c8a64",
+                                                    "target": "1",
+                                                    "notify": true
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "fd0527c6-fe6f-4a86-b9b4-e95b89c67c00",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "That was refreshing.",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inTags",
+                                    "scope": "target",
+                                    "scopeId": null,
+                                    "scopeFilterId": null,
+                                    "tags": "FreshedUp",
+                                    "has": false
+                                },
+                                "right": {
+                                    "type": "expressions.inTags",
+                                    "scope": "target",
+                                    "scopeId": null,
+                                    "scopeFilterId": null,
+                                    "tags": "hadbath",
+                                    "has": false
+                                }
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "2",
+                            "ExitMenu": true
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "f4fc6dc1-91a1-44c5-ba47-0eb59456c0c6",
+                            "text": "Clean Up Your Act",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "global",
+                                                "variableName": "time.hour",
+                                                "operator": "lt",
+                                                "compareTo": "6",
+                                                "sceneId": null,
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "a9094a6e-df1f-4776-823f-ab78fa31ee66",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "It's too late - they turn off the hot water at midnight.",
+                                                    "emotion": "2",
+                                                    "device": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.and",
+                                                "left": {
+                                                    "type": "expressions.variableComparison",
+                                                    "variableScope": "global",
+                                                    "variableName": "time.hour",
+                                                    "operator": "eq",
+                                                    "compareTo": "17",
+                                                    "sceneId": null,
+                                                    "propId": null
+                                                },
+                                                "right": {
+                                                    "type": "expressions.variableComparison",
+                                                    "variableScope": "global",
+                                                    "variableName": "time.minute",
+                                                    "operator": "gte",
+                                                    "compareTo": "30",
+                                                    "sceneId": "82da26e2-b64a-4951-bca9-a3e78101825e",
+                                                    "propId": null
+                                                }
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "b396dd72-dc25-4a6d-b99c-6b99887d8c63",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Hmmm... it's almost supper time and I'm hungry. I don't have time for this right now.",
+                                                    "emotion": "0",
+                                                    "device": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "c94c1460-8396-4118-84b3-70545526a2cc",
+                                                    "scriptId": "a1004657-984b-46ba-8870-9550cbfb4b35",
+                                                    "entryPointId": "c02a5a1e-c9ff-4e5e-9bb5-650d965c3cf1",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                },
+                                                {
+                                                    "type": "nodes.playMusic",
+                                                    "musicTrack": "silence.ogg",
+                                                    "channel": "1",
+                                                    "loopType": "1"
+                                                },
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "db85d4f3-d874-42f9-b63e-73047ee4ec49",
+                                                    "scope": "target",
+                                                    "scopeId": null,
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "hadbath",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.fade",
+                                                    "scope": "FadeOut",
+                                                    "fadeTime": "1",
+                                                    "fadeTime2": 2,
+                                                    "wait": true,
+                                                    "fadeDown": 1,
+                                                    "fadeColorR": 0,
+                                                    "fadeColorG": 0,
+                                                    "fadeColorB": 0
+                                                },
+                                                {
+                                                    "type": "nodes.showVignette",
+                                                    "vignetteName": "ShawnBath.png",
+                                                    "crossFadeTime": 0
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.hasActiveQuest",
+                                                                "propId": "b64f5673-a59e-434d-a0ec-5a2c5c7c8a64",
+                                                                "sceneId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                                                                "questStatus": "0"
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.quests",
+                                                                    "id": "3ba17000-b058-490a-803f-c784dd7dc98f",
+                                                                    "sceneId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                                                                    "propId": "b64f5673-a59e-434d-a0ec-5a2c5c7c8a64",
+                                                                    "target": "1",
+                                                                    "notify": true
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "nodes.fade",
+                                                    "scope": "FadeIn",
+                                                    "fadeTime": 2,
+                                                    "fadeTime2": "0.5",
+                                                    "wait": true,
+                                                    "fadeDown": "0.25",
+                                                    "fadeColorR": 0,
+                                                    "fadeColorG": 0,
+                                                    "fadeColorB": 0
+                                                },
+                                                {
+                                                    "type": "nodes.playSoundEffect",
+                                                    "soundEffectName": "Enter Bathtub.wav",
+                                                    "wait": false
+                                                },
+                                                {
+                                                    "type": "nodes.wait",
+                                                    "waitForSeconds": "2"
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.inTags",
+                                                                "scope": "prop",
+                                                                "scopeId": "65a19e13-79a9-4bc1-a440-3e0a31609178",
+                                                                "scopeFilterId": "82da26e2-b64a-4951-bca9-a3e78101825e",
+                                                                "tags": "tookfirstbath",
+                                                                "has": false
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.changeTags",
+                                                                    "id": "1d83125a-f036-4b63-86b0-8e2dd405f789",
+                                                                    "scope": "prop",
+                                                                    "scopeId": "65a19e13-79a9-4bc1-a440-3e0a31609178",
+                                                                    "scopeFilterId": "82da26e2-b64a-4951-bca9-a3e78101825e",
+                                                                    "tagsToAdd": "tookfirstbath",
+                                                                    "tagsToRemove": null
+                                                                },
+                                                                {
+                                                                    "id": "c101d9b8-298c-4b6f-87ab-d11177a39afe",
+                                                                    "type": "nodes.improveSkill",
+                                                                    "skill": "Charm",
+                                                                    "amount": "3",
+                                                                    "notify": true
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "nodes.nodeCycle",
+                                                    "id": "8409f41d-e5be-4c83-a0da-793fb2ea77a5",
+                                                    "nodes": [
+                                                        {
+                                                            "type": "nodes.speak",
+                                                            "id": "6e581d98-d5c8-42cc-98d8-8aa99080ff2f",
+                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                            "actorId2": null,
+                                                            "text": "There, I feel like a new man.",
+                                                            "emotion": "1",
+                                                            "device": "0"
+                                                        },
+                                                        {
+                                                            "type": "nodes.speak",
+                                                            "id": "746fa09c-08a4-446d-8f01-9e9d6600031f",
+                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                            "actorId2": null,
+                                                            "text": "I'm refreshed, revived, and ready to roll.",
+                                                            "emotion": "1",
+                                                            "device": "0"
+                                                        },
+                                                        {
+                                                            "type": "nodes.speak",
+                                                            "id": "5515b08e-5c17-4bd9-95dd-e9de164962f9",
+                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                            "actorId2": null,
+                                                            "text": "All right, I'm clean and good to go. ",
+                                                            "emotion": "1",
+                                                            "emotion2": "0",
+                                                            "device": "0",
+                                                            "device2": "0"
+                                                        },
+                                                        {
+                                                            "type": "nodes.speak",
+                                                            "id": "a76da883-e5be-48d1-ae96-60b87dbd82e3",
+                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                            "actorId2": null,
+                                                            "text": "There's nothing quite like a warm bath and a backscrubber to feel fine.",
+                                                            "emotion": "1",
+                                                            "device": "0"
+                                                        },
+                                                        {
+                                                            "type": "nodes.speak",
+                                                            "id": "c7047e78-4578-4623-b3aa-f124c6f4dfc0",
+                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                            "actorId2": null,
+                                                            "text": "I've scraped and I've scrubbed and I'm hygienically superior.",
+                                                            "emotion": "1",
+                                                            "device": "0"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "nodes.playSoundEffect",
+                                                    "soundEffectName": "Exit Bathtub.wav",
+                                                    "wait": false
+                                                },
+                                                {
+                                                    "type": "nodes.buffAdd",
+                                                    "id": "2fd42b36-29a9-46b4-963a-777681f5d763",
+                                                    "buffType": "1",
+                                                    "duration": "90",
+                                                    "targetData": "13",
+                                                    "isPercentage": 0,
+                                                    "value": 5,
+                                                    "namedSource": "Bath"
+                                                },
+                                                {
+                                                    "type": "nodes.wait",
+                                                    "waitForSeconds": "1"
+                                                },
+                                                {
+                                                    "type": "nodes.incrementTime",
+                                                    "id": "0e2178ad-5c64-4e8c-9a56-38abcb4be29a",
+                                                    "days": 0,
+                                                    "hours": 0,
+                                                    "minutes": "30"
+                                                },
+                                                {
+                                                    "type": "nodes.fade",
+                                                    "scope": "FadeOut",
+                                                    "fadeTime": "0.5",
+                                                    "fadeTime2": 2,
+                                                    "wait": true,
+                                                    "fadeDown": 0.5,
+                                                    "fadeColorR": 0,
+                                                    "fadeColorG": 0,
+                                                    "fadeColorB": 0
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "9eabd33f-baad-483f-b157-1dad6e777b0d",
+                                                    "scriptId": "ba387746-008d-402f-8352-7af4bbc0e878",
+                                                    "entryPointId": "c02a5a1e-c9ff-4e5e-9bb5-650d965c3cf1",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "82da26e2-b64a-4951-bca9-a3e78101825e",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                },
+                                                {
+                                                    "type": "nodes.hideVignette",
+                                                    "waitForSeconds": 1
+                                                },
+                                                {
+                                                    "type": "nodes.fade",
+                                                    "scope": "FadeIn",
+                                                    "fadeTime": "0.5",
+                                                    "fadeTime2": "1",
+                                                    "wait": true,
+                                                    "fadeDown": "0.25",
+                                                    "fadeColorR": 0,
+                                                    "fadeColorG": 0,
+                                                    "fadeColorB": 0
+                                                },
+                                                {
+                                                    "type": "nodes.endScript"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "target",
+                                "scopeId": null,
+                                "scopeFilterId": null,
+                                "tags": "hadbath",
+                                "has": false
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "2",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "1f1fd5a5-1351-4c58-8b47-f26bafc79132",
+                            "text": "Use the Toilet",
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "d7181544-e230-431d-ae9d-c3f7278ce5e4",
+                                    "scope": "target",
+                                    "scopeId": null,
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "toilet",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.nodeCycle",
+                                    "id": "91593af5-7d18-4acb-93e3-88f70ae912e6",
+                                    "nodes": [
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "1e04626d-ce9b-438a-a36f-632d43f66e01",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "TMI! I won't be a potty to that!",
+                                            "emotion": "1",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "200943f1-2994-49ee-8b2f-eb5005d961ce",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "I'm going to skip going to my loo.",
+                                            "emotion": "1",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "4a8b9ddf-9a54-4332-9837-9794b2820e21",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "I'll pass. I can never remember if I'm supposed to leave the seat up or down.",
+                                            "emotion": "1",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "21a872fe-3f76-432c-b2c7-f69843946fd2",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "I don't have to use it right now, but when I do, I'll make it my number one priority.",
+                                            "emotion": "1",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "67d93982-b9cc-4905-98d2-e4b9b8f185e0",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "I'll hit the WC on the QT, OK?",
+                                            "emotion": "1",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "fde2705c-35b7-4eec-b8b9-f3842d5237c6",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "I don't hafta!",
+                                            "emotion": "2",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "899f0a7e-4def-4e86-a578-05ba75cc4680",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "I never use public lavatories. Who knows who's been using that squat hole?",
+                                            "emotion": "2",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "ca78bd58-7d4f-4b09-bb43-aeead64fa45f",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "Consider me very relieved.",
+                                            "emotion": "1",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "2261c842-456b-48f8-86ed-5cefe6fea9ed",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "I've been holding it in for over a year, and I'm not going to give up now.",
+                                            "emotion": "0",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "4f237a35-80b8-47dd-b5dd-5092c2915f97",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "Why, I do declare... I'm blushing!",
+                                            "emotion": "1",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "21d9d555-03d7-45f6-a7aa-88534b2caf8d",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "There's no toilet paper. We're supposed to use magic.",
+                                            "emotion": "2",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "fbadec46-8f6b-4f26-8024-1ea6b5ad51d1",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "I promise I'll go next time.",
+                                            "emotion": "0",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "target",
+                                "scopeId": null,
+                                "scopeFilterId": null,
+                                "tags": "toilet",
+                                "has": false
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "1",
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

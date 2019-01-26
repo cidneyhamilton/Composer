@@ -1,0 +1,212 @@
+{
+    "type": "script",
+    "id": "a65dd939-471e-4682-ab07-c53ddad413cb",
+    "name": "Interact with UC Exit",
+    "sceneId": "dc706bb3-df41-4404-827c-3583baea588f",
+    "propId": "7b3acbb1-4296-4ccd-a0b0-a09d9f4aaf1e",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "e675c94a-2468-43bd-b49a-6a8853f45a3b",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "edbd05cc-ab63-4401-a739-639c321f953c",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "27a0de65-8b15-4809-94ec-8007c3472040",
+                            "text": "Examine the Door",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "d4659113-9dfd-409d-8d63-24f5f6dca9a8",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "The plaque on this door says \"Luminar Castle.\"",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "8958adaa-c141-4d5d-92b8-d4284f74ecf2",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Wait - that's the school! I'm home. Well, my home away from home, anyway.",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "target",
+                                                "scopeId": null,
+                                                "scopeFilterId": null,
+                                                "tags": "unbarred",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "7a919743-112a-4d14-8586-439d53dc8c66",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "There's a large bar on this door. Shouldn't be too hard to deal with.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "3",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "49ad0650-7aa5-4893-8318-585fbf3876a7",
+                            "text": "Listen at the Door",
+                            "nodes": [
+                                {
+                                    "type": "nodes.playAnimation",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "animationName": "KneelDown",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.onceDaily",
+                                    "id": "1eb81bfa-afdd-4b82-860d-3b7af94bf70c",
+                                    "nodes": [
+                                        {
+                                            "id": "c11e34a8-df96-48e8-a671-2dd0e3756edc",
+                                            "type": "nodes.skillBranch",
+                                            "skill": "Perception",
+                                            "target": "70",
+                                            "success": {
+                                                "type": "nodes.block",
+                                                "nodes": []
+                                            },
+                                            "failure": {
+                                                "type": "nodes.block",
+                                                "nodes": []
+                                            },
+                                            "notify": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "b9c408bf-96c3-49c1-b1f5-6d5711b53fe4",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Can't hear anything.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.playAnimation",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "animationName": "KneelUp",
+                                    "wait": true
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "3",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "b23a7049-b1a5-477e-8aab-93669b991f37",
+                            "text": "Open the Door",
+                            "nodes": [
+                                {
+                                    "type": "nodes.onceOnly",
+                                    "id": "9c327c17-ae44-41da-ad89-3d901da1bca0",
+                                    "nodes": [
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "508d2a7f-ca54-40da-98f6-90e3211c2108",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "I'll just move this large bar so that the door can be opened.",
+                                            "emotion": "0",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.changeTags",
+                                            "id": "af81cbe5-f3f9-4e84-8b58-0edb9ab2285f",
+                                            "scope": "target",
+                                            "scopeId": null,
+                                            "scopeFilterId": null,
+                                            "tagsToAdd": "unbarred",
+                                            "tagsToRemove": null
+                                        },
+                                        {
+                                            "type": "nodes.playSoundEffect",
+                                            "soundEffectName": "Lift Heavy Bar.wav",
+                                            "wait": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.invokeScript",
+                                    "id": "a5b0e841-ee3c-449a-81b4-f7d705cfa908",
+                                    "scriptId": "a1004657-984b-46ba-8870-9550cbfb4b35",
+                                    "entryPointId": "e675c94a-2468-43bd-b49a-6a8853f45a3b",
+                                    "currentScope": "Scenes",
+                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                    "currentActorId": null,
+                                    "currentStoryEventId": null,
+                                    "currentPropId": null
+                                },
+                                {
+                                    "type": "nodes.incrementTime",
+                                    "id": "008c6db5-ad32-4628-b183-a27937b73158",
+                                    "days": 0,
+                                    "hours": 0,
+                                    "minutes": "5"
+                                },
+                                {
+                                    "type": "nodes.changeScene",
+                                    "sceneId": "ed2b858e-927a-44b9-86ee-4d3fe4dcfc33",
+                                    "spawnId": "b50de0b0-b4da-4646-b697-992bef2b072e",
+                                    "fadeTime": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "2",
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

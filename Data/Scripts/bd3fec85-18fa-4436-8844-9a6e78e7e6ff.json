@@ -1,0 +1,547 @@
+{
+    "type": "script",
+    "id": "bd3fec85-18fa-4436-8844-9a6e78e7e6ff",
+    "name": "RCC15 Joel Catacombs Nightmare",
+    "sceneId": "3256b6d8-50b9-4764-b016-01ea538ea55f",
+    "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+    "trigger": {
+        "type": "triggers.manual",
+        "name": "Manual"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "30a41f46-1081-489e-a44d-b88ab207d366",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "745dc913-aaa6-4fd9-ba8e-0fcf22b3f19d",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "15d6ede3-2bdb-4fed-9fd6-b547614a5850",
+                            "text": "Ask About Joel",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "actor",
+                                                "scopeId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                "scopeFilterId": null,
+                                                "tags": "RCCJCN15",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "d704f0be-e2ae-4d1a-a69e-a0ee882e2d18",
+                                                    "scope": "target",
+                                                    "scopeId": null,
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "RCCJCN15",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.showMenu",
+                                                    "id": "4bfce727-e35a-465d-9853-9d2b80dbe28b",
+                                                    "options": [
+                                                        {
+                                                            "type": "options.text",
+                                                            "id": "f3f0c8bf-2c4d-434a-a21b-19a07a981235",
+                                                            "text": "Say Something Polite to Comfort Joel",
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "bfe4dd1e-d728-4dd0-9289-31d90747af02",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                                    "text": "I couldn't let you join the ranks of the dearly departed. We're friends.",
+                                                                    "emotion": "1",
+                                                                    "emotion2": "1",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "id": "019ce105-070a-4bdd-a0e6-12e501c17ec3",
+                                                                    "type": "nodes.skillBranch",
+                                                                    "skill": "Charm",
+                                                                    "target": "60",
+                                                                    "success": {
+                                                                        "type": "nodes.block",
+                                                                        "nodes": [
+                                                                            {
+                                                                                "type": "nodes.speak",
+                                                                                "id": "95f41427-a66a-4402-a504-dd5e29cd87c3",
+                                                                                "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                                                "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                "text": "You are a very good friend, Shawn. I am most fortunate that I met you.",
+                                                                                "emotion": "1",
+                                                                                "emotion2": "1",
+                                                                                "device": "0",
+                                                                                "device2": "0"
+                                                                            },
+                                                                            {
+                                                                                "type": "nodes.changeReputation",
+                                                                                "id": "026ae940-a5ac-4a43-bdba-9b896b59a5d8",
+                                                                                "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                                                "amount": "2",
+                                                                                "change": "1",
+                                                                                "notify": true
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    "failure": {
+                                                                        "type": "nodes.block",
+                                                                        "nodes": [
+                                                                            {
+                                                                                "type": "nodes.changeReputation",
+                                                                                "id": "e3b6ef40-6962-4256-9694-d28dc5a1343d",
+                                                                                "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                                                "amount": "1",
+                                                                                "change": "1",
+                                                                                "notify": true
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    "notify": true
+                                                                }
+                                                            ],
+                                                            "expression": null,
+                                                            "ignoreChildAvailability": false,
+                                                            "minutes": "2",
+                                                            "ExitMenu": true
+                                                        },
+                                                        {
+                                                            "type": "options.text",
+                                                            "id": "9fbad13b-3c71-4091-bb77-18b36965d672",
+                                                            "text": "Say Something Clever to Help Joel See Sosi More Clearly",
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "3582b5d4-0197-4bf5-b525-ae3fa7e8cf19",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                                    "text": "I gather that Sosi bullied you into going into the Catacombs with him and then left when there was danger.",
+                                                                    "emotion": "3",
+                                                                    "emotion2": "2",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "3243a9c5-58d7-4d79-9aa6-32c393971e8d",
+                                                                    "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "text": "Yes, Caesari was the one who wanted to go looking for treasure in the Catacombs. When a Wraith came after us, Caesari immediately ran off.",
+                                                                    "emotion": "3",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "3887a87a-aba4-49f2-903d-8982d79a2271",
+                                                                    "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "text": "As I ran after Caesari, I tripped over something. I yelled at Caesari to please help me, but he just kept on running. He didn't even turn to look at me.",
+                                                                    "emotion": "2",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "101967e6-2add-4daa-a3d6-57ea1e455d57",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                                    "text": "Sosi is a cowardly Drat who'd betray his own mother for a profit. At least now you know who your real friends are.",
+                                                                    "emotion": "3",
+                                                                    "emotion2": "2",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "id": "bd4549e0-40ed-4c4c-97b3-5cdb3298e483",
+                                                                    "type": "nodes.skillBranch",
+                                                                    "skill": "Smarts",
+                                                                    "target": "60",
+                                                                    "success": {
+                                                                        "type": "nodes.block",
+                                                                        "nodes": [
+                                                                            {
+                                                                                "type": "nodes.speak",
+                                                                                "id": "153e693f-a713-4d57-93cd-282c0f43b36c",
+                                                                                "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                                                "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                "text": "Yes, I do now.",
+                                                                                "emotion": "0",
+                                                                                "emotion2": "1",
+                                                                                "device": "0",
+                                                                                "device2": "0"
+                                                                            },
+                                                                            {
+                                                                                "type": "nodes.changeReputation",
+                                                                                "id": "0510edda-77b6-4ef5-bd86-403885dda7ed",
+                                                                                "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                                                "amount": "2",
+                                                                                "change": "1",
+                                                                                "notify": true
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    "failure": {
+                                                                        "type": "nodes.block",
+                                                                        "nodes": [
+                                                                            {
+                                                                                "type": "nodes.changeReputation",
+                                                                                "id": "eb671c4f-cdd2-459b-8e3d-79599133e3ea",
+                                                                                "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                                                "amount": "2",
+                                                                                "change": "1",
+                                                                                "notify": true
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    "notify": true
+                                                                }
+                                                            ],
+                                                            "expression": null,
+                                                            "ignoreChildAvailability": false,
+                                                            "minutes": "8",
+                                                            "ExitMenu": true
+                                                        },
+                                                        {
+                                                            "type": "options.text",
+                                                            "id": "d30e0811-ab63-4f07-9231-553432822e49",
+                                                            "text": "Say Something Snarky to Rebuke Joel",
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "fd115a89-d8ac-4498-9407-c065b280c22b",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "At least you learned a valuable lesson from this incident. When you hang out with Sosi - you get what you deserve. ",
+                                                                    "emotion": "1",
+                                                                    "device": "0"
+                                                                },
+                                                                {
+                                                                    "id": "f888bdb0-f1ac-4898-ae14-0f2ba38b7f64",
+                                                                    "type": "nodes.skillBranch",
+                                                                    "skill": "Moxie",
+                                                                    "target": "60",
+                                                                    "success": {
+                                                                        "type": "nodes.block",
+                                                                        "nodes": [
+                                                                            {
+                                                                                "type": "nodes.speak",
+                                                                                "id": "a677b336-d9e0-467d-a1b0-8c36cfc49608",
+                                                                                "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                                                "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                "text": "I suppose I did.",
+                                                                                "emotion": "2",
+                                                                                "emotion2": "0",
+                                                                                "device": "0",
+                                                                                "device2": "0"
+                                                                            },
+                                                                            {
+                                                                                "type": "nodes.changeReputation",
+                                                                                "id": "8a25c61e-7905-443d-9348-e128ee29a613",
+                                                                                "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                                                "amount": "2",
+                                                                                "change": "1",
+                                                                                "notify": true
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    "failure": {
+                                                                        "type": "nodes.block",
+                                                                        "nodes": [
+                                                                            {
+                                                                                "type": "nodes.speak",
+                                                                                "id": "2a0d5ba0-8cb5-43fc-8a0f-12a2b811973c",
+                                                                                "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                                                "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                "text": "Let's not discuss this any further.",
+                                                                                "emotion": "3",
+                                                                                "emotion2": "0",
+                                                                                "device": "0",
+                                                                                "device2": "0"
+                                                                            },
+                                                                            {
+                                                                                "type": "nodes.changeReputation",
+                                                                                "id": "7a27c68e-ada5-4b5d-a460-d4671293ef57",
+                                                                                "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                                                "amount": "1",
+                                                                                "change": "0",
+                                                                                "notify": true
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    "notify": true
+                                                                }
+                                                            ],
+                                                            "expression": null,
+                                                            "ignoreChildAvailability": false,
+                                                            "minutes": "3",
+                                                            "ExitMenu": true
+                                                        }
+                                                    ],
+                                                    "AutoAddDone": false,
+                                                    "Unique": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "3bf7acb8-ce9b-4843-ad0d-e25016326e2a",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                    "text": "So how are you feeling today?",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "35c28ff8-983a-4eaa-a738-e890b1ce5242",
+                                                    "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "I am not quite fully recovered from my ordeal in the Catacombs. I do not know if I will ever forget that nightmarish experience.",
+                                                    "emotion": "2",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "2",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "545f6312-6e12-4077-a965-abb56eac3e5f",
+                            "text": "Ask About the Catacombs",
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "a3f616d5-ea72-4243-b929-3739bc3a6083",
+                                    "scope": "target",
+                                    "scopeId": null,
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "jiquestion2",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "8a7d3dce-6c0f-4076-9eff-67261b94f6fb",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                    "text": "Did you learn anything about the Catacombs while you were down there?",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "d3c0485d-b2f9-496b-b56f-6d86eb464b6e",
+                                    "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "Caesari and I were looking for treasure chests scattered throughout the Catacombs. There was rumored to be a major treasure trove in the northwest section near the Wraith.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "bdf7debc-f9c7-4ea7-83ff-f742343f59fc",
+                                    "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "Wraiths are extremely dangerous. I was a fool to think that Sosi and I could face down a Wraith, even with magical protections. No amount of treasure is worth dying for.",
+                                    "emotion": "2",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": false,
+                            "minutes": "5",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "8ff33537-8115-4324-9388-4b7d40b96eeb",
+                            "text": "Ask About the Shop",
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "4bf65c50-1fa3-419d-bc3b-0c7505febe2a",
+                                    "scope": "target",
+                                    "scopeId": null,
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "jiquestion3",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "5f02f6e6-728e-4f57-94aa-bc78dc60710f",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                    "text": "Do you have anything new for sale?",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "db18ce8d-95a0-4161-84b7-64f74987cd1e",
+                                    "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "Why yes, of course! I have a pair of magical shoes called \"Sneakers\" that improve your Stealth skills. These are very expensive and rare. However, for you, my good friend, I will sell them for only a modest profit.",
+                                    "emotion": "1",
+                                    "emotion2": "1",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": false,
+                            "minutes": "3",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "a35280b5-e9d2-47c2-97c2-f4ef973a0cbf",
+                            "text": "Ask About Rumors",
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "14dc215c-9791-4e01-8cd4-eba84307761e",
+                                    "scope": "target",
+                                    "scopeId": null,
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "jiquestion4",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "0ff2fe4a-eff3-4157-ba77-dd019b44b9c4",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                    "text": "Did you hear any new rumors?",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "004d3a12-02b0-47d1-91d1-955ff36f80e2",
+                                    "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "At the very south end of the Catacombs, there is rumored to be a Minotaur hiding. He is wanted for murder and there is a bounty upon his head. ",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "bbf17a82-624c-405d-8161-beb6df422fb7",
+                                    "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "The Minotaur's nose ring will fetch a good price at Fester the Fences. However, unfortunately, one must first kill the Minotaur to get it.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.enteredScene",
+                                                "sceneId": "5df54949-2ba0-4a24-ac96-5eca5cf06c12",
+                                                "scope": "DuringGame",
+                                                "operator": "eq",
+                                                "count": 0
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.addJournalEntry",
+                                                    "id": "ad1a0ab1-f1b0-4aa4-a16a-d5033b286da4",
+                                                    "name": "Minotaur in the Maze",
+                                                    "notify": true,
+                                                    "description": "There's a bounty on a Minotaur hiding in the Catacombs. The Minotaur's nose ring is worth a lot of money if I fence it."
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": false,
+                            "minutes": "5",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "af094ad8-d330-4e89-98ac-aa1481cd1701",
+                            "text": "Say Goodbye",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "0c5f73a2-b3ea-404e-9829-25804ac8aa11",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                    "text": "Take care, Joel.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "b2f8e729-3522-4003-a5eb-315da9e7eadd",
+                                    "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "I will endeavor to do so.",
+                                    "emotion": "1",
+                                    "emotion2": "1",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "2",
+                            "ExitMenu": true
+                        }
+                    ],
+                    "AutoAddDone": false,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,173 @@
+{
+    "type": "script",
+    "id": "917e8f47-ad02-41b9-8ce7-4ac515af41cf",
+    "name": "Interact with Burial Alcove - Treasure",
+    "sceneId": "65bf97bc-9989-4004-b745-6bc20dd3cac7",
+    "propId": "fe0ef46b-095f-42e1-9fa6-f0bdd993c66d",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "606547e2-f3a9-4314-9bd0-36074f540765",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "b3ac36f9-5c63-4d70-b665-d016d5480b79",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "476826c5-5952-4b7a-b92d-917b9c868918",
+                            "text": "Examine the Skeleton",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "ffa3a9d1-28ae-4204-9839-be4c7ccea0db",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "All that's left of this person is bones, bones, bones.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "4",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "8a4edb97-fbb8-46c4-a052-a83dee052f50",
+                            "text": "Search the Alcove",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "scene",
+                                                "scopeId": "65bf97bc-9989-4004-b745-6bc20dd3cac7",
+                                                "scopeFilterId": null,
+                                                "tags": "B_Treasure",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "f09c1678-f4b9-4518-9ee9-0b48ddb802bd",
+                                                    "scope": "scene",
+                                                    "scopeId": "65bf97bc-9989-4004-b745-6bc20dd3cac7",
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "B_Treasure",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "0e6114f5-bed3-4ecb-980f-97bf4e53be3b",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Ah, someone left a fine dagger here! Nice of them...",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.changeInventory",
+                                                    "id": "34167a01-d080-48a4-b4b6-edc808b50833",
+                                                    "propId": "f84a00b4-8d39-4a38-8aef-6835d300f36e",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "change": "1",
+                                                    "count": 1,
+                                                    "notify": true
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "01a8ce90-ce4a-4728-a7fb-7cafd04dfaa4",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Better yet, they left a few coins...",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.changeMoney",
+                                                    "id": "5b120410-4e2e-4bef-9d67-7d3c78b1b9f6",
+                                                    "amount": "18",
+                                                    "change": "1",
+                                                    "currency": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "5f72772d-2165-45c6-bdea-d231dcc112e2",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "There's nothing left here but bones.",
+                                                    "emotion": "2",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "5",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "aa7b451c-f220-4196-9d90-68de7354f113",
+                            "text": "Sense Magic",
+                            "nodes": [
+                                {
+                                    "type": "nodes.invokeScript",
+                                    "id": "1504be7e-b252-48ca-a72a-77ea61347fb8",
+                                    "scriptId": "533e1ce1-13d3-439f-8544-dbdf808d30c4",
+                                    "entryPointId": "606547e2-f3a9-4314-9bd0-36074f540765",
+                                    "currentScope": "Scenes",
+                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                    "currentActorId": null,
+                                    "currentStoryEventId": null,
+                                    "currentPropId": null
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "actor",
+                                "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                "scopeFilterId": null,
+                                "tags": "SenseMagic",
+                                "has": true
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "5",
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

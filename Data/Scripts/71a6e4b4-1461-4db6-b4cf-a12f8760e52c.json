@@ -1,0 +1,497 @@
+{
+    "type": "script",
+    "id": "71a6e4b4-1461-4db6-b4cf-a12f8760e52c",
+    "name": "Interact with Tightrope Anchor (far)",
+    "sceneId": "5bf05db2-b4fe-4863-b426-f058e04e908c",
+    "propId": "da39cc9b-24b1-42a0-bbf1-c65c4c1c1566",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "c129657b-b131-4093-bf38-9d7dea978a9b",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "e7c34d50-714d-410e-b8f2-c9af6d2e1944",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "d88d6a21-a9db-40fd-85ef-78ef1962720d",
+                            "text": "Examine the Stalagmite",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "scene",
+                                                "scopeId": "5bf05db2-b4fe-4863-b426-f058e04e908c",
+                                                "scopeFilterId": null,
+                                                "tags": "RopePlaced",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "cefd9ee0-0393-4b65-9c52-5bc1fa92b36b",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "The rope's pretty taut around it. I think it's secure enough.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "a2c7637d-eaf2-45c0-80e2-09530d5c53fc",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "This is a pretty big, solid stalagmite, perfect to use as an anchor for a grapnel.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "2b3166a6-74e1-41f7-bb8c-fe58c09a1a9a",
+                                                    "scope": "prop",
+                                                    "scopeId": "da39cc9b-24b1-42a0-bbf1-c65c4c1c1566",
+                                                    "scopeFilterId": "5bf05db2-b4fe-4863-b426-f058e04e908c",
+                                                    "tagsToAdd": "Examined",
+                                                    "tagsToRemove": null
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "8e9f64a2-a943-453d-8b4c-7cd8bb1af959",
+                            "text": "Take Rope and Grapnel",
+                            "nodes": [
+                                {
+                                    "type": "nodes.invokeScript",
+                                    "id": "abf3f7f8-0ad0-45dc-99db-d1da74df54bf",
+                                    "scriptId": "71a6e4b4-1461-4db6-b4cf-a12f8760e52c",
+                                    "entryPointId": "ca03f883-f42f-4690-a029-967e4f04c954",
+                                    "currentScope": "Current",
+                                    "currentSceneId": null,
+                                    "currentActorId": null,
+                                    "currentStoryEventId": null,
+                                    "currentPropId": null
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inTags",
+                                    "scope": "scene",
+                                    "scopeId": "5bf05db2-b4fe-4863-b426-f058e04e908c",
+                                    "scopeFilterId": null,
+                                    "tags": "RopePlaced",
+                                    "has": true
+                                },
+                                "right": {
+                                    "type": "expressions.inTags",
+                                    "scope": "target",
+                                    "scopeId": null,
+                                    "scopeFilterId": null,
+                                    "tags": "CrossedTightrope",
+                                    "has": true
+                                }
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "66dd04fb-5b5f-4ec8-bbcf-10c4b74b1e08",
+                            "text": "Use Rope and Grapnel",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inInventory",
+                                                "propId": "17a5b8f2-7ea2-48c1-a295-c63daf72ef2d",
+                                                "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "5cffca42-9f2f-4d72-86b9-8f20cd00d36f",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Okay, good thing I worked on my throwing skills...",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.incrementTime",
+                                                    "id": "a6888638-d6c4-4d01-b255-984bb0d39165",
+                                                    "days": 0,
+                                                    "hours": 0,
+                                                    "minutes": "5"
+                                                },
+                                                {
+                                                    "id": "249306c9-7f75-43cc-94a5-646cf0a9f2f0",
+                                                    "type": "nodes.skillBranch",
+                                                    "skill": "Throwing",
+                                                    "target": "40",
+                                                    "success": {
+                                                        "type": "nodes.block",
+                                                        "nodes": [
+                                                            {
+                                                                "type": "nodes.playSoundEffect",
+                                                                "soundEffectName": "Throw Grapnel Hit.wav",
+                                                                "wait": false
+                                                            },
+                                                            {
+                                                                "type": "nodes.fade",
+                                                                "scope": "FadeOutAndIn",
+                                                                "fadeTime": "0.5",
+                                                                "fadeTime2": "0.5",
+                                                                "wait": true,
+                                                                "fadeDown": "0.25",
+                                                                "fadeColorR": 0,
+                                                                "fadeColorG": 0,
+                                                                "fadeColorB": 0
+                                                            },
+                                                            {
+                                                                "type": "nodes.changeTags",
+                                                                "id": "44c6fedc-19fe-4f78-acef-48258f7b5f82",
+                                                                "scope": "scene",
+                                                                "scopeId": "5bf05db2-b4fe-4863-b426-f058e04e908c",
+                                                                "scopeFilterId": null,
+                                                                "tagsToAdd": "RopePlaced",
+                                                                "tagsToRemove": null
+                                                            },
+                                                            {
+                                                                "type": "nodes.changePropVisibility",
+                                                                "id": "3302e370-43fa-492a-ba05-803254887ef5",
+                                                                "propId": "728b3f71-a7ae-4603-8ef5-284fb9d44778",
+                                                                "sceneId": "5bf05db2-b4fe-4863-b426-f058e04e908c",
+                                                                "status": "Visible",
+                                                                "wait": true
+                                                            },
+                                                            {
+                                                                "type": "nodes.changeInventory",
+                                                                "id": "754a8034-c7ed-4198-894d-2ec2bc705b0c",
+                                                                "propId": "17a5b8f2-7ea2-48c1-a295-c63daf72ef2d",
+                                                                "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                                "change": "0",
+                                                                "count": 1,
+                                                                "notify": true
+                                                            },
+                                                            {
+                                                                "type": "nodes.speak",
+                                                                "id": "5b39cb76-0754-4fc2-8c51-2de85ce42a17",
+                                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                "actorId2": null,
+                                                                "text": "Perfect, it caught! Now I'll secure it on this side with a tight slipknot.",
+                                                                "emotion": "1",
+                                                                "emotion2": "0",
+                                                                "device": "0",
+                                                                "device2": "0"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "failure": {
+                                                        "type": "nodes.block",
+                                                        "nodes": [
+                                                            {
+                                                                "type": "nodes.playSoundEffect",
+                                                                "soundEffectName": "Throw Grapnel Miss.wav",
+                                                                "wait": false
+                                                            },
+                                                            {
+                                                                "type": "nodes.fade",
+                                                                "scope": "FadeOutAndIn",
+                                                                "fadeTime": "0.5",
+                                                                "fadeTime2": "0.5",
+                                                                "wait": true,
+                                                                "fadeDown": "0.25",
+                                                                "fadeColorR": 0,
+                                                                "fadeColorG": 0,
+                                                                "fadeColorB": 0
+                                                            },
+                                                            {
+                                                                "type": "nodes.speak",
+                                                                "id": "d1f50126-4eac-4154-90b0-510c11ce317a",
+                                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                "actorId2": null,
+                                                                "text": "Arrgh! Missed!",
+                                                                "emotion": "3",
+                                                                "emotion2": "0",
+                                                                "device": "0",
+                                                                "device2": "0"
+                                                            },
+                                                            {
+                                                                "type": "nodes.endScript"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "notify": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "1dbe460b-d7d0-41e0-8e80-dd1561a91792",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "I could try that, but I'd kind of need a rope and grapnel. I don't have that on me.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inTags",
+                                    "scope": "scene",
+                                    "scopeId": "5bf05db2-b4fe-4863-b426-f058e04e908c",
+                                    "scopeFilterId": null,
+                                    "tags": "RopePlaced",
+                                    "has": false
+                                },
+                                "right": {
+                                    "type": "expressions.inTags",
+                                    "scope": "target",
+                                    "scopeId": null,
+                                    "scopeFilterId": null,
+                                    "tags": "CrossedTightrope",
+                                    "has": true
+                                }
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "03b6c88c-6774-42ca-afc3-bbcd4169bc38",
+                            "text": "Cross the Rope",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "8c7a6807-8245-4053-876d-4035d6babd97",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Okay, I can do this. I'm determined not to plummet to my death today.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.placeActor",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "spawnId": "2f5bc49a-764d-449e-a9dc-31e5aaee6ce5",
+                                    "pose": null,
+                                    "behaviour": "IdleOffMesh",
+                                    "immediate": null
+                                },
+                                {
+                                    "type": "nodes.turnActor",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "propId": "7fa8cd15-2274-485b-bc9c-732c50ef052d",
+                                    "wait": true,
+                                    "scope": "prop",
+                                    "targetActorId": null
+                                },
+                                {
+                                    "type": "nodes.setCameraTarget",
+                                    "propId": "dab75c37-3755-4c27-90a5-02c4e371098d",
+                                    "actorId": null,
+                                    "time": "1",
+                                    "translateX": 0,
+                                    "translateY": 0,
+                                    "translateZ": 0,
+                                    "postWaitTime": 0,
+                                    "wait": true,
+                                    "scope": "prop"
+                                },
+                                {
+                                    "type": "nodes.moveActor",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "propId": "7fa8cd15-2274-485b-bc9c-732c50ef052d",
+                                    "movement": "Tightrope",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.playSoundEffect",
+                                    "soundEffectName": "thud.wav",
+                                    "wait": false
+                                },
+                                {
+                                    "type": "nodes.placeActor",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "spawnId": "348020b0-2cea-4d98-9a63-923daae1af5f",
+                                    "pose": null,
+                                    "behaviour": "Idle",
+                                    "immediate": true
+                                },
+                                {
+                                    "type": "nodes.resetCamera",
+                                    "wait": true,
+                                    "time": "1"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "4e8eede5-38bb-43fc-a522-d23cd79dbc1c",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Annnnnd... voila!",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "542c8f56-cdb0-41ca-8fe2-811bd000427a",
+                                    "scope": "target",
+                                    "scopeId": "5bf05db2-b4fe-4863-b426-f058e04e908c",
+                                    "scopeFilterId": null,
+                                    "tagsToRemove": "CrossedTightrope"
+                                },
+                                {
+                                    "type": "nodes.turnActor",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "propId": "5ab4f360-bb32-43ad-aa45-00bb42b51ef6",
+                                    "scope": "prop",
+                                    "targetActorId": null
+                                },
+                                {
+                                    "type": "nodes.invokeScript",
+                                    "id": "e5dd73fa-bcdc-46b8-8b7a-e0be1a29bd95",
+                                    "scriptId": "71a6e4b4-1461-4db6-b4cf-a12f8760e52c",
+                                    "entryPointId": "ca03f883-f42f-4690-a029-967e4f04c954",
+                                    "currentScope": "Current",
+                                    "currentSceneId": null,
+                                    "currentActorId": null,
+                                    "currentStoryEventId": null,
+                                    "currentPropId": null
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inTags",
+                                    "scope": "scene",
+                                    "scopeId": "5bf05db2-b4fe-4863-b426-f058e04e908c",
+                                    "scopeFilterId": null,
+                                    "tags": "RopePlaced",
+                                    "has": true
+                                },
+                                "right": {
+                                    "type": "expressions.inTags",
+                                    "scope": "target",
+                                    "scopeId": null,
+                                    "scopeFilterId": null,
+                                    "tags": "CrossedTightrope",
+                                    "has": true
+                                }
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": true
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        },
+        {
+            "type": "scripts.entryPoint",
+            "id": "ca03f883-f42f-4690-a029-967e4f04c954",
+            "name": "TakeRope",
+            "nodes": [
+                {
+                    "type": "nodes.playAnimation",
+                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "animationName": "ReachOut"
+                },
+                {
+                    "type": "nodes.wait",
+                    "waitForSeconds": "0.5"
+                },
+                {
+                    "type": "nodes.speak",
+                    "id": "3d782106-008d-4368-aae2-7c553e5d94e7",
+                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "actorId2": null,
+                    "text": "I guess they might come in handy somewhere else.",
+                    "emotion": "0",
+                    "emotion2": "0",
+                    "device": "0",
+                    "device2": "0"
+                },
+                {
+                    "type": "nodes.changePropVisibility",
+                    "id": "1cbf36f7-5048-450a-8dd4-490fdc382c05",
+                    "propId": "728b3f71-a7ae-4603-8ef5-284fb9d44778",
+                    "sceneId": "5bf05db2-b4fe-4863-b426-f058e04e908c",
+                    "status": "Hidden",
+                    "wait": true
+                },
+                {
+                    "type": "nodes.changeInventory",
+                    "id": "5ed0e107-6459-4fa0-a321-e8d5a8da7486",
+                    "propId": "17a5b8f2-7ea2-48c1-a295-c63daf72ef2d",
+                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                    "change": "1",
+                    "count": 1,
+                    "notify": true
+                },
+                {
+                    "type": "nodes.changeTags",
+                    "id": "cf62b5d1-760e-46de-be30-9241be272926",
+                    "scope": "scene",
+                    "scopeId": "5bf05db2-b4fe-4863-b426-f058e04e908c",
+                    "scopeFilterId": null,
+                    "tagsToRemove": "RopePlaced"
+                }
+            ]
+        }
+    ]
+}

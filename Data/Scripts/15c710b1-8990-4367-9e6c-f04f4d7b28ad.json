@@ -1,0 +1,279 @@
+{
+    "type": "script",
+    "id": "15c710b1-8990-4367-9e6c-f04f4d7b28ad",
+    "name": "Still Esme Aeolus Greeting",
+    "sceneId": "9897ecb3-4200-4884-867a-2840471747b8",
+    "trigger": {
+        "type": "triggers.manual",
+        "name": "Manual"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "cbafea18-eaf0-4940-a600-68c1a4404a34",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.speak",
+                    "id": "f048a38f-80c1-406d-833e-c09fb1bb5733",
+                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "actorId2": null,
+                    "text": "I take it you are still crazy about Esme?",
+                    "emotion": "0",
+                    "device": "0"
+                },
+                {
+                    "type": "nodes.speak",
+                    "id": "f6687023-a372-42d5-9aca-d457cf1236df",
+                    "actorId": "0661a2f7-5493-46d9-ab58-6e9bff9a5f30",
+                    "actorId2": null,
+                    "text": "How could I not be crazy over her? She's wonderful!",
+                    "emotion": "1",
+                    "device": "0"
+                },
+                {
+                    "type": "nodes.speak",
+                    "id": "b57fcc2a-08bc-48f3-a945-b528b6e2121e",
+                    "actorId": "0661a2f7-5493-46d9-ab58-6e9bff9a5f30",
+                    "actorId2": null,
+                    "text": "I wrote this song for her today - ",
+                    "emotion": "1",
+                    "device": "0"
+                },
+                {
+                    "type": "nodes.speak",
+                    "id": "f567b041-0404-4629-83ba-027ef0afa0b9",
+                    "actorId": "0661a2f7-5493-46d9-ab58-6e9bff9a5f30",
+                    "actorId2": null,
+                    "text": "Esme, you look so fine,\nI just want to make you mine.\nYou sashay down that Rover way\nDancing with joy and laughter, Esme.\nBa da da dah da bah da, loving Esme!\n",
+                    "emotion": "0",
+                    "emotion2": "0",
+                    "device": "0",
+                    "device2": "0"
+                },
+                {
+                    "type": "nodes.speak",
+                    "id": "040325d1-b667-4be3-a560-b49b477edcc6",
+                    "actorId": "0661a2f7-5493-46d9-ab58-6e9bff9a5f30",
+                    "actorId2": null,
+                    "text": "What do you think? Will she be as crazy about the song as I am about her?",
+                    "emotion": "1",
+                    "device": "0"
+                },
+                {
+                    "type": "nodes.showMenu",
+                    "id": "dfe3654c-308a-45f1-ad81-8a7aa371c6b0",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "dd341c0e-45df-4a90-a230-558fa1ab8041",
+                            "text": "Answer Politely (Charm)",
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "458bfb73-84c4-4efd-997e-787d0a9b7397",
+                                    "scope": "script",
+                                    "scopeId": null,
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "StillEsmeGreetOnlyOne",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "405ab62d-cacd-49b3-a5e7-d8260105f27f",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "It's a cute song. It fits Esme well.",
+                                    "emotion": "1",
+                                    "device": "0"
+                                },
+                                {
+                                    "id": "3d619341-2e8b-4c35-aa79-02987443fb8b",
+                                    "type": "nodes.skillBranch",
+                                    "skill": "Charm",
+                                    "target": "80",
+                                    "success": {
+                                        "type": "nodes.block",
+                                        "nodes": []
+                                    },
+                                    "failure": {
+                                        "type": "nodes.block",
+                                        "nodes": []
+                                    },
+                                    "notify": true
+                                },
+                                {
+                                    "type": "nodes.changeReputation",
+                                    "id": "64391de3-353a-447b-93c7-de6ab00b5521",
+                                    "actorId": "0661a2f7-5493-46d9-ab58-6e9bff9a5f30",
+                                    "amount": "1",
+                                    "change": "1",
+                                    "notify": true
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "6c6b84ac-12d6-4940-8053-4715ae0225e0",
+                                    "actorId": "0661a2f7-5493-46d9-ab58-6e9bff9a5f30",
+                                    "actorId2": null,
+                                    "text": "Groovy!",
+                                    "emotion": "1",
+                                    "device": "0"
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "script",
+                                "scopeId": null,
+                                "scopeFilterId": null,
+                                "tags": "StillEsmeGreetOnlyOne",
+                                "has": false
+                            },
+                            "ignoreChildAvailability": false,
+                            "minutes": "5",
+                            "ExitMenu": true
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "3a81273e-b817-45fb-a53f-35632005ddda",
+                            "text": "Answer Cleverly (Smarts)",
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "7e25583f-71eb-4f3f-90cc-bf044f041688",
+                                    "scope": "script",
+                                    "scopeId": null,
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "StillEsmeGreetOnlyOne",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "bc6a266e-52af-4ec0-bd53-f924e5da26c5",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Your song, it sounds just right. Should fill Esme with delight!",
+                                    "emotion": "0",
+                                    "device": "0"
+                                },
+                                {
+                                    "id": "46a6f6d1-5c9b-4e09-afa9-4a300c25e72b",
+                                    "type": "nodes.skillBranch",
+                                    "skill": "Smarts",
+                                    "target": "80",
+                                    "success": {
+                                        "type": "nodes.block",
+                                        "nodes": []
+                                    },
+                                    "failure": {
+                                        "type": "nodes.block",
+                                        "nodes": []
+                                    },
+                                    "notify": true
+                                },
+                                {
+                                    "type": "nodes.changeReputation",
+                                    "id": "be46ab60-7d3a-407d-b019-be7c072dfe3f",
+                                    "actorId": "0661a2f7-5493-46d9-ab58-6e9bff9a5f30",
+                                    "amount": "1",
+                                    "change": "1",
+                                    "notify": true
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "f423caf4-b12f-4bec-8a8b-35fa4ae52ccb",
+                                    "actorId": "0661a2f7-5493-46d9-ab58-6e9bff9a5f30",
+                                    "actorId2": null,
+                                    "text": "I'm just happy that it's good - yay!\nIt's gotta be great for darling Esme.\n",
+                                    "emotion": "1",
+                                    "device": "0"
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "script",
+                                "scopeId": null,
+                                "scopeFilterId": null,
+                                "tags": "StillEsmeGreetOnlyOne",
+                                "has": false
+                            },
+                            "ignoreChildAvailability": false,
+                            "minutes": "5",
+                            "ExitMenu": true
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "574ca1d8-4e09-4730-b598-07b526f217a0",
+                            "text": "Answer Snarkily (Moxie)",
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "5d1ce553-70ed-45f7-980a-e5c840392581",
+                                    "scope": "script",
+                                    "scopeId": null,
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "StillEsmeGreetOnlyOne",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "8a8075f3-c7be-471e-9b44-f46fc879daae",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Ba da dah, duh? What did you do, run out of lyrics? ",
+                                    "emotion": "1",
+                                    "device": "0"
+                                },
+                                {
+                                    "id": "f71023c9-9a32-4dbb-bf60-5f7ecd286306",
+                                    "type": "nodes.skillBranch",
+                                    "skill": "Moxie",
+                                    "target": "80",
+                                    "success": {
+                                        "type": "nodes.block",
+                                        "nodes": []
+                                    },
+                                    "failure": {
+                                        "type": "nodes.block",
+                                        "nodes": [
+                                            {
+                                                "type": "nodes.changeReputation",
+                                                "id": "22fb2523-6d1c-48f0-8cce-0f64fec28458",
+                                                "actorId": "0661a2f7-5493-46d9-ab58-6e9bff9a5f30",
+                                                "amount": "1",
+                                                "change": "0",
+                                                "notify": true
+                                            }
+                                        ]
+                                    },
+                                    "notify": true
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "6595e083-e715-462b-9f5d-42d705757636",
+                                    "actorId": "0661a2f7-5493-46d9-ab58-6e9bff9a5f30",
+                                    "actorId2": null,
+                                    "text": "I thought it sounded fun.",
+                                    "emotion": "2",
+                                    "device": "0"
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "script",
+                                "scopeId": null,
+                                "scopeFilterId": null,
+                                "tags": "StillEsmeGreetOnlyOne",
+                                "has": false
+                            },
+                            "ignoreChildAvailability": false,
+                            "minutes": "5",
+                            "ExitMenu": true
+                        }
+                    ],
+                    "AutoAddDone": false,
+                    "Unique": true
+                }
+            ]
+        }
+    ]
+}

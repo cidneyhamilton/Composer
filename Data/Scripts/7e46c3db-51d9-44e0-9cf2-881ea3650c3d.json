@@ -1,0 +1,637 @@
+{
+    "type": "script",
+    "id": "7e46c3db-51d9-44e0-9cf2-881ea3650c3d",
+    "name": "Interact with Wall in the Arch",
+    "sceneId": "db7d4f5f-2dc0-4f21-beed-ee153ded5491",
+    "propId": "0887c796-787b-4208-a54d-cd87f2dceca6",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "5676343e-66c0-4538-85e3-9f04d89b55ca",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "17320200-2e16-47f1-a1f2-5c9131a65de0",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "15c943f4-d48d-4351-90c5-4cb7da9f9208",
+                            "text": "Examine the Wall",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "prop",
+                                                "scopeId": "4b0615d3-05e4-4844-9472-17c4cfd939db",
+                                                "scopeFilterId": "db7d4f5f-2dc0-4f21-beed-ee153ded5491",
+                                                "tags": "OpenedOnce",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "1d6a9464-f993-4dff-beb3-9d3263871d10",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Except for that archway, it looks like any other wall down here.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "575854a4-20c2-4ebe-891b-dc3ddac569a2",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "There's gotta be a reason for the arch, though. Maybe it <i>used</i> to be a door. Or maybe you just have to figure out how to open it.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "id": "7313a0a0-f6b3-4e5f-b0c0-1f2f899c257c",
+                                                    "type": "nodes.skillBranch",
+                                                    "skill": "Perception",
+                                                    "target": "60",
+                                                    "success": {
+                                                        "type": "nodes.block",
+                                                        "nodes": [
+                                                            {
+                                                                "type": "nodes.speak",
+                                                                "id": "295b0942-e5e2-4bb3-8838-4a13740728be",
+                                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                "actorId2": null,
+                                                                "text": "There's something not quite right about this wall...",
+                                                                "emotion": "3",
+                                                                "emotion2": "0",
+                                                                "device": "0",
+                                                                "device2": "0"
+                                                            },
+                                                            {
+                                                                "type": "nodes.branch",
+                                                                "sections": [
+                                                                    {
+                                                                        "type": "nodes.branchSection",
+                                                                        "expression": {
+                                                                            "type": "expressions.skillCheck",
+                                                                            "skill": "Perception",
+                                                                            "target": "80"
+                                                                        },
+                                                                        "nodes": [
+                                                                            {
+                                                                                "type": "nodes.speak",
+                                                                                "id": "f9cc56f7-16e4-4456-a548-d127b9accfac",
+                                                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                "actorId2": null,
+                                                                                "text": "Ah, there's a trap here! Wait... This is a fake secret door. It's a solid wall. What a psych.",
+                                                                                "emotion": "4",
+                                                                                "emotion2": "0",
+                                                                                "device": "0",
+                                                                                "device2": "0"
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    {
+                                                                        "type": "nodes.branchSection",
+                                                                        "expression": null,
+                                                                        "nodes": [
+                                                                            {
+                                                                                "type": "nodes.speak",
+                                                                                "id": "d3f4d8ee-9843-4ba3-9a03-aa2e8986cec8",
+                                                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                "actorId2": null,
+                                                                                "text": "It's trapped! I guess this is just another form of torture for some poor prisoner.",
+                                                                                "emotion": "0",
+                                                                                "emotion2": "0",
+                                                                                "device": "0",
+                                                                                "device2": "0"
+                                                                            }
+                                                                        ]
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "type": "nodes.changeTags",
+                                                                "id": "bb839919-c234-4eb6-9413-2faf16934d5d",
+                                                                "scope": "target",
+                                                                "scopeId": null,
+                                                                "scopeFilterId": null,
+                                                                "tagsToAdd": "trapFound",
+                                                                "tagsToRemove": null
+                                                            }
+                                                        ]
+                                                    },
+                                                    "failure": {
+                                                        "type": "nodes.block",
+                                                        "nodes": []
+                                                    },
+                                                    "notify": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "acd9f571-40cb-48ff-8352-690079fae218",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Yeah, yeah, the arch is just a diversionary tactic. Anyone could figure THAT out.",
+                                                    "emotion": "3",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "147e9b83-92c6-45a9-ae1c-3819c195cd72",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Wish I'd thought of it.",
+                                                    "emotion": "3",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "id": "1f803428-a002-4930-801b-c47932bda456",
+                                                    "type": "nodes.skillBranch",
+                                                    "skill": "Perception",
+                                                    "target": "60",
+                                                    "success": {
+                                                        "type": "nodes.block",
+                                                        "nodes": [
+                                                            {
+                                                                "type": "nodes.speak",
+                                                                "id": "c2883e39-2f66-40fd-b0c2-1c03e85c2e7f",
+                                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                "actorId2": null,
+                                                                "text": "It's even trapped.",
+                                                                "emotion": "4",
+                                                                "emotion2": "0",
+                                                                "device": "0",
+                                                                "device2": "0"
+                                                            },
+                                                            {
+                                                                "type": "nodes.changeTags",
+                                                                "id": "fb34f275-85a8-4359-ac0c-979f2b8d979f",
+                                                                "scope": "target",
+                                                                "scopeId": null,
+                                                                "scopeFilterId": null,
+                                                                "tagsToAdd": "trapFound",
+                                                                "tagsToRemove": null
+                                                            }
+                                                        ]
+                                                    },
+                                                    "failure": {
+                                                        "type": "nodes.block",
+                                                        "nodes": []
+                                                    },
+                                                    "notify": true
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "8f5157c8-faa8-450e-8c7f-46d195a69fd5",
+                            "text": "Disarm Trap",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inInventory",
+                                                "propId": "a62b34f6-89b0-4a14-80ab-c24ce24cd6b6",
+                                                "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "d3594bbe-43c4-48e2-a29b-c72ac9df8c56",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "If only I had a Trap Tapper to disarm this with... I really do need to get one.",
+                                                    "emotion": "2",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.onceDaily",
+                                                    "id": "cceb10cd-0195-46cf-8363-42eb3b158182",
+                                                    "nodes": [
+                                                        {
+                                                            "type": "nodes.incrementTime",
+                                                            "id": "3c1f5994-8347-4486-813a-13e763a7a1d6",
+                                                            "days": 0,
+                                                            "hours": "0",
+                                                            "minutes": "5"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "nodes.minigame",
+                                                    "id": "260a267d-9aac-4ee0-a883-2e76dbf00905",
+                                                    "minigameIndex": "1",
+                                                    "resultVariable": "trap",
+                                                    "resultVariableScope": "script",
+                                                    "trapDisarmWord": "sucker",
+                                                    "trapDisarmDifficulty": "80"
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.variableComparison",
+                                                                "variableScope": "script",
+                                                                "variableName": "trap",
+                                                                "operator": "eq",
+                                                                "compareTo": "Pass",
+                                                                "sceneId": "5c81204b-2c5b-4eb0-9e84-85acb2fc9d13",
+                                                                "propId": null
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.changeTags",
+                                                                    "id": "bcd5525a-ac29-48fa-b2e8-5b0a35f72523",
+                                                                    "scope": "target",
+                                                                    "scopeId": null,
+                                                                    "scopeFilterId": null,
+                                                                    "tagsToRemove": "trapFound"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeTags",
+                                                                    "id": "eaccac99-af2f-4e1e-ae5f-0aaeb4db15f5",
+                                                                    "scope": "target",
+                                                                    "scopeId": null,
+                                                                    "scopeFilterId": null,
+                                                                    "tagsToRemove": "trapped"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "6c137d76-bb3c-4d19-b2e9-05c6610764f3",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "Solved it!",
+                                                                    "emotion": "1",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.variableComparison",
+                                                                "variableScope": "script",
+                                                                "variableName": "trap",
+                                                                "operator": "eq",
+                                                                "compareTo": "Fail",
+                                                                "sceneId": "5c81204b-2c5b-4eb0-9e84-85acb2fc9d13",
+                                                                "propId": null
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.invokeScript",
+                                                                    "id": "6d745477-ad2b-4ed1-b80c-0183e7c0ae26",
+                                                                    "scriptId": "7e46c3db-51d9-44e0-9cf2-881ea3650c3d",
+                                                                    "entryPointId": "e71ec2aa-776f-4457-8536-b2342b8ae70c",
+                                                                    "currentScope": "Current",
+                                                                    "currentSceneId": null,
+                                                                    "currentActorId": null,
+                                                                    "currentStoryEventId": null,
+                                                                    "currentPropId": null
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.variableComparison",
+                                                                "variableScope": "script",
+                                                                "variableName": "trap",
+                                                                "operator": "eq",
+                                                                "compareTo": "Canceled",
+                                                                "sceneId": "5c81204b-2c5b-4eb0-9e84-85acb2fc9d13",
+                                                                "propId": null
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "0df2392e-995e-4ddc-9719-49ac105d5d40",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "This one is tricky... gotta focus!",
+                                                                    "emotion": "2",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inTags",
+                                    "scope": "target",
+                                    "scopeId": null,
+                                    "scopeFilterId": null,
+                                    "tags": "trapFound",
+                                    "has": true
+                                },
+                                "right": {
+                                    "type": "expressions.inTags",
+                                    "scope": "target",
+                                    "scopeId": null,
+                                    "scopeFilterId": null,
+                                    "tags": "trapped",
+                                    "has": true
+                                }
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "0",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "2277fccd-bbf8-489f-8459-dfdb8efda68e",
+                            "text": "Push on Wall",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "target",
+                                                "scopeId": null,
+                                                "scopeFilterId": null,
+                                                "tags": "trapped",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.playAnimation",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "animationName": "ReachOut"
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "463ecfb8-74c9-46e2-8d52-894ff2f8765f",
+                                                    "scriptId": "7e46c3db-51d9-44e0-9cf2-881ea3650c3d",
+                                                    "entryPointId": "e71ec2aa-776f-4457-8536-b2342b8ae70c",
+                                                    "currentScope": "Current",
+                                                    "currentSceneId": null,
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                },
+                                                {
+                                                    "type": "nodes.comment",
+                                                    "message": "TODO-- Should the trap be disabled once it goes off?",
+                                                    "commentor": "Cidney"
+                                                },
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "01c940ce-5bdd-4efa-8502-d977ce4f7cff",
+                                                    "scope": "target",
+                                                    "scopeId": null,
+                                                    "scopeFilterId": null,
+                                                    "tagsToRemove": "trapped"
+                                                },
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "8a53ac5a-b94b-4c59-b14d-6ccc6b7773b8",
+                                                    "scope": "target",
+                                                    "scopeId": null,
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "trapFound",
+                                                    "tagsToRemove": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "prop",
+                                                "scopeId": "4b0615d3-05e4-4844-9472-17c4cfd939db",
+                                                "scopeFilterId": "db7d4f5f-2dc0-4f21-beed-ee153ded5491",
+                                                "tags": "OpenedOnce",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.playAnimation",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "animationName": "ReachOut"
+                                                },
+                                                {
+                                                    "type": "nodes.wait",
+                                                    "waitForSeconds": "0.25"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "b03253b3-29d3-458b-92dc-8314235faeb6",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "What do you know? It's just a fake wall. Nothing behind it. The other door is the real one.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.playAnimation",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "animationName": "ReachOut"
+                                                },
+                                                {
+                                                    "type": "nodes.wait",
+                                                    "waitForSeconds": "0.25"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "ef2e81b8-700d-4e76-95d8-2011751cf8d2",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "I'm pushing... but nothing's happening. The wall feels solid. They either bricked it up or it never was a real door.",
+                                                    "emotion": "2",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        },
+        {
+            "type": "scripts.entryPoint",
+            "id": "e71ec2aa-776f-4457-8536-b2342b8ae70c",
+            "name": "Trap Goes Off",
+            "nodes": [
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.comment",
+                                    "message": "TODO: Insert vignette?",
+                                    "commentor": "Cidney"
+                                },
+                                {
+                                    "type": "nodes.playSoundEffect",
+                                    "soundEffectName": "electric_zap.wav",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "3859e75c-d185-46ef-a1cf-02ae036b4c82",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Arghh!",
+                                    "emotion": "6",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.changeHealth",
+                                    "id": "f965b88d-bc7e-4744-bce2-b9b88469a5fd",
+                                    "target": "0",
+                                    "amount": "-20",
+                                    "canDie": false,
+                                    "isPercentage": true,
+                                    "showNotification": true
+                                },
+                                {
+                                    "type": "nodes.comment",
+                                    "message": "TODO: Should the trap be lethal? If so, handle death.",
+                                    "commentor": "Cidney"
+                                },
+                                {
+                                    "type": "nodes.playAnimation",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "animationName": "Fall Down",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "target",
+                                                "scopeId": null,
+                                                "scopeFilterId": null,
+                                                "tags": "trapFound",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "6dfac198-b52f-4cc9-bd55-279afab9dd94",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "It was trapped.",
+                                                    "emotion": "2",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "73183a1c-4759-4310-8a7c-4a5a6ea91270",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Yikes, that was painful!",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "79627c25-9817-4d83-ac96-2b002a3f50ba",
+                                    "scope": "target",
+                                    "scopeId": null,
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "trapFound",
+                                    "tagsToRemove": null
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

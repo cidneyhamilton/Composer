@@ -1,0 +1,221 @@
+{
+    "type": "script",
+    "id": "fdb2a8c8-9874-4b14-87d3-4e55ecafad8c",
+    "name": "Interact with Altar B",
+    "sceneId": "5bf05db2-b4fe-4863-b426-f058e04e908c",
+    "propId": "be64cf4a-cecd-45c0-b43a-827c82906bcd",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "100a2ce5-981b-4d8e-8958-e74e7cab904a",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "51a6cbf6-322d-456c-9b05-104d2877f0a4",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "33260638-7507-4bbc-bb95-fcecb9c3a626",
+                            "text": "Look at the Altar",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "960c4745-6581-4449-b5c8-95ef91a9ee5d",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Another altar. It's <i>really</i> pretty impressive.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "f6c16131-f1c6-4498-ba83-8c4b41d0e88b",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Do you suppose that the Gogs worship the Sea Serpent, or is this just a shrine to some other, nastier sea critter?",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "1",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "eb096046-feab-4678-83f2-4c02a097ea4e",
+                            "text": "Search the Altar",
+                            "nodes": [
+                                {
+                                    "type": "nodes.playAnimation",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "animationName": "KneelDown",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "target",
+                                                "scopeId": null,
+                                                "scopeFilterId": null,
+                                                "tags": "taken_fish",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "efe4677c-5923-4935-b493-003b1d639dab",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "There we are. Dried fish!",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "df6a6731-79f4-4a26-9b32-a9d1ab58161f",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "I guess when it comes to offerings, the Gogs just don't have that much to work with.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "52918683-d32f-45ac-a611-67e5dc1efc5b",
+                                                    "scope": "target",
+                                                    "scopeId": "ee6d5799-a606-45bb-a16f-f6cad760c1e0",
+                                                    "scopeFilterId": "5bf05db2-b4fe-4863-b426-f058e04e908c",
+                                                    "tagsToAdd": "searched_altar",
+                                                    "tagsToRemove": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "71f9d88d-cd0e-4793-85f9-347a278ab72b",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "I've already taken the dried fish that were on here. I know what's good.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.playAnimation",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "animationName": "KneelUp",
+                                    "wait": true
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "2",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "26938294-8f2e-487b-a28c-b46a1ccec263",
+                            "text": "Take the Dried Fish",
+                            "nodes": [
+                                {
+                                    "type": "nodes.playAnimation",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "animationName": "KneelDown",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "9968e218-2e72-49da-b9cf-7abd7bd1fe64",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Now my hands will smell like fish for days.",
+                                    "emotion": "2",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.changeInventory",
+                                    "id": "76fa8aaf-ab06-4a99-b17c-a0b43ced9aab",
+                                    "propId": "247c7690-2a0c-48d5-86a3-3aa68f9850d0",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "change": "1",
+                                    "count": "3",
+                                    "notify": true
+                                },
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "6060c8e2-45d6-4929-85be-ec27468fd476",
+                                    "scope": "target",
+                                    "scopeId": "ee6d5799-a606-45bb-a16f-f6cad760c1e0",
+                                    "scopeFilterId": "5bf05db2-b4fe-4863-b426-f058e04e908c",
+                                    "tagsToAdd": "taken_fish",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.playAnimation",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "animationName": "KneelUp",
+                                    "wait": true
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inTags",
+                                    "scope": "target",
+                                    "scopeId": "ee6d5799-a606-45bb-a16f-f6cad760c1e0",
+                                    "scopeFilterId": "5bf05db2-b4fe-4863-b426-f058e04e908c",
+                                    "tags": "searched_altar",
+                                    "has": true
+                                },
+                                "right": {
+                                    "type": "expressions.inTags",
+                                    "scope": "target",
+                                    "scopeId": "ee6d5799-a606-45bb-a16f-f6cad760c1e0",
+                                    "scopeFilterId": "5bf05db2-b4fe-4863-b426-f058e04e908c",
+                                    "tags": "taken_fish",
+                                    "has": false
+                                }
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "2",
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

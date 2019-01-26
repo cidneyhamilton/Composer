@@ -1,0 +1,159 @@
+{
+    "type": "script",
+    "id": "5e2ef3c6-59d8-4ae6-a5dd-118d4d7a3c7d",
+    "name": "Interact with Woman Statue",
+    "sceneId": "cf824b0f-5af6-4a19-bac8-552a2a1bbebf",
+    "propId": "34459ea9-9f73-4d4d-9bee-48674168fd1d",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "ed604b76-d4c2-4c1f-95d0-4407c4de9c3f",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "cbf47fc6-d228-4326-bbf9-187ea328bcfd",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "fac97ccf-317c-4e77-af46-26f4025ab1c4",
+                            "text": "Look at the Statue",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "a52205d8-a334-4c6f-8136-702415f14c53",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "I wonder what this lady was pouring into the pool. Given that she's among rogues, I'm guessing she was destroying evidence.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "d4ac2410-1628-4d41-a1a1-b947faae97a9",
+                            "text": "Move the Statue",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "c878326a-20c0-48a2-9485-f9eba2a4afd3",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "No offense, ma'am, but I don't think I'll be carrying you over any thresholds any time soon. ",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "26918f03-f9b9-44b0-916b-b7eb16ba08bb",
+                            "text": "Sense Magic on the Statue",
+                            "nodes": [
+                                {
+                                    "type": "nodes.playAnimation",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "animationName": "SenseMagicNo"
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "target",
+                                                "scopeId": null,
+                                                "scopeFilterId": null,
+                                                "tags": "sensedmagic",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "b89e22b3-a995-4d99-b2d6-3ca83728b6ce",
+                                                    "scope": "target",
+                                                    "scopeId": null,
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "sensedmagic",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "id": "d6c3aa35-2c28-427c-b205-9e95cb92c2a9",
+                                                    "type": "nodes.skillBranch",
+                                                    "skill": "Magic",
+                                                    "target": "1",
+                                                    "success": {
+                                                        "type": "nodes.block",
+                                                        "nodes": []
+                                                    },
+                                                    "failure": {
+                                                        "type": "nodes.block",
+                                                        "nodes": []
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "40889342-9479-44db-ae61-a5273b22a201",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "I'm not detecting any magic.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "aea08c82-8100-4431-a9e9-95c8f8cc8cee",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Either on her, <i>or</i> between us! Sorry, lady! It's not meant to be!",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "actor",
+                                "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                "scopeFilterId": null,
+                                "tags": "SenseMagic",
+                                "has": true
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "2",
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

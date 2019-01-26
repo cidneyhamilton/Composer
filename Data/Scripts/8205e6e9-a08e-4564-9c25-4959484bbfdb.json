@@ -1,0 +1,863 @@
+{
+    "type": "script",
+    "id": "8205e6e9-a08e-4564-9c25-4959484bbfdb",
+    "name": "HandleDefeated",
+    "sceneId": "7a141a43-99df-4dc5-878a-d526cb9a02a8",
+    "trigger": {
+        "type": "triggers.enter",
+        "name": "Enter"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "5497928d-62f8-4f38-9cef-72d776f116de",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "scene",
+                                "scopeId": "7a141a43-99df-4dc5-878a-d526cb9a02a8",
+                                "scopeFilterId": null,
+                                "tags": "Location_CombatTestRoom",
+                                "has": true
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "2e7a3b8f-d20e-4fc9-bcd1-1577e9252ed2",
+                                    "scope": "scene",
+                                    "scopeId": "7a141a43-99df-4dc5-878a-d526cb9a02a8",
+                                    "scopeFilterId": null,
+                                    "tagsToRemove": "Location_CombatTestRoom"
+                                },
+                                {
+                                    "type": "nodes.changeScene",
+                                    "sceneId": "28842328-e107-4207-bdce-e1f956d664d1",
+                                    "spawnId": null,
+                                    "fadeTime": 2
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.comment",
+                                    "message": "Handle defeat here and then handle redirection",
+                                    "commentor": "Joshua"
+                                },
+                                {
+                                    "type": "nodes.fade",
+                                    "scope": "FadeOut",
+                                    "fadeTime": "0",
+                                    "fadeTime2": 2,
+                                    "wait": true,
+                                    "fadeDown": 1,
+                                    "fadeColorR": 0,
+                                    "fadeColorG": 0,
+                                    "fadeColorB": 0
+                                },
+                                {
+                                    "type": "nodes.poisonCounters",
+                                    "id": "41fe5a21-3d92-4a09-bf7e-dd691fcc90b3",
+                                    "poisonAction": "2",
+                                    "amount": 0
+                                },
+                                {
+                                    "type": "nodes.changeHealth",
+                                    "id": "5f90a578-d003-46bf-8b8e-2a6981e792c1",
+                                    "target": "0",
+                                    "amount": "100",
+                                    "canDie": false,
+                                    "isPercentage": true,
+                                    "showNotification": false
+                                },
+                                {
+                                    "type": "nodes.showVignette",
+                                    "vignetteName": "ShawnMoiraInfirmary.png",
+                                    "crossFadeTime": 0
+                                },
+                                {
+                                    "type": "nodes.fade",
+                                    "scope": "FadeIn",
+                                    "fadeTime": 2,
+                                    "fadeTime2": 2,
+                                    "wait": true,
+                                    "fadeDown": 1,
+                                    "fadeColorR": 0,
+                                    "fadeColorG": 0,
+                                    "fadeColorB": 0
+                                },
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "77e04829-d926-48c6-ac22-75408d7508ea",
+                                    "scope": "actor",
+                                    "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "AlmostDead",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.wait",
+                                    "waitForSeconds": "2"
+                                },
+                                {
+                                    "type": "nodes.comment",
+                                    "message": "Note: Special bosses are handled individually - These are for the generic Ego Defeated Scripts.",
+                                    "commentor": "Joshua"
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "ego",
+                                                "variableName": "DefeatedBy",
+                                                "operator": "eq",
+                                                "compareTo": "DrainLife",
+                                                "sceneId": "7a141a43-99df-4dc5-878a-d526cb9a02a8",
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.comment",
+                                                    "message": "TODO Lori Change dialog",
+                                                    "commentor": "Joshua"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "176f016b-c30c-4bf5-800a-503d552051ef",
+                                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                    "actorId2": null,
+                                                    "text": "You nearly died from having your life force drained away by the Undead. I advise you to stay away from the Undead altogether... or get yourself some sort of protection magic.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "ego",
+                                                "variableName": "DefeatedBy",
+                                                "operator": "eq",
+                                                "compareTo": "Drat",
+                                                "sceneId": "46c58bc7-e4b0-4cf3-af42-68930aa03476",
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "0e57ddfa-6849-4045-afbb-737ce4506daa",
+                                                    "scope": "actor",
+                                                    "scopeId": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "SavedShawn",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "8eec9656-866d-4ee5-963e-8199e284f660",
+                                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "You are lucky that Gregor rescued you from the Wine Cellar when he did. The Drats almost killed you.",
+                                                    "emotion": "0",
+                                                    "emotion2": "2",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.setVariable",
+                                                    "name": "SavedShawn",
+                                                    "scope": "ego",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "source": {
+                                                        "type": "variables.literal",
+                                                        "value": "1",
+                                                        "displayName": "Literal"
+                                                    },
+                                                    "add": true
+                                                },
+                                                {
+                                                    "type": "nodes.setVariable",
+                                                    "name": "GregorSaved",
+                                                    "scope": "ego",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "source": {
+                                                        "type": "variables.literal",
+                                                        "value": "1",
+                                                        "displayName": "Literal"
+                                                    },
+                                                    "add": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "ego",
+                                                "variableName": "DefeatedBy",
+                                                "operator": "eq",
+                                                "compareTo": "WarriorDrat",
+                                                "sceneId": "46c58bc7-e4b0-4cf3-af42-68930aa03476",
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "48573d7a-a3b8-4cff-9b54-2a279b94632b",
+                                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "Warrior Drats are extremely dangerous as you have just found out. I suggest that you avoid them from now on. Let the Paladins and the Warriors who wear protective armor do the fighting.",
+                                                    "emotion": "0",
+                                                    "emotion2": "2",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.or",
+                                                "left": {
+                                                    "type": "expressions.variableComparison",
+                                                    "variableScope": "ego",
+                                                    "variableName": "DefeatedBy",
+                                                    "operator": "eq",
+                                                    "compareTo": "SeaDrat",
+                                                    "sceneId": "46c58bc7-e4b0-4cf3-af42-68930aa03476",
+                                                    "propId": null
+                                                },
+                                                "right": {
+                                                    "type": "expressions.or",
+                                                    "left": {
+                                                        "type": "expressions.variableComparison",
+                                                        "variableScope": "ego",
+                                                        "variableName": "DefeatedBy",
+                                                        "operator": "eq",
+                                                        "compareTo": "Gog",
+                                                        "sceneId": "7a141a43-99df-4dc5-878a-d526cb9a02a8",
+                                                        "propId": null
+                                                    },
+                                                    "right": {
+                                                        "type": "expressions.variableComparison",
+                                                        "variableScope": "ego",
+                                                        "variableName": "DefeatedBy",
+                                                        "operator": "eq",
+                                                        "compareTo": "Zombie Pirate",
+                                                        "sceneId": "7a141a43-99df-4dc5-878a-d526cb9a02a8",
+                                                        "propId": null
+                                                    }
+                                                }
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "b5e3ae35-8fae-4b96-bbd7-4373a01d8110",
+                                                    "scope": "actor",
+                                                    "scopeId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "SavedShawn",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.setVariable",
+                                                    "name": "SavedShawn",
+                                                    "scope": "ego",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "source": {
+                                                        "type": "variables.literal",
+                                                        "value": "1",
+                                                        "displayName": "Literal"
+                                                    },
+                                                    "add": true
+                                                },
+                                                {
+                                                    "type": "nodes.setVariable",
+                                                    "name": "KatieSaved",
+                                                    "scope": "ego",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "source": {
+                                                        "type": "variables.literal",
+                                                        "value": "1",
+                                                        "displayName": "Literal"
+                                                    },
+                                                    "add": true
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "7ea5cd98-4885-4a69-9425-a3e27803ac0d",
+                                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "Katie MacMichael found you severely wounded in the Sea Caves and brought you back to the school. You were very nearly killed.",
+                                                    "emotion": "2",
+                                                    "emotion2": "2",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "b6d11d11-b6fa-4999-b9fd-2f90918a665a",
+                                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "Please, try to take better care of yourself.",
+                                                    "emotion": "0",
+                                                    "emotion2": "2",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "ego",
+                                                "variableName": "DefeatedBy",
+                                                "operator": "eq",
+                                                "compareTo": "Proach",
+                                                "sceneId": "46c58bc7-e4b0-4cf3-af42-68930aa03476",
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "e4d616fb-55ae-447f-9d02-e533b112ae83",
+                                                    "scope": "actor",
+                                                    "scopeId": "98ea49aa-86cf-4fa9-9bd5-6aa2fe7c809d",
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "SavedShawn",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.setVariable",
+                                                    "name": "SavedShawn",
+                                                    "scope": "ego",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "source": {
+                                                        "type": "variables.literal",
+                                                        "value": "1",
+                                                        "displayName": "Literal"
+                                                    },
+                                                    "add": true
+                                                },
+                                                {
+                                                    "type": "nodes.setVariable",
+                                                    "name": "EsmeSaved",
+                                                    "scope": "ego",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "source": {
+                                                        "type": "variables.literal",
+                                                        "value": "1",
+                                                        "displayName": "Literal"
+                                                    },
+                                                    "add": true
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "75406b94-f100-4e03-9f99-8b0e8098729c",
+                                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "Esme found you unconscious in the Wine Cellar. You were very lucky that Proaches prefer their food decayed rather than fresh.",
+                                                    "emotion": "0",
+                                                    "emotion2": "4",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "950865b0-4a0c-419c-ab6d-1d3231a96739",
+                                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "Before you go into dangerous situations, you need to make sure you are skilled enough to protect yourself. Rogues are extremely vulnerable. Use your wits as your weapon - and when in doubt, retreat from the situation.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "ego",
+                                                "variableName": "DefeatedBy",
+                                                "operator": "eq",
+                                                "compareTo": "SkeletonWarrior",
+                                                "sceneId": "46c58bc7-e4b0-4cf3-af42-68930aa03476",
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "dad2d0f0-0e0f-40fe-893e-be54653a673f",
+                                                    "scope": "actor",
+                                                    "scopeId": "6378f038-f4cd-49aa-8357-dcb46a978684",
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "SavedShawn",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.setVariable",
+                                                    "name": "SophiaSaved",
+                                                    "scope": "ego",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "source": {
+                                                        "type": "variables.literal",
+                                                        "value": "1",
+                                                        "displayName": "Literal"
+                                                    },
+                                                    "add": true
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "646ae5a7-19e9-4724-83cb-d1ae5736d46a",
+                                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "Sophia, the receptionist of this school, found you critically wounded and wandering the halls. You were fortunate that she found you when she did - you were not long for this world.",
+                                                    "emotion": "0",
+                                                    "emotion2": "4",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "cc817f3a-6922-402f-a9e6-1d3312e48221",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                    "text": "I don't remember any of that.",
+                                                    "emotion": "4",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "a3f15b10-e3af-4094-b112-f11036499d1c",
+                                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "You were undoubtedly in shock at the time of your rescue.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.or",
+                                                "left": {
+                                                    "type": "expressions.variableComparison",
+                                                    "variableScope": "ego",
+                                                    "variableName": "DefeatedBy",
+                                                    "operator": "eq",
+                                                    "compareTo": "Skatter",
+                                                    "sceneId": "7a141a43-99df-4dc5-878a-d526cb9a02a8",
+                                                    "propId": null
+                                                },
+                                                "right": {
+                                                    "type": "expressions.variableComparison",
+                                                    "variableScope": "ego",
+                                                    "variableName": "DefeatedBy",
+                                                    "operator": "eq",
+                                                    "compareTo": "Lemure",
+                                                    "sceneId": "7a141a43-99df-4dc5-878a-d526cb9a02a8",
+                                                    "propId": null
+                                                }
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.variableComparison",
+                                                                "variableScope": "global",
+                                                                "variableName": "time.day",
+                                                                "operator": "lte",
+                                                                "compareTo": "30",
+                                                                "sceneId": "7a141a43-99df-4dc5-878a-d526cb9a02a8",
+                                                                "propId": null
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.setVariable",
+                                                                    "name": "SavedShawn",
+                                                                    "scope": "ego",
+                                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                                    "source": {
+                                                                        "type": "variables.literal",
+                                                                        "value": "1",
+                                                                        "displayName": "Literal"
+                                                                    },
+                                                                    "add": true
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "a1b12011-6d2a-4f71-871f-47d33459153d",
+                                                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "text": "Joel Kyro found you unconscious in the Catacombs. You nearly passed away into the shadow lands.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "2",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeTags",
+                                                                    "id": "eedbb749-ceee-4f9f-95af-3de3ce18e633",
+                                                                    "scope": "actor",
+                                                                    "scopeId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                                    "scopeFilterId": null,
+                                                                    "tagsToAdd": "SavedShawn",
+                                                                    "tagsToRemove": null
+                                                                },
+                                                                {
+                                                                    "type": "nodes.setVariable",
+                                                                    "name": "JoelSaved",
+                                                                    "scope": "ego",
+                                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                                    "source": {
+                                                                        "type": "variables.literal",
+                                                                        "value": "1",
+                                                                        "displayName": "Literal"
+                                                                    },
+                                                                    "add": true
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": null,
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.setVariable",
+                                                                    "name": "SavedShawn",
+                                                                    "scope": "ego",
+                                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                                    "source": {
+                                                                        "type": "variables.literal",
+                                                                        "value": "1",
+                                                                        "displayName": "Literal"
+                                                                    },
+                                                                    "add": true
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeTags",
+                                                                    "id": "d864fc25-78e7-42c8-a121-02242a0dd971",
+                                                                    "scope": "actor",
+                                                                    "scopeId": "bdddd1b1-bbf3-4dd5-bbd6-0ef3115d8b66",
+                                                                    "scopeFilterId": null,
+                                                                    "tagsToAdd": "SavedShawn",
+                                                                    "tagsToRemove": null
+                                                                },
+                                                                {
+                                                                    "type": "nodes.setVariable",
+                                                                    "name": "ThomasSaved",
+                                                                    "scope": "ego",
+                                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                                    "source": {
+                                                                        "type": "variables.literal",
+                                                                        "value": "1",
+                                                                        "displayName": "Literal"
+                                                                    },
+                                                                    "add": true
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "2984dea6-2272-49c2-98cb-b37eac7f0ef1",
+                                                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "text": "Thomas Kent found you unconscious in the Catacombs. You nearly passed away into the shadow lands.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "2",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "77d88d4a-0be9-492c-82e9-caddc0ac13ec",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Ouch! I don't even know what hit me!",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.comment",
+                                    "message": "Want to go to the nearest next timed event",
+                                    "commentor": "Joshua"
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "global",
+                                                "variableName": "time.hour",
+                                                "operator": "gte",
+                                                "compareTo": "19",
+                                                "sceneId": "7a141a43-99df-4dc5-878a-d526cb9a02a8",
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.comment",
+                                                    "message": "Technically this should be 1am the following day. But this should be close enough.",
+                                                    "commentor": "Joshua"
+                                                },
+                                                {
+                                                    "type": "nodes.comment",
+                                                    "message": "This should be 12:55am-- enough time to load a saved game, but no awkwardness with Terk still patrolling.",
+                                                    "commentor": "Cidney"
+                                                },
+                                                {
+                                                    "type": "nodes.setTime",
+                                                    "id": "eaba09ac-fbcd-4372-9a6b-bf0cb88b5a27",
+                                                    "day": "-1",
+                                                    "hour": "23",
+                                                    "minute": "55",
+                                                    "notify": false
+                                                },
+                                                {
+                                                    "type": "nodes.incrementTime",
+                                                    "id": "2b541ea8-0ec7-4f73-831c-8621ed5fcedf",
+                                                    "days": 0,
+                                                    "hours": "1",
+                                                    "minutes": 0
+                                                },
+                                                {
+                                                    "type": "nodes.changeScene",
+                                                    "sceneId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                                    "spawnId": "ca037257-50fa-40b3-9cc3-d72b9afef5b4",
+                                                    "fadeTime": 2
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "global",
+                                                "variableName": "time.hour",
+                                                "operator": "gte",
+                                                "compareTo": "8",
+                                                "sceneId": "7a141a43-99df-4dc5-878a-d526cb9a02a8",
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.setTime",
+                                                    "id": "e65046a7-61c9-431b-aa2f-9b2f156b6059",
+                                                    "day": "-1",
+                                                    "hour": "17",
+                                                    "minute": "55",
+                                                    "notify": false
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.or",
+                                                                "left": {
+                                                                    "type": "expressions.variableComparison",
+                                                                    "variableScope": "global",
+                                                                    "variableName": "time.day",
+                                                                    "operator": "eq",
+                                                                    "compareTo": "41",
+                                                                    "sceneId": "7a141a43-99df-4dc5-878a-d526cb9a02a8",
+                                                                    "propId": null
+                                                                },
+                                                                "right": {
+                                                                    "type": "expressions.or",
+                                                                    "left": {
+                                                                        "type": "expressions.variableComparison",
+                                                                        "variableScope": "global",
+                                                                        "variableName": "time.day",
+                                                                        "operator": "eq",
+                                                                        "compareTo": "42",
+                                                                        "sceneId": "7a141a43-99df-4dc5-878a-d526cb9a02a8",
+                                                                        "propId": null
+                                                                    },
+                                                                    "right": {
+                                                                        "type": "expressions.or",
+                                                                        "left": {
+                                                                            "type": "expressions.variableComparison",
+                                                                            "variableScope": "global",
+                                                                            "variableName": "time.day",
+                                                                            "operator": "eq",
+                                                                            "compareTo": "43",
+                                                                            "sceneId": "7a141a43-99df-4dc5-878a-d526cb9a02a8",
+                                                                            "propId": null
+                                                                        },
+                                                                        "right": {
+                                                                            "type": "expressions.or",
+                                                                            "left": {
+                                                                                "type": "expressions.variableComparison",
+                                                                                "variableScope": "global",
+                                                                                "variableName": "time.day",
+                                                                                "operator": "eq",
+                                                                                "compareTo": "44",
+                                                                                "sceneId": "7a141a43-99df-4dc5-878a-d526cb9a02a8",
+                                                                                "propId": null
+                                                                            },
+                                                                            "right": {
+                                                                                "type": "expressions.variableComparison",
+                                                                                "variableScope": "global",
+                                                                                "variableName": "time.day",
+                                                                                "operator": "eq",
+                                                                                "compareTo": "45",
+                                                                                "sceneId": "7a141a43-99df-4dc5-878a-d526cb9a02a8",
+                                                                                "propId": null
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.comment",
+                                                                    "message": "During the Drat Invasion, send Shawn straight to bed.",
+                                                                    "commentor": "Cidney"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.branch",
+                                                                    "sections": [
+                                                                        {
+                                                                            "type": "nodes.branchSection",
+                                                                            "expression": {
+                                                                                "type": "expressions.inTags",
+                                                                                "scope": "actor",
+                                                                                "scopeId": "3ec7237c-65ea-4a23-9e21-697f17a2dbe8",
+                                                                                "scopeFilterId": null,
+                                                                                "tags": "QueenDone",
+                                                                                "has": false
+                                                                            },
+                                                                            "nodes": [
+                                                                                {
+                                                                                    "type": "nodes.changeScene",
+                                                                                    "sceneId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                                                                    "spawnId": "ca037257-50fa-40b3-9cc3-d72b9afef5b4",
+                                                                                    "fadeTime": 2
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "nodes.changeScene",
+                                                    "sceneId": "40f18665-4cc2-4acd-b17e-5189e68b7a33",
+                                                    "spawnId": "a94dd0fb-4c32-4643-b78e-bb8781a2b687",
+                                                    "fadeTime": 2
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "global",
+                                                "variableName": "time.hour",
+                                                "operator": "eq",
+                                                "compareTo": "0",
+                                                "sceneId": "7a141a43-99df-4dc5-878a-d526cb9a02a8",
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.setTime",
+                                                    "id": "92cb128f-5085-4352-9195-d05b47fe8783",
+                                                    "day": "-1",
+                                                    "hour": "0",
+                                                    "minute": "55",
+                                                    "notify": false
+                                                },
+                                                {
+                                                    "type": "nodes.changeScene",
+                                                    "sceneId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                                    "spawnId": "ca037257-50fa-40b3-9cc3-d72b9afef5b4",
+                                                    "fadeTime": 2
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.comment",
+                                                    "message": "Just sent the player straight to bed.",
+                                                    "commentor": "Cidney"
+                                                },
+                                                {
+                                                    "type": "nodes.comment",
+                                                    "message": "There was a bug where when it was setting the time to 4am and thus the reset day was not being called. Therefore we will set it to 1am.",
+                                                    "commentor": "Joshua"
+                                                },
+                                                {
+                                                    "type": "nodes.setTime",
+                                                    "id": "c058180b-e9ee-4b59-9b21-fcec56c3f389",
+                                                    "day": "-1",
+                                                    "hour": "1",
+                                                    "minute": "0",
+                                                    "notify": false
+                                                },
+                                                {
+                                                    "type": "nodes.changeScene",
+                                                    "sceneId": "afb9f72c-1888-43db-ac71-fb6a81d41f47",
+                                                    "spawnId": null,
+                                                    "fadeTime": 2
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

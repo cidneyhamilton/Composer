@@ -1,0 +1,134 @@
+{
+    "type": "script",
+    "id": "a2d6d80a-82e9-4011-b86a-bda4e7200d92",
+    "name": "_onEnter",
+    "sceneId": "e8606d3d-9743-4b44-a3b3-117a393b42ae",
+    "trigger": {
+        "type": "triggers.enter",
+        "name": "Enter"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "c713a2e7-7632-492b-b1f1-e0384baacd8c",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.variableComparison",
+                                    "variableScope": "global",
+                                    "variableName": "time.day",
+                                    "operator": "lte",
+                                    "compareTo": "33",
+                                    "sceneId": "e8606d3d-9743-4b44-a3b3-117a393b42ae",
+                                    "propId": null
+                                },
+                                "right": {
+                                    "type": "expressions.and",
+                                    "left": {
+                                        "type": "expressions.inTags",
+                                        "scope": "scene",
+                                        "scopeId": "e8606d3d-9743-4b44-a3b3-117a393b42ae",
+                                        "scopeFilterId": null,
+                                        "tags": "MoiraToRescue",
+                                        "has": true
+                                    },
+                                    "right": {
+                                        "type": "expressions.variableComparison",
+                                        "variableScope": "global",
+                                        "variableName": "time.day",
+                                        "operator": "gte",
+                                        "compareTo": "32",
+                                        "sceneId": "e8606d3d-9743-4b44-a3b3-117a393b42ae",
+                                        "propId": null
+                                    }
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.invokeScript",
+                                    "id": "521640ba-2dcd-4125-99a2-8fdd99b381f8",
+                                    "scriptId": "9b097b94-9a5f-4df1-86f0-1d4caede66d9",
+                                    "entryPointId": "d0ae9322-de50-4c7c-be2a-67a4324a997a",
+                                    "currentScope": "Scenes",
+                                    "currentSceneId": "e8606d3d-9743-4b44-a3b3-117a393b42ae",
+                                    "currentActorId": null,
+                                    "currentStoryEventId": null,
+                                    "currentPropId": null
+                                },
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "ab17869d-c852-405a-9d09-a43264a8e610",
+                                    "scope": "scene",
+                                    "scopeId": "e8606d3d-9743-4b44-a3b3-117a393b42ae",
+                                    "scopeFilterId": null,
+                                    "tagsToRemove": "MoiraToRescue"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.previousScene",
+                                    "sceneId": "65bf97bc-9989-4004-b745-6bc20dd3cac7"
+                                },
+                                "right": {
+                                    "type": "expressions.inTags",
+                                    "scope": "actor",
+                                    "scopeId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                    "scopeFilterId": null,
+                                    "tags": "KyroDead",
+                                    "has": false
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "8e833a6f-704a-4e7b-9aec-08edda902e15",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Joel!  Joel - can you hear me? Are you all right?",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.moveActor",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "propId": "785ebb3b-01af-464d-81f1-9cf02ebdd4b2",
+                                    "movement": "Running",
+                                    "wait": false
+                                },
+                                {
+                                    "type": "nodes.invokeScript",
+                                    "id": "6222d10f-2ae4-43f9-be49-48ab7486e5d6",
+                                    "scriptId": "60d58ff4-8235-4b97-9c72-e862add708e7",
+                                    "entryPointId": "bae2b5cb-8b91-4543-b76c-eaa4d4a4e485",
+                                    "currentScope": "Scenes",
+                                    "currentSceneId": "e8606d3d-9743-4b44-a3b3-117a393b42ae",
+                                    "currentActorId": null,
+                                    "currentStoryEventId": null,
+                                    "currentPropId": null
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,184 @@
+{
+    "type": "script",
+    "id": "41991429-4e38-4d28-bba5-67fa5b37b67a",
+    "name": "OnLoot",
+    "actorId": "fdf2a22c-39ae-4ce9-8f9d-13ba189897a3",
+    "trigger": {
+        "type": "triggers.loot",
+        "name": "Loot"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "61bdfbad-fa48-4439-bb43-37d532e8b194",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.playAnimation",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "animationName": "KneelDown",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "target",
+                                                "scopeId": null,
+                                                "scopeFilterId": null,
+                                                "tags": "U_LOOTED",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.comment",
+                                                    "message": "This should never get hit",
+                                                    "commentor": "Charles"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "7cd6aba9-9b7b-4045-9c63-77e200048809",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "I've picked this corpse clean. Well, as clean as a Zombie ever gets, dead or alive.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "37a0271f-9011-4647-928d-6e51584d4b35",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "I'll just be taking that key... Oh, and your hat, too!",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "6c936c1a-35bc-4a87-8b9f-946cc6b3216d",
+                                                    "actorId": "fdf2a22c-39ae-4ce9-8f9d-13ba189897a3",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "No, not me hat! Ah well, I guess ye won it fair and square.",
+                                                    "emotion": "4",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.invokeCommand",
+                                                    "id": "78f09598-06ea-4600-a20b-a59a751bbd9d",
+                                                    "entityType": "actor",
+                                                    "entityId": "fdf2a22c-39ae-4ce9-8f9d-13ba189897a3",
+                                                    "command": "hideHat",
+                                                    "wait": true,
+                                                    "resultVariableScope": "script"
+                                                },
+                                                {
+                                                    "type": "nodes.changeInventory",
+                                                    "id": "1527110a-3f65-415d-aea1-99869d7d8b1b",
+                                                    "propId": "56ac5b3c-8a3c-4d32-974f-dc1fdb1e031a",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "change": "1",
+                                                    "count": 1,
+                                                    "notify": true
+                                                },
+                                                {
+                                                    "type": "nodes.changeInventory",
+                                                    "id": "fcf1b554-f1cf-4c7c-9ffc-fb84d9f8ce9e",
+                                                    "propId": "783112f4-6836-4e1e-8ed6-ae07e62463c1",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "change": "1",
+                                                    "count": 1,
+                                                    "notify": true
+                                                },
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "20e32f59-39b0-48fa-b40e-b4fc5dad6dd4",
+                                                    "scope": "target",
+                                                    "scopeId": null,
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "U_LOOTED",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.playSoundEffect",
+                                                    "soundEffectName": "explosion.wav",
+                                                    "wait": false
+                                                },
+                                                {
+                                                    "type": "nodes.playAnimation",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "animationName": "JumpScare"
+                                                },
+                                                {
+                                                    "type": "nodes.invokeCommand",
+                                                    "id": "d5a305f1-4f4e-4e7d-8fa9-0cf7feba5637",
+                                                    "entityType": "actor",
+                                                    "entityId": "fdf2a22c-39ae-4ce9-8f9d-13ba189897a3",
+                                                    "command": "explode",
+                                                    "wait": true,
+                                                    "resultVariableScope": "script"
+                                                },
+                                                {
+                                                    "type": "nodes.wait",
+                                                    "waitForSeconds": "2"
+                                                },
+                                                {
+                                                    "type": "nodes.removeActor",
+                                                    "id": "458c1a13-8208-4d29-ab6b-5968c0cf975e",
+                                                    "actorId": "fdf2a22c-39ae-4ce9-8f9d-13ba189897a3"
+                                                },
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "b866cfb0-d6c7-48e9-9951-ca8c53a05114",
+                                                    "scope": "actor",
+                                                    "scopeId": "fdf2a22c-39ae-4ce9-8f9d-13ba189897a3",
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "exploded",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.changePropVisibility",
+                                                    "id": "7955d786-9889-4b7a-bedd-d973163264ee",
+                                                    "propId": "26f3ba21-d4af-4a1c-8109-a07a18b4ee9e",
+                                                    "sceneId": "9637d472-d1dd-4373-a09f-489014e31666",
+                                                    "status": "Hidden",
+                                                    "wait": true
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.playAnimation",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "animationName": "KneelUp",
+                                    "wait": false
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

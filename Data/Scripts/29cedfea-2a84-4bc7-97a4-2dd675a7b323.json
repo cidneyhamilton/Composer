@@ -1,0 +1,212 @@
+{
+    "type": "script",
+    "id": "29cedfea-2a84-4bc7-97a4-2dd675a7b323",
+    "name": "Interact with Door L",
+    "sceneId": "1d3d17da-9115-4826-bad9-c69267b18ea9",
+    "propId": "671e92b7-de65-4ccc-81df-99666c69c484",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "fd404bac-d849-4dc2-8a84-930dc0ec219f",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "03a76d06-5e86-4dcf-86e6-9beb70ff813b",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "51362ac2-9b51-494c-a8ab-f01c4f7e95b5",
+                            "text": "Open Door (Debug)",
+                            "nodes": [
+                                {
+                                    "type": "nodes.invokeScript",
+                                    "id": "04aae4e6-7671-41da-b3a1-170a5987d21e",
+                                    "scriptId": "a1004657-984b-46ba-8870-9550cbfb4b35",
+                                    "entryPointId": "fd404bac-d849-4dc2-8a84-930dc0ec219f",
+                                    "currentScope": "Scenes",
+                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                    "currentActorId": null,
+                                    "currentStoryEventId": null,
+                                    "currentPropId": null
+                                },
+                                {
+                                    "type": "nodes.changeScene",
+                                    "sceneId": "d89cc4ad-2296-471c-9321-6082c2c57962",
+                                    "spawnId": "fb20bd0b-556f-44d2-8268-ad8dcefc574f",
+                                    "fadeTime": 2
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.debugOnly"
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "b017dbfd-4272-4a9b-8ac2-30b969d42539",
+                            "text": "Examine the Door",
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "db70dca7-4acd-4011-ae37-48d871394f15",
+                                    "scope": "target",
+                                    "scopeId": null,
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "examined",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "5ddb1516-2597-4d3b-8a7d-7a879cd606b3",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "This door has three locks! They really don't want me to get out of here... alive.",
+                                    "emotion": "4",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "8c00b272-94d3-49fb-990a-0a321de81d3e",
+                            "text": "Open Door",
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "26f51051-95e6-4eab-b261-9644d1f3e8f2",
+                                    "scope": "target",
+                                    "scopeId": null,
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "examined",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "target",
+                                                "scopeId": null,
+                                                "scopeFilterId": null,
+                                                "tags": "unlocked",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "6f738208-601d-49dc-9a49-8813d8b75734",
+                                                    "scriptId": "a1004657-984b-46ba-8870-9550cbfb4b35",
+                                                    "entryPointId": "fd404bac-d849-4dc2-8a84-930dc0ec219f",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                },
+                                                {
+                                                    "type": "nodes.changeScene",
+                                                    "sceneId": "d89cc4ad-2296-471c-9321-6082c2c57962",
+                                                    "spawnId": "fb20bd0b-556f-44d2-8268-ad8dcefc574f",
+                                                    "fadeTime": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "565394bc-5c7a-404a-b178-c319a8ef0f75",
+                                                    "scriptId": "07efa0fa-4d32-4765-ad95-5e9b6c2d6933",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "7bdd52e4-784a-42f5-a9e4-607de00fef2e",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "It's locked.",
+                                                    "emotion": "2",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "44231a94-8b62-4351-ba10-ea2bfffbfc13",
+                            "text": "Pick Lock",
+                            "nodes": [
+                                {
+                                    "type": "nodes.invokeScript",
+                                    "id": "685d5cec-e534-479e-b41a-318b0ff88243",
+                                    "scriptId": "08357cab-daae-496d-88ff-d12b529dccc5",
+                                    "entryPointId": "fd404bac-d849-4dc2-8a84-930dc0ec219f",
+                                    "currentScope": "Scenes",
+                                    "currentSceneId": "1d3d17da-9115-4826-bad9-c69267b18ea9",
+                                    "currentActorId": null,
+                                    "currentStoryEventId": null,
+                                    "currentPropId": null
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inTags",
+                                    "scope": "target",
+                                    "scopeId": null,
+                                    "scopeFilterId": null,
+                                    "tags": "examined",
+                                    "has": true
+                                },
+                                "right": {
+                                    "type": "expressions.inTags",
+                                    "scope": "target",
+                                    "scopeId": null,
+                                    "scopeFilterId": null,
+                                    "tags": "unlocked",
+                                    "has": false
+                                }
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "5",
+                            "ExitMenu": true
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

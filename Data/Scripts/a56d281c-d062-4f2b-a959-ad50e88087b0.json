@@ -1,0 +1,233 @@
+{
+    "type": "script",
+    "id": "a56d281c-d062-4f2b-a959-ad50e88087b0",
+    "name": "Interact with Paladin Exit",
+    "sceneId": "5c27608b-ff6a-4fdc-8ce0-63e0866acb19",
+    "propId": "914d2f1d-75a2-430c-97bf-8176032177c2",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "03789af1-1a73-4be4-adab-c4ad8e5aaa0c",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "9ee5be6b-2383-492a-8bef-b7d4d66e23bb",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "1e8ca38b-a0ef-465a-9bd4-d76fdaa083b0",
+                            "text": "Examine the Door",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "af3b0461-f8d0-4c3b-8ca8-dce99ce10f6d",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "The plaque on this door says that it leads to the \"Gloria Exedram.\"",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "e5c4a9b9-cddc-436d-8834-08d18cc3ed80",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Well, Gloria sounds a lot nicer than many of the other names.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "target",
+                                                "scopeId": null,
+                                                "scopeFilterId": null,
+                                                "tags": "marked",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "6d5e5822-aef3-4f28-b5c9-22679eb15f6b",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "And thanks to my chalk mark, I know I've been through this door to Glory before.",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "3",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "b388318e-a148-4355-8c91-9fa046eaa95b",
+                            "text": "Listen at the Door",
+                            "nodes": [
+                                {
+                                    "type": "nodes.playAnimation",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "animationName": "KneelDown",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.onceDaily",
+                                    "id": "0683c1bc-dc97-4459-910a-1d62d65d402d",
+                                    "nodes": [
+                                        {
+                                            "id": "99b22d80-414e-49d5-bac0-9b46904a6cb1",
+                                            "type": "nodes.skillBranch",
+                                            "skill": "Perception",
+                                            "target": "70",
+                                            "success": {
+                                                "type": "nodes.block",
+                                                "nodes": []
+                                            },
+                                            "failure": {
+                                                "type": "nodes.block",
+                                                "nodes": []
+                                            },
+                                            "notify": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "98da3d0b-c694-479f-b4ed-2e48ed3cf2cf",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "I'm not sure why I bother listening around here, but I guess it's good practice. ",
+                                    "emotion": "2",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.playAnimation",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "animationName": "KneelUp",
+                                    "wait": true
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "3",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "e00b6a86-9359-4f0d-aa2a-4698ffd928d1",
+                            "text": "Mark the Door",
+                            "nodes": [
+                                {
+                                    "type": "nodes.playSoundEffect",
+                                    "soundEffectName": "Using Chalk.wav",
+                                    "wait": false
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "e9f1ca02-da4e-4c4e-9b03-161ea744dbd0",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "To keep this simple, I'll just call this room \"Glory.\" That has a nice sound to it. ",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "5e33e3a7-d169-452d-a8f4-5dcea612eb85",
+                                    "scope": "target",
+                                    "scopeId": null,
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "marked",
+                                    "tagsToRemove": null
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inInventory",
+                                    "propId": "646cea66-c6c6-4dba-b093-6ec5b7e987a5",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "has": true
+                                },
+                                "right": {
+                                    "type": "expressions.inTags",
+                                    "scope": "target",
+                                    "scopeId": null,
+                                    "scopeFilterId": null,
+                                    "tags": "marked",
+                                    "has": false
+                                }
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "5",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "3befb972-aacb-41cc-b409-7841ba2ee659",
+                            "text": "Open the Door",
+                            "nodes": [
+                                {
+                                    "type": "nodes.incrementTime",
+                                    "id": "491d7ae3-4407-482f-9870-e1c1c6fad43e",
+                                    "days": 0,
+                                    "hours": 0,
+                                    "minutes": "5"
+                                },
+                                {
+                                    "type": "nodes.invokeScript",
+                                    "id": "2cbb5296-ffd7-473e-afc9-701ded68cec8",
+                                    "scriptId": "0742870b-eb5a-49da-bff7-5caf4138f132",
+                                    "entryPointId": "03789af1-1a73-4be4-adab-c4ad8e5aaa0c",
+                                    "currentScope": "Scenes",
+                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                    "currentActorId": null,
+                                    "currentStoryEventId": null,
+                                    "currentPropId": null
+                                },
+                                {
+                                    "type": "nodes.changeScene",
+                                    "sceneId": "3440729a-5de3-4e04-92c1-39df362b15e3",
+                                    "spawnId": "59adc487-a6f5-4cf7-8602-06efb10a8550",
+                                    "fadeTime": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "2",
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,466 @@
+{
+    "type": "script",
+    "id": "9dcce8fe-ec23-4d09-ba8c-638f22a38932",
+    "name": "Interact with Exit to Great Hall",
+    "sceneId": "96064b1c-7fee-41c6-ab46-b8425d3af2de",
+    "propId": "ab1a6302-02b8-410d-ab00-12e623a8cc35",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "bc9ab4ca-c513-45b4-ae45-5dece2884015",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.onceDaily",
+                    "id": "879cff16-04b0-4eb0-9341-eda11178ac45",
+                    "nodes": [
+                        {
+                            "type": "nodes.changeTags",
+                            "id": "c6f6b513-78ae-4cb7-aea3-3929e75c5cc8",
+                            "scope": "target",
+                            "scopeId": null,
+                            "scopeFilterId": null,
+                            "tagsToRemove": "ListenedToday"
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.variableComparison",
+                                    "variableScope": "global",
+                                    "variableName": "time.day",
+                                    "operator": "gte",
+                                    "compareTo": "14",
+                                    "sceneId": "40f18665-4cc2-4acd-b17e-5189e68b7a33",
+                                    "propId": null
+                                },
+                                "right": {
+                                    "type": "expressions.and",
+                                    "left": {
+                                        "type": "expressions.variableComparison",
+                                        "variableScope": "global",
+                                        "variableName": "time.day",
+                                        "operator": "lte",
+                                        "compareTo": "16",
+                                        "sceneId": "40f18665-4cc2-4acd-b17e-5189e68b7a33",
+                                        "propId": null
+                                    },
+                                    "right": {
+                                        "type": "expressions.and",
+                                        "left": {
+                                            "type": "expressions.variableComparison",
+                                            "variableScope": "global",
+                                            "variableName": "time.hour",
+                                            "operator": "lt",
+                                            "compareTo": "4",
+                                            "sceneId": "40f18665-4cc2-4acd-b17e-5189e68b7a33",
+                                            "propId": null
+                                        },
+                                        "right": {
+                                            "type": "expressions.inTags",
+                                            "scope": "scene",
+                                            "scopeId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                            "scopeFilterId": null,
+                                            "tags": "KwirkNoise",
+                                            "has": true
+                                        }
+                                    }
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "a66d9bcd-f652-4b08-a3ae-7487e38d4ffd",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "(yawn) I don't seem to be getting anywhere with this investigation right now. Maybe I should give up and go back to bed instead?",
+                                    "emotion": "5",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.showMenu",
+                                    "id": "d7de7bf6-0c6e-45ca-af87-1bcd59464455",
+                                    "options": [
+                                        {
+                                            "type": "options.text",
+                                            "id": "d13df553-a811-4254-9282-7a264a3d5a9e",
+                                            "text": "Stay and Investigate",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "15f31d75-15fa-46db-9f0d-1e0a4201d963",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "I think that the thief comes through this room on a regular basis... I just need to figure out a good way to catch him in the act.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ],
+                                            "expression": null,
+                                            "ignoreChildAvailability": true,
+                                            "minutes": 0,
+                                            "ExitMenu": true
+                                        },
+                                        {
+                                            "type": "options.text",
+                                            "id": "21835722-ad93-4d28-a385-5eeaca224ec7",
+                                            "text": "Go Back to Sleep.",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.playSoundEffect",
+                                                    "soundEffectName": "wooden_door_opening.wav",
+                                                    "wait": false
+                                                },
+                                                {
+                                                    "type": "nodes.changeScene",
+                                                    "sceneId": "afb9f72c-1888-43db-ac71-fb6a81d41f47",
+                                                    "spawnId": null,
+                                                    "fadeTime": 2
+                                                }
+                                            ],
+                                            "expression": null,
+                                            "ignoreChildAvailability": true,
+                                            "minutes": 0,
+                                            "ExitMenu": false
+                                        }
+                                    ],
+                                    "AutoAddDone": false,
+                                    "Unique": false
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.showMenu",
+                                    "id": "9bf51ef8-3e15-4d6f-b82a-4ef632b648e9",
+                                    "options": [
+                                        {
+                                            "type": "options.text",
+                                            "id": "962a7951-4ecd-4310-914a-1a11b16f57c1",
+                                            "text": "Listen at the Door",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.incrementTime",
+                                                    "id": "0e99f266-1d13-455a-bc87-f5303b9f8782",
+                                                    "days": 0,
+                                                    "hours": 0,
+                                                    "minutes": "5"
+                                                },
+                                                {
+                                                    "type": "nodes.onceDaily",
+                                                    "id": "42288a40-ac7f-496a-b049-39e2ddd18d13",
+                                                    "nodes": [
+                                                        {
+                                                            "id": "902ea7b1-6761-4f7a-98db-7673600452d3",
+                                                            "type": "nodes.skillBranch",
+                                                            "skill": "Perception",
+                                                            "target": "20",
+                                                            "success": {
+                                                                "type": "nodes.block",
+                                                                "nodes": []
+                                                            },
+                                                            "failure": {
+                                                                "type": "nodes.block",
+                                                                "nodes": []
+                                                            },
+                                                            "notify": true
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.and",
+                                                                "left": {
+                                                                    "type": "expressions.variableComparison",
+                                                                    "variableScope": "global",
+                                                                    "variableName": "time.day",
+                                                                    "operator": "ne",
+                                                                    "compareTo": "8",
+                                                                    "sceneId": null,
+                                                                    "propId": null
+                                                                },
+                                                                "right": {
+                                                                    "type": "expressions.and",
+                                                                    "left": {
+                                                                        "type": "expressions.variableComparison",
+                                                                        "variableScope": "global",
+                                                                        "variableName": "time.day",
+                                                                        "operator": "ne",
+                                                                        "compareTo": "19",
+                                                                        "sceneId": null,
+                                                                        "propId": null
+                                                                    },
+                                                                    "right": {
+                                                                        "type": "expressions.and",
+                                                                        "left": {
+                                                                            "type": "expressions.variableComparison",
+                                                                            "variableScope": "global",
+                                                                            "variableName": "time.day",
+                                                                            "operator": "ne",
+                                                                            "compareTo": "25",
+                                                                            "sceneId": null,
+                                                                            "propId": null
+                                                                        },
+                                                                        "right": {
+                                                                            "type": "expressions.and",
+                                                                            "left": {
+                                                                                "type": "expressions.variableComparison",
+                                                                                "variableScope": "global",
+                                                                                "variableName": "time.day",
+                                                                                "operator": "ne",
+                                                                                "compareTo": "27",
+                                                                                "sceneId": null,
+                                                                                "propId": null
+                                                                            },
+                                                                            "right": {
+                                                                                "type": "expressions.and",
+                                                                                "left": {
+                                                                                    "type": "expressions.variableComparison",
+                                                                                    "variableScope": "global",
+                                                                                    "variableName": "time.day",
+                                                                                    "operator": "ne",
+                                                                                    "compareTo": "44",
+                                                                                    "sceneId": null,
+                                                                                    "propId": null
+                                                                                },
+                                                                                "right": {
+                                                                                    "type": "expressions.and",
+                                                                                    "left": {
+                                                                                        "type": "expressions.variableComparison",
+                                                                                        "variableScope": "global",
+                                                                                        "variableName": "time.day",
+                                                                                        "operator": "ne",
+                                                                                        "compareTo": "26",
+                                                                                        "sceneId": null,
+                                                                                        "propId": null
+                                                                                    },
+                                                                                    "right": {
+                                                                                        "type": "expressions.and",
+                                                                                        "left": {
+                                                                                            "type": "expressions.variableComparison",
+                                                                                            "variableScope": "global",
+                                                                                            "variableName": "time.day",
+                                                                                            "operator": "ne",
+                                                                                            "compareTo": "41",
+                                                                                            "sceneId": null,
+                                                                                            "propId": null
+                                                                                        },
+                                                                                        "right": {
+                                                                                            "type": "expressions.and",
+                                                                                            "left": {
+                                                                                                "type": "expressions.variableComparison",
+                                                                                                "variableScope": "global",
+                                                                                                "variableName": "time.day",
+                                                                                                "operator": "ne",
+                                                                                                "compareTo": "42",
+                                                                                                "sceneId": null,
+                                                                                                "propId": null
+                                                                                            },
+                                                                                            "right": {
+                                                                                                "type": "expressions.variableComparison",
+                                                                                                "variableScope": "global",
+                                                                                                "variableName": "time.day",
+                                                                                                "operator": "ne",
+                                                                                                "compareTo": "43",
+                                                                                                "sceneId": null,
+                                                                                                "propId": null
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.branch",
+                                                                    "sections": [
+                                                                        {
+                                                                            "type": "nodes.branchSection",
+                                                                            "expression": {
+                                                                                "type": "expressions.and",
+                                                                                "left": {
+                                                                                    "type": "expressions.variableComparison",
+                                                                                    "variableScope": "global",
+                                                                                    "variableName": "time.hour",
+                                                                                    "operator": "lte",
+                                                                                    "compareTo": "16",
+                                                                                    "sceneId": "96064b1c-7fee-41c6-ab46-b8425d3af2de",
+                                                                                    "propId": null
+                                                                                },
+                                                                                "right": {
+                                                                                    "type": "expressions.variableComparison",
+                                                                                    "variableScope": "global",
+                                                                                    "variableName": "time.hour",
+                                                                                    "operator": "gte",
+                                                                                    "compareTo": "6",
+                                                                                    "sceneId": "96064b1c-7fee-41c6-ab46-b8425d3af2de",
+                                                                                    "propId": null
+                                                                                }
+                                                                            },
+                                                                            "nodes": [
+                                                                                {
+                                                                                    "type": "nodes.speak",
+                                                                                    "id": "895616a4-dff7-46c8-9e72-1bfb734afe5b",
+                                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                    "actorId2": null,
+                                                                                    "text": "I can hear someone moving around in the Great Hall. It's probably just Terk.",
+                                                                                    "emotion": "0",
+                                                                                    "emotion2": "0",
+                                                                                    "device": "0",
+                                                                                    "device2": "0"
+                                                                                }
+                                                                            ]
+                                                                        },
+                                                                        {
+                                                                            "type": "nodes.branchSection",
+                                                                            "expression": {
+                                                                                "type": "expressions.and",
+                                                                                "left": {
+                                                                                    "type": "expressions.variableComparison",
+                                                                                    "variableScope": "global",
+                                                                                    "variableName": "time.hour",
+                                                                                    "operator": "gte",
+                                                                                    "compareTo": "22",
+                                                                                    "sceneId": "96064b1c-7fee-41c6-ab46-b8425d3af2de",
+                                                                                    "propId": null
+                                                                                },
+                                                                                "right": {
+                                                                                    "type": "expressions.variableComparison",
+                                                                                    "variableScope": "global",
+                                                                                    "variableName": "time.hour",
+                                                                                    "operator": "lte",
+                                                                                    "compareTo": "24",
+                                                                                    "sceneId": "96064b1c-7fee-41c6-ab46-b8425d3af2de",
+                                                                                    "propId": null
+                                                                                }
+                                                                            },
+                                                                            "nodes": [
+                                                                                {
+                                                                                    "type": "nodes.speak",
+                                                                                    "id": "6a55eff7-7736-4e40-97b5-292a7170fda6",
+                                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                    "actorId2": null,
+                                                                                    "text": "There's definitely someone patrolling the Great Hall. It's got to be Terk looking for people out and about after curfew. ",
+                                                                                    "emotion": "0",
+                                                                                    "emotion2": "0",
+                                                                                    "device": "0",
+                                                                                    "device2": "0"
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.speak",
+                                                                                    "id": "2822732f-15b0-4653-8d7b-1c2d47e80dd2",
+                                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                    "actorId2": null,
+                                                                                    "text": "Or, more specifically, Terk is hoping to give me more demerits.",
+                                                                                    "emotion": "0",
+                                                                                    "emotion2": "0",
+                                                                                    "device": "0",
+                                                                                    "device2": "0"
+                                                                                }
+                                                                            ]
+                                                                        },
+                                                                        {
+                                                                            "type": "nodes.branchSection",
+                                                                            "expression": null,
+                                                                            "nodes": [
+                                                                                {
+                                                                                    "type": "nodes.speak",
+                                                                                    "id": "e547b467-7481-4001-8931-9aedf92b8ed5",
+                                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                    "actorId2": null,
+                                                                                    "text": "I don't hear anyone out in the Great Hall right now.",
+                                                                                    "emotion": "0",
+                                                                                    "emotion2": "0",
+                                                                                    "device": "0",
+                                                                                    "device2": "0"
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": null,
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "49834c3d-e893-40b4-84e6-b1821cee5e67",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "I don't hear anyone out in the Great Hall right now.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "expression": null,
+                                            "ignoreChildAvailability": true,
+                                            "minutes": 0,
+                                            "ExitMenu": false
+                                        },
+                                        {
+                                            "type": "options.text",
+                                            "id": "7416f8a2-f3d0-4bcd-8c3c-5f35acf4e72c",
+                                            "text": "Leave the Room",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.playSoundEffect",
+                                                    "soundEffectName": "wooden_door_opening.wav",
+                                                    "wait": false
+                                                },
+                                                {
+                                                    "type": "nodes.changeScene",
+                                                    "sceneId": "40f18665-4cc2-4acd-b17e-5189e68b7a33",
+                                                    "spawnId": "bfa9d643-f19b-4751-840e-705ced84cfd9",
+                                                    "fadeTime": 2
+                                                }
+                                            ],
+                                            "expression": null,
+                                            "ignoreChildAvailability": true,
+                                            "minutes": 0,
+                                            "ExitMenu": false
+                                        }
+                                    ],
+                                    "AutoAddDone": true,
+                                    "Unique": false
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

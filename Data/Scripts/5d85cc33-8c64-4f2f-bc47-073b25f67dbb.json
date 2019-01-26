@@ -1,0 +1,1130 @@
+{
+    "type": "script",
+    "id": "5d85cc33-8c64-4f2f-bc47-073b25f67dbb",
+    "name": "Bedroom: Aeolus Interactions",
+    "sceneId": "9897ecb3-4200-4884-867a-2840471747b8",
+    "actorId": "0661a2f7-5493-46d9-ab58-6e9bff9a5f30",
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "1f0a8708-978c-4174-b2f6-978c2a0efbe8",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.turnActor",
+                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "propId": null,
+                    "scope": "actor",
+                    "targetActorId": "0661a2f7-5493-46d9-ab58-6e9bff9a5f30"
+                },
+                {
+                    "type": "nodes.setVariable",
+                    "name": "day",
+                    "scope": "script",
+                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                    "source": {
+                        "type": "variables.day",
+                        "displayName": "Day"
+                    },
+                    "add": false
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.variableComparison",
+                                "variableScope": "global",
+                                "variableName": "time.hour",
+                                "operator": "lte",
+                                "compareTo": "2",
+                                "sceneId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                "propId": null
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.comment",
+                                    "message": "If it's after midnight, use the previous day's event.",
+                                    "commentor": "Cidney"
+                                },
+                                {
+                                    "type": "nodes.setVariable",
+                                    "name": "day",
+                                    "scope": "script",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "source": {
+                                        "type": "variables.literal",
+                                        "value": "-1",
+                                        "displayName": "Literal"
+                                    },
+                                    "add": true
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.showMenu",
+                    "id": "3b3a8772-983c-4268-bf9b-18e056ce0979",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "7e32c590-6e33-4caa-b213-4ebad0fd8ff4",
+                            "text": "Talk to Aeolus",
+                            "nodes": [
+                                {
+                                    "type": "nodes.trace",
+                                    "message": "Aeolus talk dispatcher"
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "script",
+                                                "variableName": "day",
+                                                "operator": "eq",
+                                                "compareTo": "1",
+                                                "sceneId": null,
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "25b8cd8d-b968-41ca-8221-b15dff4e8f74",
+                                                    "scriptId": "bd65badb-00a4-4ed9-b916-e466441130b0",
+                                                    "entryPointId": "",
+                                                    "currentScope": "StoryEvents",
+                                                    "currentSceneId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": "62c80bd1-3d98-4e9e-86c0-2ee4c6d3a927",
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "script",
+                                                "variableName": "day",
+                                                "operator": "eq",
+                                                "compareTo": "2",
+                                                "sceneId": null,
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "83e22e93-9895-45d3-8e1e-26cd22058842",
+                                                    "scriptId": "be177cc0-a91d-4481-98fa-a676040b74f4",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "script",
+                                                "variableName": "day",
+                                                "operator": "eq",
+                                                "compareTo": "3",
+                                                "sceneId": null,
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "c9570ef5-802f-4eb5-b8ef-b186faa06aa8",
+                                                    "scriptId": "cd18e2d6-2050-4a60-b8a5-b1527537ad64",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "script",
+                                                "variableName": "day",
+                                                "operator": "eq",
+                                                "compareTo": "4",
+                                                "sceneId": null,
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.inTags",
+                                                                "scope": "scene",
+                                                                "scopeId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                                                "scopeFilterId": null,
+                                                                "tags": "Talked Aeolus Day 3",
+                                                                "has": false
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.comment",
+                                                                    "message": "Day 3 has precedence over 4 if Shawn missed day 3.",
+                                                                    "commentor": "Missed day 3 talk"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.invokeScript",
+                                                                    "id": "363313bb-c067-4574-a9a4-d79ffb2e7cc0",
+                                                                    "scriptId": "cd18e2d6-2050-4a60-b8a5-b1527537ad64",
+                                                                    "entryPointId": "1f0a8708-978c-4174-b2f6-978c2a0efbe8",
+                                                                    "currentScope": "Scenes",
+                                                                    "currentSceneId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                                                    "currentActorId": null,
+                                                                    "currentStoryEventId": null,
+                                                                    "currentPropId": null
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": null,
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.invokeScript",
+                                                                    "id": "35a8d3eb-f375-416b-9e69-e3533464b4e3",
+                                                                    "scriptId": "580cf2ad-5181-4dd5-aae1-9ea85303174b",
+                                                                    "entryPointId": "",
+                                                                    "currentScope": "Scenes",
+                                                                    "currentSceneId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                                                    "currentActorId": null,
+                                                                    "currentStoryEventId": null,
+                                                                    "currentPropId": null
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "script",
+                                                "variableName": "day",
+                                                "operator": "eq",
+                                                "compareTo": "5",
+                                                "sceneId": null,
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "7d69578f-862f-4347-a7e4-ebf0e4f57a1f",
+                                                    "scriptId": "cfe9b437-e36a-40ef-9450-52b66af70ab6",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "script",
+                                                "variableName": "day",
+                                                "operator": "eq",
+                                                "compareTo": "6",
+                                                "sceneId": null,
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "416e1352-533f-425a-b21d-29d9a7723373",
+                                                    "scriptId": "c3409d63-4bd5-4c31-b4eb-9b884ea97fba",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "script",
+                                                "variableName": "day",
+                                                "operator": "eq",
+                                                "compareTo": "7",
+                                                "sceneId": null,
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "e2ecfc8d-0d5a-4c5f-8791-980c47f55c26",
+                                                    "scriptId": "780742f0-68d5-4d57-8650-4eee87302b76",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "script",
+                                                "variableName": "day",
+                                                "operator": "eq",
+                                                "compareTo": "11",
+                                                "sceneId": null,
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "b2f8c33c-4206-44ba-888d-fc0813bebb0f",
+                                                    "scriptId": "3cdd31af-4db3-4d61-8bd6-1eb8dc5ace54",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "script",
+                                                "variableName": "day",
+                                                "operator": "eq",
+                                                "compareTo": "12",
+                                                "sceneId": null,
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "b7ddb0a5-79ed-45e8-8d41-3f292c5e7a74",
+                                                    "scriptId": "8a5100e0-1aa1-41f2-a01f-89053e02d53c",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "script",
+                                                "variableName": "day",
+                                                "operator": "eq",
+                                                "compareTo": "16",
+                                                "sceneId": null,
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "5925b896-1fcf-467b-8220-bf6887129eeb",
+                                                    "scriptId": "bdb06403-3e5f-4091-9d84-746a9504b56b",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "script",
+                                                "variableName": "day",
+                                                "operator": "eq",
+                                                "compareTo": "17",
+                                                "sceneId": null,
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "02345869-d60a-4144-9d30-68284374e77a",
+                                                    "scriptId": "d3a97d28-060f-4eaa-9aa1-56423ab0204f",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "script",
+                                                "variableName": "day",
+                                                "operator": "eq",
+                                                "compareTo": "18",
+                                                "sceneId": null,
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.inTags",
+                                                                "scope": "scene",
+                                                                "scopeId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                                                "scopeFilterId": null,
+                                                                "tags": "hadMoiraTalk",
+                                                                "has": true
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.invokeScript",
+                                                                    "id": "c3c4e748-80b5-44e1-8c8f-fc64ca34745c",
+                                                                    "scriptId": "0610cb6e-00ce-4a7c-9cf3-309bb1c48d6e",
+                                                                    "entryPointId": "",
+                                                                    "currentScope": "Scenes",
+                                                                    "currentSceneId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                                                    "currentActorId": null,
+                                                                    "currentStoryEventId": null,
+                                                                    "currentPropId": null
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": null,
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.invokeScript",
+                                                                    "id": "0ead601c-f851-4b2a-9290-8aa5f693ee32",
+                                                                    "scriptId": "d3a97d28-060f-4eaa-9aa1-56423ab0204f",
+                                                                    "entryPointId": "",
+                                                                    "currentScope": "Scenes",
+                                                                    "currentSceneId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                                                    "currentActorId": null,
+                                                                    "currentStoryEventId": null,
+                                                                    "currentPropId": null
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "script",
+                                                "variableName": "day",
+                                                "operator": "eq",
+                                                "compareTo": "19",
+                                                "sceneId": null,
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "257d7245-315d-46a8-8f7f-f6d79ed8214c",
+                                                    "scriptId": "12699436-6fae-4ef4-a317-d0d0b110e306",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "script",
+                                                "variableName": "day",
+                                                "operator": "eq",
+                                                "compareTo": "20",
+                                                "sceneId": null,
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "de3718b8-ced3-4452-a141-74b79ef53b7c",
+                                                    "scriptId": "f1410920-e2ce-4a5a-ac4b-9f67bbce39b3",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "script",
+                                                "variableName": "day",
+                                                "operator": "eq",
+                                                "compareTo": "21",
+                                                "sceneId": null,
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "a55d85a9-447f-49cd-8dee-0b8b220a6327",
+                                                    "scriptId": "3a3ada85-16b2-46f9-8056-c3f2dd486c7a",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "script",
+                                                "variableName": "day",
+                                                "operator": "eq",
+                                                "compareTo": "23",
+                                                "sceneId": null,
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "2f11b0e5-a9ce-48e7-a167-70a7808c1cbc",
+                                                    "scriptId": "9260a966-2d26-4d93-8133-292d89f9b4e9",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "script",
+                                                "variableName": "day",
+                                                "operator": "eq",
+                                                "compareTo": "24",
+                                                "sceneId": null,
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "8a263b25-ba12-4eec-8291-fff55c57b6f9",
+                                                    "scriptId": "27991bdf-7187-4ba5-a1b7-0760beaf5eca",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "script",
+                                                "variableName": "day",
+                                                "operator": "eq",
+                                                "compareTo": "28",
+                                                "sceneId": null,
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "83fdb0b9-7c81-4e8a-a7e6-53a221dcd791",
+                                                    "scriptId": "77c0a174-318b-4c8f-942a-2ff3d52c54fb",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "script",
+                                                "variableName": "day",
+                                                "operator": "eq",
+                                                "compareTo": "29",
+                                                "sceneId": null,
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "aef3ea6c-651d-4eb1-aea9-4bca10922af8",
+                                                    "scriptId": "f102828a-f82c-4aad-91e2-f863fea9f297",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "script",
+                                                "variableName": "day",
+                                                "operator": "eq",
+                                                "compareTo": "30",
+                                                "sceneId": null,
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "35a130a0-1b96-46a4-8160-2cbaa2152b36",
+                                                    "scriptId": "ccd729e9-adab-4568-8c44-b64b4759eed2",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "script",
+                                                "variableName": "day",
+                                                "operator": "eq",
+                                                "compareTo": "35",
+                                                "sceneId": null,
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "de61fa9b-b98a-44ac-887b-6ed65c9c1f9f",
+                                                    "scope": "scene",
+                                                    "scopeId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "HadDead1",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "13d99f8d-0894-402f-ac4c-5507e808a459",
+                                                    "scriptId": "99b37035-2678-4d73-aeed-6cf2af688f35",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "script",
+                                                "variableName": "day",
+                                                "operator": "eq",
+                                                "compareTo": "36",
+                                                "sceneId": null,
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.inTags",
+                                                                "scope": "scene",
+                                                                "scopeId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                                                "scopeFilterId": null,
+                                                                "tags": "HadDead1",
+                                                                "has": true
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.invokeScript",
+                                                                    "id": "f447a61b-4932-4d43-a55f-4c928c2a6b70",
+                                                                    "scriptId": "563d9907-07b5-423b-8d19-6614109dd80c",
+                                                                    "entryPointId": "",
+                                                                    "currentScope": "StoryEvents",
+                                                                    "currentSceneId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                                                    "currentActorId": null,
+                                                                    "currentStoryEventId": "2d80755a-dc47-481b-adbe-da9f13630b98",
+                                                                    "currentPropId": null
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": null,
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.changeTags",
+                                                                    "id": "759ac344-465a-4702-8728-1d5a7b056b9b",
+                                                                    "scope": "scene",
+                                                                    "scopeId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                                                    "scopeFilterId": null,
+                                                                    "tagsToAdd": "HadDead1",
+                                                                    "tagsToRemove": null
+                                                                },
+                                                                {
+                                                                    "type": "nodes.invokeScript",
+                                                                    "id": "006bfeb2-4b06-4c98-8c1d-41a6036b01db",
+                                                                    "scriptId": "99b37035-2678-4d73-aeed-6cf2af688f35",
+                                                                    "entryPointId": "",
+                                                                    "currentScope": "Scenes",
+                                                                    "currentSceneId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                                                    "currentActorId": null,
+                                                                    "currentStoryEventId": null,
+                                                                    "currentPropId": null
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "script",
+                                                "variableName": "day",
+                                                "operator": "eq",
+                                                "compareTo": "37",
+                                                "sceneId": null,
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "6007a86d-02b4-492a-a570-ce2588a79314",
+                                                    "scriptId": "2d4535e7-17a8-42c7-9042-e256e0bcfcdf",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "script",
+                                                "variableName": "day",
+                                                "operator": "eq",
+                                                "compareTo": "38",
+                                                "sceneId": null,
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "99a3959b-9d5c-4003-8b85-2bdf98d47e36",
+                                                    "scriptId": "b7a3489b-7dd3-472d-8da3-9ea982c9cdef",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "script",
+                                                "variableName": "day",
+                                                "operator": "eq",
+                                                "compareTo": "39",
+                                                "sceneId": null,
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "154d128f-77ee-4e58-9986-93efc9574579",
+                                                    "scriptId": "8ab9e966-ea78-4b37-9eb7-ff2f588b5280",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "script",
+                                                "variableName": "day",
+                                                "operator": "eq",
+                                                "compareTo": "40",
+                                                "sceneId": null,
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "c17e5da4-6e52-42eb-a6df-c16dafe82221",
+                                                    "scriptId": "cdaab14e-f086-4616-b910-426db49aea29",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "script",
+                                                "variableName": "day",
+                                                "operator": "eq",
+                                                "compareTo": "41",
+                                                "sceneId": null,
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "d888b113-704a-4f85-9325-a130a6317d06",
+                                                    "scriptId": "59e0a45c-dea7-4f0a-90cb-65b6789e3c2e",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "script",
+                                                "variableName": "day",
+                                                "operator": "eq",
+                                                "compareTo": "42",
+                                                "sceneId": null,
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "8d20526f-565a-4107-a84f-c7a822f7843f",
+                                                    "scriptId": "456ac78f-8a35-4e2e-bd96-1379fa170950",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "script",
+                                                "variableName": "day",
+                                                "operator": "eq",
+                                                "compareTo": "43",
+                                                "sceneId": null,
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "2b861ba2-08b8-43a3-b325-73c96d475e77",
+                                                    "scriptId": "94e9c41f-5c33-4b41-abb9-cc4b687a6d54",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "script",
+                                                "variableName": "day",
+                                                "operator": "eq",
+                                                "compareTo": "44",
+                                                "sceneId": null,
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "a757b56d-e34d-4eb9-84d5-412d10002ba3",
+                                                    "scriptId": "d606bda6-068f-4b58-83a7-6cfd17c3ef44",
+                                                    "entryPointId": "",
+                                                    "currentScope": "StoryEvents",
+                                                    "currentSceneId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": "213b1d2e-c896-461a-b816-203545a930c7",
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "script",
+                                                "variableName": "day",
+                                                "operator": "eq",
+                                                "compareTo": "45",
+                                                "sceneId": null,
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "a9f334bb-1f5f-4ac6-94c0-859a477f927e",
+                                                    "scriptId": "2188f2c8-6098-4075-ab51-dd65dd117e01",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "script",
+                                                "variableName": "day",
+                                                "operator": "eq",
+                                                "compareTo": "46",
+                                                "sceneId": null,
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "3a2fdd54-b284-41b4-a264-520833630265",
+                                                    "scriptId": "c3afe704-f8c8-479b-a6fa-51065bc298e2",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "script",
+                                                "variableName": "day",
+                                                "operator": "eq",
+                                                "compareTo": "47",
+                                                "sceneId": null,
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "71105801-4498-484f-baaf-ad7208e5d75d",
+                                                    "scriptId": "25937fe0-61d1-4d01-bb19-422b429baaa9",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "script",
+                                                "variableName": "day",
+                                                "operator": "eq",
+                                                "compareTo": "48",
+                                                "sceneId": null,
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "b42e1a50-576d-4115-8471-4c9e7bfcd9cb",
+                                                    "scriptId": "bc722dc1-ca0e-46ef-b3c7-706f3152e1b2",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.trace",
+                                                    "message": "WARNING: Clicked on Aeolus on day when he should be absent."
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": true
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "f88ad316-869f-4acd-a714-e8ab1f9d91b8",
+                            "text": "Give Aeolus a Gift",
+                            "nodes": [
+                                {
+                                    "type": "nodes.invokeScript",
+                                    "id": "b62943c6-84c2-442b-ba8c-e79784cc909a",
+                                    "scriptId": "386fcaa0-e513-416f-9a7d-26894e9fc9b1",
+                                    "entryPointId": "",
+                                    "currentScope": "Actors",
+                                    "currentSceneId": null,
+                                    "currentActorId": "0661a2f7-5493-46d9-ab58-6e9bff9a5f30",
+                                    "currentStoryEventId": null,
+                                    "currentPropId": null
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inTags",
+                                    "scope": "actor",
+                                    "scopeId": "0661a2f7-5493-46d9-ab58-6e9bff9a5f30",
+                                    "scopeFilterId": null,
+                                    "tags": "GaveGift",
+                                    "has": false
+                                },
+                                "right": {
+                                    "type": "expressions.inTags",
+                                    "scope": "actor",
+                                    "scopeId": "0661a2f7-5493-46d9-ab58-6e9bff9a5f30",
+                                    "scopeFilterId": null,
+                                    "tags": "GotGift",
+                                    "has": true
+                                }
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": true
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

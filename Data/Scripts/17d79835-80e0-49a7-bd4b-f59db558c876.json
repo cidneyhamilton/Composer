@@ -1,0 +1,56 @@
+{
+    "type": "script",
+    "id": "17d79835-80e0-49a7-bd4b-f59db558c876",
+    "name": "_OnLoad",
+    "sceneId": "aee3c0c9-4f51-4537-843d-07e84acaff1a",
+    "trigger": {
+        "type": "triggers.load",
+        "name": "Load"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "cf3b063f-0a8b-4912-8a43-3fa7298e1076",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.onceDaily",
+                    "id": "282b74e7-e7e7-4d84-8353-5a8c60962393",
+                    "nodes": [
+                        {
+                            "type": "nodes.comment",
+                            "message": "Once Daily to keep the chest from disappearing until a Reset Day occurs. Putting this here (rather than in \"onResetDay scripts) makes it easier to keep in sync with other visibility setups.",
+                            "commentor": "Charles"
+                        },
+                        {
+                            "type": "nodes.branch",
+                            "sections": [
+                                {
+                                    "type": "nodes.branchSection",
+                                    "expression": {
+                                        "type": "expressions.inTags",
+                                        "scope": "prop",
+                                        "scopeId": "22ddf87a-4024-4575-9e2b-242d667e4d12",
+                                        "scopeFilterId": "aee3c0c9-4f51-4537-843d-07e84acaff1a",
+                                        "tags": "looted",
+                                        "has": true
+                                    },
+                                    "nodes": [
+                                        {
+                                            "type": "nodes.changePropVisibility",
+                                            "id": "af5618a8-126e-4423-bae6-44c1f8ba6086",
+                                            "propId": "22ddf87a-4024-4575-9e2b-242d667e4d12",
+                                            "sceneId": "aee3c0c9-4f51-4537-843d-07e84acaff1a",
+                                            "status": "Hidden",
+                                            "wait": true
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,322 @@
+{
+    "type": "script",
+    "id": "d5a25f73-e269-4551-a7d1-f18bfefe7b52",
+    "name": "onLooted",
+    "actorId": "3ec7237c-65ea-4a23-9e21-697f17a2dbe8",
+    "trigger": {
+        "type": "triggers.loot",
+        "name": "Loot"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "910c690a-a57f-4af8-bfa0-e1e5c4e3dc7a",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.speak",
+                    "id": "e61900e3-b683-4e24-8e74-723995acf5d3",
+                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "actorId2": null,
+                    "text": "Let's see what I can find of value on the Drat Queen...",
+                    "emotion": "0",
+                    "emotion2": "0",
+                    "device": "0",
+                    "device2": "0"
+                },
+                {
+                    "type": "nodes.playAnimation",
+                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "animationName": "KneelDown",
+                    "wait": true
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "target",
+                                "scopeId": null,
+                                "scopeFilterId": null,
+                                "tags": "U_LOOTED",
+                                "has": false
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inInventory",
+                                                "propId": "5446156d-e529-4db1-8a8c-e2b1e100323a",
+                                                "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.showCloseUp",
+                                                    "imageName": "CU_InfernoBlade.png"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "263575cc-5d6d-43fc-9778-55fcf838c524",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Ooh, there's a shiny bright dagger that's warm to the touch!",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.changeInventory",
+                                                    "id": "799076ff-dca4-4536-b8c5-70525fb3cd56",
+                                                    "propId": "5446156d-e529-4db1-8a8c-e2b1e100323a",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "change": "1",
+                                                    "count": 1,
+                                                    "notify": true
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.inTags",
+                                                                "scope": "actor",
+                                                                "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                "scopeFilterId": null,
+                                                                "tags": "SenseMagic",
+                                                                "has": true
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.invokeScript",
+                                                                    "id": "fbc60c11-c0b1-4241-9a86-4eaa5ffacba7",
+                                                                    "scriptId": "b1c2ecc1-eb00-49ed-a7ba-ea6af625c355",
+                                                                    "entryPointId": "910c690a-a57f-4af8-bfa0-e1e5c4e3dc7a",
+                                                                    "currentScope": "Scenes",
+                                                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                                                    "currentActorId": null,
+                                                                    "currentStoryEventId": null,
+                                                                    "currentPropId": null
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "bd98f846-3e05-4e25-b7d6-58b87ee7a763",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "text": "The magic on this blade does fire damage in addition to the pointy part.",
+                                                                    "emotion": "1",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "nodes.hideCloseUp",
+                                                    "waitForSeconds": 1
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inInventory",
+                                                "propId": "c45e6d78-c628-4f5d-bcb0-c6f3bf34cdae",
+                                                "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.showCloseUp",
+                                                    "imageName": "CU_Shivers.png"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "d8ef0d7c-7b25-4bb3-b9d5-629bbd6a95a3",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Ooh, there's a bright sharp dagger that's cold to the touch!",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.changeInventory",
+                                                    "id": "6880956b-fccb-4215-a882-3b3e7e2ddf8c",
+                                                    "propId": "c45e6d78-c628-4f5d-bcb0-c6f3bf34cdae",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "change": "1",
+                                                    "count": 1,
+                                                    "notify": true
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.inTags",
+                                                                "scope": "actor",
+                                                                "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                "scopeFilterId": null,
+                                                                "tags": "SenseMagic",
+                                                                "has": true
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.invokeScript",
+                                                                    "id": "e40d47db-7b94-4ff4-9612-d15009a95691",
+                                                                    "scriptId": "b1c2ecc1-eb00-49ed-a7ba-ea6af625c355",
+                                                                    "entryPointId": "910c690a-a57f-4af8-bfa0-e1e5c4e3dc7a",
+                                                                    "currentScope": "Scenes",
+                                                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                                                    "currentActorId": null,
+                                                                    "currentStoryEventId": null,
+                                                                    "currentPropId": null
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "2da23629-7806-4295-9884-3a1a17fd877e",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "The magic on this blade does additional frost damage.",
+                                                                    "emotion": "1",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "nodes.hideCloseUp",
+                                                    "waitForSeconds": 1
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.onceOnly",
+                                    "id": "ee71a98f-6284-4552-9fd2-eff1816523ce",
+                                    "nodes": [
+                                        {
+                                            "type": "nodes.changeTags",
+                                            "id": "cb721d0d-b437-4c05-84ce-2193abb0548a",
+                                            "scope": "target",
+                                            "scopeId": null,
+                                            "scopeFilterId": null,
+                                            "tagsToAdd": "U_LOOTED",
+                                            "tagsToRemove": null
+                                        },
+                                        {
+                                            "type": "nodes.showCloseUp",
+                                            "imageName": "CU_disappearing.png"
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "b586b899-8bd7-406d-80db-243b55e3d6ed",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "There's a purple ring on her claw, I almost didn't notice it...",
+                                            "emotion": "0",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.changeInventory",
+                                            "id": "76e2b3ac-4abf-422e-a8ab-91bdf4b3cf9c",
+                                            "propId": "2a17e782-e1b7-48b4-af63-ef9cd4976886",
+                                            "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                            "change": "1",
+                                            "count": 1,
+                                            "notify": true
+                                        },
+                                        {
+                                            "type": "nodes.hideCloseUp",
+                                            "waitForSeconds": 1
+                                        },
+                                        {
+                                            "type": "nodes.branch",
+                                            "sections": [
+                                                {
+                                                    "type": "nodes.branchSection",
+                                                    "expression": {
+                                                        "type": "expressions.inTags",
+                                                        "scope": "actor",
+                                                        "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                        "scopeFilterId": null,
+                                                        "tags": "SenseMagic",
+                                                        "has": true
+                                                    },
+                                                    "nodes": [
+                                                        {
+                                                            "type": "nodes.invokeScript",
+                                                            "id": "067f711d-7815-481f-8254-092229e95cdc",
+                                                            "scriptId": "b1c2ecc1-eb00-49ed-a7ba-ea6af625c355",
+                                                            "entryPointId": "910c690a-a57f-4af8-bfa0-e1e5c4e3dc7a",
+                                                            "currentScope": "Scenes",
+                                                            "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                                            "currentActorId": null,
+                                                            "currentStoryEventId": null,
+                                                            "currentPropId": null
+                                                        },
+                                                        {
+                                                            "type": "nodes.speak",
+                                                            "id": "57e4a0d9-68cd-448f-a1d7-32613a502974",
+                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                            "actorId2": null,
+                                                            "text": "This ring has a lot to do with stealth and agility.",
+                                                            "emotion": "1",
+                                                            "emotion2": "0",
+                                                            "device": "0",
+                                                            "device2": "0"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "f571f953-ce4c-4550-adff-7c9ebe942180",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "I don't see anything else of interest.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.playAnimation",
+                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "animationName": "KneelUp",
+                    "wait": true
+                }
+            ]
+        }
+    ]
+}

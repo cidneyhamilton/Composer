@@ -1,0 +1,76 @@
+{
+    "type": "script",
+    "id": "97a4acdb-54e2-4958-8ced-7bb030a3c8be",
+    "name": "Check for Game Master",
+    "propId": "df956c1d-47f4-42b4-a18f-35e3a025f63c",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.manual",
+        "name": "Manual"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "454b7d54-9577-40d7-8e29-4ba0e5ad4068",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.hasAchievement",
+                                "propId": "df956c1d-47f4-42b4-a18f-35e3a025f63c",
+                                "sceneId": "a4d66827-dd60-451f-8015-62b8abb42f0c",
+                                "achievementStatus": "1"
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.and",
+                                                "left": {
+                                                    "type": "expressions.skillCheck",
+                                                    "skill": "Gaming",
+                                                    "target": "75"
+                                                },
+                                                "right": {
+                                                    "type": "expressions.and",
+                                                    "left": {
+                                                        "type": "expressions.skillCheck",
+                                                        "skill": "Luck",
+                                                        "target": "50"
+                                                    },
+                                                    "right": {
+                                                        "type": "expressions.inTags",
+                                                        "scope": "scene",
+                                                        "scopeId": "a4d66827-dd60-451f-8015-62b8abb42f0c",
+                                                        "scopeFilterId": null,
+                                                        "tags": "WonPoolVsSosi,WonDartsVsKatie,WonCardsVsEsme,WonPoobah",
+                                                        "has": true
+                                                    }
+                                                }
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.achievements",
+                                                    "id": "1c61113a-80bb-4495-bc67-a915a2c343bc",
+                                                    "sceneId": "a4d66827-dd60-451f-8015-62b8abb42f0c",
+                                                    "propId": "df956c1d-47f4-42b4-a18f-35e3a025f63c"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,222 @@
+{
+    "type": "script",
+    "id": "83836c45-f051-4336-a219-c7ab1f81f5c2",
+    "name": "Interact with Amanitas 2",
+    "sceneId": "1b5e1889-5aca-4af5-a616-80fad9d4cfa1",
+    "propId": "453fc5df-5674-4271-a418-c5cba952cff1",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "6c500ab2-cf6c-44ed-9d23-1abbf4188a82",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.playAnimation",
+                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "animationName": "KneelDown",
+                    "wait": false
+                },
+                {
+                    "type": "nodes.showMenu",
+                    "id": "4a32da21-abe1-42ed-8b8e-e2ad882b820b",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "0842fa7d-1d74-4b99-91d9-f7cc5d7e7b93",
+                            "text": "Look at the Mushrooms",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "actor",
+                                                "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                "scopeFilterId": null,
+                                                "tags": "MushroomLore",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "e34cd260-9f85-4ac4-884b-d64275abf902",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Aha! Amanitas! Just call me a mushroom and toadstool scholar!",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "8469fc14-d788-45af-9b6f-13b2dfbb80b5",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "It's definitely some kind of fungi.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "5d005750-f61f-4466-bf3c-c6a5a0163fe9",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "(I recognize my own kind.)",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "2e5f02dc-c42a-4f6d-9965-c80eda17498b",
+                            "text": "Gather Some Mushrooms",
+                            "nodes": [
+                                {
+                                    "type": "nodes.playSoundEffect",
+                                    "soundEffectName": "Collect Mushrooms.wav",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "actor",
+                                                "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                "scopeFilterId": null,
+                                                "tags": "MushroomLore",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changeInventory",
+                                                    "id": "3eef1f2a-4da3-46c8-b2cb-45e5247eeee2",
+                                                    "propId": "2dfbdcd3-18c3-4115-b45f-7301c16a7931",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "change": "1",
+                                                    "count": 1,
+                                                    "notify": true
+                                                },
+                                                {
+                                                    "type": "nodes.changePropVisibility",
+                                                    "id": "3d5fe626-55ec-40a0-a98b-d1c7e7cf5ec6",
+                                                    "propId": "453fc5df-5674-4271-a418-c5cba952cff1",
+                                                    "sceneId": "1b5e1889-5aca-4af5-a616-80fad9d4cfa1",
+                                                    "visible": false,
+                                                    "status": "Hidden",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "c29f477f-62aa-4df8-92b2-eea88927a7c4",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Okay, I've taken some Amanitas.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "960337e9-c9d1-43c3-9aad-c237a5e83037",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Which is great, 'cuz Amaniting some of these.",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.setVariable",
+                                                    "name": "respawn_timer",
+                                                    "scope": "prop",
+                                                    "scopeId": "453fc5df-5674-4271-a418-c5cba952cff1",
+                                                    "sceneId": "1b5e1889-5aca-4af5-a616-80fad9d4cfa1",
+                                                    "source": {
+                                                        "type": "variables.random",
+                                                        "value": "",
+                                                        "min": 1,
+                                                        "max": "3",
+                                                        "displayName": "Random"
+                                                    },
+                                                    "add": false
+                                                },
+                                                {
+                                                    "type": "nodes.playAnimation",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "animationName": "KneelUp"
+                                                },
+                                                {
+                                                    "type": "nodes.endScript"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "49d626e0-7f56-433c-bb97-752d0898966c",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Without knowing what I'm picking, I could be poisoning myself just by touching these.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "2",
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                },
+                {
+                    "type": "nodes.playAnimation",
+                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "animationName": "KneelUp"
+                }
+            ]
+        }
+    ]
+}

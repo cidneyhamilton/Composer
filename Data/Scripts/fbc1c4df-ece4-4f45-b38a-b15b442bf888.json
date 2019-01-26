@@ -1,0 +1,516 @@
+{
+    "type": "script",
+    "id": "fbc1c4df-ece4-4f45-b38a-b15b442bf888",
+    "name": "Interact with Aeolus's Wardrobe",
+    "sceneId": "9897ecb3-4200-4884-867a-2840471747b8",
+    "propId": "d43f48df-9b85-4762-824d-3011b8a28219",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "6ced5263-2e7f-48ac-b0c4-e901234e80ca",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.onceDaily",
+                    "id": "7f7ca1dd-07e2-4995-9014-15c85fa4c527",
+                    "nodes": [
+                        {
+                            "type": "nodes.changeTags",
+                            "id": "36159f5b-9f5e-4384-9809-4195e552ac4e",
+                            "scope": "target",
+                            "scopeId": null,
+                            "scopeFilterId": null,
+                            "tagsToRemove": "pickedToday"
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.showMenu",
+                    "id": "74329a30-668c-459d-849c-0e699d49e9b9",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "12ed2731-a6d3-4679-a446-c73a1cbe47e2",
+                            "text": "Examine Aeolus' Wardrobe",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "actor",
+                                                "scopeId": "0661a2f7-5493-46d9-ab58-6e9bff9a5f30",
+                                                "scopeFilterId": null,
+                                                "tags": "AeolusGone",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "50bca60d-39d9-4e74-b5f2-84dd3936d94b",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "The cupboard is bare.",
+                                                    "emotion": "0",
+                                                    "device": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "8f2bc7a6-0726-4d68-be1e-4589811bb351",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Aeolus has plastered his wardrobe with playbills and concert posters.",
+                                                    "emotion": "0",
+                                                    "device": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "5",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "35f128d4-1203-4705-95bf-c5e29df1c1f3",
+                            "text": "Examine the Lock",
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "d729c0a9-93c6-43f3-be2b-d75935ddf0e0",
+                                    "scope": "target",
+                                    "scopeId": "2dafe33c-8486-4773-8f7c-5925c3ef4144",
+                                    "scopeFilterId": "cf824b0f-5af6-4a19-bac8-552a2a1bbebf",
+                                    "tagsToAdd": "examinedLock",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "id": "e792a490-d5e8-4e91-b3cb-a6d03b73c791",
+                                    "type": "nodes.skillBranch",
+                                    "skill": "Perception",
+                                    "target": "30",
+                                    "success": {
+                                        "type": "nodes.block",
+                                        "nodes": [
+                                            {
+                                                "type": "nodes.speak",
+                                                "id": "e7bc70b8-213f-499c-bff4-fe7929c8a948",
+                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                "actorId2": null,
+                                                "text": "It's a Brown Class lock. This should be no problem at all!",
+                                                "emotion": "0",
+                                                "emotion2": "0",
+                                                "device": "0",
+                                                "device2": "0"
+                                            }
+                                        ]
+                                    },
+                                    "failure": {
+                                        "type": "nodes.block",
+                                        "nodes": [
+                                            {
+                                                "type": "nodes.speak",
+                                                "id": "f085a078-cf57-48c1-99aa-ce6d174dbb54",
+                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                "actorId2": null,
+                                                "text": "Hard to tell what sort of lock this is... guess I haven't studied up enough.",
+                                                "emotion": "0",
+                                                "emotion2": "0",
+                                                "device": "0",
+                                                "device2": "0"
+                                            }
+                                        ]
+                                    },
+                                    "notify": true
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inTags",
+                                    "scope": "actor",
+                                    "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "scopeFilterId": null,
+                                    "tags": "ReadAL",
+                                    "has": true
+                                },
+                                "right": {
+                                    "type": "expressions.and",
+                                    "left": {
+                                        "type": "expressions.inTags",
+                                        "scope": "target",
+                                        "scopeId": "2dafe33c-8486-4773-8f7c-5925c3ef4144",
+                                        "scopeFilterId": "cf824b0f-5af6-4a19-bac8-552a2a1bbebf",
+                                        "tags": "examinedLock",
+                                        "has": false
+                                    },
+                                    "right": {
+                                        "type": "expressions.and",
+                                        "left": {
+                                            "type": "expressions.inTags",
+                                            "scope": "target",
+                                            "scopeId": "d43f48df-9b85-4762-824d-3011b8a28219",
+                                            "scopeFilterId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                            "tags": "lockdiscovered",
+                                            "has": true
+                                        },
+                                        "right": {
+                                            "type": "expressions.and",
+                                            "left": {
+                                                "type": "expressions.inTags",
+                                                "scope": "scene",
+                                                "scopeId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                                "scopeFilterId": null,
+                                                "tags": "AeolusPresent",
+                                                "has": false
+                                            },
+                                            "right": {
+                                                "type": "expressions.inTags",
+                                                "scope": "actor",
+                                                "scopeId": "0661a2f7-5493-46d9-ab58-6e9bff9a5f30",
+                                                "scopeFilterId": null,
+                                                "tags": "AeolusGone",
+                                                "has": false
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "c746b5a0-669a-499f-8235-f0c5f9e6207f",
+                            "text": "Open Aeolus' wardrobe",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "4ddcf58e-c48a-4e51-a3fa-d5b01ae0a5d8",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Let's see what my roommate keeps in his wardrobe.",
+                                    "emotion": "0",
+                                    "device": "0"
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "target",
+                                                "scopeId": "d43f48df-9b85-4762-824d-3011b8a28219",
+                                                "scopeFilterId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                                "tags": "locked",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "fda71b1a-eef9-4748-ba8f-2966653ef9e3",
+                                                    "scope": "target",
+                                                    "scopeId": "d43f48df-9b85-4762-824d-3011b8a28219",
+                                                    "scopeFilterId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                                    "tagsToAdd": "lockdiscovered",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "04b6104a-83da-4c5e-9ad8-daa4e32f9821",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "It won't open... It's locked!",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changePropVisibility",
+                                                    "id": "428d7994-d1e8-4da7-a434-e21d78d38f2c",
+                                                    "propId": "dc03a0f6-a28b-4679-a470-886f0ed5d01e",
+                                                    "sceneId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                                    "visible": false,
+                                                    "status": "Hidden",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.changePropVisibility",
+                                                    "id": "3a0fac0c-e8b3-44d4-9c9c-66b78388cd99",
+                                                    "propId": "5d981106-9dd1-4859-91de-fb5085e3835b",
+                                                    "sceneId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                                    "visible": true,
+                                                    "status": "Visible",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "14a8fcfb-f50f-4426-b5ed-c96157323870",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Why, this wardrobe - It's completely empty!",
+                                                    "emotion": "4",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "e270098a-b306-43e6-ae88-27f0a6123062",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Makes sense, I guess. Everything Aeolus owns is already all over the room.",
+                                                    "emotion": "0",
+                                                    "device": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.changePropVisibility",
+                                                    "id": "12fc3401-68c5-4cee-9b54-37690285d02f",
+                                                    "propId": "dc03a0f6-a28b-4679-a470-886f0ed5d01e",
+                                                    "sceneId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                                    "visible": true,
+                                                    "status": "Visible",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.changePropVisibility",
+                                                    "id": "3903e30b-cef4-4122-83e7-d5543a817de1",
+                                                    "propId": "5d981106-9dd1-4859-91de-fb5085e3835b",
+                                                    "sceneId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                                    "visible": false,
+                                                    "status": "Hidden",
+                                                    "wait": true
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inTags",
+                                    "scope": "scene",
+                                    "scopeId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                    "scopeFilterId": null,
+                                    "tags": "AeolusPresent",
+                                    "has": false
+                                },
+                                "right": {
+                                    "type": "expressions.inTags",
+                                    "scope": "actor",
+                                    "scopeId": "0661a2f7-5493-46d9-ab58-6e9bff9a5f30",
+                                    "scopeFilterId": null,
+                                    "tags": "AeolusGone",
+                                    "has": false
+                                }
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "5",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "eb61ab86-e437-41ed-885e-6e833484415e",
+                            "text": "Pick the Lock",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "global",
+                                                "variableName": "ego.haslockpick",
+                                                "operator": "eq",
+                                                "compareTo": "true",
+                                                "sceneId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "e41a4284-c6b7-4214-b199-ae116d14b42f",
+                                                    "scope": "target",
+                                                    "scopeId": null,
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "pickedToday",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.playAnimation",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "animationName": "KneelDown",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "id": "61695f90-725a-4e8c-8c79-1a7b92d34b96",
+                                                    "type": "nodes.skillBranch",
+                                                    "skill": "Tool Use",
+                                                    "target": "25",
+                                                    "success": {
+                                                        "type": "nodes.block",
+                                                        "nodes": [
+                                                            {
+                                                                "type": "nodes.playSoundEffect",
+                                                                "soundEffectName": "lockpick_success.wav",
+                                                                "wait": true
+                                                            },
+                                                            {
+                                                                "type": "nodes.speak",
+                                                                "id": "c306a369-e00e-4aeb-a27f-3e30ae34c7d3",
+                                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                "actorId2": null,
+                                                                "text": "Hah! Those cheap wardrobe locks are no obstacle to a Future Master Rogue!",
+                                                                "emotion": "1",
+                                                                "device": "0"
+                                                            },
+                                                            {
+                                                                "type": "nodes.changeTags",
+                                                                "id": "2ac7e767-74db-4272-ac45-3b1ace2f12a9",
+                                                                "scope": "target",
+                                                                "scopeId": null,
+                                                                "scopeFilterId": null,
+                                                                "tagsToRemove": "locked"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "failure": {
+                                                        "type": "nodes.block",
+                                                        "nodes": [
+                                                            {
+                                                                "type": "nodes.playSoundEffect",
+                                                                "soundEffectName": "lockpick_failure.wav",
+                                                                "wait": true
+                                                            },
+                                                            {
+                                                                "type": "nodes.speak",
+                                                                "id": "13d6dc15-9f2e-4092-849d-000f41cb019d",
+                                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                "actorId2": null,
+                                                                "text": "Oh come on! I can't even open a stupid wardrobe lock. Maybe I'd better get some practice if I'm ever going to be a real Rogue.",
+                                                                "emotion": "2",
+                                                                "device": "0"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "notify": true
+                                                },
+                                                {
+                                                    "type": "nodes.playAnimation",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "animationName": "KneelUp",
+                                                    "wait": false
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "a178e0d2-a094-4120-b2e4-aff6f26b5b3b",
+                                                    "scriptId": "a2f2b3a1-0fdd-4797-89ce-3815d7f3f8c4",
+                                                    "entryPointId": "6ced5263-2e7f-48ac-b0c4-e901234e80ca",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inTags",
+                                    "scope": "scene",
+                                    "scopeId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                    "scopeFilterId": null,
+                                    "tags": "AeolusPresent",
+                                    "has": false
+                                },
+                                "right": {
+                                    "type": "expressions.and",
+                                    "left": {
+                                        "type": "expressions.inTags",
+                                        "scope": "actor",
+                                        "scopeId": "0661a2f7-5493-46d9-ab58-6e9bff9a5f30",
+                                        "scopeFilterId": null,
+                                        "tags": "AeolusGone",
+                                        "has": false
+                                    },
+                                    "right": {
+                                        "type": "expressions.and",
+                                        "left": {
+                                            "type": "expressions.inTags",
+                                            "scope": "target",
+                                            "scopeId": "d43f48df-9b85-4762-824d-3011b8a28219",
+                                            "scopeFilterId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                            "tags": "locked",
+                                            "has": true
+                                        },
+                                        "right": {
+                                            "type": "expressions.and",
+                                            "left": {
+                                                "type": "expressions.inTags",
+                                                "scope": "target",
+                                                "scopeId": "d43f48df-9b85-4762-824d-3011b8a28219",
+                                                "scopeFilterId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                                "tags": "lockdiscovered",
+                                                "has": true
+                                            },
+                                            "right": {
+                                                "type": "expressions.inTags",
+                                                "scope": "target",
+                                                "scopeId": null,
+                                                "scopeFilterId": null,
+                                                "tags": "pickedToday",
+                                                "has": false
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "5",
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

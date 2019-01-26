@@ -1,0 +1,336 @@
+{
+    "type": "script",
+    "id": "0b4b12d6-7743-441a-9975-e36bc90031d9",
+    "name": "Examine Portrait of Weston Belier",
+    "propId": "2c117f78-bb6c-4165-9ca1-b5f6ab910e34",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "b695870e-5ec0-48bd-9376-a7c01219ea4d",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "8f258f10-c777-4f9e-b490-8c0edc6f6cec",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "be20410a-4637-4b9e-8386-e5236b7ae01b",
+                            "text": "Look at the Portrait",
+                            "nodes": [
+                                {
+                                    "type": "nodes.showCloseUp",
+                                    "imageName": "Close-Up_WestonLeeBleier.jpg"
+                                },
+                                {
+                                    "type": "nodes.nodeCycle",
+                                    "id": "1a9d9414-52c7-41c5-8be3-6cbf78ef7ba7",
+                                    "nodes": [
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "1d403c6a-5775-407e-afdd-6fa54dfebe68",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "The plaque says, \"Weston Bleier, B Squad Leader. Turn-ons include: the color red.\" What in the world is a \"turn-on\"?",
+                                            "emotion": "0",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "db859341-18d6-4630-a046-09d453aa6abc",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "Wait, this one doesn't look like a rogue! Infiltrator!",
+                                            "emotion": "3",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "2c66a786-3cec-44e8-bbd4-6b885e108318",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "He looks like a man who's afraid that somebody is going to steal his painting.",
+                                            "emotion": "3",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "e88d716d-cb7b-47f1-96c6-892d0eee71d7",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "I'll bet he doesn't eat quiche.",
+                                            "emotion": "0",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.hideCloseUp",
+                                    "waitForSeconds": 1
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "2",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "2e50a4f2-7c95-480f-9b2e-af2fec90e06b",
+                            "text": "Sense Magic",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "prop",
+                                                "scopeId": "2c117f78-bb6c-4165-9ca1-b5f6ab910e34",
+                                                "scopeFilterId": "3256b6d8-50b9-4764-b016-01ea538ea55f",
+                                                "tags": "Westonsensedmagic",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "e128c60c-a374-4e54-8ce4-7388c4693616",
+                                                    "scope": "prop",
+                                                    "scopeId": "2c117f78-bb6c-4165-9ca1-b5f6ab910e34",
+                                                    "scopeFilterId": "3256b6d8-50b9-4764-b016-01ea538ea55f",
+                                                    "tagsToAdd": "Westonsensedmagic",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "id": "4fb436e4-f430-43f0-9e5b-061c46a11e91",
+                                                    "type": "nodes.skillBranch",
+                                                    "skill": "Magic",
+                                                    "target": "20",
+                                                    "success": {
+                                                        "type": "nodes.block",
+                                                        "nodes": []
+                                                    },
+                                                    "failure": {
+                                                        "type": "nodes.block",
+                                                        "nodes": []
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "scene",
+                                                "scopeId": "eceae806-6f55-4cde-b517-c73b1c924fd9",
+                                                "scopeFilterId": null,
+                                                "tags": "GObreakin",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "a39b0c02-f545-4774-8c10-f284ecf16a76",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Now is a great time for this portrait to show up as magical...",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "6fcea337-7779-496d-919d-9e9022b4aa9d",
+                                                    "scriptId": "533e1ce1-13d3-439f-8544-dbdf808d30c4",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "fcfcca9f-1bbb-4cf8-a2ca-73bcaa3a365d",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "No such luck.",
+                                                    "emotion": "2",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "af464fed-4336-4df5-a6a1-c1ab354463df",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "There's no magic to be found around here. ",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "actor",
+                                "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                "scopeFilterId": null,
+                                "tags": "SenseMagic",
+                                "has": true
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "2",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "873b368f-eeed-4f7f-b3a7-9f53fac85110",
+                            "text": "Search the Portrait",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "scene",
+                                                "scopeId": "eceae806-6f55-4cde-b517-c73b1c924fd9",
+                                                "scopeFilterId": null,
+                                                "tags": "GObreakin",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "46162a30-0366-409e-b890-026729ef5f65",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "I wonder if anyone hid something here...",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "1770352f-00cb-4996-a87b-51f334f02ddb",
+                                                    "scriptId": "b034c7b9-29f5-46ab-b66a-3a39f340b33b",
+                                                    "entryPointId": "b695870e-5ec0-48bd-9376-a7c01219ea4d",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "baae9056-e7ca-4e64-9b22-7ac2769cbd57",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "<sigh> Nothing but Weston here.",
+                                                    "emotion": "2",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "3d070322-6fb4-4c09-a146-c0c5ad3980b3",
+                                                    "scriptId": "b034c7b9-29f5-46ab-b66a-3a39f340b33b",
+                                                    "entryPointId": "b695870e-5ec0-48bd-9376-a7c01219ea4d",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "4b0c7820-5c58-4e0c-9f96-5034c8a9ff61",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "No secret compartments or passages behind the painting here.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "2",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "f0e53e0b-9b36-4bce-86c8-00a820835703",
+                            "text": "Move the Portrait",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "e6434a0b-2cf8-462f-a37b-657f86c03863",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "They really fasten these paintings solidly to the wall. It would take a determined thief to steal this... and I'm not that determined.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "2",
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

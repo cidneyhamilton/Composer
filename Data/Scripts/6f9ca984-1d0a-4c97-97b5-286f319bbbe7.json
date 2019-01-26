@@ -1,0 +1,573 @@
+{
+    "type": "script",
+    "id": "6f9ca984-1d0a-4c97-97b5-286f319bbbe7",
+    "name": "Katie RR07_Thief Aftermath",
+    "sceneId": "84006d08-8e6d-4558-b9b5-101f3c3054fe",
+    "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+    "trigger": {
+        "type": "triggers.manual",
+        "name": "Manual"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "8cf2655c-7e16-4cc3-a23f-b523869cb100",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "c9263894-fc45-4dfa-b2b3-35089dc47f96",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "2fb982d5-e70c-44db-a050-05cf32c06578",
+                            "text": "Talk About Katie's Comment",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "actor",
+                                                "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                "scopeFilterId": null,
+                                                "tags": "fkwirkcaught",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "335be7af-ae46-4237-b5eb-beeee86f9d22",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                                    "text": "So how well do you think you know me?",
+                                                    "emotion": "1",
+                                                    "emotion2": "1",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "73ddfc24-267d-4a09-a9d6-eeb972b2b78c",
+                                                    "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "Well enough.",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.showMenu",
+                                                    "id": "182c1626-a386-4a23-9118-482138a665c4",
+                                                    "options": [
+                                                        {
+                                                            "type": "options.text",
+                                                            "id": "77f76b96-41d4-4105-aa6b-d83a47650a66",
+                                                            "text": "Say Something Charming",
+                                                            "nodes": [
+                                                                {
+                                                                    "id": "dd8c6dfa-9b4c-4ce5-9ad0-676fd3f571fa",
+                                                                    "type": "nodes.skillBranch",
+                                                                    "skill": "Charm",
+                                                                    "target": "30",
+                                                                    "success": {
+                                                                        "type": "nodes.block",
+                                                                        "nodes": []
+                                                                    },
+                                                                    "failure": {
+                                                                        "type": "nodes.block",
+                                                                        "nodes": []
+                                                                    },
+                                                                    "notify": true
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeReputation",
+                                                                    "id": "50bbee26-2bce-492d-bdab-e7864882c515",
+                                                                    "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                                                    "amount": "1",
+                                                                    "change": "1",
+                                                                    "notify": true
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "dbc87204-408d-466c-a45e-cfbf066611a9",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                                                    "text": "I'd certainly like to get to know you better. You are a fascinating person.",
+                                                                    "emotion": "1",
+                                                                    "emotion2": "4",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ],
+                                                            "expression": null,
+                                                            "ignoreChildAvailability": false,
+                                                            "minutes": "1",
+                                                            "ExitMenu": false
+                                                        },
+                                                        {
+                                                            "type": "options.text",
+                                                            "id": "8e58b498-a9c0-4eb5-9c7a-975d9ccb14c0",
+                                                            "text": "Say Something Clever",
+                                                            "nodes": [
+                                                                {
+                                                                    "id": "23dd0217-a616-461a-8c07-f5457cef5c24",
+                                                                    "type": "nodes.skillBranch",
+                                                                    "skill": "Smarts",
+                                                                    "target": "30",
+                                                                    "success": {
+                                                                        "type": "nodes.block",
+                                                                        "nodes": [
+                                                                            {
+                                                                                "type": "nodes.changeReputation",
+                                                                                "id": "3c516822-130a-4f5e-95e5-0adbaee6685e",
+                                                                                "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                                                                "amount": "1",
+                                                                                "change": "1",
+                                                                                "notify": true
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    "failure": {
+                                                                        "type": "nodes.block",
+                                                                        "nodes": []
+                                                                    },
+                                                                    "notify": true
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "26ccc27a-001a-4cfb-827a-3c2ea4fc9802",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                                                    "text": "There's a lot about me that you don't know. Just as there is a lot about you that I haven't learned yet. I think that the more we learn about one another, the more we'll like the other.",
+                                                                    "emotion": "1",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "bf65e5a2-f3da-42be-afc5-eaeaf632c544",
+                                                                    "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "text": "We'll see about that.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "1",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ],
+                                                            "expression": null,
+                                                            "ignoreChildAvailability": false,
+                                                            "minutes": "3",
+                                                            "ExitMenu": false
+                                                        },
+                                                        {
+                                                            "type": "options.text",
+                                                            "id": "69e3a4c5-db8d-42ad-9456-96a49625e20a",
+                                                            "text": "Say Something Snarky",
+                                                            "nodes": [
+                                                                {
+                                                                    "id": "50ea2c29-5ae2-4c61-b004-c1cbef94e582",
+                                                                    "type": "nodes.skillBranch",
+                                                                    "skill": "Moxie",
+                                                                    "target": "30",
+                                                                    "success": {
+                                                                        "type": "nodes.block",
+                                                                        "nodes": [
+                                                                            {
+                                                                                "type": "nodes.changeReputation",
+                                                                                "id": "174f07d0-98b1-4d37-8b00-9c3b77d001e6",
+                                                                                "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                                                                "amount": "1",
+                                                                                "change": "1",
+                                                                                "notify": true
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    "failure": {
+                                                                        "type": "nodes.block",
+                                                                        "nodes": []
+                                                                    },
+                                                                    "notify": true
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "c00da26d-2f43-402b-b613-d6cad30030b8",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                                                    "text": "So if it takes one to know one - and you know me - We must be a lot alike. ",
+                                                                    "emotion": "1",
+                                                                    "emotion2": "4",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "c643c0e3-a234-48f4-9b82-c66e4401717b",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                                                    "text": "You're cynical and snarky. I like that in a person.",
+                                                                    "emotion": "1",
+                                                                    "emotion2": "1",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ],
+                                                            "expression": null,
+                                                            "ignoreChildAvailability": false,
+                                                            "minutes": "3",
+                                                            "ExitMenu": false
+                                                        }
+                                                    ],
+                                                    "AutoAddDone": false,
+                                                    "Unique": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "872f6298-f626-4add-a12c-e02795a273c4",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                                    "text": "Why do you think I want the class to shut down?",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "a601bd1a-526a-402f-8992-aef0735dcb6d",
+                                                    "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "I got the impression that you really didn't want to be here... that you were forced to come.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.showMenu",
+                                                    "id": "4ab9e595-a95a-4746-bb62-e3726e794777",
+                                                    "options": [
+                                                        {
+                                                            "type": "options.text",
+                                                            "id": "359df244-ec4d-40d6-9ff7-6a4db669673f",
+                                                            "text": "Say Something Charming",
+                                                            "nodes": [
+                                                                {
+                                                                    "id": "1780fc80-140f-4eb0-8b7f-de3f1e4c4402",
+                                                                    "type": "nodes.skillBranch",
+                                                                    "skill": "Charm",
+                                                                    "target": "30",
+                                                                    "success": {
+                                                                        "type": "nodes.block",
+                                                                        "nodes": []
+                                                                    },
+                                                                    "failure": {
+                                                                        "type": "nodes.block",
+                                                                        "nodes": []
+                                                                    },
+                                                                    "notify": true
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeReputation",
+                                                                    "id": "5b124314-2562-4d7d-83e2-0c06464a6e84",
+                                                                    "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                                                    "amount": "1",
+                                                                    "change": "1",
+                                                                    "notify": true
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "d5c51628-6109-4261-8f85-11c58f7f122e",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                                                    "text": "I may have been reluctant to come here, but I'm not sorry to be here. Where else could I meet such a fascinating woman like you?",
+                                                                    "emotion": "1",
+                                                                    "emotion2": "4",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "1f29bba6-71c8-43de-97be-893edaa501f5",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                                                    "text": "I want to stay in school. It gives me more time to spend with you.",
+                                                                    "emotion": "1",
+                                                                    "emotion2": "1",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ],
+                                                            "expression": null,
+                                                            "ignoreChildAvailability": false,
+                                                            "minutes": "3",
+                                                            "ExitMenu": true
+                                                        },
+                                                        {
+                                                            "type": "options.text",
+                                                            "id": "08b5d088-9f7b-42df-aa33-c198157db44d",
+                                                            "text": "Say Something Clever",
+                                                            "nodes": [
+                                                                {
+                                                                    "id": "14adf565-fdf8-4317-b9ed-60b306af5912",
+                                                                    "type": "nodes.skillBranch",
+                                                                    "skill": "Smarts",
+                                                                    "target": "30",
+                                                                    "success": {
+                                                                        "type": "nodes.block",
+                                                                        "nodes": [
+                                                                            {
+                                                                                "type": "nodes.changeReputation",
+                                                                                "id": "78141a69-ef18-444b-b5df-f51e1eb8a68e",
+                                                                                "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                                                                "amount": "1",
+                                                                                "change": "1",
+                                                                                "notify": true
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    "failure": {
+                                                                        "type": "nodes.block",
+                                                                        "nodes": []
+                                                                    },
+                                                                    "notify": true
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "f618df95-0eb5-4c8f-abe8-13bd977e7d57",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                                                    "text": "I chose to come here. I'm not about to leave. There's too much that I want to learn and do here.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "26c12948-a1cd-43d1-99e9-777f294644f8",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                                                    "text": "Besides, Sosi really wants me out of here. I not about to oblige him.",
+                                                                    "emotion": "1",
+                                                                    "emotion2": "1",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ],
+                                                            "expression": null,
+                                                            "ignoreChildAvailability": false,
+                                                            "minutes": "3",
+                                                            "ExitMenu": true
+                                                        },
+                                                        {
+                                                            "type": "options.text",
+                                                            "id": "e9d52dba-5f5b-4944-8cce-715e890d702c",
+                                                            "text": "Say Something Snarky",
+                                                            "nodes": [
+                                                                {
+                                                                    "id": "69990051-ecf4-4ee1-a5fa-9d08e6d35d8e",
+                                                                    "type": "nodes.skillBranch",
+                                                                    "skill": "Moxie",
+                                                                    "target": "30",
+                                                                    "success": {
+                                                                        "type": "nodes.block",
+                                                                        "nodes": [
+                                                                            {
+                                                                                "type": "nodes.changeReputation",
+                                                                                "id": "3b6fc3d0-9388-45d7-986b-ea5f63f8ad9d",
+                                                                                "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                                                                "amount": "1",
+                                                                                "change": "1",
+                                                                                "notify": true
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    "failure": {
+                                                                        "type": "nodes.block",
+                                                                        "nodes": []
+                                                                    },
+                                                                    "notify": true
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "66ba09d1-527d-4240-b96c-1ec69e72003a",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                                                    "text": "There are several people at this school who really don't like me being here. That's reason enough for me to stay. ",
+                                                                    "emotion": "1",
+                                                                    "emotion2": "1",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ],
+                                                            "expression": null,
+                                                            "ignoreChildAvailability": false,
+                                                            "minutes": "2",
+                                                            "ExitMenu": true
+                                                        }
+                                                    ],
+                                                    "AutoAddDone": false,
+                                                    "Unique": true
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": false,
+                            "minutes": "2",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "518a58d5-f07e-4389-b288-4b57b2158740",
+                            "text": "Talk About Katie",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "c854a0ff-bfd5-4252-a8bb-931b5c6fb86d",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                    "text": "Why did you decide to come to this school?",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "bdf01aff-dc30-4a4a-93d9-6ab9c865a569",
+                                    "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "After my mother died, my father didn't think it was appropriate for a young woman to manage the inn by myself, even though I'd been the one running it for years.",
+                                    "emotion": "3",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "71ead50f-e2cc-4b06-8416-68cf4b38c531",
+                                    "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                    "actorId2": null,
+                                    "text": "He got my uncle and cousins to run the inn. ",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "c0d33e5a-e38e-4c2c-9045-b7c489e36181",
+                                    "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "Since my uncle is a self-righteous bore, his eldest son keeps trying to coerce me into marriage, and my father won't let me go sailing with him, I figured that getting an education was the lesser of Evils.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "43fab08e-b8ed-4427-97bf-5888a0dffdd5",
+                                    "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "I've seen this castle on the hill all my life and I've always been curious what it was like inside. Besides, there's a rumor that the castle has access to the Sea Caves that run under the island. I want to see them.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": false,
+                            "minutes": "9",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "b79066e8-984c-45dc-9fe8-393b3257d15c",
+                            "text": "Flirt With Katie",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "b771705b-c21f-4d41-a68e-d35be8be1d3c",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                    "text": "So, in order to get to know you better, why don't we take a little walk in the courtyard and find someplace private to talk?",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "afdad64b-f799-47b8-9e9b-cb1ef09ed082",
+                                    "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "I think we are having a fine conversation right here. ",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": false,
+                            "minutes": "3",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "8fb7a318-2543-4fd4-aa73-1a295fe3e9b8",
+                            "text": "Say Goodnight",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "993c2a36-f21e-4d43-a67d-ac352bd7e612",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                    "text": "Good night and dream a little dream of me.",
+                                    "emotion": "1",
+                                    "emotion2": "4",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "132c97ab-b303-4091-8448-7bdfbcf88ec7",
+                                    "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "You want me to have a nightmare?",
+                                    "emotion": "1",
+                                    "emotion2": "4",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "2",
+                            "ExitMenu": true
+                        }
+                    ],
+                    "AutoAddDone": false,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

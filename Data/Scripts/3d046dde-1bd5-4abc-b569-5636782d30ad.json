@@ -1,0 +1,53 @@
+{
+    "type": "script",
+    "id": "3d046dde-1bd5-4abc-b569-5636782d30ad",
+    "name": "OnAcquire",
+    "propId": "6d2dbcd7-2fc5-4c91-995f-5e373dddce9d",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.acquireItem",
+        "name": "AcquireItem"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "0579e6b9-d0f4-4c09-b355-8c36031b8ecc",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.changeTags",
+                    "id": "fd66eb9e-3352-4f9e-8335-f4588995097b",
+                    "scope": "prop",
+                    "scopeId": "083f1b18-dfc9-4c7c-b4ef-10448437c9c7",
+                    "scopeFilterId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                    "tagsToAdd": "completed",
+                    "tagsToRemove": null
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.hasActiveQuest",
+                                "propId": "083f1b18-dfc9-4c7c-b4ef-10448437c9c7",
+                                "sceneId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                                "questStatus": "0"
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.quests",
+                                    "id": "97dc78e2-b0e9-488d-b11c-72ed3e964faa",
+                                    "sceneId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                                    "propId": "083f1b18-dfc9-4c7c-b4ef-10448437c9c7",
+                                    "target": "1",
+                                    "notify": true
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

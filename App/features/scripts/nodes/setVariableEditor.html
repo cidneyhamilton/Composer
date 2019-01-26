@@ -1,0 +1,51 @@
+﻿<div data-bind="compose: { mode:'templated', view:'nodeEditor' }">
+    <div data-part="read" class="text">
+		<!--ko if: node.add -->
+        <span>Add to variable '</span><span data-bind="text:node.name"></span>'
+		<!-- /ko -->
+		<!--ko ifnot: node.add -->
+        <span>Set variable '</span><span data-bind="text:node.name"></span>'
+		<!--/ko-->
+		(<span data-bind="text:node.scope"></span> scope)
+			<!--ko if: node.scope == 'prop'-->
+			<span data-bind="text:propstring"></span>
+			<!--/ko-->
+		<!--ko if: !node.add -->
+		to 
+		<!--/ko-->
+		<!--ko compose: { model:'features/scripts/' + node.source.type.replace('.', '/') + 'Editor', view:'features/scripts/variables/variableDisplay.html', activationData: [node, node.source],
+        mode:'templated' }--><!--/ko-->      
+
+    </div>
+
+    <div data-part="write">
+        <div class="form-inline">
+            <label class="control-label">Scope:</label>
+            <select data-bind="options: scopes, value: node.scope" style="width: 80px"></select>
+
+            <!--ko if: node.scope == 'prop'-->
+            <select data-bind="options: scenes, optionsText: 'name', optionsValue: 'id', value: node.sceneId, optionsCaption: 'Origin Scene'" style="width: 120px"></select>
+                <!--ko if: node.sceneId-->
+            <select data-bind="options: props, optionsText: 'name', optionsValue: 'id', value: node.scopeId, optionsCaption: 'Select Prop'" style="width: 120px"></select>
+                <!--/ko-->
+            <!--/ko-->
+        </div>
+        
+        <div class="form-inline" style="margin-top: 16px">
+            <label class="control-label">Name:</label>
+            <input type="text" data-bind="value: node.name, valueUpdate: 'afterkeydown'" style="width: 100px" />
+
+            <label class="control-label">Source:</label>
+            <select data-bind="options: sources, optionsText: 'displayName', value: node.source" style="width: 120px"></select>
+			
+            <!--ko if: node.source.constructor.type == 'variables.literal'-->
+            <label>Add to Variable</label>
+            <input type="checkbox" data-bind="checked: node.add" />
+            <!--/ko-->
+        </div>
+
+        <div style="margin-top: 16px">
+            <!--ko compose: { model:'features/scripts/' + node.source.type.replace('.', '/') + 'Editor', activationData: [node, node.source] }--><!--/ko-->
+        </div>
+    </div>
+</div>

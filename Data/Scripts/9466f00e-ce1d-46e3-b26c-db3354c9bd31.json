@@ -1,0 +1,471 @@
+{
+    "type": "script",
+    "id": "9466f00e-ce1d-46e3-b26c-db3354c9bd31",
+    "name": "FAE - 12 End",
+    "sceneId": "df6088fa-a6d6-441a-9a00-7af3baa62e14",
+    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+    "trigger": {
+        "type": "triggers.manual",
+        "name": "Manual"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "1fd56304-2519-4455-94db-a6809aff97c1",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showVignette",
+                    "vignetteName": "FirstAidClassOutdoor.png",
+                    "crossFadeTime": 0
+                },
+                {
+                    "type": "nodes.changeReputation",
+                    "id": "2704ce02-59e6-4e26-a9f1-182414e3e497",
+                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                    "amount": "3",
+                    "change": "1",
+                    "notify": false
+                },
+                {
+                    "type": "nodes.speak",
+                    "id": "39c610e1-91f2-467f-ad5e-73c38a464f24",
+                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                    "actorId2": null,
+                    "text": "This is the last class of this First Aid session. I've tried to teach you practical remedies for problems you Heroes will face.",
+                    "emotion": "1",
+                    "emotion2": "0",
+                    "device": "0",
+                    "device2": "0"
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "scene",
+                                "scopeId": "df6088fa-a6d6-441a-9a00-7af3baa62e14",
+                                "scopeFilterId": null,
+                                "tags": "tookFAQuiz1",
+                                "has": false
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "e67cd34c-093c-4f7e-91c2-7fc2f96f8961",
+                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "Shawn, you missed a very important quiz in class yesterday. I'm afraid that will reflect poorly on your final score.",
+                                    "emotion": "2",
+                                    "emotion2": "2",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.variableComparison",
+                                "variableScope": "ego",
+                                "variableName": "FAQuiz1",
+                                "operator": "gte",
+                                "compareTo": "4",
+                                "sceneId": null,
+                                "propId": null
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "e4cf1535-ce51-4df3-876c-34d7820a14ed",
+                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                    "actorId2": null,
+                                    "text": "You all did very well on the mushroom identification quiz. ",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.variableComparison",
+                                "variableScope": "ego",
+                                "variableName": "FAQuiz1",
+                                "operator": "lte",
+                                "compareTo": "1",
+                                "sceneId": null,
+                                "propId": null
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "ad8a035c-cf97-4b91-a669-b3cde0e16b57",
+                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "Most of you did very well on the mushroom identification quiz. However, Shawn, I suggest that you stick to using bandages and avoid using mushrooms. You'll be healthier that way.",
+                                    "emotion": "0",
+                                    "emotion2": "4",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "7cd4fb15-80d7-4184-a7ef-437ce5cacd4f",
+                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                    "actorId2": null,
+                                    "text": "Most of you did very well in identifying the proper use of mushrooms for First Aid. ",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "53266ccd-08e8-4d12-8c4e-1561c0de1cdf",
+                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "Some of you, though, had better learn how to take better notes in class or study your lessons harder before you try to use mushrooms as a remedy.",
+                                    "emotion": "0",
+                                    "emotion2": "4",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.speak",
+                    "id": "e7aecf09-2758-42f4-b761-6a143b61505c",
+                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                    "actorId2": null,
+                    "text": "This session of First Aid focused on practical remedies and techniques that you can use in the case of injury or danger.",
+                    "emotion": "0",
+                    "emotion2": "0",
+                    "device": "0",
+                    "device2": "0"
+                },
+                {
+                    "type": "nodes.speak",
+                    "id": "c76fa079-dad0-4793-b4e8-5b2492765d0f",
+                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                    "actorId2": null,
+                    "text": "You should always carry bandages when you go into dangerous places. You now know how to make proper ones.",
+                    "emotion": "0",
+                    "emotion2": "0",
+                    "device": "0",
+                    "device2": "0"
+                },
+                {
+                    "type": "nodes.speak",
+                    "id": "48065ef6-7a9e-4161-8fbf-e5ecc4748354",
+                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                    "actorId2": null,
+                    "text": "The mushrooms we've talked about can all be found in wooded areas or caves. You can carry them around for emergencies.",
+                    "emotion": "0",
+                    "emotion2": "0",
+                    "device": "0",
+                    "device2": "0"
+                },
+                {
+                    "type": "nodes.speak",
+                    "id": "1d9280c2-e111-48a8-a960-725d194ba034",
+                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                    "actorId2": null,
+                    "text": "The next session of First Aid will mainly be spent concocting remedies and potions using many of the ingredients we've covered. If you are often in perilous situations or want to heal others, you will want to take this class.",
+                    "emotion": "0",
+                    "emotion2": "0",
+                    "device": "0",
+                    "device2": "0"
+                },
+                {
+                    "type": "nodes.speak",
+                    "id": "e3033eb5-85b8-4078-adad-db343dcc78be",
+                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                    "actorId2": null,
+                    "text": "Heroism is a dangerous business, and I am very proud of all of you. I do hope you will take the second session of First Aid. The knowledge you gain may save your life or help other people.",
+                    "emotion": "1",
+                    "emotion2": "0",
+                    "device": "0",
+                    "device2": "0"
+                },
+                {
+                    "type": "nodes.speak",
+                    "id": "a56cc19b-3275-4971-83ef-be943e2030f6",
+                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                    "actorId2": null,
+                    "text": "Does anyone have any questions or comments?",
+                    "emotion": "1",
+                    "emotion2": "0",
+                    "device": "0",
+                    "device2": "0"
+                },
+                {
+                    "type": "nodes.showMenu",
+                    "id": "71ada38d-d813-4a30-a5d4-6d898a50ce3a",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "34156429-8c9f-4594-adfa-66f802c01bc9",
+                            "text": "Say Something Charming About the Class",
+                            "nodes": [
+                                {
+                                    "id": "3397c236-06f3-4c66-907d-3bec22953be7",
+                                    "type": "nodes.skillBranch",
+                                    "skill": "Charm",
+                                    "target": "39",
+                                    "success": {
+                                        "type": "nodes.block",
+                                        "nodes": []
+                                    },
+                                    "failure": {
+                                        "type": "nodes.block",
+                                        "nodes": []
+                                    },
+                                    "notify": true
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "d2e5946a-309d-4f32-8f40-117702efd81c",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                    "text": "This has been a great class. I've learned so much here and I've really enjoyed it. This has probably been the most useful class I've ever taken. ",
+                                    "emotion": "1",
+                                    "emotion2": "1",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.changeReputation",
+                                    "id": "c716fb4e-379d-49c3-888b-f1d2b3ce0e81",
+                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                    "amount": "2",
+                                    "change": "1",
+                                    "notify": true
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "48e5f097-bcb3-4df7-9f38-1321ba6a817d",
+                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "I'm very glad to hear that, Shawn.",
+                                    "emotion": "1",
+                                    "emotion2": "1",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": false,
+                            "minutes": 0,
+                            "ExitMenu": true
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "d43c2fe5-705c-437f-a299-4ce0d6065158",
+                            "text": "Ask Something Intelligent About the Next Session",
+                            "nodes": [
+                                {
+                                    "id": "b24236d5-9f6d-482b-979f-a36956b07909",
+                                    "type": "nodes.skillBranch",
+                                    "skill": "Smarts",
+                                    "target": "39",
+                                    "success": {
+                                        "type": "nodes.block",
+                                        "nodes": [
+                                            {
+                                                "type": "nodes.changeReputation",
+                                                "id": "5a23f190-7c93-42d6-bd5d-69010d3fabf6",
+                                                "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                "amount": "2",
+                                                "change": "1",
+                                                "notify": true
+                                            }
+                                        ]
+                                    },
+                                    "failure": {
+                                        "type": "nodes.block",
+                                        "nodes": []
+                                    },
+                                    "notify": true
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "82065cb8-d584-4cc1-9c23-9e2b473c8940",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                    "text": "We've already learned how to make bandages and use mushrooms to heal. Is there that much more to learn in the next class?",
+                                    "emotion": "0",
+                                    "emotion2": "1",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "a042b83b-a72c-4b5b-81f0-69ca5cc66739",
+                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "In our next session, you will learn how to use mushrooms and other ingredients to make pills. Pills have the advantage that they won't make you feel sick when you eat them.",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "f7e6e4db-3291-40dd-9e9a-dcd3758aa3e9",
+                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "You will also learn how to make some very effective potions. So, yes, there is a lot more to learn from First Aid. It is a very practical and useful class.",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": false,
+                            "minutes": 0,
+                            "ExitMenu": true
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "95d3f181-83a4-429e-8ff7-cec173d9cf0a",
+                            "text": "Say Something Humorous About the Class",
+                            "nodes": [
+                                {
+                                    "id": "f7188077-4183-43b9-a5d6-fdb39f1c4e34",
+                                    "type": "nodes.skillBranch",
+                                    "skill": "Moxie",
+                                    "target": "39",
+                                    "success": {
+                                        "type": "nodes.block",
+                                        "nodes": [
+                                            {
+                                                "type": "nodes.changeReputation",
+                                                "id": "88e7bd3e-ad7a-4ab3-ae87-d01e8fd371c0",
+                                                "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                "amount": "2",
+                                                "change": "1",
+                                                "notify": true
+                                            }
+                                        ]
+                                    },
+                                    "failure": {
+                                        "type": "nodes.block",
+                                        "nodes": [
+                                            {
+                                                "type": "nodes.changeReputation",
+                                                "id": "0930d4e8-4af6-4d60-9064-0230b4bf2ffc",
+                                                "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                "amount": "1",
+                                                "change": "0",
+                                                "notify": true
+                                            }
+                                        ]
+                                    },
+                                    "notify": true
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "72f35982-b4df-4533-95b8-0d510b10acc8",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                    "text": "So the real lesson from this class on mushrooms is that Heroes just want to have fungi?",
+                                    "emotion": "1",
+                                    "emotion2": "4",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "32996223-cb2f-470b-9789-6058454b6b2f",
+                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "<sigh>",
+                                    "emotion": "0",
+                                    "emotion2": "1",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": false,
+                            "minutes": 0,
+                            "ExitMenu": true
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "5b2722c1-f498-42b8-9399-b0e90ecce764",
+                            "text": "Say Nothing",
+                            "nodes": [],
+                            "expression": null,
+                            "ignoreChildAvailability": false,
+                            "minutes": 0,
+                            "ExitMenu": true
+                        }
+                    ],
+                    "AutoAddDone": false,
+                    "Unique": false
+                },
+                {
+                    "type": "nodes.speak",
+                    "id": "9a0a94d3-0de3-4e1b-9795-f0033bc2d54f",
+                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                    "actorId2": null,
+                    "text": "We'll be working in this garden for the rest of today reviewing the plants and mushrooms. ",
+                    "emotion": "1",
+                    "emotion2": "0",
+                    "device": "0",
+                    "device2": "0"
+                },
+                {
+                    "type": "nodes.changeInventory",
+                    "id": "7ea6366f-bf34-435e-a78c-472e5f957a27",
+                    "propId": "126e380b-ceda-4884-994f-ca03cca884b8",
+                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                    "change": "1",
+                    "count": 1,
+                    "notify": true
+                },
+                {
+                    "type": "nodes.speak",
+                    "id": "15baba85-04ca-4803-9a18-37182735b55a",
+                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                    "actorId2": null,
+                    "text": "I'd like you all to take a Healing Potion with you when you leave. This is a sample of the sorts of things we will cover in the next First Aid session. I look forward to seeing you all next time.",
+                    "emotion": "0",
+                    "emotion2": "0",
+                    "device": "0",
+                    "device2": "0"
+                },
+                {
+                    "type": "nodes.wait",
+                    "waitForSeconds": "1"
+                },
+                {
+                    "type": "nodes.invokeScript",
+                    "id": "bf81ad27-e549-4f4f-be22-75fe9f035e53",
+                    "scriptId": "6ba090c9-ebfa-49fe-8e2f-9f6bad0fec10",
+                    "entryPointId": "",
+                    "currentScope": "Scenes",
+                    "currentSceneId": "df6088fa-a6d6-441a-9a00-7af3baa62e14",
+                    "currentActorId": null,
+                    "currentStoryEventId": null,
+                    "currentPropId": null
+                }
+            ]
+        }
+    ]
+}

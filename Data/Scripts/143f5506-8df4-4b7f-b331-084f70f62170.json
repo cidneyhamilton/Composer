@@ -1,0 +1,459 @@
+{
+    "type": "script",
+    "id": "143f5506-8df4-4b7f-b331-084f70f62170",
+    "name": "Interact with North Door",
+    "sceneId": "f1d169df-e10e-451d-8481-0d0290b7cbbe",
+    "propId": "864f9d03-482b-499c-b5b2-310b23d612e8",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "cc09a1fe-0882-4e89-9282-4de725c91793",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "9ce64050-1af3-4ce6-9cae-522a5da77c76",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "331a54cf-38ac-49e9-9284-0cc07de6f585",
+                            "text": "Look at the Door",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "6bc58c72-b526-4c7b-b5e3-376c25bdd874",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "From the lack of a sign on the door, it looks like this might be an unused office - or someone who wants to be anonymous. The lock is a pretty simple one.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "2",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "af44f5f0-d256-4528-a258-975f9e92e0ba",
+                            "text": "Listen at the Door",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.and",
+                                                "left": {
+                                                    "type": "expressions.variableComparison",
+                                                    "variableScope": "global",
+                                                    "variableName": "time.hour",
+                                                    "operator": "gte",
+                                                    "compareTo": "8",
+                                                    "sceneId": "f1d169df-e10e-451d-8481-0d0290b7cbbe",
+                                                    "propId": null
+                                                },
+                                                "right": {
+                                                    "type": "expressions.variableComparison",
+                                                    "variableScope": "global",
+                                                    "variableName": "time.hour",
+                                                    "operator": "lt",
+                                                    "compareTo": "19",
+                                                    "sceneId": "f1d169df-e10e-451d-8481-0d0290b7cbbe",
+                                                    "propId": null
+                                                }
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "b8861ff7-133d-4d71-a569-9e875c61a3d8",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "I'd better not let anyone catch me snooping around here. I'll wait until later.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.playAnimation",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "animationName": "KneelDown",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.onceOnly",
+                                                    "id": "432214ee-7756-42b1-8930-f96c0e3f15a4",
+                                                    "nodes": [
+                                                        {
+                                                            "id": "fa9dfcac-1caa-4689-9dcd-18ffcae17707",
+                                                            "type": "nodes.improveSkill",
+                                                            "skill": "Perception",
+                                                            "amount": "1",
+                                                            "notify": true
+                                                        },
+                                                        {
+                                                            "id": "48ce1723-846b-48da-be01-888d0242d8fd",
+                                                            "type": "nodes.skillBranch",
+                                                            "skill": "Perception",
+                                                            "target": "30",
+                                                            "success": {
+                                                                "type": "nodes.block",
+                                                                "nodes": []
+                                                            },
+                                                            "failure": {
+                                                                "type": "nodes.block",
+                                                                "nodes": []
+                                                            },
+                                                            "notify": true
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "5f0994cd-8f38-4b4a-a61e-bab5fe03773b",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Nope, not a sound to be heard in there.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.playAnimation",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "animationName": "KneelUp",
+                                                    "wait": true
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "1",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "956e1149-046b-4ce1-ab34-8d17e4af45c7",
+                            "text": "Pick the Lock",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.and",
+                                                "left": {
+                                                    "type": "expressions.variableComparison",
+                                                    "variableScope": "global",
+                                                    "variableName": "time.hour",
+                                                    "operator": "gte",
+                                                    "compareTo": "8",
+                                                    "sceneId": null,
+                                                    "propId": null
+                                                },
+                                                "right": {
+                                                    "type": "expressions.variableComparison",
+                                                    "variableScope": "global",
+                                                    "variableName": "time.hour",
+                                                    "operator": "lt",
+                                                    "compareTo": "22",
+                                                    "sceneId": null,
+                                                    "propId": null
+                                                }
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "dd584947-6318-4dc8-9140-73f467d838eb",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Probably not the best time to try this... Mr. Terk might catch me. His office is just next door!",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "prop",
+                                                "scopeId": "864f9d03-482b-499c-b5b2-310b23d612e8",
+                                                "scopeFilterId": "f1d169df-e10e-451d-8481-0d0290b7cbbe",
+                                                "tags": "hasPickedNorth",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "761b7bf6-6b85-4ace-b920-57a86d2e3390",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "I already picked this lock. Nothing has changed in the room... it's still empty.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.inTags",
+                                                                "scope": "prop",
+                                                                "scopeId": "864f9d03-482b-499c-b5b2-310b23d612e8",
+                                                                "scopeFilterId": "f1d169df-e10e-451d-8481-0d0290b7cbbe",
+                                                                "tags": "hasPickedNorth",
+                                                                "has": false
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "id": "08d0252e-3ddd-4545-856a-ed97e8667b41",
+                                                                    "type": "nodes.skillBranch",
+                                                                    "skill": "Tool Use",
+                                                                    "target": "30",
+                                                                    "success": {
+                                                                        "type": "nodes.block",
+                                                                        "nodes": []
+                                                                    },
+                                                                    "failure": {
+                                                                        "type": "nodes.block",
+                                                                        "nodes": []
+                                                                    },
+                                                                    "notify": true
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeTags",
+                                                                    "id": "4f086280-f932-42dc-969a-c58b58ec55f3",
+                                                                    "scope": "prop",
+                                                                    "scopeId": "864f9d03-482b-499c-b5b2-310b23d612e8",
+                                                                    "scopeFilterId": "f1d169df-e10e-451d-8481-0d0290b7cbbe",
+                                                                    "tagsToAdd": "hasPickedNorth",
+                                                                    "tagsToRemove": null
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.skillCheck",
+                                                                "skill": "Tool Use",
+                                                                "target": "30"
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.playAnimation",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "animationName": "KneelDown",
+                                                                    "wait": true
+                                                                },
+                                                                {
+                                                                    "type": "nodes.playSoundEffect",
+                                                                    "soundEffectName": "lockpick_success.wav",
+                                                                    "wait": true
+                                                                },
+                                                                {
+                                                                    "type": "nodes.comment",
+                                                                    "message": "This increment seems ok as it's only accessable once.",
+                                                                    "commentor": "Joshua"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.incrementTime",
+                                                                    "id": "6d1a2cc8-5afe-415f-a0db-8e76f92c9392",
+                                                                    "days": 0,
+                                                                    "hours": 0,
+                                                                    "minutes": "20"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.playAnimation",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "animationName": "KneelUp",
+                                                                    "wait": true
+                                                                },
+                                                                {
+                                                                    "type": "nodes.playSoundEffect",
+                                                                    "soundEffectName": "wooden_door_opening.wav",
+                                                                    "wait": false
+                                                                },
+                                                                {
+                                                                    "type": "nodes.fade",
+                                                                    "scope": "FadeOutAndIn",
+                                                                    "fadeTime": 0.5,
+                                                                    "fadeTime2": 2,
+                                                                    "wait": true,
+                                                                    "fadeDown": "1",
+                                                                    "fadeColorR": 0,
+                                                                    "fadeColorG": 0,
+                                                                    "fadeColorB": 0
+                                                                },
+                                                                {
+                                                                    "type": "nodes.playSoundEffect",
+                                                                    "soundEffectName": "door_shut.wav",
+                                                                    "wait": false
+                                                                },
+                                                                {
+                                                                    "type": "nodes.branch",
+                                                                    "sections": [
+                                                                        {
+                                                                            "type": "nodes.branchSection",
+                                                                            "expression": {
+                                                                                "type": "expressions.inTags",
+                                                                                "scope": "target",
+                                                                                "scopeId": null,
+                                                                                "scopeFilterId": null,
+                                                                                "tags": "hascheckedroom",
+                                                                                "has": false
+                                                                            },
+                                                                            "nodes": [
+                                                                                {
+                                                                                    "type": "nodes.changeTags",
+                                                                                    "id": "85d9d605-0718-49a0-9b3b-7ffb9ea5d3d2",
+                                                                                    "scope": "target",
+                                                                                    "scopeId": null,
+                                                                                    "scopeFilterId": null,
+                                                                                    "tagsToAdd": "hascheckedroom",
+                                                                                    "tagsToRemove": null
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.speak",
+                                                                                    "id": "996dd68c-da9c-4afe-b7ea-aac51cfa3bdb",
+                                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                    "actorId2": null,
+                                                                                    "text": "There's an empty desk, shelves, and a file cabinet. It's all set up for an office, but there's clearly no one there yet.",
+                                                                                    "emotion": "0",
+                                                                                    "emotion2": "0",
+                                                                                    "device": "0",
+                                                                                    "device2": "0"
+                                                                                }
+                                                                            ]
+                                                                        },
+                                                                        {
+                                                                            "type": "nodes.branchSection",
+                                                                            "expression": null,
+                                                                            "nodes": [
+                                                                                {
+                                                                                    "type": "nodes.speak",
+                                                                                    "id": "b7fed265-abed-4579-b12a-520458b99e1e",
+                                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                    "actorId2": null,
+                                                                                    "text": "Nothing has changed in the room... it's still empty.",
+                                                                                    "emotion": "0",
+                                                                                    "emotion2": "0",
+                                                                                    "device": "0",
+                                                                                    "device2": "0"
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": null,
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.playAnimation",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "animationName": "KneelDown",
+                                                                    "wait": true
+                                                                },
+                                                                {
+                                                                    "type": "nodes.playSoundEffect",
+                                                                    "soundEffectName": "lockpick_failure.wav",
+                                                                    "wait": true
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "4deb1c74-3e29-4195-9f9b-87a972baec4e",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "That lock is trickier than it looks! I'm going to need some more practice before I can crack this one.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.playAnimation",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "animationName": "KneelUp",
+                                                                    "wait": true
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inTags",
+                                    "scope": "prop",
+                                    "scopeId": "864f9d03-482b-499c-b5b2-310b23d612e8",
+                                    "scopeFilterId": "f1d169df-e10e-451d-8481-0d0290b7cbbe",
+                                    "tags": "hasPickedNorth",
+                                    "has": false
+                                },
+                                "right": {
+                                    "type": "expressions.variableComparison",
+                                    "variableScope": "global",
+                                    "variableName": "ego.haslockpick",
+                                    "operator": "eq",
+                                    "compareTo": "true",
+                                    "sceneId": "f1d169df-e10e-451d-8481-0d0290b7cbbe",
+                                    "propId": null
+                                }
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "5",
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

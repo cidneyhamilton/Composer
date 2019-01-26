@@ -1,0 +1,646 @@
+{
+    "type": "script",
+    "id": "cea4e0c4-0fe2-4056-90f6-fbfd4d765ccc",
+    "name": "Interact with Bridle Display Cabinet",
+    "sceneId": "96064b1c-7fee-41c6-ab46-b8425d3af2de",
+    "propId": "6951c2ed-a073-44f2-a608-2ce0c62018a9",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "a47e2fc0-937b-4d4a-8bda-a580a95531c1",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.onceDaily",
+                    "id": "8dee8e19-bf7f-408c-9243-287d3b148762",
+                    "nodes": [
+                        {
+                            "type": "nodes.changeTags",
+                            "id": "9ad392bd-0b07-43b4-bc50-e1c29df65803",
+                            "scope": "target",
+                            "scopeId": "6951c2ed-a073-44f2-a608-2ce0c62018a9",
+                            "scopeFilterId": "96064b1c-7fee-41c6-ab46-b8425d3af2de",
+                            "tagsToAdd": "locked",
+                            "tagsToRemove": null
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.showCloseUp",
+                    "imageName": "JamusHorse_closeup.png"
+                },
+                {
+                    "type": "nodes.showMenu",
+                    "id": "93404e1b-ff6f-483f-803c-28056818ff63",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "c6ddd514-cb3b-4368-a2a2-90fdc8003cb2",
+                            "text": "Look at the Display Cabinet",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "7f189ef8-67b1-4349-a4fa-9b6676ee7433",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "From what it says, the items in this display are the very ones seen in the portrait right behind it. It's devoted to Sir Jamus' horse, Whim. These are his breastplate, horseshoes, and bridle.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "a197dbb4-5d02-4d7b-abf3-53572b980f46",
+                            "text": "Open the Display Cabinet",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "target",
+                                                "scopeId": null,
+                                                "scopeFilterId": null,
+                                                "tags": "locked",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "271cf5bb-52a6-4b4a-a0dc-1684ee9204de",
+                                                    "scriptId": "cea4e0c4-0fe2-4056-90f6-fbfd4d765ccc",
+                                                    "entryPointId": "67031f49-0bd9-4d17-ba1b-cc7c8183a16e",
+                                                    "currentScope": "Current",
+                                                    "currentSceneId": "96064b1c-7fee-41c6-ab46-b8425d3af2de",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "1e1f1c17-be21-4895-9a2d-34950ff4c161",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "It's locked.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "25243da0-fb90-40a4-9cc0-8ff49614dbfc",
+                                                    "scope": "target",
+                                                    "scopeId": null,
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "triedtoopen",
+                                                    "tagsToRemove": null
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "428410bc-ca52-4eeb-94ba-8c6f9e402a6f",
+                            "text": "Pick the Lock on the Display Cabinet",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "global",
+                                                "variableName": "ego.haslockpicklevel",
+                                                "operator": "eq",
+                                                "compareTo": "4",
+                                                "sceneId": "96064b1c-7fee-41c6-ab46-b8425d3af2de",
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.hideCloseUp",
+                                                    "waitForSeconds": 1
+                                                },
+                                                {
+                                                    "type": "nodes.playAnimation",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "animationName": "KneelDown",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.onceDaily",
+                                                    "id": "0060042c-80a6-44d6-b543-cc8b58d0db2b",
+                                                    "nodes": [
+                                                        {
+                                                            "type": "nodes.incrementTime",
+                                                            "id": "edf417ae-96eb-467c-b30c-4e16b9221095",
+                                                            "days": 0,
+                                                            "hours": 0,
+                                                            "minutes": "10"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.inTags",
+                                                                "scope": "target",
+                                                                "scopeId": null,
+                                                                "scopeFilterId": null,
+                                                                "tags": "lockpickattempted",
+                                                                "has": false
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "id": "d0aac5d6-03c9-4510-9255-38918c88e60f",
+                                                                    "type": "nodes.skillBranch",
+                                                                    "skill": "Tool Use",
+                                                                    "target": "60",
+                                                                    "success": {
+                                                                        "type": "nodes.block",
+                                                                        "nodes": []
+                                                                    },
+                                                                    "failure": {
+                                                                        "type": "nodes.block",
+                                                                        "nodes": []
+                                                                    },
+                                                                    "notify": true
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.skillCheck",
+                                                                "skill": "Tool Use",
+                                                                "target": "60"
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.invokeScript",
+                                                                    "id": "52bd6287-a243-4530-a205-e2d532e1d61e",
+                                                                    "scriptId": "f214e893-43e1-4ba8-bb48-5ad1177e61de",
+                                                                    "entryPointId": "",
+                                                                    "currentScope": "Scenes",
+                                                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                                                    "currentActorId": null,
+                                                                    "currentStoryEventId": null,
+                                                                    "currentPropId": null
+                                                                },
+                                                                {
+                                                                    "type": "nodes.showCloseUp",
+                                                                    "imageName": "JamusHorse_closeup.png"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.invokeScript",
+                                                                    "id": "c2fd0057-59fe-47d5-a9be-e3cd1add9775",
+                                                                    "scriptId": "cea4e0c4-0fe2-4056-90f6-fbfd4d765ccc",
+                                                                    "entryPointId": "67031f49-0bd9-4d17-ba1b-cc7c8183a16e",
+                                                                    "currentScope": "Current",
+                                                                    "currentSceneId": "96064b1c-7fee-41c6-ab46-b8425d3af2de",
+                                                                    "currentActorId": null,
+                                                                    "currentStoryEventId": null,
+                                                                    "currentPropId": null
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": null,
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.invokeScript",
+                                                                    "id": "ed8c806e-c19d-41d2-b05d-29b71771de79",
+                                                                    "scriptId": "c806f4c0-6bc6-471a-97ab-fc59190de6da",
+                                                                    "entryPointId": "",
+                                                                    "currentScope": "Scenes",
+                                                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                                                    "currentActorId": null,
+                                                                    "currentStoryEventId": null,
+                                                                    "currentPropId": null
+                                                                },
+                                                                {
+                                                                    "type": "nodes.showCloseUp",
+                                                                    "imageName": "JamusHorse_closeup.png"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "nodes.playAnimation",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "animationName": "KneelUp"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "68e2ab8b-45ef-483d-921c-b84933a77f65",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "There's no way I'm getting into this case without better lockpicks.",
+                                                    "emotion": "2",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inTags",
+                                    "scope": "target",
+                                    "scopeId": null,
+                                    "scopeFilterId": null,
+                                    "tags": "locked",
+                                    "has": true
+                                },
+                                "right": {
+                                    "type": "expressions.and",
+                                    "left": {
+                                        "type": "expressions.variableComparison",
+                                        "variableScope": "global",
+                                        "variableName": "ego.haslockpick",
+                                        "operator": "eq",
+                                        "compareTo": "true",
+                                        "sceneId": "96064b1c-7fee-41c6-ab46-b8425d3af2de",
+                                        "propId": null
+                                    },
+                                    "right": {
+                                        "type": "expressions.inTags",
+                                        "scope": "target",
+                                        "scopeId": null,
+                                        "scopeFilterId": null,
+                                        "tags": "triedtoopen",
+                                        "has": true
+                                    }
+                                }
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "712d9795-146b-4591-9746-36fab1182b92",
+                            "text": "Sense Magic on the Display Cabinet",
+                            "nodes": [
+                                {
+                                    "type": "nodes.hideCloseUp",
+                                    "waitForSeconds": 1
+                                },
+                                {
+                                    "type": "nodes.invokeScript",
+                                    "id": "05aa21ca-24dd-40c5-95b2-ffdf84a87993",
+                                    "scriptId": "b1c2ecc1-eb00-49ed-a7ba-ea6af625c355",
+                                    "entryPointId": "a47e2fc0-937b-4d4a-8bda-a580a95531c1",
+                                    "currentScope": "Scenes",
+                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                    "currentActorId": null,
+                                    "currentStoryEventId": null,
+                                    "currentPropId": null
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "aadeebd9-ac42-4a63-a99f-03eb410032ca",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "There's some powerful magic on the horse bridle. It seems to have something to do with summoning...",
+                                    "emotion": "4",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "actor",
+                                "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                "scopeFilterId": null,
+                                "tags": "sensemagic",
+                                "has": true
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "2",
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                },
+                {
+                    "type": "nodes.hideCloseUp",
+                    "waitForSeconds": 1
+                }
+            ]
+        },
+        {
+            "type": "scripts.entryPoint",
+            "id": "67031f49-0bd9-4d17-ba1b-cc7c8183a16e",
+            "name": "Open Case",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "65235b4b-4aba-48fb-8573-5c68b6cbb092",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "aecd23ee-150d-44e4-ae05-3dd6adb8d462",
+                            "text": "Replace the Bridle",
+                            "nodes": [
+                                {
+                                    "type": "nodes.changePropVisibility",
+                                    "id": "6165a12b-66e9-4d9a-8ca3-cee2881b2e2e",
+                                    "propId": "4b791b4c-0872-49be-abec-fd4e38251819",
+                                    "sceneId": "96064b1c-7fee-41c6-ab46-b8425d3af2de",
+                                    "status": "Hidden",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.changePropVisibility",
+                                    "id": "d3e16799-2201-483b-90fa-8f380f1bbc0e",
+                                    "propId": "6951c2ed-a073-44f2-a608-2ce0c62018a9",
+                                    "sceneId": "96064b1c-7fee-41c6-ab46-b8425d3af2de",
+                                    "status": "Hidden",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.showCloseUp",
+                                    "imageName": "JamusHorse_closeup.png"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "607f3768-9419-40d5-b27c-9c5b50737eda",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "I think that this bridle should stay here in case it is needed sometime.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.playAnimation",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "animationName": "KneelUp"
+                                },
+                                {
+                                    "type": "nodes.onceOnly",
+                                    "id": "43497857-31e4-4c47-93a4-aaf3fedfc511",
+                                    "nodes": [
+                                        {
+                                            "type": "nodes.addJournalEntry",
+                                            "id": "43165570-bb73-46a4-9c2a-f9d9e0c64e80",
+                                            "name": "Returning Whim's Bridle",
+                                            "notify": true,
+                                            "description": "Nobody seems to have noticed the bridle was missing, but I think it's better left back in the case. Never can tell if or when it might be needed again."
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.inInventory",
+                                "propId": "f9df0a48-e2d9-4dba-8fdf-fb04a4c22782",
+                                "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                "has": true
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "3",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "30e4bec4-8e98-4369-a4a2-0506acf3f6bd",
+                            "text": "Take the Horseshoes",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "56805941-aa58-421f-bcf5-cad9ff307ca3",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "No good, these shoes are size 6. I wear size 9. Unlucky.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "e36b85ef-6d22-4265-9593-d8c4dfb63c8e",
+                            "text": "Take the Breastplate",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "6008591b-8e35-4b6d-bcbc-65ca064697b9",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "It's designed for a horse - and I don't happen to have one in my wardrobe. So for now, I'll just say neigh.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "0",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "e4f8f46c-2332-4178-ab78-a2d9cd77e8ab",
+                            "text": "Take the Bridle",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.hasActiveQuest",
+                                                "propId": "be64d025-2e36-4027-887b-af503112424f",
+                                                "sceneId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                                                "questStatus": "0"
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.incrementTime",
+                                                    "id": "deec42f8-d4e1-48c3-9c2b-02a00a73fc36",
+                                                    "days": 0,
+                                                    "hours": 0,
+                                                    "minutes": "2"
+                                                },
+                                                {
+                                                    "type": "nodes.changePropVisibility",
+                                                    "id": "f0e5761d-1529-4705-98ed-1ba11f884e57",
+                                                    "propId": "6951c2ed-a073-44f2-a608-2ce0c62018a9",
+                                                    "sceneId": "96064b1c-7fee-41c6-ab46-b8425d3af2de",
+                                                    "status": "Hidden",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.changePropVisibility",
+                                                    "id": "9f8826b9-c32c-4198-b396-e517ac64da7a",
+                                                    "propId": "4b791b4c-0872-49be-abec-fd4e38251819",
+                                                    "sceneId": "96064b1c-7fee-41c6-ab46-b8425d3af2de",
+                                                    "status": "Visible",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.showCloseUp",
+                                                    "imageName": "JamusHorse_closeup_no_bridle.png"
+                                                },
+                                                {
+                                                    "type": "nodes.changeInventory",
+                                                    "id": "7ad24f67-c3f0-40ca-a75b-7d2a3f53d0ad",
+                                                    "propId": "f9df0a48-e2d9-4dba-8fdf-fb04a4c22782",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "change": "1",
+                                                    "count": 1,
+                                                    "notify": true
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "6374f24d-5cbf-4bd0-8c0a-605462a0c2fe",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Now that I have something borrowed, I'll be able to attend the bridle party! ",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.hideCloseUp",
+                                                    "waitForSeconds": 1
+                                                },
+                                                {
+                                                    "type": "nodes.playAnimation",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "animationName": "KneelUp"
+                                                },
+                                                {
+                                                    "type": "nodes.onceOnly",
+                                                    "id": "575303e9-bdcc-4eb4-ae3e-0df81f732cdb",
+                                                    "nodes": [
+                                                        {
+                                                            "type": "nodes.addJournalEntry",
+                                                            "id": "6f9edba9-7c3c-466d-aa5c-52de4d15e74b",
+                                                            "name": "On a Whim",
+                                                            "notify": true,
+                                                            "description": "I've got the horse bridle from the case. Maybe this will help Sir Jamus' ghost find peace."
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "nodes.endScript"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "f58af6d2-409c-4a6e-a1d2-1c565a271c04",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Hold your horses, now. What good is a bridle without a groomer? When all's wed and done, I'll just leave this here.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "0",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "c6c3593b-7bd9-4bcc-9134-b8aee65d9e2d",
+                            "text": "Leave the Case Alone",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "beb2c1d8-3227-457f-9220-8f2961e50a67",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "There's nothing in this case that I can use right now. Maybe someday... after I steal a steed or purchase a pony.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "0",
+                            "ExitMenu": true
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

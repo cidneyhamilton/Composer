@@ -1,0 +1,671 @@
+{
+    "type": "script",
+    "id": "d264aefd-4876-4666-b066-03304af58826",
+    "name": "SS E01 First Visit",
+    "sceneId": "af912e02-46a1-4d88-a547-59f3d2093c7b",
+    "actorId": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+    "trigger": {
+        "type": "triggers.manual",
+        "name": "Manual"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "d82c7578-72d9-41e1-85d4-603e68000f16",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "b2c90f73-60b2-4d7d-9420-bd1e42ec77ea",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "03fc04d9-8f2e-42d5-b8f5-b5ce5e3814f7",
+                            "text": "Greet Gregor",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "b224fc7e-80c5-44ff-95c8-ddb3f070baa2",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                    "text": "Hi, I'm Shawn. So you're the storekeeper?",
+                                    "emotion": "0",
+                                    "emotion2": "1",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.changeReputation",
+                                    "id": "60ee5c65-33e5-4b86-86b9-5d4d3e09ecf9",
+                                    "actorId": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                    "amount": "2",
+                                    "change": "1",
+                                    "notify": true
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "935c5af2-9b5c-4308-b5d6-b879b1ad5e23",
+                                    "actorId": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "Indeed, Gregor is very pleased to meet Master Shawn! Gregor keeps the university store full of nice things for the Young Master to buy! ",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": false,
+                            "minutes": "1",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "7b635876-e5ed-48d6-8edf-2ada087f6e4d",
+                            "text": "Ask About the Store",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "9719a2a4-aeaa-42c0-b720-ce4069b60a50",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                    "text": "So, what sorts of things do you sell here?",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "62902879-434a-4196-9c0c-d3e352e0ea33",
+                                    "actorId": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "Gregor sells many things here at the shop. Official University clothes in official university colors! Healing things! Official Disbarred Bard class instruments and tools! Many, many very good things... ",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "6b397296-013c-4856-ab4b-d630d4415d85",
+                                    "actorId": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "Gregor has bright, shiny new lockpicks for sale, just what the Good Master needs.",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "global",
+                                                "variableName": "ego.money",
+                                                "operator": "lt",
+                                                "compareTo": "10",
+                                                "sceneId": "af912e02-46a1-4d88-a547-59f3d2093c7b",
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "1410713d-8365-423b-a1e4-c349cb26f4be",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                                    "text": "What do I do if I don't have any money to buy things?",
+                                                    "emotion": "0",
+                                                    "emotion2": "4",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "5b5df98c-58e4-4ab1-9309-0ad7de0f298f",
+                                                    "actorId": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "No money? Poor Young Master!",
+                                                    "emotion": "4",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "68803eae-8d69-4302-b3b9-0b18635e81c7",
+                                                    "actorId": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "Master Shawn could work for Chef Kinah in the Dining Hall...",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "c1dd5260-378c-4efd-bd31-2aa5a9573387",
+                                                    "actorId": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "Or Master Shawn could go hunting in the Wine Cellar for Drats!",
+                                                    "emotion": "1",
+                                                    "emotion2": "4",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.quests",
+                                                    "id": "038cd69c-a69f-465d-8ee9-5b1b7cfdf8b8",
+                                                    "sceneId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                                                    "propId": "24e283bb-6345-4b92-a209-3dcfbd44d843",
+                                                    "target": "0",
+                                                    "notify": true
+                                                },
+                                                {
+                                                    "type": "nodes.showMenu",
+                                                    "id": "ca5fe413-7e63-432f-a802-b5ef49a23fca",
+                                                    "options": [
+                                                        {
+                                                            "type": "options.text",
+                                                            "id": "c92fcd62-22e2-4347-a6e0-d87f14dc6d5a",
+                                                            "text": "Ask About Working in the Dining Hall",
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "957e7caf-de0c-4948-9ab3-ba7b2a8110d2",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                                                    "text": "There's work in the kitchen - you mean cooking? I don't know much about that. My mother fixed all the meals at home.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "39fbdb97-ee1c-44c4-a9bf-f07ebf91eb21",
+                                                                    "actorId": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "text": "If Master Shawn wishes to learn about cooking, then he should take a Culinary class here. You should speak with Chef Kinah in the Dining Hall.",
+                                                                    "emotion": "1",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ],
+                                                            "expression": null,
+                                                            "ignoreChildAvailability": false,
+                                                            "minutes": "4",
+                                                            "ExitMenu": false
+                                                        },
+                                                        {
+                                                            "type": "options.text",
+                                                            "id": "2e5eb8b0-c836-40b3-bec1-5d830a3c689b",
+                                                            "text": "Ask About Hunting Drats",
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "6fb8be22-e8f6-49ac-9c63-7b4b30be8da3",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                                                    "text": "What's this about hunting Drats?",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "8ffa1e94-aedb-4164-a924-423da0d2b1f3",
+                                                                    "actorId": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "text": "The Wine Cellar is full of luscious, succulent Drats. Gregor is happy to purchase any Drat parts Master Shawn finds.",
+                                                                    "emotion": "1",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ],
+                                                            "expression": null,
+                                                            "ignoreChildAvailability": false,
+                                                            "minutes": 0,
+                                                            "ExitMenu": false
+                                                        }
+                                                    ],
+                                                    "AutoAddDone": true,
+                                                    "Unique": false
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": false,
+                            "minutes": "5",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "47257993-03f2-4d94-b568-80f7664ba562",
+                            "text": "Ask About Gregor",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "bdbc57ea-0a92-474d-8f73-efc1ebb341b7",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                    "text": "What exactly are you?",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.changeReputation",
+                                    "id": "c8d35dc2-92da-4108-b164-cff51319371d",
+                                    "actorId": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                    "amount": "2",
+                                    "change": "1",
+                                    "notify": true
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "e2cf9bfb-1c90-402b-ae11-8910e4bec5e5",
+                                    "actorId": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "Gregor buys and sells things here at the shop, so Gregor is shopkeeper.",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "a8a66c42-5e82-477a-b497-10fdda6a7c96",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                    "text": "No... I mean, what kind of creature are you? I've never met anyone like you before.",
+                                    "emotion": "0",
+                                    "emotion2": "4",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "b0109d49-e948-460f-9890-9e9f24242ec9",
+                                    "actorId": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "Ah, Gregor is Ratty! Ratty people here in Caligari all the time, but hide from humans in the Old City underground.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "b8b8e659-9859-4568-b21d-fcb6bf71ef08",
+                                    "actorId": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "Humans think Ratties are bad. Humans think Ratties are Rats! Ratties are NOT rats.",
+                                    "emotion": "2",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "64f36dcc-7db6-44ef-a334-f39bc3451ece",
+                                    "actorId": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "Ratties take \"you are what you eat\" seriously. Good thing Ratties eat more rats than cockroaches. Heh heh heh... that is Ratty joke.",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": false,
+                            "minutes": "5",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "ed466069-6fb3-4c5e-ac22-d8432fe00d8b",
+                            "text": "Ask About Cloth for Lady Moira",
+                            "nodes": [
+                                {
+                                    "type": "nodes.invokeScript",
+                                    "id": "55e7c589-1e4a-4b79-aa31-4a3df75769d0",
+                                    "scriptId": "a0cd4aeb-ef92-47df-99a2-f5181dcd7f13",
+                                    "entryPointId": "d82c7578-72d9-41e1-85d4-603e68000f16",
+                                    "currentScope": "Scenes",
+                                    "currentSceneId": "af912e02-46a1-4d88-a547-59f3d2093c7b",
+                                    "currentActorId": null,
+                                    "currentStoryEventId": null,
+                                    "currentPropId": null
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.hasActiveQuest",
+                                "propId": "47646ab5-98c8-4344-9aad-b31c3299bc4a",
+                                "sceneId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                                "questStatus": "0"
+                            },
+                            "ignoreChildAvailability": false,
+                            "minutes": "6",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "d1870e98-7a3d-4beb-9081-58fc9adb2c3f",
+                            "text": "Ask About the Wine Cellar",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "86caa03d-7b58-456d-896e-028c35f12dd4",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                    "text": "Why is the Wine Cellar locked up? Are they worried we will drink up all the wine?",
+                                    "emotion": "4",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "1e33e729-cb0b-40bd-8654-7861ac770336",
+                                    "actorId": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "Wine Cellar is old... from castle days. Headmaster says Wine Cellar is dangerous. No students in wine cellar while classes are in session. ",
+                                    "emotion": "2",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "6ee279ca-58dd-4bf6-a6a7-3d050dea8048",
+                                    "actorId": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "After class hours, Gregor can open up wine cellar. Students can brave the dangers. Students can bring back great treasures!",
+                                    "emotion": "1",
+                                    "emotion2": "4",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "ad6d0076-7e76-4c42-95f1-c2e45ca2d931",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                    "text": "Treasure?",
+                                    "emotion": "4",
+                                    "emotion2": "1",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "dc2647b9-dd35-450b-a00e-bfad77accac5",
+                                    "actorId": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "Yes! Yes! Wine Cellar is full of fat Drats and plump Proaches, lovely tasty treats all Ratties love! ",
+                                    "emotion": "1",
+                                    "emotion2": "4",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "5e78de06-4627-47b7-a491-c15a272c58d7",
+                                    "actorId": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "Much, much tastier than rats and cockroaches, Gregor assures the Young Master.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "d7210525-f023-4948-a2c2-95163e947fee",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                    "text": "Is that all the treasure?",
+                                    "emotion": "0",
+                                    "emotion2": "4",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "97042df2-cc46-4a50-804c-779bd052dc6b",
+                                    "actorId": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "<shrug> Maybe a few things left over from castle days and what the Drats drag into nests... ",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "0d7932af-97a2-46f0-bbda-b67646d05b71",
+                                    "actorId": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "But true treasure is the wealth of succulent delicacies that roam the wine cellar! ",
+                                    "emotion": "1",
+                                    "emotion2": "2",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "1a276a5d-e309-4f6b-a49d-2c9a65afe5c0",
+                                    "actorId": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "Gregor will be happy to pay for all Drats and Proaches the Young Master brings Gregor. ",
+                                    "emotion": "1",
+                                    "emotion2": "4",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.showMenu",
+                                    "id": "6bec8c6f-064b-4a5f-b938-c11c8d2703e5",
+                                    "options": [
+                                        {
+                                            "type": "options.text",
+                                            "id": "020ca5c3-9be6-49c0-a9ad-ffdc528311af",
+                                            "text": "Ask About Drats",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "d8221111-a464-46da-b7cd-723bea76b3bd",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                                    "text": "What's a Drat?",
+                                                    "emotion": "0",
+                                                    "emotion2": "4",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "df6ac999-b2c2-48ea-810e-a48b2865ffe0",
+                                                    "actorId": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "Drats are like rats but meaner, with sharp, pointy teeth and claws. Drats are smarter than rats and harder for poor Ratties to catch them. Drats gang up on Ratties.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "9a75b66a-fec0-4bb8-b492-f96ed5294634",
+                                                    "actorId": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "But if the Young Master is smart and skilled, the Master will catch many, many Drats for Gregor! Gregor will be most grateful.",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ],
+                                            "expression": null,
+                                            "ignoreChildAvailability": false,
+                                            "minutes": "4",
+                                            "ExitMenu": false
+                                        },
+                                        {
+                                            "type": "options.text",
+                                            "id": "c326a7fe-e06f-4fb7-9b59-751036332b38",
+                                            "text": "Ask About Proaches",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "cc659f67-8b37-4518-81d2-2582f5e32806",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                                    "text": "What's a Proach?",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "6a9fea7f-a3a5-4a9e-9b14-d3470296df3e",
+                                                    "actorId": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "Proaches are big bugs. They have tough shells like armor and wicked sharp spikes on legs. Proaches are hard to kill.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "d0340250-5ff4-4924-89e3-de9a6bcbd4b1",
+                                                    "actorId": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "Proaches are lovely poached with drawn butter or in a bisque.",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ],
+                                            "expression": null,
+                                            "ignoreChildAvailability": false,
+                                            "minutes": "4",
+                                            "ExitMenu": false
+                                        },
+                                        {
+                                            "type": "options.text",
+                                            "id": "62dccfe7-a26e-4b0c-8548-77ea14242103",
+                                            "text": "Ask About Payment",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "1c10237f-a35a-4833-bbec-5e9b17155942",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                                    "text": "You'll pay for dead Drats? How much?",
+                                                    "emotion": "4",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "d1505be6-6df3-441b-96ba-9a9e3c2eec91",
+                                                    "actorId": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "Gregor will pay a whole Lyra for each and every Drat and Proach the Young Master brings him! Master Shawn will soon be rich and Gregor very happy Ratty.",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ],
+                                            "expression": null,
+                                            "ignoreChildAvailability": false,
+                                            "minutes": "3",
+                                            "ExitMenu": false
+                                        }
+                                    ],
+                                    "AutoAddDone": true,
+                                    "Unique": false
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "actor",
+                                "scopeId": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                "scopeFilterId": null,
+                                "tags": "WineCellarCheck",
+                                "has": true
+                            },
+                            "ignoreChildAvailability": false,
+                            "minutes": "8",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "7f95cac2-5723-44eb-845f-6f7eaafe1a39",
+                            "text": "Say Goodbye",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "875264ed-5d02-4723-8951-c3fc114ec598",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                    "text": "See you later!",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "e82675e2-8df8-4f52-b0d7-199828ceb172",
+                                    "actorId": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "Gregor grieves to see the Young Master go.",
+                                    "emotion": "2",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "99f5a1cf-31b2-44b6-81fd-419477e47885",
+                                    "actorId": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "But Gregor will rejoice when the Young Master returns. Good journeys to you and happy hunting!",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "1",
+                            "ExitMenu": true
+                        }
+                    ],
+                    "AutoAddDone": false,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

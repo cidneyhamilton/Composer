@@ -1,0 +1,57 @@
+<div data-bind="compose: { mode:'templated', view:'nodeEditor' }">
+    <div data-part="read" class="text">
+
+
+        <!--ko if: node.scope == 'FadeOut'-->
+        <span><span class="prop">Fade Out</span> (<span data-bind="text:node.fadeTime" style="color:blue; font-style: font-size:small"></span>) </span>
+        <!--/ko-->
+
+        <!--ko if: node.scope == 'FadeIn'-->
+        <span><span class="prop">Fade In</span> (<span data-bind="text:node.fadeTime2" style="color:blue; font-style: font-size:small"></span>)  </span>
+        <!--/ko-->
+        
+        <!--ko if: node.scope == 'FadeOutAndIn'-->
+        <span><span class="prop">Fade out and In</span> </span>
+        <!--/ko-->
+    </div>
+
+    <div data-part="write">
+
+        <span>Scope:</span><select data-bind="options: availableScope, value: node.scope, optionsCaption: 'Select Scope'"></select><br>
+
+        <!--ko if: node.scope == 'FadeOut'-->
+        <span class="control-label">Fade Out Time (Seconds):</span>
+        <input type="text" data-bind="value: node.fadeTime, valueUpdate: 'afterkeydown'" style="width: 60px" />
+        <br>
+        <!--/ko-->
+
+
+        <!--ko if: node.scope == 'FadeIn'-->
+        <span class="control-label">Fade In From Black Time (Seconds):</span>
+        <input type="text" data-bind="value: node.fadeTime2, valueUpdate: 'afterkeydown'" style="width: 60px" />
+        <br>
+        <span class="control-label">Time Spent in Darkness (Seconds):</span>
+        <input type="text" data-bind="value: node.fadeDown, valueUpdate: 'afterkeydown'" style="width: 60px" />
+        <br>
+        <!--/ko-->
+
+        <!--ko if: node.scope == 'FadeOutAndIn'-->
+         <span class="control-label">Fade Out Time (Seconds):</span>
+        <input type="text" data-bind="value: node.fadeTime, valueUpdate: 'afterkeydown'" style="width: 60px" />
+        <br>
+
+        <span class="control-label">Fade In Time (Seconds):</span>
+        <input type="text" data-bind="value: node.fadeTime2, valueUpdate: 'afterkeydown'" style="width: 60px" />
+        <br>
+
+        <span class="control-label">Time Spent in Darkness (Seconds):</span>
+        <input type="text" data-bind="value: node.fadeDown, valueUpdate: 'afterkeydown'" style="width: 60px" />
+        <br>
+
+        <div class="form-inline">
+            <input type="checkbox" data-bind="checked: node.wait" />
+            <label>Wait for fade out?</label>
+        </div>
+         <!--/ko-->
+    </div>
+</div>

@@ -1,0 +1,295 @@
+{
+    "type": "script",
+    "id": "d532e3c2-61f9-4762-aae3-88dd72f4bfb6",
+    "name": "Interact with Terk's Bookshelf",
+    "sceneId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+    "propId": "ba30b2fd-4bb6-499a-994b-a0e1620927e3",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "93d9d244-072c-47f1-8f74-6fed5529b74d",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "556f3e93-916a-4561-9778-4934ceb736de",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "3aa30fb0-fe95-4fd6-bc05-dc3838c6d6f0",
+                            "text": "Look at the Bookcase",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "prop",
+                                                "scopeId": "ba30b2fd-4bb6-499a-994b-a0e1620927e3",
+                                                "scopeFilterId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+                                                "tags": "CycledThrice",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "7dc2aaaa-2e9a-4f6f-b994-a4dbf5491f4a",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "These have to be here just to make Terk look educated. There's no way he <i>reads</i>.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "9af5eadb-1cbd-46df-8948-55353094f5b6",
+                                                    "scope": "prop",
+                                                    "scopeId": "ba30b2fd-4bb6-499a-994b-a0e1620927e3",
+                                                    "scopeFilterId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+                                                    "tagsToAdd": "LookedOnce",
+                                                    "tagsToRemove": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "8abe1edc-fa87-409f-9702-986c91602964",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "It's scary what he likes.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "ec73f2db-6ab0-4049-938b-64a460979b8c",
+                            "text": "Look Behind the Bookcase",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "73212107-e2fe-42ff-8655-68d5a42873ef",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "It's a big piece of furniture, and it's right up against the wall. I'm deducing that there's nothing behind it, or someone would have to empty the shelves just to be able to move the bookcase.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "537abafd-1cb5-4047-87bd-ccaa2a9c1e2b",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "I don't know why people think I'm dim.",
+                                    "emotion": "3",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "40cb8a18-b95e-4794-beeb-ec1dd287fb7f",
+                            "text": "Pick a Book at Random",
+                            "nodes": [
+                                {
+                                    "type": "nodes.playSoundEffect",
+                                    "soundEffectName": "book_open.wav",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.nodeCycle",
+                                    "id": "56903d35-9730-4959-b9d7-0262180d32c0",
+                                    "nodes": [
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "bff9ac3e-a007-4a0f-9c80-7a6f43ee2eff",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "<i>Crime and Punishment</i>. All the passages about punishment are highlighted.",
+                                            "emotion": "0",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "75b3f8f6-ef38-4ab8-9f56-e6bbc545cef0",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "<i>The Spanish Inquisition</i>. Eh, it's nothing but a bunch of spam.",
+                                            "emotion": "0",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "aa4a0415-5fbd-4d76-92c6-166a8899dc42",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "<i>Soul of a New Accountant</i>. This book appears to have been read lovingly and often.",
+                                            "emotion": "0",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.branch",
+                                            "sections": [
+                                                {
+                                                    "type": "nodes.branchSection",
+                                                    "expression": {
+                                                        "type": "expressions.inTags",
+                                                        "scope": "prop",
+                                                        "scopeId": "ba30b2fd-4bb6-499a-994b-a0e1620927e3",
+                                                        "scopeFilterId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+                                                        "tags": "LookedOnce",
+                                                        "has": true
+                                                    },
+                                                    "nodes": [
+                                                        {
+                                                            "type": "nodes.speak",
+                                                            "id": "aae6fb6b-136f-4b8b-bba6-b5149ca53433",
+                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                            "actorId2": null,
+                                                            "text": "<i>Les Miserables</i>. I guess I was wrong about Terk! He not only <i>reads</i>, he reads the <i>uplifting</i> stuff! NOT!",
+                                                            "emotion": "0",
+                                                            "emotion2": "0",
+                                                            "device": "0",
+                                                            "device2": "0"
+                                                        },
+                                                        {
+                                                            "type": "nodes.changeTags",
+                                                            "id": "31773ac6-741a-4ddc-a7c4-3705778a8900",
+                                                            "scope": "prop",
+                                                            "scopeId": "ba30b2fd-4bb6-499a-994b-a0e1620927e3",
+                                                            "scopeFilterId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+                                                            "tagsToAdd": "CycledThrice",
+                                                            "tagsToRemove": null
+                                                        },
+                                                        {
+                                                            "type": "nodes.changeTags",
+                                                            "id": "68caa7e3-0848-4eff-89f7-3b4746819ea1",
+                                                            "scope": "prop",
+                                                            "scopeId": "ba30b2fd-4bb6-499a-994b-a0e1620927e3",
+                                                            "scopeFilterId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+                                                            "tagsToRemove": "LookedOnce"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "nodes.branchSection",
+                                                    "expression": null,
+                                                    "nodes": [
+                                                        {
+                                                            "type": "nodes.speak",
+                                                            "id": "20334ac3-102e-412f-a7c2-3f2645a594bb",
+                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                            "actorId2": null,
+                                                            "text": "<i>Les Miserables</i>. Terk's written notes all through it, like \"Where's the guillotine?\", \"19 years for stealing a loaf of bread? Too lenient!\", and \"Insert waterboarding here!\" ",
+                                                            "emotion": "0",
+                                                            "emotion2": "0",
+                                                            "device": "0",
+                                                            "device2": "0"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "6a2e091c-e0c0-4015-96bf-1d15dfd1058c",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "<i>Winning Through Intimidation</i>. Hey, finally a book that might actually be useful to a Rogue.",
+                                            "emotion": "0",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "9c23455e-8d41-407b-a849-7635729c9a1b",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "<i>Torture Techniques Today... and Tomorrow</i>. How did they manage to write about techniques that don't even exist yet?",
+                                            "emotion": "0",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.playSoundEffect",
+                                    "soundEffectName": "book_close.wav",
+                                    "wait": true
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "7165094c-e08f-45a2-a721-e75589f220dc",
+                            "text": "Steal a Book",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "d84701d1-1ae4-469c-a61a-254b0541efd1",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "I don't think for a moment that the man won't know what I've done. He can probably glance at the bookcase and immediately know what book is missing.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

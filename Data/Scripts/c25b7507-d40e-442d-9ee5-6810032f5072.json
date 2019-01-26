@@ -1,0 +1,1353 @@
+{
+    "type": "script",
+    "id": "c25b7507-d40e-442d-9ee5-6810032f5072",
+    "name": "_OnEnter (Science Class)",
+    "sceneId": "4c80661d-0537-46d4-b6d6-422313186fac",
+    "trigger": {
+        "type": "triggers.enter",
+        "name": "Enter"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "eecfea15-6165-4abc-aae4-6b9059f722d1",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "actor",
+                                "scopeId": "a104063f-f97b-49da-a22a-4104403e86e0",
+                                "scopeFilterId": null,
+                                "tags": "hasmet",
+                                "has": false
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "93199683-6cf7-4645-be19-dcac85ea657d",
+                                    "scope": "actor",
+                                    "scopeId": "a104063f-f97b-49da-a22a-4104403e86e0",
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "hasMet",
+                                    "tagsToRemove": null
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.variableComparison",
+                                    "variableScope": "global",
+                                    "variableName": "time.hour",
+                                    "operator": "gte",
+                                    "compareTo": "16",
+                                    "sceneId": "981d126b-abc7-430a-abb4-e912340c59e6",
+                                    "propId": null
+                                },
+                                "right": {
+                                    "type": "expressions.variableComparison",
+                                    "variableScope": "global",
+                                    "variableName": "time.minute",
+                                    "operator": "gte",
+                                    "compareTo": "15",
+                                    "sceneId": "981d126b-abc7-430a-abb4-e912340c59e6",
+                                    "propId": null
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.showVignette",
+                                    "vignetteName": "BlackVignette.png",
+                                    "crossFadeTime": 0
+                                },
+                                {
+                                    "type": "nodes.wait",
+                                    "waitForSeconds": "0.5"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "e53c2938-40d8-4cea-9dea-3e66797e9b80",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "It's too late... today's lecture already started. I'll never be able to follow along.",
+                                    "emotion": "2",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.changeScene",
+                                    "sceneId": "5aa634b1-8fc5-4b1c-a556-7719d1e665a3",
+                                    "spawnId": "666b2bb2-3f02-484c-b5a0-59cbbae32003",
+                                    "fadeTime": "0"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.fade",
+                    "scope": "FadeIn",
+                    "fadeTime": 2,
+                    "fadeTime2": 2,
+                    "wait": true,
+                    "fadeDown": "0",
+                    "fadeColorR": 0,
+                    "fadeColorG": 0,
+                    "fadeColorB": 0
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "actor",
+                                "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                "scopeFilterId": null,
+                                "tags": "scienceelective1",
+                                "has": true
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.comment",
+                                    "message": "If Shawn missed a lesson, provide materials from that lesson.",
+                                    "commentor": "Remedial Jars"
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "global",
+                                                "variableName": "time.day",
+                                                "operator": "lt",
+                                                "compareTo": "28",
+                                                "sceneId": "4c80661d-0537-46d4-b6d6-422313186fac",
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.and",
+                                                                "left": {
+                                                                    "type": "expressions.variableComparison",
+                                                                    "variableScope": "global",
+                                                                    "variableName": "time.day",
+                                                                    "operator": "gt",
+                                                                    "compareTo": "11",
+                                                                    "sceneId": "4c80661d-0537-46d4-b6d6-422313186fac",
+                                                                    "propId": null
+                                                                },
+                                                                "right": {
+                                                                    "type": "expressions.inInventory",
+                                                                    "propId": "45d0b999-a434-427e-8410-14c34295cb61",
+                                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                                    "has": false
+                                                                }
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.changeInventory",
+                                                                    "id": "8ccac174-6e55-4471-b794-e0f11704e45f",
+                                                                    "propId": "45d0b999-a434-427e-8410-14c34295cb61",
+                                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                                    "change": "1",
+                                                                    "count": 1,
+                                                                    "notify": true
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.and",
+                                                                "left": {
+                                                                    "type": "expressions.variableComparison",
+                                                                    "variableScope": "global",
+                                                                    "variableName": "time.day",
+                                                                    "operator": "gt",
+                                                                    "compareTo": "13",
+                                                                    "sceneId": "4c80661d-0537-46d4-b6d6-422313186fac",
+                                                                    "propId": null
+                                                                },
+                                                                "right": {
+                                                                    "type": "expressions.inInventory",
+                                                                    "propId": "25ab250e-b3d5-4084-bd45-ec6c698e0437",
+                                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                                    "has": false
+                                                                }
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.invokeScript",
+                                                                    "id": "3b51044e-6db1-4495-bc85-cd662e291c78",
+                                                                    "scriptId": "c25b7507-d40e-442d-9ee5-6810032f5072",
+                                                                    "entryPointId": "3037f2e0-751b-4d12-86cf-8b68617f45e1",
+                                                                    "currentScope": "Current",
+                                                                    "currentSceneId": null,
+                                                                    "currentActorId": null,
+                                                                    "currentStoryEventId": null,
+                                                                    "currentPropId": null
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.and",
+                                                                "left": {
+                                                                    "type": "expressions.variableComparison",
+                                                                    "variableScope": "global",
+                                                                    "variableName": "time.day",
+                                                                    "operator": "gt",
+                                                                    "compareTo": "15",
+                                                                    "sceneId": "4c80661d-0537-46d4-b6d6-422313186fac",
+                                                                    "propId": null
+                                                                },
+                                                                "right": {
+                                                                    "type": "expressions.inInventory",
+                                                                    "propId": "d80613f1-d750-4e73-a8f4-802859d4f0c4",
+                                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                                    "has": false
+                                                                }
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.invokeScript",
+                                                                    "id": "204d2ff0-9734-4456-9d07-ab57636f460d",
+                                                                    "scriptId": "c25b7507-d40e-442d-9ee5-6810032f5072",
+                                                                    "entryPointId": "2dd5e059-2435-48f7-b380-aba20ae54e8f",
+                                                                    "currentScope": "Current",
+                                                                    "currentSceneId": null,
+                                                                    "currentActorId": null,
+                                                                    "currentStoryEventId": null,
+                                                                    "currentPropId": null
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.and",
+                                                                "left": {
+                                                                    "type": "expressions.variableComparison",
+                                                                    "variableScope": "global",
+                                                                    "variableName": "time.day",
+                                                                    "operator": "gt",
+                                                                    "compareTo": "29",
+                                                                    "sceneId": "4c80661d-0537-46d4-b6d6-422313186fac",
+                                                                    "propId": null
+                                                                },
+                                                                "right": {
+                                                                    "type": "expressions.inInventory",
+                                                                    "propId": "45d0b999-a434-427e-8410-14c34295cb61",
+                                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                                    "has": false
+                                                                }
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.changeInventory",
+                                                                    "id": "c8e23a74-0837-4549-b513-dcca88278662",
+                                                                    "propId": "45d0b999-a434-427e-8410-14c34295cb61",
+                                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                                    "change": "1",
+                                                                    "count": 1,
+                                                                    "notify": true
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.and",
+                                                                "left": {
+                                                                    "type": "expressions.variableComparison",
+                                                                    "variableScope": "global",
+                                                                    "variableName": "time.day",
+                                                                    "operator": "gt",
+                                                                    "compareTo": "31",
+                                                                    "sceneId": "4c80661d-0537-46d4-b6d6-422313186fac",
+                                                                    "propId": null
+                                                                },
+                                                                "right": {
+                                                                    "type": "expressions.inInventory",
+                                                                    "propId": "25ab250e-b3d5-4084-bd45-ec6c698e0437",
+                                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                                    "has": false
+                                                                }
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.invokeScript",
+                                                                    "id": "647f1524-dba7-4cb8-aa19-094062841862",
+                                                                    "scriptId": "c25b7507-d40e-442d-9ee5-6810032f5072",
+                                                                    "entryPointId": "3037f2e0-751b-4d12-86cf-8b68617f45e1",
+                                                                    "currentScope": "Current",
+                                                                    "currentSceneId": null,
+                                                                    "currentActorId": null,
+                                                                    "currentStoryEventId": null,
+                                                                    "currentPropId": null
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.and",
+                                                                "left": {
+                                                                    "type": "expressions.variableComparison",
+                                                                    "variableScope": "global",
+                                                                    "variableName": "time.day",
+                                                                    "operator": "gt",
+                                                                    "compareTo": "33",
+                                                                    "sceneId": "4c80661d-0537-46d4-b6d6-422313186fac",
+                                                                    "propId": null
+                                                                },
+                                                                "right": {
+                                                                    "type": "expressions.inInventory",
+                                                                    "propId": "d80613f1-d750-4e73-a8f4-802859d4f0c4",
+                                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                                    "has": false
+                                                                }
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.invokeScript",
+                                                                    "id": "787e6629-1bd9-4bea-acc8-fe26d4c6ea7c",
+                                                                    "scriptId": "c25b7507-d40e-442d-9ee5-6810032f5072",
+                                                                    "entryPointId": "2dd5e059-2435-48f7-b380-aba20ae54e8f",
+                                                                    "currentScope": "Current",
+                                                                    "currentSceneId": null,
+                                                                    "currentActorId": null,
+                                                                    "currentStoryEventId": null,
+                                                                    "currentPropId": null
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.or",
+                                                "left": {
+                                                    "type": "expressions.variableComparison",
+                                                    "variableScope": "global",
+                                                    "variableName": "time.day",
+                                                    "operator": "eq",
+                                                    "compareTo": "10",
+                                                    "sceneId": null,
+                                                    "propId": null
+                                                },
+                                                "right": {
+                                                    "type": "expressions.variableComparison",
+                                                    "variableScope": "global",
+                                                    "variableName": "time.day",
+                                                    "operator": "eq",
+                                                    "compareTo": "28",
+                                                    "sceneId": null,
+                                                    "propId": null
+                                                }
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.showVignette",
+                                                    "vignetteName": "ScienceLab1.png",
+                                                    "crossFadeTime": 0
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "c326af93-e927-479c-952a-34ca73584813",
+                                                    "scriptId": "936d3099-18b6-4809-8683-d6495b7386b6",
+                                                    "entryPointId": "eecfea15-6165-4abc-aae4-6b9059f722d1",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "4c80661d-0537-46d4-b6d6-422313186fac",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.or",
+                                                "left": {
+                                                    "type": "expressions.variableComparison",
+                                                    "variableScope": "global",
+                                                    "variableName": "time.day",
+                                                    "operator": "eq",
+                                                    "compareTo": "11",
+                                                    "sceneId": null,
+                                                    "propId": null
+                                                },
+                                                "right": {
+                                                    "type": "expressions.variableComparison",
+                                                    "variableScope": "global",
+                                                    "variableName": "time.day",
+                                                    "operator": "eq",
+                                                    "compareTo": "29",
+                                                    "sceneId": null,
+                                                    "propId": null
+                                                }
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.showVignette",
+                                                    "vignetteName": "ScienceLab1.png",
+                                                    "crossFadeTime": 0
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "9abbbd0d-839b-40d6-907e-c540b8d0c3ef",
+                                                    "scriptId": "89e8ec7d-d0d8-4792-ba59-af4e12b0673c",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "4c80661d-0537-46d4-b6d6-422313186fac",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.or",
+                                                "left": {
+                                                    "type": "expressions.variableComparison",
+                                                    "variableScope": "global",
+                                                    "variableName": "time.day",
+                                                    "operator": "eq",
+                                                    "compareTo": "12",
+                                                    "sceneId": null,
+                                                    "propId": null
+                                                },
+                                                "right": {
+                                                    "type": "expressions.variableComparison",
+                                                    "variableScope": "global",
+                                                    "variableName": "time.day",
+                                                    "operator": "eq",
+                                                    "compareTo": "30",
+                                                    "sceneId": null,
+                                                    "propId": null
+                                                }
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.showVignette",
+                                                    "vignetteName": "ScienceLab1.png",
+                                                    "crossFadeTime": 0
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "73bda1e2-ee28-48d9-8ee1-acad1a1db509",
+                                                    "scriptId": "6e703274-ea72-45f0-882c-7b01e0ede317",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "4c80661d-0537-46d4-b6d6-422313186fac",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.or",
+                                                "left": {
+                                                    "type": "expressions.variableComparison",
+                                                    "variableScope": "global",
+                                                    "variableName": "time.day",
+                                                    "operator": "eq",
+                                                    "compareTo": "13",
+                                                    "sceneId": null,
+                                                    "propId": null
+                                                },
+                                                "right": {
+                                                    "type": "expressions.variableComparison",
+                                                    "variableScope": "global",
+                                                    "variableName": "time.day",
+                                                    "operator": "eq",
+                                                    "compareTo": "31",
+                                                    "sceneId": null,
+                                                    "propId": null
+                                                }
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.showVignette",
+                                                    "vignetteName": "ScienceLab1.png",
+                                                    "crossFadeTime": 0
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "cac43a05-ce3f-4469-b6f2-fb977fc48fd8",
+                                                    "scriptId": "5141baef-1727-45ff-9964-16dc90f49b29",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "4c80661d-0537-46d4-b6d6-422313186fac",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.or",
+                                                "left": {
+                                                    "type": "expressions.variableComparison",
+                                                    "variableScope": "global",
+                                                    "variableName": "time.day",
+                                                    "operator": "eq",
+                                                    "compareTo": "14",
+                                                    "sceneId": null,
+                                                    "propId": null
+                                                },
+                                                "right": {
+                                                    "type": "expressions.variableComparison",
+                                                    "variableScope": "global",
+                                                    "variableName": "time.day",
+                                                    "operator": "eq",
+                                                    "compareTo": "32",
+                                                    "sceneId": null,
+                                                    "propId": null
+                                                }
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.showVignette",
+                                                    "vignetteName": "ScienceLab1.png",
+                                                    "crossFadeTime": 0
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "9d013a47-8829-48c1-85c4-7a5057660a9a",
+                                                    "scriptId": "a3854139-cfba-43af-8e7f-d3390306d31e",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "4c80661d-0537-46d4-b6d6-422313186fac",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.or",
+                                                "left": {
+                                                    "type": "expressions.variableComparison",
+                                                    "variableScope": "global",
+                                                    "variableName": "time.day",
+                                                    "operator": "eq",
+                                                    "compareTo": "15",
+                                                    "sceneId": null,
+                                                    "propId": null
+                                                },
+                                                "right": {
+                                                    "type": "expressions.variableComparison",
+                                                    "variableScope": "global",
+                                                    "variableName": "time.day",
+                                                    "operator": "eq",
+                                                    "compareTo": "33",
+                                                    "sceneId": null,
+                                                    "propId": null
+                                                }
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.showVignette",
+                                                    "vignetteName": "ScienceLab1.png",
+                                                    "crossFadeTime": 0
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "2fb0a9cd-b646-4bc6-8918-e4ba3cce0c82",
+                                                    "scriptId": "87816140-e43c-412e-9bbe-e90bac2aab6a",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "4c80661d-0537-46d4-b6d6-422313186fac",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.or",
+                                                "left": {
+                                                    "type": "expressions.variableComparison",
+                                                    "variableScope": "global",
+                                                    "variableName": "time.day",
+                                                    "operator": "eq",
+                                                    "compareTo": "16",
+                                                    "sceneId": null,
+                                                    "propId": null
+                                                },
+                                                "right": {
+                                                    "type": "expressions.variableComparison",
+                                                    "variableScope": "global",
+                                                    "variableName": "time.day",
+                                                    "operator": "eq",
+                                                    "compareTo": "34",
+                                                    "sceneId": null,
+                                                    "propId": null
+                                                }
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.showVignette",
+                                                    "vignetteName": "ScienceCrafting.png",
+                                                    "crossFadeTime": 0
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "eaa192f9-00fa-494b-b081-548fccb86458",
+                                                    "scriptId": "96f18396-7586-45a6-b497-26e3afc97bd7",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "4c80661d-0537-46d4-b6d6-422313186fac",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.or",
+                                                "left": {
+                                                    "type": "expressions.variableComparison",
+                                                    "variableScope": "global",
+                                                    "variableName": "time.day",
+                                                    "operator": "eq",
+                                                    "compareTo": "17",
+                                                    "sceneId": null,
+                                                    "propId": null
+                                                },
+                                                "right": {
+                                                    "type": "expressions.variableComparison",
+                                                    "variableScope": "global",
+                                                    "variableName": "time.day",
+                                                    "operator": "eq",
+                                                    "compareTo": "35",
+                                                    "sceneId": null,
+                                                    "propId": null
+                                                }
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.showVignette",
+                                                    "vignetteName": "ScienceLab1.png",
+                                                    "crossFadeTime": 0
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "fe897616-c42e-4f4a-811c-ecd788c45cc2",
+                                                    "scriptId": "7d6ceae4-dbbe-440e-ab9d-6584161a13eb",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "4c80661d-0537-46d4-b6d6-422313186fac",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.or",
+                                                "left": {
+                                                    "type": "expressions.variableComparison",
+                                                    "variableScope": "global",
+                                                    "variableName": "time.day",
+                                                    "operator": "eq",
+                                                    "compareTo": "18",
+                                                    "sceneId": null,
+                                                    "propId": null
+                                                },
+                                                "right": {
+                                                    "type": "expressions.variableComparison",
+                                                    "variableScope": "global",
+                                                    "variableName": "time.day",
+                                                    "operator": "eq",
+                                                    "compareTo": "36",
+                                                    "sceneId": null,
+                                                    "propId": null
+                                                }
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.showVignette",
+                                                    "vignetteName": "ScienceCrafting.png",
+                                                    "crossFadeTime": 0
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "c988eaca-3699-4fd2-abef-bf2790957764",
+                                                    "scriptId": "7555a304-da15-4931-9835-4829a1c36404",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "4c80661d-0537-46d4-b6d6-422313186fac",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.or",
+                                                "left": {
+                                                    "type": "expressions.variableComparison",
+                                                    "variableScope": "global",
+                                                    "variableName": "time.day",
+                                                    "operator": "eq",
+                                                    "compareTo": "20",
+                                                    "sceneId": null,
+                                                    "propId": null
+                                                },
+                                                "right": {
+                                                    "type": "expressions.variableComparison",
+                                                    "variableScope": "global",
+                                                    "variableName": "time.day",
+                                                    "operator": "eq",
+                                                    "compareTo": "37",
+                                                    "sceneId": null,
+                                                    "propId": null
+                                                }
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.showVignette",
+                                                    "vignetteName": "ScienceCrafting.png",
+                                                    "crossFadeTime": 0
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "5472d1ff-d371-40ec-85bc-82ff6badfa62",
+                                                    "scriptId": "bc684ecc-44e2-4f4f-a268-cb0af13c70f4",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "4c80661d-0537-46d4-b6d6-422313186fac",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.or",
+                                                "left": {
+                                                    "type": "expressions.variableComparison",
+                                                    "variableScope": "global",
+                                                    "variableName": "time.day",
+                                                    "operator": "eq",
+                                                    "compareTo": "21",
+                                                    "sceneId": null,
+                                                    "propId": null
+                                                },
+                                                "right": {
+                                                    "type": "expressions.variableComparison",
+                                                    "variableScope": "global",
+                                                    "variableName": "time.day",
+                                                    "operator": "eq",
+                                                    "compareTo": "38",
+                                                    "sceneId": null,
+                                                    "propId": null
+                                                }
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.showVignette",
+                                                    "vignetteName": "ScienceLab1.png",
+                                                    "crossFadeTime": 0
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "764d9bb5-dcea-4798-96a1-56252cf28f54",
+                                                    "scriptId": "9a4fce81-a87b-4481-8baf-61d04aab968f",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "4c80661d-0537-46d4-b6d6-422313186fac",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.or",
+                                                "left": {
+                                                    "type": "expressions.variableComparison",
+                                                    "variableScope": "global",
+                                                    "variableName": "time.day",
+                                                    "operator": "eq",
+                                                    "compareTo": "22",
+                                                    "sceneId": null,
+                                                    "propId": null
+                                                },
+                                                "right": {
+                                                    "type": "expressions.variableComparison",
+                                                    "variableScope": "global",
+                                                    "variableName": "time.day",
+                                                    "operator": "eq",
+                                                    "compareTo": "39",
+                                                    "sceneId": null,
+                                                    "propId": null
+                                                }
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.showVignette",
+                                                    "vignetteName": "ScienceCrafting.png",
+                                                    "crossFadeTime": 0
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "ea82ea28-8fe9-4a4f-b431-23775defa40f",
+                                                    "scriptId": "804c5869-1590-4f76-902b-872c01340ca9",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "4c80661d-0537-46d4-b6d6-422313186fac",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.comment",
+                                    "message": "Advanced Science",
+                                    "commentor": "Joshua"
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "global",
+                                                "variableName": "time.day",
+                                                "operator": "eq",
+                                                "compareTo": "28",
+                                                "sceneId": null,
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.showVignette",
+                                                    "vignetteName": "ScienceLab1.png",
+                                                    "crossFadeTime": 0
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "ffbe4b16-257b-46e2-a9c9-499e0327054b",
+                                                    "scriptId": "566af7bc-7488-4dd0-b500-33796057fc12",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "4c80661d-0537-46d4-b6d6-422313186fac",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "global",
+                                                "variableName": "time.day",
+                                                "operator": "eq",
+                                                "compareTo": "29",
+                                                "sceneId": null,
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.showVignette",
+                                                    "vignetteName": "ScienceLab1.png",
+                                                    "crossFadeTime": 0
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "8867eb99-1cb5-455d-ac47-c44e0a8d245f",
+                                                    "scriptId": "98241021-847a-432c-8097-01dcbd2683ec",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "4c80661d-0537-46d4-b6d6-422313186fac",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "global",
+                                                "variableName": "time.day",
+                                                "operator": "eq",
+                                                "compareTo": "30",
+                                                "sceneId": null,
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.showVignette",
+                                                    "vignetteName": "ScienceCrafting.png",
+                                                    "crossFadeTime": 0
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "b31a9b4b-5bb7-4da9-8016-892d756c40af",
+                                                    "scriptId": "e7854acb-44b3-4119-8d0b-fc1173660e59",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "4c80661d-0537-46d4-b6d6-422313186fac",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "global",
+                                                "variableName": "time.day",
+                                                "operator": "eq",
+                                                "compareTo": "31",
+                                                "sceneId": null,
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.showVignette",
+                                                    "vignetteName": "ScienceCrafting.png",
+                                                    "crossFadeTime": 0
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "da2dab0a-3d3b-4f76-8ab4-fb1d34ec0ce0",
+                                                    "scriptId": "5a8ae20a-efa1-473d-aa49-ba16d3d4d795",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "4c80661d-0537-46d4-b6d6-422313186fac",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "global",
+                                                "variableName": "time.day",
+                                                "operator": "eq",
+                                                "compareTo": "32",
+                                                "sceneId": null,
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.showVignette",
+                                                    "vignetteName": "ScienceLab1.png",
+                                                    "crossFadeTime": 0
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "11fd6481-4129-4006-9156-0c47e06eae19",
+                                                    "scriptId": "c2862655-4ab1-4b9c-9a16-bf8c7deb2556",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "4c80661d-0537-46d4-b6d6-422313186fac",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "global",
+                                                "variableName": "time.day",
+                                                "operator": "eq",
+                                                "compareTo": "33",
+                                                "sceneId": null,
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.showVignette",
+                                                    "vignetteName": "ScienceLab1.png",
+                                                    "crossFadeTime": 0
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "64f657be-8f6d-41cd-9576-7a83f25af35a",
+                                                    "scriptId": "b0586b18-1cbe-4eec-8057-1135845082bc",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "4c80661d-0537-46d4-b6d6-422313186fac",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "global",
+                                                "variableName": "time.day",
+                                                "operator": "eq",
+                                                "compareTo": "34",
+                                                "sceneId": null,
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.showVignette",
+                                                    "vignetteName": "ScienceCrafting.png",
+                                                    "crossFadeTime": 0
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "9d3cd39b-e99b-490e-b031-886c1fee2dec",
+                                                    "scriptId": "d6ecd11c-96d4-4eb0-a71d-b2854602a6e8",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "4c80661d-0537-46d4-b6d6-422313186fac",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "global",
+                                                "variableName": "time.day",
+                                                "operator": "eq",
+                                                "compareTo": "35",
+                                                "sceneId": null,
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.showVignette",
+                                                    "vignetteName": "ScienceLab1.png",
+                                                    "crossFadeTime": 0
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "1ceec0a6-a5e6-4e9b-9392-ac5bda71e472",
+                                                    "scriptId": "7add2db0-32ad-433c-a7ec-848305e24f33",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "4c80661d-0537-46d4-b6d6-422313186fac",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "global",
+                                                "variableName": "time.day",
+                                                "operator": "eq",
+                                                "compareTo": "36",
+                                                "sceneId": null,
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.showVignette",
+                                                    "vignetteName": "ScienceLab1.png",
+                                                    "crossFadeTime": 0
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "5dd5108d-dcf7-437e-8ab3-b27295a6cc62",
+                                                    "scriptId": "7141f59d-3c89-4a74-9350-cb9d443b32be",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "4c80661d-0537-46d4-b6d6-422313186fac",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "global",
+                                                "variableName": "time.day",
+                                                "operator": "eq",
+                                                "compareTo": "37",
+                                                "sceneId": null,
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.showVignette",
+                                                    "vignetteName": "ScienceLab2.png",
+                                                    "crossFadeTime": 0
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "f5a2e797-6424-48e9-958d-390806d36274",
+                                                    "scriptId": "fabf2e82-9200-4b68-9aa8-30c6b977dd2e",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "4c80661d-0537-46d4-b6d6-422313186fac",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "global",
+                                                "variableName": "time.day",
+                                                "operator": "eq",
+                                                "compareTo": "38",
+                                                "sceneId": null,
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.showVignette",
+                                                    "vignetteName": "ScienceLab1.png",
+                                                    "crossFadeTime": 0
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "6c811e44-2ba6-4da6-9476-1a22b6c42ca8",
+                                                    "scriptId": "da27fd26-c728-4dc7-9674-882383c327ad",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "4c80661d-0537-46d4-b6d6-422313186fac",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "global",
+                                                "variableName": "time.day",
+                                                "operator": "eq",
+                                                "compareTo": "39",
+                                                "sceneId": null,
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.showVignette",
+                                                    "vignetteName": "ScienceLab2.png",
+                                                    "crossFadeTime": 0
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "1e254d0e-cc70-4252-9ab1-b34fdaec4c9e",
+                                                    "scriptId": "1daa0312-ea45-4cab-983a-21d9d0da5aea",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "4c80661d-0537-46d4-b6d6-422313186fac",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.wait",
+                    "waitForSeconds": "2"
+                },
+                {
+                    "type": "nodes.setTime",
+                    "id": "368dc80f-1aa4-4987-b222-4757c9c71a04",
+                    "day": "-1",
+                    "hour": "16",
+                    "minute": "59",
+                    "notify": false
+                },
+                {
+                    "type": "nodes.changeScene",
+                    "sceneId": "5aa634b1-8fc5-4b1c-a556-7719d1e665a3",
+                    "spawnId": "666b2bb2-3f02-484c-b5a0-59cbbae32003",
+                    "fadeTime": 2
+                }
+            ]
+        },
+        {
+            "type": "scripts.entryPoint",
+            "id": "3037f2e0-751b-4d12-86cf-8b68617f45e1",
+            "name": "AddSulfur",
+            "nodes": [
+                {
+                    "type": "nodes.changeInventory",
+                    "id": "90d33137-4ae4-448f-81a4-de4a51e74133",
+                    "propId": "25ab250e-b3d5-4084-bd45-ec6c698e0437",
+                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                    "change": "1",
+                    "count": 1,
+                    "notify": true
+                },
+                {
+                    "type": "nodes.setVariable",
+                    "name": "FillAmount",
+                    "scope": "prop",
+                    "scopeId": "25ab250e-b3d5-4084-bd45-ec6c698e0437",
+                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                    "source": {
+                        "type": "variables.literal",
+                        "value": "3",
+                        "displayName": "Literal"
+                    },
+                    "add": false
+                }
+            ]
+        },
+        {
+            "type": "scripts.entryPoint",
+            "id": "2dd5e059-2435-48f7-b380-aba20ae54e8f",
+            "name": "AddMineral",
+            "nodes": [
+                {
+                    "type": "nodes.changeInventory",
+                    "id": "4cd1dad5-b784-4c11-a6d2-3b7cc9d781f7",
+                    "propId": "d80613f1-d750-4e73-a8f4-802859d4f0c4",
+                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                    "change": "1",
+                    "count": 1,
+                    "notify": true
+                },
+                {
+                    "type": "nodes.setVariable",
+                    "name": "FillAmount",
+                    "scope": "prop",
+                    "scopeId": "d80613f1-d750-4e73-a8f4-802859d4f0c4",
+                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                    "source": {
+                        "type": "variables.literal",
+                        "value": "3",
+                        "displayName": "Literal"
+                    },
+                    "add": false
+                }
+            ]
+        }
+    ]
+}

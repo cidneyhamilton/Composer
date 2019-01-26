@@ -1,0 +1,160 @@
+{
+    "type": "script",
+    "id": "65968131-1c4f-4fbb-960a-833421ee442b",
+    "name": "OnKilledByEgo",
+    "actorId": "3ec7237c-65ea-4a23-9e21-697f17a2dbe8",
+    "trigger": {
+        "type": "triggers.killedByEgo",
+        "name": "KilledByEgo"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "ad693667-0f79-4c12-94a1-48b6949d7d85",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.playMusic",
+                    "musicTrack": "silence.ogg",
+                    "channel": "1",
+                    "loopType": "1"
+                },
+                {
+                    "type": "nodes.changeTags",
+                    "id": "483feef2-5972-4b57-a3a8-24c4187a0494",
+                    "scope": "actor",
+                    "scopeId": "3ec7237c-65ea-4a23-9e21-697f17a2dbe8",
+                    "scopeFilterId": null,
+                    "tagsToAdd": "QueenDone,QueenShawn,DratQueenDead",
+                    "tagsToRemove": null
+                },
+                {
+                    "type": "nodes.quests",
+                    "id": "bf545e53-d160-4d56-9864-aa7f54af43e0",
+                    "sceneId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                    "propId": "677a9ff1-7927-4c91-9d08-f79ea52cf698",
+                    "target": "1",
+                    "notify": true
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.hasActiveQuest",
+                                "propId": "e2609ce8-5f04-496e-93d8-38ad3019ef2f",
+                                "sceneId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                                "questStatus": "0"
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.quests",
+                                    "id": "89447448-1913-4c05-8b65-c83030507f72",
+                                    "sceneId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                                    "propId": "e2609ce8-5f04-496e-93d8-38ad3019ef2f",
+                                    "target": "2",
+                                    "notify": true
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.fade",
+                                    "scope": "FadeOut",
+                                    "fadeTime": 2,
+                                    "fadeTime2": 2,
+                                    "wait": true,
+                                    "fadeDown": 1,
+                                    "fadeColorR": 0,
+                                    "fadeColorG": 0,
+                                    "fadeColorB": 0
+                                },
+                                {
+                                    "type": "nodes.showVignette",
+                                    "vignetteName": "QueenDrat_ShawnDefeatsQueen.png",
+                                    "crossFadeTime": 0
+                                },
+                                {
+                                    "type": "nodes.fade",
+                                    "scope": "FadeIn",
+                                    "fadeTime": 2,
+                                    "fadeTime2": "1",
+                                    "wait": true,
+                                    "fadeDown": ".5",
+                                    "fadeColorR": 0,
+                                    "fadeColorG": 0,
+                                    "fadeColorB": 0
+                                },
+                                {
+                                    "type": "nodes.wait",
+                                    "waitForSeconds": "1"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "39dce296-da31-4e39-ba57-da1bdadc423a",
+                                    "actorId": "38b1ca94-de8c-4873-8810-3d0b02df469a",
+                                    "actorId2": null,
+                                    "text": "The Queen of the Drats sent her Warriors to spy\nThroughout the castle to fight or to die\nBut a Hero came hunting this merciless foe\nAnd the fate of the Drat Queen was quite apropos.\n",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.wait",
+                                    "waitForSeconds": "4"
+                                },
+                                {
+                                    "type": "nodes.fade",
+                                    "scope": "FadeOut",
+                                    "fadeTime": 2,
+                                    "fadeTime2": 2,
+                                    "wait": true,
+                                    "fadeDown": 1,
+                                    "fadeColorR": 0,
+                                    "fadeColorG": 0,
+                                    "fadeColorB": 0
+                                },
+                                {
+                                    "type": "nodes.hideVignette",
+                                    "waitForSeconds": 1
+                                },
+                                {
+                                    "type": "nodes.fade",
+                                    "scope": "FadeIn",
+                                    "fadeTime": 2,
+                                    "fadeTime2": "1",
+                                    "wait": true,
+                                    "fadeDown": ".5",
+                                    "fadeColorR": 0,
+                                    "fadeColorG": 0,
+                                    "fadeColorB": 0
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.invokeScript",
+                    "id": "6fbb9084-eda2-474e-84e1-9831a9b25491",
+                    "scriptId": "cec62521-9560-448a-8ee3-75c1090db372",
+                    "entryPointId": "ad693667-0f79-4c12-94a1-48b6949d7d85",
+                    "currentScope": "Scenes",
+                    "currentSceneId": "e9302fad-2a24-451d-b277-b3f506ffacb7",
+                    "currentActorId": null,
+                    "currentStoryEventId": null,
+                    "currentPropId": null
+                }
+            ]
+        }
+    ]
+}

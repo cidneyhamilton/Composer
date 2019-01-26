@@ -1,0 +1,286 @@
+{
+    "type": "script",
+    "id": "41fd1095-663f-4872-ba77-e6568a466c35",
+    "name": "Courtyard Shrooms",
+    "sceneId": "cf824b0f-5af6-4a19-bac8-552a2a1bbebf",
+    "trigger": {
+        "type": "triggers.manual",
+        "name": "Manual"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "cd86ff18-83b7-4ed4-be7a-3d2f748a150d",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.comment",
+                    "message": "",
+                    "commentor": "Shawn collects mushrooms"
+                },
+                {
+                    "type": "nodes.setVariable",
+                    "name": "bushLuck",
+                    "scope": "script",
+                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                    "source": {
+                        "type": "variables.random",
+                        "value": "",
+                        "min": 1,
+                        "max": "100",
+                        "displayName": "Random"
+                    },
+                    "add": false
+                },
+                {
+                    "id": "1ee47413-68a0-4025-8a5e-df31b471c212",
+                    "type": "nodes.skillBranch",
+                    "skill": "Luck",
+                    "target": "025",
+                    "success": {
+                        "type": "nodes.block",
+                        "nodes": [
+                            {
+                                "type": "nodes.setVariable",
+                                "name": "bushLuck",
+                                "scope": "script",
+                                "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                "source": {
+                                    "type": "variables.literal",
+                                    "value": "10",
+                                    "displayName": "Literal"
+                                },
+                                "add": true
+                            }
+                        ]
+                    },
+                    "failure": {
+                        "type": "nodes.block",
+                        "nodes": []
+                    },
+                    "notify": true
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.variableComparison",
+                                "variableScope": "script",
+                                "variableName": "bushLuck",
+                                "operator": "lt",
+                                "compareTo": "20",
+                                "sceneId": "cf824b0f-5af6-4a19-bac8-552a2a1bbebf",
+                                "propId": null
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "f60303ab-dbaa-43c8-b6bb-69a54b6de656",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "I'm out of luck - I don't see any useful mushrooms here today.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.variableComparison",
+                                "variableScope": "script",
+                                "variableName": "bushLuck",
+                                "operator": "lt",
+                                "compareTo": "40",
+                                "sceneId": "cf824b0f-5af6-4a19-bac8-552a2a1bbebf",
+                                "propId": null
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "6b10400d-8b9b-4265-8035-d5b27de89a90",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "There are a few puffballs growing here. I'll just add them to my collection of First Aid supplies.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.changeInventory",
+                                    "id": "f9e57167-0ee1-41ed-9874-0ea10458bf63",
+                                    "propId": "414d7c9f-1649-4dae-8ace-96421d0928c9",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "change": "1",
+                                    "count": "3",
+                                    "notify": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.variableComparison",
+                                "variableScope": "script",
+                                "variableName": "bushLuck",
+                                "operator": "lt",
+                                "compareTo": "60",
+                                "sceneId": "cf824b0f-5af6-4a19-bac8-552a2a1bbebf",
+                                "propId": null
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "6d432329-82d1-46d9-99ed-0b5bf9f19cae",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Nice! There are some puffballs and morels here!",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.changeInventory",
+                                    "id": "7c4a0318-2100-4c57-be16-56ddd09eba80",
+                                    "propId": "414d7c9f-1649-4dae-8ace-96421d0928c9",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "change": "1",
+                                    "count": "2",
+                                    "notify": true
+                                },
+                                {
+                                    "type": "nodes.changeInventory",
+                                    "id": "350dc432-773d-469b-950d-a27e4ff6c50c",
+                                    "propId": "b5cfb598-7611-4fe9-9a5b-6c0a4625931a",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "change": "1",
+                                    "count": "2",
+                                    "notify": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.variableComparison",
+                                "variableScope": "script",
+                                "variableName": "bushLuck",
+                                "operator": "lt",
+                                "compareTo": "80",
+                                "sceneId": "cf824b0f-5af6-4a19-bac8-552a2a1bbebf",
+                                "propId": null
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "6aa7a976-8107-45f3-968f-25453ea2af79",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Yay, mushrooms ordinary and exotic!",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.changeInventory",
+                                    "id": "c4068807-7e04-4f0f-8198-2d84373f3f33",
+                                    "propId": "414d7c9f-1649-4dae-8ace-96421d0928c9",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "change": "1",
+                                    "count": "5",
+                                    "notify": true
+                                },
+                                {
+                                    "type": "nodes.changeInventory",
+                                    "id": "51588b72-a8af-4f40-ba6b-e8dc19392d55",
+                                    "propId": "b5cfb598-7611-4fe9-9a5b-6c0a4625931a",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "change": "1",
+                                    "count": "3",
+                                    "notify": true
+                                },
+                                {
+                                    "type": "nodes.changeInventory",
+                                    "id": "7643d4e3-f53c-4402-ac87-8eff2399145c",
+                                    "propId": "e81826e9-efa7-4dbf-b232-df831c130aa9",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "change": "1",
+                                    "count": "2",
+                                    "notify": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "528440c6-c6a1-46fb-bee7-c409a46e1bfe",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Wow, I hit the mushroom jackpot!",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.changeInventory",
+                                    "id": "3ed6786b-b88b-46cc-97fd-24a57acccf20",
+                                    "propId": "b5cfb598-7611-4fe9-9a5b-6c0a4625931a",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "change": "1",
+                                    "count": "3",
+                                    "notify": true
+                                },
+                                {
+                                    "type": "nodes.changeInventory",
+                                    "id": "61c2b3fb-3d9e-4905-9037-3c5c4df06fe2",
+                                    "propId": "e81826e9-efa7-4dbf-b232-df831c130aa9",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "change": "1",
+                                    "count": "3",
+                                    "notify": true
+                                },
+                                {
+                                    "type": "nodes.changeInventory",
+                                    "id": "71a113ac-7e3a-4f59-ba55-8ab1b9f25eec",
+                                    "propId": "2dfbdcd3-18c3-4115-b45f-7301c16a7931",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "change": "1",
+                                    "count": "2",
+                                    "notify": true
+                                },
+                                {
+                                    "type": "nodes.changeInventory",
+                                    "id": "1e28a442-042b-4d85-abec-39eb7c118257",
+                                    "propId": "a5f3462b-dfe1-4708-836c-6f87aef2bf3d",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "change": "1",
+                                    "count": "2",
+                                    "notify": true
+                                },
+                                {
+                                    "type": "nodes.changeInventory",
+                                    "id": "387d1f91-0000-46ef-97bd-9e2183f7e3ec",
+                                    "propId": "3dc60614-b006-4ff0-8b7f-278428ea7e7b",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "change": "1",
+                                    "count": "2",
+                                    "notify": true
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

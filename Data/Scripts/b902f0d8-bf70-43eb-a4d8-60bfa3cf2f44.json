@@ -1,0 +1,208 @@
+{
+    "type": "script",
+    "id": "b902f0d8-bf70-43eb-a4d8-60bfa3cf2f44",
+    "name": "Interact Thomas Door",
+    "sceneId": "82da26e2-b64a-4951-bca9-a3e78101825e",
+    "propId": "198da2fc-e99d-45a0-b82b-732eeff87b7e",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "05c677d7-15cd-498d-bb66-97752862e586",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "55c1e829-1a58-4575-ba37-a923aa54ab3b",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "e3fe406e-a854-4339-b0a9-9ea04cf3124e",
+                            "text": "Look at the Door",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "4f76012f-41c1-4889-9006-9f800d6b3008",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "The nameplate says this is Thomas' room. The door is sealed tight, and there doesn't seem to be a keyhole.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0",
+                                    "notes": ""
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "1",
+                            "ExitMenu": false,
+                            "notes": ""
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "fd763536-4783-408b-b3fb-59ad7e1e3f4a",
+                            "text": "Knock on the Door",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.and",
+                                                "left": {
+                                                    "type": "expressions.variableComparison",
+                                                    "variableScope": "global",
+                                                    "variableName": "time.hour",
+                                                    "operator": "lt",
+                                                    "compareTo": "23",
+                                                    "sceneId": "82da26e2-b64a-4951-bca9-a3e78101825e",
+                                                    "propId": null
+                                                },
+                                                "right": {
+                                                    "type": "expressions.variableComparison",
+                                                    "variableScope": "global",
+                                                    "variableName": "time.hour",
+                                                    "operator": "gte",
+                                                    "compareTo": "6",
+                                                    "sceneId": "82da26e2-b64a-4951-bca9-a3e78101825e",
+                                                    "propId": null
+                                                }
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "1cc7eb36-5ea5-4731-a15a-0f01a196b3bc",
+                                                    "scriptId": "2ac786eb-d545-4fdc-8ccf-9202b275283b",
+                                                    "entryPointId": "05c677d7-15cd-498d-bb66-97752862e586",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "8376ac16-07ca-4c24-b523-f53ce783aa6f",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Guess Thomas is out of his dorm room right now.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0",
+                                                    "notes": ""
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "5e465c99-21a8-41b6-9ebf-165361976e33",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "It's too late to disturb Thomas now.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0",
+                                                    "notes": ""
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "2",
+                            "ExitMenu": false,
+                            "notes": ""
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "7e136634-9509-423d-af92-cf98506ad8b4",
+                            "text": "Open the Door",
+                            "nodes": [
+                                {
+                                    "type": "nodes.invokeScript",
+                                    "id": "483f9347-8928-43e0-a504-8b85ec765361",
+                                    "scriptId": "07efa0fa-4d32-4765-ad95-5e9b6c2d6933",
+                                    "entryPointId": "05c677d7-15cd-498d-bb66-97752862e586",
+                                    "currentScope": "Scenes",
+                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                    "currentActorId": null,
+                                    "currentStoryEventId": null,
+                                    "currentPropId": null
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "c5ff5694-9a9d-41be-b72d-395126d1679d",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "I can't move it at all. It almost as if it was part of the wall.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0",
+                                    "notes": ""
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "1",
+                            "ExitMenu": false,
+                            "notes": ""
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "5677cc08-0349-4ed5-a143-954db8559318",
+                            "text": "Listen at the Door",
+                            "nodes": [
+                                {
+                                    "type": "nodes.playAnimation",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "animationName": "KneelDown",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "a5547b9b-d978-4d70-a13a-e0fa6db3adbf",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "I don't hear anything. But Thomas has this room to himself, so I'm not too surprised.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0",
+                                    "notes": ""
+                                },
+                                {
+                                    "type": "nodes.playAnimation",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "animationName": "KneelDown",
+                                    "wait": true
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "1",
+                            "ExitMenu": false,
+                            "notes": ""
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

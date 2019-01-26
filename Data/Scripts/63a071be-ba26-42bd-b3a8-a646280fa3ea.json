@@ -1,0 +1,203 @@
+{
+    "type": "script",
+    "id": "63a071be-ba26-42bd-b3a8-a646280fa3ea",
+    "name": "Interact with E Exit",
+    "sceneId": "cbb5c07c-7918-4558-8c19-e4ed45b19ba2",
+    "propId": "1163cdbe-ccdc-442f-a176-cd4b2ce13106",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "1a07eb10-c2ab-4ee7-bcb5-a51d47fc4f71",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "109881a8-b518-432a-b1bb-61a1cd0a21c0",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "80cc097d-99f0-41e7-9c13-049a0edd9bc0",
+                            "text": "Examine the Door",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "4ad63c49-f5c5-47fa-ab62-2e158205558a",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "The plaque on this door says that it leads to the Locus Pacis.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "target",
+                                                "scopeId": null,
+                                                "scopeFilterId": null,
+                                                "tags": "marked",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "0815723b-97ae-4e4b-89c8-740888e80e01",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Or as I call it, \"Peace.\" I just hope it is as pleasant as its name.",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "3",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "6a79e7b5-1f93-4697-aaa0-279298ecfd70",
+                            "text": "Listen at the Door",
+                            "nodes": [
+                                {
+                                    "type": "nodes.onceOnly",
+                                    "id": "efc258b6-8696-495b-891b-558e9f01bffa",
+                                    "nodes": [
+                                        {
+                                            "id": "83c165f5-f6ba-44df-ace2-681ec0aa4c4c",
+                                            "type": "nodes.skillBranch",
+                                            "skill": "Perception",
+                                            "target": "70",
+                                            "success": {
+                                                "type": "nodes.block",
+                                                "nodes": []
+                                            },
+                                            "failure": {
+                                                "type": "nodes.block",
+                                                "nodes": []
+                                            },
+                                            "notify": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "00d4d48e-7879-4742-8d73-e10c613b048e",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "There's a lot of creepy noise in the Catacombs. I can't make out anything distinctly on the other side of this door. ",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "3",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "09b9ceb1-f2aa-40e5-b017-4339ccaef0dc",
+                            "text": "Mark the Door",
+                            "nodes": [
+                                {
+                                    "type": "nodes.playSoundEffect",
+                                    "soundEffectName": "Using Chalk.wav",
+                                    "wait": false
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "f7420bd5-5899-4209-b7ca-29ed05003079",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "\"Locus Pacis\" is a lousy name for a door. I'll just call it \"Peace.\"",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "59f5ba00-c156-49a3-aeca-198cbfa8ca48",
+                                    "scope": "target",
+                                    "scopeId": null,
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "marked",
+                                    "tagsToRemove": null
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inInventory",
+                                    "propId": "646cea66-c6c6-4dba-b093-6ec5b7e987a5",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "has": true
+                                },
+                                "right": {
+                                    "type": "expressions.inTags",
+                                    "scope": "target",
+                                    "scopeId": null,
+                                    "scopeFilterId": null,
+                                    "tags": "marked",
+                                    "has": false
+                                }
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "5",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "a2535ba1-8bcb-4199-ac85-9a3c649730ee",
+                            "text": "Open the Door",
+                            "nodes": [
+                                {
+                                    "type": "nodes.invokeScript",
+                                    "id": "bba7207b-0180-4667-9e1e-707c12dccd4b",
+                                    "scriptId": "0742870b-eb5a-49da-bff7-5caf4138f132",
+                                    "entryPointId": "",
+                                    "currentScope": "Scenes",
+                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                    "currentActorId": null,
+                                    "currentStoryEventId": null,
+                                    "currentPropId": null
+                                },
+                                {
+                                    "type": "nodes.changeScene",
+                                    "sceneId": "5c27608b-ff6a-4fdc-8ce0-63e0866acb19",
+                                    "spawnId": "ba4a2145-d8e3-4628-b7ac-26bd030945e0",
+                                    "fadeTime": 2
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "2",
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

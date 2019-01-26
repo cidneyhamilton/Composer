@@ -1,0 +1,254 @@
+{
+    "type": "script",
+    "id": "f0ca416f-b446-40ff-8ae4-da78724359b1",
+    "name": "Wine Rack Actions",
+    "sceneId": "a670cb9b-f14e-4b92-b052-fbb75035f7fe",
+    "trigger": {
+        "type": "triggers.manual",
+        "name": "Manual"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "d888c7b6-f99d-46da-8697-148c6f6c77f8",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "87bb7755-2949-4e7a-9408-5ddd4383254f",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "a053c05c-a4ae-475e-936e-f74811f3bae3",
+                            "text": "Examine the Wine Bottles",
+                            "nodes": [
+                                {
+                                    "type": "nodes.playAnimation",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "animationName": "ReachOut",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "target",
+                                                "variableName": "bottles",
+                                                "operator": "gt",
+                                                "compareTo": "1",
+                                                "sceneId": "a670cb9b-f14e-4b92-b052-fbb75035f7fe",
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "496c2d06-7d9d-46e1-ab07-5856241901e9",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "I don't think these bottles will ever hold wine again, but they could be useful in a fight.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "target",
+                                                "variableName": "bottles",
+                                                "operator": "eq",
+                                                "compareTo": "1",
+                                                "sceneId": "a670cb9b-f14e-4b92-b052-fbb75035f7fe",
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "780aa692-e7fd-40bd-b797-c8b959dcaa5e",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "There's just one useful bottle left in the wine rack.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "488682aa-b2a5-4b97-9245-daeeb0e28833",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "The rest of these bottles look useless. They're too fragile to even carry around.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "2",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "5b098b53-53a6-4007-bca5-52e998d79733",
+                            "text": "Take a Wine Bottle",
+                            "nodes": [
+                                {
+                                    "type": "nodes.playAnimation",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "animationName": "ReachOut",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.changeInventory",
+                                    "id": "d9ac906f-c820-4634-9afa-66322b82d156",
+                                    "propId": "23e45f9c-6f40-4f3e-b823-f49cb2ba5b07",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "change": "1",
+                                    "count": 1,
+                                    "notify": true
+                                },
+                                {
+                                    "type": "nodes.setVariable",
+                                    "name": "bottles",
+                                    "scope": "target",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "source": {
+                                        "type": "variables.literal",
+                                        "value": "-1",
+                                        "displayName": "Literal"
+                                    },
+                                    "add": true
+                                },
+                                {
+                                    "type": "nodes.setVariable",
+                                    "name": "count.bottles",
+                                    "scope": "script",
+                                    "scopeId": "23e45f9c-6f40-4f3e-b823-f49cb2ba5b07",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "source": {
+                                        "type": "variables.count",
+                                        "target": "23e45f9c-6f40-4f3e-b823-f49cb2ba5b07",
+                                        "useArticle": false,
+                                        "includeText": false,
+                                        "text": "",
+                                        "displayName": "Count"
+                                    },
+                                    "add": false
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "script",
+                                                "variableName": "count.bottles",
+                                                "operator": "eq",
+                                                "compareTo": "1",
+                                                "sceneId": "a670cb9b-f14e-4b92-b052-fbb75035f7fe",
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "1164370a-7177-4003-bc36-3c29e22bf232",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Good, if something attacks me, I can throw this bottle at it.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "a2dcaef1-e97a-4391-9aa0-c0e4cbd1567b",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Another bottle in my throwing weapon collection. That makes ${script.count.bottles}.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.variableComparison",
+                                "variableScope": "target",
+                                "variableName": "bottles",
+                                "operator": "gte",
+                                "compareTo": "1",
+                                "sceneId": "a670cb9b-f14e-4b92-b052-fbb75035f7fe",
+                                "propId": null
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "1",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "20d9bb16-0dd0-4706-9081-fc68ba6c5de3",
+                            "text": "Sense Magic on the Wine Rack",
+                            "nodes": [
+                                {
+                                    "type": "nodes.invokeScript",
+                                    "id": "35a782fd-876b-4800-b5bb-193693fc9d8a",
+                                    "scriptId": "533e1ce1-13d3-439f-8544-dbdf808d30c4",
+                                    "entryPointId": "d888c7b6-f99d-46da-8697-148c6f6c77f8",
+                                    "currentScope": "Scenes",
+                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                    "currentActorId": null,
+                                    "currentStoryEventId": null,
+                                    "currentPropId": null
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "actor",
+                                "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                "scopeFilterId": null,
+                                "tags": "SenseMagic",
+                                "has": true
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "2",
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

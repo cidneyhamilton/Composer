@@ -1,0 +1,28 @@
+<div data-bind="compose: { mode:'templated', view:'nodeEditor' }">
+    <div data-part="read" class="text">
+        <!--ko if: node.poisonAction == "0"-->
+            <span> Add </span><span data-bind="text:node.amount"></span> Ego's Poison Counters 
+        <!--/ko-->
+
+        <!--ko if: node.poisonAction == "1"-->
+            <span> Remove </span><span data-bind="text:node.amount"></span> Ego's Poison Counters 
+        <!--/ko-->
+
+        <!--ko if: node.poisonAction == "2"-->
+            <span> Remove All Poison Counters from Ego</span>
+        <!--/ko-->
+    </div>
+
+    <div data-part="write">
+        <select data-bind="value: node.poisonAction">
+            <option value="0">Add</option>
+            <option value="1">Remove</option>
+            <option value="2">Remove All</option>
+        </select>
+        <Br>
+        <!--ko if: node.poisonAction < "2"-->
+            <input type="text" data-bind="value: node.amount, valueUpdate: 'afterkeydown'" placeholder="amount" style="float: right"/>
+        <!--/ko-->
+        <br>
+    </div>
+</div>

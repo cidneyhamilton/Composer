@@ -1,0 +1,408 @@
+{
+    "type": "script",
+    "id": "f5957c8c-03fc-45ca-b770-91e913bcb07c",
+    "name": "Interact with Levers",
+    "sceneId": "cdb9df0a-6a03-4c30-9a33-f2716474ec20",
+    "propId": "344db748-1522-4fe3-9a39-577387012b22",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "1123b098-a903-4b09-b972-8c0b7a7ea50a",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "actor",
+                                "scopeId": "3ec7237c-65ea-4a23-9e21-697f17a2dbe8",
+                                "scopeFilterId": null,
+                                "tags": "DratT&E",
+                                "has": true
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "01e89386-d8c5-4394-b5ad-b2691a17273f",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "Thomas and Esme must have already solved it. Let's not mess with perfection.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "scene",
+                                "scopeId": "cdb9df0a-6a03-4c30-9a33-f2716474ec20",
+                                "scopeFilterId": null,
+                                "tags": "solved_lever_puzzle",
+                                "has": true
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "09e4f18a-6733-4f2d-9713-ad92cf078b83",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "I think I've already solved it. Let's not mess with perfection.",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.showMenu",
+                                    "id": "55f13204-e315-40f6-9879-381e7dbfb88a",
+                                    "options": [
+                                        {
+                                            "type": "options.text",
+                                            "id": "513f0967-9515-4632-a3df-ffdf32c91b68",
+                                            "text": "Examine the Levers",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "227c2354-c141-40f7-b22e-71bcb37edc08",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "This looks like some sort of metallic device. There are a series of small levers with some tracks in the metal. I think the levers can be moved along the tracks.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ],
+                                            "expression": null,
+                                            "ignoreChildAvailability": true,
+                                            "minutes": "3",
+                                            "ExitMenu": false
+                                        },
+                                        {
+                                            "type": "options.text",
+                                            "id": "7acfcd1d-2e58-4400-b410-2f016a943ab2",
+                                            "text": "Move the Knobs",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.playAnimation",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "animationName": "ReachOut"
+                                                },
+                                                {
+                                                    "type": "nodes.minigame",
+                                                    "id": "09f2d681-0a2e-4344-b396-68cf2ee3222f",
+                                                    "minigameIndex": "5",
+                                                    "resultVariable": "puzzleresult",
+                                                    "resultVariableScope": "script",
+                                                    "trapDisarmWord": "",
+                                                    "trapDisarmDifficulty": 0
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.variableComparison",
+                                                                "variableScope": "script",
+                                                                "variableName": "puzzleresult",
+                                                                "operator": "eq",
+                                                                "compareTo": "Pass",
+                                                                "sceneId": null,
+                                                                "propId": null
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.playSoundEffect",
+                                                                    "soundEffectName": "Heavy_Door_Unlock.wav",
+                                                                    "wait": false
+                                                                },
+                                                                {
+                                                                    "type": "nodes.wait",
+                                                                    "waitForSeconds": "0.25"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "df6c2180-033a-4658-8301-062927acdea1",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "That sounds promising!",
+                                                                    "emotion": "1",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeTags",
+                                                                    "id": "53131d27-8dfd-4561-9281-86bf33cbc402",
+                                                                    "scope": "scene",
+                                                                    "scopeId": "cdb9df0a-6a03-4c30-9a33-f2716474ec20",
+                                                                    "scopeFilterId": null,
+                                                                    "tagsToAdd": "solved_lever_puzzle",
+                                                                    "tagsToRemove": null
+                                                                },
+                                                                {
+                                                                    "type": "nodes.endScript"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.variableComparison",
+                                                                "variableScope": "script",
+                                                                "variableName": "puzzleresult",
+                                                                "operator": "eq",
+                                                                "compareTo": "Canceled",
+                                                                "sceneId": "cdb9df0a-6a03-4c30-9a33-f2716474ec20",
+                                                                "propId": null
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.comment",
+                                                                    "message": "This is a special case handled by the minigame, making use of the \"Canceled\" case for if the user attempts to solve the puzzle without the proper orientation as specified by the compass in the room (but the result is otherwise correct)",
+                                                                    "commentor": "Charles"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "8677a49c-2fc2-4d55-877b-950e37902412",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "Huh! I'm sure I got that right, but nothing is happening. Maybe I'm not facing the direction I thought I was.",
+                                                                    "emotion": "4",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": null,
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.nodeCycle",
+                                                                    "id": "e431f01f-95f6-4d33-890c-fd6eea00263a",
+                                                                    "nodes": [
+                                                                        {
+                                                                            "type": "nodes.speak",
+                                                                            "id": "1c17252d-9a88-431c-94e3-5a5410261918",
+                                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                            "actorId2": null,
+                                                                            "text": "Nothing happened. But I'm sure these aren't here just for looks.",
+                                                                            "emotion": "0",
+                                                                            "emotion2": "0",
+                                                                            "device": "0",
+                                                                            "device2": "0"
+                                                                        },
+                                                                        {
+                                                                            "type": "nodes.speak",
+                                                                            "id": "ffb52b51-c206-4098-bde8-88f865295bd5",
+                                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                            "actorId2": null,
+                                                                            "text": "No luck. What do these things do? I thought that they would unlock this door... or something.",
+                                                                            "emotion": "0",
+                                                                            "emotion2": "0",
+                                                                            "device": "0",
+                                                                            "device2": "0"
+                                                                        },
+                                                                        {
+                                                                            "type": "nodes.branch",
+                                                                            "sections": [
+                                                                                {
+                                                                                    "type": "nodes.branchSection",
+                                                                                    "expression": null,
+                                                                                    "nodes": [
+                                                                                        {
+                                                                                            "type": "nodes.speak",
+                                                                                            "id": "1c479de8-63a4-4d99-93eb-6416b30a2dcf",
+                                                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                            "actorId2": null,
+                                                                                            "text": "Drat!",
+                                                                                            "emotion": "3",
+                                                                                            "emotion2": "0",
+                                                                                            "device": "0",
+                                                                                            "device2": "0"
+                                                                                        },
+                                                                                        {
+                                                                                            "type": "nodes.speak",
+                                                                                            "id": "42c0760e-002b-4eda-87a4-59aac28df10f",
+                                                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                            "actorId2": null,
+                                                                                            "text": "Whoops! I mean... I wasn't calling any Drats!",
+                                                                                            "emotion": "4",
+                                                                                            "emotion2": "0",
+                                                                                            "device": "0",
+                                                                                            "device2": "0"
+                                                                                        }
+                                                                                    ]
+                                                                                }
+                                                                            ]
+                                                                        },
+                                                                        {
+                                                                            "type": "nodes.speak",
+                                                                            "id": "337bc454-b51c-45fe-b7ac-2187f514481b",
+                                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                            "actorId2": null,
+                                                                            "text": "Why can't I figure this out? There must be a clue <i>some</i>where. ",
+                                                                            "emotion": "3",
+                                                                            "emotion2": "0",
+                                                                            "device": "0",
+                                                                            "device2": "0"
+                                                                        },
+                                                                        {
+                                                                            "type": "nodes.speak",
+                                                                            "id": "cdc9061e-f4c3-44ff-8d32-28b99a57d49a",
+                                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                            "actorId2": null,
+                                                                            "text": "Well, at least I didn't open up a trap door under my feet.",
+                                                                            "emotion": "0",
+                                                                            "emotion2": "0",
+                                                                            "device": "0",
+                                                                            "device2": "0"
+                                                                        },
+                                                                        {
+                                                                            "type": "nodes.speak",
+                                                                            "id": "20450927-56da-4d9e-9b09-46bc8100dac8",
+                                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                            "actorId2": null,
+                                                                            "text": "Argh. This is so frustrating. Do the positions really mean something?",
+                                                                            "emotion": "3",
+                                                                            "emotion2": "0",
+                                                                            "device": "0",
+                                                                            "device2": "0"
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "expression": null,
+                                            "ignoreChildAvailability": true,
+                                            "minutes": "5",
+                                            "ExitMenu": false
+                                        },
+                                        {
+                                            "type": "options.text",
+                                            "id": "fe6c3828-970f-4e83-a284-024879c33e69",
+                                            "text": "Use Thief Skills",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.skillCheck",
+                                                                "skill": "Tool Use",
+                                                                "target": "90"
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "9ab37240-232d-41f6-ac2d-4394d21742ef",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "Hmm... Look like the knobs are supposed to be moved into some specific positions... Maybe I can use my elite tool use skills here to pick the positions like an oversized lockpick...",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.playAnimation",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "animationName": "ReachOut"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.wait",
+                                                                    "waitForSeconds": "0.4"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.playSoundEffect",
+                                                                    "soundEffectName": "Heavy_Door_Unlock.wav",
+                                                                    "wait": false
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "ff34bda1-c9cf-4b13-a56d-5fca555d02d4",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "Yes, I'm good, very good!",
+                                                                    "emotion": "1",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeTags",
+                                                                    "id": "266c5ac3-679e-4cf7-8e7c-a1e1fb35d37b",
+                                                                    "scope": "scene",
+                                                                    "scopeId": "cdb9df0a-6a03-4c30-9a33-f2716474ec20",
+                                                                    "scopeFilterId": null,
+                                                                    "tagsToAdd": "solved_lever_puzzle",
+                                                                    "tagsToRemove": null
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": null,
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.playAnimation",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "animationName": "ReachOut"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "fd6216ad-5181-42a6-9c35-37ec82637461",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "Grrr. I'm not getting anywhere with my tools. I guess I'll have to actually have to figure this thing out.",
+                                                                    "emotion": "3",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "expression": null,
+                                            "ignoreChildAvailability": true,
+                                            "minutes": "5",
+                                            "ExitMenu": false
+                                        }
+                                    ],
+                                    "AutoAddDone": true,
+                                    "Unique": false
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

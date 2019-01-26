@@ -1,0 +1,168 @@
+{
+    "type": "script",
+    "id": "6d68eb97-ab2f-4819-8822-733a5286f0e1",
+    "name": "Interact with Bush",
+    "sceneId": "905016da-4317-4d06-945d-1357b12b0d73",
+    "propId": "6d6b2a41-890f-4a48-b7ca-839cffa7d18a",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "ec87b35e-635d-448e-ac16-64929acef3d8",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "f167521b-2600-43bd-b49b-f607f5b70b78",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "1271c429-5e52-46d6-bb64-ce88cd864207",
+                            "text": "Look at the Bush",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "c7c9c7b1-7dae-4fb3-8981-bd0e63cce6a5",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "I don't want to rest on my flora laurels, but it looks like a bay bush to me. Smells like one, too.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "1",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "c9c9441c-9ad3-4ce5-a45c-965cee0a4525",
+                            "text": "Search the Bush",
+                            "nodes": [
+                                {
+                                    "type": "nodes.playSoundEffect",
+                                    "soundEffectName": "paper_rustle.wav",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "6c24971f-7c48-4272-9d5f-cc3344398a01",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "The only thing I'm finding here is that it's making my hands smell nice.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "5",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "c11e0ec8-9547-4dbc-9379-f22f05091b62",
+                            "text": "Search the Pot",
+                            "nodes": [
+                                {
+                                    "type": "nodes.playAnimation",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "animationName": "KneelDown",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.playSoundEffect",
+                                    "soundEffectName": "paper_rustle.wav",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "target",
+                                                "scopeId": null,
+                                                "scopeFilterId": null,
+                                                "tags": "searched",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "b4c02966-7e29-4d85-8ec9-82ba121b7ece",
+                                                    "scope": "target",
+                                                    "scopeId": null,
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "searched",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "50f71ddb-d033-476e-9384-0963fc445cb7",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Whoa, I'm rich! Someone dropped a Lyra in the pot. It's the old 'Laurel Lyra for Luck' trick. It's lucky for me, anyway.",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.changeMoney",
+                                                    "id": "3d06fd54-8d43-429f-98e9-942e5adbfcbf",
+                                                    "amount": "1",
+                                                    "change": "1",
+                                                    "currency": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "9923a882-404f-4c37-b5d2-5f7ed2d6afd9",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Sadly, there's nothing more to be found in this pot but dirt.",
+                                                    "emotion": "2",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.playAnimation",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "animationName": "KneelUp",
+                                    "wait": true
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": false,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

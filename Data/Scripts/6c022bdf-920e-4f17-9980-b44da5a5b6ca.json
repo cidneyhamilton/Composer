@@ -1,0 +1,557 @@
+{
+    "type": "script",
+    "id": "6c022bdf-920e-4f17-9980-b44da5a5b6ca",
+    "name": "Katie: Start Treasure Hunt",
+    "sceneId": "6ae292e5-a342-4b5a-990f-9dc95fb73dcf",
+    "trigger": {
+        "type": "triggers.manual",
+        "name": "Manual"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "a46ea025-be25-49ac-a4bc-a7f1ab3879fa",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.comment",
+                    "message": "Moved this here instead of in it's own Menu Option so you can't skip it",
+                    "commentor": "Charles"
+                },
+                {
+                    "type": "nodes.speak",
+                    "id": "1f624eab-d83c-4eb7-b8f4-e35ae9e9f51c",
+                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "actorId2": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                    "text": "We've got the complete map and we've got both of the Death Head gems. What should we do next?",
+                    "emotion": "0",
+                    "emotion2": "0",
+                    "device": "0",
+                    "device2": "0"
+                },
+                {
+                    "type": "nodes.speak",
+                    "id": "533308a3-bd82-4fd3-ac66-77a2a690e289",
+                    "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "text": "I think we should focus on finding the Tattooed Skull and the Captain's Key if we want to get through the gate. Which one do you want to go looking for?",
+                    "emotion": "0",
+                    "emotion2": "0",
+                    "device": "0",
+                    "device2": "0"
+                },
+                {
+                    "type": "nodes.showMenu",
+                    "id": "ead571d2-b467-4274-a2ae-7a615fea5af7",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "a48ae0c9-e87a-4b74-a699-46fbf2c460f0",
+                            "text": "Tell Katie You've Found Everything",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "7fddbc91-7e97-4fc2-8180-633a200da1a8",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                    "text": "I've been exploring. Here's something that looks a tattooed skull - and I've already found the pirate captain's key.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.changeReputation",
+                                    "id": "af927ef7-fd14-462a-8657-d9d10eb35f2b",
+                                    "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                    "amount": "10",
+                                    "change": "1",
+                                    "notify": true
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "e0febd90-94b1-4d23-83c4-2e58755c8d29",
+                                    "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "Wow! This really helps. Meet me at the Death Wall Gate, and we'll see if we can unlock it.",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.quests",
+                                    "id": "159389f6-0361-4bb0-ac0e-ef33afdf4b1e",
+                                    "sceneId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                                    "propId": "172bbd93-cf1f-49ec-a383-f80d5aeb7980",
+                                    "target": "0",
+                                    "notify": true
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inInventory",
+                                    "propId": "783112f4-6836-4e1e-8ed6-ae07e62463c1",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "has": true
+                                },
+                                "right": {
+                                    "type": "expressions.inInventory",
+                                    "propId": "eaa50859-65bd-4849-a3bf-508b43a8cb4c",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "has": true
+                                }
+                            },
+                            "ignoreChildAvailability": false,
+                            "minutes": "2",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "2ed21d6b-eaaa-4b7c-8a42-eea40b110582",
+                            "text": "Tell Katie You've Found the Captain's Key",
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "35529379-160d-427b-843b-20745f24e262",
+                                    "scope": "actor",
+                                    "scopeId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "ShawnGotkey",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "9c6f7fec-a794-4e72-bae3-467bd5147140",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                    "text": "Say, do you know what Zombie Pirates do when they need to open a locked door?",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "0401698c-94cd-4ee4-b555-a52035d950cb",
+                                    "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "What are you talking about?",
+                                    "emotion": "4",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "f4fdc4a4-a415-4848-a9bd-c90c59921e95",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "They use a SKELETON key... Like this one!",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "95bc629e-3e20-43d0-8d1f-cc2abb21d92b",
+                                    "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "You found the skeleton key! We're almost there.",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.changeReputation",
+                                    "id": "a68f8ee0-0d8c-4875-b239-5e447877db61",
+                                    "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                    "amount": "5",
+                                    "change": "1",
+                                    "notify": true
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "8ac82342-9aed-4a4e-a01e-341cb8db6638",
+                                    "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "Next you should look for the tattooed skull.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "52b4eebd-92cf-4ed9-a194-7ce40979575a",
+                                    "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "The map says you need to \"climb down the mermaid's hair\" to find the skull \"on a marlin's spike\". Good luck figuring out what that means.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.quests",
+                                    "id": "29913336-7ca8-487b-9c3c-a5a9f659ee6d",
+                                    "sceneId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                                    "propId": "50d5da24-8ab9-40b9-aff6-1bf3fdf1bfe3",
+                                    "target": "0",
+                                    "notify": true
+                                },
+                                {
+                                    "type": "nodes.addJournalEntry",
+                                    "id": "53698172-0998-4ccd-8838-97d2c1ac3c36",
+                                    "name": "Looking for a Skull to Get Ahead",
+                                    "notify": true,
+                                    "description": "I told Katie that I'd help find the Tattooed Skull for her. Maybe the map will show me where to look for it. It said something about a mermaid... I've always wanted to see a real mermaid."
+                                },
+                                {
+                                    "type": "nodes.invokeScript",
+                                    "id": "451a48bb-975f-4e02-8e8a-33f24fe13a7d",
+                                    "scriptId": "6c022bdf-920e-4f17-9980-b44da5a5b6ca",
+                                    "entryPointId": "562df842-d902-4e18-8a93-f181fed4323e",
+                                    "currentScope": "Current",
+                                    "currentSceneId": null,
+                                    "currentActorId": null,
+                                    "currentStoryEventId": null,
+                                    "currentPropId": null
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inInventory",
+                                    "propId": "783112f4-6836-4e1e-8ed6-ae07e62463c1",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "has": true
+                                },
+                                "right": {
+                                    "type": "expressions.inInventory",
+                                    "propId": "eaa50859-65bd-4849-a3bf-508b43a8cb4c",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "has": false
+                                }
+                            },
+                            "ignoreChildAvailability": false,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "4ccb27ac-ff4a-4298-821d-19fbb7dba7f3",
+                            "text": "Tell Katie You've Found the Tattooed Skull",
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "186f2a7e-af9a-4733-8d01-a638dc0af88b",
+                                    "scope": "actor",
+                                    "scopeId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "ShawnGotSkull",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "a33719cb-a130-4e46-bbfd-ecccb8242514",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                    "text": "Well, I guess I could run around looking for a tattooed skull. But since I've already found it...",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.changeReputation",
+                                    "id": "d0626237-cc82-456c-83f0-c185aeaef640",
+                                    "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                    "amount": "5",
+                                    "change": "1",
+                                    "notify": true
+                                },
+                                {
+                                    "type": "nodes.comment",
+                                    "message": "Do we want to force Shawn to get the key instead, or have Katie get it?",
+                                    "commentor": "Cidney"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "0c160147-c29f-4c74-a5c7-cb84603604af",
+                                    "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "Hey, you're <b>good</b> at this! The only thing we still need is the Captain's key! ",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.invokeScript",
+                                    "id": "85a70e1d-f840-45f4-a275-9dc916a71034",
+                                    "scriptId": "6c022bdf-920e-4f17-9980-b44da5a5b6ca",
+                                    "entryPointId": "5fb1c02b-0f2c-40de-8764-6e7074ff0bf3",
+                                    "currentScope": "Current",
+                                    "currentSceneId": null,
+                                    "currentActorId": null,
+                                    "currentStoryEventId": null,
+                                    "currentPropId": null
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inInventory",
+                                    "propId": "eaa50859-65bd-4849-a3bf-508b43a8cb4c",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "has": true
+                                },
+                                "right": {
+                                    "type": "expressions.inInventory",
+                                    "propId": "783112f4-6836-4e1e-8ed6-ae07e62463c1",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "has": false
+                                }
+                            },
+                            "ignoreChildAvailability": false,
+                            "minutes": "2",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "d256b338-4a31-48c4-98bc-de3750a4e88b",
+                            "text": "Look for the Tattooed Skull",
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "9fcc2a5c-d416-43f6-80ec-681037c6f082",
+                                    "scope": "actor",
+                                    "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "GettingSkull",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "67b8bdb0-a66b-4f87-a231-ea7fd0d65430",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                    "text": "I'll go for the Tattooed Skull.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "4224ab2a-6f54-49f6-a7e1-6772cfa09345",
+                                    "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "It's somewhere down from a mermaid's hair on a marlin's spike. Good luck figuring out what that means.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.quests",
+                                    "id": "5b10f9ed-845f-4fde-865a-8545209213cd",
+                                    "sceneId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                                    "propId": "50d5da24-8ab9-40b9-aff6-1bf3fdf1bfe3",
+                                    "target": "0",
+                                    "notify": true
+                                },
+                                {
+                                    "type": "nodes.addJournalEntry",
+                                    "id": "f25d3d6f-91cc-486e-8c65-f7ca24e27c35",
+                                    "name": "Looking for a Skull to Get Ahead",
+                                    "notify": true,
+                                    "description": "I told Katie that I'd help find the Tattooed Skull for her. Maybe the map will show me where to look for it. It said something about a mermaid... I've always wanted to see a real mermaid."
+                                },
+                                {
+                                    "type": "nodes.invokeScript",
+                                    "id": "e666c680-36fa-4078-85e5-de31c7ee3084",
+                                    "scriptId": "6c022bdf-920e-4f17-9980-b44da5a5b6ca",
+                                    "entryPointId": "562df842-d902-4e18-8a93-f181fed4323e",
+                                    "currentScope": "Current",
+                                    "currentSceneId": null,
+                                    "currentActorId": null,
+                                    "currentStoryEventId": null,
+                                    "currentPropId": null
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.inInventory",
+                                "propId": "eaa50859-65bd-4849-a3bf-508b43a8cb4c",
+                                "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                "has": false
+                            },
+                            "ignoreChildAvailability": false,
+                            "minutes": "2",
+                            "ExitMenu": true
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "c0a98ef6-53c3-4197-a12b-0f04fff78ec7",
+                            "text": "Look for the Key",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "fca45f50-6ca1-4a3a-8285-0be770f9c7ce",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                    "text": "I'll go after the key.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.invokeScript",
+                                    "id": "c12024f8-e18b-4aef-bce0-79f958ffeab9",
+                                    "scriptId": "6c022bdf-920e-4f17-9980-b44da5a5b6ca",
+                                    "entryPointId": "5fb1c02b-0f2c-40de-8764-6e7074ff0bf3",
+                                    "currentScope": "Current",
+                                    "currentSceneId": null,
+                                    "currentActorId": null,
+                                    "currentStoryEventId": null,
+                                    "currentPropId": null
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.inInventory",
+                                "propId": "783112f4-6836-4e1e-8ed6-ae07e62463c1",
+                                "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                "has": false
+                            },
+                            "ignoreChildAvailability": false,
+                            "minutes": "6",
+                            "ExitMenu": true
+                        }
+                    ],
+                    "AutoAddDone": false,
+                    "Unique": true
+                }
+            ]
+        },
+        {
+            "type": "scripts.entryPoint",
+            "id": "5fb1c02b-0f2c-40de-8764-6e7074ff0bf3",
+            "name": "Captain's Key Quest",
+            "nodes": [
+                {
+                    "type": "nodes.changeTags",
+                    "id": "63f9715f-d153-4b61-a0a3-08101fc6f95e",
+                    "scope": "actor",
+                    "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "scopeFilterId": null,
+                    "tagsToAdd": "GettingKey",
+                    "tagsToRemove": null
+                },
+                {
+                    "type": "nodes.speak",
+                    "id": "219630eb-d2ea-4cc0-9579-448a7bf7df04",
+                    "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "text": "That will be tricky. Captain Bronson is a zombie now, but he's surrounded by other zombies. You'll have to find a way to lure the other zombies away if you want to fight the Captain for the key.",
+                    "emotion": "0",
+                    "emotion2": "0",
+                    "device": "0",
+                    "device2": "0"
+                },
+                {
+                    "type": "nodes.speak",
+                    "id": "caf7ad8c-7ddd-4c7c-8f85-d4345cbd9f6f",
+                    "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "text": "Then again, Captain Bronson was said to love to bet. You may be able to win the key by betting on something.",
+                    "emotion": "0",
+                    "emotion2": "0",
+                    "device": "0",
+                    "device2": "0"
+                },
+                {
+                    "type": "nodes.speak",
+                    "id": "2634b236-8b53-4682-a4be-aa7e96371e94",
+                    "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "text": "Oh, and see if you can get the Captain's hat as well. Pirates obey their Captain. Maybe we can trick the Zombies with it.",
+                    "emotion": "0",
+                    "emotion2": "0",
+                    "device": "0",
+                    "device2": "0"
+                },
+                {
+                    "type": "nodes.quests",
+                    "id": "c08cc6f5-d2f5-428f-adfb-22d1faa255fe",
+                    "sceneId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                    "propId": "011f199e-a12c-42f5-82ad-9b2322b5386d",
+                    "target": "0",
+                    "notify": true
+                },
+                {
+                    "type": "nodes.addJournalEntry",
+                    "id": "13be7cb8-db12-465a-ab90-842caf29bf06",
+                    "name": "The Captain is the Key",
+                    "notify": true,
+                    "description": "So the pirate Captain Bronson has the key to getting the treasure. Katie thinks I need to get his hat, too. All I have to do is get past hundreds of Gogs, Sea Drats, and Pirates to get to the Captain. No problem."
+                },
+                {
+                    "type": "nodes.invokeScript",
+                    "id": "af2a7927-fe4c-4ce7-aa08-8a80fe217695",
+                    "scriptId": "6c022bdf-920e-4f17-9980-b44da5a5b6ca",
+                    "entryPointId": "562df842-d902-4e18-8a93-f181fed4323e",
+                    "currentScope": "Current",
+                    "currentSceneId": null,
+                    "currentActorId": null,
+                    "currentStoryEventId": null,
+                    "currentPropId": null
+                }
+            ]
+        },
+        {
+            "type": "scripts.entryPoint",
+            "id": "562df842-d902-4e18-8a93-f181fed4323e",
+            "name": "Conclusion: Shawn Has Quest",
+            "nodes": [
+                {
+                    "type": "nodes.speak",
+                    "id": "9a63fdba-e4e7-4d1d-9a2e-b68269fdb955",
+                    "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "text": "Great! When you find what you are looking for, meet me at the Death Wall. I'll see you there later!",
+                    "emotion": "1",
+                    "emotion2": "0",
+                    "device": "0",
+                    "device2": "0"
+                },
+                {
+                    "type": "nodes.quests",
+                    "id": "bff942f5-7a9b-4043-b3c8-3ca15ed58098",
+                    "sceneId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                    "propId": "172bbd93-cf1f-49ec-a383-f80d5aeb7980",
+                    "target": "0",
+                    "notify": true
+                },
+                {
+                    "type": "nodes.invokeScript",
+                    "id": "d01a9f99-26d0-4885-bde1-90a0758cbfcb",
+                    "scriptId": "8b7f78e5-d3c3-406a-a2f3-9d38b904a21d",
+                    "entryPointId": "a46ea025-be25-49ac-a4bc-a7f1ab3879fa",
+                    "currentScope": "Scenes",
+                    "currentSceneId": "6ae292e5-a342-4b5a-990f-9dc95fb73dcf",
+                    "currentActorId": null,
+                    "currentStoryEventId": null,
+                    "currentPropId": null
+                },
+                {
+                    "type": "nodes.endScript"
+                }
+            ]
+        }
+    ]
+}

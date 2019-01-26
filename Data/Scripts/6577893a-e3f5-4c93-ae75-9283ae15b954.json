@@ -1,0 +1,593 @@
+{
+    "type": "script",
+    "id": "6577893a-e3f5-4c93-ae75-9283ae15b954",
+    "name": "_OnEnter",
+    "sceneId": "9637d472-d1dd-4373-a09f-489014e31666",
+    "trigger": {
+        "type": "triggers.enter",
+        "name": "Enter"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "f0a12cce-c876-45b6-a288-e109c03f0bf7",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inTags",
+                                    "scope": "actor",
+                                    "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "scopeFilterId": null,
+                                    "tags": "CaptainDuel",
+                                    "has": false
+                                },
+                                "right": {
+                                    "type": "expressions.inTags",
+                                    "scope": "actor",
+                                    "scopeId": "fdf2a22c-39ae-4ce9-8f9d-13ba189897a3",
+                                    "scopeFilterId": null,
+                                    "tags": "dead",
+                                    "has": false
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.comment",
+                                    "message": "Autosaving is causing a crash; removing.",
+                                    "commentor": "Cidney"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.actorPresent",
+                                "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                "hasNot": false
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.setCameraTarget",
+                                    "propId": null,
+                                    "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                    "time": "1",
+                                    "translateX": 0,
+                                    "translateY": "1",
+                                    "translateZ": "0",
+                                    "postWaitTime": 0,
+                                    "wait": false,
+                                    "scope": "actor"
+                                },
+                                {
+                                    "type": "nodes.turnActor",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "propId": null,
+                                    "wait": true,
+                                    "scope": "actor",
+                                    "targetActorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe"
+                                },
+                                {
+                                    "type": "nodes.onceOnly",
+                                    "id": "76b85bfc-b8d3-4026-b2fd-77df7dc45f1e",
+                                    "nodes": [
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "5f5de7e6-caf4-417b-99c1-b73d24b94a42",
+                                            "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                            "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "text": "(whisper) Shawn - over here!",
+                                            "emotion": "0",
+                                            "emotion2": "4",
+                                            "device": "0",
+                                            "device2": "0"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.moveActor",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "propId": "47f1b027-c646-4b41-a2ed-6558f3cbe13f",
+                                    "movement": "Sneaking",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.turnActor",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "propId": null,
+                                    "wait": true,
+                                    "scope": "actor",
+                                    "targetActorId": "fdf2a22c-39ae-4ce9-8f9d-13ba189897a3"
+                                },
+                                {
+                                    "type": "nodes.playAnimation",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "animationName": "KneelDown",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.wait",
+                                    "waitForSeconds": "0.5"
+                                },
+                                {
+                                    "type": "nodes.setCameraTarget",
+                                    "propId": null,
+                                    "actorId": "fdf2a22c-39ae-4ce9-8f9d-13ba189897a3",
+                                    "time": "2",
+                                    "translateX": 0,
+                                    "translateY": "2",
+                                    "translateZ": "0",
+                                    "postWaitTime": 0,
+                                    "wait": false,
+                                    "scope": "actor"
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.hasActiveQuest",
+                                                "propId": "011f199e-a12c-42f5-82ad-9b2322b5386d",
+                                                "sceneId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                                                "questStatus": "0"
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "724a4419-bab1-4c31-901b-2d05aa6cf97b",
+                                                    "scope": "scene",
+                                                    "scopeId": "9637d472-d1dd-4373-a09f-489014e31666",
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "hadKatieInteract",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "446ccc07-4bca-45dd-b99b-9eae871abbae",
+                                                    "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "(whisper) I think it's a safe bet to say that the Captain over there is the same one my father served under - Captain Hoyle Bronson. Bronson was said to be a heavy gambler, and I see a table with cards on it.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "f9367969-e665-4651-bb35-686fdf4a529d",
+                                                    "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "He'll be the one with the key that we need. ",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.resetCamera",
+                                                    "wait": true,
+                                                    "time": "2"
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.inInventory",
+                                                                "propId": "eaa50859-65bd-4849-a3bf-508b43a8cb4c",
+                                                                "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                                "has": false
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "84a91ead-8229-4c69-b387-7a6f8a211dbf",
+                                                                    "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                                                    "actorId2": null,
+                                                                    "text": "I'll go get the Tattooed Skull and meet you at the Skull Wall. See you there.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": null,
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "1357bbfd-318c-4386-a51b-0277c105682d",
+                                                                    "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                                                    "actorId2": null,
+                                                                    "text": "I'll meet you back at the Skull Wall. Good luck and try not to get yourself scuppered with a marlin spike.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "eff5cbee-2fb4-4720-a2af-cc348bc7541d",
+                                                    "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                                    "actorId2": null,
+                                                    "text": "Oh... and see if you can get the Captain's hat. Pirates are big on symbols and that's the main mark of leadership.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.playAnimation",
+                                                    "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                                    "animationName": "KneelUp",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.moveActor",
+                                                    "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                                    "propId": "18d4b4db-40ec-472e-bd09-f246a976e1b4",
+                                                    "movement": "Sneaking",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.removeActor",
+                                                    "id": "3d18823a-b58b-4846-a95d-49b976f09d47",
+                                                    "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "scene",
+                                                "scopeId": "9637d472-d1dd-4373-a09f-489014e31666",
+                                                "scopeFilterId": null,
+                                                "tags": "skull1",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "31a894a5-36c3-47b7-b637-58498f6cb512",
+                                                    "scope": "scene",
+                                                    "scopeId": "9637d472-d1dd-4373-a09f-489014e31666",
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "skull1",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.inInventory",
+                                                                "propId": "eaa50859-65bd-4849-a3bf-508b43a8cb4c",
+                                                                "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                                "has": false
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "48ceb544-260e-4dcf-a4e5-843929efff52",
+                                                                    "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "text": "There's the pirate captain over there - you can tell by the fancy hat. I'll need to get the key from him. You should look elsewhere for the tattooed skull.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.resetCamera",
+                                                                    "wait": false,
+                                                                    "time": "1"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "9d20939b-ffb6-4bed-8934-1e744eb3ce47",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                                                    "text": "Alright, I'll see what I can find. Good luck, Katie!",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": null,
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "431ad285-b58c-4cd2-ae6a-4c3c601548fa",
+                                                                    "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "text": "There's the pirate captain over there - you can tell by the fancy hat. I still need to get the key from him. I'll meet you back at the Skull Wall.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.resetCamera",
+                                                                    "wait": false,
+                                                                    "time": "1"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "nodes.playAnimation",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "animationName": "KneelUp",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.moveActor",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "propId": "18d4b4db-40ec-472e-bd09-f246a976e1b4",
+                                                    "movement": "Sneaking",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.changeScene",
+                                                    "sceneId": "1b5e1889-5aca-4af5-a616-80fad9d4cfa1",
+                                                    "spawnId": "9fc4f80d-f222-4011-a4bd-578c613cd587",
+                                                    "fadeTime": 2
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "scene",
+                                                "scopeId": "9637d472-d1dd-4373-a09f-489014e31666",
+                                                "scopeFilterId": null,
+                                                "tags": "skull2",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "367761b3-99a4-4842-9b07-2dd68036c932",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                                    "text": "You'd better be careful. This looks dangerous...",
+                                                    "emotion": "0",
+                                                    "emotion2": "4",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.resetCamera",
+                                                    "wait": true,
+                                                    "time": "1"
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.inInventory",
+                                                                "propId": "eaa50859-65bd-4849-a3bf-508b43a8cb4c",
+                                                                "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                                "has": false
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "4405b989-476c-4a4b-9fe0-208ced18cdf1",
+                                                                    "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "text": "I can handle this, Shawn. You need to find that skull like you said you would.",
+                                                                    "emotion": "4",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "1f50f96a-645d-402d-b80e-6f087af72437",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                                                    "text": "Okay, right. I'll go get the Tattooed Skull.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "4",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "56b1b125-be52-4e6c-805a-514dba4fa2bb",
+                                                                    "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "text": "Good. I'll meet you later by the skull wall.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": null,
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "f1d9471d-37dc-4843-affb-ad259d48e52e",
+                                                                    "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "text": "I can handle this, Shawn. I'll meet you later by the Skull Wall.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "nodes.playAnimation",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "animationName": "KneelUp",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.moveActor",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "propId": "18d4b4db-40ec-472e-bd09-f246a976e1b4",
+                                                    "movement": "Sneaking",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.changeScene",
+                                                    "sceneId": "1b5e1889-5aca-4af5-a616-80fad9d4cfa1",
+                                                    "spawnId": "9fc4f80d-f222-4011-a4bd-578c613cd587",
+                                                    "fadeTime": 2
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "89cb702d-f2cc-4527-b378-b6670ca61336",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                                    "text": "Are you sure you're okay here? I can help...",
+                                                    "emotion": "0",
+                                                    "emotion2": "4",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.resetCamera",
+                                                    "wait": true,
+                                                    "time": "1"
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.inInventory",
+                                                                "propId": "eaa50859-65bd-4849-a3bf-508b43a8cb4c",
+                                                                "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                                "has": false
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "7f2e8e7b-ece0-4846-bec1-b7ba23104156",
+                                                                    "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "text": "Shawn - I'm not letting a bunch of rotting pirates who don't know they are dead yet stop me from getting to that treasure. Just go get that Tattooed Skull!",
+                                                                    "emotion": "3",
+                                                                    "emotion2": "4",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": null,
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "eb804628-0e77-4cf3-a66b-4a657ddd6296",
+                                                                    "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "text": "I'm not letting a bunch of rotting pirates who don't know they are dead yet stop me from getting to that treasure. Just wait for me at the Skull Wall!",
+                                                                    "emotion": "3",
+                                                                    "emotion2": "4",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "bba36112-efe3-4cbc-a91f-d64a6a9c9483",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                                    "text": "Okay. See you later.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.playAnimation",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "animationName": "KneelUp",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.moveActor",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "propId": "18d4b4db-40ec-472e-bd09-f246a976e1b4",
+                                                    "movement": "Sneaking",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.changeScene",
+                                                    "sceneId": "1b5e1889-5aca-4af5-a616-80fad9d4cfa1",
+                                                    "spawnId": "9fc4f80d-f222-4011-a4bd-578c613cd587",
+                                                    "fadeTime": 2
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.resetCamera",
+                                    "wait": true,
+                                    "time": "1"
+                                },
+                                {
+                                    "type": "nodes.playAnimation",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "animationName": "KneelUp"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

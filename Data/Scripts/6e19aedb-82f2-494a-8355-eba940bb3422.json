@@ -1,0 +1,172 @@
+{
+    "type": "script",
+    "id": "6e19aedb-82f2-494a-8355-eba940bb3422",
+    "name": "Great Hall: Shawn Caught (Terk Patrol)",
+    "sceneId": "40f18665-4cc2-4acd-b17e-5189e68b7a33",
+    "actorId": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+    "trigger": {
+        "type": "triggers.manual",
+        "name": "Manual"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "36f128f7-2a7c-4b1f-9520-444931802b51",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.invokeScript",
+                    "id": "9fa29cb3-007d-40aa-a504-84f9f5850dad",
+                    "scriptId": "d3113b55-e10f-4ac8-a631-c6f6e09f07dd",
+                    "entryPointId": "36f128f7-2a7c-4b1f-9520-444931802b51",
+                    "currentScope": "Scenes",
+                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                    "currentActorId": null,
+                    "currentStoryEventId": null,
+                    "currentPropId": null
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.actorPresent",
+                                    "actorId": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+                                    "hasNot": false
+                                },
+                                "right": {
+                                    "type": "expressions.inTags",
+                                    "scope": "scene",
+                                    "scopeId": "40f18665-4cc2-4acd-b17e-5189e68b7a33",
+                                    "scopeFilterId": null,
+                                    "tags": "CaughtThisTime",
+                                    "has": false
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "a4c776b2-adf8-47d1-a810-94d843b19ca9",
+                                    "scope": "scene",
+                                    "scopeId": "40f18665-4cc2-4acd-b17e-5189e68b7a33",
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "CaughtThisTime",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.stopPlayer"
+                                },
+                                {
+                                    "type": "nodes.turnActor",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "propId": null,
+                                    "scope": "actor",
+                                    "targetActorId": "5ffe0a3d-d152-412f-bc75-480092ca6256"
+                                },
+                                {
+                                    "type": "nodes.turnActor",
+                                    "actorId": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+                                    "propId": null,
+                                    "scope": "actor",
+                                    "targetActorId": "30ee2636-15e3-452e-a2db-09cbb9012970"
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.and",
+                                                "left": {
+                                                    "type": "expressions.variableComparison",
+                                                    "variableScope": "global",
+                                                    "variableName": "time.hour",
+                                                    "operator": "gte",
+                                                    "compareTo": "8",
+                                                    "sceneId": null,
+                                                    "propId": null
+                                                },
+                                                "right": {
+                                                    "type": "expressions.variableComparison",
+                                                    "variableScope": "global",
+                                                    "variableName": "time.hour",
+                                                    "operator": "lt",
+                                                    "compareTo": "17",
+                                                    "sceneId": null,
+                                                    "propId": null
+                                                }
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.comment",
+                                                    "message": "Caught during the day - minor warning",
+                                                    "commentor": "Corey"
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "5bad811b-9221-4f67-9910-21ee0046c7e8",
+                                                    "scriptId": "086c73be-a51d-47d6-aa69-420dcb37f9eb",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "40f18665-4cc2-4acd-b17e-5189e68b7a33",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.or",
+                                                "left": {
+                                                    "type": "expressions.variableComparison",
+                                                    "variableScope": "global",
+                                                    "variableName": "time.hour",
+                                                    "operator": "gte",
+                                                    "compareTo": "22",
+                                                    "sceneId": null,
+                                                    "propId": null
+                                                },
+                                                "right": {
+                                                    "type": "expressions.variableComparison",
+                                                    "variableScope": "global",
+                                                    "variableName": "time.hour",
+                                                    "operator": "lte",
+                                                    "compareTo": "2",
+                                                    "sceneId": "40f18665-4cc2-4acd-b17e-5189e68b7a33",
+                                                    "propId": null
+                                                }
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.comment",
+                                                    "message": "Caught at night - demerits",
+                                                    "commentor": "Corey"
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "6822ef8b-7382-4f5d-bddb-aa7790d2006e",
+                                                    "scriptId": "a040420b-5c56-449b-877b-24c0a43dd15d",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "40f18665-4cc2-4acd-b17e-5189e68b7a33",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

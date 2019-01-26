@@ -1,0 +1,78 @@
+<div class="composite" data-bind="compose: { mode:'templated', view:'nodeEditor' }">
+    <div data-part="read">
+        <div>
+            <span class="skill" data-bind="text:node.skill"></span><span> check vs. </span><span data-bind="text: node.target">.</span>
+        </div>
+        <ol class="branch" style="margin: 16px 0 0 78px;">
+            <li data-bind="with: node.success">
+                <div>
+                    <span class="keyword">Success</span>
+                </div>
+
+                <div>
+                    <!--ko foreach: nodes-->
+                    <!--ko compose: { model:'features/scripts/' + $data.type.replace('.', '/') + 'Editor', activationData: [$parent, $data] }--><!--/ko-->
+                    <!--/ko-->
+                </div>
+            </li>
+            <li data-bind="with: node.failure">
+                <div>
+                    <span class="keyword">Failure</span>
+                </div>
+
+                <div>
+                    <!--ko foreach: nodes-->
+                    <!--ko compose: { model:'features/scripts/' + $data.type.replace('.', '/') + 'Editor', activationData: [$parent, $data] }--><!--/ko-->
+                    <!--/ko-->
+                </div>
+            </li>
+        </ol>
+    </div>
+
+    <div data-part="write">
+        <div>
+            <select data-bind="foreach: skillsAndAtts, value: node.skill">
+                   <optgroup data-bind="attr: {label: group}, foreach: options">
+                        <option data-bind="text: $data, option: $data"></option>
+                    </optgroup>
+            </select>
+            <span> check vs. </span>
+            <input type="text" data-bind="value: node.target, valueUpdate: 'afterkeydown'" placeholder="target">
+        </div>
+
+        <div class="form-inline">
+            <input type="checkbox" data-bind="checked: node.notify" />
+            <label>Show Notification?</label>
+        </div>
+
+        <ol class="branch">
+            <li data-bind="with: node.success">
+                <div>
+                    <span class="keyword">Success</span>
+                </div>
+
+                <div>
+                    <!--ko foreach: nodes-->
+                    <!--ko compose: { model:'features/scripts/' + $data.type.replace('.', '/') + 'Editor', activationData: [$parent, $data] }--><!--/ko-->
+                    <!--/ko-->
+
+                    <div style="margin: 16px 82px" data-bind="compose: { model:'features/scripts/nodes/nodeCreator', activationData:$data }"></div>
+                </div>
+            </li>
+
+            <li data-bind="with: node.failure">
+                <div>
+                    <span class="keyword">Failure</span>
+                </div>
+
+                <div>
+                    <!--ko foreach: nodes-->
+                    <!--ko compose: { model:'features/scripts/' + $data.type.replace('.', '/') + 'Editor', activationData: [$parent, $data] }--><!--/ko-->
+                    <!--/ko-->
+
+                    <div style="margin: 16px 82px" data-bind="compose: { model:'features/scripts/nodes/nodeCreator', activationData:$data }"></div>
+                </div>
+            </li>
+        </ol>
+    </div>
+</div>

@@ -1,0 +1,84 @@
+{
+    "type": "script",
+    "id": "f34dba15-302b-4f65-a4e6-e2fa2742c925",
+    "name": "_Garden_Load",
+    "sceneId": "e21fa1d3-2ab4-4969-9234-46015259ab0f",
+    "trigger": {
+        "type": "triggers.load",
+        "name": "Load"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "8a07441a-49ce-49e1-9ac3-4fe46a3e4a13",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.variableComparison",
+                                "variableScope": "global",
+                                "variableName": "time.hour",
+                                "operator": "gte",
+                                "compareTo": "21",
+                                "sceneId": "e21fa1d3-2ab4-4969-9234-46015259ab0f",
+                                "propId": null
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.and",
+                                                "left": {
+                                                    "type": "expressions.inTags",
+                                                    "scope": "actor",
+                                                    "scopeId": "bdddd1b1-bbf3-4dd5-bbd6-0ef3115d8b66",
+                                                    "scopeFilterId": null,
+                                                    "tags": "GardenTryst",
+                                                    "has": true
+                                                },
+                                                "right": {
+                                                    "type": "expressions.inTags",
+                                                    "scope": "scene",
+                                                    "scopeId": "e21fa1d3-2ab4-4969-9234-46015259ab0f",
+                                                    "scopeFilterId": null,
+                                                    "tags": "HadTryst",
+                                                    "has": false
+                                                }
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "b067da8e-410e-4dcc-86cc-c337fc458242",
+                                                    "scope": "scene",
+                                                    "scopeId": "e21fa1d3-2ab4-4969-9234-46015259ab0f",
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "HadTryst",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.placeActor",
+                                                    "actorId": "bdddd1b1-bbf3-4dd5-bbd6-0ef3115d8b66",
+                                                    "spawnId": "052795d6-3c8e-42cc-8021-16f0a2c81917",
+                                                    "pose": null,
+                                                    "behaviour": "Sitting",
+                                                    "immediate": true
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

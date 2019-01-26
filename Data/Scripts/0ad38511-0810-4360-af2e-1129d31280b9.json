@@ -1,0 +1,442 @@
+{
+    "type": "script",
+    "id": "0ad38511-0810-4360-af2e-1129d31280b9",
+    "name": "Interact with the Welcome Sign",
+    "sceneId": "905016da-4317-4d06-945d-1357b12b0d73",
+    "propId": "69a4d188-fe2e-42c8-b201-929ab1af324f",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "03fa5edf-2886-4f89-895c-4d31968ad22a",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.turnActor",
+                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "propId": "69a4d188-fe2e-42c8-b201-929ab1af324f",
+                    "scope": "prop",
+                    "targetActorId": null
+                },
+                {
+                    "type": "nodes.showMenu",
+                    "id": "ffc1bdad-c416-4404-9335-27f3fa8ea114",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "4a56b7f7-268f-4e72-9d45-83bcefdef584",
+                            "text": "Look at the Sign",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "c75b9628-8621-4d19-9450-849e6eeb8def",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "The sign says \"Welcome to Hero-U!\"",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0",
+                                    "notes": ""
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "6c204433-04b3-4e0b-b2cf-0107760715d9",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Thank you, sign! \"Welcome to Hero\" to you too!",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0",
+                                    "notes": ""
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false,
+                            "notes": ""
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "e109bdd8-2e69-421b-809c-7d082b7dcbca",
+                            "text": "Steal the Sign",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.and",
+                                                "left": {
+                                                    "type": "expressions.actorPresent",
+                                                    "actorId": "6378f038-f4cd-49aa-8357-dcb46a978684",
+                                                    "hasNot": false
+                                                },
+                                                "right": {
+                                                    "type": "expressions.inTags",
+                                                    "scope": "scene",
+                                                    "scopeId": "905016da-4317-4d06-945d-1357b12b0d73",
+                                                    "scopeFilterId": null,
+                                                    "tags": "TriedStealSign",
+                                                    "has": false
+                                                }
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "d34e1afe-cf70-495c-95b4-6ae8ecee96c5",
+                                                    "scope": "scene",
+                                                    "scopeId": "905016da-4317-4d06-945d-1357b12b0d73",
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "TriedStealSign",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "0553fc07-0022-440f-aabd-070a59f1db47",
+                                                    "actorId": "6378f038-f4cd-49aa-8357-dcb46a978684",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "Lumpkin, are you trying to take my sign?",
+                                                    "emotion": "4",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0",
+                                                    "notes": ""
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "76ca2bb3-dc71-495b-b4d3-05718fad7862",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": "6378f038-f4cd-49aa-8357-dcb46a978684",
+                                                    "text": "It doesn't quite capture the sunlight! The lettering is so nice... I wanted to show it off to its best advantage.",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0",
+                                                    "notes": ""
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "cf48188c-bbec-4831-92ca-104c26aa3bef",
+                                                    "actorId": "6378f038-f4cd-49aa-8357-dcb46a978684",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "Thanks! That's my lettering, I'm so glad you like it!",
+                                                    "emotion": "1",
+                                                    "emotion2": "1",
+                                                    "device": "0",
+                                                    "device2": "0",
+                                                    "notes": ""
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "91e99f1b-f871-4215-b6a7-e17f2b334eab",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": "6378f038-f4cd-49aa-8357-dcb46a978684",
+                                                    "text": "I really do!",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0",
+                                                    "notes": ""
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "5fcc50a3-0dfd-4728-be58-c684ecb7b1e3",
+                                                    "actorId": "6378f038-f4cd-49aa-8357-dcb46a978684",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "Because it <i><b>looked</b></i> like you were thinking about walking off with it! So I thought, \"What kind of an idiot tries to steal something that big right in front of the person they're stealing from?\".",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0",
+                                                    "notes": ""
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "cd1ab9d0-0771-4495-9f90-0f2fd3100a82",
+                                                    "actorId": "6378f038-f4cd-49aa-8357-dcb46a978684",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "And then I thought, \"Could anyone so confused about something that basic really be a student at <i>this</i> school?\". ",
+                                                    "emotion": "4",
+                                                    "emotion2": "2",
+                                                    "device": "0",
+                                                    "device2": "0",
+                                                    "notes": ""
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "30212f47-b908-4cd7-b22a-fe858ada64a9",
+                                                    "actorId": "6378f038-f4cd-49aa-8357-dcb46a978684",
+                                                    "actorId2": null,
+                                                    "text": "I don't know! What do <i>you</i> think?",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0",
+                                                    "notes": ""
+                                                },
+                                                {
+                                                    "type": "nodes.showMenu",
+                                                    "id": "85a27e89-deb1-4a77-b712-93d0bbcfcb25",
+                                                    "options": [
+                                                        {
+                                                            "type": "options.text",
+                                                            "id": "ad3c53ef-e4cf-4231-81b9-932b97e9b9d1",
+                                                            "text": "Answer Her Politely.",
+                                                            "nodes": [
+                                                                {
+                                                                    "id": "80160e75-180c-43b2-9b65-78a19e4c7c46",
+                                                                    "type": "nodes.skillBranch",
+                                                                    "skill": "Smarts",
+                                                                    "target": "30",
+                                                                    "success": {
+                                                                        "type": "nodes.block",
+                                                                        "nodes": []
+                                                                    },
+                                                                    "failure": {
+                                                                        "type": "nodes.block",
+                                                                        "nodes": []
+                                                                    },
+                                                                    "notify": true
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "aeb83d6f-650a-41d4-8fc1-5101dd58544a",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": "6378f038-f4cd-49aa-8357-dcb46a978684",
+                                                                    "text": "I'm so sorry it appeared that way! Of course it wasn't my intention to do anything untoward with your beautiful sign. Please forgive me for - totally inadvertently - making the school appear lax in its educational standards.",
+                                                                    "emotion": "2",
+                                                                    "emotion2": "1",
+                                                                    "device": "0",
+                                                                    "device2": "0",
+                                                                    "notes": ""
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "badea104-31cb-4428-8d7f-40fa0d5aa119",
+                                                                    "actorId": "6378f038-f4cd-49aa-8357-dcb46a978684",
+                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "text": "You're forgiven, Lovey, I'm glad we cleared up this misunderstanding!",
+                                                                    "emotion": "1",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0",
+                                                                    "notes": ""
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "4a2a08ad-3aaf-4e76-b65f-aeaba47268e5",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": "6378f038-f4cd-49aa-8357-dcb46a978684",
+                                                                    "text": "Me, too!",
+                                                                    "emotion": "1",
+                                                                    "emotion2": "1",
+                                                                    "device": "0",
+                                                                    "device2": "0",
+                                                                    "notes": ""
+                                                                }
+                                                            ],
+                                                            "expression": null,
+                                                            "ignoreChildAvailability": true,
+                                                            "minutes": "3",
+                                                            "ExitMenu": true,
+                                                            "notes": ""
+                                                        },
+                                                        {
+                                                            "type": "options.text",
+                                                            "id": "7845b5f6-207f-4b40-897f-72a55c6068e8",
+                                                            "text": "Answer Her Charmingly",
+                                                            "nodes": [
+                                                                {
+                                                                    "id": "de0cdbd9-5307-4f5a-bd36-9f9d937e2b1e",
+                                                                    "type": "nodes.skillBranch",
+                                                                    "skill": "Charm",
+                                                                    "target": "30",
+                                                                    "success": {
+                                                                        "type": "nodes.block",
+                                                                        "nodes": []
+                                                                    },
+                                                                    "failure": {
+                                                                        "type": "nodes.block",
+                                                                        "nodes": []
+                                                                    },
+                                                                    "notify": true
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "24e04b24-aa52-4c53-afa1-58a4f90ba179",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": "6378f038-f4cd-49aa-8357-dcb46a978684",
+                                                                    "text": "Oh, I could never steal from you. When you're around... I assure you, that's not what I'm thinking about.",
+                                                                    "emotion": "1",
+                                                                    "emotion2": "1",
+                                                                    "device": "0",
+                                                                    "device2": "0",
+                                                                    "notes": ""
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "b58d34f3-1f2b-4eb6-a220-81c85853414f",
+                                                                    "actorId": "6378f038-f4cd-49aa-8357-dcb46a978684",
+                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "text": "Really! Well, you certainly know how to lay it on thick. All right, just leave my sign alone. And, Baby... up your game!",
+                                                                    "emotion": "1",
+                                                                    "emotion2": "1",
+                                                                    "device": "0",
+                                                                    "device2": "0",
+                                                                    "notes": ""
+                                                                }
+                                                            ],
+                                                            "expression": null,
+                                                            "ignoreChildAvailability": true,
+                                                            "minutes": "3",
+                                                            "ExitMenu": true,
+                                                            "notes": ""
+                                                        },
+                                                        {
+                                                            "type": "options.text",
+                                                            "id": "736600d7-0f64-45c2-b528-61eb2f8d0be5",
+                                                            "text": "Answer Her Snarkily",
+                                                            "nodes": [
+                                                                {
+                                                                    "id": "07e1e12d-1099-4b1f-b600-1e24394490a3",
+                                                                    "type": "nodes.skillBranch",
+                                                                    "skill": "Moxie",
+                                                                    "target": "30",
+                                                                    "success": {
+                                                                        "type": "nodes.block",
+                                                                        "nodes": []
+                                                                    },
+                                                                    "failure": {
+                                                                        "type": "nodes.block",
+                                                                        "nodes": []
+                                                                    },
+                                                                    "notify": true
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "8444492d-b109-44c2-be51-1f3f9afade2c",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": "6378f038-f4cd-49aa-8357-dcb46a978684",
+                                                                    "text": "I wanted a memento of our times together.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "4",
+                                                                    "device": "0",
+                                                                    "device2": "0",
+                                                                    "notes": ""
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "2407bd4b-257a-4595-ad58-2e6e34d1d577",
+                                                                    "actorId": "6378f038-f4cd-49aa-8357-dcb46a978684",
+                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "text": "And you thought of my sign? How sweet!",
+                                                                    "emotion": "1",
+                                                                    "emotion2": "1",
+                                                                    "device": "0",
+                                                                    "device2": "0",
+                                                                    "notes": ""
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "73b7deab-ff0e-4022-9315-c8f85303ee04",
+                                                                    "actorId": "6378f038-f4cd-49aa-8357-dcb46a978684",
+                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "text": "But leave it where it is, kiddo. I don't want to have to make another one!",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0",
+                                                                    "notes": ""
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "93be76ba-560c-4611-9e96-9695ed476c8d",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": "6378f038-f4cd-49aa-8357-dcb46a978684",
+                                                                    "text": "Okay. But you owe me one memento.",
+                                                                    "emotion": "1",
+                                                                    "emotion2": "1",
+                                                                    "device": "0",
+                                                                    "device2": "0",
+                                                                    "notes": ""
+                                                                }
+                                                            ],
+                                                            "expression": null,
+                                                            "ignoreChildAvailability": true,
+                                                            "minutes": "4",
+                                                            "ExitMenu": true,
+                                                            "notes": ""
+                                                        }
+                                                    ],
+                                                    "AutoAddDone": false,
+                                                    "Unique": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "8134a91d-3729-4509-9fcd-d1d62ec46701",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "When they need to buy another one, and I'm the only person with one to sell, they're bound to get suspicious.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0",
+                                                    "notes": ""
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "1",
+                            "ExitMenu": false,
+                            "notes": ""
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "9aa1c3e9-822c-4eeb-8aab-99445bd76492",
+                            "text": "Change the Sign",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "5e76765c-d79e-4a67-83e6-6040cc9db2bc",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "I don't think I can fake Sophia's handwriting.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0",
+                                    "notes": ""
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false,
+                            "notes": ""
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

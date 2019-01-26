@@ -1,0 +1,228 @@
+{
+    "type": "script",
+    "id": "6556b68e-3145-45f0-845f-f5ba6c6b989f",
+    "name": "Leo Whine Zone",
+    "sceneId": "981ec865-3e1b-4f3e-bb0d-11df2bc7d593",
+    "trigger": {
+        "type": "triggers.zone",
+        "name": "Zone"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "9740ddfe-7d0e-4069-913d-247259e46da1",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inTags",
+                                    "scope": "scene",
+                                    "scopeId": "981ec865-3e1b-4f3e-bb0d-11df2bc7d593",
+                                    "scopeFilterId": null,
+                                    "tags": "LeoHasBone",
+                                    "has": false
+                                },
+                                "right": {
+                                    "type": "expressions.inTags",
+                                    "scope": "scene",
+                                    "scopeId": "981ec865-3e1b-4f3e-bb0d-11df2bc7d593",
+                                    "scopeFilterId": null,
+                                    "tags": "LeoHasWhined",
+                                    "has": false
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.comment",
+                                    "message": "Placeholder sound.",
+                                    "commentor": "It's supposed to be a dog whining, of course."
+                                },
+                                {
+                                    "type": "nodes.playSoundEffect",
+                                    "soundEffectName": "dog_whine.wav",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "scene",
+                                                "scopeId": "981ec865-3e1b-4f3e-bb0d-11df2bc7d593",
+                                                "scopeFilterId": null,
+                                                "tags": "CommentedOnLeoWhine",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeCommand",
+                                                    "id": "f3ac7103-7d59-40a6-8e07-a304b747e4d5",
+                                                    "entityType": "actor",
+                                                    "entityId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "command": "Stop",
+                                                    "resultVariableScope": "script"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "cb800009-8977-432f-8f9c-4c357131d848",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Did I just hear a dog whining?",
+                                                    "emotion": "4",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.turnActor",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "propId": "4f42bf69-9863-4fee-be17-00f92b29e920",
+                                                    "scope": "prop",
+                                                    "targetActorId": null
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "e363cfee-130a-427b-979a-243b9e234e63",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Must have imagined it.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "f3ff7204-ee16-4223-b428-7acd13dadf25",
+                                                    "scope": "scene",
+                                                    "scopeId": "981ec865-3e1b-4f3e-bb0d-11df2bc7d593",
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "CommentedOnLeoWhine",
+                                                    "tagsToRemove": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.and",
+                                                "left": {
+                                                    "type": "expressions.inTags",
+                                                    "scope": "scene",
+                                                    "scopeId": "981ec865-3e1b-4f3e-bb0d-11df2bc7d593",
+                                                    "scopeFilterId": null,
+                                                    "tags": "SecondWhine",
+                                                    "has": false
+                                                },
+                                                "right": {
+                                                    "type": "expressions.inTags",
+                                                    "scope": "scene",
+                                                    "scopeId": "981ec865-3e1b-4f3e-bb0d-11df2bc7d593",
+                                                    "scopeFilterId": null,
+                                                    "tags": "LeoLook",
+                                                    "has": false
+                                                }
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "f214598f-e4af-44da-a159-1a3c68ecf85d",
+                                                    "scope": "scene",
+                                                    "scopeId": "981ec865-3e1b-4f3e-bb0d-11df2bc7d593",
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "SecondWhine",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.invokeCommand",
+                                                    "id": "c2c90cc4-b5c8-4683-9517-7994f5a47b4d",
+                                                    "entityType": "actor",
+                                                    "entityId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "command": "Stop",
+                                                    "resultVariableScope": "script"
+                                                },
+                                                {
+                                                    "type": "nodes.turnActor",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "propId": "4f42bf69-9863-4fee-be17-00f92b29e920",
+                                                    "scope": "prop",
+                                                    "targetActorId": null
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "aa73bb18-ccd5-4e08-a02e-360bb565619e",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Hmmm... Can a painting talk... or bark... or whine?",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "db31167c-f175-479c-bd60-3005d7384e6f",
+                                    "scope": "scene",
+                                    "scopeId": "981ec865-3e1b-4f3e-bb0d-11df2bc7d593",
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "LeoHasWhined",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.resetCamera",
+                                    "wait": true,
+                                    "time": "0.5"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "scene",
+                                "scopeId": "981ec865-3e1b-4f3e-bb0d-11df2bc7d593",
+                                "scopeFilterId": null,
+                                "tags": "LeoHappy",
+                                "has": true
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "b59e44ae-c13a-45c0-bd4a-6cc091218ace",
+                                    "scope": "scene",
+                                    "scopeId": "981ec865-3e1b-4f3e-bb0d-11df2bc7d593",
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "LeoHappy",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "6ea5d71b-b464-4fc0-a0f2-37d21a57850d",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "There... he looks much happier now.",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,1907 @@
+{
+    "type": "script",
+    "id": "048e840d-2e76-4d2f-90cb-e4e0c081d00c",
+    "name": "Moira Zone Greetings",
+    "sceneId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+    "trigger": {
+        "type": "triggers.zone",
+        "name": "Zone"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "2b0e86fa-0701-4226-be2c-5a79f923bbca",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.comment",
+                    "message": "Added a tag so the zone trigger would only fire once per scene entry.",
+                    "commentor": "Joshua"
+                },
+                {
+                    "type": "nodes.comment",
+                    "message": "Previously stored in Enter, but this is a better approach for when Shawn enters from Darla's Den.",
+                    "commentor": "Carolyn"
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.actorPresent",
+                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                    "hasNot": false
+                                },
+                                "right": {
+                                    "type": "expressions.inTags",
+                                    "scope": "scene",
+                                    "scopeId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                    "scopeFilterId": null,
+                                    "tags": "enteredzonetrigger",
+                                    "has": false
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "0b73ba2c-f4ae-4f5a-a70a-c7c4a52d55e5",
+                                    "scope": "scene",
+                                    "scopeId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "enteredzonetrigger",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.hasActiveQuest",
+                                                "propId": "5a677335-d65e-4100-a592-c23204200417",
+                                                "sceneId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                                                "questStatus": "0"
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "5fa80fb8-80af-455c-b7d3-a2eb7cc2fa89",
+                                                    "scriptId": "048e840d-2e76-4d2f-90cb-e4e0c081d00c",
+                                                    "entryPointId": "545f2020-8dcf-4cd2-9649-b06396dc06a7",
+                                                    "currentScope": "Current",
+                                                    "currentSceneId": null,
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.and",
+                                                "left": {
+                                                    "type": "expressions.inTags",
+                                                    "scope": "actor",
+                                                    "scopeId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                    "scopeFilterId": null,
+                                                    "tags": "TalkedWraith",
+                                                    "has": false
+                                                },
+                                                "right": {
+                                                    "type": "expressions.inTags",
+                                                    "scope": "scene",
+                                                    "scopeId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                                    "scopeFilterId": null,
+                                                    "tags": "WraithCall",
+                                                    "has": true
+                                                }
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "ec68317c-d947-49ef-82b7-8673a15d487b",
+                                                    "scriptId": "048e840d-2e76-4d2f-90cb-e4e0c081d00c",
+                                                    "entryPointId": "545f2020-8dcf-4cd2-9649-b06396dc06a7",
+                                                    "currentScope": "Current",
+                                                    "currentSceneId": null,
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.and",
+                                                "left": {
+                                                    "type": "expressions.isPoisoned"
+                                                },
+                                                "right": {
+                                                    "type": "expressions.variableComparison",
+                                                    "variableScope": "global",
+                                                    "variableName": "ego.stamina.percentage",
+                                                    "operator": "gte",
+                                                    "compareTo": "85",
+                                                    "sceneId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                                    "propId": null
+                                                }
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "da9114b1-d48e-40a9-bf16-f6c33c323bdd",
+                                                    "scriptId": "048e840d-2e76-4d2f-90cb-e4e0c081d00c",
+                                                    "entryPointId": "cf09719e-3f4d-40e7-b21a-ce9e44058e97",
+                                                    "currentScope": "Current",
+                                                    "currentSceneId": null,
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.inTags",
+                                                                "scope": "actor",
+                                                                "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                "scopeFilterId": null,
+                                                                "tags": "FirstPoison",
+                                                                "has": false
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.changeTags",
+                                                                    "id": "2de5e69b-b3a5-4cfa-bf88-2bdba28bf810",
+                                                                    "scope": "actor",
+                                                                    "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "scopeFilterId": null,
+                                                                    "tagsToAdd": "FirstPoison",
+                                                                    "tagsToRemove": null
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "20067099-5cea-4aaf-8205-020d01304823",
+                                                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "text": "You look ill. What happened to you?",
+                                                                    "emotion": "4",
+                                                                    "emotion2": "2",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.showMenu",
+                                                                    "id": "4816c620-469c-4284-80e5-9f9733c7b0cd",
+                                                                    "options": [
+                                                                        {
+                                                                            "type": "options.text",
+                                                                            "id": "965f4355-df01-4c19-a545-90bc8c376973",
+                                                                            "text": "Ask for Aid",
+                                                                            "nodes": [
+                                                                                {
+                                                                                    "id": "680e45ac-2d21-4207-85f4-8b6e8970411f",
+                                                                                    "type": "nodes.skillBranch",
+                                                                                    "skill": "Charm",
+                                                                                    "target": "30",
+                                                                                    "success": {
+                                                                                        "type": "nodes.block",
+                                                                                        "nodes": []
+                                                                                    },
+                                                                                    "failure": {
+                                                                                        "type": "nodes.block",
+                                                                                        "nodes": []
+                                                                                    },
+                                                                                    "notify": true
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.speak",
+                                                                                    "id": "7b175894-2845-4a46-a73c-d555804026cb",
+                                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                    "actorId2": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                                                    "text": "I don't feel so well. I think I might be poisoned by something. I could use your help, please.",
+                                                                                    "emotion": "0",
+                                                                                    "emotion2": "2",
+                                                                                    "device": "0",
+                                                                                    "device2": "0"
+                                                                                }
+                                                                            ],
+                                                                            "expression": null,
+                                                                            "ignoreChildAvailability": false,
+                                                                            "minutes": "2",
+                                                                            "ExitMenu": false
+                                                                        },
+                                                                        {
+                                                                            "type": "options.text",
+                                                                            "id": "26e0dd54-20b2-4c69-aee7-3d2aa52ee657",
+                                                                            "text": "Exaggerate the Situation",
+                                                                            "nodes": [
+                                                                                {
+                                                                                    "type": "nodes.speak",
+                                                                                    "id": "4d1b4702-352b-4b3a-bd07-8439d9791954",
+                                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                    "actorId2": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                                                    "text": "I was fighting for my life and barely managed to defeat my opponent. I know I'm not going to make it... I just want to die in your arms...",
+                                                                                    "emotion": "2",
+                                                                                    "emotion2": "0",
+                                                                                    "device": "0",
+                                                                                    "device2": "0"
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.speak",
+                                                                                    "id": "c6ab6a35-ef22-42f4-839a-28fd1bac2efc",
+                                                                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                    "text": "You aren't going to die just yet. Let me help you.",
+                                                                                    "emotion": "0",
+                                                                                    "emotion2": "1",
+                                                                                    "device": "0",
+                                                                                    "device2": "0"
+                                                                                }
+                                                                            ],
+                                                                            "expression": null,
+                                                                            "ignoreChildAvailability": false,
+                                                                            "minutes": 0,
+                                                                            "ExitMenu": false
+                                                                        },
+                                                                        {
+                                                                            "type": "options.text",
+                                                                            "id": "d134540c-896d-407c-8ba9-bb7ca3aee884",
+                                                                            "text": "Make a Joke About It",
+                                                                            "nodes": [
+                                                                                {
+                                                                                    "type": "nodes.speak",
+                                                                                    "id": "fe17ab6f-d0b7-4ff8-9868-17371b06ded7",
+                                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                    "actorId2": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                                                    "text": "It's only a flesh wound.",
+                                                                                    "emotion": "1",
+                                                                                    "emotion2": "0",
+                                                                                    "device": "0",
+                                                                                    "device2": "0"
+                                                                                }
+                                                                            ],
+                                                                            "expression": null,
+                                                                            "ignoreChildAvailability": false,
+                                                                            "minutes": 0,
+                                                                            "ExitMenu": false
+                                                                        }
+                                                                    ],
+                                                                    "AutoAddDone": false,
+                                                                    "Unique": true
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": null,
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.comment",
+                                                                    "message": "Second+ time in game",
+                                                                    "commentor": "Poisoned Again"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "79745f56-2a7e-4382-acad-e3ae4ae92c02",
+                                                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "text": "Hmmm... you look unwell. Let me help you.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "86d4025b-5d21-47af-9394-76d47f5d9537",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                                    "text": "Thanks, yes. I don't feel well.",
+                                                                    "emotion": "2",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "bb862f16-c618-482c-8411-79cafedc83f9",
+                                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "You are obviously suffering from some sort of venom. Here, drink this Antidote potion.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.moveActor",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "propId": "648a6339-4ddc-46a3-9ac4-e3f1688f1502",
+                                                    "movement": "Walking",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "6af07d20-1bc8-4801-a69c-c4bbc4e65830",
+                                                    "scriptId": "d53fa2ac-27e7-42e0-917b-9a39c4f51407",
+                                                    "entryPointId": "2b0e86fa-0701-4226-be2c-5a79f923bbca",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.isPoisoned"
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.comment",
+                                                                    "message": "Keeping this in a branch, because of screen text.",
+                                                                    "commentor": "Cidney"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.poisonCounters",
+                                                                    "id": "2c61356d-be8f-4b18-9548-e1f2524f51c4",
+                                                                    "poisonAction": "2",
+                                                                    "amount": 0
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "d9a5dc78-96f5-428d-99a1-89df516cff81",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                    "text": "Thanks, I feel better already.",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "b5129524-245e-4270-8afd-0f67fd0331eb",
+                                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "You need to be careful. I suggest you buy a spare Antidote Potion from the store in case of emergencies.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "aca9808f-5a58-40c3-aae0-0c24296cc084",
+                                                    "scriptId": "048e840d-2e76-4d2f-90cb-e4e0c081d00c",
+                                                    "entryPointId": "0cd35e09-61d3-418d-ae5e-1f99934b9c3d",
+                                                    "currentScope": "Current",
+                                                    "currentSceneId": null,
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                },
+                                                {
+                                                    "type": "nodes.endScript"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.and",
+                                                "left": {
+                                                    "type": "expressions.variableComparison",
+                                                    "variableScope": "global",
+                                                    "variableName": "ego.stamina.percentage",
+                                                    "operator": "lt",
+                                                    "compareTo": "85",
+                                                    "sceneId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                                    "propId": null
+                                                },
+                                                "right": {
+                                                    "type": "expressions.and",
+                                                    "left": {
+                                                        "type": "expressions.variableComparison",
+                                                        "variableScope": "global",
+                                                        "variableName": "ego.stamina.percentage",
+                                                        "operator": "gt",
+                                                        "compareTo": "45",
+                                                        "sceneId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                                        "propId": null
+                                                    },
+                                                    "right": {
+                                                        "type": "expressions.enteredScene",
+                                                        "sceneId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                                        "scope": "DuringGame",
+                                                        "operator": "gte",
+                                                        "count": "2"
+                                                    }
+                                                }
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "d07b1251-b4ea-4983-9090-0a6811a90776",
+                                                    "scriptId": "048e840d-2e76-4d2f-90cb-e4e0c081d00c",
+                                                    "entryPointId": "cf09719e-3f4d-40e7-b21a-ce9e44058e97",
+                                                    "currentScope": "Current",
+                                                    "currentSceneId": null,
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "1a2c8adb-ec98-4459-8f07-fbc6b26bf46b",
+                                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "You look hurt. Let me help you. ",
+                                                    "emotion": "4",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "8abe04eb-673c-4f26-88e2-a98f3e5489cd",
+                                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "Here, drink this potion. It should ease the pain.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.moveActor",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "propId": "648a6339-4ddc-46a3-9ac4-e3f1688f1502",
+                                                    "movement": "Walking",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "7ec48c36-fbb6-43bb-a4fb-936f9e614924",
+                                                    "scriptId": "d53fa2ac-27e7-42e0-917b-9a39c4f51407",
+                                                    "entryPointId": "2b0e86fa-0701-4226-be2c-5a79f923bbca",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.isPoisoned"
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.comment",
+                                                                    "message": "Keeping this in a branch, because of screen text.",
+                                                                    "commentor": "Cidney"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.poisonCounters",
+                                                                    "id": "c7cece27-7f95-46b3-a774-28dd7f282b56",
+                                                                    "poisonAction": "2",
+                                                                    "amount": 0
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "nodes.changeHealth",
+                                                    "id": "dab805b6-19d4-4fcc-96e5-cb1f3eaab839",
+                                                    "target": "0",
+                                                    "damageType": -1,
+                                                    "amount": "55",
+                                                    "canDie": false,
+                                                    "isPercentage": true,
+                                                    "showNotification": true
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "c87f8081-2e2c-4670-8d22-a2d0737ca9b7",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                    "text": "Thank you, I feel much better now.",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "b4cec354-e1ff-4910-8b20-5711f768a547",
+                                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "If you are going into danger, you really should carry a healing potion in case of emergencies.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "acbfcf4a-a5c0-4caf-97b4-cbf738a7916d",
+                                                    "scriptId": "048e840d-2e76-4d2f-90cb-e4e0c081d00c",
+                                                    "entryPointId": "0cd35e09-61d3-418d-ae5e-1f99934b9c3d",
+                                                    "currentScope": "Current",
+                                                    "currentSceneId": null,
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                },
+                                                {
+                                                    "type": "nodes.endScript"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "global",
+                                                "variableName": "ego.stamina.percentage",
+                                                "operator": "lte",
+                                                "compareTo": "45",
+                                                "sceneId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "076ee72a-0d9b-42c4-a640-d1da0719c501",
+                                                    "scriptId": "048e840d-2e76-4d2f-90cb-e4e0c081d00c",
+                                                    "entryPointId": "cf09719e-3f4d-40e7-b21a-ce9e44058e97",
+                                                    "currentScope": "Current",
+                                                    "currentSceneId": null,
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "57377f89-4c68-4bb0-883a-714a5ee3013f",
+                                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "You are seriously wounded! Let me help you...",
+                                                    "emotion": "4",
+                                                    "emotion2": "2",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.fade",
+                                                    "scope": "FadeOutAndIn",
+                                                    "fadeTime": 0.5,
+                                                    "fadeTime2": 2,
+                                                    "wait": false,
+                                                    "fadeDown": 0.5,
+                                                    "fadeColorR": 0,
+                                                    "fadeColorG": 0,
+                                                    "fadeColorB": 0
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.and",
+                                                                "left": {
+                                                                    "type": "expressions.variableComparison",
+                                                                    "variableScope": "global",
+                                                                    "variableName": "time.hour",
+                                                                    "operator": "gte",
+                                                                    "compareTo": "17",
+                                                                    "sceneId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                                                    "propId": null
+                                                                },
+                                                                "right": {
+                                                                    "type": "expressions.variableComparison",
+                                                                    "variableScope": "global",
+                                                                    "variableName": "time.hour",
+                                                                    "operator": "lte",
+                                                                    "compareTo": "18",
+                                                                    "sceneId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                                                    "propId": null
+                                                                }
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.changeTags",
+                                                                    "id": "37827460-5115-4266-9583-d601e3081a7b",
+                                                                    "scope": "actor",
+                                                                    "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "scopeFilterId": null,
+                                                                    "tagsToAdd": "injuredinfirmary",
+                                                                    "tagsToRemove": null
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeHealth",
+                                                                    "id": "f775f203-079a-4634-a51d-6190ed1e6a64",
+                                                                    "target": "0",
+                                                                    "damageType": -1,
+                                                                    "amount": "85",
+                                                                    "canDie": false,
+                                                                    "isPercentage": true,
+                                                                    "showNotification": true
+                                                                },
+                                                                {
+                                                                    "type": "nodes.branch",
+                                                                    "sections": [
+                                                                        {
+                                                                            "type": "nodes.branchSection",
+                                                                            "expression": {
+                                                                                "type": "expressions.isPoisoned"
+                                                                            },
+                                                                            "nodes": [
+                                                                                {
+                                                                                    "type": "nodes.comment",
+                                                                                    "message": "Keeping this in a branch, because of screen text.",
+                                                                                    "commentor": "Cidney"
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.poisonCounters",
+                                                                                    "id": "b535121d-c3f3-462b-941b-649134af28cb",
+                                                                                    "poisonAction": "2",
+                                                                                    "amount": 0
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "ea564f1d-6786-4a87-8557-d876a17364fe",
+                                                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "text": "There, I got you patched up in time for supper. Go off to the Dining Hall, I'm sure you must be starving now with all the healing you took.",
+                                                                    "emotion": "1",
+                                                                    "emotion2": "1",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "a8b7c1e9-13fa-40a8-8169-779a26a773fb",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                                    "text": "Thanks so much. You really are a life-saver.",
+                                                                    "emotion": "1",
+                                                                    "emotion2": "1",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "b783e31e-40cb-4032-bd68-3b59a510d32a",
+                                                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "text": "Try to take it easy for a few days. You were seriously injured and it will take some time before you recover all your health.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeScene",
+                                                                    "sceneId": "a8efa640-212a-4108-8251-612933f66abc",
+                                                                    "spawnId": null,
+                                                                    "fadeTime": 2
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": null,
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.changeTags",
+                                                                    "id": "a489d8ad-eff5-4687-85b1-e9ec14691dc9",
+                                                                    "scope": "actor",
+                                                                    "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "scopeFilterId": null,
+                                                                    "tagsToAdd": "injuredinfirmary",
+                                                                    "tagsToRemove": null
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeHealth",
+                                                                    "id": "92343bf7-a2b1-47b1-8a1d-98593407714a",
+                                                                    "target": "0",
+                                                                    "damageType": -1,
+                                                                    "amount": "85",
+                                                                    "canDie": false,
+                                                                    "isPercentage": true,
+                                                                    "showNotification": true
+                                                                },
+                                                                {
+                                                                    "type": "nodes.branch",
+                                                                    "sections": [
+                                                                        {
+                                                                            "type": "nodes.branchSection",
+                                                                            "expression": {
+                                                                                "type": "expressions.isPoisoned"
+                                                                            },
+                                                                            "nodes": [
+                                                                                {
+                                                                                    "type": "nodes.comment",
+                                                                                    "message": "Keeping this in a branch, because of screen text.",
+                                                                                    "commentor": "Cidney"
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.poisonCounters",
+                                                                                    "id": "72ec42d6-dba4-4ead-8ab1-f36a44be9812",
+                                                                                    "poisonAction": "2",
+                                                                                    "amount": 0
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "type": "nodes.incrementTime",
+                                                                    "id": "231df285-0349-40fd-a2bf-fc533f47f4f6",
+                                                                    "days": 0,
+                                                                    "hours": "1",
+                                                                    "minutes": 0
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "c25fc00c-f45d-4223-94f3-2ad85cbe4f86",
+                                                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "text": "There, I've done what I could to help you for now. You should take it easy for a few days to recover. ",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.invokeScript",
+                                                                    "id": "92c13978-8353-4cc3-882b-a6f2b54dae78",
+                                                                    "scriptId": "048e840d-2e76-4d2f-90cb-e4e0c081d00c",
+                                                                    "entryPointId": "0cd35e09-61d3-418d-ae5e-1f99934b9c3d",
+                                                                    "currentScope": "Current",
+                                                                    "currentSceneId": null,
+                                                                    "currentActorId": null,
+                                                                    "currentStoryEventId": null,
+                                                                    "currentPropId": null
+                                                                },
+                                                                {
+                                                                    "type": "nodes.endScript"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.and",
+                                                "left": {
+                                                    "type": "expressions.inTags",
+                                                    "scope": "actor",
+                                                    "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "scopeFilterId": null,
+                                                    "tags": "injuredinfirmary",
+                                                    "has": true
+                                                },
+                                                "right": {
+                                                    "type": "expressions.previousScene",
+                                                    "sceneId": "40f18665-4cc2-4acd-b17e-5189e68b7a33"
+                                                }
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "82425a4e-7092-4944-935b-ef29240cda11",
+                                                    "scriptId": "048e840d-2e76-4d2f-90cb-e4e0c081d00c",
+                                                    "entryPointId": "cf09719e-3f4d-40e7-b21a-ce9e44058e97",
+                                                    "currentScope": "Current",
+                                                    "currentSceneId": null,
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                },
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "b816b539-657f-4534-a964-80d856b37a67",
+                                                    "scope": "actor",
+                                                    "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "scopeFilterId": null,
+                                                    "tagsToRemove": "injuredinfirmary"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "99a779d6-1222-4cd6-aae4-fb6a7d057a28",
+                                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "'tis glad I am to see you on your feet again. I hope you're feeling better today, Shawn. You were in sorry shape the last time I helped you. Please, take better care of yourself.",
+                                                    "emotion": "0",
+                                                    "emotion2": "4",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "23309ea8-eb70-40d7-8691-885e4b7ec83f",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                    "text": "I will. I promise.",
+                                                    "emotion": "0",
+                                                    "emotion2": "1",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "81c5c042-8cb0-41ce-b1b5-530f1eeb0061",
+                                                    "scriptId": "048e840d-2e76-4d2f-90cb-e4e0c081d00c",
+                                                    "entryPointId": "0cd35e09-61d3-418d-ae5e-1f99934b9c3d",
+                                                    "currentScope": "Current",
+                                                    "currentSceneId": null,
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                },
+                                                {
+                                                    "type": "nodes.endScript"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "scene",
+                                                "scopeId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                                "scopeFilterId": null,
+                                                "tags": "hadtopicgreet",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "a806d451-70d1-48b4-8a3a-8d58d35d28f8",
+                                                    "scriptId": "048e840d-2e76-4d2f-90cb-e4e0c081d00c",
+                                                    "entryPointId": "cf09719e-3f4d-40e7-b21a-ce9e44058e97",
+                                                    "currentScope": "Current",
+                                                    "currentSceneId": null,
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                },
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "3aaa1705-3213-41fc-983a-8f4c3fe95045",
+                                                    "scope": "scene",
+                                                    "scopeId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "hadtopicgreet",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.variableComparison",
+                                                                "variableScope": "scene",
+                                                                "variableName": "CurrentEvent",
+                                                                "operator": "eq",
+                                                                "compareTo": "1",
+                                                                "sceneId": null,
+                                                                "propId": null
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.onceOnly",
+                                                                    "id": "01f51a1e-b29d-4bda-a020-b9deaa861160",
+                                                                    "nodes": [
+                                                                        {
+                                                                            "type": "nodes.speak",
+                                                                            "id": "e283b713-7c34-424b-9b93-5440e6786628",
+                                                                            "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                                            "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                            "text": "Welcome to the Infirmary. I am Lady Moira Glenshannon, Healer and Paladin Instructor. How is it that I may help you?",
+                                                                            "emotion": "1",
+                                                                            "emotion2": "0",
+                                                                            "device": "0",
+                                                                            "device2": "0"
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.variableComparison",
+                                                                "variableScope": "scene",
+                                                                "variableName": "CurrentEvent",
+                                                                "operator": "eq",
+                                                                "compareTo": "2",
+                                                                "sceneId": null,
+                                                                "propId": null
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "4b9d72d4-bb24-4691-b379-13aa526ded20",
+                                                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "text": "Good day to you, Shawn. I hope you are enjoying your lessons and finding your way around the castle now.",
+                                                                    "emotion": "1",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.variableComparison",
+                                                                "variableScope": "scene",
+                                                                "variableName": "CurrentEvent",
+                                                                "operator": "eq",
+                                                                "compareTo": "3",
+                                                                "sceneId": null,
+                                                                "propId": null
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "4ec1c983-d061-4ce3-a3ed-6d3272d7f13c",
+                                                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "text": "Welcome back. It's so nice to see that you are well and healthy. Most of the students who come in here are in need of some First Aid.",
+                                                                    "emotion": "1",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.variableComparison",
+                                                                "variableScope": "scene",
+                                                                "variableName": "CurrentEvent",
+                                                                "operator": "eq",
+                                                                "compareTo": "4",
+                                                                "sceneId": null,
+                                                                "propId": null
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "8aed7862-2128-4b0d-8fa7-21e024c69eb3",
+                                                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "text": "A fine afternoon to you, Shawn. Is there something you wanted to speak about today?",
+                                                                    "emotion": "1",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.variableComparison",
+                                                                "variableScope": "scene",
+                                                                "variableName": "CurrentEvent",
+                                                                "operator": "eq",
+                                                                "compareTo": "5",
+                                                                "sceneId": null,
+                                                                "propId": null
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.branch",
+                                                                    "sections": [
+                                                                        {
+                                                                            "type": "nodes.branchSection",
+                                                                            "expression": {
+                                                                                "type": "expressions.inTags",
+                                                                                "scope": "actor",
+                                                                                "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                "scopeFilterId": null,
+                                                                                "tags": "fkwirkcaught",
+                                                                                "has": true
+                                                                            },
+                                                                            "nodes": [
+                                                                                {
+                                                                                    "type": "nodes.speak",
+                                                                                    "id": "2ab1260f-ae3b-4831-b669-a1ae506636f1",
+                                                                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                    "text": "I hear that you are responsible for uncovering the school thief. That was well done of you.",
+                                                                                    "emotion": "1",
+                                                                                    "emotion2": "1",
+                                                                                    "device": "0",
+                                                                                    "device2": "0"
+                                                                                }
+                                                                            ]
+                                                                        },
+                                                                        {
+                                                                            "type": "nodes.branchSection",
+                                                                            "expression": null,
+                                                                            "nodes": [
+                                                                                {
+                                                                                    "type": "nodes.branch",
+                                                                                    "sections": [
+                                                                                        {
+                                                                                            "type": "nodes.branchSection",
+                                                                                            "expression": {
+                                                                                                "type": "expressions.and",
+                                                                                                "left": {
+                                                                                                    "type": "expressions.inTags",
+                                                                                                    "scope": "actor",
+                                                                                                    "scopeId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                                                                    "scopeFilterId": null,
+                                                                                                    "tags": "LieTalk",
+                                                                                                    "has": false
+                                                                                                },
+                                                                                                "right": {
+                                                                                                    "type": "expressions.inTags",
+                                                                                                    "scope": "actor",
+                                                                                                    "scopeId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                                                                    "scopeFilterId": null,
+                                                                                                    "tags": "AeolusLie",
+                                                                                                    "has": true
+                                                                                                }
+                                                                                            },
+                                                                                            "nodes": [
+                                                                                                {
+                                                                                                    "type": "nodes.invokeScript",
+                                                                                                    "id": "17bf1216-9117-4423-ae1a-d4de525dcca8",
+                                                                                                    "scriptId": "048e840d-2e76-4d2f-90cb-e4e0c081d00c",
+                                                                                                    "entryPointId": "8a111841-54a6-471b-8b33-945da6714c7a",
+                                                                                                    "currentScope": "Current",
+                                                                                                    "currentSceneId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                                                                                    "currentActorId": null,
+                                                                                                    "currentStoryEventId": null,
+                                                                                                    "currentPropId": null
+                                                                                                }
+                                                                                            ]
+                                                                                        },
+                                                                                        {
+                                                                                            "type": "nodes.branchSection",
+                                                                                            "expression": null,
+                                                                                            "nodes": [
+                                                                                                {
+                                                                                                    "type": "nodes.speak",
+                                                                                                    "id": "3d2e342e-f92f-4723-b43f-06554c7d6a55",
+                                                                                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                                    "text": "'tis a pleasure to see you so hale and hearty, Shawn.",
+                                                                                                    "emotion": "1",
+                                                                                                    "emotion2": "1",
+                                                                                                    "device": "0",
+                                                                                                    "device2": "0"
+                                                                                                }
+                                                                                            ]
+                                                                                        }
+                                                                                    ]
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.variableComparison",
+                                                                "variableScope": "scene",
+                                                                "variableName": "CurrentEvent",
+                                                                "operator": "eq",
+                                                                "compareTo": "6",
+                                                                "sceneId": null,
+                                                                "propId": null
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.branch",
+                                                                    "sections": [
+                                                                        {
+                                                                            "type": "nodes.branchSection",
+                                                                            "expression": {
+                                                                                "type": "expressions.and",
+                                                                                "left": {
+                                                                                    "type": "expressions.inTags",
+                                                                                    "scope": "actor",
+                                                                                    "scopeId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                                                    "scopeFilterId": null,
+                                                                                    "tags": "LieTalk",
+                                                                                    "has": false
+                                                                                },
+                                                                                "right": {
+                                                                                    "type": "expressions.inTags",
+                                                                                    "scope": "actor",
+                                                                                    "scopeId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                                                    "scopeFilterId": null,
+                                                                                    "tags": "AeolusLie",
+                                                                                    "has": true
+                                                                                }
+                                                                            },
+                                                                            "nodes": [
+                                                                                {
+                                                                                    "type": "nodes.invokeScript",
+                                                                                    "id": "d1e342b7-b89d-4caa-83e7-0b383d2077b9",
+                                                                                    "scriptId": "048e840d-2e76-4d2f-90cb-e4e0c081d00c",
+                                                                                    "entryPointId": "8a111841-54a6-471b-8b33-945da6714c7a",
+                                                                                    "currentScope": "Current",
+                                                                                    "currentSceneId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                                                                    "currentActorId": null,
+                                                                                    "currentStoryEventId": null,
+                                                                                    "currentPropId": null
+                                                                                }
+                                                                            ]
+                                                                        },
+                                                                        {
+                                                                            "type": "nodes.branchSection",
+                                                                            "expression": null,
+                                                                            "nodes": [
+                                                                                {
+                                                                                    "type": "nodes.speak",
+                                                                                    "id": "e54a0afd-dfa1-494e-8eea-b55cb877723f",
+                                                                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                    "text": "How is it that I can help you today, Mr. O'Conner?",
+                                                                                    "emotion": "1",
+                                                                                    "emotion2": "1",
+                                                                                    "device": "0",
+                                                                                    "device2": "0"
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.variableComparison",
+                                                                "variableScope": "scene",
+                                                                "variableName": "CurrentEvent",
+                                                                "operator": "eq",
+                                                                "compareTo": "7",
+                                                                "sceneId": null,
+                                                                "propId": null
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.branch",
+                                                                    "sections": [
+                                                                        {
+                                                                            "type": "nodes.branchSection",
+                                                                            "expression": {
+                                                                                "type": "expressions.and",
+                                                                                "left": {
+                                                                                    "type": "expressions.inTags",
+                                                                                    "scope": "actor",
+                                                                                    "scopeId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                                                    "scopeFilterId": null,
+                                                                                    "tags": "LieTalk",
+                                                                                    "has": false
+                                                                                },
+                                                                                "right": {
+                                                                                    "type": "expressions.inTags",
+                                                                                    "scope": "actor",
+                                                                                    "scopeId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                                                    "scopeFilterId": null,
+                                                                                    "tags": "AeolusLie",
+                                                                                    "has": true
+                                                                                }
+                                                                            },
+                                                                            "nodes": [
+                                                                                {
+                                                                                    "type": "nodes.invokeScript",
+                                                                                    "id": "4820da8a-5fd3-485d-a492-df2618ce703d",
+                                                                                    "scriptId": "048e840d-2e76-4d2f-90cb-e4e0c081d00c",
+                                                                                    "entryPointId": "8a111841-54a6-471b-8b33-945da6714c7a",
+                                                                                    "currentScope": "Current",
+                                                                                    "currentSceneId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                                                                    "currentActorId": null,
+                                                                                    "currentStoryEventId": null,
+                                                                                    "currentPropId": null
+                                                                                }
+                                                                            ]
+                                                                        },
+                                                                        {
+                                                                            "type": "nodes.branchSection",
+                                                                            "expression": null,
+                                                                            "nodes": [
+                                                                                {
+                                                                                    "type": "nodes.speak",
+                                                                                    "id": "42467167-0e8f-4f15-bcd6-154dc3c88627",
+                                                                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                    "text": "'tis a pleasure to see you so hale and hearty, Shawn. I worry about the risks you and the others are facing, but it's reassuring to know that you are taking care of yourself.",
+                                                                                    "emotion": "1",
+                                                                                    "emotion2": "1",
+                                                                                    "device": "0",
+                                                                                    "device2": "0"
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.variableComparison",
+                                                                "variableScope": "scene",
+                                                                "variableName": "CurrentEvent",
+                                                                "operator": "eq",
+                                                                "compareTo": "8",
+                                                                "sceneId": null,
+                                                                "propId": null
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "d11617a3-6546-404c-be7f-48257611a0a0",
+                                                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "text": "Is there any word about your friend, Joel? I've got the Paladins searching the castle grounds and the city for him, but they've not seen him.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "2",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.variableComparison",
+                                                                "variableScope": "scene",
+                                                                "variableName": "CurrentEvent",
+                                                                "operator": "eq",
+                                                                "compareTo": "9",
+                                                                "sceneId": null,
+                                                                "propId": null
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.branch",
+                                                                    "sections": [
+                                                                        {
+                                                                            "type": "nodes.branchSection",
+                                                                            "expression": {
+                                                                                "type": "expressions.inTags",
+                                                                                "scope": "actor",
+                                                                                "scopeId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                                                "scopeFilterId": null,
+                                                                                "tags": "KyroSaved",
+                                                                                "has": true
+                                                                            },
+                                                                            "nodes": [
+                                                                                {
+                                                                                    "type": "nodes.speak",
+                                                                                    "id": "1a2efa3b-59d8-4bff-8a8d-2690c8904518",
+                                                                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                    "text": "'tis joyful I am to know that your friend Joel is safe and well, much thanks to you.",
+                                                                                    "emotion": "1",
+                                                                                    "emotion2": "1",
+                                                                                    "device": "0",
+                                                                                    "device2": "0"
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.changeReputation",
+                                                                                    "id": "a8b6a488-135d-44da-8565-b50c770329b3",
+                                                                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                                                    "amount": "20",
+                                                                                    "change": "1",
+                                                                                    "notify": true
+                                                                                }
+                                                                            ]
+                                                                        },
+                                                                        {
+                                                                            "type": "nodes.branchSection",
+                                                                            "expression": null,
+                                                                            "nodes": [
+                                                                                {
+                                                                                    "type": "nodes.speak",
+                                                                                    "id": "59a1fa97-eefe-4008-bae5-c5c0e514bd42",
+                                                                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                    "text": "'tis a grievous thing that your classmate, Joel, was lost to us all. I am sure that he will be missed.",
+                                                                                    "emotion": "2",
+                                                                                    "emotion2": "2",
+                                                                                    "device": "0",
+                                                                                    "device2": "0"
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.variableComparison",
+                                                                "variableScope": "scene",
+                                                                "variableName": "CurrentEvent",
+                                                                "operator": "eq",
+                                                                "compareTo": "10",
+                                                                "sceneId": null,
+                                                                "propId": null
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "72757e84-99cc-4b8d-89ee-069f258b8b0c",
+                                                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "text": "Good afternoon, Shawn. I hope that you are not too disturbed by the ghosts of the Nights of the Dead. The castle ghosts will not harm you.",
+                                                                    "emotion": "1",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.variableComparison",
+                                                                "variableScope": "scene",
+                                                                "variableName": "CurrentEvent",
+                                                                "operator": "eq",
+                                                                "compareTo": "11",
+                                                                "sceneId": null,
+                                                                "propId": null
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "da60d19b-6f01-4c15-b71b-9fa90227f81c",
+                                                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "text": "Be careful as you wander the halls today. The Dire Rats that have invaded the castle can be very dangerous.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.variableComparison",
+                                                                "variableScope": "scene",
+                                                                "variableName": "CurrentEvent",
+                                                                "operator": "eq",
+                                                                "compareTo": "12",
+                                                                "sceneId": null,
+                                                                "propId": null
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "e53fdc41-0185-446f-904b-0a1be95f4013",
+                                                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "text": "As the semester is nearly over, Shawn. I hope that you have enjoyed your studies. So tell me, do you want to be a hero?",
+                                                                    "emotion": "1",
+                                                                    "emotion2": "4",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": null,
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.branch",
+                                                                    "sections": [
+                                                                        {
+                                                                            "type": "nodes.branchSection",
+                                                                            "expression": {
+                                                                                "type": "expressions.and",
+                                                                                "left": {
+                                                                                    "type": "expressions.inTags",
+                                                                                    "scope": "actor",
+                                                                                    "scopeId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                                                    "scopeFilterId": null,
+                                                                                    "tags": "LieTalk",
+                                                                                    "has": false
+                                                                                },
+                                                                                "right": {
+                                                                                    "type": "expressions.inTags",
+                                                                                    "scope": "actor",
+                                                                                    "scopeId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                                                    "scopeFilterId": null,
+                                                                                    "tags": "AeolusLie",
+                                                                                    "has": true
+                                                                                }
+                                                                            },
+                                                                            "nodes": [
+                                                                                {
+                                                                                    "type": "nodes.invokeScript",
+                                                                                    "id": "f59ee688-8bd2-490d-a02a-a6876fcccb35",
+                                                                                    "scriptId": "048e840d-2e76-4d2f-90cb-e4e0c081d00c",
+                                                                                    "entryPointId": "8a111841-54a6-471b-8b33-945da6714c7a",
+                                                                                    "currentScope": "Current",
+                                                                                    "currentSceneId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                                                                    "currentActorId": null,
+                                                                                    "currentStoryEventId": null,
+                                                                                    "currentPropId": null
+                                                                                }
+                                                                            ]
+                                                                        },
+                                                                        {
+                                                                            "type": "nodes.branchSection",
+                                                                            "expression": null,
+                                                                            "nodes": [
+                                                                                {
+                                                                                    "type": "nodes.speak",
+                                                                                    "id": "6aa23c3c-7770-49c0-a3e0-51b874d7aeaa",
+                                                                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                                                    "actorId2": null,
+                                                                                    "text": "Welcome, Shawn.",
+                                                                                    "emotion": "1",
+                                                                                    "emotion2": "0",
+                                                                                    "device": "0",
+                                                                                    "device2": "0"
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "c62383d1-30d0-4b13-83ec-af501e835e30",
+                                                    "scriptId": "048e840d-2e76-4d2f-90cb-e4e0c081d00c",
+                                                    "entryPointId": "0cd35e09-61d3-418d-ae5e-1f99934b9c3d",
+                                                    "currentScope": "Current",
+                                                    "currentSceneId": null,
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "scripts.entryPoint",
+            "id": "8a111841-54a6-471b-8b33-945da6714c7a",
+            "name": "Lecture About Lying To Aeolus",
+            "nodes": [
+                {
+                    "type": "nodes.comment",
+                    "message": "TODO: Include this in appropriate place.",
+                    "commentor": "Cidney"
+                },
+                {
+                    "type": "nodes.changeTags",
+                    "id": "eedf1f3f-d755-4e7a-88c6-e8e1e1abf9c0",
+                    "scope": "actor",
+                    "scopeId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                    "scopeFilterId": null,
+                    "tagsToAdd": "LieTalk",
+                    "tagsToRemove": null
+                },
+                {
+                    "type": "nodes.speak",
+                    "id": "6db0dd8c-8247-43c3-a074-2e0ae4046132",
+                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "text": "Shawn, your roommate spoke with me earlier. He said that you told him that I was attracted to him.",
+                    "emotion": "0",
+                    "emotion2": "4",
+                    "device": "0",
+                    "device2": "0"
+                },
+                {
+                    "type": "nodes.speak",
+                    "id": "2d53e9a3-c7e3-419b-8e79-e8a5fca6be17",
+                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "text": "It was unkind of you to lie to Aeolus. You gave him false hope that was crushed when I explained that I had no special feelings for him. This put both of us in an unpleasant situation that should never have occurred.",
+                    "emotion": "3",
+                    "emotion2": "2",
+                    "device": "0",
+                    "device2": "0"
+                },
+                {
+                    "type": "nodes.speak",
+                    "id": "f3eca6e8-bf3f-40cd-bbe6-c57dee96df83",
+                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "text": "Telling lies, even when told to make another person feel better, are still wrong. They harm both the listener and the teller. Please keep this in mind the next time you think to tell an untruth.",
+                    "emotion": "0",
+                    "emotion2": "0",
+                    "device": "0",
+                    "device2": "0"
+                },
+                {
+                    "type": "nodes.changeReputation",
+                    "id": "f128a8a0-8300-4a01-b83c-6ec82f0e337d",
+                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                    "amount": "5",
+                    "change": "0",
+                    "notify": true
+                }
+            ]
+        },
+        {
+            "type": "scripts.entryPoint",
+            "id": "cf09719e-3f4d-40e7-b21a-ce9e44058e97",
+            "name": "Moira Greet Start",
+            "nodes": [
+                {
+                    "type": "nodes.invokeCommand",
+                    "id": "7f759266-184c-4e54-a8e2-dfe40276bcd7",
+                    "entityType": "actor",
+                    "entityId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "command": "Stop",
+                    "resultVariableScope": "script"
+                },
+                {
+                    "type": "nodes.setCameraTarget",
+                    "propId": null,
+                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                    "time": "1",
+                    "translateX": 0,
+                    "translateY": 0,
+                    "translateZ": 0,
+                    "postWaitTime": 0,
+                    "scope": "actor"
+                },
+                {
+                    "type": "nodes.turnActor",
+                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                    "propId": null,
+                    "scope": "actor",
+                    "targetActorId": "30ee2636-15e3-452e-a2db-09cbb9012970"
+                },
+                {
+                    "type": "nodes.turnActor",
+                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "propId": null,
+                    "scope": "actor",
+                    "targetActorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80"
+                }
+            ]
+        },
+        {
+            "type": "scripts.entryPoint",
+            "id": "0cd35e09-61d3-418d-ae5e-1f99934b9c3d",
+            "name": "Moira Greet End",
+            "nodes": [
+                {
+                    "type": "nodes.resetCamera",
+                    "wait": true,
+                    "time": "1"
+                }
+            ]
+        },
+        {
+            "type": "scripts.entryPoint",
+            "id": "545f2020-8dcf-4cd2-9649-b06396dc06a7",
+            "name": "Ask Moira for Help With Joel",
+            "nodes": [
+                {
+                    "type": "nodes.comment",
+                    "message": "",
+                    "commentor": ""
+                },
+                {
+                    "type": "nodes.playMusic",
+                    "musicTrack": "Incidental 1.mp3",
+                    "channel": "1",
+                    "loopType": "1"
+                },
+                {
+                    "type": "nodes.invokeScript",
+                    "id": "7f35299a-8dab-43f4-b096-c813c9d34cc1",
+                    "scriptId": "048e840d-2e76-4d2f-90cb-e4e0c081d00c",
+                    "entryPointId": "cf09719e-3f4d-40e7-b21a-ce9e44058e97",
+                    "currentScope": "Current",
+                    "currentSceneId": null,
+                    "currentActorId": null,
+                    "currentStoryEventId": null,
+                    "currentPropId": null
+                },
+                {
+                    "type": "nodes.changeTags",
+                    "id": "7d424abd-a4a5-48f2-939b-cd48899f507b",
+                    "scope": "actor",
+                    "scopeId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                    "scopeFilterId": null,
+                    "tagsToAdd": "TalkedWraith",
+                    "tagsToRemove": null
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.hasActiveQuest",
+                                "propId": "5a677335-d65e-4100-a592-c23204200417",
+                                "sceneId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                                "questStatus": "0"
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.quests",
+                                    "id": "c3993ab0-be48-4846-a897-d3007f746ed9",
+                                    "sceneId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                                    "propId": "5a677335-d65e-4100-a592-c23204200417",
+                                    "target": "1",
+                                    "notify": true
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.speak",
+                    "id": "ea5f0dda-e3be-4439-a688-6c694e268ae4",
+                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "actorId2": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                    "text": "Lady Moira, I need your help. There's a Wraith in the Catacombs...",
+                    "emotion": "0",
+                    "emotion2": "4",
+                    "device": "0",
+                    "device2": "0"
+                },
+                {
+                    "type": "nodes.speak",
+                    "id": "04766663-b9ef-4636-afae-3f39db1bd47c",
+                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "text": "A Wraith? Are you all right? Let me take a look at you - did it drain you?",
+                    "emotion": "4",
+                    "emotion2": "0",
+                    "device": "0",
+                    "device2": "0"
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.variableComparison",
+                                "variableScope": "global",
+                                "variableName": "ego.stamina.percentage",
+                                "operator": "lte",
+                                "compareTo": "50",
+                                "sceneId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                "propId": null
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "fe5f5bd9-c371-4289-a0b3-245ecb394446",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                    "text": "I'm hurt, but that's not why I came to you...",
+                                    "emotion": "2",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "b5744831-cf57-4ed8-9c69-05a4ac8a7acd",
+                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "First, we take care of you, then we'll deal with any other problem. Drink this potion.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.invokeScript",
+                                    "id": "65e280f2-612c-4e32-8f89-059d2e7dad45",
+                                    "scriptId": "d53fa2ac-27e7-42e0-917b-9a39c4f51407",
+                                    "entryPointId": "2b0e86fa-0701-4226-be2c-5a79f923bbca",
+                                    "currentScope": "Scenes",
+                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                    "currentActorId": null,
+                                    "currentStoryEventId": null,
+                                    "currentPropId": null
+                                },
+                                {
+                                    "type": "nodes.changeHealth",
+                                    "id": "eb815eb2-e0d1-41ab-98f2-174526373804",
+                                    "target": "0",
+                                    "damageType": -1,
+                                    "amount": "45",
+                                    "canDie": false,
+                                    "isPercentage": true,
+                                    "showNotification": true
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "328c8d78-5b7e-4b4e-aa30-ac7487ec03fc",
+                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "Now, what is it that you wanted to say to me?",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "9bc13034-3229-4322-9b87-f20851f6a635",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                    "text": "The Wraith - it has Joel trapped behind a magical barrier...",
+                                    "emotion": "0",
+                                    "emotion2": "4",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "e0cd752d-e8f3-4433-b351-f8992c40a9fa",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                    "text": "I'm okay... this is about Joel. The Wraith, it has Joel trapped behind a magical barrier...",
+                                    "emotion": "0",
+                                    "emotion2": "4",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.speak",
+                    "id": "ad3feb0b-0b6f-4998-94cd-b53ab79af9c8",
+                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "text": "A Wraith is deadly dangerous. We don't have much time if we're going to save Joel.",
+                    "emotion": "3",
+                    "emotion2": "0",
+                    "device": "0",
+                    "device2": "0"
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "64796e66-4af4-4563-aa7b-dc7f8aa6d81d",
+                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "I'll have to get my weapon and armor which will take a bit - I'll be meeting you in the Catacombs. You will have to rescue Joel while I force the Wraith to drop the magical barrier.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "a1cbce38-d254-42f4-bb8b-4769fe80de8d",
+                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "Hurry now, there's not a moment to waste...",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "7cfa30e4-7aca-4b8d-9d94-d85c21b61f3b",
+                                    "scope": "scene",
+                                    "scopeId": "e8606d3d-9743-4b44-a3b3-117a393b42ae",
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "MoiraToRescue",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.fade",
+                                    "scope": "FadeOut",
+                                    "fadeTime": "1",
+                                    "fadeTime2": 2,
+                                    "wait": true,
+                                    "fadeDown": 0.5,
+                                    "fadeColorR": 0,
+                                    "fadeColorG": 0,
+                                    "fadeColorB": 0
+                                },
+                                {
+                                    "type": "nodes.setTime",
+                                    "id": "93967f29-dc6a-4080-a181-703849128a98",
+                                    "day": -1,
+                                    "hour": "23",
+                                    "minute": 0,
+                                    "notify": false
+                                },
+                                {
+                                    "type": "nodes.changeScene",
+                                    "sceneId": "e8606d3d-9743-4b44-a3b3-117a393b42ae",
+                                    "spawnId": "29ce2272-41a3-4cab-b2fd-9d4f5f394e4a",
+                                    "fadeTime": "0"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

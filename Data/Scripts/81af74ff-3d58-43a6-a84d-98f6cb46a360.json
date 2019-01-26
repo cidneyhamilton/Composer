@@ -1,0 +1,213 @@
+{
+    "type": "script",
+    "id": "81af74ff-3d58-43a6-a84d-98f6cb46a360",
+    "name": "Manual Descend Rope",
+    "sceneId": "d8980246-7825-4b4a-9b40-d814c22486c7",
+    "trigger": {
+        "type": "triggers.manual",
+        "name": "Manual"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "b78f757f-5122-4400-9f90-527f32ab550d",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.incrementTime",
+                    "id": "b668d248-02df-4583-824e-7edbcc4404a4",
+                    "days": 0,
+                    "hours": 0,
+                    "minutes": "10"
+                },
+                {
+                    "id": "85765f18-1941-4de1-ac72-85c463d2be0b",
+                    "type": "nodes.skillBranch",
+                    "skill": "Climbing",
+                    "target": "40",
+                    "success": {
+                        "type": "nodes.block",
+                        "nodes": [
+                            {
+                                "type": "nodes.fade",
+                                "scope": "FadeOut",
+                                "fadeTime": "1",
+                                "fadeTime2": 2,
+                                "wait": true,
+                                "fadeDown": 0.5,
+                                "fadeColorR": 0,
+                                "fadeColorG": 0,
+                                "fadeColorB": 0
+                            },
+                            {
+                                "type": "nodes.playSoundEffect",
+                                "soundEffectName": "Climb Rope.wav",
+                                "wait": false
+                            },
+                            {
+                                "type": "nodes.branch",
+                                "sections": [
+                                    {
+                                        "type": "nodes.branchSection",
+                                        "expression": {
+                                            "type": "expressions.inTags",
+                                            "scope": "scene",
+                                            "scopeId": "5f8eac04-fb05-4e7e-b02c-1208bfa79582",
+                                            "scopeFilterId": null,
+                                            "tags": "Entered",
+                                            "has": true
+                                        },
+                                        "nodes": [
+                                            {
+                                                "type": "nodes.speak",
+                                                "id": "ab3184e6-c546-438b-a4ba-ae1e80c70c1f",
+                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                "actorId2": null,
+                                                "text": "I know I'm pushing my luck by going down there again...",
+                                                "emotion": "0",
+                                                "emotion2": "0",
+                                                "device": "0",
+                                                "device2": "0"
+                                            },
+                                            {
+                                                "type": "nodes.speak",
+                                                "id": "8527ff52-0c2c-4cb6-a17a-52f869ab81ae",
+                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                "actorId2": null,
+                                                "text": "... but, hey, I'm overconfident now, so that helps!",
+                                                "emotion": "1",
+                                                "emotion2": "0",
+                                                "device": "0",
+                                                "device2": "0"
+                                            },
+                                            {
+                                                "type": "nodes.changeScene",
+                                                "sceneId": "5f8eac04-fb05-4e7e-b02c-1208bfa79582",
+                                                "spawnId": "f0f26e76-f817-49d2-8578-45e9f9e47f42",
+                                                "fadeTime": 2
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "nodes.branchSection",
+                                        "expression": null,
+                                        "nodes": [
+                                            {
+                                                "type": "nodes.speak",
+                                                "id": "cd254fd6-37d7-48d3-a15b-755c5de8149d",
+                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                "actorId2": null,
+                                                "text": "All right, then... into the belly of the beast I go, so to speak...",
+                                                "emotion": "0",
+                                                "emotion2": "0",
+                                                "device": "0",
+                                                "device2": "0"
+                                            },
+                                            {
+                                                "type": "nodes.speak",
+                                                "id": "62fad819-7121-40e1-987e-3d2ea461082f",
+                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                "actorId2": null,
+                                                "text": "Look out below! ",
+                                                "emotion": "4",
+                                                "emotion2": "0",
+                                                "device": "0",
+                                                "device2": "0"
+                                            },
+                                            {
+                                                "type": "nodes.speak",
+                                                "id": "47bea91f-6e53-43d3-9e97-8203e61b3abb",
+                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                "actorId2": null,
+                                                "text": "Condescending!",
+                                                "emotion": "4",
+                                                "emotion2": "0",
+                                                "device": "0",
+                                                "device2": "0"
+                                            },
+                                            {
+                                                "type": "nodes.changeScene",
+                                                "sceneId": "5f8eac04-fb05-4e7e-b02c-1208bfa79582",
+                                                "spawnId": "f0f26e76-f817-49d2-8578-45e9f9e47f42",
+                                                "fadeTime": 2
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "failure": {
+                        "type": "nodes.block",
+                        "nodes": [
+                            {
+                                "type": "nodes.playSoundEffect",
+                                "soundEffectName": "Falling In Sand.wav",
+                                "wait": false
+                            },
+                            {
+                                "type": "nodes.playAnimation",
+                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                "animationName": "Fall Down",
+                                "wait": true
+                            },
+                            {
+                                "type": "nodes.changeHealth",
+                                "id": "aaba79ca-238b-4589-959f-e770799ca866",
+                                "target": "0",
+                                "amount": "-5",
+                                "canDie": false,
+                                "isPercentage": false,
+                                "showNotification": true
+                            },
+                            {
+                                "type": "nodes.branch",
+                                "sections": [
+                                    {
+                                        "type": "nodes.branchSection",
+                                        "expression": {
+                                            "type": "expressions.skillCheck",
+                                            "skill": "Climbing",
+                                            "target": "30"
+                                        },
+                                        "nodes": [
+                                            {
+                                                "type": "nodes.speak",
+                                                "id": "6107fc7f-9485-47cc-9af4-14e393ea4a2a",
+                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                "actorId2": null,
+                                                "text": "The rope's too slippery! I need to practice climbing first...",
+                                                "emotion": "0",
+                                                "emotion2": "0",
+                                                "device": "0",
+                                                "device2": "0"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "nodes.branchSection",
+                                        "expression": null,
+                                        "nodes": [
+                                            {
+                                                "type": "nodes.speak",
+                                                "id": "3cf1ba78-1200-4f16-97b6-eb46852848d3",
+                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                "actorId2": null,
+                                                "text": "There's no way I'm risking that climb right now! I could fall to my death!",
+                                                "emotion": "0",
+                                                "emotion2": "0",
+                                                "device": "0",
+                                                "device2": "0"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "notify": true
+                }
+            ]
+        }
+    ]
+}

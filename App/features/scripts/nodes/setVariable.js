@@ -1,0 +1,28 @@
+﻿define(function (require) {
+    var Literal = require('../variables/literal');
+
+    var ctor = function (attributes) {
+        attributes = attributes || {};
+
+        this.type = ctor.type;
+        this.name = attributes.name || '';
+        this.scope = attributes.scope || 'script';
+        this.scopeId = attributes.scopeId;
+        this.sceneId = attributes.sceneId || "a2508b7e-a177-4a96-93bd-4d8ab88dffc4";
+        this.source = attributes.source || new Literal();
+		this.add = !!attributes.add;
+    };
+
+    ctor.type = 'nodes.setVariable';
+    ctor.displayName = 'Variable';
+
+    ctor.prototype.localize = function (context) {
+        if(this.source.localize) {
+            this.source.localize(context);
+        }
+
+        delete this.sceneId;
+    };
+
+    return ctor;
+});

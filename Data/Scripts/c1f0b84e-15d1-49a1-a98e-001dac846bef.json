@@ -1,0 +1,615 @@
+{
+    "type": "script",
+    "id": "c1f0b84e-15d1-49a1-a98e-001dac846bef",
+    "name": "Interact with Catacombs_B_Chest",
+    "sceneId": "65bf97bc-9989-4004-b745-6bc20dd3cac7",
+    "propId": "777e1c81-c30a-4953-b7fc-126efdd84393",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "b789c0c7-52c8-4529-a9dd-8490fd5b9c5e",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.onceOnly",
+                    "id": "90732ead-23b5-42bd-86c2-d9baa1405984",
+                    "nodes": [
+                        {
+                            "type": "nodes.changeTags",
+                            "id": "e1acb3b7-41f5-4b0d-8f26-708d29645eac",
+                            "scope": "target",
+                            "scopeId": null,
+                            "scopeFilterId": null,
+                            "tagsToAdd": "locked",
+                            "tagsToRemove": null
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.showMenu",
+                    "id": "d317fcfd-6fb9-4f6d-8b67-2655c13b092f",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "288345b3-9158-45aa-b91f-ae9a3516bdc7",
+                            "text": "Examine the Chest",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "target",
+                                                "scopeId": null,
+                                                "scopeFilterId": null,
+                                                "tags": "TookItAll",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "fbb47460-78c7-45a0-a610-ad485f0c9fd2",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "When I see an unopened chest this big, I get goosebumps.",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "78fe138d-0008-43bd-a7aa-5375afcf91fc",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "I've heard about chests that magically refill themselves, but this obviously isn't one of them.",
+                                                    "emotion": "2",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "2",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "9894b6c8-1ea7-431f-a1e5-34995a65fcc0",
+                            "text": "Pick Up the Chest",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "b9077ef2-d85b-4b58-9db9-9d2fa8690b64",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "I've seen people try to lift chests this big. Then part of their stomach bulges out and they get all kinds of health problems. I'd like to avoid that.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "2",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "25c8b62c-990b-4b9c-bff6-055c12338f92",
+                            "text": "Open the Chest",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "target",
+                                                "scopeId": null,
+                                                "scopeFilterId": null,
+                                                "tags": "Locked",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "ab4a4e1f-4458-4b42-aafe-46f54b46b8f8",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "It's got some kind of mechanism that keeps me from opening it.",
+                                                    "emotion": "2",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "f613a4f4-8583-4dd7-bd1e-2643b66b36c8",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Maybe I can defeat it by poking at it with small, pointy objects.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.variableComparison",
+                                                                "variableScope": "global",
+                                                                "variableName": "ego.haslockpick",
+                                                                "operator": "eq",
+                                                                "compareTo": "true",
+                                                                "sceneId": "c7f12eb6-9936-4c11-8028-d012d60c9ba3",
+                                                                "propId": null
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "7e260a9b-b204-4461-bd2e-c6fe18594584",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "Now, let's see if I can get this to yield to my deft manipulations...",
+                                                                    "emotion": "1",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.playAnimation",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "animationName": "KneelDown",
+                                                                    "wait": true
+                                                                },
+                                                                {
+                                                                    "id": "4372449b-37e4-46c1-bc5f-b2e5b89c7c4b",
+                                                                    "type": "nodes.skillBranch",
+                                                                    "skill": "Tool Use",
+                                                                    "target": "45",
+                                                                    "success": {
+                                                                        "type": "nodes.block",
+                                                                        "nodes": [
+                                                                            {
+                                                                                "type": "nodes.playSoundEffect",
+                                                                                "soundEffectName": "lockpick_success.wav",
+                                                                                "wait": true
+                                                                            },
+                                                                            {
+                                                                                "type": "nodes.speak",
+                                                                                "id": "ac4b9968-c46c-4360-aa3c-3a895f64d913",
+                                                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                "actorId2": null,
+                                                                                "text": "Presto!",
+                                                                                "emotion": "1",
+                                                                                "emotion2": "0",
+                                                                                "device": "0",
+                                                                                "device2": "0"
+                                                                            },
+                                                                            {
+                                                                                "type": "nodes.changeTags",
+                                                                                "id": "85bd0e29-4aac-405c-9628-556c203beda6",
+                                                                                "scope": "target",
+                                                                                "scopeId": null,
+                                                                                "scopeFilterId": null,
+                                                                                "tagsToRemove": "locked"
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    "failure": {
+                                                                        "type": "nodes.block",
+                                                                        "nodes": [
+                                                                            {
+                                                                                "type": "nodes.playSoundEffect",
+                                                                                "soundEffectName": "lockpick_failure.wav",
+                                                                                "wait": true
+                                                                            },
+                                                                            {
+                                                                                "type": "nodes.speak",
+                                                                                "id": "894ba507-cf35-4a7a-92f5-92253e07a201",
+                                                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                "actorId2": null,
+                                                                                "text": "Rrrr... russin' frussin...",
+                                                                                "emotion": "3",
+                                                                                "emotion2": "0",
+                                                                                "device": "0",
+                                                                                "device2": "0"
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    "notify": true
+                                                                },
+                                                                {
+                                                                    "type": "nodes.playAnimation",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "animationName": "KneelUp",
+                                                                    "wait": true
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": null,
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "3b6b5142-1c66-484c-ba41-bd9eadfdacdd",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "Trouble is, I don't have anything suitable for that.",
+                                                                    "emotion": "2",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.playSoundEffect",
+                                                    "soundEffectName": "Open Chest Lid.wav",
+                                                    "wait": false
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.or",
+                                                                "left": {
+                                                                    "type": "expressions.inTags",
+                                                                    "scope": "target",
+                                                                    "scopeId": null,
+                                                                    "scopeFilterId": null,
+                                                                    "tags": "item1_taken",
+                                                                    "has": false
+                                                                },
+                                                                "right": {
+                                                                    "type": "expressions.or",
+                                                                    "left": {
+                                                                        "type": "expressions.inTags",
+                                                                        "scope": "target",
+                                                                        "scopeId": null,
+                                                                        "scopeFilterId": null,
+                                                                        "tags": "item2_taken",
+                                                                        "has": false
+                                                                    },
+                                                                    "right": {
+                                                                        "type": "expressions.inTags",
+                                                                        "scope": "target",
+                                                                        "scopeId": null,
+                                                                        "scopeFilterId": null,
+                                                                        "tags": "item3_taken",
+                                                                        "has": false
+                                                                    }
+                                                                }
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "f47a2ef0-575e-4be2-8d8c-44f19c9541a7",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "Heehee... greed is good...",
+                                                                    "emotion": "1",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.showMenu",
+                                                                    "id": "ea1d2d5a-0ae0-46ca-8fc2-857bfcf34669",
+                                                                    "options": [
+                                                                        {
+                                                                            "type": "options.text",
+                                                                            "id": "fb5c9ca5-e683-43f1-8d36-7c77b15d0dfb",
+                                                                            "text": "Take Leather Vest",
+                                                                            "nodes": [
+                                                                                {
+                                                                                    "type": "nodes.showCloseUp",
+                                                                                    "imageName": "CU_leatherVest.png"
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.speak",
+                                                                                    "id": "8b19b321-c7be-4b2d-8f4e-679906deac03",
+                                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                    "actorId2": null,
+                                                                                    "text": "A leather vest... Looks nice.",
+                                                                                    "emotion": "0",
+                                                                                    "emotion2": "0",
+                                                                                    "device": "0",
+                                                                                    "device2": "0"
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.changeInventory",
+                                                                                    "id": "6e5f6519-d939-4ebb-8a3a-1a55051905f1",
+                                                                                    "propId": "2dc7b50d-72a8-443e-b95c-b003a92983fc",
+                                                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                                                    "change": "1",
+                                                                                    "count": "1",
+                                                                                    "notify": true
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.changeTags",
+                                                                                    "id": "67e40581-4ccc-4e50-9ab1-53a814c4f28c",
+                                                                                    "scope": "target",
+                                                                                    "scopeId": null,
+                                                                                    "scopeFilterId": null,
+                                                                                    "tagsToAdd": "item1_taken",
+                                                                                    "tagsToRemove": null
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.hideCloseUp",
+                                                                                    "waitForSeconds": 1
+                                                                                }
+                                                                            ],
+                                                                            "expression": {
+                                                                                "type": "expressions.inTags",
+                                                                                "scope": "target",
+                                                                                "scopeId": null,
+                                                                                "scopeFilterId": null,
+                                                                                "tags": "item1_taken",
+                                                                                "has": false
+                                                                            },
+                                                                            "ignoreChildAvailability": false,
+                                                                            "minutes": "3",
+                                                                            "ExitMenu": false
+                                                                        },
+                                                                        {
+                                                                            "type": "options.text",
+                                                                            "id": "3e115eba-9d89-421f-8d38-a7306c1dd147",
+                                                                            "text": "Take Leather Pants",
+                                                                            "nodes": [
+                                                                                {
+                                                                                    "type": "nodes.showCloseUp",
+                                                                                    "imageName": "CU_Leatherpants.png"
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.speak",
+                                                                                    "id": "f13e926b-8034-4f25-8e7e-da6d226e3e23",
+                                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                    "actorId2": null,
+                                                                                    "text": "Hmmm... there's a pair of pants here, too. Looks like it's still in good condition. Nice leather.",
+                                                                                    "emotion": "0",
+                                                                                    "emotion2": "0",
+                                                                                    "device": "0",
+                                                                                    "device2": "0"
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.changeInventory",
+                                                                                    "id": "e8883be6-8c1c-427a-a41c-b631d4977b58",
+                                                                                    "propId": "320a2a9d-08d9-4920-98d3-b3148a5b7245",
+                                                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                                                    "change": "1",
+                                                                                    "count": "1",
+                                                                                    "notify": true
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.changeTags",
+                                                                                    "id": "286f3efc-a167-44b4-8a16-b8a28aba625c",
+                                                                                    "scope": "target",
+                                                                                    "scopeId": null,
+                                                                                    "scopeFilterId": null,
+                                                                                    "tagsToAdd": "item2_taken",
+                                                                                    "tagsToRemove": null
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.hideCloseUp",
+                                                                                    "waitForSeconds": 1
+                                                                                }
+                                                                            ],
+                                                                            "expression": {
+                                                                                "type": "expressions.inTags",
+                                                                                "scope": "target",
+                                                                                "scopeId": null,
+                                                                                "scopeFilterId": null,
+                                                                                "tags": "item2_taken",
+                                                                                "has": false
+                                                                            },
+                                                                            "ignoreChildAvailability": false,
+                                                                            "minutes": "3",
+                                                                            "ExitMenu": false
+                                                                        },
+                                                                        {
+                                                                            "type": "options.text",
+                                                                            "id": "7567ed60-de58-4aae-bb15-99eb480738ab",
+                                                                            "text": "Take Lyra",
+                                                                            "nodes": [
+                                                                                {
+                                                                                    "type": "nodes.speak",
+                                                                                    "id": "9f9a1ead-76c1-4b5b-b1f1-ddc4c12af0c4",
+                                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                    "actorId2": null,
+                                                                                    "text": "There are a small pile of coins lying in the bottom of this chest. Looks like about 35 of them.",
+                                                                                    "emotion": "0",
+                                                                                    "emotion2": "0",
+                                                                                    "device": "0",
+                                                                                    "device2": "0"
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.changeMoney",
+                                                                                    "id": "b0ff75d9-2714-4f14-98a4-afa1aec3f6f9",
+                                                                                    "amount": "35",
+                                                                                    "change": "1",
+                                                                                    "currency": "0"
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.changeTags",
+                                                                                    "id": "8aa2e157-a053-48cb-b426-6d51c19482ec",
+                                                                                    "scope": "target",
+                                                                                    "scopeId": null,
+                                                                                    "scopeFilterId": null,
+                                                                                    "tagsToAdd": "item3_taken",
+                                                                                    "tagsToRemove": null
+                                                                                }
+                                                                            ],
+                                                                            "expression": {
+                                                                                "type": "expressions.inTags",
+                                                                                "scope": "target",
+                                                                                "scopeId": null,
+                                                                                "scopeFilterId": null,
+                                                                                "tags": "item3_taken",
+                                                                                "has": false
+                                                                            },
+                                                                            "ignoreChildAvailability": false,
+                                                                            "minutes": "5",
+                                                                            "ExitMenu": false
+                                                                        }
+                                                                    ],
+                                                                    "AutoAddDone": true,
+                                                                    "Unique": false
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": null,
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "d84c7fb3-ca3f-4d45-8ce2-d67d67f26cc9",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "That's all she wrote.",
+                                                                    "emotion": "2",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.and",
+                                                                "left": {
+                                                                    "type": "expressions.inTags",
+                                                                    "scope": "target",
+                                                                    "scopeId": null,
+                                                                    "scopeFilterId": null,
+                                                                    "tags": "item1_taken",
+                                                                    "has": true
+                                                                },
+                                                                "right": {
+                                                                    "type": "expressions.and",
+                                                                    "left": {
+                                                                        "type": "expressions.inTags",
+                                                                        "scope": "target",
+                                                                        "scopeId": null,
+                                                                        "scopeFilterId": null,
+                                                                        "tags": "item2_taken",
+                                                                        "has": true
+                                                                    },
+                                                                    "right": {
+                                                                        "type": "expressions.inTags",
+                                                                        "scope": "target",
+                                                                        "scopeId": null,
+                                                                        "scopeFilterId": null,
+                                                                        "tags": "item3_taken",
+                                                                        "has": true
+                                                                    }
+                                                                }
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.changeTags",
+                                                                    "id": "a6e5cc98-1f48-40bf-81bf-e5784eaab1c2",
+                                                                    "scope": "prop",
+                                                                    "scopeId": "777e1c81-c30a-4953-b7fc-126efdd84393",
+                                                                    "scopeFilterId": "65bf97bc-9989-4004-b745-6bc20dd3cac7",
+                                                                    "tagsToAdd": "looted,TookItAll",
+                                                                    "tagsToRemove": null
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "nodes.playSoundEffect",
+                                                    "soundEffectName": "Close Chest Lid.wav",
+                                                    "wait": false
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "5",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "fd292cc8-c4f2-4f6d-bd18-b5743fe57ad4",
+                            "text": "Sense Magic on the Chest",
+                            "nodes": [
+                                {
+                                    "type": "nodes.invokeScript",
+                                    "id": "1c442f8b-4ceb-4073-811b-042b84a1a45b",
+                                    "scriptId": "533e1ce1-13d3-439f-8544-dbdf808d30c4",
+                                    "entryPointId": "b789c0c7-52c8-4529-a9dd-8490fd5b9c5e",
+                                    "currentScope": "Scenes",
+                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                    "currentActorId": null,
+                                    "currentStoryEventId": null,
+                                    "currentPropId": null
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "actor",
+                                "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                "scopeFilterId": null,
+                                "tags": "SenseMagic",
+                                "has": true
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "3",
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

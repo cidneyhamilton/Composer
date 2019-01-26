@@ -1,0 +1,443 @@
+{
+    "type": "script",
+    "id": "d1b5380a-1ed4-42e5-a68d-d9e5372abab8",
+    "name": "FAE - 11 Quiz",
+    "sceneId": "df6088fa-a6d6-441a-9a00-7af3baa62e14",
+    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+    "trigger": {
+        "type": "triggers.manual",
+        "name": "Manual"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "c9f3efa2-4316-47a2-bebb-31d845d4178b",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showVignette",
+                    "vignetteName": "FirstAidClassIndoor.png",
+                    "crossFadeTime": 0
+                },
+                {
+                    "type": "nodes.changeTags",
+                    "id": "2e82d44d-dd5d-40b7-8996-97fd5b187fb2",
+                    "scope": "scene",
+                    "scopeId": "df6088fa-a6d6-441a-9a00-7af3baa62e14",
+                    "scopeFilterId": null,
+                    "tagsToAdd": "tookFAQuiz1",
+                    "tagsToRemove": null
+                },
+                {
+                    "type": "nodes.changeReputation",
+                    "id": "cbf9a484-8fcf-4b9b-b00b-89c33b6679e1",
+                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                    "amount": "3",
+                    "change": "1",
+                    "notify": false
+                },
+                {
+                    "type": "nodes.setVariable",
+                    "name": "FAQuiz1",
+                    "scope": "ego",
+                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                    "source": {
+                        "type": "variables.literal",
+                        "value": "0",
+                        "displayName": "Literal"
+                    },
+                    "add": false
+                },
+                {
+                    "type": "nodes.speak",
+                    "id": "eb3cb87b-68e7-487f-8f77-7b00741c423c",
+                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                    "actorId2": null,
+                    "text": "Today, we'll have a brief quiz and then we'll spend the rest of the class working in the Tower Garden.",
+                    "emotion": "0",
+                    "emotion2": "0",
+                    "device": "0",
+                    "device2": "0"
+                },
+                {
+                    "type": "nodes.speak",
+                    "id": "7a8d1f96-5d8a-4ac8-be48-d71fc0e7c34d",
+                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                    "actorId2": null,
+                    "text": "I want to make sure that you understand mushrooms and their medicinal uses. If something makes you feel sick when you eat it, it's probably not good for you. ",
+                    "emotion": "0",
+                    "emotion2": "0",
+                    "device": "0",
+                    "device2": "0"
+                },
+                {
+                    "type": "nodes.speak",
+                    "id": "f7171d3a-3bdd-4f84-8150-09892552fb83",
+                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                    "actorId2": null,
+                    "text": "However, dying from injury is definitely not good for you. Eating mushrooms is better than dying. So let's make sure that you are eating the right ones.",
+                    "emotion": "1",
+                    "emotion2": "0",
+                    "device": "0",
+                    "device2": "0"
+                },
+                {
+                    "type": "nodes.speak",
+                    "id": "23f1c94e-072d-47a7-b448-ee24ec6d3a2d",
+                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                    "actorId2": null,
+                    "text": "Tomorrow's class is the last of this elective session. We will be meeting upstairs in the Tower Garden. And now, good luck on your exam.",
+                    "emotion": "1",
+                    "emotion2": "0",
+                    "device": "0",
+                    "device2": "0"
+                },
+                {
+                    "type": "nodes.questionAndAnswer",
+                    "id": "b99f830d-3339-49d8-84fe-7abcd5fcafeb",
+                    "actorId": "38b1ca94-de8c-4873-8810-3d0b02df469a",
+                    "header": "Question #1",
+                    "text": "This mushroom is orange-yellow with a conical stem and an irregularly shaped cap. What purpose does it have in First Aid?",
+                    "emotion": "0",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "13a25948-6ea3-4222-92ce-b2bd6383c73e",
+                            "text": "It is a delicacy when sauteed in butter and garlic.",
+                            "nodes": [],
+                            "expression": null,
+                            "ignoreChildAvailability": false,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "d317d7d5-8549-4824-a76a-33c0446c60f0",
+                            "text": "It is used to relieve pain and reduce fever.",
+                            "nodes": [],
+                            "expression": null,
+                            "ignoreChildAvailability": false,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "b9f28909-a9bf-4dbf-b048-b93c560ac1e4",
+                            "text": "It is used as an antivenin and poison cure.",
+                            "nodes": [
+                                {
+                                    "type": "nodes.setVariable",
+                                    "name": "FAQuiz1",
+                                    "scope": "ego",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "source": {
+                                        "type": "variables.literal",
+                                        "value": "1",
+                                        "displayName": "Literal"
+                                    },
+                                    "add": true
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": false,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "76da2758-ce36-47dd-9fce-14b65be53753",
+                            "text": "It can be pickled or dried to preserve its flavor.",
+                            "nodes": [],
+                            "expression": null,
+                            "ignoreChildAvailability": false,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.questionAndAnswer",
+                    "id": "1f5294d8-3a7b-4abe-8170-83696b6804f1",
+                    "actorId": "38b1ca94-de8c-4873-8810-3d0b02df469a",
+                    "header": "Question #3",
+                    "text": "This mushroom is brightly colored and glows in the dark. What properties are most useful?",
+                    "emotion": "0",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "110fbdda-805c-4bfc-964f-eb338fb67051",
+                            "text": "They are found in Faerie rings.",
+                            "nodes": [],
+                            "expression": null,
+                            "ignoreChildAvailability": false,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "2e78aee9-2623-4340-ac17-d0c6f2231dfc",
+                            "text": "They can be used as lanterns in dark places.",
+                            "nodes": [],
+                            "expression": null,
+                            "ignoreChildAvailability": false,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "99de5536-55f4-4e77-ab6b-fc78ea4c0245",
+                            "text": "They are called Fairy Parasols.",
+                            "nodes": [],
+                            "expression": null,
+                            "ignoreChildAvailability": false,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "d08692b3-5bb0-4c30-9660-7310b0d7aacb",
+                            "text": "These mushrooms enhance magical abilities and resistances.",
+                            "nodes": [
+                                {
+                                    "type": "nodes.setVariable",
+                                    "name": "FAQuiz1",
+                                    "scope": "ego",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "source": {
+                                        "type": "variables.literal",
+                                        "value": "1",
+                                        "displayName": "Literal"
+                                    },
+                                    "add": true
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": false,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.questionAndAnswer",
+                    "id": "bc35b668-9981-4de4-8416-48dcab1d0a1c",
+                    "actorId": "38b1ca94-de8c-4873-8810-3d0b02df469a",
+                    "header": "Question #4",
+                    "text": "This spherical mushroom is tan and white. What is it best used for in First Aid?",
+                    "emotion": "0",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "1fa3c35f-d579-470c-adf3-ab6c14ace4b6",
+                            "text": "It can heal wounds and stop bleeding.",
+                            "nodes": [
+                                {
+                                    "type": "nodes.setVariable",
+                                    "name": "FAQuiz1",
+                                    "scope": "ego",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "source": {
+                                        "type": "variables.literal",
+                                        "value": "1",
+                                        "displayName": "Literal"
+                                    },
+                                    "add": true
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": false,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "74d42aba-a2f9-40a6-8f55-05874257b4e5",
+                            "text": "It is found in shady areas and caves.",
+                            "nodes": [],
+                            "expression": null,
+                            "ignoreChildAvailability": false,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "dae662f9-0470-457b-b87a-d257e4bdab9e",
+                            "text": "It is called a Puffball.",
+                            "nodes": [],
+                            "expression": null,
+                            "ignoreChildAvailability": false,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "88013f36-d9ae-4f34-a9aa-309e896573de",
+                            "text": "It sprays spores into the air when it is ripe.",
+                            "nodes": [],
+                            "expression": null,
+                            "ignoreChildAvailability": false,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.questionAndAnswer",
+                    "id": "b7768ebc-0075-45be-94df-62e4dc8d6bf2",
+                    "actorId": "38b1ca94-de8c-4873-8810-3d0b02df469a",
+                    "header": "Question #5",
+                    "text": "This mushroom is a distinctive blue color. What quality makes it useful for First Aid?",
+                    "emotion": "0",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "0a870e0c-0238-4032-b79a-44fde291c24a",
+                            "text": "It is commonly found around the base of trees and tree roots.",
+                            "nodes": [],
+                            "expression": null,
+                            "ignoreChildAvailability": false,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "730f8887-509a-4c6f-9ffd-ecfea6035bed",
+                            "text": "It has an unpleasant flavor and grainy texture.",
+                            "nodes": [],
+                            "expression": null,
+                            "ignoreChildAvailability": false,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "ab8d6c62-a5d2-46fa-b068-01ab91eb1b9d",
+                            "text": "It absorbs sound and light.",
+                            "nodes": [
+                                {
+                                    "type": "nodes.setVariable",
+                                    "name": "FAQuiz1",
+                                    "scope": "ego",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "source": {
+                                        "type": "variables.literal",
+                                        "value": "1",
+                                        "displayName": "Literal"
+                                    },
+                                    "add": true
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": false,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "0b5900d6-d4f2-474f-86c5-b3a64057ef6d",
+                            "text": "It leaks blue milk when it is picked.",
+                            "nodes": [],
+                            "expression": null,
+                            "ignoreChildAvailability": false,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.questionAndAnswer",
+                    "id": "a7021763-f800-4e14-b048-dd5e23075725",
+                    "actorId": "38b1ca94-de8c-4873-8810-3d0b02df469a",
+                    "header": "Question #6",
+                    "text": "This mushroom is brownish and wrinkled. Why is this useful for First Aid?",
+                    "emotion": "0",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "244a8f63-e3a0-4c6d-b38f-5e1eb358bb09",
+                            "text": "It cures poison.",
+                            "nodes": [],
+                            "expression": null,
+                            "ignoreChildAvailability": false,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "639b3392-af11-4fcb-9506-c522a449b288",
+                            "text": "It cures disease.",
+                            "nodes": [],
+                            "expression": null,
+                            "ignoreChildAvailability": false,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "a7bf7b13-605f-498b-9239-7664e1db84f6",
+                            "text": "It heals wounds.",
+                            "nodes": [],
+                            "expression": null,
+                            "ignoreChildAvailability": false,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "99e540d2-49b6-4afc-80a0-cbef77102673",
+                            "text": "It increases agility.",
+                            "nodes": [
+                                {
+                                    "type": "nodes.setVariable",
+                                    "name": "FAQuiz1",
+                                    "scope": "ego",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "source": {
+                                        "type": "variables.literal",
+                                        "value": "1",
+                                        "displayName": "Literal"
+                                    },
+                                    "add": true
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": false,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.showVignette",
+                    "vignetteName": "FirstAidClassOutdoor.png",
+                    "crossFadeTime": "1"
+                },
+                {
+                    "type": "nodes.playSoundEffect",
+                    "soundEffectName": "digging.wav",
+                    "wait": true
+                },
+                {
+                    "type": "nodes.playSoundEffect",
+                    "soundEffectName": "snip_triple.wav",
+                    "wait": true
+                },
+                {
+                    "type": "nodes.wait",
+                    "waitForSeconds": "0.5"
+                },
+                {
+                    "type": "nodes.invokeScript",
+                    "id": "a460c0e6-aa80-4a9d-a3e9-b9b22f8bf05c",
+                    "scriptId": "6ba090c9-ebfa-49fe-8e2f-9f6bad0fec10",
+                    "entryPointId": "",
+                    "currentScope": "Scenes",
+                    "currentSceneId": "df6088fa-a6d6-441a-9a00-7af3baa62e14",
+                    "currentActorId": null,
+                    "currentStoryEventId": null,
+                    "currentPropId": null
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,213 @@
+{
+    "type": "script",
+    "id": "9a1846dd-25a3-486a-a533-6960b4f80372",
+    "name": "_onLoad Stern",
+    "sceneId": "91e73978-0245-4bb2-8c83-eaa7f3954455",
+    "trigger": {
+        "type": "triggers.load",
+        "name": "Load"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "10b59842-433a-41f8-82e7-5c50843d091f",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.variableComparison",
+                                "variableScope": "global",
+                                "variableName": "time.hour",
+                                "operator": "lt",
+                                "compareTo": "2",
+                                "sceneId": "91e73978-0245-4bb2-8c83-eaa7f3954455",
+                                "propId": null
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.setTime",
+                                    "id": "e8e97a34-3da6-4d98-a040-92a681b1f38a",
+                                    "day": -1,
+                                    "hour": 0,
+                                    "minute": 0,
+                                    "notify": false
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "actor",
+                                "scopeId": "32b67369-eb7e-43cc-af96-5d860cdf575d",
+                                "scopeFilterId": null,
+                                "tags": "Defeated",
+                                "has": false
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.placeActor",
+                                    "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                    "spawnId": "d4e87d4d-3c82-4eab-b14d-da3505cb3701",
+                                    "pose": null,
+                                    "behaviour": "Kneeling",
+                                    "immediate": true
+                                },
+                                {
+                                    "type": "nodes.placeActor",
+                                    "actorId": "32b67369-eb7e-43cc-af96-5d860cdf575d",
+                                    "spawnId": "7f67237b-029c-4eab-b587-7fe22e9e655d",
+                                    "pose": null,
+                                    "behaviour": "Idle",
+                                    "immediate": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "scene",
+                                "scopeId": "91e73978-0245-4bb2-8c83-eaa7f3954455",
+                                "scopeFilterId": null,
+                                "tags": "GotTreasure",
+                                "has": false
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.playMusic",
+                                    "musicTrack": "Sea_caves.mp3",
+                                    "channel": "1",
+                                    "loopType": "2"
+                                },
+                                {
+                                    "type": "nodes.placeActor",
+                                    "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                    "spawnId": "8318c73b-004f-4d83-aa91-484b92ca51cb",
+                                    "pose": null,
+                                    "behaviour": "Idle",
+                                    "immediate": true
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inTags",
+                                    "scope": "actor",
+                                    "scopeId": "31e7b33f-83fe-48aa-bbfe-23730a880c40",
+                                    "scopeFilterId": null,
+                                    "tags": "FollowShawn",
+                                    "has": true
+                                },
+                                "right": {
+                                    "type": "expressions.inTags",
+                                    "scope": "scene",
+                                    "scopeId": "7014e626-f1ea-4a83-919c-63443c35fc3f",
+                                    "scopeFilterId": null,
+                                    "tags": "FirstMatePresent",
+                                    "has": true
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "3ee00191-027d-49e4-baa0-3ea46d355719",
+                                    "scope": "scene",
+                                    "scopeId": "7014e626-f1ea-4a83-919c-63443c35fc3f",
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "",
+                                    "tagsToRemove": "FirstMatePresent"
+                                },
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "707cdf87-13cc-4905-8e71-7723d8a5f458",
+                                    "scope": "scene",
+                                    "scopeId": "91e73978-0245-4bb2-8c83-eaa7f3954455",
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "FirstMatePresent",
+                                    "tagsToRemove": null
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inTags",
+                                    "scope": "scene",
+                                    "scopeId": "91e73978-0245-4bb2-8c83-eaa7f3954455",
+                                    "scopeFilterId": null,
+                                    "tags": "FirstMatePresent",
+                                    "has": true
+                                },
+                                "right": {
+                                    "type": "expressions.inTags",
+                                    "scope": "actor",
+                                    "scopeId": "31e7b33f-83fe-48aa-bbfe-23730a880c40",
+                                    "scopeFilterId": null,
+                                    "tags": "Dead",
+                                    "has": false
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.changePropVisibility",
+                                    "id": "953195cf-be55-4ca4-a734-34abbed5ab00",
+                                    "propId": "aeed4613-ce54-4cdf-b08e-9ff1101f118f",
+                                    "sceneId": "91e73978-0245-4bb2-8c83-eaa7f3954455",
+                                    "status": "Visible",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.placeActor",
+                                    "actorId": "31e7b33f-83fe-48aa-bbfe-23730a880c40",
+                                    "spawnId": "aeac9c37-9b75-4f5a-bde0-a0359ca88e88",
+                                    "pose": null,
+                                    "behaviour": "Idle",
+                                    "immediate": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.changePropVisibility",
+                                    "id": "6d09cc70-4a38-44e7-876d-2c021510eb6d",
+                                    "propId": "aeed4613-ce54-4cdf-b08e-9ff1101f118f",
+                                    "sceneId": "91e73978-0245-4bb2-8c83-eaa7f3954455",
+                                    "status": "Hidden",
+                                    "wait": true
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

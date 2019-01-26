@@ -1,0 +1,516 @@
+{
+    "type": "script",
+    "id": "35fd55d3-3cb1-4038-ada0-63e1fc54c0e7",
+    "name": "_Locks Load",
+    "sceneId": "5c81204b-2c5b-4eb0-9e84-85acb2fc9d13",
+    "trigger": {
+        "type": "triggers.load",
+        "name": "Load"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "e1839896-f2cb-4bb4-91ec-4e6677673f09",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.changePropVisibility",
+                    "id": "eb70cb6d-a5d7-4025-a063-00a3f41d850f",
+                    "propId": "874f4c3e-d1cf-4bf5-ac26-ef1b909138cd",
+                    "sceneId": "5c81204b-2c5b-4eb0-9e84-85acb2fc9d13",
+                    "status": "Hidden",
+                    "wait": true
+                },
+                {
+                    "type": "nodes.changePropVisibility",
+                    "id": "9aba81f0-a51c-4887-97c5-b6de1a90e1b2",
+                    "propId": "0c262633-2454-45ac-9789-2c50d3001209",
+                    "sceneId": "5c81204b-2c5b-4eb0-9e84-85acb2fc9d13",
+                    "status": "Hidden",
+                    "wait": true
+                },
+                {
+                    "type": "nodes.changePropVisibility",
+                    "id": "97de3388-74a5-4d20-96d2-9ea6804da689",
+                    "propId": "c78e0623-c1aa-42de-bad3-5405889e72e5",
+                    "sceneId": "5c81204b-2c5b-4eb0-9e84-85acb2fc9d13",
+                    "status": "Hidden",
+                    "wait": true
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.variableComparison",
+                                "variableScope": "global",
+                                "variableName": "time.day",
+                                "operator": "gte",
+                                "compareTo": "22",
+                                "sceneId": "5c81204b-2c5b-4eb0-9e84-85acb2fc9d13",
+                                "propId": null
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.changePropVisibility",
+                                    "id": "782369d2-9ebf-409c-81a5-36da757dbbb2",
+                                    "propId": "874f4c3e-d1cf-4bf5-ac26-ef1b909138cd",
+                                    "sceneId": "5c81204b-2c5b-4eb0-9e84-85acb2fc9d13",
+                                    "status": "Visible",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.changePropVisibility",
+                                    "id": "7e1d6244-9604-4502-be41-951afb180178",
+                                    "propId": "0c262633-2454-45ac-9789-2c50d3001209",
+                                    "sceneId": "5c81204b-2c5b-4eb0-9e84-85acb2fc9d13",
+                                    "status": "Visible",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.changePropVisibility",
+                                    "id": "23bfd6e1-a5e4-44cb-a59d-e10384c5f709",
+                                    "propId": "c78e0623-c1aa-42de-bad3-5405889e72e5",
+                                    "sceneId": "5c81204b-2c5b-4eb0-9e84-85acb2fc9d13",
+                                    "status": "Visible",
+                                    "wait": true
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.variableComparison",
+                                    "variableScope": "global",
+                                    "variableName": "time.hour",
+                                    "operator": "lte",
+                                    "compareTo": "16",
+                                    "sceneId": null,
+                                    "propId": null
+                                },
+                                "right": {
+                                    "type": "expressions.and",
+                                    "left": {
+                                        "type": "expressions.inTags",
+                                        "scope": "scene",
+                                        "scopeId": "5c81204b-2c5b-4eb0-9e84-85acb2fc9d13",
+                                        "scopeFilterId": null,
+                                        "tags": "Lock1",
+                                        "has": false
+                                    },
+                                    "right": {
+                                        "type": "expressions.and",
+                                        "left": {
+                                            "type": "expressions.variableComparison",
+                                            "variableScope": "global",
+                                            "variableName": "time.day",
+                                            "operator": "eq",
+                                            "compareTo": "17",
+                                            "sceneId": "5c81204b-2c5b-4eb0-9e84-85acb2fc9d13",
+                                            "propId": null
+                                        },
+                                        "right": {
+                                            "type": "expressions.variableComparison",
+                                            "variableScope": "global",
+                                            "variableName": "time.hour",
+                                            "operator": "gte",
+                                            "compareTo": "12",
+                                            "sceneId": "5c81204b-2c5b-4eb0-9e84-85acb2fc9d13",
+                                            "propId": null
+                                        }
+                                    }
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.setVariable",
+                                    "name": "LockEvent",
+                                    "scope": "scene",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "source": {
+                                        "type": "variables.literal",
+                                        "value": "1",
+                                        "displayName": "Literal"
+                                    },
+                                    "add": false
+                                },
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "1f020f39-0d38-441a-8a84-b224adaf022f",
+                                    "scope": "scene",
+                                    "scopeId": "5c81204b-2c5b-4eb0-9e84-85acb2fc9d13",
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "Lock1",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.placeActor",
+                                    "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                    "spawnId": "0812d4ca-bb2b-4922-9c9a-707906d1748e",
+                                    "pose": "sit",
+                                    "behaviour": "Idle",
+                                    "immediate": true
+                                },
+                                {
+                                    "type": "nodes.placeActor",
+                                    "actorId": "98ea49aa-86cf-4fa9-9bd5-6aa2fe7c809d",
+                                    "spawnId": "4350e5e4-d954-4ef4-a1b4-493b93a10f3f",
+                                    "pose": "sit",
+                                    "behaviour": "Sitting",
+                                    "immediate": true
+                                },
+                                {
+                                    "type": "nodes.placeActor",
+                                    "actorId": "bdddd1b1-bbf3-4dd5-bbd6-0ef3115d8b66",
+                                    "spawnId": "0b9d2766-d12c-4565-9d4f-58dfe14bf06d",
+                                    "pose": "sit",
+                                    "behaviour": "SittingDesk",
+                                    "immediate": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.variableComparison",
+                                    "variableScope": "global",
+                                    "variableName": "time.hour",
+                                    "operator": "lte",
+                                    "compareTo": "16",
+                                    "sceneId": null,
+                                    "propId": null
+                                },
+                                "right": {
+                                    "type": "expressions.and",
+                                    "left": {
+                                        "type": "expressions.inTags",
+                                        "scope": "scene",
+                                        "scopeId": "5c81204b-2c5b-4eb0-9e84-85acb2fc9d13",
+                                        "scopeFilterId": null,
+                                        "tags": "lock2",
+                                        "has": false
+                                    },
+                                    "right": {
+                                        "type": "expressions.and",
+                                        "left": {
+                                            "type": "expressions.variableComparison",
+                                            "variableScope": "global",
+                                            "variableName": "time.day",
+                                            "operator": "eq",
+                                            "compareTo": "18",
+                                            "sceneId": "5c81204b-2c5b-4eb0-9e84-85acb2fc9d13",
+                                            "propId": null
+                                        },
+                                        "right": {
+                                            "type": "expressions.variableComparison",
+                                            "variableScope": "global",
+                                            "variableName": "time.hour",
+                                            "operator": "gte",
+                                            "compareTo": "12",
+                                            "sceneId": "5c81204b-2c5b-4eb0-9e84-85acb2fc9d13",
+                                            "propId": null
+                                        }
+                                    }
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.setVariable",
+                                    "name": "LockEvent",
+                                    "scope": "scene",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "source": {
+                                        "type": "variables.literal",
+                                        "value": "2",
+                                        "displayName": "Literal"
+                                    },
+                                    "add": false
+                                },
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "1c96342a-adaa-438a-a085-fbdf94fe13f7",
+                                    "scope": "scene",
+                                    "scopeId": "5c81204b-2c5b-4eb0-9e84-85acb2fc9d13",
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "Lock2",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.placeActor",
+                                    "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                    "spawnId": "c479dfee-aaec-4582-a8f1-0e5b2a3147e9",
+                                    "pose": null,
+                                    "behaviour": "Idle",
+                                    "immediate": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.variableComparison",
+                                "variableScope": "global",
+                                "variableName": "time.day",
+                                "operator": "eq",
+                                "compareTo": "22",
+                                "sceneId": "5c81204b-2c5b-4eb0-9e84-85acb2fc9d13",
+                                "propId": null
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.and",
+                                                "left": {
+                                                    "type": "expressions.variableComparison",
+                                                    "variableScope": "global",
+                                                    "variableName": "time.hour",
+                                                    "operator": "lte",
+                                                    "compareTo": "16",
+                                                    "sceneId": null,
+                                                    "propId": null
+                                                },
+                                                "right": {
+                                                    "type": "expressions.and",
+                                                    "left": {
+                                                        "type": "expressions.inTags",
+                                                        "scope": "scene",
+                                                        "scopeId": "5c81204b-2c5b-4eb0-9e84-85acb2fc9d13",
+                                                        "scopeFilterId": null,
+                                                        "tags": "lock3",
+                                                        "has": false
+                                                    },
+                                                    "right": {
+                                                        "type": "expressions.variableComparison",
+                                                        "variableScope": "global",
+                                                        "variableName": "time.hour",
+                                                        "operator": "gte",
+                                                        "compareTo": "12",
+                                                        "sceneId": "5c81204b-2c5b-4eb0-9e84-85acb2fc9d13",
+                                                        "propId": null
+                                                    }
+                                                }
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.setVariable",
+                                                    "name": "LockEvent",
+                                                    "scope": "scene",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "source": {
+                                                        "type": "variables.literal",
+                                                        "value": "3",
+                                                        "displayName": "Literal"
+                                                    },
+                                                    "add": false
+                                                },
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "81983154-2e3e-402b-b55b-6fe1bcf8606e",
+                                                    "scope": "scene",
+                                                    "scopeId": "5c81204b-2c5b-4eb0-9e84-85acb2fc9d13",
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "Lock3",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.placeActor",
+                                                    "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                                    "spawnId": "0812d4ca-bb2b-4922-9c9a-707906d1748e",
+                                                    "pose": "sit",
+                                                    "behaviour": "Idle",
+                                                    "immediate": true
+                                                },
+                                                {
+                                                    "type": "nodes.placeActor",
+                                                    "actorId": "98ea49aa-86cf-4fa9-9bd5-6aa2fe7c809d",
+                                                    "spawnId": "4350e5e4-d954-4ef4-a1b4-493b93a10f3f",
+                                                    "pose": "sit",
+                                                    "behaviour": "SittingDesk",
+                                                    "immediate": true
+                                                },
+                                                {
+                                                    "type": "nodes.placeActor",
+                                                    "actorId": "bdddd1b1-bbf3-4dd5-bbd6-0ef3115d8b66",
+                                                    "spawnId": "0b9d2766-d12c-4565-9d4f-58dfe14bf06d",
+                                                    "pose": "sit",
+                                                    "behaviour": "SittingDesk",
+                                                    "immediate": true
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inTags",
+                                    "scope": "scene",
+                                    "scopeId": "5c81204b-2c5b-4eb0-9e84-85acb2fc9d13",
+                                    "scopeFilterId": null,
+                                    "tags": "lock4",
+                                    "has": false
+                                },
+                                "right": {
+                                    "type": "expressions.and",
+                                    "left": {
+                                        "type": "expressions.variableComparison",
+                                        "variableScope": "global",
+                                        "variableName": "time.day",
+                                        "operator": "eq",
+                                        "compareTo": "43",
+                                        "sceneId": "5c81204b-2c5b-4eb0-9e84-85acb2fc9d13",
+                                        "propId": null
+                                    },
+                                    "right": {
+                                        "type": "expressions.variableComparison",
+                                        "variableScope": "global",
+                                        "variableName": "time.hour",
+                                        "operator": "gte",
+                                        "compareTo": "10",
+                                        "sceneId": "5c81204b-2c5b-4eb0-9e84-85acb2fc9d13",
+                                        "propId": null
+                                    }
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.setVariable",
+                                    "name": "LockEvent",
+                                    "scope": "scene",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "source": {
+                                        "type": "variables.literal",
+                                        "value": "4",
+                                        "displayName": "Literal"
+                                    },
+                                    "add": false
+                                },
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "15ef1fd7-733d-4e4c-9bac-bfc6afdb0e56",
+                                    "scope": "scene",
+                                    "scopeId": "5c81204b-2c5b-4eb0-9e84-85acb2fc9d13",
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "Lock4",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.placeActor",
+                                    "actorId": "b7cbd02d-8e2f-4a8d-99a7-02b132d86e1d",
+                                    "spawnId": "e5083c3a-1dc7-4052-8c18-8495235b7e56",
+                                    "pose": "stand",
+                                    "behaviour": "Idle",
+                                    "immediate": null
+                                },
+                                {
+                                    "type": "nodes.placeActor",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "spawnId": "ccf18fbe-bfd1-4237-8f45-9103bd0f4614",
+                                    "pose": "stand",
+                                    "behaviour": "Idle",
+                                    "immediate": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inTags",
+                                    "scope": "target",
+                                    "scopeId": null,
+                                    "scopeFilterId": null,
+                                    "tags": "Locka",
+                                    "has": false
+                                },
+                                "right": {
+                                    "type": "expressions.and",
+                                    "left": {
+                                        "type": "expressions.variableComparison",
+                                        "variableScope": "global",
+                                        "variableName": "time.day",
+                                        "operator": "eq",
+                                        "compareTo": "10",
+                                        "sceneId": "5c81204b-2c5b-4eb0-9e84-85acb2fc9d13",
+                                        "propId": null
+                                    },
+                                    "right": {
+                                        "type": "expressions.and",
+                                        "left": {
+                                            "type": "expressions.variableComparison",
+                                            "variableScope": "global",
+                                            "variableName": "time.hour",
+                                            "operator": "gte",
+                                            "compareTo": "12",
+                                            "sceneId": "5c81204b-2c5b-4eb0-9e84-85acb2fc9d13",
+                                            "propId": null
+                                        },
+                                        "right": {
+                                            "type": "expressions.variableComparison",
+                                            "variableScope": "global",
+                                            "variableName": "time.hour",
+                                            "operator": "lte",
+                                            "compareTo": "18",
+                                            "sceneId": "5c81204b-2c5b-4eb0-9e84-85acb2fc9d13",
+                                            "propId": null
+                                        }
+                                    }
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.setVariable",
+                                    "name": "LockEvent",
+                                    "scope": "scene",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "source": {
+                                        "type": "variables.literal",
+                                        "value": "5",
+                                        "displayName": "Literal"
+                                    },
+                                    "add": false
+                                },
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "876e3427-3a92-4779-8d72-9a714c5d4370",
+                                    "scope": "scene",
+                                    "scopeId": "5c81204b-2c5b-4eb0-9e84-85acb2fc9d13",
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "Locka",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.placeActor",
+                                    "actorId": "bdddd1b1-bbf3-4dd5-bbd6-0ef3115d8b66",
+                                    "spawnId": "fe2bff06-f4ab-48e1-9903-67d554fdc23f",
+                                    "pose": "sit",
+                                    "behaviour": "Sitting",
+                                    "immediate": true
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

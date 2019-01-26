@@ -1,0 +1,241 @@
+{
+    "type": "script",
+    "id": "dc5ed673-5be7-4fb3-879b-b97a87d3fab0",
+    "name": "Interact with Barrel Stack 1",
+    "sceneId": "9b06cdb4-6d47-4e07-8501-3cb9c5792c09",
+    "propId": "f2936026-08f4-4b3d-a8bc-e7e57b44edbf",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "94de0b0a-9a6e-4624-a557-f7f3f263e336",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "dfb9b1c9-d980-4e1b-bf20-894ab215836f",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "e29f7181-3f89-4878-8915-08d49bf9273f",
+                            "text": "Look at the Stack of Barrels",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "target",
+                                                "scopeId": null,
+                                                "scopeFilterId": null,
+                                                "tags": "KnockedOn",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "b3f9cd47-b45c-4694-9b7f-0ee5508e924f",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "One of them is bleeding!",
+                                                    "emotion": "4",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "f1c959cc-799a-4cbf-aaf1-4bc22d5f8a3a",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "I'm too late. Oh, dear gods, I'm <i>too late!</i> They're all dead.",
+                                                    "emotion": "2",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "4bce9a58-6160-486e-a217-6c84e164ca9d",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "I mean, empty. But... that's even <i>worse.</i>",
+                                                    "emotion": "2",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "2e7dc2a6-8fa4-4ab8-81d9-d6f58b84f878",
+                            "text": "Knock on a Barrel",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "target",
+                                                "scopeId": null,
+                                                "scopeFilterId": null,
+                                                "tags": "KnockedOn",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.playAnimation",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "animationName": "ReachOut"
+                                                },
+                                                {
+                                                    "type": "nodes.wait",
+                                                    "waitForSeconds": "0.1"
+                                                },
+                                                {
+                                                    "type": "nodes.playSoundEffect",
+                                                    "soundEffectName": "barrel_knock.mp3",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "c86b00b6-0fb9-401a-b342-beb76c3356a3",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "He's bled out.",
+                                                    "emotion": "4",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "6a34704b-7326-40ac-93b0-4c12c864a4c9",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "They've probably <i>all</i> bled out. It's a crime, I tell you!",
+                                                    "emotion": "3",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "4adab4fd-aa6f-46c4-af64-81deb1699cfe",
+                                                    "scope": "target",
+                                                    "scopeId": null,
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "KnockedOn",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.onceDaily",
+                                                    "id": "240da61e-cdf6-4bda-94dc-ef9e16727c9f",
+                                                    "nodes": [
+                                                        {
+                                                            "type": "nodes.comment",
+                                                            "message": "Drat Ambush!",
+                                                            "commentor": "Cidney"
+                                                        },
+                                                        {
+                                                            "type": "nodes.speak",
+                                                            "id": "5d957396-8e03-4600-9651-1d7dd09d3bb7",
+                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                            "actorId2": null,
+                                                            "text": "Oh no! Something heard me!",
+                                                            "emotion": "4",
+                                                            "emotion2": "0",
+                                                            "device": "0",
+                                                            "device2": "0"
+                                                        },
+                                                        {
+                                                            "type": "nodes.turnActor",
+                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                            "propId": "275f56d2-20ee-49b7-b752-98da26329207",
+                                                            "scope": "prop",
+                                                            "targetActorId": null
+                                                        },
+                                                        {
+                                                            "type": "nodes.changePropVisibility",
+                                                            "id": "789f6188-89ce-4f4f-ad4f-ed6e80bb666b",
+                                                            "propId": "275f56d2-20ee-49b7-b752-98da26329207",
+                                                            "sceneId": "9b06cdb4-6d47-4e07-8501-3cb9c5792c09",
+                                                            "status": "Visible",
+                                                            "wait": true
+                                                        },
+                                                        {
+                                                            "type": "nodes.invokeCommand",
+                                                            "id": "3811c400-df67-4a9f-a79d-9974fabaebf6",
+                                                            "entityType": "prop",
+                                                            "entityFilterId": "9b06cdb4-6d47-4e07-8501-3cb9c5792c09",
+                                                            "entityId": "275f56d2-20ee-49b7-b752-98da26329207",
+                                                            "command": "ambush",
+                                                            "resultVariableScope": "script"
+                                                        },
+                                                        {
+                                                            "type": "nodes.wait",
+                                                            "waitForSeconds": "0.5"
+                                                        },
+                                                        {
+                                                            "type": "nodes.endScript"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "7033c242-7c5e-4ed5-98a2-1335489d332e",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Knocking on them won't help them now. They've given up their life's blood.",
+                                                    "emotion": "2",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "1",
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

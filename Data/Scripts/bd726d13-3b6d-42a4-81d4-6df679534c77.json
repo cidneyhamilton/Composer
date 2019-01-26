@@ -1,0 +1,292 @@
+{
+    "type": "script",
+    "id": "bd726d13-3b6d-42a4-81d4-6df679534c77",
+    "name": "_OnEnter: Sea Serpent Lair",
+    "sceneId": "5bf05db2-b4fe-4863-b426-f058e04e908c",
+    "trigger": {
+        "type": "triggers.enter",
+        "name": "Enter"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "c68df598-4716-4060-b382-a8f543740388",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.previousScene",
+                                "sceneId": "d8980246-7825-4b4a-9b40-d814c22486c7"
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "9565b9ec-0d4e-4b82-a6ef-f9a616f8fe8e",
+                                    "scope": "prop",
+                                    "scopeId": "da39cc9b-24b1-42a0-bbf1-c65c4c1c1566",
+                                    "scopeFilterId": "5bf05db2-b4fe-4863-b426-f058e04e908c",
+                                    "tagsToAdd": "CrossedTightrope",
+                                    "tagsToRemove": ""
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "b0656178-b67b-4f04-ad0d-b85bcf8d300e",
+                                    "scope": "prop",
+                                    "scopeId": "da39cc9b-24b1-42a0-bbf1-c65c4c1c1566",
+                                    "scopeFilterId": "5bf05db2-b4fe-4863-b426-f058e04e908c",
+                                    "tagsToAdd": "",
+                                    "tagsToRemove": "CrossedTightrope"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.changeTags",
+                    "id": "4d01e3fc-3f46-4840-861d-ceee3c3c636f",
+                    "scope": "scene",
+                    "scopeId": "5bf05db2-b4fe-4863-b426-f058e04e908c",
+                    "scopeFilterId": null,
+                    "tagsToAdd": "SawSerpent",
+                    "tagsToRemove": null
+                },
+                {
+                    "type": "nodes.comment",
+                    "message": "Had to put this in on enter because for some reason invoke commands behave badly in onload.",
+                    "commentor": "Joshua"
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "scene",
+                                "scopeId": "5bf05db2-b4fe-4863-b426-f058e04e908c",
+                                "scopeFilterId": null,
+                                "tags": "sea_serpent_dead",
+                                "has": true
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.invokeCommand",
+                                    "id": "fd7cf0dc-ae96-4211-b49e-c6a8a439388f",
+                                    "entityType": "prop",
+                                    "entityFilterId": "5bf05db2-b4fe-4863-b426-f058e04e908c",
+                                    "entityId": "3e4f8159-c517-4334-932e-b7a413896273",
+                                    "command": "dead",
+                                    "parameter": "",
+                                    "wait": false,
+                                    "resultVariableScope": "script"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.and",
+                                                "left": {
+                                                    "type": "expressions.inTags",
+                                                    "scope": "scene",
+                                                    "scopeId": "5bf05db2-b4fe-4863-b426-f058e04e908c",
+                                                    "scopeFilterId": null,
+                                                    "tags": "sea_serpent_injured",
+                                                    "has": true
+                                                },
+                                                "right": {
+                                                    "type": "expressions.inTags",
+                                                    "scope": "scene",
+                                                    "scopeId": "5bf05db2-b4fe-4863-b426-f058e04e908c",
+                                                    "scopeFilterId": null,
+                                                    "tags": "sea_serpent_healed",
+                                                    "has": false
+                                                }
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeCommand",
+                                                    "id": "168f91b0-0817-4c90-9f57-f0326c97ca32",
+                                                    "entityType": "prop",
+                                                    "entityFilterId": "5bf05db2-b4fe-4863-b426-f058e04e908c",
+                                                    "entityId": "3e4f8159-c517-4334-932e-b7a413896273",
+                                                    "command": "injured",
+                                                    "parameter": "",
+                                                    "wait": false,
+                                                    "resultVariableScope": "script"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "scene",
+                                "scopeId": "5bf05db2-b4fe-4863-b426-f058e04e908c",
+                                "scopeFilterId": null,
+                                "tags": "sea_serpent_injured",
+                                "has": true
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.onceOnly",
+                                    "id": "bf3ca5de-1773-4c3a-ae6e-af03534260ed",
+                                    "nodes": [
+                                        {
+                                            "type": "nodes.comment",
+                                            "message": "This wait is a hack but it's required due to timing oddities.",
+                                            "commentor": "Joshua"
+                                        },
+                                        {
+                                            "type": "nodes.wait",
+                                            "waitForSeconds": "0.5"
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "4070cb24-fafd-47d1-bd26-ef53c915772d",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "Hey what's that over there.",
+                                            "emotion": "0",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.setCameraTarget",
+                                            "propId": "fc4263c6-fa7d-475f-b5ce-0d50f6116bb6",
+                                            "actorId": null,
+                                            "time": "2",
+                                            "translateX": 0,
+                                            "translateY": 0,
+                                            "translateZ": 0,
+                                            "postWaitTime": 0,
+                                            "wait": true,
+                                            "scope": "prop"
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "08b40df3-1ce5-4e7f-9893-cecc8a9a44de",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "Poor guy.",
+                                            "emotion": "2",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.resetCamera",
+                                            "wait": false,
+                                            "time": "2"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.onceOnly",
+                    "id": "ecd82999-d786-453d-a836-1f3d337f71ab",
+                    "nodes": [
+                        {
+                            "type": "nodes.speak",
+                            "id": "b526cd55-6e6b-4e7f-b6ac-a00fa87ff817",
+                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                            "actorId2": null,
+                            "text": "Hmmm... looks like a big underground lake or lagoon.",
+                            "emotion": "0",
+                            "emotion2": "0",
+                            "device": "0",
+                            "device2": "0"
+                        },
+                        {
+                            "type": "nodes.setCameraTarget",
+                            "propId": "0423e81d-0561-461b-b7a1-668ca8311236",
+                            "actorId": null,
+                            "time": "2",
+                            "translateX": 0,
+                            "translateY": 0,
+                            "translateZ": 0,
+                            "postWaitTime": 0,
+                            "wait": true,
+                            "scope": "prop"
+                        },
+                        {
+                            "type": "nodes.speak",
+                            "id": "12a70cbe-4783-4b24-82d2-8f45e5356513",
+                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                            "actorId2": null,
+                            "text": "I can see some really interesting things across the lagoon from here. There's also a crude dam holding in all this water here. I'm guessing that the Gogs must have built it.",
+                            "emotion": "0",
+                            "emotion2": "0",
+                            "device": "0",
+                            "device2": "0"
+                        },
+                        {
+                            "type": "nodes.setCameraTarget",
+                            "propId": "47b362e1-35d0-44af-84b2-609c82def0ac",
+                            "actorId": null,
+                            "time": "2",
+                            "translateX": 0,
+                            "translateY": 0,
+                            "translateZ": 0,
+                            "postWaitTime": 0,
+                            "scope": "prop"
+                        },
+                        {
+                            "type": "nodes.comment",
+                            "message": "Note: Because Shawn will walk into a trigger zone the trigger zone script will fire. This might be flakey. But will do for now.",
+                            "commentor": "Joshua"
+                        },
+                        {
+                            "type": "nodes.moveActor",
+                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                            "propId": "47b362e1-35d0-44af-84b2-609c82def0ac",
+                            "movement": "Walking",
+                            "wait": true
+                        },
+                        {
+                            "type": "nodes.speak",
+                            "id": "9ac1c82f-1d18-46c9-88d2-3dc8cc7fcf11",
+                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                            "actorId2": null,
+                            "text": "There's got to be some way to get to the areas.",
+                            "emotion": "0",
+                            "emotion2": "0",
+                            "device": "0",
+                            "device2": "0"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,45 @@
+<div class="items-container">
+    <table class="table table-bordered" style="margin-top: 32px" data-bind="visible: props.length > 0">
+        <thead>
+        <tr>
+            <th>
+                <span>Name</span>
+                <div class="button-panel">
+                    <button class="hint--rounded hint--left" data-hint="Add New Prop" data-bind="click: create">
+                        <i class="icon-plus-sign-alt"></i>
+                    </button>
+                </div>
+            </th>
+        </tr>
+        </thead>
+    </table>
+
+    <div class="rows" style="margin-top: 32px" data-bind="visible: props.length > 0">
+        <table class="table table-striped table-hover table-bordered">
+            <tbody data-bind="foreach: props.sort(function(a,b){return a.name.localeCompare(b.name);})">
+            <tr>
+                <td>
+                    <span data-bind="text: displayName, click: function(){ $parent.edit($data); }" style="cursor: pointer;"></span>
+                    <div class="button-panel">
+                        <button class="hint--rounded hint--left"  data-hint="Delete" data-bind="click: function(){ $parent.remove($data); }">
+                            <i class="icon-trash"></i>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="no-data" data-bind="visible: props.length < 1">
+        <div>
+            No Props In '<span data-bind="text: owner.item.name"></span>'
+            <div class="create">
+                <button data-bind="click: create">
+                    <i class="icon-plus-sign-alt"></i>
+                    Create
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

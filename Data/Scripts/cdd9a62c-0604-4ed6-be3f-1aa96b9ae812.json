@@ -1,0 +1,484 @@
+{
+    "type": "script",
+    "id": "cdd9a62c-0604-4ed6-be3f-1aa96b9ae812",
+    "name": "Interact with Bookshelf N3 (Martial Arts)",
+    "sceneId": "981ec865-3e1b-4f3e-bb0d-11df2bc7d593",
+    "propId": "595f7399-8ddf-43f0-a008-d50317a935f9",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "6feb2277-025d-4d2f-a883-c95a00328e07",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "19c13a30-f5e8-4061-8ed0-f89d64eafb40",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "359625ff-caae-4887-aefa-358f83d33784",
+                            "text": "Examine the Bookshelf",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "ec98cc6e-5e57-487e-8a7c-b2e2252e044b",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Hmmm... there are a lot of books on martial arts here. Maybe there's something I can use...",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "1",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "7c5a019c-d7db-49ed-a903-ca5bc42ef7ac",
+                            "text": "Read \"Defense Against the Undead\"",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "actor",
+                                                "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                "scopeFilterId": null,
+                                                "tags": "StudiedBookDeadDefense",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "6ae1512e-5eb6-4687-bc87-054b5078d782",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Hmmm... this entire book is about how to handle Banshees, Ghouls, Revenants, Wraiths, and other Undead foes. I'll have to study this... ",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "52bcfa23-e674-473e-a3dc-115af8d75c6a",
+                                                    "scriptId": "e49ddd5a-2b32-4b92-bb4b-9e417cc9a181",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Actors",
+                                                    "currentSceneId": "981ec865-3e1b-4f3e-bb0d-11df2bc7d593",
+                                                    "currentActorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.variableComparison",
+                                                                "variableScope": "script",
+                                                                "variableName": "ShawnStudiedThisBook",
+                                                                "operator": "eq",
+                                                                "compareTo": "true",
+                                                                "sceneId": null,
+                                                                "propId": null
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.changeTags",
+                                                                    "id": "a75ecbf5-7e20-401c-9000-80b2a53ccb72",
+                                                                    "scope": "actor",
+                                                                    "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "scopeFilterId": null,
+                                                                    "tagsToAdd": "StudiedBookDeadDefense",
+                                                                    "tagsToRemove": null
+                                                                },
+                                                                {
+                                                                    "id": "6d8894a8-200c-4a96-a7d8-5ec21ac4c937",
+                                                                    "type": "nodes.improveSkill",
+                                                                    "skill": "Smarts",
+                                                                    "amount": "1"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "edf56620-1f83-4ce8-a002-24305b5423bd",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "Wraiths are amongst the most dangerous of Undead. It says that Vampires may be more powerful, but Wraiths have fewer weaknesses. Great. I'm fighting a monster tougher than a Vampire.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "def3531c-5b82-4cc1-a260-150cf735f748",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "Okay, the book says that to truly defeat a Wraith, you have to drive it back to its phylactery, then destroy the phylactery with a magical, non-metallic weapon. Even then, the magical backlash could destroy the wielder of the weapon.",
+                                                                    "emotion": "4",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "e8473523-32bc-4da9-b181-bc50bc16a3ef",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "I'd need every magical defense item available if I wanted to take on a Wraith.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": null,
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "0989b6a9-caa5-4f82-b84b-224ca71ba2d3",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "I'll have to take a closer look at that book sometime.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.variableComparison",
+                                                                "variableScope": "script",
+                                                                "variableName": "ShawnStudiedThisBook",
+                                                                "operator": "eq",
+                                                                "compareTo": "true",
+                                                                "sceneId": null,
+                                                                "propId": null
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.nodeCycle",
+                                                                    "id": "8beed94e-5ffc-4897-b1fa-fdd5ad6a5bc7",
+                                                                    "nodes": [
+                                                                        {
+                                                                            "type": "nodes.speak",
+                                                                            "id": "13bfd8a8-17a8-47a9-a1a1-d5e1f38ee3eb",
+                                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                            "actorId2": null,
+                                                                            "text": "The book recommends that I use some sort of magical barrier like a rune to protect against the backlash of destroying a phylactery.",
+                                                                            "emotion": "0",
+                                                                            "emotion2": "0",
+                                                                            "device": "0",
+                                                                            "device2": "0"
+                                                                        },
+                                                                        {
+                                                                            "type": "nodes.speak",
+                                                                            "id": "7e3af9fa-efea-4f6d-b93f-70dba3baaeb4",
+                                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                            "actorId2": null,
+                                                                            "text": "I'll need a magical weapon and all the magical defenses I can get if I want to defeat the living dead.",
+                                                                            "emotion": "0",
+                                                                            "emotion2": "0",
+                                                                            "device": "0",
+                                                                            "device2": "0"
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.or",
+                                "left": {
+                                    "type": "expressions.inTags",
+                                    "scope": "actor",
+                                    "scopeId": "84d47ff5-c737-42b6-9e21-e8b7413ce007",
+                                    "scopeFilterId": null,
+                                    "tags": "DeadDefense",
+                                    "has": true
+                                },
+                                "right": {
+                                    "type": "expressions.inTags",
+                                    "scope": "actor",
+                                    "scopeId": "fb00cd5f-e210-44b2-bc7d-5384a9a3db74",
+                                    "scopeFilterId": null,
+                                    "tags": "Encountered",
+                                    "has": true
+                                }
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "4",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "54f04fd0-4e66-4407-88e3-9c28cd7e8791",
+                            "text": "Study the Books",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "actor",
+                                                "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                "scopeFilterId": null,
+                                                "tags": "StudiedBookStabs",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "67a0fd87-8fc6-413a-b9b9-839f416ca759",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "This looks useful - <i>Stabs and Jabs - The Art of Streetfighting</i>.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "5007eb14-b2fa-4732-8636-602245488b62",
+                                                    "scriptId": "e49ddd5a-2b32-4b92-bb4b-9e417cc9a181",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Actors",
+                                                    "currentSceneId": "981ec865-3e1b-4f3e-bb0d-11df2bc7d593",
+                                                    "currentActorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.variableComparison",
+                                                                "variableScope": "script",
+                                                                "variableName": "ShawnStudiedThisBook",
+                                                                "operator": "eq",
+                                                                "compareTo": "true",
+                                                                "sceneId": null,
+                                                                "propId": null
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.changeTags",
+                                                                    "id": "f0f35b21-077b-4112-8327-286a9d725b45",
+                                                                    "scope": "actor",
+                                                                    "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "scopeFilterId": null,
+                                                                    "tagsToAdd": "StudiedBookStabs",
+                                                                    "tagsToRemove": null
+                                                                },
+                                                                {
+                                                                    "id": "9fb04c94-48c5-4d34-b2ea-d7dcfaaa666e",
+                                                                    "type": "nodes.improveSkill",
+                                                                    "skill": "Combat",
+                                                                    "amount": "1"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "ef349b16-67fa-42a1-8bf3-40f68aeaf727",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "I really enjoyed the <i>stabs</i> chapter, but I wish the <i>jabs</i> chapter had been about quick-witted insults and banter instead of boring old punches.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": null,
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "0e0f04af-b4d0-4295-a3c7-dd107d8c2567",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "I'll have to take a closer look at that book sometime.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.variableComparison",
+                                                                "variableScope": "script",
+                                                                "variableName": "ShawnStudiedThisBook",
+                                                                "operator": "eq",
+                                                                "compareTo": "true",
+                                                                "sceneId": null,
+                                                                "propId": null
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.nodeCycle",
+                                                                    "id": "dcc8aad6-fa09-4608-8671-3af223ff337b",
+                                                                    "nodes": [
+                                                                        {
+                                                                            "type": "nodes.speak",
+                                                                            "id": "c79afde1-37bf-4173-8da4-bf18472663cb",
+                                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                            "actorId2": null,
+                                                                            "text": "Martial arts are more complicated than I thought. I'm not sure a book can teach me anything more. But there are a lot of interesting titles here!",
+                                                                            "emotion": "0",
+                                                                            "emotion2": "0",
+                                                                            "device": "0",
+                                                                            "device2": "0"
+                                                                        },
+                                                                        {
+                                                                            "type": "nodes.speak",
+                                                                            "id": "d1b5a562-24d3-4bd8-8f2d-d7cf427a4108",
+                                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                            "actorId2": null,
+                                                                            "text": "This book says the same thing most books on martial arts say, 'set up a regime of exercise and proper eating habits and then stick with it.\" Well, one out of three isn't too bad.",
+                                                                            "emotion": "0",
+                                                                            "emotion2": "0",
+                                                                            "device": "0",
+                                                                            "device2": "0"
+                                                                        },
+                                                                        {
+                                                                            "type": "nodes.speak",
+                                                                            "id": "c6173b33-8132-4695-9b80-cf6bdb065a48",
+                                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                            "actorId2": null,
+                                                                            "text": "I wish I could get skilled at martial arts just by reading a book. Exercise is hard work!",
+                                                                            "emotion": "0",
+                                                                            "emotion2": "0",
+                                                                            "device": "0",
+                                                                            "device2": "0"
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "2",
+                            "ExitMenu": true
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "8d0f8e86-b7b5-4d8c-b1af-617209869c5b",
+                            "text": "Pick a Book at Random",
+                            "nodes": [
+                                {
+                                    "type": "nodes.nodeCycle",
+                                    "id": "5dee7dd2-7beb-4097-8061-4a47cb235294",
+                                    "nodes": [
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "ec04c649-9211-4b9b-b028-fed94685dd54",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "<i>Mastering the Touch of Death - Dim Mak</i>. I don't know who Mak was, but I bet after he showed someone the Touch of Death, they never called him \"dim\" again.",
+                                            "emotion": "1",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "828b9785-6b88-4d23-87d4-99df94c28550",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "<i>The Miyagi Crane Attack: Ostentatious and Impractical</i>. If I knew what the Miyagi Crane Attack was, I'd be totally convinced.",
+                                            "emotion": "0",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "56695479-1334-4f16-9ae5-074e573a8e26",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "<i>Learning to Pronounce \"Kalaripayattu,\" Volume II</i>. Aw, see, I just now bruised my tongue saying it. This wouldn't have happened if I'd just read the book first.",
+                                            "emotion": "0",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "1",
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

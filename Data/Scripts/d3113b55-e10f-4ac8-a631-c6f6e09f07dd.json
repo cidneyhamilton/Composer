@@ -1,0 +1,97 @@
+{
+    "type": "script",
+    "id": "d3113b55-e10f-4ac8-a631-c6f6e09f07dd",
+    "name": "School Uniform Check",
+    "sceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+    "trigger": {
+        "type": "triggers.manual",
+        "name": "Manual"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "ef5578fa-7f1b-477e-bda9-c54510cbc8a7",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.isEquipped",
+                                    "propId": "1cf29ba4-9a5d-469a-b22d-13ff7e8954f4",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4"
+                                },
+                                "right": {
+                                    "type": "expressions.and",
+                                    "left": {
+                                        "type": "expressions.isEquipped",
+                                        "propId": "50dd34db-81f3-42fe-8e3d-9e052e0dc5a0",
+                                        "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4"
+                                    },
+                                    "right": {
+                                        "type": "expressions.isEquipped",
+                                        "propId": "56857fee-ad71-4e37-9b0b-d35bb357eab3",
+                                        "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4"
+                                    }
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "fd909ed9-c624-4941-9aeb-e12e5e41798f",
+                                    "scope": "actor",
+                                    "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "SchoolUniform",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.hasActiveQuest",
+                                                "propId": "7d70f789-572f-408a-9968-719e557ad1fc",
+                                                "sceneId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                                                "questStatus": "0"
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.quests",
+                                                    "id": "aa2efff7-3d07-47e6-b07b-67951f5da13f",
+                                                    "sceneId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                                                    "propId": "7d70f789-572f-408a-9968-719e557ad1fc",
+                                                    "target": "1",
+                                                    "notify": true
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "de035bef-d300-4430-b273-0cd3011ed42f",
+                                    "scope": "actor",
+                                    "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "scopeFilterId": null,
+                                    "tagsToRemove": "SchoolUniform"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

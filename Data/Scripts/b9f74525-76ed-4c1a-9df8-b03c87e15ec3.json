@@ -1,0 +1,338 @@
+{
+    "type": "script",
+    "id": "b9f74525-76ed-4c1a-9df8-b03c87e15ec3",
+    "name": "Sosi RR04_Poobah1",
+    "storyEventId": "71765b8d-f097-4af2-8a7a-954de073ad0f",
+    "sceneId": "84006d08-8e6d-4558-b9b5-101f3c3054fe",
+    "actorId": "2ae7a408-9338-4b78-af6b-ba7a28e050ac",
+    "trigger": {
+        "type": "triggers.manual",
+        "name": "Manual"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "a7c04025-9eca-4bdd-a3a4-51f43af45c60",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "645012b2-0217-4924-b062-7024673689b9",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "aa9bf0b8-fff3-447c-8f79-5e4cc68f7c6c",
+                            "text": "Ask About Sosi's Life",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "032bf675-0b5b-4d35-a092-354b45b4ab68",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "2ae7a408-9338-4b78-af6b-ba7a28e050ac",
+                                    "text": "So what's it like being nobility? Do you have a palace for a home or something?",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "2c09f8a5-690f-447e-af16-198e171f24fa",
+                                    "actorId": "2ae7a408-9338-4b78-af6b-ba7a28e050ac",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "My life is my own business. I see no reason to talk with you. Go bother someone else.",
+                                    "emotion": "0",
+                                    "emotion2": "4",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.showMenu",
+                                    "id": "5791585c-e79c-4f6b-9112-a1f7dc81dc2b",
+                                    "options": [
+                                        {
+                                            "type": "options.text",
+                                            "id": "6038e01c-f4a0-4ad2-9a90-ba3d72c1d121",
+                                            "text": "Charm Sosi",
+                                            "nodes": [
+                                                {
+                                                    "id": "05c67582-dcf4-477b-bb1e-44932c23c8af",
+                                                    "type": "nodes.skillBranch",
+                                                    "skill": "Charm",
+                                                    "target": "25",
+                                                    "success": {
+                                                        "type": "nodes.block",
+                                                        "nodes": [
+                                                            {
+                                                                "type": "nodes.changeReputation",
+                                                                "id": "110417e7-be2a-4354-8c56-d54c01cb379c",
+                                                                "actorId": "2ae7a408-9338-4b78-af6b-ba7a28e050ac",
+                                                                "amount": "2",
+                                                                "change": "1",
+                                                                "notify": true
+                                                            }
+                                                        ]
+                                                    },
+                                                    "failure": {
+                                                        "type": "nodes.block",
+                                                        "nodes": [
+                                                            {
+                                                                "type": "nodes.changeReputation",
+                                                                "id": "ce6adc56-d655-4362-9357-07d23de7d1dc",
+                                                                "actorId": "2ae7a408-9338-4b78-af6b-ba7a28e050ac",
+                                                                "amount": "1",
+                                                                "change": "1",
+                                                                "notify": true
+                                                            }
+                                                        ]
+                                                    },
+                                                    "notify": true
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "0c3b8bcf-4270-49e4-9ffc-dcea8cc5be6f",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": "2ae7a408-9338-4b78-af6b-ba7a28e050ac",
+                                                    "text": "I'm looking forward to playing Poobah with you. I'm sure that you have a lot to teach me.",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "7614f742-35b1-4cb2-b527-13120088f5af",
+                                                    "actorId": "2ae7a408-9338-4b78-af6b-ba7a28e050ac",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "I hope you have enough money to play the game. It would be a pity if you were to run out before the game ends.",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.inTags",
+                                                                "scope": "actor",
+                                                                "scopeId": "2ae7a408-9338-4b78-af6b-ba7a28e050ac",
+                                                                "scopeFilterId": null,
+                                                                "tags": "ShawnTool",
+                                                                "has": true
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.changeReputation",
+                                                                    "id": "a49f4efe-bf34-46b5-98a7-df321f690350",
+                                                                    "actorId": "2ae7a408-9338-4b78-af6b-ba7a28e050ac",
+                                                                    "amount": "1",
+                                                                    "change": "1",
+                                                                    "notify": false
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "expression": null,
+                                            "ignoreChildAvailability": false,
+                                            "minutes": "3",
+                                            "ExitMenu": true
+                                        },
+                                        {
+                                            "type": "options.text",
+                                            "id": "b115c14e-73b4-4b9c-a986-448dcc24379e",
+                                            "text": "Be Snarky to Sosi",
+                                            "nodes": [
+                                                {
+                                                    "id": "e19cb178-b57a-4308-94eb-e01395cb74fe",
+                                                    "type": "nodes.skillBranch",
+                                                    "skill": "Moxie",
+                                                    "target": "25",
+                                                    "success": {
+                                                        "type": "nodes.block",
+                                                        "nodes": [
+                                                            {
+                                                                "type": "nodes.changeReputation",
+                                                                "id": "1056a7bb-e1e2-405d-a841-daa9074e0f0e",
+                                                                "actorId": "2ae7a408-9338-4b78-af6b-ba7a28e050ac",
+                                                                "amount": "1",
+                                                                "change": "0",
+                                                                "notify": true
+                                                            }
+                                                        ]
+                                                    },
+                                                    "failure": {
+                                                        "type": "nodes.block",
+                                                        "nodes": [
+                                                            {
+                                                                "type": "nodes.changeReputation",
+                                                                "id": "7f1805cc-76f5-4b91-a48e-8a386c743560",
+                                                                "actorId": "2ae7a408-9338-4b78-af6b-ba7a28e050ac",
+                                                                "amount": "2",
+                                                                "change": "0",
+                                                                "notify": true
+                                                            }
+                                                        ]
+                                                    },
+                                                    "notify": true
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "ba047086-43c7-4bd4-a927-6692e332e3a2",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": "2ae7a408-9338-4b78-af6b-ba7a28e050ac",
+                                                    "text": "Let me see if I understand this - Poobah is a game about deception and bullying. Sounds like you're a master at it already.",
+                                                    "emotion": "1",
+                                                    "emotion2": "3",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "f894c8c9-84d3-4ebd-9ff6-83ec8408b05d",
+                                                    "actorId": "2ae7a408-9338-4b78-af6b-ba7a28e050ac",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "Hold your tongue, O'Conner. ",
+                                                    "emotion": "3",
+                                                    "emotion2": "1",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ],
+                                            "expression": null,
+                                            "ignoreChildAvailability": false,
+                                            "minutes": "2",
+                                            "ExitMenu": true
+                                        }
+                                    ],
+                                    "AutoAddDone": false,
+                                    "Unique": true
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": false,
+                            "minutes": "2",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "d383b042-63ad-423b-b574-5a7f8c45a23d",
+                            "text": "Ask About Poobah",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "178ed178-f825-4df7-9185-102c86c34acf",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "2ae7a408-9338-4b78-af6b-ba7a28e050ac",
+                                    "text": "So Poobah is a gambling game?",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "ea3b6e41-27c1-436c-841f-0527d696ee6c",
+                                    "actorId": "2ae7a408-9338-4b78-af6b-ba7a28e050ac",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "Yes, but the bets are small. I wouldn't want to win all your money with a single hand. I want to win all your money over several hands. It's much more enjoyable that way.",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": false,
+                            "minutes": "3",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "2a8d51ac-5b4e-4a8b-9b95-c30b2bb2e45c",
+                            "text": "Start the Poobah Game",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "d654d6a6-de21-49f5-a3ef-96633a7e9fb4",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "2ae7a408-9338-4b78-af6b-ba7a28e050ac",
+                                    "text": "Shall we see just how good you are at Poobah right now?",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "e1c0c0b0-620f-4ff6-8780-6cef98a6e51e",
+                                    "actorId": "2ae7a408-9338-4b78-af6b-ba7a28e050ac",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "<nod>",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.invokeScript",
+                                    "id": "2a536037-1155-45a3-80a5-2d389398b85c",
+                                    "scriptId": "f1562fb6-8b4c-46c5-8ca1-596c961abf64",
+                                    "entryPointId": "0039f70f-9837-4acb-bcd2-84296e8d2077",
+                                    "currentScope": "Scenes",
+                                    "currentSceneId": "b5e12b26-529b-41c8-b6cf-a7688b177694",
+                                    "currentActorId": null,
+                                    "currentStoryEventId": null,
+                                    "currentPropId": null
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": false,
+                            "minutes": "2",
+                            "ExitMenu": true
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "adf8adbf-c584-4b2c-bee4-14f9cab18ee6",
+                            "text": "Say Goodnight",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "9dbc1cca-e6cb-4060-8c4b-f80fa79a20ac",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "2ae7a408-9338-4b78-af6b-ba7a28e050ac",
+                                    "text": "We'll talk more later.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "42dfdd1e-adaa-45f3-8eb2-a977e2bca7ea",
+                                    "actorId": "2ae7a408-9338-4b78-af6b-ba7a28e050ac",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "Are you trying to put off playing Poobah? I'm getting impatient to win your money.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": false,
+                            "minutes": "2",
+                            "ExitMenu": true
+                        }
+                    ],
+                    "AutoAddDone": false,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

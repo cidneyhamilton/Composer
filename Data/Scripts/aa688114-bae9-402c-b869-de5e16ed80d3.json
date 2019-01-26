@@ -1,0 +1,921 @@
+{
+    "type": "script",
+    "id": "aa688114-bae9-402c-b869-de5e16ed80d3",
+    "name": "Interact with Chest",
+    "sceneId": "9637d472-d1dd-4373-a09f-489014e31666",
+    "propId": "5effe477-ebf4-4a89-a1da-5a50480dd925",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "7c4853c5-e253-4adf-b9c7-4510acd3f643",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.onceOnly",
+                    "id": "b1cad178-2b65-4626-8063-3ec88e4aeff3",
+                    "nodes": [
+                        {
+                            "type": "nodes.changeTags",
+                            "id": "83b6cae5-59d6-47dc-96e1-c5585af41f0b",
+                            "scope": "prop",
+                            "scopeId": "5effe477-ebf4-4a89-a1da-5a50480dd925",
+                            "scopeFilterId": "9637d472-d1dd-4373-a09f-489014e31666",
+                            "tagsToAdd": "locked",
+                            "tagsToRemove": null
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.onceDaily",
+                    "id": "d0689e51-926b-4288-8f5f-d8d563aa9e01",
+                    "nodes": [
+                        {
+                            "type": "nodes.changeTags",
+                            "id": "0b454924-8ce1-4920-9f00-4da229117b54",
+                            "scope": "prop",
+                            "scopeId": "5effe477-ebf4-4a89-a1da-5a50480dd925",
+                            "scopeFilterId": "9637d472-d1dd-4373-a09f-489014e31666",
+                            "tagsToRemove": "lock_attempted"
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.actorPresent",
+                                    "actorId": "fdf2a22c-39ae-4ce9-8f9d-13ba189897a3",
+                                    "hasNot": false
+                                },
+                                "right": {
+                                    "type": "expressions.inTags",
+                                    "scope": "actor",
+                                    "scopeId": "fdf2a22c-39ae-4ce9-8f9d-13ba189897a3",
+                                    "scopeFilterId": null,
+                                    "tags": "dead",
+                                    "has": false
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.invokeScript",
+                                    "id": "e4e11032-2087-4cdc-a764-878734f19444",
+                                    "scriptId": "c5b8ef3f-74b5-465d-8a0f-b3848ffb98a9",
+                                    "entryPointId": "9b84d12f-d90e-427e-80fe-4e2b2a0baafe",
+                                    "currentScope": "Scenes",
+                                    "currentSceneId": "9637d472-d1dd-4373-a09f-489014e31666",
+                                    "currentActorId": null,
+                                    "currentStoryEventId": null,
+                                    "currentPropId": null
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.showMenu",
+                    "id": "29f81310-9cc5-45a7-a645-9e2a8559dffa",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "a7f0bcc8-0a4b-4292-9cb4-1da3ff95977e",
+                            "text": "Look at the Chest",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "2cc1b4e9-ea80-46b3-966f-fc3d916a2de6",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "That's a fine-looking chest. I'd take it for myself if it wasn't obviously so heavy...",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.or",
+                                                "left": {
+                                                    "type": "expressions.actorPresent",
+                                                    "actorId": "31e7b33f-83fe-48aa-bbfe-23730a880c40",
+                                                    "hasNot": false
+                                                },
+                                                "right": {
+                                                    "type": "expressions.actorPresent",
+                                                    "actorId": "fdf2a22c-39ae-4ce9-8f9d-13ba189897a3",
+                                                    "hasNot": false
+                                                }
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "36d8ad27-8228-4398-b867-46b242d3c98d",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "... and if I thought I could get away with it.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "e17aba2d-e6ce-48f4-9347-bfdec8d8e7ba",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "... and if I wasn't worried that I might catch zombieness from it.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "838ed090-1113-45ea-b102-54f755d30872",
+                            "text": "Open the Chest",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "prop",
+                                                "scopeId": "5effe477-ebf4-4a89-a1da-5a50480dd925",
+                                                "scopeFilterId": "9637d472-d1dd-4373-a09f-489014e31666",
+                                                "tags": "locked",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "d72b6180-3f45-4ade-8647-e33bb0cd6d11",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Let's see if I can open this thing.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.playSoundEffect",
+                                                    "soundEffectName": "Shaking_a_crate_02.wav",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "e8ba2e08-cf4e-4887-822d-fa4963627b55",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Locked, of course.",
+                                                    "emotion": "2",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "3e228f21-3df3-4873-a05e-93ee32d68615",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Nothing left in the chest to take.",
+                                                    "emotion": "2",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "f809e8b1-74e8-42d0-bf28-eebd89e54414",
+                            "text": "Examine the Lock",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "actor",
+                                                "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                "scopeFilterId": null,
+                                                "tags": "readAL",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.onceDaily",
+                                                    "id": "db788bc5-d186-472c-aa1a-a22b11456540",
+                                                    "nodes": [
+                                                        {
+                                                            "type": "nodes.incrementTime",
+                                                            "id": "8d5063bf-fd10-4afe-b0b4-60fbdc225870",
+                                                            "days": 0,
+                                                            "hours": 0,
+                                                            "minutes": "5"
+                                                        },
+                                                        {
+                                                            "id": "9edb8146-d67b-4180-af13-63904502e18e",
+                                                            "type": "nodes.skillBranch",
+                                                            "skill": "Perception",
+                                                            "target": "50",
+                                                            "success": {
+                                                                "type": "nodes.block",
+                                                                "nodes": []
+                                                            },
+                                                            "failure": {
+                                                                "type": "nodes.block",
+                                                                "nodes": []
+                                                            },
+                                                            "notify": true
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.skillCheck",
+                                                                "skill": "Perception",
+                                                                "target": "50"
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "959cc890-5951-4f90-a1fb-6c9ea1d093da",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "Uck! This looks complicated. It looks like a Marlowe class with the delicate thingamajiggy and the multiple cylinders.",
+                                                                    "emotion": "4",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": null,
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "d0fd140b-ab50-4495-9b55-c29cd1bfe930",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "I can tell it's going to be a pain to open, but I guess I need to really work at my lock recognition skills.",
+                                                                    "emotion": "2",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.skillCheck",
+                                                                "skill": "Tool Use",
+                                                                "target": "80"
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "904f67e0-64ae-4543-858a-d4cfb76d8cfd",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "It's a tricky sort of lock. I definitely need a houdini to open it - and a lot of skill.",
+                                                                    "emotion": "3",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": null,
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "48e7d658-0c75-45dc-b7c7-7223b7d48dbe",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "Yikes! This is a nasty-looking lock. I've never opened one that was this complex!",
+                                                                    "emotion": "4",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "4c027fcf-9653-4a3b-9b62-efb733a88bd8",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "It may be beyond my lockpicking abilities right now.",
+                                                                    "emotion": "2",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "prop",
+                                "scopeId": "5effe477-ebf4-4a89-a1da-5a50480dd925",
+                                "scopeFilterId": "9637d472-d1dd-4373-a09f-489014e31666",
+                                "tags": "locked",
+                                "has": true
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "5",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "e14930b8-f512-4542-8980-eb11873814a1",
+                            "text": "Pick the Lock",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.or",
+                                                "left": {
+                                                    "type": "expressions.inInventory",
+                                                    "propId": "6d2dbcd7-2fc5-4c91-995f-5e373dddce9d",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "has": true
+                                                },
+                                                "right": {
+                                                    "type": "expressions.inInventory",
+                                                    "propId": "1d6a6851-2078-498c-b9de-8e72576a462b",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "has": true
+                                                }
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "1aa0579d-306a-418d-9f45-975a1f16afc8",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Let's see if I can get this.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.playAnimation",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "animationName": "KneelDown",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.incrementTime",
+                                                    "id": "80c7f9d9-9899-4388-898d-6c4a9db82346",
+                                                    "days": 0,
+                                                    "hours": 0,
+                                                    "minutes": "10"
+                                                },
+                                                {
+                                                    "id": "f669e857-757f-4414-826c-d00ad1aaccf4",
+                                                    "type": "nodes.skillBranch",
+                                                    "skill": "Tool Use",
+                                                    "target": "80",
+                                                    "success": {
+                                                        "type": "nodes.block",
+                                                        "nodes": [
+                                                            {
+                                                                "type": "nodes.playSoundEffect",
+                                                                "soundEffectName": "lockpick_success.wav",
+                                                                "wait": true
+                                                            },
+                                                            {
+                                                                "type": "nodes.speak",
+                                                                "id": "f2a14687-9a4a-4b7d-95a5-f5b6280956a4",
+                                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                "actorId2": null,
+                                                                "text": "Tricky, but I got it!",
+                                                                "emotion": "1",
+                                                                "emotion2": "0",
+                                                                "device": "0",
+                                                                "device2": "0"
+                                                            },
+                                                            {
+                                                                "type": "nodes.changeTags",
+                                                                "id": "4e0afc86-07d6-44fc-9bdc-6fe00c44aef1",
+                                                                "scope": "prop",
+                                                                "scopeId": "5effe477-ebf4-4a89-a1da-5a50480dd925",
+                                                                "scopeFilterId": "9637d472-d1dd-4373-a09f-489014e31666",
+                                                                "tagsToAdd": "",
+                                                                "tagsToRemove": "locked"
+                                                            },
+                                                            {
+                                                                "type": "nodes.invokeScript",
+                                                                "id": "5508f4e4-e5ee-4e4e-bf5c-5e25646a8c4f",
+                                                                "scriptId": "aa688114-bae9-402c-b869-de5e16ed80d3",
+                                                                "entryPointId": "efb99054-ac95-49dd-b40f-4cf40fd2a414",
+                                                                "currentScope": "Current",
+                                                                "currentSceneId": null,
+                                                                "currentActorId": null,
+                                                                "currentStoryEventId": null,
+                                                                "currentPropId": null
+                                                            }
+                                                        ]
+                                                    },
+                                                    "failure": {
+                                                        "type": "nodes.block",
+                                                        "nodes": [
+                                                            {
+                                                                "type": "nodes.playSoundEffect",
+                                                                "soundEffectName": "lockpick_failure.wav",
+                                                                "wait": true
+                                                            },
+                                                            {
+                                                                "type": "nodes.speak",
+                                                                "id": "daa66ed1-c38a-4ec7-921a-23ec7b76e411",
+                                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                "actorId2": null,
+                                                                "text": "I guess I need more practice. A lot more practice.",
+                                                                "emotion": "2",
+                                                                "emotion2": "0",
+                                                                "device": "0",
+                                                                "device2": "0"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "notify": true
+                                                },
+                                                {
+                                                    "type": "nodes.playAnimation",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "animationName": "KneelUp",
+                                                    "wait": false
+                                                },
+                                                {
+                                                    "type": "nodes.endScript"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "856642ad-d2a5-456a-af52-bf4745a722f1",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "... would you believe I don't have ANY lockpicks? Dang.",
+                                                    "emotion": "2",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "prop",
+                                "scopeId": "5effe477-ebf4-4a89-a1da-5a50480dd925",
+                                "scopeFilterId": "9637d472-d1dd-4373-a09f-489014e31666",
+                                "tags": "locked",
+                                "has": true
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "5",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "caddc514-5a2a-4aa8-80cb-4d9cb561e558",
+                            "text": "Use the Captain's Key",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "872f78bd-a8ca-4196-bb26-d934b16c378b",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Maybe the Captain's Skeleton Key will work on this chest...",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.playAnimation",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "animationName": "KneelDown",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.playSoundEffect",
+                                    "soundEffectName": "lockpick_success.wav",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "89b3d2a8-88a9-438e-8686-01b84032fa3e",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "It fits!",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.invokeScript",
+                                    "id": "6b3984d0-23d8-4d11-a5bd-4ffc49d90570",
+                                    "scriptId": "aa688114-bae9-402c-b869-de5e16ed80d3",
+                                    "entryPointId": "efb99054-ac95-49dd-b40f-4cf40fd2a414",
+                                    "currentScope": "Current",
+                                    "currentSceneId": null,
+                                    "currentActorId": null,
+                                    "currentStoryEventId": null,
+                                    "currentPropId": null
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inInventory",
+                                    "propId": "783112f4-6836-4e1e-8ed6-ae07e62463c1",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "has": true
+                                },
+                                "right": {
+                                    "type": "expressions.inTags",
+                                    "scope": "prop",
+                                    "scopeId": "5effe477-ebf4-4a89-a1da-5a50480dd925",
+                                    "scopeFilterId": "9637d472-d1dd-4373-a09f-489014e31666",
+                                    "tags": "locked",
+                                    "has": true
+                                }
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        },
+        {
+            "type": "scripts.entryPoint",
+            "id": "efb99054-ac95-49dd-b40f-4cf40fd2a414",
+            "name": "Loot Chest",
+            "nodes": [
+                {
+                    "type": "nodes.playSoundEffect",
+                    "soundEffectName": "Open Chest Lid.wav",
+                    "wait": true
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "prop",
+                                "scopeId": "5effe477-ebf4-4a89-a1da-5a50480dd925",
+                                "scopeFilterId": "9637d472-d1dd-4373-a09f-489014e31666",
+                                "tags": "looted",
+                                "has": true
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "86176bc1-536f-4cd8-b168-10763a942377",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Nothing left in here but rust.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.playSoundEffect",
+                                    "soundEffectName": "Close Chest Lid.wav",
+                                    "wait": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "1c5858bc-d9ad-4c12-afd0-dceafcdf8490",
+                                    "scope": "prop",
+                                    "scopeId": "5effe477-ebf4-4a89-a1da-5a50480dd925",
+                                    "scopeFilterId": "9637d472-d1dd-4373-a09f-489014e31666",
+                                    "tagsToAdd": "looted",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "ea50b34b-b4d0-4d91-8620-9ffcc2548d5a",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "So what do we have inside this pirate chest?",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "c5b63d04-26b1-4789-91b4-a632ae465d4b",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Looks like a belt, potions, and a ring along with many coins.",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "6e03544f-2777-45bc-8190-c2ceab1c1202",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "The belt is a pair of suspenders...",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.showCloseUp",
+                                    "imageName": "SuspandasCU.png"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "449f7916-1e54-4075-be30-146c9359440c",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Suspenders with Panda patterns on it.",
+                                    "emotion": "4",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "5b6bb36f-7fbd-4bc2-8ab7-bf3726502589",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Do you suppose that the Captain has a thing for pandas?",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "actor",
+                                                "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                "scopeFilterId": null,
+                                                "tags": "SenseMagic",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.playSoundEffect",
+                                                    "soundEffectName": "magic_twinkle_loop.wav",
+                                                    "wait": false
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "c050416c-1452-4302-91a9-f34871dd1640",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "There's definitely some magic worked into these suspenders...",
+                                                    "emotion": "4",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "4793f153-81be-45dd-bbe1-7dbd30455ab6",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Wearing these suspenders will improve my ability to defend myself - particularly against pandas!",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "20014f3a-dda0-4bb4-89a2-f31e59516d38",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Maybe if I wore something over them, they wouldn't look so obnoxious.",
+                                                    "emotion": "2",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.changeInventory",
+                                    "id": "8d065039-bb1c-44ff-a860-35e902ad1c1e",
+                                    "propId": "f00b2693-3fe3-4fb4-a5a1-ee150680501b",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "change": "1",
+                                    "count": 1,
+                                    "notify": true
+                                },
+                                {
+                                    "type": "nodes.hideCloseUp",
+                                    "waitForSeconds": 1
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "0a1dd6a3-1762-4c63-96d0-120790fbe467",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Ah, a couple of Healing Potions...",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.changeInventory",
+                                    "id": "e6be37f7-1aae-45ef-a963-ee4d427af32f",
+                                    "propId": "126e380b-ceda-4884-994f-ca03cca884b8",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "change": "1",
+                                    "count": "2",
+                                    "notify": true
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "91323d39-5c88-47f3-9208-d3c3480990dc",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Okay, now let's look at the ring...",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.showCloseUp",
+                                    "imageName": "CU_OneAndOnlyRing.png"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "72b71c9d-b1b2-46a3-bd25-186de686c610",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "It's a \"One and Only\" Ring... the sort of gift you give to the one person you really love.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.hideCloseUp",
+                                    "waitForSeconds": 1
+                                },
+                                {
+                                    "type": "nodes.changeInventory",
+                                    "id": "e696f25e-5abb-4694-92bb-077b605df871",
+                                    "propId": "b248f032-3cc9-4b99-9859-a447dab661a1",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "change": "1",
+                                    "count": 1,
+                                    "notify": true
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "321dce0b-4ca6-469e-a11b-6e831cd5928b",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Ah, last but not least, a nice collection of Lyra to take with me as a souvenir of my victory here.",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.changeMoney",
+                                    "id": "3c023082-c70d-4c78-a786-ae39b965875f",
+                                    "amount": "68",
+                                    "change": "1",
+                                    "currency": "0"
+                                },
+                                {
+                                    "type": "nodes.playSoundEffect",
+                                    "soundEffectName": "Close Chest Lid.wav",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.playAnimation",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "animationName": "KneelUp",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.endScript"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

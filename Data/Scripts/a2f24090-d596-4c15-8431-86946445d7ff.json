@@ -1,0 +1,200 @@
+{
+    "type": "script",
+    "id": "a2f24090-d596-4c15-8431-86946445d7ff",
+    "name": "Interact with Trapdoor",
+    "sceneId": "cf824b0f-5af6-4a19-bac8-552a2a1bbebf",
+    "propId": "d41ec464-4232-4902-b871-f51ee9569417",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.manual",
+        "name": "Manual"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "7877560c-880d-409f-b4c7-a3d4fd28bacb",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "ae46b541-7746-4f50-b75d-1df6a24eb3ab",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "fede9029-f547-45be-bc33-f4c04362ddc4",
+                            "text": "Examine the Trapdoor",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "acbdfed0-3cdd-42b6-908b-302d25b2c125",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Tsk, tsk. Now why would anyone put this here if they didn't want it looked into?",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "1",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "ac2be65e-fad7-4710-82bf-55cbfb2fba04",
+                            "text": "Open the Trapdoor",
+                            "nodes": [
+                                {
+                                    "type": "nodes.playAnimation",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "animationName": "KneelDown",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "3bfc08c2-a256-4370-bf46-e74f1823304c",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "It's unlocked! Let's go down.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.playMusic",
+                                    "musicTrack": "Fly in music.ogg",
+                                    "channel": "1",
+                                    "loopType": "2"
+                                },
+                                {
+                                    "type": "nodes.playSoundEffect",
+                                    "soundEffectName": "wooden_door_opening.wav",
+                                    "wait": false
+                                },
+                                {
+                                    "type": "nodes.fade",
+                                    "scope": "FadeOut",
+                                    "fadeTime": "1",
+                                    "fadeTime2": 2,
+                                    "wait": true,
+                                    "fadeDown": 0.5,
+                                    "fadeColorR": 0,
+                                    "fadeColorG": 0,
+                                    "fadeColorB": 0
+                                },
+                                {
+                                    "type": "nodes.playSoundEffect",
+                                    "soundEffectName": "Climb Ladder.wav",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.changeScene",
+                                    "sceneId": "ed2b858e-927a-44b9-86ee-4d3fe4dcfc33",
+                                    "spawnId": "da56a93b-3c8d-44c3-9f51-c85bd82e4fd1",
+                                    "fadeTime": "0"
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "scene",
+                                "scopeId": "cf824b0f-5af6-4a19-bac8-552a2a1bbebf",
+                                "scopeFilterId": null,
+                                "tags": "TrapdoorOpen",
+                                "has": true
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "3",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "51a17bab-4c17-4279-b2a9-dd3e5dba8ecc",
+                            "text": "Open the Trapdoor",
+                            "nodes": [
+                                {
+                                    "type": "nodes.playAnimation",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "animationName": "KneelDown",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "fe51186c-2049-4738-b0e7-03de12544625",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Oof! Well, that's no good. I think it's locked from the other side.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.playAnimation",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "animationName": "KneelUp",
+                                    "wait": true
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "scene",
+                                "scopeId": "cf824b0f-5af6-4a19-bac8-552a2a1bbebf",
+                                "scopeFilterId": null,
+                                "tags": "TrapdoorOpen",
+                                "has": false
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "3",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "9217b8a5-04c9-4ec1-a2f4-409aaf09322f",
+                            "text": "Sense Magic on the Trapdoor",
+                            "nodes": [
+                                {
+                                    "type": "nodes.invokeScript",
+                                    "id": "5491343b-6f10-467b-8f73-e958fa6934a0",
+                                    "scriptId": "533e1ce1-13d3-439f-8544-dbdf808d30c4",
+                                    "entryPointId": "d53a6f80-a785-4c70-801d-2bbfb286451f",
+                                    "currentScope": "Scenes",
+                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                    "currentActorId": null,
+                                    "currentStoryEventId": null,
+                                    "currentPropId": null
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "aa87f75e-e6e1-4a83-a277-c89d4e0a4bb5",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "At least I know for sure that this isn't a trap door portal into some dark dimension.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "actor",
+                                "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                "scopeFilterId": null,
+                                "tags": "SenseMagic",
+                                "has": true
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "5",
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

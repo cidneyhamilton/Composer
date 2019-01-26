@@ -1,0 +1,329 @@
+{
+    "type": "script",
+    "id": "dfac1d02-f7a7-485b-96b8-4a64d919043e",
+    "name": "_onEnter_Thomas Ceremony",
+    "sceneId": "be3109af-7c31-4ba9-be47-c2c758f5a3a9",
+    "trigger": {
+        "type": "triggers.enter",
+        "name": "Enter"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "a9a843d8-7fd8-4ba5-82bf-ce60f4a43047",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.actorPresent",
+                                    "actorId": "bdddd1b1-bbf3-4dd5-bbd6-0ef3115d8b66",
+                                    "hasNot": false
+                                },
+                                "right": {
+                                    "type": "expressions.inTags",
+                                    "scope": "scene",
+                                    "scopeId": "be3109af-7c31-4ba9-be47-c2c758f5a3a9",
+                                    "scopeFilterId": null,
+                                    "tags": "HasGreetedThomas",
+                                    "has": false
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.hasActiveQuest",
+                                                "propId": "123dac66-8cbc-42b4-adf6-98f42aa2a8c7",
+                                                "sceneId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                                                "questStatus": "0"
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.quests",
+                                                    "id": "fcdd3c65-d28f-4ac7-a9d8-fad5ac50cf77",
+                                                    "sceneId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                                                    "propId": "123dac66-8cbc-42b4-adf6-98f42aa2a8c7",
+                                                    "target": "1",
+                                                    "notify": true
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "d9af3555-852c-43ad-8946-ac04b562e41c",
+                                    "scope": "scene",
+                                    "scopeId": "be3109af-7c31-4ba9-be47-c2c758f5a3a9",
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "HasGreetedThomas",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.moveActor",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "propId": "468a4c9f-fe1e-40d5-a51d-3073b511d06f",
+                                    "movement": "Walking"
+                                },
+                                {
+                                    "type": "nodes.setCameraTarget",
+                                    "propId": null,
+                                    "actorId": "bdddd1b1-bbf3-4dd5-bbd6-0ef3115d8b66",
+                                    "time": 0,
+                                    "translateX": 0,
+                                    "translateY": 0,
+                                    "translateZ": 0,
+                                    "postWaitTime": 0,
+                                    "scope": "actor"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "71a188f1-d51d-4bbf-b4d5-09d8b2a1fa17",
+                                    "actorId": "bdddd1b1-bbf3-4dd5-bbd6-0ef3115d8b66",
+                                    "actorId2": null,
+                                    "text": "I hope you don't mind, sir. I'm sorry to disturb you like this, but... I just really need to talk to you.",
+                                    "emotion": "2",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.playAnimation",
+                                    "actorId": "bdddd1b1-bbf3-4dd5-bbd6-0ef3115d8b66",
+                                    "animationName": "KneelUp",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.turnActor",
+                                    "actorId": "bdddd1b1-bbf3-4dd5-bbd6-0ef3115d8b66",
+                                    "propId": null,
+                                    "wait": true,
+                                    "scope": "actor",
+                                    "targetActorId": "30ee2636-15e3-452e-a2db-09cbb9012970"
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "actor",
+                                                "scopeId": "bdddd1b1-bbf3-4dd5-bbd6-0ef3115d8b66",
+                                                "scopeFilterId": null,
+                                                "tags": "ShawnHelps",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changeReputation",
+                                                    "id": "8d05f214-de3d-4cc2-ba7f-a9d09a6c1771",
+                                                    "actorId": "bdddd1b1-bbf3-4dd5-bbd6-0ef3115d8b66",
+                                                    "amount": "5",
+                                                    "change": "1",
+                                                    "notify": true
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "7fd755d3-11ab-4991-a739-d971f64d5f9c",
+                                                    "actorId": "bdddd1b1-bbf3-4dd5-bbd6-0ef3115d8b66",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "Shawn, you made it here safely! I'm so glad. I was so worried that you'd get lost or caught by something terrible and it would be all my fault.",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "61e82bba-0613-4d0b-8de6-6c6956e908da",
+                                                    "actorId": "bdddd1b1-bbf3-4dd5-bbd6-0ef3115d8b66",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "I should have come here with you. We both would have been safer together.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "f36c441c-8848-4484-99f1-cc98ade774ad",
+                                                    "actorId": "bdddd1b1-bbf3-4dd5-bbd6-0ef3115d8b66",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "Shawn! What are you doing here?",
+                                                    "emotion": "4",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.inTags",
+                                                                "scope": "actor",
+                                                                "scopeId": "bdddd1b1-bbf3-4dd5-bbd6-0ef3115d8b66",
+                                                                "scopeFilterId": null,
+                                                                "tags": "CatacombsGhost",
+                                                                "has": true
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "bcf8eb41-b5dc-44f8-9f0e-1895d81d446f",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": "bdddd1b1-bbf3-4dd5-bbd6-0ef3115d8b66",
+                                                                    "text": "Just checking to make sure you were okay here.",
+                                                                    "emotion": "1",
+                                                                    "emotion2": "4",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "d9d9b48d-e79f-49b8-a1d9-8185622ca8fa",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": "bdddd1b1-bbf3-4dd5-bbd6-0ef3115d8b66",
+                                                                    "text": "After all, it can be pretty dangerous down here.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "c4aba778-2496-4042-afc5-cc073e878a4e",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": "bdddd1b1-bbf3-4dd5-bbd6-0ef3115d8b66",
+                                                                    "text": "And what else are friends for than to share super spooky ceremonies in the middle of the night in the depths of the catacombs?",
+                                                                    "emotion": "1",
+                                                                    "emotion2": "1",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "3cbb78cc-93ad-4cc1-8d43-150408f858af",
+                                                                    "actorId": "bdddd1b1-bbf3-4dd5-bbd6-0ef3115d8b66",
+                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "text": "Thank you, Shawn, I truly appreciate this.",
+                                                                    "emotion": "1",
+                                                                    "emotion2": "1",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeReputation",
+                                                                    "id": "9fcc8e92-4612-4eed-8d79-62d91d34752e",
+                                                                    "actorId": "bdddd1b1-bbf3-4dd5-bbd6-0ef3115d8b66",
+                                                                    "amount": "5",
+                                                                    "change": "1",
+                                                                    "notify": true
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": null,
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "08ff8de3-2b6f-4b60-8dcc-2b0c790e3cf2",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": "bdddd1b1-bbf3-4dd5-bbd6-0ef3115d8b66",
+                                                                    "text": "I was just exploring the Catacombs. I didn't expect to see you here.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "4",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "8b6721a3-603f-41d8-8ec1-c3f4120cbc9e",
+                                                                    "actorId": "bdddd1b1-bbf3-4dd5-bbd6-0ef3115d8b66",
+                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "text": "Oh, I was... I'm here to pay respects to the dead.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "5562b10f-49d9-444b-8c9b-b626f3fe3d6d",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": "bdddd1b1-bbf3-4dd5-bbd6-0ef3115d8b66",
+                                                                    "text": "In the middle of a Catacomb on the Nights of the Dead? This place seems like you went a long way out of your way just to pay respects.",
+                                                                    "emotion": "1",
+                                                                    "emotion2": "2",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "8030ecc6-8275-488f-82bc-1eaf0c3d1dd4",
+                                                                    "actorId": "bdddd1b1-bbf3-4dd5-bbd6-0ef3115d8b66",
+                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "text": "Actually, I'm here to try to talk to my father's ghost.",
+                                                                    "emotion": "2",
+                                                                    "emotion2": "4",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "010501dc-b322-4b8c-a2e1-6d580adf4980",
+                                                                    "actorId": "bdddd1b1-bbf3-4dd5-bbd6-0ef3115d8b66",
+                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "text": "You can stay and watch, if you want. Just please, don't interrupt. ",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.turnActor",
+                                    "actorId": "bdddd1b1-bbf3-4dd5-bbd6-0ef3115d8b66",
+                                    "propId": "e76151d0-d089-4558-92fd-259f188de0ed",
+                                    "scope": "prop",
+                                    "targetActorId": null
+                                },
+                                {
+                                    "type": "nodes.playAnimation",
+                                    "actorId": "bdddd1b1-bbf3-4dd5-bbd6-0ef3115d8b66",
+                                    "animationName": "KneelDown",
+                                    "wait": true
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

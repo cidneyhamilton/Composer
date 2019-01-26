@@ -1,0 +1,465 @@
+{
+    "type": "script",
+    "id": "3943ed15-6776-4875-8433-52c8b40ed558",
+    "name": "Open Door",
+    "storyEventId": "32df3697-cde9-48af-82a6-51be5fc65db4",
+    "sceneId": "212f8023-648d-45df-8f16-d56a7f081d41",
+    "trigger": {
+        "type": "triggers.manual",
+        "name": "Manual"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "83d11f4f-4071-4ca1-b607-faf9bdab4104",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.playMusic",
+                    "musicTrack": "silence.ogg",
+                    "channel": "1",
+                    "loopType": "1"
+                },
+                {
+                    "type": "nodes.playSoundEffect",
+                    "soundEffectName": "wooden_door_opening.wav",
+                    "wait": false
+                },
+                {
+                    "type": "nodes.invokeCommand",
+                    "id": "4d5bac54-8a24-45d8-8dc0-6cf93dfe67f4",
+                    "entityType": "prop",
+                    "entityFilterId": "212f8023-648d-45df-8f16-d56a7f081d41",
+                    "entityId": "1ae98823-40a5-4688-bfa4-f22807dd5926",
+                    "command": "open",
+                    "wait": true,
+                    "resultVariableScope": "script"
+                },
+                {
+                    "type": "nodes.playMusic",
+                    "musicTrack": "BunnySlippersMusic.ogg",
+                    "channel": "1",
+                    "loopType": "1"
+                },
+                {
+                    "type": "nodes.speak",
+                    "id": "52308065-8e17-41f7-bbf7-e9f89ab48eed",
+                    "actorId": "9f5d3ba1-4925-4ddb-9e75-d5304fec4f25",
+                    "actorId2": null,
+                    "text": "Hey - who are you? What are you doing in my house?",
+                    "emotion": "4",
+                    "device": "0"
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "scene",
+                                "scopeId": "212f8023-648d-45df-8f16-d56a7f081d41",
+                                "scopeFilterId": null,
+                                "tags": "KickedCatDeath",
+                                "has": true
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "93f06fbb-7706-49ca-a63f-209cfc1949c3",
+                                    "actorId": "9f5d3ba1-4925-4ddb-9e75-d5304fec4f25",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "And what did you do to Mr. Mau Mau?",
+                                    "emotion": "3",
+                                    "emotion2": "4",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.playSoundEffect",
+                                    "soundEffectName": "cat_screech_02.wav",
+                                    "wait": false
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "9f3656c3-19f3-4dd3-bafb-7634ed0c4023",
+                                    "actorId": "6367aa71-9355-4199-b390-d30a6ef23c02",
+                                    "actorId2": "9f5d3ba1-4925-4ddb-9e75-d5304fec4f25",
+                                    "text": "Rrrrawooooh.",
+                                    "emotion": "3",
+                                    "emotion2": "3",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "812cd632-eadf-454f-829f-4c5c78dcd8b7",
+                                    "actorId": "9f5d3ba1-4925-4ddb-9e75-d5304fec4f25",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "You scum - how dare you kick a defenseless little kitty like Mr. Mau Mau!\nGuards! Help! SETA - animal abuse!",
+                                    "emotion": "3",
+                                    "emotion2": "4",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.playMusic",
+                                    "musicTrack": "silence.ogg",
+                                    "channel": "1",
+                                    "loopType": "1"
+                                },
+                                {
+                                    "type": "nodes.wait",
+                                    "waitForSeconds": 1
+                                },
+                                {
+                                    "type": "nodes.invokeScript",
+                                    "id": "93be97bb-2731-473d-a95c-82e61c0ceab3",
+                                    "scriptId": "08b3309a-4c7c-4284-944b-124c351643de",
+                                    "entryPointId": "",
+                                    "currentScope": "Scenes",
+                                    "currentSceneId": "9984b025-6395-4ea0-8c46-35268fc802b4",
+                                    "currentActorId": null,
+                                    "currentStoryEventId": null,
+                                    "currentPropId": null
+                                },
+                                {
+                                    "type": "nodes.endScript"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.setVariable",
+                                    "name": "deathtype",
+                                    "scope": "ego",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "source": {
+                                        "type": "variables.literal",
+                                        "value": "jailhouse",
+                                        "displayName": "Literal"
+                                    },
+                                    "add": false
+                                },
+                                {
+                                    "type": "nodes.showMenu",
+                                    "id": "7635a2eb-b839-4202-bb86-cae88c02645a",
+                                    "options": [
+                                        {
+                                            "type": "options.text",
+                                            "id": "90524019-c4f2-4318-a350-ce1ef95490a9",
+                                            "text": "Try to Bluff",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "320db9ed-35b4-48ec-84bf-e1828166222a",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Would you believe that I'm the fire inspector and I'm here to inspect your fire?",
+                                                    "emotion": "1",
+                                                    "device": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "4985c519-45a2-4eb6-84e6-4b31d4e82809",
+                                                    "actorId": "9f5d3ba1-4925-4ddb-9e75-d5304fec4f25",
+                                                    "actorId2": null,
+                                                    "text": "A fire inspector? At this time of night? I don't believe it.",
+                                                    "emotion": "4",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "521355ce-ddae-4f01-a9e3-93337191de34",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Would you believe that I'm the Sandman and it's way past your bedtime?",
+                                                    "emotion": "4",
+                                                    "device": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "56b3077b-5a0a-46f2-9983-43396731d7dd",
+                                                    "actorId": "9f5d3ba1-4925-4ddb-9e75-d5304fec4f25",
+                                                    "actorId2": null,
+                                                    "text": "There's no such thing as a Sandman.",
+                                                    "emotion": "0",
+                                                    "device": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "e9fb6a0a-e5d5-4d91-bdde-2cf7a5a22dea",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "The Tooth Fairy?",
+                                                    "emotion": "2",
+                                                    "device": "0"
+                                                }
+                                            ],
+                                            "expression": null,
+                                            "ignoreChildAvailability": false,
+                                            "minutes": "10",
+                                            "ExitMenu": true
+                                        },
+                                        {
+                                            "type": "options.text",
+                                            "id": "b046715a-4735-4a79-931c-f1ccecabe998",
+                                            "text": "Try to Explain",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "5ecb1ba2-7c3f-4868-b82c-2fa2d8c2ee84",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Don't worry - I'm just here as part of the initiation for the... er... the local university. I'm just... um... checking to see how secure this house is from thieves...",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "b4c7cd03-7bf1-4293-ac24-82144a573c95",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "You really need to make sure all your windows are secured at night... You never know when a Thief will try to break in here.",
+                                                    "emotion": "0",
+                                                    "device": "0"
+                                                }
+                                            ],
+                                            "expression": null,
+                                            "ignoreChildAvailability": false,
+                                            "minutes": "10",
+                                            "ExitMenu": true
+                                        },
+                                        {
+                                            "type": "options.text",
+                                            "id": "d40ffc99-3794-4ac6-a80c-b0732242a377",
+                                            "text": "Panic and Babble",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "2515c891-914d-4a9d-a627-f39daa6a0061",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Who, me? Um... This is your house? Nice house... I love your interior decorator. And those slippers... What cute bunny slippers you are wearing! They go so well with your robe...",
+                                                    "emotion": "4",
+                                                    "device": "0"
+                                                }
+                                            ],
+                                            "expression": null,
+                                            "ignoreChildAvailability": false,
+                                            "minutes": "5",
+                                            "ExitMenu": true
+                                        },
+                                        {
+                                            "type": "options.text",
+                                            "id": "5001081f-fc26-4e6a-9b0a-1c4c722a54a4",
+                                            "text": "Attack",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "ce813702-cdef-4656-8f40-28c78b9a2d71",
+                                                    "actorId": "9f5d3ba1-4925-4ddb-9e75-d5304fec4f25",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "What? You dare to attack a Bunny Fu Master? ",
+                                                    "emotion": "3",
+                                                    "emotion2": "4",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.playMusic",
+                                                    "musicTrack": "silence.ogg",
+                                                    "channel": "1",
+                                                    "loopType": "1"
+                                                },
+                                                {
+                                                    "type": "nodes.invokeCommand",
+                                                    "id": "4bd58a6f-2af6-4516-aabc-3c9b02befbb6",
+                                                    "entityType": "actor",
+                                                    "entityId": "9f5d3ba1-4925-4ddb-9e75-d5304fec4f25",
+                                                    "command": "Attack",
+                                                    "wait": false,
+                                                    "resultVariableScope": "script"
+                                                },
+                                                {
+                                                    "type": "nodes.wait",
+                                                    "waitForSeconds": "0.2"
+                                                },
+                                                {
+                                                    "type": "nodes.fade",
+                                                    "scope": "FadeOut",
+                                                    "fadeTime": "1",
+                                                    "fadeTime2": 2,
+                                                    "wait": true,
+                                                    "fadeDown": 1,
+                                                    "fadeColorR": 0,
+                                                    "fadeColorG": 0,
+                                                    "fadeColorB": 0
+                                                },
+                                                {
+                                                    "type": "nodes.showVignette",
+                                                    "vignetteName": "BunnySlipperRoundhouse.png",
+                                                    "crossFadeTime": 0
+                                                },
+                                                {
+                                                    "type": "nodes.playSoundEffect",
+                                                    "soundEffectName": "kungfu_yell.wav",
+                                                    "wait": false
+                                                },
+                                                {
+                                                    "type": "nodes.fade",
+                                                    "scope": "FadeIn",
+                                                    "fadeTime": 2,
+                                                    "fadeTime2": "0.5",
+                                                    "wait": true,
+                                                    "fadeDown": "0.25",
+                                                    "fadeColorR": 0,
+                                                    "fadeColorG": 0,
+                                                    "fadeColorB": 0
+                                                },
+                                                {
+                                                    "type": "nodes.wait",
+                                                    "waitForSeconds": "1"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "e8c2d0bb-72ae-4942-84f1-6ee60360e449",
+                                                    "actorId": "9f5d3ba1-4925-4ddb-9e75-d5304fec4f25",
+                                                    "actorId2": null,
+                                                    "text": "Face the wrath of the rabbit!",
+                                                    "emotion": "3",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.setVariable",
+                                                    "name": "deathtype",
+                                                    "scope": "ego",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "source": {
+                                                        "type": "variables.literal",
+                                                        "value": "bunnyfoo",
+                                                        "displayName": "Literal"
+                                                    },
+                                                    "add": false
+                                                }
+                                            ],
+                                            "expression": null,
+                                            "ignoreChildAvailability": false,
+                                            "minutes": "5",
+                                            "ExitMenu": true
+                                        }
+                                    ],
+                                    "AutoAddDone": false,
+                                    "Unique": true
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.variableComparison",
+                                "variableScope": "ego",
+                                "variableName": "deathtype",
+                                "operator": "eq",
+                                "compareTo": "bunnyfoo",
+                                "sceneId": null,
+                                "propId": null
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "de1f8d6a-5a45-4b74-8477-694ab6da7791",
+                                    "scope": "storyEvent",
+                                    "scopeId": "32df3697-cde9-48af-82a6-51be5fc65db4",
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "BunnyFooDeath",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.playMusic",
+                                    "musicTrack": "silence.ogg",
+                                    "channel": "1",
+                                    "loopType": "1"
+                                },
+                                {
+                                    "type": "nodes.wait",
+                                    "waitForSeconds": 1
+                                },
+                                {
+                                    "type": "nodes.invokeScript",
+                                    "id": "d50ef044-979b-4d4f-8f84-a73590c9505e",
+                                    "scriptId": "08b3309a-4c7c-4284-944b-124c351643de",
+                                    "entryPointId": "",
+                                    "currentScope": "Scenes",
+                                    "currentSceneId": "9984b025-6395-4ea0-8c46-35268fc802b4",
+                                    "currentActorId": null,
+                                    "currentStoryEventId": null,
+                                    "currentPropId": null
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "8017cc32-31ed-4901-b235-ff1992761c09",
+                                    "actorId": "9f5d3ba1-4925-4ddb-9e75-d5304fec4f25",
+                                    "actorId2": null,
+                                    "text": "Guards! Help! Robber! Thief! Guards!",
+                                    "emotion": "3",
+                                    "device": "0"
+                                },
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "56805852-d0a3-493f-a4ad-ecadb4a08368",
+                                    "scope": "storyEvent",
+                                    "scopeId": "32df3697-cde9-48af-82a6-51be5fc65db4",
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "JailhouseDeath",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.playMusic",
+                                    "musicTrack": "silence.ogg",
+                                    "channel": "1",
+                                    "loopType": "1"
+                                },
+                                {
+                                    "type": "nodes.wait",
+                                    "waitForSeconds": 1
+                                },
+                                {
+                                    "type": "nodes.invokeScript",
+                                    "id": "1e216e47-29ef-410a-b077-2454ab736fa6",
+                                    "scriptId": "08b3309a-4c7c-4284-944b-124c351643de",
+                                    "entryPointId": "",
+                                    "currentScope": "Scenes",
+                                    "currentSceneId": "9984b025-6395-4ea0-8c46-35268fc802b4",
+                                    "currentActorId": null,
+                                    "currentStoryEventId": null,
+                                    "currentPropId": null
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

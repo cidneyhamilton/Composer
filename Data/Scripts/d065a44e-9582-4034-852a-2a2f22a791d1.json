@@ -1,0 +1,506 @@
+{
+    "type": "script",
+    "id": "d065a44e-9582-4034-852a-2a2f22a791d1",
+    "name": "_enter UC",
+    "sceneId": "ed2b858e-927a-44b9-86ee-4d3fe4dcfc33",
+    "trigger": {
+        "type": "triggers.enter",
+        "name": "Enter"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "2fef7d56-1727-41d9-9b9f-69825850b711",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "actor",
+                                "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                "scopeFilterId": null,
+                                "tags": "combat_escape",
+                                "has": true
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.playAnimation",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "animationName": "Exhausted",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.changeHealth",
+                                    "id": "7d7c2401-4da4-4b96-9d02-c8c7ecc245db",
+                                    "target": "0",
+                                    "damageType": "-1",
+                                    "amount": "-25",
+                                    "canDie": false,
+                                    "isPercentage": true,
+                                    "showNotification": true
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "7db43d9e-b3d1-4228-a732-3035d30f4165",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Wow... I was lucky that I got out of there alive.",
+                                    "emotion": "2",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "263efd37-c333-42c4-997a-b4eda8e8b66b",
+                                    "scope": "actor",
+                                    "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "",
+                                    "tagsToRemove": "combat_escape"
+                                },
+                                {
+                                    "type": "nodes.incrementTime",
+                                    "id": "0c5777d7-39f8-4118-a1e8-3f2776b304ae",
+                                    "days": 0,
+                                    "hours": "1",
+                                    "minutes": 0
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.previousScene",
+                                    "sceneId": "298ff758-e1ce-477a-b9d4-da614b74072d"
+                                },
+                                "right": {
+                                    "type": "expressions.inTags",
+                                    "scope": "scene",
+                                    "scopeId": "ed2b858e-927a-44b9-86ee-4d3fe4dcfc33",
+                                    "scopeFilterId": null,
+                                    "tags": "FirstDPEntrance",
+                                    "has": false
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "053ec6f3-cff6-492a-8b11-2b0c1c8ef54e",
+                                    "scope": "scene",
+                                    "scopeId": "ed2b858e-927a-44b9-86ee-4d3fe4dcfc33",
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "FirstDPEntrance",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "scene",
+                                                "scopeId": "ed2b858e-927a-44b9-86ee-4d3fe4dcfc33",
+                                                "scopeFilterId": null,
+                                                "tags": "FirstTime",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "0c539218-2d90-4e8a-9706-c65d05e6357f",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Whoa... I went from one creepy corridor to another. Somehow, this place seems colder and more dangerous than that dark passage above.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "98f149a3-5925-43a7-8cf2-9fddb83aa424",
+                                                    "scope": "scene",
+                                                    "scopeId": "ed2b858e-927a-44b9-86ee-4d3fe4dcfc33",
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "FirstTime",
+                                                    "tagsToRemove": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "f1ae8fbf-c6ff-4893-a800-b6ad7987acba",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Hey... I know this place! I'm back in the Underground Corridor below the castle. So that's where this secret staircase leads!",
+                                                    "emotion": "4",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.previousScene",
+                                    "sceneId": "dc706bb3-df41-4404-827c-3583baea588f"
+                                },
+                                "right": {
+                                    "type": "expressions.inTags",
+                                    "scope": "scene",
+                                    "scopeId": "ed2b858e-927a-44b9-86ee-4d3fe4dcfc33",
+                                    "scopeFilterId": null,
+                                    "tags": "FirstCatacombsEntrance",
+                                    "has": false
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "6c4a8789-c32d-4475-be9b-95a11f1dc3cb",
+                                    "scope": "scene",
+                                    "scopeId": "ed2b858e-927a-44b9-86ee-4d3fe4dcfc33",
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "FirstCatacombsEntrance",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "9488f659-ae9d-4acb-80c3-8ec47e91be76",
+                                    "scope": "prop",
+                                    "scopeId": "b50de0b0-b4da-4646-b697-992bef2b072e",
+                                    "scopeFilterId": "ed2b858e-927a-44b9-86ee-4d3fe4dcfc33",
+                                    "tagsToAdd": "Opened",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "scene",
+                                                "scopeId": "ed2b858e-927a-44b9-86ee-4d3fe4dcfc33",
+                                                "scopeFilterId": null,
+                                                "tags": "FirstTime",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "203ba1cc-63c8-47c7-a9eb-2f67f93b01d0",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "So where am I now? This looks a lot like the castle.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "a96fef54-7de2-47a2-82c1-c27b0f45bbb5",
+                                                    "scope": "scene",
+                                                    "scopeId": "ed2b858e-927a-44b9-86ee-4d3fe4dcfc33",
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "FirstTime",
+                                                    "tagsToRemove": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "502a61da-de8e-49b2-b825-543531c49079",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Hey... I know this place! I'm back in the Underground Corridor below the castle. So that's where this door leads!",
+                                                    "emotion": "4",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.previousScene",
+                                    "sceneId": "cf824b0f-5af6-4a19-bac8-552a2a1bbebf"
+                                },
+                                "right": {
+                                    "type": "expressions.inTags",
+                                    "scope": "scene",
+                                    "scopeId": "ed2b858e-927a-44b9-86ee-4d3fe4dcfc33",
+                                    "scopeFilterId": null,
+                                    "tags": "FirstCourtyardEntrance",
+                                    "has": false
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "9fdac7b4-2fef-4691-9e07-dee3bf364f82",
+                                    "scope": "scene",
+                                    "scopeId": "ed2b858e-927a-44b9-86ee-4d3fe4dcfc33",
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "FirstCourtyardEntrance",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "scene",
+                                                "scopeId": "ed2b858e-927a-44b9-86ee-4d3fe4dcfc33",
+                                                "scopeFilterId": null,
+                                                "tags": "FirstTime",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "ff7850a9-6aa5-46d2-b619-6f5cdec35d78",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Down a hidden ladder into a creepy underground corridor...",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "ead86292-43ae-4348-b830-84f66cf81f81",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "How cool is this!?!",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "97c972ec-48f1-4751-93d5-3f5ce42c3757",
+                                                    "scope": "scene",
+                                                    "scopeId": "ed2b858e-927a-44b9-86ee-4d3fe4dcfc33",
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "FirstTime",
+                                                    "tagsToRemove": null
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.previousScene",
+                                    "sceneId": "db7d4f5f-2dc0-4f21-beed-ee153ded5491"
+                                },
+                                "right": {
+                                    "type": "expressions.inTags",
+                                    "scope": "scene",
+                                    "scopeId": "ed2b858e-927a-44b9-86ee-4d3fe4dcfc33",
+                                    "scopeFilterId": null,
+                                    "tags": "FirstTortureEntrance",
+                                    "has": false
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "2bfa964e-1308-47f1-8463-900c00fc98dc",
+                                    "scope": "scene",
+                                    "scopeId": "ed2b858e-927a-44b9-86ee-4d3fe4dcfc33",
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "FirstTortureEntrance",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "48d582db-41c1-47de-ad5f-0b7748d1c2aa",
+                                    "scope": "prop",
+                                    "scopeId": "51bf281d-d518-4eaa-beea-fadd1fc9863f",
+                                    "scopeFilterId": "ed2b858e-927a-44b9-86ee-4d3fe4dcfc33",
+                                    "tagsToAdd": "Opened",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "scene",
+                                                "scopeId": "ed2b858e-927a-44b9-86ee-4d3fe4dcfc33",
+                                                "scopeFilterId": null,
+                                                "tags": "FirstTime",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "7b774a8d-2970-49c8-8563-09445e669b2c",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Now where am I... This place is so confusing.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "6175f9da-7668-491c-89dc-cf20eea9c662",
+                                                    "scope": "scene",
+                                                    "scopeId": "ed2b858e-927a-44b9-86ee-4d3fe4dcfc33",
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "FirstTime",
+                                                    "tagsToRemove": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "3f401da5-e8d8-4946-bee8-61796e159f87",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Okay, now that I've unbarred this door from the other side, where am I now?",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "0dd8ed98-2341-46a5-8eea-ed5e6d21112b",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Ah! So the secret door in the torture chamber leads into the underground corridor. Now I know a shortcut if I ever need to torture someone in a hurry.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.previousScene",
+                                    "sceneId": "e9302fad-2a24-451d-b277-b3f506ffacb7"
+                                },
+                                "right": {
+                                    "type": "expressions.inTags",
+                                    "scope": "scene",
+                                    "scopeId": "ed2b858e-927a-44b9-86ee-4d3fe4dcfc33",
+                                    "scopeFilterId": null,
+                                    "tags": "FirstTortureEntrance",
+                                    "has": false
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "45b2e976-8fa7-4186-a224-a676db9c9f7a",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Whoa. I was lucky to get out of there alive.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "0bcc2eef-5d46-4bec-81e6-d4ffaf692e90",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "But why am I in this creepy corridor?",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.previousScene",
+                                "sceneId": "e9302fad-2a24-451d-b277-b3f506ffacb7"
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "0ab82e5d-2475-451e-9806-f211b3086d8a",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Whoa, I was lucky to get out of there alive.",
+                                    "emotion": "6",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

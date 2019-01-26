@@ -1,0 +1,386 @@
+{
+    "type": "script",
+    "id": "08357cab-daae-496d-88ff-d12b529dccc5",
+    "name": "CommonPickDoors",
+    "sceneId": "1d3d17da-9115-4826-bad9-c69267b18ea9",
+    "trigger": {
+        "type": "triggers.manual",
+        "name": "Manual"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "77857375-ebb9-486b-a942-40f08c02d128",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "actor",
+                                "scopeId": "53707249-ebd2-4b1a-b71b-f8ac943c7d9c",
+                                "scopeFilterId": null,
+                                "tags": "defeated",
+                                "has": false
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.nodeCycle",
+                                    "id": "d72b4199-987c-48d5-8684-3a0e49106292",
+                                    "nodes": [
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "e5a7c276-4ba5-448f-a113-d8f0bc37b43c",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "I'd better hurry up if I want to pick this lock before that thing gets me.",
+                                            "emotion": "0",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "fce7973d-fd3f-4b8c-a6ff-359fc11733c3",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "Let's try again this time!",
+                                            "emotion": "0",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "1a1c5507-9581-4f96-a812-bdacba6544d0",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "Stop shaking, hands. We can do this. ",
+                                            "emotion": "3",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.playAnimation",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "animationName": "KneelDown",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.skillCheck",
+                                                "skill": "Tool Use",
+                                                "target": "70"
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.setVariable",
+                                                    "name": "unlock",
+                                                    "scope": "target",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "source": {
+                                                        "type": "variables.literal",
+                                                        "value": "1",
+                                                        "displayName": "Literal"
+                                                    },
+                                                    "add": true
+                                                },
+                                                {
+                                                    "type": "nodes.playSoundEffect",
+                                                    "soundEffectName": "lockpick_success.wav",
+                                                    "wait": false
+                                                },
+                                                {
+                                                    "type": "nodes.invokeCommand",
+                                                    "id": "423a2eed-565c-47d2-9f4e-3ab6b2a48476",
+                                                    "entityType": "actor",
+                                                    "entityId": "53707249-ebd2-4b1a-b71b-f8ac943c7d9c",
+                                                    "command": "approach",
+                                                    "wait": true,
+                                                    "resultVariableScope": "script"
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.variableComparison",
+                                                                "variableScope": "target",
+                                                                "variableName": "unlock",
+                                                                "operator": "gte",
+                                                                "compareTo": "3",
+                                                                "sceneId": "1d3d17da-9115-4826-bad9-c69267b18ea9",
+                                                                "propId": null
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "05814525-d5d0-4a9f-81bc-0d198bfac804",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "Got it!",
+                                                                    "emotion": "1",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeTags",
+                                                                    "id": "16ce8fd7-3ab4-49e4-ae93-a6f032624829",
+                                                                    "scope": "target",
+                                                                    "scopeId": null,
+                                                                    "scopeFilterId": null,
+                                                                    "tagsToAdd": "unlocked",
+                                                                    "tagsToRemove": null
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.variableComparison",
+                                                                "variableScope": "target",
+                                                                "variableName": "unlock",
+                                                                "operator": "eq",
+                                                                "compareTo": "2",
+                                                                "sceneId": "1d3d17da-9115-4826-bad9-c69267b18ea9",
+                                                                "propId": null
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "3b409571-c0d7-49b3-b9b7-13e3247f66a1",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "Yes! That's lock number two picked.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": null,
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "e1f34e74-ad8a-4ed4-8f7c-b9c23036bf5e",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "That's lock number one picked.",
+                                                                    "emotion": "4",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.playSoundEffect",
+                                                    "soundEffectName": "lockpick_failure.wav",
+                                                    "wait": false
+                                                },
+                                                {
+                                                    "type": "nodes.invokeCommand",
+                                                    "id": "94e6a7b1-7337-4cb5-8535-543daefe53ee",
+                                                    "entityType": "actor",
+                                                    "entityId": "53707249-ebd2-4b1a-b71b-f8ac943c7d9c",
+                                                    "command": "approach",
+                                                    "wait": true,
+                                                    "resultVariableScope": "script"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "8855252d-f572-4a44-a98d-6303e4e66040",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Darn, this is harder than I thought.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.playAnimation",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "animationName": "KneelUp",
+                                    "wait": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.comment",
+                                    "message": "This is if the golem has already been defeated.",
+                                    "commentor": "Joshua"
+                                },
+                                {
+                                    "type": "nodes.playAnimation",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "animationName": "KneelDown",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "global",
+                                                "variableName": "ego.haslockpick",
+                                                "operator": "eq",
+                                                "compareTo": "false",
+                                                "sceneId": "1d3d17da-9115-4826-bad9-c69267b18ea9",
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "64e7b1f9-308f-4069-8b3b-5d5db1da5a3d",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Oh, that's right. I don't have a lockpick.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "id": "e4b298e0-2f03-449f-9039-22c63e069cab",
+                                                    "type": "nodes.skillBranch",
+                                                    "skill": "Tool Use",
+                                                    "target": "70",
+                                                    "success": {
+                                                        "type": "nodes.block",
+                                                        "nodes": [
+                                                            {
+                                                                "type": "nodes.changeTags",
+                                                                "id": "4fc74206-a3ab-4a3d-9ec2-65375157e262",
+                                                                "scope": "target",
+                                                                "scopeId": null,
+                                                                "scopeFilterId": null,
+                                                                "tagsToAdd": "unlocked",
+                                                                "tagsToRemove": null
+                                                            },
+                                                            {
+                                                                "type": "nodes.playSoundEffect",
+                                                                "soundEffectName": "lockpick_success.wav",
+                                                                "wait": true
+                                                            },
+                                                            {
+                                                                "type": "nodes.speak",
+                                                                "id": "1b335abb-b90c-4433-987d-7e29b6868963",
+                                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                "text": "That's the first lock...",
+                                                                "emotion": "1",
+                                                                "emotion2": "0",
+                                                                "device": "0",
+                                                                "device2": "0"
+                                                            },
+                                                            {
+                                                                "type": "nodes.playSoundEffect",
+                                                                "soundEffectName": "lockpick_success.wav",
+                                                                "wait": true
+                                                            },
+                                                            {
+                                                                "type": "nodes.speak",
+                                                                "id": "ee4f14fc-ac1c-4c11-ba22-029444a939a0",
+                                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                "text": "...and the second...",
+                                                                "emotion": "1",
+                                                                "emotion2": "0",
+                                                                "device": "0",
+                                                                "device2": "0"
+                                                            },
+                                                            {
+                                                                "type": "nodes.playSoundEffect",
+                                                                "soundEffectName": "lockpick_success.wav",
+                                                                "wait": true
+                                                            },
+                                                            {
+                                                                "type": "nodes.speak",
+                                                                "id": "ad2357ab-6273-4d25-9e99-1a84cc26577e",
+                                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                "text": "Got it!",
+                                                                "emotion": "1",
+                                                                "emotion2": "0",
+                                                                "device": "0",
+                                                                "device2": "0"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "failure": {
+                                                        "type": "nodes.block",
+                                                        "nodes": [
+                                                            {
+                                                                "type": "nodes.playSoundEffect",
+                                                                "soundEffectName": "lockpick_failure.wav",
+                                                                "wait": true
+                                                            },
+                                                            {
+                                                                "type": "nodes.speak",
+                                                                "id": "72d235dc-e1a7-4316-aaf8-92fe7e415c32",
+                                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                "text": "These locks are tricky. I need to keep practicing.",
+                                                                "emotion": "2",
+                                                                "emotion2": "0",
+                                                                "device": "0",
+                                                                "device2": "0"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "notify": true
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.playAnimation",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "animationName": "KneelUp",
+                                    "wait": true
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

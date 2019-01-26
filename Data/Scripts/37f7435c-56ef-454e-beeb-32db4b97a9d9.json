@@ -1,0 +1,78 @@
+{
+    "type": "script",
+    "id": "37f7435c-56ef-454e-beeb-32db4b97a9d9",
+    "name": "Loot",
+    "propId": "54c87976-49ed-4d54-bc38-bb9adb0194b7",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "11a80956-bc97-46ce-bfe7-735182f2fd85",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.invokeCommand",
+                    "id": "064ff998-2433-4a95-84f9-ad03ecfb1bae",
+                    "entityType": "target",
+                    "command": "loot",
+                    "wait": true,
+                    "resultVariable": "lootresult",
+                    "resultVariableScope": "target"
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.variableComparison",
+                                "variableScope": "target",
+                                "variableName": "lootresult",
+                                "operator": "eq",
+                                "compareTo": "nothing"
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "84f97378-ede5-46b6-ad8c-5b8b8efaf338",
+                                    "actorId": "38b1ca94-de8c-4873-8810-3d0b02df469a",
+                                    "actorId2": null,
+                                    "text": "There is nothing on the Drat body.",
+                                    "emotion": "0",
+                                    "device": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "cb3cc297-b839-4eea-bbec-f751f8af448c",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "I got some Proach Parts.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.changeInventory",
+                                    "id": "e3276f74-90d1-4a99-836f-2bb7f017a2c2",
+                                    "propId": "27332424-bb96-4bd9-988a-54abb3e4e4a4",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "change": "1"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

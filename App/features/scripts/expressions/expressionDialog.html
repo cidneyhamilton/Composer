@@ -1,0 +1,35 @@
+<div class="messageBox expressionDialog">
+    <div class="modal-header">
+        <h3>Expression Editor
+            <div class="btn-group pull-right">
+                <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                    Add Condition
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu pull-left" role="menu" aria-labelledby="dropdownMenu">
+                    <!--ko foreach: availableExpressions-->
+                    <li>
+                        <a href="#" data-bind="text:$data.displayName, click: function() { $parent.addExpression($data); }"></a>
+                    </li>
+                    <!--/ko-->
+                </ul>
+            </div>
+        </h3>
+    </div>
+    <div class="modal-body">
+        <ul data-bind="foreach: sequence">
+            <li>
+                <div>
+                    <!--ko compose: { model:'features/scripts/' + $data.type.replace('.', '/') + 'Editor', activationData: [$parent, $data] }--><!--/ko-->
+                </div>
+            </li>
+        </ul>
+
+        <!--ko if: sequence.length < 1-->
+            <div style="text-align: center">No conditions.</div>
+        <!--/ko-->
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" data-bind="click: ok">Ok</button>
+    </div>
+</div>

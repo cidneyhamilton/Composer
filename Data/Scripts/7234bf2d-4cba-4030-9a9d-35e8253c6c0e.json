@@ -1,0 +1,49 @@
+{
+    "type": "script",
+    "id": "7234bf2d-4cba-4030-9a9d-35e8253c6c0e",
+    "name": "Aeolus Greet End",
+    "sceneId": "9897ecb3-4200-4884-867a-2840471747b8",
+    "actorId": "0661a2f7-5493-46d9-ab58-6e9bff9a5f30",
+    "trigger": {
+        "type": "triggers.manual",
+        "name": "Manual"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "53d48a66-e5e9-4128-b8c9-7e6d8ecd533b",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.comment",
+                    "message": "Not doing the reset on the first day, it resets during the conversation already",
+                    "commentor": "Charles"
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.variableComparison",
+                                "variableScope": "global",
+                                "variableName": "time.day",
+                                "operator": "ne",
+                                "compareTo": "1",
+                                "sceneId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                "propId": null
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.resetCamera",
+                                    "wait": true,
+                                    "time": "1.5"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

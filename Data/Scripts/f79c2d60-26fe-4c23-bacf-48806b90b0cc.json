@@ -1,0 +1,482 @@
+{
+    "type": "script",
+    "id": "f79c2d60-26fe-4c23-bacf-48806b90b0cc",
+    "name": "Dining Hall Ifetaya: Gifts",
+    "sceneId": "bf8b9872-cbdd-47c6-997c-1cd3ad91bc1e",
+    "actorId": "a0b548d6-b820-451f-9508-8fc7fcf166bd",
+    "trigger": {
+        "type": "triggers.manual",
+        "name": "Manual"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "2990e176-952f-4d93-9079-d70d3dc56713",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "260e5442-9913-47b6-838e-b0d04bb0d78a",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "cb82cbd7-0ca5-45f1-9962-f40b7892676b",
+                            "text": "Offer the Fine Wine",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "781e2e70-d9a3-4aae-9fd2-4d6d69662c84",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "a0b548d6-b820-451f-9508-8fc7fcf166bd",
+                                    "text": "Would you like to have this bottle of wine I found?",
+                                    "emotion": "1",
+                                    "emotion2": "4",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.changeInventory",
+                                    "id": "c5711fc4-4822-4aa9-880f-7bbe7ad21f5a",
+                                    "propId": "1079772f-9fbf-4dad-b7a4-acea22601a60",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "change": "0",
+                                    "count": 1,
+                                    "notify": true
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "actor",
+                                                "scopeId": "a0b548d6-b820-451f-9508-8fc7fcf166bd",
+                                                "scopeFilterId": null,
+                                                "tags": "winegift",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "d4f45c6b-49f2-4375-ad55-56379ca3c1bc",
+                                                    "scope": "actor",
+                                                    "scopeId": "a0b548d6-b820-451f-9508-8fc7fcf166bd",
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "winegift",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "278ba62b-73a2-4a4f-828d-eb60182e9640",
+                                                    "actorId": "a0b548d6-b820-451f-9508-8fc7fcf166bd",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "Ah, I can always use some fine wine like this in stews and desserts. You are kind, Mister Shawn-Shawn. Ese gan.",
+                                                    "emotion": "1",
+                                                    "emotion2": "1",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.changeReputation",
+                                                    "id": "25dd7fea-391d-4193-b9ed-de5cc118599a",
+                                                    "actorId": "a0b548d6-b820-451f-9508-8fc7fcf166bd",
+                                                    "amount": "5",
+                                                    "change": "1",
+                                                    "notify": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "13f37fac-7402-4377-8ed8-71a60cd81ad3",
+                                                    "actorId": "a0b548d6-b820-451f-9508-8fc7fcf166bd",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "Very nice, I thank you. I will put it to good use.",
+                                                    "emotion": "1",
+                                                    "emotion2": "1",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.changeReputation",
+                                                    "id": "01ba67a9-353f-41f0-b4c9-77388c0c8dec",
+                                                    "actorId": "a0b548d6-b820-451f-9508-8fc7fcf166bd",
+                                                    "amount": "2",
+                                                    "change": "1",
+                                                    "notify": true
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.inInventory",
+                                "propId": "1079772f-9fbf-4dad-b7a4-acea22601a60",
+                                "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                "has": true
+                            },
+                            "ignoreChildAvailability": false,
+                            "minutes": 0,
+                            "ExitMenu": true
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "0275e933-6a64-4ba0-91cf-2b222d7c7296",
+                            "text": "Offer the Bead Necklace",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "ed2556cc-8927-47e7-9cba-8677bdceb104",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "a0b548d6-b820-451f-9508-8fc7fcf166bd",
+                                    "text": "I'd like you to have this Bead Necklace I found. It reminded me of you.",
+                                    "emotion": "1",
+                                    "emotion2": "1",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.changeInventory",
+                                    "id": "eacb4957-9d2e-4f5f-a38b-09344734501d",
+                                    "propId": "13351bce-2263-456d-8387-f85cb9af24c4",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "change": "0",
+                                    "count": 1,
+                                    "notify": true
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "actor",
+                                                "scopeId": "a0b548d6-b820-451f-9508-8fc7fcf166bd",
+                                                "scopeFilterId": null,
+                                                "tags": "Beadgift",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "77cbd34a-a928-4ce4-a621-be33a06d67e6",
+                                                    "scope": "actor",
+                                                    "scopeId": "a0b548d6-b820-451f-9508-8fc7fcf166bd",
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "Beadgift",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "2ca878ca-f396-48fa-abc9-91b48faa6f55",
+                                                    "actorId": "a0b548d6-b820-451f-9508-8fc7fcf166bd",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "They be very nice, Mister Shawn-Shawn. My thanks to you.",
+                                                    "emotion": "1",
+                                                    "emotion2": "1",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "d4bb29b8-8a22-4a22-8d26-0e33a522ae9b",
+                                                    "actorId": "4cc48e56-7f61-4887-ad13-4bf879f29b21",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "Riki love beads! Riki happy. Nice Shawn.",
+                                                    "emotion": "1",
+                                                    "emotion2": "4",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.changeReputation",
+                                                    "id": "8c805cab-bd6d-4f81-8c7f-e270f6ba0765",
+                                                    "actorId": "a0b548d6-b820-451f-9508-8fc7fcf166bd",
+                                                    "amount": "15",
+                                                    "change": "1",
+                                                    "notify": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "26be8142-8634-4913-b027-7c8c4bd7895f",
+                                                    "actorId": "4cc48e56-7f61-4887-ad13-4bf879f29b21",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "More beads! Riki, she be very happy.",
+                                                    "emotion": "1",
+                                                    "emotion2": "1",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "85947902-0643-48c6-ba9d-31351b45b6d3",
+                                                    "actorId": "a0b548d6-b820-451f-9508-8fc7fcf166bd",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "If Riki is happy, then I shall be happy, Mister Shawn-Shawn. Ese gan.",
+                                                    "emotion": "1",
+                                                    "emotion2": "1",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.changeReputation",
+                                                    "id": "2360be50-803f-486c-a864-9fb8bfb52222",
+                                                    "actorId": "a0b548d6-b820-451f-9508-8fc7fcf166bd",
+                                                    "amount": "5",
+                                                    "change": "1",
+                                                    "notify": true
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.inInventory",
+                                "propId": "13351bce-2263-456d-8387-f85cb9af24c4",
+                                "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                "has": true
+                            },
+                            "ignoreChildAvailability": false,
+                            "minutes": 0,
+                            "ExitMenu": true
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "f9367cb2-6e04-4056-9084-4b6497d9d56e",
+                            "text": "Offer the Dryad's Kiss Wine",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "81f3c664-9442-47c0-a9fa-68fbebe7d3b8",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "a0b548d6-b820-451f-9508-8fc7fcf166bd",
+                                    "text": "I'd like you to have this bottle of very rare wine.",
+                                    "emotion": "1",
+                                    "emotion2": "4",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "7b0e72d9-21b2-458d-9bab-583f7feac371",
+                                    "scope": "actor",
+                                    "scopeId": "a0b548d6-b820-451f-9508-8fc7fcf166bd",
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "Dryadgift",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "199df92e-2ae2-4262-ae69-4b4e6b4d35e8",
+                                    "actorId": "a0b548d6-b820-451f-9508-8fc7fcf166bd",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "You are very kind, Mister Shawn-Shawn. However, that gift is much too fine to use in cooking. You should be sharing that gift with someone who is special to you. ",
+                                    "emotion": "0",
+                                    "emotion2": "4",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.changeReputation",
+                                    "id": "9809e7ba-656e-4720-8226-c8b57cfd7af5",
+                                    "actorId": "a0b548d6-b820-451f-9508-8fc7fcf166bd",
+                                    "amount": "5",
+                                    "change": "1",
+                                    "notify": true
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inInventory",
+                                    "propId": "a6bcab19-4d98-46ab-8fe6-52a4d3761dd4",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "has": true
+                                },
+                                "right": {
+                                    "type": "expressions.inTags",
+                                    "scope": "actor",
+                                    "scopeId": "a0b548d6-b820-451f-9508-8fc7fcf166bd",
+                                    "scopeFilterId": null,
+                                    "tags": "Dryadgift",
+                                    "has": false
+                                }
+                            },
+                            "ignoreChildAvailability": false,
+                            "minutes": 0,
+                            "ExitMenu": true
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "090705ce-5b19-41eb-8f83-2b1304be9f68",
+                            "text": "Offer the Golden Wine",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "de59108a-5635-4c2f-85eb-4a5e5fa6794c",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "a0b548d6-b820-451f-9508-8fc7fcf166bd",
+                                    "text": "Here's a bottle of special wine I found wasting away in the wine cellar. I'd like you to have it.",
+                                    "emotion": "1",
+                                    "emotion2": "4",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "2c92c384-6308-46a7-a941-0acd787435fb",
+                                    "actorId": "a0b548d6-b820-451f-9508-8fc7fcf166bd",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "This wine has the rich aromas of honey and tropical fruits with a touch of apples and vanilla. It will go well with Coq au vin jaune or Bouillabaisse.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "ea78d51b-295c-4629-8803-c6ef1b239463",
+                                    "actorId": "a0b548d6-b820-451f-9508-8fc7fcf166bd",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "This is a very fine gift you be giving me. Thank you, Shawn.",
+                                    "emotion": "0",
+                                    "emotion2": "1",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.changeReputation",
+                                    "id": "bc7ed8e3-92b1-4fd0-bcd5-80db96c39d2c",
+                                    "actorId": "a0b548d6-b820-451f-9508-8fc7fcf166bd",
+                                    "amount": "15",
+                                    "change": "1",
+                                    "notify": true
+                                },
+                                {
+                                    "type": "nodes.changeInventory",
+                                    "id": "99c78d81-195f-4e2d-9a09-f0d2e3923c73",
+                                    "propId": "91aa49b0-490a-4448-967d-d97387a985bb",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "change": "0",
+                                    "count": 1,
+                                    "notify": true
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.inInventory",
+                                "propId": "91aa49b0-490a-4448-967d-d97387a985bb",
+                                "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                "has": true
+                            },
+                            "ignoreChildAvailability": false,
+                            "minutes": 0,
+                            "ExitMenu": true
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "b49392d7-960f-476b-b433-46045a914c4e",
+                            "text": "Offer a Rose",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "e30d0107-4a1e-4164-a259-7a2fc9e889e2",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "a0b548d6-b820-451f-9508-8fc7fcf166bd",
+                                    "text": "I brought you a rose because you are so sweet.",
+                                    "emotion": "1",
+                                    "emotion2": "4",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "2ffa0fd3-3541-43c6-90e8-b2be51613d4a",
+                                    "actorId": "a0b548d6-b820-451f-9508-8fc7fcf166bd",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "It is a pretty rose. Thank you.",
+                                    "emotion": "1",
+                                    "emotion2": "1",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "cad02065-f472-40b5-b570-2ef958226f65",
+                                    "scope": "actor",
+                                    "scopeId": "a0b548d6-b820-451f-9508-8fc7fcf166bd",
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "Rosegifttoday",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "1808ab42-4bad-4f95-b9b1-29a58f81247b",
+                                    "actorId": "4cc48e56-7f61-4887-ad13-4bf879f29b21",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "Yummy!",
+                                    "emotion": "1",
+                                    "emotion2": "4",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.changeInventory",
+                                    "id": "74a6a97e-f84a-49cd-ad37-0096591ff497",
+                                    "propId": "6b99d059-b486-4547-abbc-8b3169478a39",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "change": "0",
+                                    "count": 1,
+                                    "notify": true
+                                },
+                                {
+                                    "type": "nodes.changeReputation",
+                                    "id": "fd20c773-e687-4de0-a8b3-6c2204289ea4",
+                                    "actorId": "a0b548d6-b820-451f-9508-8fc7fcf166bd",
+                                    "amount": "2",
+                                    "change": "1",
+                                    "notify": true
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inInventory",
+                                    "propId": "6b99d059-b486-4547-abbc-8b3169478a39",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "has": true
+                                },
+                                "right": {
+                                    "type": "expressions.inTags",
+                                    "scope": "actor",
+                                    "scopeId": "a0b548d6-b820-451f-9508-8fc7fcf166bd",
+                                    "scopeFilterId": null,
+                                    "tags": "Rosegifttoday",
+                                    "has": false
+                                }
+                            },
+                            "ignoreChildAvailability": false,
+                            "minutes": 0,
+                            "ExitMenu": true
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

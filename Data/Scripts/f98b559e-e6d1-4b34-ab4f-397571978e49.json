@@ -1,0 +1,545 @@
+{
+    "type": "script",
+    "id": "f98b559e-e6d1-4b34-ab4f-397571978e49",
+    "name": "Queen Event 3",
+    "sceneId": "e9302fad-2a24-451d-b277-b3f506ffacb7",
+    "trigger": {
+        "type": "triggers.manual",
+        "name": "Manual"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "d0c91a10-4341-4660-9f63-fa13433e8fd5",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.placeActor",
+                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "spawnId": "aa6724cc-0c6f-4ca2-a536-2c17f64b1f6b",
+                    "pose": null,
+                    "behaviour": "Idle",
+                    "immediate": true
+                },
+                {
+                    "type": "nodes.setCameraTarget",
+                    "propId": "aa6724cc-0c6f-4ca2-a536-2c17f64b1f6b",
+                    "actorId": null,
+                    "time": "0",
+                    "translateX": 0,
+                    "translateY": "1.25",
+                    "translateZ": 0,
+                    "postWaitTime": 0,
+                    "scope": "prop"
+                },
+                {
+                    "type": "nodes.turnActor",
+                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "propId": "80efd61c-5726-4a52-9d7e-bad484541edf",
+                    "scope": "prop",
+                    "targetActorId": null
+                },
+                {
+                    "type": "nodes.speak",
+                    "id": "e8ec8de6-f1b0-433a-b166-aaa34ed107b8",
+                    "actorId": "3ec7237c-65ea-4a23-9e21-697f17a2dbe8",
+                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "text": "Where is my Amulet???",
+                    "emotion": "3",
+                    "emotion2": "0",
+                    "device": "0",
+                    "device2": "0"
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.inInventory",
+                                "propId": "693bdc39-8b1e-4672-90b3-f73385e8d14e",
+                                "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                "has": true
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.showMenu",
+                                    "id": "3e50373e-b2c1-40e9-a8c1-737470dcdd38",
+                                    "options": [
+                                        {
+                                            "type": "options.text",
+                                            "id": "5264f694-bd28-4863-865a-6146780d920c",
+                                            "text": "Give the Queen the Amulet",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "3aa574b4-e920-48d1-b53f-b7f0e31500a7",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": "3ec7237c-65ea-4a23-9e21-697f17a2dbe8",
+                                                    "text": "Here you go...",
+                                                    "emotion": "0",
+                                                    "emotion2": "4",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.playAnimation",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "animationName": "ReachOut",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.changeInventory",
+                                                    "id": "08b97903-3ae3-4d4c-9363-61d5272034bc",
+                                                    "propId": "693bdc39-8b1e-4672-90b3-f73385e8d14e",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "change": "0",
+                                                    "count": 1,
+                                                    "notify": true
+                                                },
+                                                {
+                                                    "type": "nodes.quests",
+                                                    "id": "a322db4b-87f8-4563-bc79-372703bb782c",
+                                                    "sceneId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                                                    "propId": "e2609ce8-5f04-496e-93d8-38ad3019ef2f",
+                                                    "target": "1",
+                                                    "notify": true
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "bd9366b7-1d86-43e2-a728-3f28b6160acb",
+                                                    "actorId": "3ec7237c-65ea-4a23-9e21-697f17a2dbe8",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "Yesss! Yesss! It isss mine!",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "a7f2a01e-d34e-4a33-9e5c-9607ae9a5c98",
+                                                    "actorId": "3ec7237c-65ea-4a23-9e21-697f17a2dbe8",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "Go - and do not return!",
+                                                    "emotion": "3",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.quests",
+                                                    "id": "814c83ce-a227-4e19-836a-f2a4f8b03202",
+                                                    "sceneId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                                                    "propId": "677a9ff1-7927-4c91-9d08-f79ea52cf698",
+                                                    "target": "1",
+                                                    "notify": true
+                                                },
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "0ae20aba-ef80-44bc-a325-237367df3130",
+                                                    "scope": "actor",
+                                                    "scopeId": "3ec7237c-65ea-4a23-9e21-697f17a2dbe8",
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "QueenDone,QueenShawn",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "66655069-fc3a-487f-88cb-31a204224390",
+                                                    "scriptId": "bb529fa9-164c-4be1-acc3-5db9cbc242d6",
+                                                    "entryPointId": "83f3a6bd-fa0c-4c3e-b8d2-3a780577cbb0",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "e9302fad-2a24-451d-b277-b3f506ffacb7",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                },
+                                                {
+                                                    "type": "nodes.endScript"
+                                                }
+                                            ],
+                                            "expression": null,
+                                            "ignoreChildAvailability": false,
+                                            "minutes": "5",
+                                            "ExitMenu": true
+                                        },
+                                        {
+                                            "type": "options.text",
+                                            "id": "06549b8a-5167-4734-823d-364f4b21ea6c",
+                                            "text": "Trade the Queen the Amulet",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "4c04cfac-e7db-44db-a465-66f552f4dfdb",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": "3ec7237c-65ea-4a23-9e21-697f17a2dbe8",
+                                                    "text": "I've got it right here. But first, I'll need something in return. Hmmm... I'll just take this ring lying on the carpet over here.",
+                                                    "emotion": "1",
+                                                    "emotion2": "4",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.playAnimation",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "animationName": "KneelDown",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.changeInventory",
+                                                    "id": "fae837bd-d3ee-4a7a-90dc-daef3227368d",
+                                                    "propId": "2a17e782-e1b7-48b4-af63-ef9cd4976886",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "change": "1",
+                                                    "count": 1,
+                                                    "notify": true
+                                                },
+                                                {
+                                                    "type": "nodes.playAnimation",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "animationName": "KneelUp",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "0ebf5463-c3b0-42c2-a5ca-c2bdebc63e64",
+                                                    "actorId": "3ec7237c-65ea-4a23-9e21-697f17a2dbe8",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "(Hissssss) Give me my amulet!",
+                                                    "emotion": "3",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "7f6a1f08-acf1-45b2-9647-40c996e25cae",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": "3ec7237c-65ea-4a23-9e21-697f17a2dbe8",
+                                                    "text": "Sure thing. Here you go.",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.playAnimation",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "animationName": "ReachOut",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.changeInventory",
+                                                    "id": "b5c51a1f-365f-42fc-9633-d2c6a20f62e0",
+                                                    "propId": "693bdc39-8b1e-4672-90b3-f73385e8d14e",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "change": "0",
+                                                    "count": 1,
+                                                    "notify": true
+                                                },
+                                                {
+                                                    "type": "nodes.quests",
+                                                    "id": "a9bd32e0-9108-46c8-84ec-13c71a315650",
+                                                    "sceneId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                                                    "propId": "e2609ce8-5f04-496e-93d8-38ad3019ef2f",
+                                                    "target": "1",
+                                                    "notify": true
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "dd48975b-15f2-46fb-a14e-31968bf2a713",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": "3ec7237c-65ea-4a23-9e21-697f17a2dbe8",
+                                                    "text": "Okay, a deal's a deal. No more Drats.",
+                                                    "emotion": "1",
+                                                    "emotion2": "3",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "3720ef43-e89c-4494-b4e4-d75a7bc638d6",
+                                                    "actorId": "3ec7237c-65ea-4a23-9e21-697f17a2dbe8",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "Go and do not return!",
+                                                    "emotion": "3",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.quests",
+                                                    "id": "e2c991cd-46ca-40a4-aad1-954b05819038",
+                                                    "sceneId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                                                    "propId": "677a9ff1-7927-4c91-9d08-f79ea52cf698",
+                                                    "target": "1",
+                                                    "notify": true
+                                                },
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "8c934346-f901-4665-9434-27ed3ff20db4",
+                                                    "scope": "actor",
+                                                    "scopeId": "3ec7237c-65ea-4a23-9e21-697f17a2dbe8",
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "QueenDone,QueenShawn",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "4ebda5bd-fc1e-48f5-ad63-e1439acb5c13",
+                                                    "scriptId": "bb529fa9-164c-4be1-acc3-5db9cbc242d6",
+                                                    "entryPointId": "83f3a6bd-fa0c-4c3e-b8d2-3a780577cbb0",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "e9302fad-2a24-451d-b277-b3f506ffacb7",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                },
+                                                {
+                                                    "type": "nodes.endScript"
+                                                }
+                                            ],
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "actor",
+                                                "scopeId": "3ec7237c-65ea-4a23-9e21-697f17a2dbe8",
+                                                "scopeFilterId": null,
+                                                "tags": "fairtrade",
+                                                "has": true
+                                            },
+                                            "ignoreChildAvailability": false,
+                                            "minutes": 0,
+                                            "ExitMenu": false
+                                        },
+                                        {
+                                            "type": "options.text",
+                                            "id": "7d8482d7-90e2-4aef-ad00-e80fc9c04f38",
+                                            "text": "Try to Make a Deal",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": null,
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "bf31669c-3b38-4e39-9cd5-2bb84c6b2759",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": "3ec7237c-65ea-4a23-9e21-697f17a2dbe8",
+                                                                    "text": "I think we should make a deal... I'll give you your amulet and you give me something in return...",
+                                                                    "emotion": "1",
+                                                                    "emotion2": "4",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "fd44ee02-4cdf-458a-9ea3-160dc562eb9b",
+                                                                    "actorId": "3ec7237c-65ea-4a23-9e21-697f17a2dbe8",
+                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "text": "Kill him! Kill him and get my amulet!",
+                                                                    "emotion": "3",
+                                                                    "emotion2": "4",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "72a754ac-ea30-4cd8-bf6c-4026a6c11f61",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": "3ec7237c-65ea-4a23-9e21-697f17a2dbe8",
+                                                                    "text": "Wait... we can work something out...",
+                                                                    "emotion": "4",
+                                                                    "emotion2": "3",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.invokeScript",
+                                                                    "id": "119c5942-ed9a-4b33-ab43-a11b70d697f8",
+                                                                    "scriptId": "ae2de04c-144f-4c35-8453-8df36aa404c5",
+                                                                    "entryPointId": "76ae6271-bf61-4019-9716-5c130b7359f6",
+                                                                    "currentScope": "Scenes",
+                                                                    "currentSceneId": "e9302fad-2a24-451d-b277-b3f506ffacb7",
+                                                                    "currentActorId": null,
+                                                                    "currentStoryEventId": null,
+                                                                    "currentPropId": null
+                                                                },
+                                                                {
+                                                                    "type": "nodes.endScript"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "expression": null,
+                                            "ignoreChildAvailability": false,
+                                            "minutes": "4",
+                                            "ExitMenu": true
+                                        },
+                                        {
+                                            "type": "options.text",
+                                            "id": "8b237989-2b5b-43d5-9c8d-9b9b833b6501",
+                                            "text": "Refuse to Give the Amulet",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": null,
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "1bd0ca60-af84-4ce6-a337-805e4d31482c",
+                                                                    "actorId": "38b1ca94-de8c-4873-8810-3d0b02df469a",
+                                                                    "actorId2": null,
+                                                                    "text": "This is a DEBUG ONLY option. You are playing a debug build so this option is probably a work in progress.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "95206a29-00e0-4979-a45f-2e9ffd28803e",
+                                                                    "actorId": "3ec7237c-65ea-4a23-9e21-697f17a2dbe8",
+                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "text": "Kill him!",
+                                                                    "emotion": "3",
+                                                                    "emotion2": "4",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "32dff9f0-c414-448c-8650-78dd343c8eaf",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": "3ec7237c-65ea-4a23-9e21-697f17a2dbe8",
+                                                                    "text": "You know, now that I think about it, I don't think giving a powerful magic item to a very nasty Drat makes any sense at all. I think I'll keep this amulet for myself.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "4",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.invokeScript",
+                                                                    "id": "1ac92029-4db2-432f-a6f0-277d36a8d88d",
+                                                                    "scriptId": "ae2de04c-144f-4c35-8453-8df36aa404c5",
+                                                                    "entryPointId": "76ae6271-bf61-4019-9716-5c130b7359f6",
+                                                                    "currentScope": "Scenes",
+                                                                    "currentSceneId": "e9302fad-2a24-451d-b277-b3f506ffacb7",
+                                                                    "currentActorId": null,
+                                                                    "currentStoryEventId": null,
+                                                                    "currentPropId": null
+                                                                },
+                                                                {
+                                                                    "type": "nodes.endScript"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": null,
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "39669017-9fb6-474d-b13c-8be65366ff48",
+                                                                    "actorId": "38b1ca94-de8c-4873-8810-3d0b02df469a",
+                                                                    "actorId2": null,
+                                                                    "text": "Option Currently Not Implemented in this Build",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "expression": null,
+                                            "ignoreChildAvailability": false,
+                                            "minutes": 0,
+                                            "ExitMenu": false
+                                        }
+                                    ],
+                                    "AutoAddDone": true,
+                                    "Unique": false
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "ca9c44ec-1bed-48cc-8d8e-e39f04866963",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "3ec7237c-65ea-4a23-9e21-697f17a2dbe8",
+                                    "text": "I don't have it yet...",
+                                    "emotion": "0",
+                                    "emotion2": "3",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "f1d3ddb6-6dc4-4204-92b4-7707e3f82a83",
+                                    "actorId": "3ec7237c-65ea-4a23-9e21-697f17a2dbe8",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "Kill him!",
+                                    "emotion": "3",
+                                    "emotion2": "4",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "57b4115c-b96a-4318-80c0-22225eff3bf5",
+                                                    "actorId": "38b1ca94-de8c-4873-8810-3d0b02df469a",
+                                                    "actorId2": null,
+                                                    "text": "This is a Debug Only option so it is probably not completely implemented.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "d69a5fd3-d5b2-402f-9a26-6d0148f1e493",
+                                                    "scriptId": "ae2de04c-144f-4c35-8453-8df36aa404c5",
+                                                    "entryPointId": "76ae6271-bf61-4019-9716-5c130b7359f6",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "e9302fad-2a24-451d-b277-b3f506ffacb7",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                },
+                                                {
+                                                    "type": "nodes.endScript"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

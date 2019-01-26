@@ -1,0 +1,580 @@
+{
+    "type": "script",
+    "id": "d6314a01-9c15-4e7c-a25c-2eda8de6111f",
+    "name": "Interact with Library Door",
+    "sceneId": "cf824b0f-5af6-4a19-bac8-552a2a1bbebf",
+    "propId": "2dafe33c-8486-4773-8f7c-5925c3ef4144",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "b0d51ec7-2e60-483a-bfe2-eb2865b74d75",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.or",
+                                "left": {
+                                    "type": "expressions.variableComparison",
+                                    "variableScope": "global",
+                                    "variableName": "time.hour",
+                                    "operator": "lte",
+                                    "compareTo": "6",
+                                    "sceneId": "cf824b0f-5af6-4a19-bac8-552a2a1bbebf",
+                                    "propId": null
+                                },
+                                "right": {
+                                    "type": "expressions.variableComparison",
+                                    "variableScope": "global",
+                                    "variableName": "time.hour",
+                                    "operator": "gte",
+                                    "compareTo": "22",
+                                    "sceneId": "cf824b0f-5af6-4a19-bac8-552a2a1bbebf",
+                                    "propId": null
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "2b7a1281-6acf-420e-81bc-4f8a75da6a34",
+                                    "scope": "prop",
+                                    "scopeId": "2dafe33c-8486-4773-8f7c-5925c3ef4144",
+                                    "scopeFilterId": "cf824b0f-5af6-4a19-bac8-552a2a1bbebf",
+                                    "tagsToAdd": "locked",
+                                    "tagsToRemove": null
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "scene",
+                                "scopeId": "cf824b0f-5af6-4a19-bac8-552a2a1bbebf",
+                                "scopeFilterId": null,
+                                "tags": "IsHoliday",
+                                "has": true
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.comment",
+                                    "message": "Design change: library is unlocked during the holiday to give the player more options during the day.",
+                                    "commentor": "Cidney"
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.and",
+                                                "left": {
+                                                    "type": "expressions.variableComparison",
+                                                    "variableScope": "global",
+                                                    "variableName": "time.hour",
+                                                    "operator": "lte",
+                                                    "compareTo": "6",
+                                                    "sceneId": "cf824b0f-5af6-4a19-bac8-552a2a1bbebf",
+                                                    "propId": null
+                                                },
+                                                "right": {
+                                                    "type": "expressions.variableComparison",
+                                                    "variableScope": "global",
+                                                    "variableName": "time.hour",
+                                                    "operator": "gte",
+                                                    "compareTo": "18",
+                                                    "sceneId": "cf824b0f-5af6-4a19-bac8-552a2a1bbebf",
+                                                    "propId": null
+                                                }
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "bcd9eecf-b3f9-4593-a421-68c50ed025fd",
+                                                    "scope": "prop",
+                                                    "scopeId": "2dafe33c-8486-4773-8f7c-5925c3ef4144",
+                                                    "scopeFilterId": "cf824b0f-5af6-4a19-bac8-552a2a1bbebf",
+                                                    "tagsToAdd": "locked",
+                                                    "tagsToRemove": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "face219c-2d64-4b28-89bb-d92d6936a76d",
+                                                    "scope": "prop",
+                                                    "scopeId": "2dafe33c-8486-4773-8f7c-5925c3ef4144",
+                                                    "scopeFilterId": "cf824b0f-5af6-4a19-bac8-552a2a1bbebf",
+                                                    "tagsToRemove": "locked"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "dcbbabd2-35b0-43a9-a2e2-47466664f96b",
+                                    "scope": "prop",
+                                    "scopeId": "2dafe33c-8486-4773-8f7c-5925c3ef4144",
+                                    "scopeFilterId": "cf824b0f-5af6-4a19-bac8-552a2a1bbebf",
+                                    "tagsToRemove": "locked"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.showMenu",
+                    "id": "5eb9b5ab-3098-4a2c-8912-4e6ae3473e69",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "68f78d6a-5af6-4369-8680-858de6d8259c",
+                            "text": "Look at the Door",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "cf3fa190-2d9e-4f41-bfb5-03d1ad60729c",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "This door with the book carved on it leads to the... to the... um...",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "fa32831d-ed36-433a-ba67-5980806e6fc3",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "The LIBRARY!",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "12f0f111-c5fc-4469-80f3-81255869f1c2",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "I always have trouble with this one.",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "b37fcf13-8e34-4990-b615-028f61f37b48",
+                            "text": "Examine the Lock",
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "39bfe2d2-da8f-46ad-9d6e-8228d612ab40",
+                                    "scope": "prop",
+                                    "scopeId": "2dafe33c-8486-4773-8f7c-5925c3ef4144",
+                                    "scopeFilterId": "cf824b0f-5af6-4a19-bac8-552a2a1bbebf",
+                                    "tagsToAdd": "examinedLock",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.skillCheck",
+                                                "skill": "Perception",
+                                                "target": "30"
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "0d760fc2-6852-474d-b898-dfdc91188198",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Hmmm... this looks like a Marple class lock. That means it needs a Houdini 42 and some real skill in tool use.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "2ae8c737-4c86-413a-8f70-68664daf688c",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Well, yep, I can see it's a lock and a tough one, but that's it... I guess I had better go study my locks some more.",
+                                                    "emotion": "2",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inTags",
+                                    "scope": "actor",
+                                    "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "scopeFilterId": null,
+                                    "tags": "ReadAL",
+                                    "has": true
+                                },
+                                "right": {
+                                    "type": "expressions.inTags",
+                                    "scope": "prop",
+                                    "scopeId": "2dafe33c-8486-4773-8f7c-5925c3ef4144",
+                                    "scopeFilterId": "cf824b0f-5af6-4a19-bac8-552a2a1bbebf",
+                                    "tags": "examinedLock",
+                                    "has": false
+                                }
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "5",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "c647b730-6894-45fa-9858-76f86581b80b",
+                            "text": "Listen at the Door",
+                            "nodes": [
+                                {
+                                    "type": "nodes.playAnimation",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "animationName": "KneelDown",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.onceOnly",
+                                    "id": "a6d33581-2469-4b97-8ae9-fe056a181563",
+                                    "nodes": [
+                                        {
+                                            "id": "c7dc58fc-af33-4072-baef-b607808008ef",
+                                            "type": "nodes.skillBranch",
+                                            "skill": "Perception",
+                                            "target": "20",
+                                            "success": {
+                                                "type": "nodes.block",
+                                                "nodes": []
+                                            },
+                                            "failure": {
+                                                "type": "nodes.block",
+                                                "nodes": []
+                                            },
+                                            "notify": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.skillCheck",
+                                                "skill": "Perception",
+                                                "target": "20"
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "e5e6543d-a0e7-4810-8ea8-2e26bb9358ae",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "It's quiet in there... too quiet...",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "c6498588-f7ea-4f82-b638-4f95353d8228",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "But then again, aren't all libraries?",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "efead961-33ab-4383-b55a-46492cba04ce",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "It's quiet, but that doesn't mean people aren't in there reading.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.playAnimation",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "animationName": "KneelUp",
+                                    "wait": true
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "5",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "f368b91c-99a9-4ac1-aa66-4fd838cac225",
+                            "text": "Open the Door",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "prop",
+                                                "scopeId": "2dafe33c-8486-4773-8f7c-5925c3ef4144",
+                                                "scopeFilterId": "cf824b0f-5af6-4a19-bac8-552a2a1bbebf",
+                                                "tags": "locked",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "060ed78e-f87b-4006-81e3-8795d987b7f8",
+                                                    "scriptId": "a1004657-984b-46ba-8870-9550cbfb4b35",
+                                                    "entryPointId": "b0d51ec7-2e60-483a-bfe2-eb2865b74d75",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                },
+                                                {
+                                                    "type": "nodes.changeScene",
+                                                    "sceneId": "981ec865-3e1b-4f3e-bb0d-11df2bc7d593",
+                                                    "spawnId": "455b53ee-e154-42c1-ae5a-9d8efa155dbb",
+                                                    "fadeTime": 2
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "364f52d3-adcd-4bf6-8092-b864e9334f59",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "The door is locked right now.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "2",
+                            "ExitMenu": true
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "d5a1c2cd-a1d5-432a-895a-3a9c85b7f366",
+                            "text": "Pick the Lock",
+                            "nodes": [
+                                {
+                                    "id": "70ffe98e-6479-4649-a13a-f5c0a83212d8",
+                                    "type": "nodes.skillBranch",
+                                    "skill": "Tool Use",
+                                    "target": "35",
+                                    "success": {
+                                        "type": "nodes.block",
+                                        "nodes": [
+                                            {
+                                                "type": "nodes.playAnimation",
+                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                "animationName": "KneelDown",
+                                                "wait": true
+                                            },
+                                            {
+                                                "type": "nodes.invokeScript",
+                                                "id": "ca725826-778a-494b-9345-1c01c53da8bc",
+                                                "scriptId": "f214e893-43e1-4ba8-bb48-5ad1177e61de",
+                                                "entryPointId": "",
+                                                "currentScope": "Scenes",
+                                                "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                                "currentActorId": null,
+                                                "currentStoryEventId": null,
+                                                "currentPropId": null
+                                            },
+                                            {
+                                                "type": "nodes.changeTags",
+                                                "id": "4f6b4cec-ccb7-4d27-9dd4-1f7727332d2c",
+                                                "scope": "scene",
+                                                "scopeId": "981ec865-3e1b-4f3e-bb0d-11df2bc7d593",
+                                                "scopeFilterId": null,
+                                                "tagsToAdd": "BreakIn",
+                                                "tagsToRemove": null
+                                            },
+                                            {
+                                                "type": "nodes.playAnimation",
+                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                "animationName": "KneelUp"
+                                            },
+                                            {
+                                                "type": "nodes.speak",
+                                                "id": "51e0a632-6196-48ad-bd74-c3efef4aedb6",
+                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                "actorId2": null,
+                                                "text": "Time to sneakily slip inside.",
+                                                "emotion": "1",
+                                                "emotion2": "0",
+                                                "device": "0",
+                                                "device2": "0"
+                                            },
+                                            {
+                                                "type": "nodes.invokeScript",
+                                                "id": "4df4bd7d-862a-4e93-8f80-b0ebbfc9bd6e",
+                                                "scriptId": "a1004657-984b-46ba-8870-9550cbfb4b35",
+                                                "entryPointId": "b0d51ec7-2e60-483a-bfe2-eb2865b74d75",
+                                                "currentScope": "Scenes",
+                                                "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                                "currentActorId": null,
+                                                "currentStoryEventId": null,
+                                                "currentPropId": null
+                                            },
+                                            {
+                                                "type": "nodes.changeScene",
+                                                "sceneId": "981ec865-3e1b-4f3e-bb0d-11df2bc7d593",
+                                                "spawnId": "455b53ee-e154-42c1-ae5a-9d8efa155dbb",
+                                                "fadeTime": 2
+                                            }
+                                        ]
+                                    },
+                                    "failure": {
+                                        "type": "nodes.block",
+                                        "nodes": [
+                                            {
+                                                "type": "nodes.playAnimation",
+                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                "animationName": "KneelDown",
+                                                "wait": true
+                                            },
+                                            {
+                                                "type": "nodes.invokeScript",
+                                                "id": "bfd7f423-2bc0-4c5c-8fbf-711bc468690d",
+                                                "scriptId": "c806f4c0-6bc6-471a-97ab-fc59190de6da",
+                                                "entryPointId": "",
+                                                "currentScope": "Scenes",
+                                                "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                                "currentActorId": null,
+                                                "currentStoryEventId": null,
+                                                "currentPropId": null
+                                            },
+                                            {
+                                                "type": "nodes.playAnimation",
+                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                "animationName": "KneelUp"
+                                            },
+                                            {
+                                                "type": "nodes.speak",
+                                                "id": "4e0f6bc6-5c40-4925-84bd-efb11a37911d",
+                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                "actorId2": null,
+                                                "text": "Bleh. This is a really tough lock.",
+                                                "emotion": "2",
+                                                "emotion2": "0",
+                                                "device": "0",
+                                                "device2": "0"
+                                            }
+                                        ]
+                                    },
+                                    "notify": true
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inTags",
+                                    "scope": "target",
+                                    "scopeId": "cf824b0f-5af6-4a19-bac8-552a2a1bbebf",
+                                    "scopeFilterId": null,
+                                    "tags": "locked",
+                                    "has": true
+                                },
+                                "right": {
+                                    "type": "expressions.variableComparison",
+                                    "variableScope": "global",
+                                    "variableName": "ego.haslockpick",
+                                    "operator": "eq",
+                                    "compareTo": "true",
+                                    "sceneId": "cf824b0f-5af6-4a19-bac8-552a2a1bbebf",
+                                    "propId": null
+                                }
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "10",
+                            "ExitMenu": true
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

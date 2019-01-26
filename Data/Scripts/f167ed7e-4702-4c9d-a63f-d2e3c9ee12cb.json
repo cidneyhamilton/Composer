@@ -1,0 +1,467 @@
+{
+    "type": "script",
+    "id": "f167ed7e-4702-4c9d-a63f-d2e3c9ee12cb",
+    "name": "Interact with Chest",
+    "sceneId": "34acdbf0-8d3c-42fd-b310-0bb6d42ae1dd",
+    "propId": "54a532d2-2238-4f74-b15d-bf0b95a3ed61",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "363d10a3-37a3-490f-b4b2-446e365be92b",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "bf7b1bb6-b1c2-4743-ba65-2455745ed7b7",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "94ce0527-ecc7-4b84-b71b-7837e312efa2",
+                            "text": "Look at the Chest",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "a42f32be-d0ba-4f6d-9f9a-9233d51b44db",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Somebody thoughtfully left this here just for me.",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "1",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "23597555-3454-46d2-beda-34ce27ee9efb",
+                            "text": "Pick Up the Chest",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "48427d20-5abf-47f5-876b-4e7649a40ff6",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "The base looks all rotted out, probably from all the dampness. If I try to pick it up, I think it'll just all fall apart.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "3",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "aa2cdc10-bae3-4533-a30e-e188f41f53c1",
+                            "text": "Open the Chest",
+                            "nodes": [
+                                {
+                                    "type": "nodes.playAnimation",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "animationName": "KneelDown",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.playSoundEffect",
+                                    "soundEffectName": "Open Chest Lid.wav",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.or",
+                                                "left": {
+                                                    "type": "expressions.inTags",
+                                                    "scope": "script",
+                                                    "scopeId": null,
+                                                    "scopeFilterId": null,
+                                                    "tags": "item1_taken",
+                                                    "has": false
+                                                },
+                                                "right": {
+                                                    "type": "expressions.or",
+                                                    "left": {
+                                                        "type": "expressions.inTags",
+                                                        "scope": "script",
+                                                        "scopeId": null,
+                                                        "scopeFilterId": null,
+                                                        "tags": "item2_taken",
+                                                        "has": false
+                                                    },
+                                                    "right": {
+                                                        "type": "expressions.inTags",
+                                                        "scope": "script",
+                                                        "scopeId": null,
+                                                        "scopeFilterId": null,
+                                                        "tags": "item3_taken",
+                                                        "has": false
+                                                    }
+                                                }
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "d74609ed-b9e2-4eee-85c9-7cc9c2af6cee",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Hah! They're mine, all mine!",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "ad92d57c-560e-48a9-9cfd-3f9eafb83e81",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Fish... this thing is filled with dried fish.",
+                                                    "emotion": "2",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.showMenu",
+                                                    "id": "eb8ac57a-d2c0-4680-97a0-21d27b132df9",
+                                                    "options": [
+                                                        {
+                                                            "type": "options.text",
+                                                            "id": "ffcc5c31-0b11-47d2-8dde-8e70297ffbb7",
+                                                            "text": "Take Dried Fish",
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "8ecaa282-cd40-4c74-a1f2-6db5eec43a13",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "Dried fish... just what I've always wanted.",
+                                                                    "emotion": "2",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeInventory",
+                                                                    "id": "b2cea7d6-afc7-48c1-b1a2-d4b510dba772",
+                                                                    "propId": "247c7690-2a0c-48d5-86a3-3aa68f9850d0",
+                                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                                    "change": "1",
+                                                                    "count": "8",
+                                                                    "notify": true
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeTags",
+                                                                    "id": "172101bd-c387-4e07-b392-c371bd733dd9",
+                                                                    "scope": "script",
+                                                                    "scopeId": null,
+                                                                    "scopeFilterId": null,
+                                                                    "tagsToAdd": "item2_taken",
+                                                                    "tagsToRemove": null
+                                                                }
+                                                            ],
+                                                            "expression": null,
+                                                            "ignoreChildAvailability": false,
+                                                            "minutes": 0,
+                                                            "ExitMenu": false
+                                                        },
+                                                        {
+                                                            "type": "options.text",
+                                                            "id": "ad49d252-81d2-4617-9567-ef756511dfb8",
+                                                            "text": "Take Ring",
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.showCloseUp",
+                                                                    "imageName": "CU_OneAndOnlyRing.png"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "286051ca-f8e0-47e6-92b4-f858316b147a",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "Wait - there is something here under the dried fish. It's a nice-looking gold ring inscribed with the words, \"For my One and Only.\"",
+                                                                    "emotion": "1",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeInventory",
+                                                                    "id": "0ffd3b80-b6c6-4d1d-af31-2e181ec21f0d",
+                                                                    "propId": "b248f032-3cc9-4b99-9859-a447dab661a1",
+                                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                                    "change": "1",
+                                                                    "count": 1,
+                                                                    "notify": true
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeTags",
+                                                                    "id": "9d725d13-1944-4b15-9151-50193e19c88c",
+                                                                    "scope": "script",
+                                                                    "scopeId": null,
+                                                                    "scopeFilterId": null,
+                                                                    "tagsToAdd": "item1_taken",
+                                                                    "tagsToRemove": null
+                                                                },
+                                                                {
+                                                                    "type": "nodes.hideCloseUp",
+                                                                    "waitForSeconds": 1
+                                                                }
+                                                            ],
+                                                            "expression": {
+                                                                "type": "expressions.inTags",
+                                                                "scope": "script",
+                                                                "scopeId": null,
+                                                                "scopeFilterId": null,
+                                                                "tags": "item1_taken",
+                                                                "has": false
+                                                            },
+                                                            "ignoreChildAvailability": false,
+                                                            "minutes": 0,
+                                                            "ExitMenu": false
+                                                        },
+                                                        {
+                                                            "type": "options.text",
+                                                            "id": "9f2859ef-062d-46f2-ab25-a3acf3d91582",
+                                                            "text": "Take Dagger",
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "9ba20901-6668-415b-b2ff-5cc5e678cc7c",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "Ah, there's something stuck on the bottom of the chest.",
+                                                                    "emotion": "4",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.showCloseUp",
+                                                                    "imageName": "CU_FineThrowingKnife.png"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "22718fd6-bf9c-4ed5-ac35-de49700d1439",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "It's a finely balanced throwing knife. Amazing that this hasn't rusted away by now.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeInventory",
+                                                                    "id": "5b886eb2-72cc-4979-bcfc-409d583601c3",
+                                                                    "propId": "cb08f2ac-0112-4d0f-b96f-3f10239d2e51",
+                                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                                    "change": "1",
+                                                                    "count": 1,
+                                                                    "notify": true
+                                                                },
+                                                                {
+                                                                    "type": "nodes.hideCloseUp",
+                                                                    "waitForSeconds": 1
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeTags",
+                                                                    "id": "0b6f01a9-a1a8-4d11-adf3-3be2733da783",
+                                                                    "scope": "script",
+                                                                    "scopeId": null,
+                                                                    "scopeFilterId": null,
+                                                                    "tagsToAdd": "item3_taken",
+                                                                    "tagsToRemove": null
+                                                                }
+                                                            ],
+                                                            "expression": null,
+                                                            "ignoreChildAvailability": false,
+                                                            "minutes": 0,
+                                                            "ExitMenu": false
+                                                        }
+                                                    ],
+                                                    "AutoAddDone": true,
+                                                    "Unique": false
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "d65929a8-e1ed-4950-821e-bd7b48612b3d",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "I emptied it out, and now I'm sad.",
+                                                    "emotion": "2",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.and",
+                                                "left": {
+                                                    "type": "expressions.inTags",
+                                                    "scope": "script",
+                                                    "scopeId": null,
+                                                    "scopeFilterId": null,
+                                                    "tags": "item1_taken",
+                                                    "has": true
+                                                },
+                                                "right": {
+                                                    "type": "expressions.and",
+                                                    "left": {
+                                                        "type": "expressions.inTags",
+                                                        "scope": "script",
+                                                        "scopeId": null,
+                                                        "scopeFilterId": null,
+                                                        "tags": "item2_taken",
+                                                        "has": true
+                                                    },
+                                                    "right": {
+                                                        "type": "expressions.inTags",
+                                                        "scope": "script",
+                                                        "scopeId": null,
+                                                        "scopeFilterId": null,
+                                                        "tags": "item3_taken",
+                                                        "has": true
+                                                    }
+                                                }
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "18dd794b-4531-436e-aefa-96649041d6e9",
+                                                    "scope": "prop",
+                                                    "scopeId": "54a532d2-2238-4f74-b15d-bf0b95a3ed61",
+                                                    "scopeFilterId": "34acdbf0-8d3c-42fd-b310-0bb6d42ae1dd",
+                                                    "tagsToAdd": "looted",
+                                                    "tagsToRemove": null
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.playSoundEffect",
+                                    "soundEffectName": "Close Chest Lid.wav",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.playAnimation",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "animationName": "KneelUp",
+                                    "wait": true
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "5",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "eaed3462-716b-4c07-8aa2-382b3f69e61e",
+                            "text": "Sense Magic on the Chest",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "target",
+                                                "scopeId": null,
+                                                "scopeFilterId": null,
+                                                "tags": "sensedMagic",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "adfaa1ad-7ee9-4b39-a7ba-863c91531d00",
+                                                    "scope": "target",
+                                                    "scopeId": null,
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "sensedMagic",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "id": "dd02e261-9fe3-41d0-b8fc-c8d7796a58b4",
+                                                    "type": "nodes.skillBranch",
+                                                    "skill": "Magic",
+                                                    "target": "1",
+                                                    "success": {
+                                                        "type": "nodes.block",
+                                                        "nodes": []
+                                                    },
+                                                    "failure": {
+                                                        "type": "nodes.block",
+                                                        "nodes": []
+                                                    },
+                                                    "notify": true
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "1d13faf7-98a7-4133-bae3-b7df8901d6ab",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Nothing magic about it. Or in it. Or around it. ",
+                                    "emotion": "2",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "actor",
+                                "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                "scopeFilterId": null,
+                                "tags": "SenseMagic",
+                                "has": true
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "1",
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

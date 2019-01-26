@@ -1,0 +1,22 @@
+<div data-bind="compose: { mode:'templated', view:'nodeEditor' }">
+    <div data-part="read" class="text">
+		<!--ko if: node.immediate-->
+        <span>Place actor </span><span class="actor" data-bind="text:actor.name"></span> immediately at location <span class="prop" data-bind="text: spawnPoint.name"></span> in pose <span class="actor" data-bind="text:node.behaviour"></span>.
+        <!--/ko-->
+        <!--ko ifnot: node.immediate-->
+        <span>Place actor </span><span class="actor" data-bind="text:actor.name"></span> at location <span class="prop" data-bind="text: spawnPoint.name"></span> in pose <span class="actor" data-bind="text:node.behaviour"></span>, with transition.
+        <!--/ko-->
+    </div>
+
+    <div data-part="write">
+        <select data-bind="options: actors, optionsText: 'name', optionsValue: 'id', value: node.actorId, optionsCaption: 'Select Actor'"></select>
+        <select data-bind="options: availableProps, optionsText: 'name', optionsValue: 'id', value: node.spawnId, optionsCaption: 'Select Spawn Point'"></select>
+        <!--
+        <input type="text" data-bind="value: node.pose, valueUpdate: 'afterkeydown'" placeholder="pose"/>
+		-->
+		<span>Pose:</span><select data-bind="options: availableBehaviours, value: node.behaviour, optionsCaption: 'Select Pose'"></select><br>
+		
+		<label class="control-label">Immediate</label>
+        <input type="checkbox" data-bind="checked: node.immediate" />
+    </div>
+</div>

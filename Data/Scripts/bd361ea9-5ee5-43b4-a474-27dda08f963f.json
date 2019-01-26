@@ -1,0 +1,293 @@
+{
+    "type": "script",
+    "id": "bd361ea9-5ee5-43b4-a474-27dda08f963f",
+    "name": "Interact with Plaque McDealy (Ghost)",
+    "sceneId": "e8606d3d-9743-4b44-a3b3-117a393b42ae",
+    "propId": "8c4a1f5b-8311-43b5-b033-93764eafd573",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "8f601fbf-c1ec-429c-91ef-f74747145853",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showCloseUp",
+                    "imageName": "Catacombs_plaque_prof_mac_deeley.png"
+                },
+                {
+                    "type": "nodes.onceOnly",
+                    "id": "625605d7-4991-4663-b941-7aa7fadc174e",
+                    "nodes": [
+                        {
+                            "type": "nodes.speak",
+                            "id": "e51e80e7-1390-4a62-b698-78c1547599d9",
+                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                            "actorId2": null,
+                            "text": "Wait, this is <i>that</i> Professor McDealy?",
+                            "emotion": "4",
+                            "emotion2": "0",
+                            "device": "0",
+                            "device2": "0"
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.speak",
+                    "id": "c0ba1fe1-6349-414b-b964-e2da983c1c38",
+                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "actorId2": null,
+                    "text": "The plaque reads...",
+                    "emotion": "0",
+                    "emotion2": "0",
+                    "device": "0",
+                    "device2": "0"
+                },
+                {
+                    "type": "nodes.speak",
+                    "id": "ac87d6c7-7ba3-4d26-84ed-65a58d26885a",
+                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "actorId2": null,
+                    "text": "\"Professor Grand McDealy\"",
+                    "emotion": "0",
+                    "emotion2": "0",
+                    "device": "0",
+                    "device2": "0"
+                },
+                {
+                    "type": "nodes.speak",
+                    "id": "d9d8dffe-ccdf-4e40-a230-a858eec31262",
+                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "actorId2": null,
+                    "text": "\"TRAPPED in the PURSUIT of eternal life with no ESCAPE\"",
+                    "emotion": "0",
+                    "emotion2": "0",
+                    "device": "0",
+                    "device2": "0"
+                },
+                {
+                    "type": "nodes.hideCloseUp",
+                    "waitForSeconds": 1
+                },
+                {
+                    "type": "nodes.turnActor",
+                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "propId": "84388824-402d-4d17-8eb9-22a9a354b147",
+                    "wait": true,
+                    "scope": "prop",
+                    "targetActorId": null
+                },
+                {
+                    "type": "nodes.playSoundEffect",
+                    "soundEffectName": "magic_twinkle_loop.wav",
+                    "wait": false
+                },
+                {
+                    "type": "nodes.placeActor",
+                    "actorId": "078aaf91-c8c9-4fcc-90b9-bb4f72722828",
+                    "spawnId": "84388824-402d-4d17-8eb9-22a9a354b147",
+                    "pose": null,
+                    "behaviour": "Ghost",
+                    "immediate": null
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.inInventory",
+                                "propId": "34e8cb8d-654c-4e30-81d2-11a9e533e39e",
+                                "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                "has": true
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.and",
+                                                "left": {
+                                                    "type": "expressions.variableComparison",
+                                                    "variableScope": "global",
+                                                    "variableName": "time.day",
+                                                    "operator": "gte",
+                                                    "compareTo": "32",
+                                                    "sceneId": "e8606d3d-9743-4b44-a3b3-117a393b42ae",
+                                                    "propId": null
+                                                },
+                                                "right": {
+                                                    "type": "expressions.variableComparison",
+                                                    "variableScope": "global",
+                                                    "variableName": "time.day",
+                                                    "operator": "lte",
+                                                    "compareTo": "33",
+                                                    "sceneId": "e8606d3d-9743-4b44-a3b3-117a393b42ae",
+                                                    "propId": null
+                                                }
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "d469bd28-5107-4825-aa81-033c5f6dd40c",
+                                                    "actorId": "078aaf91-c8c9-4fcc-90b9-bb4f72722828",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "Oh, dear boy, you <i>ARE</i> in trouble. The Wraith is wroth. You must destroy its phylactery, or it will soon come back to haunt you.",
+                                                    "emotion": "0",
+                                                    "emotion2": "4",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "b6a9d956-c11f-44d1-ad08-64c266e028a0",
+                                                    "actorId": "078aaf91-c8c9-4fcc-90b9-bb4f72722828",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "Just defeat the Wraith and then seek the phylactery in Locus Reflexionis. Hurry, the Wraith won't stay in its phylactery for long.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "9f035ecc-79ec-4650-b661-8c152ee0c899",
+                                                    "actorId": "078aaf91-c8c9-4fcc-90b9-bb4f72722828",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "Scurry off, but use precautions. We don't really need another Wraith around here.",
+                                                    "emotion": "1",
+                                                    "emotion2": "4",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "43176a4d-a7a1-4339-a5b4-8f1b36ac8344",
+                                                    "actorId": "078aaf91-c8c9-4fcc-90b9-bb4f72722828",
+                                                    "actorId2": null,
+                                                    "text": "Yikes!",
+                                                    "emotion": "4",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "f9f80f23-0333-462b-a573-bb542e4c48b5",
+                                                    "actorId": "078aaf91-c8c9-4fcc-90b9-bb4f72722828",
+                                                    "actorId2": null,
+                                                    "text": "I thought I saw a ghost!",
+                                                    "emotion": "4",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "44480b65-c1bf-4b51-9ef9-d59e3a84678d",
+                                                    "actorId": "078aaf91-c8c9-4fcc-90b9-bb4f72722828",
+                                                    "actorId2": null,
+                                                    "text": "Oh, that's right, I am a ghost.",
+                                                    "emotion": "4",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "b13e4b76-78c9-43f2-95da-4a45f29d5f35",
+                                                    "actorId": "078aaf91-c8c9-4fcc-90b9-bb4f72722828",
+                                                    "actorId2": null,
+                                                    "text": "It's so hard to keep track of such things, don't you think?",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.playSoundEffect",
+                                    "soundEffectName": "Ghost Wail.wav",
+                                    "wait": false
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "e39cd3ce-e394-4036-9df6-b7e2dc04c95d",
+                                    "actorId": "078aaf91-c8c9-4fcc-90b9-bb4f72722828",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "AiiiiiiiiAAAAAiiiii!",
+                                    "emotion": "0",
+                                    "emotion2": "4",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "e15e3d9b-c4a9-4748-b380-52fc251d85a3",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Okay. Ghostly Armadillo. Right. Now that <i>IS</i> creepy.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.invokeScript",
+                                    "id": "b2fd051a-5ed2-4d91-814e-84bcb604b508",
+                                    "scriptId": "98bed7e3-6d3d-4482-ae95-e3913dd384ed",
+                                    "entryPointId": "8f601fbf-c1ec-429c-91ef-f74747145853",
+                                    "currentScope": "Scenes",
+                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                    "currentActorId": null,
+                                    "currentStoryEventId": null,
+                                    "currentPropId": null
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.playSoundEffect",
+                    "soundEffectName": "magic_teleport.wav",
+                    "wait": false
+                },
+                {
+                    "type": "nodes.invokeCommand",
+                    "id": "81097177-5932-4505-83ae-9efee8357a90",
+                    "entityType": "actor",
+                    "entityId": "078aaf91-c8c9-4fcc-90b9-bb4f72722828",
+                    "command": "fadeout",
+                    "wait": true,
+                    "resultVariableScope": "script"
+                },
+                {
+                    "type": "nodes.removeActor",
+                    "id": "2839426e-5b1a-4c7f-bfef-757256a35bae",
+                    "actorId": "078aaf91-c8c9-4fcc-90b9-bb4f72722828"
+                }
+            ]
+        }
+    ]
+}

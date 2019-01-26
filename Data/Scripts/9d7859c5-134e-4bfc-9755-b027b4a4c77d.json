@@ -1,0 +1,217 @@
+{
+    "type": "script",
+    "id": "9d7859c5-134e-4bfc-9755-b027b4a4c77d",
+    "name": "Interact with Shawn's Door",
+    "sceneId": "82da26e2-b64a-4951-bca9-a3e78101825e",
+    "propId": "4bc73a91-f8bf-44b5-944e-04e6cad6a465",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "ac5e646e-32e9-4bbe-a720-32fe306c6c9b",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.variableComparison",
+                                    "variableScope": "global",
+                                    "variableName": "time.day",
+                                    "operator": "gte",
+                                    "compareTo": "14",
+                                    "sceneId": "40f18665-4cc2-4acd-b17e-5189e68b7a33",
+                                    "propId": null
+                                },
+                                "right": {
+                                    "type": "expressions.and",
+                                    "left": {
+                                        "type": "expressions.variableComparison",
+                                        "variableScope": "global",
+                                        "variableName": "time.day",
+                                        "operator": "lte",
+                                        "compareTo": "16",
+                                        "sceneId": "40f18665-4cc2-4acd-b17e-5189e68b7a33",
+                                        "propId": null
+                                    },
+                                    "right": {
+                                        "type": "expressions.and",
+                                        "left": {
+                                            "type": "expressions.variableComparison",
+                                            "variableScope": "global",
+                                            "variableName": "time.hour",
+                                            "operator": "lt",
+                                            "compareTo": "4",
+                                            "sceneId": "40f18665-4cc2-4acd-b17e-5189e68b7a33",
+                                            "propId": null
+                                        },
+                                        "right": {
+                                            "type": "expressions.inTags",
+                                            "scope": "scene",
+                                            "scopeId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                            "scopeFilterId": null,
+                                            "tags": "KwirkNoise",
+                                            "has": true
+                                        }
+                                    }
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.comment",
+                                    "message": "Kwirk Events",
+                                    "commentor": "Joshua"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "e2b260d5-4cc8-407f-ab9f-0130351c9dba",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "It's late, do I want to give up for tonight and head back to bed?",
+                                    "emotion": "5",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.showMenu",
+                                    "id": "aeacfbee-5791-4d41-a0fc-e3e60966f165",
+                                    "options": [
+                                        {
+                                            "type": "options.text",
+                                            "id": "6ea9a7be-5bff-41bf-a348-d07b095d6a46",
+                                            "text": "Stay and investigate",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "f6ba2fb5-ecde-4ba8-87d0-849447ac9e4c",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "There's got to be a clue somewhere!",
+                                                    "emotion": "2",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ],
+                                            "expression": null,
+                                            "ignoreChildAvailability": true,
+                                            "minutes": 0,
+                                            "ExitMenu": true
+                                        },
+                                        {
+                                            "type": "options.text",
+                                            "id": "b93875b4-ec0e-455b-82f9-65b9f09f63e0",
+                                            "text": "Go back to sleep.",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "3035ff89-ee4d-4dae-be74-969907e540c7",
+                                                    "scriptId": "a1004657-984b-46ba-8870-9550cbfb4b35",
+                                                    "entryPointId": "ac5e646e-32e9-4bbe-a720-32fe306c6c9b",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                },
+                                                {
+                                                    "type": "nodes.changeScene",
+                                                    "sceneId": "afb9f72c-1888-43db-ac71-fb6a81d41f47",
+                                                    "fadeTime": "0"
+                                                }
+                                            ],
+                                            "expression": null,
+                                            "ignoreChildAvailability": true,
+                                            "minutes": 0,
+                                            "ExitMenu": false
+                                        }
+                                    ],
+                                    "AutoAddDone": false,
+                                    "Unique": false
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.comment",
+                                    "message": "Added day 1 handling to Aeolus Door script - this prop will be disabled before then",
+                                    "commentor": "Charles"
+                                },
+                                {
+                                    "type": "nodes.showMenu",
+                                    "id": "3dc96641-ad55-41b5-8f36-37b8d39f0ab0",
+                                    "options": [
+                                        {
+                                            "type": "options.text",
+                                            "id": "dcaa0f77-6af5-4bc2-927c-4b44e8bed9cf",
+                                            "text": "Look at the Door",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "8dccc2a1-3c17-4666-a791-96c43165986a",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "The nameplate by the door says, \"Aeolus and Shawn O'Conner.\" Aeolus will be happy that he gets top billing.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ],
+                                            "expression": null,
+                                            "ignoreChildAvailability": true,
+                                            "minutes": "1",
+                                            "ExitMenu": false
+                                        },
+                                        {
+                                            "type": "options.text",
+                                            "id": "8ad24641-0e91-4f1f-8286-d33e206572ad",
+                                            "text": "Open the Door",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "3ab08568-2253-47f6-942d-d3b3caf25901",
+                                                    "scriptId": "a1004657-984b-46ba-8870-9550cbfb4b35",
+                                                    "entryPointId": "ac5e646e-32e9-4bbe-a720-32fe306c6c9b",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                },
+                                                {
+                                                    "type": "nodes.changeScene",
+                                                    "sceneId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                                    "spawnId": "ca037257-50fa-40b3-9cc3-d72b9afef5b4",
+                                                    "fadeTime": "0"
+                                                }
+                                            ],
+                                            "expression": null,
+                                            "ignoreChildAvailability": true,
+                                            "minutes": "2",
+                                            "ExitMenu": false
+                                        }
+                                    ],
+                                    "AutoAddDone": true,
+                                    "Unique": false
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,34 @@
+<div data-bind="compose: { mode:'templated', view:'nodeEditor' }">
+    <div data-part="read" class="text">
+        <span>Minigame: <span data-bind="text: minigamesMap.getMinigameById(node.minigameIndex)"></span>
+		 <!--ko if: node.minigameIndex == "1"-->
+			: <span data-bind="text:node.trapDisarmWord"></span>
+			(<span data-bind="text:node.trapDisarmDifficulty"></span>)
+		<!--/ko-->
+    </div>
+
+    <div data-part="write">
+        <span>Minigame: </span>
+
+        <select data-bind="options: minigamesMap.minigames, optionsText: 'name', optionsValue: 'id', value: node.minigameIndex"></select>
+        </br>
+
+        <div class="form-inline">
+             <!--ko if: node.minigameIndex == "1"-->
+            <label class="control-label">Word:</label>
+            <input type="text" data-bind="value: node.trapDisarmWord, valueUpdate: 'afterkeydown'" style="width: 80px"/>
+            <label class="control-label">Difficulty:</label>
+            <input type="text" data-bind="value: node.trapDisarmDifficulty, valueUpdate: 'afterkeydown'" style="width: 80px"/>
+            <!--/ko-->
+            </br>
+
+            <label class="control-label">Result Scope:</label>
+            <select data-bind="options: scopes, value: node.resultVariableScope" style="width: 80px"></select></br>
+
+            <label class="control-label">Result Name:</label>
+            <input type="text" data-bind="value: node.resultVariable, valueUpdate: 'afterkeydown'" placeholder="result variable name" style="width:130px"/>
+            </br>
+            <label class="control-label">Result Values: Will either be "Fail", "Pass", "Canceled"</label>
+        </div>
+    </div>
+</div>

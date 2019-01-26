@@ -1,0 +1,311 @@
+<div data-bind="compose: { mode:'templated', view:'nodeEditor' }">
+    <div data-part="read" class="text">
+
+<!-- CHANGE STAT -->
+<!--ko if: node.buffType == 1-->
+        Add Buff <span data-bind="text:node.value"></span>
+
+        <!--ko if: node.isPercentage == true-->
+        <span> %</span> 
+        <!--/ko-->
+
+        to <span data-bind="text: skillsAndAttributesMap.getSkillOrStatById(node.targetData)"></span>
+
+        <span> for </span><span data-bind="text:node.duration"></span> minutes
+        (<span data-bind="text:node.namedSource"></span>)
+<!--/ko-->
+
+<!-- APPLY RESISTANCE -->
+<!--ko if: node.buffType == 2-->
+        Add Resistance <span data-bind="text:node.value"></span><span> %</span> 
+
+
+        to
+        <!--ko if: node.targetData == 0--><span>None</span><!--/ko-->
+        <!--ko if: node.targetData == 1--><span>Poison Resistance</span><!--/ko-->
+        <!--ko if: node.targetData == 2--><span>Magic Resistance</span><!--/ko-->
+        <!--ko if: node.targetData == 3--><span>Fire Resistance</span><!--/ko-->
+
+        <span> for </span><span data-bind="text:node.duration"></span> minutes
+        (<span data-bind="text:node.namedSource"></span>)
+<!--/ko-->
+
+<!-- Crit Hit -->
+<!--ko if: node.buffType == 3-->
+        Bonus Crit Hit Chance
+        <span> for </span><span data-bind="text:node.duration"></span> minutes
+<!--/ko-->
+
+<!-- Remove Buff -->
+<!--ko if: node.buffType == 4-->
+        Remove Buff (<span data-bind="text:node.namedSource"></span>)
+<!--/ko-->
+
+<!-- Vile Damage -->
+<!--ko if: node.buffType == 5-->
+        Vile Damage
+        <span> for </span><span data-bind="text:node.duration"></span> minutes
+<!--/ko-->
+
+<!-- Magical Damage -->
+<!--ko if: node.buffType == 6-->
+        Magical Damage
+        <span> for </span><span data-bind="text:node.duration"></span> minutes
+<!--/ko-->
+
+
+<!-- Damage Increment -->
+<!--ko if: node.buffType == 7-->
+        Damage Increment
+        <span> for </span><span data-bind="text:node.duration"></span> minutes
+<!--/ko-->
+
+
+    </div>
+    <div data-part="write">
+
+
+            <table>
+                <tr>
+                    <td width="150px">
+                        <label>Buff Type</label>
+                    </td>
+                    <td width="150px">
+                        <select data-bind="value: node.buffType, valueUpdate: 'afterkeydown'">
+                            <option value="1">Change Stat</option>
+                            <option value="2">Apply Resistance</option>
+                            <option value="3">Bonus Crit Chance</option>
+                            <option value="4">Remove Buff</option>
+                            <option value="5">Vile Damage</option>
+                            <option value="6">Magic Damage</option>
+                            <option value="7">Damage Increment</option>
+                        </select>
+                    </td>
+                    <td width="250px">
+                    </td>
+                </tr>
+
+
+<!-- CHANGE STAT -->
+<!--ko if: node.buffType == 1-->
+
+                <tr>
+                    <td>
+                        <label>Named Source:</label>
+                    </td>
+                    <td>
+                        <input type="text" data-bind="value: node.namedSource, valueUpdate: 'afterkeydown'" placeholder="Source" style="float: right"/>
+                    </td>
+                    <td>
+                        <label> (Important for stacking rules!)</label>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label>Target Stat</label>
+                    </td>
+                    <td>
+                        <select data-bind="options: skillsAndAttributesMap.skillOrStats, optionsText: 'name', optionsValue: 'id', value: node.targetData, valueUpdate: 'afterkeydown'"></select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Amount:</label>
+                    </td>
+                    <td>
+                        <input type="text" data-bind="value: node.value, valueUpdate: 'afterkeydown'" placeholder="amount" style="float: right"/></br>
+                    </td>
+                    <td>
+                        <label>Percentage:</label>
+                        <input type="checkbox" data-bind="checked: node.isPercentage" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label>Duration:</label>
+                    </td>
+                    <td>
+                        <input type="text" data-bind="value: node.duration, valueUpdate: 'afterkeydown'" placeholder="duration" style="float: right"/>
+                    </td>
+                    <td>
+                        <label> (minutes)</label>
+                    </td>
+                </tr>
+<!--/ko-->
+
+<!-- APPLY RESISTANCE -->
+<!--ko if: node.buffType == 2-->
+                <tr>
+                    <td>
+                        <label>Target Resistance</label>
+                    </td>
+                    <td>
+                        <select data-bind="value: node.targetData, valueUpdate: 'afterkeydown'">
+                            <option value="0">None</option>
+                            <option value="1">Poision Resistance</option>
+                            <option value="2">Magic Resistance</option>
+                            <option value="3">Fire Resistance</option>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label>Named Source:</label>
+                    </td>
+                    <td>
+                        <input type="text" data-bind="value: node.namedSource, valueUpdate: 'afterkeydown'" placeholder="Source" style="float: right"/>
+                    </td>
+                    <td>
+                        <label> (Important for stacking rules!)</label>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label>Amount:</label>
+                    </td>
+                    <td>
+                        <input type="text" data-bind="value: node.value, valueUpdate: 'afterkeydown'" placeholder="amount" style="float: right"/></br>
+                    </td>
+                    <td>
+                        <label> %</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Duration:</label>
+                    </td>
+                    <td>
+                        <input type="text" data-bind="value: node.duration, valueUpdate: 'afterkeydown'" placeholder="duration" style="float: right"/>
+                    </td>
+                    <td>
+                        <label> (minutes)</label>
+                    </td>
+                </tr>
+<!--/ko-->
+
+<!-- CHANGE STAT -->
+<!--ko if: node.buffType == 3-->
+                <tr>
+                    <td>
+                        <label>Amount:</label>
+                    </td>
+                    <td>
+                        <input type="text" data-bind="value: node.value, valueUpdate: 'afterkeydown'" placeholder="amount" style="float: right"/></br>
+                    </td>
+                    <td>
+                        <label> %</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Duration:</label>
+                    </td>
+                    <td>
+                        <input type="text" data-bind="value: node.duration, valueUpdate: 'afterkeydown'" placeholder="duration" style="float: right"/>
+                    </td>
+                    <td>
+                        <label> (minutes)</label>
+                    </td>
+                </tr>
+
+<!--/ko-->
+
+<!-- REMOVE BUFF -->
+<!--ko if: node.buffType == 4-->
+                <tr>
+                    <td>
+                        <label>Named Source:</label>
+                    </td>
+                    <td>
+                        <input type="text" data-bind="value: node.namedSource, valueUpdate: 'afterkeydown'" placeholder="Source" style="float: right"/>
+                    </td>
+                    <td>
+                        <label> (Removes all buffs with this named source)</label>
+                    </td>
+                </tr>
+<!--/ko-->
+
+
+<!-- Crit Damage -->
+<!--ko if: node.buffType == 5-->
+                <tr>
+                    <td>
+                        <label>Amount:</label>
+                    </td>
+                    <td>
+                        <input type="text" data-bind="value: node.value, valueUpdate: 'afterkeydown'" placeholder="amount" style="float: right"/></br>
+                    </td>
+                    <td>
+                        <label> %</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Duration:</label>
+                    </td>
+                    <td>
+                        <input type="text" data-bind="value: node.duration, valueUpdate: 'afterkeydown'" placeholder="duration" style="float: right"/>
+                    </td>
+                    <td>
+                        <label> (minutes)</label>
+                    </td>
+                </tr>
+
+<!--/ko-->
+
+<!-- Magic Damage -->
+<!--ko if: node.buffType == 6-->
+                <tr>
+                    <td>
+                        <label>Duration:</label>
+                    </td>
+                    <td>
+                        <input type="text" data-bind="value: node.duration, valueUpdate: 'afterkeydown'" placeholder="duration" style="float: right"/>
+                    </td>
+                    <td>
+                        <label> (minutes)</label>
+                    </td>
+                </tr>
+
+<!--/ko-->
+
+<!-- Damage Increment -->
+<!--ko if: node.buffType == 7-->
+                <tr>
+                    <td>
+                        <label>Named Source:</label>
+                    </td>
+                    <td>
+                        <input type="text" data-bind="value: node.namedSource, valueUpdate: 'afterkeydown'" placeholder="Source" style="float: right"/>
+                    </td>
+                    <td>
+                        <label> (Important for stacking rules!)</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Duration:</label>
+                    </td>
+                    <td>
+                        <input type="text" data-bind="value: node.duration, valueUpdate: 'afterkeydown'" placeholder="duration" style="float: right"/>
+                    </td>
+                    <td>
+                        <label> (minutes)</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Damage +Mod)</label>
+                    </td>
+                    <td>
+                        <input type="text" data-bind="value: node.value, valueUpdate: 'afterkeydown'" placeholder="amount" style="float: right"/></br>
+                    </td>
+                </tr>
+<!--/ko-->
+            </table>
+    </div>
+</div>

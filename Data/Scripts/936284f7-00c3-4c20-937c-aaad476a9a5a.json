@@ -1,0 +1,271 @@
+{
+    "type": "script",
+    "id": "936284f7-00c3-4c20-937c-aaad476a9a5a",
+    "name": "TerkOffice 08: Get Gerhard",
+    "storyEventId": "4e34983e-32a7-4e7c-825b-a0289bfe46dc",
+    "sceneId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+    "trigger": {
+        "type": "triggers.manual",
+        "name": "Manual"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "7c458c78-8c43-4d6b-b907-e1c8fb5652e8",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.incrementTime",
+                    "id": "90246dde-b485-4b23-97ea-4f36aa472f0e",
+                    "days": 0,
+                    "hours": 0,
+                    "minutes": "20"
+                },
+                {
+                    "type": "nodes.speak",
+                    "id": "376666fc-1133-4d93-99c8-87b1ddf71293",
+                    "actorId": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "text": "You've done nothing but waste my time since the moment I saw you. Now your Patron has finally lost his patience with you. He says that there is something very valuable to him hidden in Gerhard's office. He wants you to find it. Tonight. This is your last chance.",
+                    "emotion": "0",
+                    "emotion2": "0",
+                    "device": "0",
+                    "device2": "0"
+                },
+                {
+                    "type": "nodes.showMenu",
+                    "id": "529f8970-d1a4-4263-a254-379b51d153ee",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "51cc8d81-d88a-49c4-a98f-f98d525cd486",
+                            "text": "Ask for more information",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "dc3296ad-038a-415e-9f85-3e6225e9f07a",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+                                    "text": "Hey - I've tried to find something out about Gerhard all this time. Gerhard's office is trapped against lockpicks. And I can't just search the room when Gerhard's sitting there. What am I supposed to do?",
+                                    "emotion": "4",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "fa650e43-2313-41b2-b31f-5fc2ca605622",
+                                    "actorId": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "You've been in Rogue Class all these months and you still can't break into Gerhard's office? What a loser!",
+                                    "emotion": "3",
+                                    "emotion2": "3",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": false,
+                            "minutes": "5",
+                            "ExitMenu": true
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "8bfdfb3e-670d-41ad-88df-63235a9ca7ad",
+                            "text": "Tell the Truth (Smarts)",
+                            "nodes": [
+                                {
+                                    "id": "ef236c7d-c3b3-4152-9f92-d24092e9ce0d",
+                                    "type": "nodes.skillBranch",
+                                    "skill": "Smarts",
+                                    "target": "95",
+                                    "success": {
+                                        "type": "nodes.block",
+                                        "nodes": []
+                                    },
+                                    "failure": {
+                                        "type": "nodes.block",
+                                        "nodes": []
+                                    },
+                                    "notify": true
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "17ae2bf6-1e4d-498d-b7f1-73377549c946",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+                                    "text": "No one can break into Gerhard's office. It takes a special key.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "2483cbb6-8234-4911-9c07-2fcacf541b5f",
+                                    "actorId": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "Well then, tomorrow will be my lucky day then, won't it?",
+                                    "emotion": "1",
+                                    "emotion2": "2",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": false,
+                            "minutes": "2",
+                            "ExitMenu": true
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "f584e84d-3715-4595-9c53-f52005012c2c",
+                            "text": "Answer Snarkily (Moxie)",
+                            "nodes": [
+                                {
+                                    "id": "9102d91b-444d-439e-bf27-00c3141610a5",
+                                    "type": "nodes.skillBranch",
+                                    "skill": "Moxie",
+                                    "target": "95",
+                                    "success": {
+                                        "type": "nodes.block",
+                                        "nodes": []
+                                    },
+                                    "failure": {
+                                        "type": "nodes.block",
+                                        "nodes": []
+                                    },
+                                    "notify": true
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "810115d0-d74b-4de3-9888-119948323bd6",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+                                    "text": "Let me see if I get you straight - the Chief Thief wants me to sneak into Blowhard's office, randomly steal something of value without getting caught, break every rule in the Rogue Handbook, and only then do I get to stay at a school for Heroes?",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": false,
+                            "minutes": "2",
+                            "ExitMenu": true
+                        }
+                    ],
+                    "AutoAddDone": false,
+                    "Unique": false
+                },
+                {
+                    "type": "nodes.speak",
+                    "id": "f5f80e7f-08be-49ac-9542-5d8453412ded",
+                    "actorId": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "text": "I don't know what your Patron wants - he just said something about a valuable bird statue. You need to bring it to a place called \"the break-in house\" by midnight.",
+                    "emotion": "0",
+                    "emotion2": "0",
+                    "device": "0",
+                    "device2": "0"
+                },
+                {
+                    "type": "nodes.speak",
+                    "id": "9ec2eb9b-0ca5-436c-ac83-943a695d4eff",
+                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "actorId2": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+                    "text": "But... but...",
+                    "emotion": "0",
+                    "emotion2": "1",
+                    "device": "0",
+                    "device2": "0"
+                },
+                {
+                    "type": "nodes.speak",
+                    "id": "b775e17f-5fe2-4bf5-98db-059b6d5bd7e5",
+                    "actorId": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "text": "But if you don't find it tonight, I'll have the pleasure of kicking you out of this school tomorrow.",
+                    "emotion": "0",
+                    "emotion2": "0",
+                    "device": "0",
+                    "device2": "0"
+                },
+                {
+                    "type": "nodes.speak",
+                    "id": "190d3fee-57e2-48aa-b85a-1de0b3ba3db2",
+                    "actorId": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "text": "And I'm really looking forward to it.",
+                    "emotion": "1",
+                    "emotion2": "2",
+                    "device": "0",
+                    "device2": "0"
+                },
+                {
+                    "type": "nodes.quests",
+                    "id": "b5c98bd6-3584-47e3-8219-2835606ed54b",
+                    "sceneId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                    "propId": "44081047-4d91-4230-8feb-3d7951bc4aa3",
+                    "target": "0",
+                    "notify": true
+                },
+                {
+                    "type": "nodes.addJournalEntry",
+                    "id": "a4200a6f-4e58-457d-9071-5eb1a4b75e39",
+                    "name": "Ultimatum",
+                    "notify": false,
+                    "description": "Terk ordered me to break into Gerhard's office or else I'm out of here. The Chief Thief wants me to find the Raven and take it to the Break-in House. First, I have to get past Gerhard's impossible trap, find the mythical Raven statue, then discover a way to escape the school, get to Caligari, and break into the break-in house - all before midnight. No problem.\n\nTerk said that my patron left something for me near the Master's Office. What's that about?"
+                },
+                {
+                    "type": "nodes.speak",
+                    "id": "63b58724-4e34-476e-b9b6-9eb7bbf1266a",
+                    "actorId": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "text": "So get out of here. Get that bird or get what's coming for you.",
+                    "emotion": "0",
+                    "emotion2": "0",
+                    "device": "0",
+                    "device2": "0"
+                },
+                {
+                    "type": "nodes.speak",
+                    "id": "20e020aa-288b-49ba-b892-a93e2931fde4",
+                    "actorId": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "text": "Oh... And your patron said that he left something for you near Gerhard's office. I have no idea what he is talking about, but he said that you'd know what to do with it when you have it.",
+                    "emotion": "0",
+                    "emotion2": "4",
+                    "device": "0",
+                    "device2": "0"
+                },
+                {
+                    "type": "nodes.speak",
+                    "id": "49b8e186-cfe9-419a-9c10-8336a6fe7ace",
+                    "actorId": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "text": "Now go!",
+                    "emotion": "0",
+                    "emotion2": "0",
+                    "device": "0",
+                    "device2": "0"
+                },
+                {
+                    "type": "nodes.changeTags",
+                    "id": "85d232b9-8003-4612-943d-afe3f8f53781",
+                    "scope": "scene",
+                    "scopeId": "eceae806-6f55-4cde-b517-c73b1c924fd9",
+                    "scopeFilterId": null,
+                    "tagsToAdd": "GObreakin",
+                    "tagsToRemove": null
+                },
+                {
+                    "type": "nodes.changeScene",
+                    "sceneId": "3256b6d8-50b9-4764-b016-01ea538ea55f",
+                    "spawnId": "9bd98918-3b8c-4ff4-a64a-27eed78e2f71",
+                    "fadeTime": "4"
+                }
+            ]
+        }
+    ]
+}

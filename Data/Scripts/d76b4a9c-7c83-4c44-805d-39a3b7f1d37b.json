@@ -1,0 +1,778 @@
+{
+    "type": "script",
+    "id": "d76b4a9c-7c83-4c44-805d-39a3b7f1d37b",
+    "name": "Interact with Catacombs Exit",
+    "sceneId": "ed2b858e-927a-44b9-86ee-4d3fe4dcfc33",
+    "propId": "3c43e6aa-f86c-4438-bc9c-1a2953401b17",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "1bc5bedf-a892-454b-bed1-83783ed6f240",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.onceDaily",
+                    "id": "eb1c3591-2398-4072-be1a-8a0c47090c6d",
+                    "nodes": [
+                        {
+                            "type": "nodes.autoSave"
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "prop",
+                                "scopeId": "b50de0b0-b4da-4646-b697-992bef2b072e",
+                                "scopeFilterId": "ed2b858e-927a-44b9-86ee-4d3fe4dcfc33",
+                                "tags": "opened",
+                                "has": true
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.onceOnly",
+                                    "id": "8cdc0ba4-a86e-4160-9666-1676112e1458",
+                                    "nodes": [
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "512a2207-f059-4442-bfff-d600e7c6ef4b",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "So this door leads back into the Catacombs. It's a short cut to doom.",
+                                            "emotion": "0",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.incrementTime",
+                                    "id": "7466e88b-80a2-498a-843b-95a8b59f39a9",
+                                    "days": 0,
+                                    "hours": 0,
+                                    "minutes": "10"
+                                },
+                                {
+                                    "type": "nodes.invokeScript",
+                                    "id": "8692f2cd-d65b-4af6-98c3-6fd242a16294",
+                                    "scriptId": "a1004657-984b-46ba-8870-9550cbfb4b35",
+                                    "entryPointId": "1bc5bedf-a892-454b-bed1-83783ed6f240",
+                                    "currentScope": "Scenes",
+                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                    "currentActorId": null,
+                                    "currentStoryEventId": null,
+                                    "currentPropId": null
+                                },
+                                {
+                                    "type": "nodes.changeScene",
+                                    "sceneId": "dc706bb3-df41-4404-827c-3583baea588f",
+                                    "spawnId": "1e8a14a9-e535-4f6f-9aa3-17db751283c1",
+                                    "fadeTime": 2
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "target",
+                                                "scopeId": null,
+                                                "scopeFilterId": null,
+                                                "tags": "triedToOpen",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "1c2b3b39-5163-4216-935c-0de3546826c5",
+                                                    "scope": "target",
+                                                    "scopeId": null,
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "triedToOpen",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.playAnimation",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "animationName": "ReachOut",
+                                                    "wait": false
+                                                },
+                                                {
+                                                    "type": "nodes.wait",
+                                                    "waitForSeconds": "0.2"
+                                                },
+                                                {
+                                                    "type": "nodes.playSoundEffect",
+                                                    "soundEffectName": "Pull Door Knob - Door Locked.wav",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "fe6c8440-cef2-408d-9677-39cf7f4857b7",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Locked.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.showMenu",
+                                    "id": "00324570-0189-480b-8664-baec6a1ba31f",
+                                    "options": [
+                                        {
+                                            "type": "options.text",
+                                            "id": "8f54ec1b-5f8d-447f-84b6-23fa8569fb19",
+                                            "text": "Examine the Door",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.inTags",
+                                                                "scope": "target",
+                                                                "scopeId": null,
+                                                                "scopeFilterId": null,
+                                                                "tags": "barred",
+                                                                "has": true
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "ad25c3a0-9673-4b1d-9bbe-97b46ec539a8",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "This is a really sturdy, solid double door. Makes me wonder wonder what's on the other side. There's a small bar sealing the two doors and an old lock. This must have been part of the original castle.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "bcbbf35f-32c5-40d3-9028-31f83147f56e",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "The bar looks like a recent addition - it's metal and unrusted. There are marks on the door that look like runes.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.inTags",
+                                                                "scope": "target",
+                                                                "scopeId": null,
+                                                                "scopeFilterId": null,
+                                                                "tags": "locked",
+                                                                "has": true
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "22950b00-1c80-4b84-914b-7313cd7452d1",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "This is a really sturdy, solid double door. Makes me wonder what's on the other side. I've removed the bar, but it's still sealed by an old lock. This must have been part of the original castle.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": null,
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "b2bf09cf-3070-4e0d-964a-cea34f741077",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "This is a really sturdy, solid double door. Makes me wonder what's on the other side. I've removed the bar and picked the lock, but it's still sealed - probably by a bar on the other side. This must have been part of the original castle.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "expression": null,
+                                            "ignoreChildAvailability": true,
+                                            "minutes": "4",
+                                            "ExitMenu": false
+                                        },
+                                        {
+                                            "type": "options.text",
+                                            "id": "46332faf-af82-4cd6-b7b9-91799f4f3772",
+                                            "text": "Open the Door",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.playAnimation",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "animationName": "ReachOut",
+                                                    "wait": false
+                                                },
+                                                {
+                                                    "type": "nodes.wait",
+                                                    "waitForSeconds": "0.2"
+                                                },
+                                                {
+                                                    "type": "nodes.playSoundEffect",
+                                                    "soundEffectName": "Pull Door Knob - Door Locked.wav",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.inTags",
+                                                                "scope": "target",
+                                                                "scopeId": null,
+                                                                "scopeFilterId": null,
+                                                                "tags": "locked",
+                                                                "has": false
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "3f453348-b696-4f60-ae56-010710e964c6",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "This stupid door won't budge.. It still seems to be barred from the other side.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": null,
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "21927683-78f0-458e-87d6-2dc173ff34c5",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "This door is sincerely locked.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "expression": null,
+                                            "ignoreChildAvailability": true,
+                                            "minutes": "3",
+                                            "ExitMenu": false
+                                        },
+                                        {
+                                            "type": "options.text",
+                                            "id": "86f93cad-22c2-4d2b-920a-4c7c11c234de",
+                                            "text": "Listen at the Door",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.inTags",
+                                                                "scope": "target",
+                                                                "scopeId": null,
+                                                                "scopeFilterId": null,
+                                                                "tags": "listened",
+                                                                "has": false
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.changeTags",
+                                                                    "id": "98f5a36d-759f-4028-bb6b-e3bae066dd68",
+                                                                    "scope": "target",
+                                                                    "scopeId": null,
+                                                                    "scopeFilterId": null,
+                                                                    "tagsToAdd": "listened",
+                                                                    "tagsToRemove": null
+                                                                },
+                                                                {
+                                                                    "id": "b66bbd27-a42b-43aa-9666-c077d95426a7",
+                                                                    "type": "nodes.skillBranch",
+                                                                    "skill": "Perception",
+                                                                    "target": "30",
+                                                                    "success": {
+                                                                        "type": "nodes.block",
+                                                                        "nodes": []
+                                                                    },
+                                                                    "failure": {
+                                                                        "type": "nodes.block",
+                                                                        "nodes": []
+                                                                    },
+                                                                    "notify": true
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "6981b1e9-0fd8-42e6-a22b-b3876c2a6b44",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "I can't hear anything. The door might be too thick... or it's as silent as death on the other side. That's a scary thought!",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ],
+                                            "expression": null,
+                                            "ignoreChildAvailability": true,
+                                            "minutes": 0,
+                                            "ExitMenu": false
+                                        },
+                                        {
+                                            "type": "options.text",
+                                            "id": "21318558-7744-422e-9918-164a2c1fe9b0",
+                                            "text": "Examine the Lock",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "20b9c2c8-4fec-42c6-b4da-58fbacffd347",
+                                                    "scope": "target",
+                                                    "scopeId": "2dafe33c-8486-4773-8f7c-5925c3ef4144",
+                                                    "scopeFilterId": "cf824b0f-5af6-4a19-bac8-552a2a1bbebf",
+                                                    "tagsToAdd": "examinedLock",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "id": "2b4800e4-fe4a-4a62-8688-86f58df3f21b",
+                                                    "type": "nodes.skillBranch",
+                                                    "skill": "Perception",
+                                                    "target": "40",
+                                                    "success": {
+                                                        "type": "nodes.block",
+                                                        "nodes": [
+                                                            {
+                                                                "type": "nodes.speak",
+                                                                "id": "370c81b0-2f61-4ab5-bcbf-08a18ee91727",
+                                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                "actorId2": null,
+                                                                "text": "This looks like an older version of a Drew class lock. That means I <i>should</i> be able to open this by now.",
+                                                                "emotion": "0",
+                                                                "emotion2": "0",
+                                                                "device": "0",
+                                                                "device2": "0"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "failure": {
+                                                        "type": "nodes.block",
+                                                        "nodes": [
+                                                            {
+                                                                "type": "nodes.speak",
+                                                                "id": "0ffe40ba-8e36-4b77-bd74-f26a0514b196",
+                                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                "actorId2": null,
+                                                                "text": "Well, I can tell it's a lock and it's old, but I clearly fail my 'basic locks identification' check. I guess I need to study more.",
+                                                                "emotion": "2",
+                                                                "emotion2": "0",
+                                                                "device": "0",
+                                                                "device2": "0"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "notify": true
+                                                }
+                                            ],
+                                            "expression": {
+                                                "type": "expressions.and",
+                                                "left": {
+                                                    "type": "expressions.inTags",
+                                                    "scope": "actor",
+                                                    "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "scopeFilterId": null,
+                                                    "tags": "ReadAL",
+                                                    "has": true
+                                                },
+                                                "right": {
+                                                    "type": "expressions.inTags",
+                                                    "scope": "target",
+                                                    "scopeId": "2dafe33c-8486-4773-8f7c-5925c3ef4144",
+                                                    "scopeFilterId": "cf824b0f-5af6-4a19-bac8-552a2a1bbebf",
+                                                    "tags": "examinedLock",
+                                                    "has": false
+                                                }
+                                            },
+                                            "ignoreChildAvailability": true,
+                                            "minutes": 0,
+                                            "ExitMenu": false
+                                        },
+                                        {
+                                            "type": "options.text",
+                                            "id": "1e06845b-48df-469f-9935-7612fbc07cf2",
+                                            "text": "Pick the Lock",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.inTags",
+                                                                "scope": "target",
+                                                                "scopeId": null,
+                                                                "scopeFilterId": null,
+                                                                "tags": "barred",
+                                                                "has": true
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.changeTags",
+                                                                    "id": "225a1a9d-144d-44cd-b17a-9081111b62cb",
+                                                                    "scope": "target",
+                                                                    "scopeId": null,
+                                                                    "scopeFilterId": null,
+                                                                    "tagsToAdd": "",
+                                                                    "tagsToRemove": "barred"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "b88cc018-9404-48ad-9db9-e656e3787256",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "Let's see, first I'll unbar the door, then I'll unlock it.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.playAnimation",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "animationName": "ReachOut",
+                                                                    "wait": false
+                                                                },
+                                                                {
+                                                                    "type": "nodes.wait",
+                                                                    "waitForSeconds": "0.2"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.playSoundEffect",
+                                                                    "soundEffectName": "Lift Heavy Bar.wav",
+                                                                    "wait": false
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changePropVisibility",
+                                                                    "id": "704794b6-10dc-4345-8613-8f86d4c0125c",
+                                                                    "propId": "aaacebb0-87d8-4751-b209-67a7c341491d",
+                                                                    "sceneId": "ed2b858e-927a-44b9-86ee-4d3fe4dcfc33",
+                                                                    "status": "Hidden",
+                                                                    "wait": true
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.variableComparison",
+                                                                "variableScope": "global",
+                                                                "variableName": "ego.haslockpick",
+                                                                "operator": "eq",
+                                                                "compareTo": "true",
+                                                                "sceneId": "ed2b858e-927a-44b9-86ee-4d3fe4dcfc33",
+                                                                "propId": null
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.changeTags",
+                                                                    "id": "6134656d-0855-48c8-8549-fc6b15cb6681",
+                                                                    "scope": "prop",
+                                                                    "scopeId": "3c43e6aa-f86c-4438-bc9c-1a2953401b17",
+                                                                    "scopeFilterId": "ed2b858e-927a-44b9-86ee-4d3fe4dcfc33",
+                                                                    "tagsToAdd": "daily_lockpick_attempt",
+                                                                    "tagsToRemove": null
+                                                                },
+                                                                {
+                                                                    "type": "nodes.playAnimation",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "animationName": "KneelDown",
+                                                                    "wait": true
+                                                                },
+                                                                {
+                                                                    "id": "99d91e91-d061-4e16-a9c7-49f201b2ae02",
+                                                                    "type": "nodes.skillBranch",
+                                                                    "skill": "Tool Use",
+                                                                    "target": "40",
+                                                                    "success": {
+                                                                        "type": "nodes.block",
+                                                                        "nodes": [
+                                                                            {
+                                                                                "type": "nodes.playSoundEffect",
+                                                                                "soundEffectName": "lockpick_success.wav",
+                                                                                "wait": true
+                                                                            },
+                                                                            {
+                                                                                "type": "nodes.changeTags",
+                                                                                "id": "50aaba39-86a9-467d-bd0e-41daa07aeccf",
+                                                                                "scope": "target",
+                                                                                "scopeId": null,
+                                                                                "scopeFilterId": null,
+                                                                                "tagsToRemove": "locked"
+                                                                            },
+                                                                            {
+                                                                                "type": "nodes.speak",
+                                                                                "id": "46538c85-0433-4c28-8474-93e7a82a5490",
+                                                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                "actorId2": null,
+                                                                                "text": "Got it!",
+                                                                                "emotion": "0",
+                                                                                "emotion2": "0",
+                                                                                "device": "0",
+                                                                                "device2": "0"
+                                                                            },
+                                                                            {
+                                                                                "type": "nodes.playAnimation",
+                                                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                "animationName": "KneelUp",
+                                                                                "wait": true
+                                                                            },
+                                                                            {
+                                                                                "type": "nodes.playAnimation",
+                                                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                "animationName": "ReachOut",
+                                                                                "wait": false
+                                                                            },
+                                                                            {
+                                                                                "type": "nodes.wait",
+                                                                                "waitForSeconds": "0.5"
+                                                                            },
+                                                                            {
+                                                                                "type": "nodes.playSoundEffect",
+                                                                                "soundEffectName": "thud.wav",
+                                                                                "wait": false
+                                                                            },
+                                                                            {
+                                                                                "type": "nodes.speak",
+                                                                                "id": "03fa9fd8-9fb6-4a98-9973-9240ed8451e4",
+                                                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                "actorId2": null,
+                                                                                "text": "Darn. It looks like it's barred on the other side as well as this side. I'm not getting through this way.",
+                                                                                "emotion": "2",
+                                                                                "emotion2": "0",
+                                                                                "device": "0",
+                                                                                "device2": "0"
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    "failure": {
+                                                                        "type": "nodes.block",
+                                                                        "nodes": [
+                                                                            {
+                                                                                "type": "nodes.playSoundEffect",
+                                                                                "soundEffectName": "lockpick_failure.wav",
+                                                                                "wait": true
+                                                                            },
+                                                                            {
+                                                                                "type": "nodes.speak",
+                                                                                "id": "a4885133-956b-48a2-86df-79e1a1200055",
+                                                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                "actorId2": null,
+                                                                                "text": "No dice. Maybe one day I'll be able to open this lock.",
+                                                                                "emotion": "2",
+                                                                                "emotion2": "0",
+                                                                                "device": "0",
+                                                                                "device2": "0"
+                                                                            },
+                                                                            {
+                                                                                "type": "nodes.playAnimation",
+                                                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                "animationName": "KneelUp",
+                                                                                "wait": false
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    "notify": true
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": null,
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "8cf90efd-6945-4b58-8191-963da871561b",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "I'd need to find a lockpick first.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "expression": {
+                                                "type": "expressions.and",
+                                                "left": {
+                                                    "type": "expressions.inTags",
+                                                    "scope": "target",
+                                                    "scopeId": null,
+                                                    "scopeFilterId": null,
+                                                    "tags": "locked",
+                                                    "has": true
+                                                },
+                                                "right": {
+                                                    "type": "expressions.inTags",
+                                                    "scope": "target",
+                                                    "scopeId": null,
+                                                    "scopeFilterId": null,
+                                                    "tags": "daily_lockpick_attempt",
+                                                    "has": false
+                                                }
+                                            },
+                                            "ignoreChildAvailability": true,
+                                            "minutes": "5",
+                                            "ExitMenu": false
+                                        },
+                                        {
+                                            "type": "options.text",
+                                            "id": "54676a2a-3f4a-4d33-892d-e75eb7d89128",
+                                            "text": "Sense Magic on the Door",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "c1662585-e97a-4894-97c3-a7af21d45a93",
+                                                    "scriptId": "b1c2ecc1-eb00-49ed-a7ba-ea6af625c355",
+                                                    "entryPointId": "1bc5bedf-a892-454b-bed1-83783ed6f240",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "131a8917-5f07-4162-80c0-325341c33c32",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "There are magical runes on this door... protective magic against Undead and hostile magic. I'll bet they were placed there by Prof. Silvia.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ],
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "actor",
+                                                "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                "scopeFilterId": null,
+                                                "tags": "SenseMagic",
+                                                "has": true
+                                            },
+                                            "ignoreChildAvailability": true,
+                                            "minutes": "5",
+                                            "ExitMenu": false
+                                        },
+                                        {
+                                            "type": "options.text",
+                                            "id": "ca36d801-ff92-48bc-8ed3-aa1059caa3bd",
+                                            "text": "Open Door (DEBUG)",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "a33e4050-58d8-4382-8db4-897d8d3652cb",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "I can easily open this door in debug mode!",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "8580d05e-e614-4003-a5b5-3e85f9a3ab3b",
+                                                    "scriptId": "a1004657-984b-46ba-8870-9550cbfb4b35",
+                                                    "entryPointId": "1bc5bedf-a892-454b-bed1-83783ed6f240",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                },
+                                                {
+                                                    "type": "nodes.changeScene",
+                                                    "sceneId": "dc706bb3-df41-4404-827c-3583baea588f",
+                                                    "spawnId": "1e8a14a9-e535-4f6f-9aa3-17db751283c1",
+                                                    "fadeTime": 2
+                                                }
+                                            ],
+                                            "expression": {
+                                                "type": "expressions.debugOnly"
+                                            },
+                                            "ignoreChildAvailability": true,
+                                            "minutes": 0,
+                                            "ExitMenu": true
+                                        }
+                                    ],
+                                    "AutoAddDone": true,
+                                    "Unique": false
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

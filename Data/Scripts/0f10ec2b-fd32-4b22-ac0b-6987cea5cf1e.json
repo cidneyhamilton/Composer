@@ -1,0 +1,366 @@
+{
+    "type": "script",
+    "id": "0f10ec2b-fd32-4b22-ac0b-6987cea5cf1e",
+    "name": "Interact with Corpse",
+    "sceneId": "34acdbf0-8d3c-42fd-b310-0bb6d42ae1dd",
+    "propId": "6600892b-eed3-4066-bd8c-58bc6a1c3c4c",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "68ea3645-2430-48c6-93fe-26b09063ded0",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "97e72647-6947-4fb5-b042-2d881b7ea36e",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "3ed2315b-f2f2-472e-a77c-d99c445b57c6",
+                            "text": "Examine the Corpse",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "abb12dbb-9a63-4223-9b71-9c37f52a38b0",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Judging from his outfit, he was a pirate. And probably a thief as well. ",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "d2ed6d8b-b8dd-44ee-ba3a-a9929804c216",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "But I'll try to remember him as a really nice guy who just fell in with the wrong crowd.",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "1",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "c1f77997-be24-4c39-ba4e-86be125e6ed8",
+                            "text": "Search the Corpse",
+                            "nodes": [
+                                {
+                                    "type": "nodes.playAnimation",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "animationName": "KneelDown",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.playSoundEffect",
+                                    "soundEffectName": "Search Corpse.wav",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "prop",
+                                                "scopeId": "6600892b-eed3-4066-bd8c-58bc6a1c3c4c",
+                                                "scopeFilterId": "34acdbf0-8d3c-42fd-b310-0bb6d42ae1dd",
+                                                "tags": "Searched",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "a07138e6-2285-4e6b-adcd-2a4fda70ae7a",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "The skeleton has some sort of paper...",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.showCloseUp",
+                                                    "imageName": "CU_HalfPirateMap.png"
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.or",
+                                                                "left": {
+                                                                    "type": "expressions.inTags",
+                                                                    "scope": "actor",
+                                                                    "scopeId": "2ae7a408-9338-4b78-af6b-ba7a28e050ac",
+                                                                    "scopeFilterId": null,
+                                                                    "tags": "ShawnCaughtBySosi",
+                                                                    "has": true
+                                                                },
+                                                                "right": {
+                                                                    "type": "expressions.or",
+                                                                    "left": {
+                                                                        "type": "expressions.inInventory",
+                                                                        "propId": "181634f8-d4b9-4abf-9d35-ef2a55b11cf6",
+                                                                        "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                                        "has": true
+                                                                    },
+                                                                    "right": {
+                                                                        "type": "expressions.inTags",
+                                                                        "scope": "prop",
+                                                                        "scopeId": "181634f8-d4b9-4abf-9d35-ef2a55b11cf6",
+                                                                        "scopeFilterId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                                        "tags": "Acquired",
+                                                                        "has": true
+                                                                    }
+                                                                }
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "4846a5be-2a9f-4f02-8b06-943b2f42c52f",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "The other half of Katie's map!",
+                                                                    "emotion": "4",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeInventory",
+                                                                    "id": "f56d60f3-cd20-48b1-8b03-819ba6baeeaf",
+                                                                    "propId": "24120d94-40b7-46f0-8dfe-c8633935992b",
+                                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                                    "change": "1",
+                                                                    "count": 1,
+                                                                    "notify": true
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeTags",
+                                                                    "id": "c58961cc-0ead-4643-b280-844a3ac7266a",
+                                                                    "scope": "prop",
+                                                                    "scopeId": "6600892b-eed3-4066-bd8c-58bc6a1c3c4c",
+                                                                    "scopeFilterId": "34acdbf0-8d3c-42fd-b310-0bb6d42ae1dd",
+                                                                    "tagsToAdd": "Searched",
+                                                                    "tagsToRemove": null
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": null,
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "ab885ebf-6b1f-49c7-b5ec-f93b3bb12d2e",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "It's a pirate map!",
+                                                                    "emotion": "4",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "1836fa00-a098-4f9e-974e-1826c169af85",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "Or... <i>part</i> of a pirate map, anyway. But it's a start!",
+                                                                    "emotion": "1",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeInventory",
+                                                                    "id": "2422b2ad-a24e-49d8-a4e0-8c41219b724d",
+                                                                    "propId": "24120d94-40b7-46f0-8dfe-c8633935992b",
+                                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                                    "change": "1",
+                                                                    "count": 1,
+                                                                    "notify": true
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeTags",
+                                                                    "id": "0bb57c3e-f821-41a8-a394-bb5c025d1559",
+                                                                    "scope": "prop",
+                                                                    "scopeId": "6600892b-eed3-4066-bd8c-58bc6a1c3c4c",
+                                                                    "scopeFilterId": "34acdbf0-8d3c-42fd-b310-0bb6d42ae1dd",
+                                                                    "tagsToAdd": "Searched",
+                                                                    "tagsToRemove": null
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "nodes.hideCloseUp",
+                                                    "waitForSeconds": 1
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "63264b7d-9fa3-4d39-b790-2b58742ca015",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Drat, there's nothing else on him. Not a single doubloon... not even <i>half</i> a doubloon...",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "8058e720-2f33-4d6b-b0d5-da4d934ccef8",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "... which, I guess, would just be a called a \"loon.\"",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.playAnimation",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "animationName": "KneelUp",
+                                    "wait": true
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "5",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "524309bf-e04e-4093-a3b7-7cce769863ff",
+                            "text": "Take a Piece of Hair",
+                            "nodes": [
+                                {
+                                    "type": "nodes.playAnimation",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "animationName": "KneelDown",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "90ca68df-a7b0-43b7-aec8-64753946c62e",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "All right, this is a little gross... but I do need some authentic dead man's hair.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.changeInventory",
+                                    "id": "c0839810-7af2-4b11-91a2-cc04378e229e",
+                                    "propId": "84ad5776-843d-4706-965c-28285f4b47a4",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "change": "1",
+                                    "count": 1,
+                                    "notify": true
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "3f7ef41b-6268-446b-9651-23d668999e84",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Luckily, it's coming out of his skull with hardly a tug. EeYUK!",
+                                    "emotion": "4",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.playAnimation",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "animationName": "KneelUp",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "d2750965-da2f-4511-9d5d-2417e7e5314b",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "I'm just glad I don't need one of his eyes.",
+                                    "emotion": "2",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "cb4be022-8604-4158-aac5-e859df8c4528",
+                                    "scope": "prop",
+                                    "scopeId": "6600892b-eed3-4066-bd8c-58bc6a1c3c4c",
+                                    "scopeFilterId": "34acdbf0-8d3c-42fd-b310-0bb6d42ae1dd",
+                                    "tagsToAdd": "TookHair",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.quests",
+                                    "id": "2bf2a3c8-bafc-4f57-b5fd-4f61e299c240",
+                                    "sceneId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                                    "propId": "69b6831d-7855-49ce-8b11-a6da90dd7f31",
+                                    "target": "1",
+                                    "notify": true
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inTags",
+                                    "scope": "prop",
+                                    "scopeId": "6600892b-eed3-4066-bd8c-58bc6a1c3c4c",
+                                    "scopeFilterId": "34acdbf0-8d3c-42fd-b310-0bb6d42ae1dd",
+                                    "tags": "TookHair",
+                                    "has": false
+                                },
+                                "right": {
+                                    "type": "expressions.hasActiveQuest",
+                                    "propId": "69b6831d-7855-49ce-8b11-a6da90dd7f31",
+                                    "sceneId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                                    "questStatus": "0"
+                                }
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "3",
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

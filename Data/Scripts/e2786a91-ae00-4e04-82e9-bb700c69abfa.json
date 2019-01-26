@@ -1,0 +1,300 @@
+{
+    "type": "script",
+    "id": "e2786a91-ae00-4e04-82e9-bb700c69abfa",
+    "name": "Suit of Armor Interact",
+    "propId": "4fde3f11-4097-452d-b6b4-4e600e3a4a1e",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "5323ebdb-b76d-49ef-a1a7-97a3cf9ebd83",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "e9fede87-7bf7-44fa-89fa-f1c33e99ca2e",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "a13de277-f882-46b5-9a4b-da4920e048ba",
+                            "text": "Look at the Suit of Armor",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "9aea1222-aac6-4de5-a103-ae37100e0ef1",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "He's the perfect choice to stand guard over the end of the hall. That's Sir Albert Hall, known in his younger days as Albert the Halberd.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "2",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "3aaf31d6-fc35-44ff-a1ab-6b58054560b7",
+                            "text": "Take the Suit of Armor",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "ccf6703c-8b33-4d3f-82f5-610cb8df0216",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "It would be conspicuous in its absence.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "2",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "cc3e888b-919a-4ca1-aef3-e6d83808c36b",
+                            "text": "Sense Magic",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "prop",
+                                                "scopeId": "4fde3f11-4097-452d-b6b4-4e600e3a4a1e",
+                                                "scopeFilterId": "3256b6d8-50b9-4764-b016-01ea538ea55f",
+                                                "tags": "Armor1sensedmagic",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "376401ad-0b3e-4062-af14-7f1f5a5cb7a6",
+                                                    "scope": "prop",
+                                                    "scopeId": "4fde3f11-4097-452d-b6b4-4e600e3a4a1e",
+                                                    "scopeFilterId": "3256b6d8-50b9-4764-b016-01ea538ea55f",
+                                                    "tagsToAdd": "Armor1sensedmagic",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "id": "cc9bb1c6-311c-4ad1-a9c7-36a2d8f72a70",
+                                                    "type": "nodes.skillBranch",
+                                                    "skill": "Magic",
+                                                    "target": "20",
+                                                    "success": {
+                                                        "type": "nodes.block",
+                                                        "nodes": []
+                                                    },
+                                                    "failure": {
+                                                        "type": "nodes.block",
+                                                        "nodes": []
+                                                    },
+                                                    "notify": true
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "scene",
+                                                "scopeId": "eceae806-6f55-4cde-b517-c73b1c924fd9",
+                                                "scopeFilterId": null,
+                                                "tags": "GObreakin",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "35812c6c-2abe-4193-b2c6-7714e2f4fdbc",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Now is a great time for this suit of armor to show up as magical...",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "5a07ea62-5b5e-4b10-9ca6-97a720cb204e",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "No such luck.",
+                                                    "emotion": "2",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "dcbb0933-fbc3-43d8-a2bd-5cf41c09ccee",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Well, at least this suit of armor isn't going to chop off my head. No magic to be found here.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "actor",
+                                "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                "scopeFilterId": null,
+                                "tags": "SenseMagic",
+                                "has": true
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "5",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "48125fba-e8e9-4060-810c-89715f13e242",
+                            "text": "Search the Armor",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "scene",
+                                                "scopeId": "eceae806-6f55-4cde-b517-c73b1c924fd9",
+                                                "scopeFilterId": null,
+                                                "tags": "GObreakin",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "a97fea06-21d4-48ce-882d-7d83810219c2",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "I wonder if anyone hid something here...",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.playSoundEffect",
+                                                    "soundEffectName": "Open Viser.wav",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "44014994-05ec-49a1-a541-432e868104e7",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Nope. ",
+                                                    "emotion": "2",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.playSoundEffect",
+                                                    "soundEffectName": "Open Viser.wav",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "50836de0-06bd-4b2b-baeb-85f655de296b",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Nothing hiding in the helmet... or any place else.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "2",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "a7035167-b5a8-437c-ac96-43878cee006f",
+                            "text": "Wear the Suit of Armor",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "3f14a18b-8609-458c-883b-0c898e2fb80b",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "I don't know where that suit of armor has been.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "96c2127e-607d-4955-84b4-a965200c31cd",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Besides, it wouldn't fit my youthful figure.",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "2",
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

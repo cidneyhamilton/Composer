@@ -1,0 +1,306 @@
+{
+    "type": "script",
+    "id": "8dc93a5a-5be3-4064-a954-02e8fc6901ba",
+    "name": "RCC Sosi Event",
+    "sceneId": "3256b6d8-50b9-4764-b016-01ea538ea55f",
+    "trigger": {
+        "type": "triggers.manual",
+        "name": "Manual"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "637d2675-8b69-4f8d-9b14-d73a6d645e56",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "44c16b03-200f-426e-b952-f7bc8ba435c2",
+                                    "scope": "scene",
+                                    "scopeId": "3256b6d8-50b9-4764-b016-01ea538ea55f",
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "SosiEvent",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.setCameraTarget",
+                                    "propId": null,
+                                    "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                    "time": 0,
+                                    "translateX": 0,
+                                    "translateY": 0,
+                                    "translateZ": 0,
+                                    "postWaitTime": 0,
+                                    "scope": "actor"
+                                },
+                                {
+                                    "type": "nodes.turnActor",
+                                    "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                    "propId": "e712bac0-c768-4de9-9604-3295f31a79c4",
+                                    "scope": "actor",
+                                    "targetActorId": "2ae7a408-9338-4b78-af6b-ba7a28e050ac"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "383fa6e4-7673-4d4b-a3fe-e218034f142e",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Huh, Sosi's talking to Joel. He doesn't look happy...",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.moveActor",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "propId": "1ebd0ac1-9c95-42df-8d2c-5447e35df773",
+                                    "movement": "Walking",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.turnActor",
+                                    "actorId": "2ae7a408-9338-4b78-af6b-ba7a28e050ac",
+                                    "propId": null,
+                                    "scope": "actor",
+                                    "targetActorId": "30ee2636-15e3-452e-a2db-09cbb9012970"
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "actor",
+                                                "scopeId": "2ae7a408-9338-4b78-af6b-ba7a28e050ac",
+                                                "scopeFilterId": null,
+                                                "tags": "ShawnCaughtBySosi",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "5b005505-8500-4bfd-a3a5-229f85189202",
+                                                    "scriptId": "790bc091-4113-49ec-96f6-d50d3d93d64e",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "3256b6d8-50b9-4764-b016-01ea538ea55f",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                },
+                                                {
+                                                    "type": "nodes.moveActor",
+                                                    "actorId": "2ae7a408-9338-4b78-af6b-ba7a28e050ac",
+                                                    "propId": "7185a021-c8a2-4200-9bbc-63633b385cbc",
+                                                    "movement": "Running",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.removeActor",
+                                                    "id": "dfbd86cf-51e0-4554-b326-2ab5b6806d41",
+                                                    "actorId": "2ae7a408-9338-4b78-af6b-ba7a28e050ac"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.reputationComparison",
+                                                "actorId": "2ae7a408-9338-4b78-af6b-ba7a28e050ac",
+                                                "operator": "lte",
+                                                "value": "10"
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "506dfa73-41bb-4d39-a72e-da2f0ba1fe36",
+                                                    "scriptId": "df49385c-7e32-4817-a843-9dd4bfad41de",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "3256b6d8-50b9-4764-b016-01ea538ea55f",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                },
+                                                {
+                                                    "type": "nodes.moveActor",
+                                                    "actorId": "2ae7a408-9338-4b78-af6b-ba7a28e050ac",
+                                                    "propId": "a4b89be5-f065-4ee1-a294-4b970db828b5",
+                                                    "movement": "Walking",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.turnActor",
+                                                    "actorId": "2ae7a408-9338-4b78-af6b-ba7a28e050ac",
+                                                    "propId": null,
+                                                    "scope": "actor",
+                                                    "targetActorId": "30ee2636-15e3-452e-a2db-09cbb9012970"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "606c20de-1368-4fdc-82ce-194101bf2f92",
+                                                    "actorId": "2ae7a408-9338-4b78-af6b-ba7a28e050ac",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "Don't cross me, Shawn O'Conner.",
+                                                    "emotion": "3",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.moveActor",
+                                                    "actorId": "2ae7a408-9338-4b78-af6b-ba7a28e050ac",
+                                                    "propId": "0df9232d-b5cb-4b31-a84c-138776677a23",
+                                                    "movement": "Walking",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "8ad0f9c8-783b-468d-8f13-270819b9bd3f",
+                                                    "scope": "actor",
+                                                    "scopeId": "2ae7a408-9338-4b78-af6b-ba7a28e050ac",
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "BreakinReaction",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.moveActor",
+                                                    "actorId": "2ae7a408-9338-4b78-af6b-ba7a28e050ac",
+                                                    "propId": "98a5ed44-54c3-4611-87e5-b489598cb26c",
+                                                    "movement": "Walking",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.removeActor",
+                                                    "id": "f964835b-93a4-4882-ab17-065ee6d59276",
+                                                    "actorId": "2ae7a408-9338-4b78-af6b-ba7a28e050ac"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "89a3ef60-e09e-47fa-abb9-4573653d5aef",
+                                                    "actorId": "2ae7a408-9338-4b78-af6b-ba7a28e050ac",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "I'm surprised you didn't follow up on the trap Joel set for you yesterday.",
+                                                    "emotion": "4",
+                                                    "emotion2": "4",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "aa2682d7-1271-49a4-844f-db92bd298ee2",
+                                                    "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                    "actorId2": "2ae7a408-9338-4b78-af6b-ba7a28e050ac",
+                                                    "text": "<i>What?</i> Sosi, it was you...",
+                                                    "emotion": "4",
+                                                    "emotion2": "3",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "7c50653f-b026-49fc-910c-bf4c7b51f36c",
+                                                    "actorId": "2ae7a408-9338-4b78-af6b-ba7a28e050ac",
+                                                    "actorId2": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                    "text": "Shut up, Joel.",
+                                                    "emotion": "3",
+                                                    "emotion2": "2",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "b1a7d5ba-0de5-45b2-908a-94eef187348b",
+                                                    "scriptId": "210fd2ed-37f1-4d89-9538-0c0232bff696",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "3256b6d8-50b9-4764-b016-01ea538ea55f",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                },
+                                                {
+                                                    "type": "nodes.moveActor",
+                                                    "actorId": "2ae7a408-9338-4b78-af6b-ba7a28e050ac",
+                                                    "propId": "a4b89be5-f065-4ee1-a294-4b970db828b5",
+                                                    "movement": "Walking",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.turnActor",
+                                                    "actorId": "2ae7a408-9338-4b78-af6b-ba7a28e050ac",
+                                                    "propId": null,
+                                                    "scope": "actor",
+                                                    "targetActorId": "30ee2636-15e3-452e-a2db-09cbb9012970"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "d78331a5-531e-4835-bf2a-de1d00e0c542",
+                                                    "actorId": "2ae7a408-9338-4b78-af6b-ba7a28e050ac",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "Hmmpf...",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.moveActor",
+                                                    "actorId": "2ae7a408-9338-4b78-af6b-ba7a28e050ac",
+                                                    "propId": "0df9232d-b5cb-4b31-a84c-138776677a23",
+                                                    "movement": "Walking",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.moveActor",
+                                                    "actorId": "2ae7a408-9338-4b78-af6b-ba7a28e050ac",
+                                                    "propId": "98a5ed44-54c3-4611-87e5-b489598cb26c",
+                                                    "movement": "Walking",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "bc18addc-71ec-4fa2-84fd-3c10264a2858",
+                                                    "scope": "actor",
+                                                    "scopeId": "2ae7a408-9338-4b78-af6b-ba7a28e050ac",
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "BreakinReaction",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.removeActor",
+                                                    "id": "68f151e0-5ca8-4b7d-8fc4-b0ecc43296e5",
+                                                    "actorId": "2ae7a408-9338-4b78-af6b-ba7a28e050ac"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.resetCamera",
+                                    "wait": true,
+                                    "time": "0.5"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

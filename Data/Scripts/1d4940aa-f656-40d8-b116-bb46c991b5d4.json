@@ -1,0 +1,209 @@
+{
+    "type": "script",
+    "id": "1d4940aa-f656-40d8-b116-bb46c991b5d4",
+    "name": "Interact with Orange-Flowered Plant",
+    "sceneId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+    "propId": "cfcc3a95-52b4-4f77-9428-47e5c14f4282",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "3ff62404-6392-42fa-8478-04d8083bc4fb",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "6cb4fbf8-ab60-40a2-9fbc-23b3e579a798",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "1759a4ef-35ca-4825-bf9e-dcce150bcedb",
+                            "text": "Look at the Plant",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "24c4bbdc-68eb-45b9-a110-cdef2dcfafc0",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Now this is exotic. I don't think I've ever seen these growing around here. But somebody is clearly excellent with plants.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "1",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "6886ffef-f7dd-4008-b232-fcfc6a03c87d",
+                            "text": "Search the Plant",
+                            "nodes": [
+                                {
+                                    "type": "nodes.playSoundEffect",
+                                    "soundEffectName": "paper_rustle.wav",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "prop",
+                                                "scopeId": "cfcc3a95-52b4-4f77-9428-47e5c14f4282",
+                                                "scopeFilterId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                                "tags": "SearchedPlant",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "a10a4ade-4e59-42f7-aff0-96e36a30b361",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Darn, that pill bottle was the only thing worth finding here.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "bed520fc-9ae7-41ce-a1bf-cc5b9fb83130",
+                                                    "scope": "prop",
+                                                    "scopeId": "cfcc3a95-52b4-4f77-9428-47e5c14f4282",
+                                                    "scopeFilterId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                                    "tagsToAdd": "SearchedPlant",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "7e11136c-536a-4f98-a56b-1834b471ee2c",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "There's nothing hidden in this plant.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "d898ad97-cf1a-4ef8-8d15-f62f668e0671",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Hmmm, there is something behind the pot - it looks like it might have rolled there.",
+                                                    "emotion": "4",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.playAnimation",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "animationName": "KneelDown",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "141c3326-ffc8-49a9-9499-43326063412b",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "It's a bottle of pills - healing pills!",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.changeInventory",
+                                                    "id": "13884b56-bf0a-4c67-9042-b58076e4eecf",
+                                                    "propId": "55629c55-2a14-49f6-8817-dc0a1e647494",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "change": "1",
+                                                    "count": "5",
+                                                    "notify": true
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "28c32bbd-d000-492a-9878-d0921776dfd3",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Finders keepers!",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.playAnimation",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "animationName": "KneelUp",
+                                                    "wait": true
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "1",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "2c604a5b-f828-4e75-a71f-df7cdeb7be9a",
+                            "text": "Steal the Plant",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "c2cec1bb-43be-4f35-afff-e27c545581dc",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "It's a living thing. It's not right to steal a living thing. They don't belong to anyone except themselves.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "dcaad8e0-610d-4060-abf4-08ae42a86572",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Unless I have a really good use for them!",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "1",
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

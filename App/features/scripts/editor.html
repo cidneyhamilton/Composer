@@ -1,0 +1,103 @@
+﻿<div class="editor-action">
+    <header>
+        <button class="back hint--bottom hint--rounded" data-hint="Go Back" accesskey="b" data-bind="click: goBack">
+            <i class="icon-circle-arrow-left"></i>
+        </button>
+        <span class="title" data-bind="text:item.name"></span>
+        
+        <!--ko if: filterProperty == 'actorId'-->
+        <span id="actorId" class="for">For</span>
+        <!--/ko-->
+            
+        <!--ko if: filterProperty == 'propId'-->
+        <span id="propId" class="for">For</span>
+        <!--/ko-->
+        
+        <!--ko if: filterProperty == 'sceneId'-->
+        <span class="for">In</span>
+        <!--/ko-->
+
+        <!--ko if: filterProperty == 'storyEventId'-->
+        <span class="for">During</span>
+        <!--/ko-->
+        
+        <!--ko ifnot: filterProperty-->
+        <span class="for">Using</span>
+        <!--/ko-->
+
+        <span class="title" data-bind="text:owner.item.name"></span>
+
+        <!-- This floats the Delete button to the right of the script name, instead of next to save.  Per github #86: https://github.com/Transolar/Hero-U/issues/86 -->
+        <span>
+            <button class="delete hint--left hint--rounded" data-hint="Delete" data-bind="click: remove">
+                <i class="icon-trash"></i>
+            </button>
+        </span>
+
+        <span class="button-panel">
+            <button class="save hint--left hint--rounded" data-hint="Save" accesskey="s" data-bind="click: save">
+                <i class="icon-save"></i>
+            </button>
+        </span>
+    </header>
+    
+    <div class="config">
+        <div class="form-inline pull-left">
+            <label>Name</label>
+            <input type="text" placeholder="script name" data-bind="value: item.name, valueUpdate: 'afterkeydown'">
+        </div>
+
+        <select class="pull-right" data-bind="options:availableTriggers, optionsText: 'name', value: item.trigger"></select><label class="context pull-right">On</label>
+
+        <!--ko if: filterProperty != 'actorId' && filterProperty != 'propId' && !item.propId -->
+        <select class="pull-right" data-bind="options: actors, optionsText: 'name', optionsValue: 'id', value: item.actorId, optionsCaption: 'No Actor'"></select><label class="context pull-right">For</label>
+        <!--/ko-->
+            
+        <!--ko if: filterProperty != 'propId' && filterProperty != 'actorId' && item.propId-->
+        <select class="pull-right" data-bind="options: props, optionsText: 'name', optionsValue: 'id', value: item.propId, optionsCaption: 'No Prop'"></select><label class="context pull-right">For</label>
+        <!--/ko-->
+        
+        <!--ko if: filterProperty != 'sceneId'-->
+        <select class="pull-right" data-bind="options: scenes, optionsText: 'name', optionsValue: 'id', value: item.sceneId, optionsCaption: 'Any Scene'"></select><label class="context pull-right">In</label>
+        <!--/ko-->
+
+        <!--ko if: filterProperty != 'storyEventId'-->
+        <select class="pull-right" data-bind="options: storyEvents, optionsText: 'name', optionsValue: 'id', value: item.storyEventId, optionsCaption: 'Any Event'"></select><label class="context pull-right">During</label>
+        <!--/ko-->
+    </div>
+
+    <div class="script-designer">
+        <div class="tabbable"> <!-- Only required for left/right tabs -->
+            <ul class="nav nav-tabs" style="margin-bottom: 0">
+                <!--ko foreach: item.entryPoints-->
+                    <li data-bind="css:{ active:$parent.activeTab == $data }">
+                        <a data-toggle="tab" data-bind="click: function() { $parent.activeTab = $data; }, text: name, attr: { href:'#' + name }"></a>
+                    </li>
+                <!--/ko-->
+                <li>
+                    <div>
+                        <button data-bind="click: addEntryPoint" class="hint--rounded hint--right addEntryPoint" data-hint="Add Entry Point">
+                            <i class="icon-plus-sign-alt"></i>
+                        </button>
+                    </div>
+                </li>
+                <li style="float: right">
+                    <div>
+
+                        <div style="display: inline" data-bind="compose: { model:'features/scripts/nodes/nodeCreator', activationData:activeTab }"></div>
+                        <a class="btn hint--left hint--rounded" data-hint="Remove Entry Point" data-bind="click: removeEntryPoint">
+                            <i class="icon-remove"></i>
+                        </a>
+                    </div>
+                </li>
+            </ul>
+            <div class="tab-content" style="overflow-y: auto" data-bind="foreach: item.entryPoints">
+                <div class="tab-pane" data-bind="attr:{id:name}, css:{ active:$parent.activeTab == $data}">
+                    <!--ko foreach: nodes-->
+                        <!--ko compose: { model:'features/scripts/' + $data.type.replace('.', '/') + 'Editor', activationData: [$parent, $data] }--><!--/ko-->
+                    <!--/ko-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,234 @@
+{
+    "type": "script",
+    "id": "4efa7fad-0229-4f7b-94e2-e8f0beb0602f",
+    "name": "Interact With Locked Cabinet",
+    "sceneId": "ea6c0ba0-0d23-4c0d-80ed-b8611588a665",
+    "propId": "310e90e5-79ad-48f2-b15f-92b266931c7e",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "bdc652c7-4cbd-462f-963b-ba794168a8cf",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "1dbc11b3-0c2b-4c7e-96f7-c99f52866ffb",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "7bd58476-0e38-46c1-ae21-6402ef8de012",
+                            "text": "Look at the Cabinet",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "62997bcd-48d4-41f5-8fc0-cbf387590d99",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "This is a massive cabinet, it's built like a safe. And it's locked, naturally.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "a4701e6b-6508-4dcb-8b2f-207be1cfb39b",
+                            "text": "Pick the Lock",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "target",
+                                                "scopeId": null,
+                                                "scopeFilterId": null,
+                                                "tags": "triedToday",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "f8374618-5509-419e-9a6a-637c73072500",
+                                                    "scope": "target",
+                                                    "scopeId": null,
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "triedToday",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.variableComparison",
+                                                                "variableScope": "global",
+                                                                "variableName": "ego.haslockpick",
+                                                                "operator": "eq",
+                                                                "compareTo": "true",
+                                                                "sceneId": "ea6c0ba0-0d23-4c0d-80ed-b8611588a665",
+                                                                "propId": null
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.playAnimation",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "animationName": "KneelDown",
+                                                                    "wait": true
+                                                                },
+                                                                {
+                                                                    "type": "nodes.incrementTime",
+                                                                    "id": "a27bda17-c3e6-4c21-92bd-b5b14a870401",
+                                                                    "days": 0,
+                                                                    "hours": 0,
+                                                                    "minutes": "5"
+                                                                },
+                                                                {
+                                                                    "id": "8a360276-1dcc-4e35-96cd-0f29c72d7054",
+                                                                    "type": "nodes.skillBranch",
+                                                                    "skill": "Tool Use",
+                                                                    "target": "40",
+                                                                    "success": {
+                                                                        "type": "nodes.block",
+                                                                        "nodes": [
+                                                                            {
+                                                                                "type": "nodes.playSoundEffect",
+                                                                                "soundEffectName": "lockpick_success.wav",
+                                                                                "wait": true
+                                                                            },
+                                                                            {
+                                                                                "type": "nodes.speak",
+                                                                                "id": "d8109e7e-d796-49d9-8088-be841d5b89eb",
+                                                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                "actorId2": null,
+                                                                                "text": "Got it!",
+                                                                                "emotion": "1",
+                                                                                "emotion2": "0",
+                                                                                "device": "0",
+                                                                                "device2": "0"
+                                                                            },
+                                                                            {
+                                                                                "type": "nodes.speak",
+                                                                                "id": "87a4d0c5-a96a-4ed6-96fe-e1d3b49cbee7",
+                                                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                "actorId2": null,
+                                                                                "text": "Sigh. It's a locked cabinet with nothing in there. Clearly Master von Urwald is an evil, evil man.",
+                                                                                "emotion": "2",
+                                                                                "emotion2": "0",
+                                                                                "device": "0",
+                                                                                "device2": "0"
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    "failure": {
+                                                                        "type": "nodes.block",
+                                                                        "nodes": [
+                                                                            {
+                                                                                "type": "nodes.playSoundEffect",
+                                                                                "soundEffectName": "lockpick_failure.wav",
+                                                                                "wait": true
+                                                                            },
+                                                                            {
+                                                                                "type": "nodes.speak",
+                                                                                "id": "8237376f-2b81-468d-9469-026988bc6207",
+                                                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                "actorId2": null,
+                                                                                "text": "This lock is tougher than it looks. I'm going to need to brush up on my Tool Use skills before I can get this.",
+                                                                                "emotion": "2",
+                                                                                "emotion2": "0",
+                                                                                "device": "0",
+                                                                                "device2": "0"
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    "notify": true
+                                                                },
+                                                                {
+                                                                    "type": "nodes.playAnimation",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "animationName": "KneelUp",
+                                                                    "wait": true
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "74860b8b-5650-4f90-a885-69b2e0e1383c",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "I'll come back when I know how to pick the lock.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.variableComparison",
+                                "variableScope": "global",
+                                "variableName": "ego.haslockpick",
+                                "operator": "eq",
+                                "compareTo": "true",
+                                "sceneId": "ea6c0ba0-0d23-4c0d-80ed-b8611588a665",
+                                "propId": null
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "0",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "c0b73c3b-3e77-4aad-8f9f-0bedd60d8f8c",
+                            "text": "Look Behind the Cabinet",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "4ed20dc4-ec3f-4646-b395-b963bafe1d26",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "It's way too heavy to move, but I don't see anything unusual back there.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

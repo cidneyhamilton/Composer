@@ -1,0 +1,41 @@
+<div data-bind="compose: { mode:'templated', view:'nodeEditor' }">
+    <div data-part="read" class="text" style="font-style: italic">
+        Open inventory and allow player to select an item.
+
+        <!--ko if: node.itemTypeFilter -->
+		(<span data-bind="text: inventoryPicklists.getItemTypeById(node.itemTypeFilter)"></span>)
+        <!--/ko-->
+
+        <!--ko if: node.isGiftFilter -->
+        <span>(Gift)</span>
+        <!--/ko-->
+
+        <!--ko if: node.specificItemFilter.length > 0 -->
+        [<span data-bind="text: inventoryPicklists.getItemsById(node.specificItemFilter)"></span>]
+        <!--/ko-->
+    </div>
+
+    <div data-part="write" class="text" style="font-style: italic">
+        Open inventory and allow player to select an item.
+
+        <label>Filter by Item Type</label>
+			<select data-bind="options: inventoryPicklists.itemTypes,
+				optionsText: 'name',
+                optionsCaption: '-- None Selected --',
+				optionsValue: 'id',
+				value: node.itemTypeFilter,
+				valueUpdate: 'afterkeydown'"/>
+        <br>
+
+		<label>Show Only Gifts</label>
+		<input type="checkbox" placeholder="IsPercentage" data-bind="checked: node.isGiftFilter, valueUpdate: 'afterkeydown'">
+		<Br>
+
+        <label>Specific Items</label>
+            <select multiple="true" size="6" data-bind="options: inventoryPicklists.allItems(),
+                optionsText: 'name',
+                optionsValue: 'id',
+                selectedOptions: node.specificItemFilter"/>
+        <br>
+    </div>
+</div>

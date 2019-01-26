@@ -1,0 +1,42 @@
+﻿<div data-bind="compose: { mode:'templated', view:'nodeEditor' }">
+    <div data-part="read" class="text">
+        <span>Set Future Script to go off in </span>
+        <span data-bind="text:node.days"></span>:<span data-bind="text:node.hours"></span>:<span data-bind="text:node.minutes"></span>.
+    </div>
+
+    <div data-part="write">
+        <div class="form-inline">
+            <label class="control-label">Scope:</label>
+            <select data-bind="options: scopes, value: node.scopeName" style="width: 80px"></select>
+
+            <!--ko if:node.scopeName == 'prop'-->
+            <select data-bind="options: scenes, optionsText: 'name', optionsValue: 'id', value: node.sceneId, optionsCaption: 'Origin Scene'" style="float: right"></select>
+
+            <div class="form-inline" style="margin-left: 130px">
+                <!--ko if: node.sceneId-->
+                <select data-bind="options: props, optionsText: 'name', optionsValue: 'id', value: node.scopeId, optionsCaption: 'Select Prop'"></select>
+                <!--/ko-->
+            </div>
+            <!--/ko-->
+        </div>
+
+        <div class="form-inline">
+            <label class="control-label">Days:</label>
+            <input type="text" data-bind="value: node.days, valueUpdate: 'afterkeydown'" style="width: 60px" />
+
+            <label class="control-label">Hours:</label>
+            <input type="text" data-bind="value: node.hours, valueUpdate: 'afterkeydown'" style="width: 60px" />
+
+            <label class="control-label">Minutes:</label>
+            <input type="text" data-bind="value: node.minutes, valueUpdate: 'afterkeydown'" style="width: 60px" />
+
+            <label class="control-label">Everyday:</label>
+            <input type="checkbox" data-bind="checked: node.repeatEveryDay" class="hint--rounded hint--right" data-hint="Run the script everyday at the time specified.">
+        </div>
+        
+        <div class="form-inline">
+            <label>Script to Invoke:</label>
+            <select data-bind="options: scripts, optionsText: 'name', optionsValue: 'id', value: node.scriptId"></select>
+        </div>
+    </div>
+</div>

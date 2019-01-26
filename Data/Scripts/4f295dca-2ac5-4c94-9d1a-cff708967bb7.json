@@ -1,0 +1,490 @@
+{
+    "type": "script",
+    "id": "4f295dca-2ac5-4c94-9d1a-cff708967bb7",
+    "name": "Gerhard's Office: 09 After the Midterm",
+    "sceneId": "eceae806-6f55-4cde-b517-c73b1c924fd9",
+    "trigger": {
+        "type": "triggers.manual",
+        "name": "Manual"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "0b7fe5d7-dee1-4311-82c0-43dbd8d1e61f",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.changeTags",
+                    "id": "bf316701-c5cc-45a7-8270-938fa820cc44",
+                    "scope": "scene",
+                    "scopeId": "eceae806-6f55-4cde-b517-c73b1c924fd9",
+                    "scopeFilterId": null,
+                    "tagsToAdd": "09 After the Midterm",
+                    "tagsToRemove": null
+                },
+                {
+                    "type": "nodes.speak",
+                    "id": "b2fe1460-d7b7-473c-9392-11d21eaaafa6",
+                    "actorId": "b7cbd02d-8e2f-4a8d-99a7-02b132d86e1d",
+                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "text": "Is this a social call, or did you have a purpose to coming here?",
+                    "emotion": "0",
+                    "emotion2": "0",
+                    "device": "0",
+                    "device2": "0"
+                },
+                {
+                    "type": "nodes.showMenu",
+                    "id": "53a30f54-8cd1-48f2-841f-653f0ceaa155",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "d90993dd-acd5-4739-b66e-90ef7404f4c8",
+                            "text": "Say Something Polite (Charm)",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "b5d6a23c-223c-49c4-a14b-c5bce4dd1f2e",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "b7cbd02d-8e2f-4a8d-99a7-02b132d86e1d",
+                                    "text": "It's always a pleasure to speak with you, sir. I learn so much by what you say and do. You are an inspiration to us all.",
+                                    "emotion": "1",
+                                    "emotion2": "1",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "id": "cc9439f2-8462-4903-a29b-c509597dad7e",
+                                    "type": "nodes.skillBranch",
+                                    "skill": "Charm",
+                                    "target": "55",
+                                    "success": {
+                                        "type": "nodes.block",
+                                        "nodes": [
+                                            {
+                                                "type": "nodes.changeReputation",
+                                                "id": "6f0cc5b7-a505-4c83-b2a2-21134542a4dc",
+                                                "actorId": "b7cbd02d-8e2f-4a8d-99a7-02b132d86e1d",
+                                                "amount": "2",
+                                                "change": "1",
+                                                "notify": true
+                                            }
+                                        ]
+                                    },
+                                    "failure": {
+                                        "type": "nodes.block",
+                                        "nodes": [
+                                            {
+                                                "type": "nodes.speak",
+                                                "id": "257c8a5b-5d4d-4ecc-ae2b-6f3d394bbe43",
+                                                "actorId": "b7cbd02d-8e2f-4a8d-99a7-02b132d86e1d",
+                                                "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                "text": "You need to be a bit more adroit with your flattery, Herr O' Conner. Do not call attention to your motives by saying too much.",
+                                                "emotion": "1",
+                                                "emotion2": "4",
+                                                "device": "0",
+                                                "device2": "0"
+                                            },
+                                            {
+                                                "type": "nodes.speak",
+                                                "id": "709a71ec-61a9-444f-8c2d-12269c4a1b43",
+                                                "actorId": "b7cbd02d-8e2f-4a8d-99a7-02b132d86e1d",
+                                                "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                "text": "You are beginning to sound like Herr Sosi.",
+                                                "emotion": "1",
+                                                "emotion2": "1",
+                                                "device": "0",
+                                                "device2": "0"
+                                            }
+                                        ]
+                                    },
+                                    "notify": true
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": false,
+                            "minutes": 0,
+                            "ExitMenu": true
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "29891f75-50e9-4fc9-9618-439687ee31f7",
+                            "text": "Say Something Clever (Smarts)",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "3947da01-1e9d-4041-bddf-447a4c9f5551",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "I had a few questions to ask you about the university. I'm trying to better understand what being a hero really means.",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "id": "107de9c1-7bfb-4b69-8038-3a500b36e982",
+                                    "type": "nodes.skillBranch",
+                                    "skill": "Smarts",
+                                    "target": "55",
+                                    "success": {
+                                        "type": "nodes.block",
+                                        "nodes": []
+                                    },
+                                    "failure": {
+                                        "type": "nodes.block",
+                                        "nodes": []
+                                    },
+                                    "notify": true
+                                },
+                                {
+                                    "type": "nodes.changeReputation",
+                                    "id": "1e7113e5-3549-47c0-a9c7-18b7310dfbd5",
+                                    "actorId": "b7cbd02d-8e2f-4a8d-99a7-02b132d86e1d",
+                                    "amount": "2",
+                                    "change": "1",
+                                    "notify": true
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": false,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "35614353-f9c1-4bea-9914-b94df0250f0c",
+                            "text": "Say Something Snarky (Moxie)",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "9c59bbe1-d1f1-4a2c-96ed-e703936e0524",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "I just came to see your smiling face and interrupt your afternoon nap with my annoying questions... sir.",
+                                    "emotion": "1",
+                                    "emotion2": "4",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "id": "63a22d19-cdb5-47d7-abfa-0ff63276e242",
+                                    "type": "nodes.skillBranch",
+                                    "skill": "Moxie",
+                                    "target": "55",
+                                    "success": {
+                                        "type": "nodes.block",
+                                        "nodes": [
+                                            {
+                                                "type": "nodes.changeReputation",
+                                                "id": "cfc9b64f-1e88-4c7a-8f93-79f010c5988f",
+                                                "actorId": "b7cbd02d-8e2f-4a8d-99a7-02b132d86e1d",
+                                                "amount": "2",
+                                                "change": "1",
+                                                "notify": true
+                                            }
+                                        ]
+                                    },
+                                    "failure": {
+                                        "type": "nodes.block",
+                                        "nodes": [
+                                            {
+                                                "type": "nodes.changeReputation",
+                                                "id": "560ae4ee-ac65-49c8-9d77-7a9536f5b0b0",
+                                                "actorId": "b7cbd02d-8e2f-4a8d-99a7-02b132d86e1d",
+                                                "amount": "1",
+                                                "change": "0",
+                                                "notify": true
+                                            }
+                                        ]
+                                    },
+                                    "notify": true
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": false,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": false,
+                    "Unique": true
+                },
+                {
+                    "type": "nodes.speak",
+                    "id": "ee31ce46-689b-43ce-b808-cb0755e92c2b",
+                    "actorId": "b7cbd02d-8e2f-4a8d-99a7-02b132d86e1d",
+                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "text": "Get on with it, then.",
+                    "emotion": "0",
+                    "emotion2": "0",
+                    "device": "0",
+                    "device2": "0"
+                },
+                {
+                    "type": "nodes.showMenu",
+                    "id": "2a8968d0-4e9e-41dd-8b0f-0c327a1d26f5",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "a6296b63-f3a2-4f2e-a391-46296132b30d",
+                            "text": "Ask About the Master",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "4c14bcf4-9195-4e6b-b11d-0fcd6a7699cd",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Do you think of yourself as a hero?",
+                                    "emotion": "0",
+                                    "emotion2": "4",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "d648b504-4d53-42df-85bd-fb7a8bd9e16c",
+                                    "actorId": "b7cbd02d-8e2f-4a8d-99a7-02b132d86e1d",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "Am I a hero? An interesting question...",
+                                    "emotion": "4",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "ca5341b8-5592-43d7-93b2-4edca3e98c93",
+                                    "actorId": "b7cbd02d-8e2f-4a8d-99a7-02b132d86e1d",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "What I do here at the school is evening the scale of justice, weighing a little more on the side of Good.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "590367da-5209-474d-84fd-1513040910aa",
+                                    "actorId": "b7cbd02d-8e2f-4a8d-99a7-02b132d86e1d",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "However, I do not think of myself as a hero. Nor am I villain. I am merely a teacher who hopes that my words will inspire others to be heroes.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.changeReputation",
+                                    "id": "1cc1f12f-63c9-4719-a73e-61b9ea2d6ce3",
+                                    "actorId": "b7cbd02d-8e2f-4a8d-99a7-02b132d86e1d",
+                                    "amount": "2",
+                                    "change": "1",
+                                    "notify": true
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": false,
+                            "minutes": "6",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "7de9b0bf-0f85-4087-8ca8-8de8c71b030e",
+                            "text": "Ask About Danger",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "b415ce88-67d0-41bd-9aa5-c7058dbd6927",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "b7cbd02d-8e2f-4a8d-99a7-02b132d86e1d",
+                                    "text": "I think you must know by now that there are dangerous areas under the school and that some of us students are exploring them?",
+                                    "emotion": "0",
+                                    "emotion2": "4",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "c708da7b-0354-4feb-824b-b2b3a77cfb4c",
+                                    "actorId": "b7cbd02d-8e2f-4a8d-99a7-02b132d86e1d",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "I am aware of such places and activities.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "2fb8e7e9-085a-41a0-844b-a971001b03c0",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "b7cbd02d-8e2f-4a8d-99a7-02b132d86e1d",
+                                    "text": "I'm curious as to why you and the Headmaster allow this to continue. Someone could get seriously hurt.",
+                                    "emotion": "0",
+                                    "emotion2": "4",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "fb7751e3-fba4-48b0-b381-8c1245bbece8",
+                                    "actorId": "b7cbd02d-8e2f-4a8d-99a7-02b132d86e1d",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "I am going to give a lecture this week upon this subject. However, to alleviate your burning curiosity, I will point out that you and the others are not children. ",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "3ffd5a01-f5ca-4988-ad67-60a3568b468a",
+                                    "actorId": "b7cbd02d-8e2f-4a8d-99a7-02b132d86e1d",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "You are capable of assessing the danger of a situation and the balance of risk and reward. Furthermore, I have taught you many skills that will improve the odds of survival.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "c1fbf1d1-8d33-4404-a3bc-311ffc344a54",
+                                    "actorId": "b7cbd02d-8e2f-4a8d-99a7-02b132d86e1d",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "There is much danger in the world. This school is not here to protect and shield you from danger. It hands you the sword so that you can face the danger.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "8a23026c-d95f-46a3-bc31-a0175aa3564c",
+                                    "scope": "scene",
+                                    "scopeId": "eceae806-6f55-4cde-b517-c73b1c924fd9",
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "dangerousschool",
+                                    "tagsToRemove": null
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": false,
+                            "minutes": "9",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "b3c84ff0-fd48-4aa1-b514-6b981a39b5d6",
+                            "text": "Give a Gift",
+                            "nodes": [
+                                {
+                                    "type": "nodes.invokeScript",
+                                    "id": "22d06689-31d0-4062-a5db-d22b0398d5e7",
+                                    "scriptId": "daf00ac7-20ec-49f1-bb34-d15ac388ae23",
+                                    "entryPointId": "0b7fe5d7-dee1-4311-82c0-43dbd8d1e61f",
+                                    "currentScope": "Scenes",
+                                    "currentSceneId": "eceae806-6f55-4cde-b517-c73b1c924fd9",
+                                    "currentActorId": null,
+                                    "currentStoryEventId": null,
+                                    "currentPropId": null
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "actor",
+                                "scopeId": "b7cbd02d-8e2f-4a8d-99a7-02b132d86e1d",
+                                "scopeFilterId": null,
+                                "tags": "GotGerhardGift",
+                                "has": true
+                            },
+                            "ignoreChildAvailability": false,
+                            "minutes": "2",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "6945001b-7fc7-41e7-aca3-381859438548",
+                            "text": "Goodbye",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "ff155f6b-84ee-4187-bf6d-f8f9aadad06b",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "b7cbd02d-8e2f-4a8d-99a7-02b132d86e1d",
+                                    "text": "Thank you, sir. It's always interesting to talk to you.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.invokeScript",
+                                    "id": "c83321f4-31e0-4426-a244-dbb84c069d44",
+                                    "scriptId": "8f2ac6a0-3073-44b0-b814-fdfcbc24ab9d",
+                                    "entryPointId": "6cac2b88-9657-4bd2-aa9d-8314949d75cd",
+                                    "currentScope": "Scenes",
+                                    "currentSceneId": "eceae806-6f55-4cde-b517-c73b1c924fd9",
+                                    "currentActorId": null,
+                                    "currentStoryEventId": null,
+                                    "currentPropId": null
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "72ba3e9e-6ef4-450c-8012-d371228f1bcd",
+                                    "actorId": "b7cbd02d-8e2f-4a8d-99a7-02b132d86e1d",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "Take care, Herr O'Conner. Do not let the dangers catch you unwary or unarmed.",
+                                    "emotion": "0",
+                                    "emotion2": "1",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.changeReputation",
+                                    "id": "634be73c-b8be-4f5b-8650-76668524a1e9",
+                                    "actorId": "b7cbd02d-8e2f-4a8d-99a7-02b132d86e1d",
+                                    "amount": "2",
+                                    "change": "1",
+                                    "notify": true
+                                },
+                                {
+                                    "type": "nodes.incrementTime",
+                                    "id": "94922672-d680-4308-82ff-ddd63c2ae15b",
+                                    "days": 0,
+                                    "hours": 0,
+                                    "minutes": "10"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": false,
+                            "minutes": 0,
+                            "ExitMenu": true
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "55bbf8df-a8e9-4b8d-8d2a-be8cd773b505",
+                            "text": "Leave the Room",
+                            "nodes": [
+                                {
+                                    "type": "nodes.incrementTime",
+                                    "id": "39d7a8b0-bf2b-48ac-a7d9-75aa809310a2",
+                                    "days": 0,
+                                    "hours": 0,
+                                    "minutes": "10"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": false,
+                            "minutes": 0,
+                            "ExitMenu": true
+                        }
+                    ],
+                    "AutoAddDone": false,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

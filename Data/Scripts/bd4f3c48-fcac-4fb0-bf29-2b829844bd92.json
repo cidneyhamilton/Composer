@@ -1,0 +1,526 @@
+{
+    "type": "script",
+    "id": "bd4f3c48-fcac-4fb0-bf29-2b829844bd92",
+    "name": "Interact With Grappling Hook",
+    "sceneId": "e8288a23-0b06-4dd7-94d2-9761390d6484",
+    "propId": "840d6785-d17b-459f-bd6c-29ffb27e7631",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "0e4bfca0-ee50-44ec-b6ba-1862e0d6a43d",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "10f7977d-f1b0-4c2d-8516-0a7cf42c2a1a",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "617998f9-a451-47d2-b86c-e68a225b22bf",
+                            "text": "Look at the Grappling Hook",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "f2fac10e-efa6-4cd5-834b-12cb11575fcb",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "It's the same low-price, student-quality grapnel you'd find at any insititution of higher learning.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "ad5b055b-a502-4299-8d1e-235cc59663e5",
+                            "text": "Practice with the Grappling Hook",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "scene",
+                                                "scopeId": "e8288a23-0b06-4dd7-94d2-9761390d6484",
+                                                "scopeFilterId": null,
+                                                "tags": "PracticedClimbingToday",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.and",
+                                                                "left": {
+                                                                    "type": "expressions.variableComparison",
+                                                                    "variableScope": "global",
+                                                                    "variableName": "time.hour",
+                                                                    "operator": "eq",
+                                                                    "compareTo": "17",
+                                                                    "sceneId": "e8288a23-0b06-4dd7-94d2-9761390d6484",
+                                                                    "propId": null
+                                                                },
+                                                                "right": {
+                                                                    "type": "expressions.variableComparison",
+                                                                    "variableScope": "global",
+                                                                    "variableName": "time.minute",
+                                                                    "operator": "gte",
+                                                                    "compareTo": "30",
+                                                                    "sceneId": "e8288a23-0b06-4dd7-94d2-9761390d6484",
+                                                                    "propId": null
+                                                                }
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "587318d3-46a3-48b6-8372-3108ec913805",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "Ugh. It's getting too close to suppertime to work out now.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.variableComparison",
+                                                                "variableScope": "global",
+                                                                "variableName": "time.hour",
+                                                                "operator": "lt",
+                                                                "compareTo": "7",
+                                                                "sceneId": "e8288a23-0b06-4dd7-94d2-9761390d6484",
+                                                                "propId": null
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "9ccbdb31-b9c2-4182-b8bb-da02c8f068ad",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "I am not going to waste my precious sleeping time exercising!",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": null,
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.changeTags",
+                                                                    "id": "4da2b5b5-c5c8-43d0-983a-09177e872384",
+                                                                    "scope": "scene",
+                                                                    "scopeId": "e8288a23-0b06-4dd7-94d2-9761390d6484",
+                                                                    "scopeFilterId": null,
+                                                                    "tagsToAdd": "practicedclimbingtoday",
+                                                                    "tagsToRemove": null
+                                                                },
+                                                                {
+                                                                    "type": "nodes.playMusic",
+                                                                    "musicTrack": "silence.ogg",
+                                                                    "channel": "1",
+                                                                    "loopType": "1"
+                                                                },
+                                                                {
+                                                                    "id": "8a0915aa-53d2-43e6-854f-504845b25987",
+                                                                    "type": "nodes.skillBranch",
+                                                                    "skill": "Climbing",
+                                                                    "target": "45",
+                                                                    "success": {
+                                                                        "type": "nodes.block",
+                                                                        "nodes": [
+                                                                            {
+                                                                                "type": "nodes.fade",
+                                                                                "scope": "FadeOut",
+                                                                                "fadeTime": "1",
+                                                                                "fadeTime2": ".5",
+                                                                                "wait": true,
+                                                                                "fadeDown": ".2",
+                                                                                "fadeColorR": 0,
+                                                                                "fadeColorG": 0,
+                                                                                "fadeColorB": 0
+                                                                            },
+                                                                            {
+                                                                                "type": "nodes.playSoundEffect",
+                                                                                "soundEffectName": "Throw Grapnel Hit.wav",
+                                                                                "wait": false
+                                                                            },
+                                                                            {
+                                                                                "type": "nodes.showVignette",
+                                                                                "vignetteName": "Practice - RopeSwingingMastery.png",
+                                                                                "crossFadeTime": 0
+                                                                            },
+                                                                            {
+                                                                                "type": "nodes.fade",
+                                                                                "scope": "FadeIn",
+                                                                                "fadeTime": 2,
+                                                                                "fadeTime2": ".5",
+                                                                                "wait": true,
+                                                                                "fadeDown": ".25",
+                                                                                "fadeColorR": 0,
+                                                                                "fadeColorG": 0,
+                                                                                "fadeColorB": 0
+                                                                            },
+                                                                            {
+                                                                                "id": "0d9fa43e-142c-476f-b8b2-525ab2b1c83d",
+                                                                                "type": "nodes.improveSkill",
+                                                                                "skill": "Climbing",
+                                                                                "amount": "2",
+                                                                                "notify": true
+                                                                            },
+                                                                            {
+                                                                                "id": "63bb9351-b746-4abb-b6ad-707a53f9ebee",
+                                                                                "type": "nodes.improveSkill",
+                                                                                "skill": "Throwing",
+                                                                                "amount": "2",
+                                                                                "notify": true
+                                                                            },
+                                                                            {
+                                                                                "type": "nodes.nodeCycle",
+                                                                                "id": "17fa647d-2a63-47e5-a4b0-c19b14202b3c",
+                                                                                "nodes": [
+                                                                                    {
+                                                                                        "type": "nodes.speak",
+                                                                                        "id": "04f97f91-2a3a-468c-9dbf-3f259a731807",
+                                                                                        "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                        "actorId2": null,
+                                                                                        "text": "It's throwing practice! It's climbing practice! It's two great practices in one!",
+                                                                                        "emotion": "1",
+                                                                                        "emotion2": "0",
+                                                                                        "device": "0",
+                                                                                        "device2": "0"
+                                                                                    },
+                                                                                    {
+                                                                                        "type": "nodes.speak",
+                                                                                        "id": "f359a05f-f029-486c-9ac1-18f4b1f5669c",
+                                                                                        "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                        "actorId2": null,
+                                                                                        "text": "I better not make it look <i>too</i> easy!",
+                                                                                        "emotion": "1",
+                                                                                        "emotion2": "0",
+                                                                                        "device": "0",
+                                                                                        "device2": "0"
+                                                                                    },
+                                                                                    {
+                                                                                        "type": "nodes.speak",
+                                                                                        "id": "2dfe2842-9c19-42b6-a8ff-693c330d2226",
+                                                                                        "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                        "actorId2": null,
+                                                                                        "text": "One rogue, coming right up!",
+                                                                                        "emotion": "1",
+                                                                                        "emotion2": "0",
+                                                                                        "device": "0",
+                                                                                        "device2": "0"
+                                                                                    },
+                                                                                    {
+                                                                                        "type": "nodes.speak",
+                                                                                        "id": "06a9c012-8a51-4e2b-9ea1-d47bb580057d",
+                                                                                        "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                        "actorId2": null,
+                                                                                        "text": "Easy up, easy down!",
+                                                                                        "emotion": "1",
+                                                                                        "emotion2": "0",
+                                                                                        "device": "0",
+                                                                                        "device2": "0"
+                                                                                    },
+                                                                                    {
+                                                                                        "type": "nodes.speak",
+                                                                                        "id": "16c6a1c2-9bfa-43ac-8a8d-69308526a3f0",
+                                                                                        "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                        "actorId2": null,
+                                                                                        "text": "I'm zippin' up and down... just call me the Big Zipper!",
+                                                                                        "emotion": "0",
+                                                                                        "emotion2": "0",
+                                                                                        "device": "0",
+                                                                                        "device2": "0"
+                                                                                    },
+                                                                                    {
+                                                                                        "type": "nodes.speak",
+                                                                                        "id": "f2e2b8c0-8b62-4ca8-b77c-9ca55fa9f4f1",
+                                                                                        "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                        "actorId2": null,
+                                                                                        "text": "This grapnel's going to wear out before <i>I</i> do!",
+                                                                                        "emotion": "0",
+                                                                                        "emotion2": "0",
+                                                                                        "device": "0",
+                                                                                        "device2": "0"
+                                                                                    },
+                                                                                    {
+                                                                                        "type": "nodes.speak",
+                                                                                        "id": "93964f2a-0be8-4d3f-b139-939b621f3053",
+                                                                                        "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                        "actorId2": null,
+                                                                                        "text": "Sometimes I surprise even myself!",
+                                                                                        "emotion": "0",
+                                                                                        "emotion2": "0",
+                                                                                        "device": "0",
+                                                                                        "device2": "0"
+                                                                                    }
+                                                                                ]
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    "failure": {
+                                                                        "type": "nodes.block",
+                                                                        "nodes": [
+                                                                            {
+                                                                                "type": "nodes.fade",
+                                                                                "scope": "FadeOut",
+                                                                                "fadeTime": "1",
+                                                                                "fadeTime2": 2,
+                                                                                "wait": true,
+                                                                                "fadeDown": 1,
+                                                                                "fadeColorR": 0,
+                                                                                "fadeColorG": 0,
+                                                                                "fadeColorB": 0
+                                                                            },
+                                                                            {
+                                                                                "type": "nodes.playSoundEffect",
+                                                                                "soundEffectName": "Throw Grapnel Hit.wav",
+                                                                                "wait": false
+                                                                            },
+                                                                            {
+                                                                                "type": "nodes.showVignette",
+                                                                                "vignetteName": "Practice - HangingUpsideDown.png",
+                                                                                "crossFadeTime": 0
+                                                                            },
+                                                                            {
+                                                                                "type": "nodes.fade",
+                                                                                "scope": "FadeIn",
+                                                                                "fadeTime": 2,
+                                                                                "fadeTime2": ".5",
+                                                                                "wait": true,
+                                                                                "fadeDown": ".25",
+                                                                                "fadeColorR": 0,
+                                                                                "fadeColorG": 0,
+                                                                                "fadeColorB": 0
+                                                                            },
+                                                                            {
+                                                                                "id": "743d910c-1e37-41a5-a680-7ddc96651893",
+                                                                                "type": "nodes.improveSkill",
+                                                                                "skill": "Climbing",
+                                                                                "amount": "2",
+                                                                                "notify": true
+                                                                            },
+                                                                            {
+                                                                                "id": "562cff68-0aa6-4206-9d0c-c2ad64803655",
+                                                                                "type": "nodes.improveSkill",
+                                                                                "skill": "Throwing",
+                                                                                "amount": "2",
+                                                                                "notify": true
+                                                                            },
+                                                                            {
+                                                                                "type": "nodes.nodeCycle",
+                                                                                "id": "77509da6-f972-4720-b57e-3d5f2eeff270",
+                                                                                "nodes": [
+                                                                                    {
+                                                                                        "type": "nodes.speak",
+                                                                                        "id": "b9fb2184-9496-4698-aff4-8a3ff09ad5c8",
+                                                                                        "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                        "actorId2": null,
+                                                                                        "text": "I'm pretty sure this wasn't supposed to happen.",
+                                                                                        "emotion": "2",
+                                                                                        "emotion2": "0",
+                                                                                        "device": "0",
+                                                                                        "device2": "0"
+                                                                                    },
+                                                                                    {
+                                                                                        "type": "nodes.speak",
+                                                                                        "id": "b0f5b40d-0fa2-4b70-ad75-5f7703b74bc6",
+                                                                                        "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                        "actorId2": null,
+                                                                                        "text": "I think I'm getting the hang of this.",
+                                                                                        "emotion": "4",
+                                                                                        "emotion2": "0",
+                                                                                        "device": "0",
+                                                                                        "device2": "0"
+                                                                                    },
+                                                                                    {
+                                                                                        "type": "nodes.speak",
+                                                                                        "id": "260832f2-f6ab-478f-9c05-59d7c626e5d2",
+                                                                                        "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                        "actorId2": null,
+                                                                                        "text": "There's no reason to tell anyone else about this.",
+                                                                                        "emotion": "2",
+                                                                                        "emotion2": "0",
+                                                                                        "device": "0",
+                                                                                        "device2": "0"
+                                                                                    },
+                                                                                    {
+                                                                                        "type": "nodes.speak",
+                                                                                        "id": "1f558f43-9f1e-4f7e-9e73-03c59722832b",
+                                                                                        "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                        "actorId2": null,
+                                                                                        "text": "I meant for this to happen.",
+                                                                                        "emotion": "3",
+                                                                                        "emotion2": "0",
+                                                                                        "device": "0",
+                                                                                        "device2": "0"
+                                                                                    },
+                                                                                    {
+                                                                                        "type": "nodes.speak",
+                                                                                        "id": "9857f6d1-f819-4ac5-b693-41b5a18f0c1a",
+                                                                                        "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                        "actorId2": null,
+                                                                                        "text": "It's supposed to be better for your heart this way.",
+                                                                                        "emotion": "1",
+                                                                                        "emotion2": "0",
+                                                                                        "device": "0",
+                                                                                        "device2": "0"
+                                                                                    },
+                                                                                    {
+                                                                                        "type": "nodes.speak",
+                                                                                        "id": "09b1fbc6-7421-4f97-a3b4-a104f9a6c87d",
+                                                                                        "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                        "actorId2": null,
+                                                                                        "text": "But I'm still hanging onto it, and that's what counts!",
+                                                                                        "emotion": "1",
+                                                                                        "emotion2": "0",
+                                                                                        "device": "0",
+                                                                                        "device2": "0"
+                                                                                    },
+                                                                                    {
+                                                                                        "type": "nodes.speak",
+                                                                                        "id": "0ea4bc79-81b1-48a1-b3d4-1559435317d3",
+                                                                                        "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                        "actorId2": null,
+                                                                                        "text": "Now I know how some kind of a \"bat man\" would feel!",
+                                                                                        "emotion": "0",
+                                                                                        "emotion2": "0",
+                                                                                        "device": "0",
+                                                                                        "device2": "0"
+                                                                                    }
+                                                                                ]
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    "notify": true
+                                                                },
+                                                                {
+                                                                    "type": "nodes.incrementTime",
+                                                                    "id": "04764e20-0a26-4015-866f-6acb0a69d57b",
+                                                                    "days": 0,
+                                                                    "hours": "1",
+                                                                    "minutes": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.fade",
+                                                                    "scope": "FadeOut",
+                                                                    "fadeTime": "1",
+                                                                    "fadeTime2": 2,
+                                                                    "wait": true,
+                                                                    "fadeDown": 1,
+                                                                    "fadeColorR": 0,
+                                                                    "fadeColorG": 0,
+                                                                    "fadeColorB": 0
+                                                                },
+                                                                {
+                                                                    "type": "nodes.hideVignette",
+                                                                    "waitForSeconds": 1
+                                                                },
+                                                                {
+                                                                    "type": "nodes.fade",
+                                                                    "scope": "FadeIn",
+                                                                    "fadeTime": 2,
+                                                                    "fadeTime2": ".5",
+                                                                    "wait": true,
+                                                                    "fadeDown": ".25",
+                                                                    "fadeColorR": 0,
+                                                                    "fadeColorG": 0,
+                                                                    "fadeColorB": 0
+                                                                },
+                                                                {
+                                                                    "type": "nodes.invokeScript",
+                                                                    "id": "c5f10dbb-9b98-4f82-a3ce-c214b8797ea8",
+                                                                    "scriptId": "8bf09f9d-d50b-49a5-a9d7-f60f9e467b4b",
+                                                                    "entryPointId": "0e4bfca0-ee50-44ec-b6ba-1862e0d6a43d",
+                                                                    "currentScope": "Scenes",
+                                                                    "currentSceneId": "e8288a23-0b06-4dd7-94d2-9761390d6484",
+                                                                    "currentActorId": null,
+                                                                    "currentStoryEventId": null,
+                                                                    "currentPropId": null
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "55301938-82b3-42f4-8f76-b18066b13d0b",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "I've already practiced enough today.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "2",
+                            "ExitMenu": true
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "a3abfc3a-ae82-4b6a-8786-bc825ee2f061",
+                            "text": "Steal the Grappling Hook",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "22bc7dad-71e0-46f4-834e-a1e27e4b5b8a",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "The rope is really worn. I'm a frayed knot.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

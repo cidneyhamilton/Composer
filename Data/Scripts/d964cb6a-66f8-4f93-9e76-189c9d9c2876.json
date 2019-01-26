@@ -1,0 +1,61 @@
+{
+    "type": "script",
+    "id": "d964cb6a-66f8-4f93-9e76-189c9d9c2876",
+    "name": "KilledByEgo",
+    "sceneId": "e8606d3d-9743-4b44-a3b3-117a393b42ae",
+    "actorId": "142ca46f-8406-4d7d-a554-a5955f5edf75",
+    "trigger": {
+        "type": "triggers.killedByEgo",
+        "name": "KilledByEgo"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "f3e56a25-f222-4fb4-aac1-c672eab3434f",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.comment",
+                    "message": "Tag Created for tracking Phylactery status",
+                    "commentor": "Charles"
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.variableComparison",
+                                "variableScope": "global",
+                                "variableName": "time.hour",
+                                "operator": "lt",
+                                "compareTo": "2",
+                                "sceneId": "91e73978-0245-4bb2-8c83-eaa7f3954455",
+                                "propId": null
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.setTime",
+                                    "id": "6dd6acd7-ce85-44ec-8e14-b066547bfa5c",
+                                    "day": -1,
+                                    "hour": 0,
+                                    "minute": 0,
+                                    "notify": false
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.changeTags",
+                    "id": "9856a7b2-bb17-4d77-bf86-046c52f620ec",
+                    "scope": "actor",
+                    "scopeId": "fb00cd5f-e210-44b2-bc7d-5384a9a3db74",
+                    "scopeFilterId": null,
+                    "tagsToAdd": "bottledup",
+                    "tagsToRemove": null
+                }
+            ]
+        }
+    ]
+}

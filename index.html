@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Hero-U Composer</title>
+        
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+        
+        <link rel="stylesheet" href="Content/bootstrap.css" />
+        <link rel="stylesheet" href="Content/font-awesome.css" />
+
+        <!-- The following three files were originally rel="stylesheet/less"
+            but were converted to stylesheet due to memory leaking.
+            toastr.less and app.less are located in the original locatiion for
+            historical purposes.  hint.css was always a .css file. -->
+        <link rel="stylesheet" type="text/css" href="Content/hint.css" />
+        <link rel="stylesheet" type="text/css" href="Content/toastr.css" />
+        <link rel="stylesheet" type="text/css" href="Content/app.css" />
+
+        <script type="text/javascript">
+
+            window.gui = require('nw.gui');
+
+            window.requireNode = window.require;
+            delete window.require;
+
+            window.requireNode.version = process.versions.node;
+            delete process.versions.node;
+
+        </script>
+    <!-- Removed due to memory leak; replaced with .css files instead -->
+    <!--
+        <script src="Scripts/less-1.3.3.min.js"></script>
+    -->
+    </head>
+    <body>
+        <div id="applicationHost">
+            <div class="splash">
+                <img src="Content/images/splash.jpg"/>
+                <span id="mainLoadingText"><i class="icon-spinner icon-spin"></i>Loading...</span>
+            </div>
+        </div>
+        <script type="text/javascript" src="Scripts/ckeditor/ckeditor.js"></script>
+        <script type="text/javascript" src="Scripts/require.js" data-main="App/main.js"></script>
+
+        <!-- Removed due to memory leak; replaced with .css files instead -->
+        <!--
+        <script type="text/javascript">
+            less.watch();
+        </script>
+        -->
+
+
+		<script type="text/javascript">
+            // Pulling this out of the timeout; suspect it may be causing errors in Composer
+            // because it takes > 500ms to load nw.gui on some systems
+            if (window.gui.App.argv.indexOf('batchBuild') > -1) {
+                document.getElementById("mainLoadingText").textContent = "[Batch Mode] Loading...";
+            }
+/**
+            setTimeout(function() {
+                require(['nw.gui'], function(nwGui) {
+                    var myArgs = nwGui.App.argv;
+                    if(myArgs.indexOf('batchBuild') > -1)
+                    {
+                        document.getElementById("mainLoadingText").textContent = "[Batch Mode] Loading...";
+                    }
+                });
+            }, 500);
+**/
+		</script>
+    </body>
+</html>

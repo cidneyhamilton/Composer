@@ -1,0 +1,570 @@
+{
+    "type": "script",
+    "id": "f76c138f-2e01-4ef8-a096-42030551f899",
+    "name": "Painting_Shared_Interact",
+    "sceneId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+    "trigger": {
+        "type": "triggers.manual",
+        "name": "Manual"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "34ede1c2-dd3e-43c4-be3d-18a3086a7d57",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "scene",
+                                "scopeId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+                                "scopeFilterId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+                                "tags": "defacedpainting",
+                                "has": true
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.showCloseUp",
+                                    "imageName": "Framed_DefacedPainting.jpg"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.showCloseUp",
+                                    "imageName": "Framed_TerksMomPortrait.jpg"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.showMenu",
+                    "id": "20c83f33-2a88-4d22-91ac-5a5df9858b78",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "38c5404c-fce7-4296-9bd9-a0136168b4bb",
+                            "text": "Examine the Painting",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "scene",
+                                                "scopeId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+                                                "scopeFilterId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+                                                "tags": "defacedpainting",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "72e40468-525e-434f-8b59-4188a8359455",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "This shows an unpleasant resemblance to Terk...",
+                                                    "emotion": "0",
+                                                    "device": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "574bf562-730a-492d-893a-1cc0c10e95bb",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Doesn't she look lovely now?",
+                                                    "emotion": "1",
+                                                    "device": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "1",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "77a3d53f-34bb-486a-a253-916e7c3ed041",
+                            "text": "Slide the Painting",
+                            "nodes": [
+                                {
+                                    "type": "nodes.playSoundEffect",
+                                    "soundEffectName": "Search Behind Painting.wav",
+                                    "wait": false
+                                },
+                                {
+                                    "type": "nodes.hideCloseUp",
+                                    "waitForSeconds": 1
+                                },
+                                {
+                                    "type": "nodes.comment",
+                                    "message": "Special effect: Animate moving the painting!",
+                                    "commentor": "Graham"
+                                },
+                                {
+                                    "type": "nodes.changePropVisibility",
+                                    "id": "d88101fd-bc62-49b0-ac01-b6974e296560",
+                                    "propId": "e44175ae-50cb-4482-93c2-f7796ef6e9d6",
+                                    "sceneId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+                                    "visible": true,
+                                    "status": "Visible",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.changePropVisibility",
+                                    "id": "7805965e-e338-4f02-a54e-4dfd46960b5d",
+                                    "propId": "8cbe049c-7f49-4f5c-aa19-17af41f6c427",
+                                    "sceneId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+                                    "status": "Opening",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.changePropVisibility",
+                                    "id": "421d1d70-b2e6-4ebf-990f-e22409920bc6",
+                                    "propId": "8cbe049c-7f49-4f5c-aa19-17af41f6c427",
+                                    "sceneId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+                                    "status": "Open",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "d48ab5e3-61ba-42f3-b1ea-c70cbf96bbb1",
+                                    "scope": "prop",
+                                    "scopeId": "8cbe049c-7f49-4f5c-aa19-17af41f6c427",
+                                    "scopeFilterId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+                                    "tagsToAdd": "paintingmoved",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "2fb39764-7e81-48a2-be3e-5c24c4d755ad",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "What do you know? There's a safe hiding behind the painting! How very original...",
+                                    "emotion": "1",
+                                    "device": "0"
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "prop",
+                                "scopeId": "8cbe049c-7f49-4f5c-aa19-17af41f6c427",
+                                "scopeFilterId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+                                "tags": "paintingmoved",
+                                "has": false
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "2",
+                            "ExitMenu": true
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "2ad7ecf2-54bf-4a84-9a8e-d501f74970f3",
+                            "text": "Put the Painting back",
+                            "nodes": [
+                                {
+                                    "type": "nodes.playSoundEffect",
+                                    "soundEffectName": "Search Behind Painting.wav",
+                                    "wait": false
+                                },
+                                {
+                                    "type": "nodes.hideCloseUp",
+                                    "waitForSeconds": 1
+                                },
+                                {
+                                    "type": "nodes.changePropVisibility",
+                                    "id": "52fb31f0-0bb2-4a70-b923-c3b1498323fd",
+                                    "propId": "e44175ae-50cb-4482-93c2-f7796ef6e9d6",
+                                    "sceneId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+                                    "status": "Visible",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.changePropVisibility",
+                                    "id": "7b9f2314-aaec-4405-b373-d0d2af4b67d3",
+                                    "propId": "010af9f6-10b2-4abd-a968-73443ac1a40e",
+                                    "sceneId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+                                    "status": "Hidden",
+                                    "wait": false
+                                },
+                                {
+                                    "type": "nodes.changePropVisibility",
+                                    "id": "f6be017e-86c9-4505-bafe-2fa76bd85406",
+                                    "propId": "8cbe049c-7f49-4f5c-aa19-17af41f6c427",
+                                    "sceneId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+                                    "status": "Closing",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.changePropVisibility",
+                                    "id": "d6969dd7-4d56-4afc-aa0e-f7425c2cc279",
+                                    "propId": "8cbe049c-7f49-4f5c-aa19-17af41f6c427",
+                                    "sceneId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+                                    "status": "Closed",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "bd9a8c78-c8be-4686-95e5-4e04c485d1b5",
+                                    "scope": "prop",
+                                    "scopeId": "8cbe049c-7f49-4f5c-aa19-17af41f6c427",
+                                    "scopeFilterId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+                                    "tagsToRemove": "paintingmoved"
+                                },
+                                {
+                                    "type": "nodes.wait",
+                                    "waitForSeconds": "0.25"
+                                },
+                                {
+                                    "type": "nodes.changePropVisibility",
+                                    "id": "0c22ad8d-5c31-4e39-983c-e0bcfca76703",
+                                    "propId": "e44175ae-50cb-4482-93c2-f7796ef6e9d6",
+                                    "sceneId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+                                    "status": "Hidden",
+                                    "wait": true
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "prop",
+                                "scopeId": "8cbe049c-7f49-4f5c-aa19-17af41f6c427",
+                                "scopeFilterId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+                                "tags": "paintingmoved",
+                                "has": true
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "3",
+                            "ExitMenu": true
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "e4fcec09-5766-4c49-9833-8a32ef18a6aa",
+                            "text": "Deface the Painting",
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "5775764f-7f7f-4d07-b656-99dfd9c5cbe8",
+                                    "scope": "scene",
+                                    "scopeId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+                                    "scopeFilterId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+                                    "tagsToAdd": "defacedpainting",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.comment",
+                                    "message": "We're supposed to play some sort of animation here",
+                                    "commentor": "Placeholder"
+                                },
+                                {
+                                    "type": "nodes.playSoundEffect",
+                                    "soundEffectName": "Draw on Painting.wav",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.changePropVisibility",
+                                    "id": "c3d8eb3e-f928-49d8-9d5b-4107ae3bdd48",
+                                    "propId": "431c44b1-534d-493c-8fee-e00f5ec4a7e3",
+                                    "sceneId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+                                    "status": "Hidden",
+                                    "wait": false
+                                },
+                                {
+                                    "type": "nodes.changePropVisibility",
+                                    "id": "228caa40-447a-488b-ab68-487b251fcf15",
+                                    "propId": "15edf0ec-fc5e-473d-9392-74ec67aed68b",
+                                    "sceneId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+                                    "status": "Visible",
+                                    "wait": false
+                                },
+                                {
+                                    "type": "nodes.showCloseUp",
+                                    "imageName": "Framed_DefacedPainting.jpg"
+                                },
+                                {
+                                    "type": "nodes.quests",
+                                    "id": "51f931e4-6318-4919-a59e-61acd9e2d155",
+                                    "sceneId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                                    "propId": "2fb29518-c7a8-4096-ac3c-36e50277242d",
+                                    "target": "1",
+                                    "notify": true
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "9876cc14-3b13-4896-a371-716bccb9fbe6",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "There - that looks so much better now!",
+                                    "emotion": "1",
+                                    "device": "0"
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inTags",
+                                    "scope": "scene",
+                                    "scopeId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+                                    "scopeFilterId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+                                    "tags": "defacedpainting",
+                                    "has": false
+                                },
+                                "right": {
+                                    "type": "expressions.inTags",
+                                    "scope": "prop",
+                                    "scopeId": "8cbe049c-7f49-4f5c-aa19-17af41f6c427",
+                                    "scopeFilterId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+                                    "tags": "paintingmoved",
+                                    "has": false
+                                }
+                            },
+                            "ignoreChildAvailability": false,
+                            "minutes": "10",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "766e9147-7b86-4606-aac7-ec0a945e8a40",
+                            "text": "Sense Magic",
+                            "nodes": [
+                                {
+                                    "type": "nodes.hideCloseUp",
+                                    "waitForSeconds": 1
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "prop",
+                                                "scopeId": "8cbe049c-7f49-4f5c-aa19-17af41f6c427",
+                                                "scopeFilterId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+                                                "tags": "CheckedMagic",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "93585d60-4a10-44d5-b2f3-2fe063e5279a",
+                                                    "scriptId": "533e1ce1-13d3-439f-8544-dbdf808d30c4",
+                                                    "entryPointId": "34ede1c2-dd3e-43c4-be3d-18a3086a7d57",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "prop",
+                                                "scopeId": "8cbe049c-7f49-4f5c-aa19-17af41f6c427",
+                                                "scopeFilterId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+                                                "tags": "movedpainting",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "b6f43635-333c-4894-9060-1015adfaed8d",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Hmm...",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "a7fa770d-a325-46ec-9eb3-2233c6a54057",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "... there's no magic in that painting. Or in that smile.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.inTags",
+                                                                "scope": "scene",
+                                                                "scopeId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+                                                                "scopeFilterId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+                                                                "tags": "defacedpainting",
+                                                                "has": false
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "f6642be7-f3fe-424e-8b10-674186e54512",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "I think it's just undiagnosed irritable bowel syndrome. ",
+                                                                    "emotion": "1",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": null,
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "95d9f061-04f5-4afd-9a8d-679d1e4ebfd9",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "I'm a big fan of those glasses, though! And what a magnificent mustache!",
+                                                                    "emotion": "1",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "385e13b9-e29b-4996-8d16-2f068a8958c4",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "It doesn't feel magical. It just feels painfully obvious!",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "actor",
+                                "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                "scopeFilterId": null,
+                                "tags": "SenseMagic",
+                                "has": true
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "1",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "2333008a-669e-4194-9b74-72f3f0f3a010",
+                            "text": "Straighten out the Painting",
+                            "nodes": [
+                                {
+                                    "type": "nodes.playSoundEffect",
+                                    "soundEffectName": "Search Behind Painting.wav",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "prop",
+                                                "scopeId": "431c44b1-534d-493c-8fee-e00f5ec4a7e3",
+                                                "scopeFilterId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+                                                "tags": "debug",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "b437d983-4168-4b1a-bfca-b3da85abb677",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Better put that back...",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.comment",
+                                                    "message": "Do we want to put the painting back before leaving the dialog? Why? I rather like admiring it on the floor!",
+                                                    "commentor": "Graham"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "9593c82a-92fa-4d2c-ad43-bbefdf9cb22a",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "That's so much better.",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": true
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                },
+                {
+                    "type": "nodes.hideCloseUp",
+                    "waitForSeconds": 1
+                }
+            ]
+        }
+    ]
+}

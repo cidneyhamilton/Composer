@@ -1,0 +1,190 @@
+{
+    "type": "script",
+    "id": "e12c0156-9249-442a-8c0a-25a320147856",
+    "name": "interact Azalea",
+    "sceneId": "cf824b0f-5af6-4a19-bac8-552a2a1bbebf",
+    "propId": "2e6fb9c3-2426-463e-9dc3-2a456a841144",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "a9110d61-e6c5-4c1c-8da7-39fbd6b8f881",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "1570267e-1314-48a6-942c-be5fe758aa7d",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "0f75c1b4-92d7-43d5-a0cd-bfd32a09b367",
+                            "text": "Look at the Azalea",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "9d5f1db8-e1de-49f6-8a9b-af26071d14c1",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "I wonder if they bought this Azalea bush on zale, or if they paid full price?",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "9ec96c5c-bf65-4825-8b26-e9f39130de8f",
+                            "text": "Assail the Azalea",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "1ace5ffb-2652-435e-bc82-841c8f324009",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Aha! Have at thee, foul tree!",
+                                    "emotion": "3",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "id": "db1b7c23-5aa5-4e6e-9792-fc4d1fc7074d",
+                                    "type": "nodes.skillBranch",
+                                    "skill": "Combat",
+                                    "target": "10",
+                                    "success": {
+                                        "type": "nodes.block",
+                                        "nodes": []
+                                    },
+                                    "failure": {
+                                        "type": "nodes.block",
+                                        "nodes": []
+                                    }
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "1e6c6a96-c917-40c1-8812-1291c5df424c",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Yes! I made a rhyming taunt. Other than that, well, it's just a tree. Target dummies do a better job fighting back.",
+                                    "emotion": "0",
+                                    "emotion2": "1",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": false,
+                            "minutes": "5",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "a5b06422-64c3-437f-8d15-96cbed06d9b4",
+                            "text": "Search Under the Tree for Mushrooms",
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "8a8fe4f3-4b0c-4894-a46c-522f74042344",
+                                    "scope": "target",
+                                    "scopeId": null,
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "SearchedToday",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "scene",
+                                                "scopeId": "cf824b0f-5af6-4a19-bac8-552a2a1bbebf",
+                                                "scopeFilterId": null,
+                                                "tags": "WistShrooms",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "a3d6ddc3-417b-4264-8768-ee36ed5712c9",
+                                                    "scope": "scene",
+                                                    "scopeId": "cf824b0f-5af6-4a19-bac8-552a2a1bbebf",
+                                                    "scopeFilterId": null,
+                                                    "tagsToRemove": "AzalShrooms"
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "8216bbff-6086-4ccd-aceb-9ad0ebbe056b",
+                                                    "scriptId": "6215f323-678d-4ec1-b11f-f677b8f11aab",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "e21fa1d3-2ab4-4969-9234-46015259ab0f",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "cbb11610-f2dd-4aaf-9ee2-5cfa3d5f5072",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "This is a likely place for mushrooms to grow, but there don't seem to be any growing here today. Maybe tomorrow.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inTags",
+                                    "scope": "actor",
+                                    "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "scopeFilterId": null,
+                                    "tags": "MushroomLore",
+                                    "has": true
+                                },
+                                "right": {
+                                    "type": "expressions.inTags",
+                                    "scope": "target",
+                                    "scopeId": null,
+                                    "scopeFilterId": null,
+                                    "tags": "SearchedToday",
+                                    "has": false
+                                }
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "5",
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

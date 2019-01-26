@@ -1,0 +1,73 @@
+{
+    "type": "script",
+    "id": "cdcd3fa6-ce15-4c0d-aab2-deec60a2ffe3",
+    "name": "Interact",
+    "propId": "db09657d-0373-4edf-a20d-2bdc88c185a1",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "52a379c0-d59f-48c5-9aa8-721970273622",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.changeHealth",
+                    "id": "9783294d-59d1-441c-b7bf-2c2ee57f0364",
+                    "target": "0",
+                    "amount": "-10",
+                    "canDie": true,
+                    "isPercentage": true
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.variableComparison",
+                                "variableScope": "global",
+                                "variableName": "ego.stamina.percentage",
+                                "operator": "lt",
+                                "compareTo": "50"
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "e71ae533-b346-49ea-af68-77b5b5665b78",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "I'm a bit tired.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "9cc9b338-baeb-42d3-bd8e-694c5b256c71",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "I'm feeling pretty good.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

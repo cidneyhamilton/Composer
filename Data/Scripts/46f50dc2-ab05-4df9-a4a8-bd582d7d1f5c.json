@@ -1,0 +1,135 @@
+{
+    "type": "script",
+    "id": "46f50dc2-ab05-4df9-a4a8-bd582d7d1f5c",
+    "name": "Puzzle",
+    "sceneId": "96064b1c-7fee-41c6-ab46-b8425d3af2de",
+    "propId": "35c654d0-1a2a-4e4a-adb1-1d6c878d22e9",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.manual",
+        "name": "Manual"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "83244e61-11ce-45bd-9ea0-615a60f15ccb",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.minigame",
+                    "id": "6066a581-ef4c-453c-bca5-757743689828",
+                    "minigameIndex": "2",
+                    "resultVariable": "minigame",
+                    "resultVariableScope": "script",
+                    "trapDisarmWord": "",
+                    "trapDisarmDifficulty": 0
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.variableComparison",
+                                "variableScope": "script",
+                                "variableName": "minigame",
+                                "operator": "eq",
+                                "compareTo": "Pass",
+                                "sceneId": null,
+                                "propId": null
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "58e3bbbc-f6b5-4fbb-9956-834e2a660086",
+                                    "scope": "prop",
+                                    "scopeId": "35c654d0-1a2a-4e4a-adb1-1d6c878d22e9",
+                                    "scopeFilterId": "96064b1c-7fee-41c6-ab46-b8425d3af2de",
+                                    "tagsToAdd": "solved",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.propStatus",
+                                                "propId": "35c654d0-1a2a-4e4a-adb1-1d6c878d22e9",
+                                                "sceneId": "96064b1c-7fee-41c6-ab46-b8425d3af2de",
+                                                "status": "Open"
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changePropVisibility",
+                                                    "id": "ea8cda84-6948-448f-8665-a37db87c67c9",
+                                                    "propId": "35c654d0-1a2a-4e4a-adb1-1d6c878d22e9",
+                                                    "sceneId": "96064b1c-7fee-41c6-ab46-b8425d3af2de",
+                                                    "status": "Closing",
+                                                    "wait": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.propStatus",
+                                                "propId": "35c654d0-1a2a-4e4a-adb1-1d6c878d22e9",
+                                                "sceneId": "96064b1c-7fee-41c6-ab46-b8425d3af2de",
+                                                "status": "Closed"
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changePropVisibility",
+                                                    "id": "1c8e579c-1588-42b2-bcef-7304c90dab67",
+                                                    "propId": "35c654d0-1a2a-4e4a-adb1-1d6c878d22e9",
+                                                    "sceneId": "96064b1c-7fee-41c6-ab46-b8425d3af2de",
+                                                    "status": "Opening",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "2c5da188-6187-41cf-990c-5c38771c9fe2",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Whoa! A secret passage!",
+                                                    "emotion": "4",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.changeScene",
+                                                    "sceneId": "298ff758-e1ce-477a-b9d4-da614b74072d",
+                                                    "spawnId": "26a6eb14-6939-4f73-88ce-1f9be2aeb47d",
+                                                    "fadeTime": 2
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "4d8c0084-7957-4a3c-87e9-5017013e192d",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Looks like some kind of puzzle. I'm sure I've got the smarts to work this one out.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

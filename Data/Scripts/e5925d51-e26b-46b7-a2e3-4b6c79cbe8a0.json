@@ -1,0 +1,338 @@
+{
+    "type": "script",
+    "id": "e5925d51-e26b-46b7-a2e3-4b6c79cbe8a0",
+    "name": "Interact with Sea Serpent reward chest",
+    "sceneId": "5bf05db2-b4fe-4863-b426-f058e04e908c",
+    "propId": "7760a871-cd70-42ee-afbb-a4f7d82f3907",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "83da1c94-ebea-47ed-8334-77dfa681db6d",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "0d37b78d-5b8a-401e-8132-02687cc6363d",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "a0fbdbd9-ebd6-4428-8ab8-9da86d38dcdf",
+                            "text": "Look at the Chest",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "bd24643b-69df-481b-9283-4eb7191d9204",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "It's waterlogged. The Sea Serpent must've been hiding it for a long, long time.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "401d2938-c962-419d-9ad3-9597e49c715f",
+                            "text": "Pick Up the Chest",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "1e39243d-3977-4e29-850f-642e207bc5bd",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "It's pretty slimy from being underwater for so long. I'm going to just leave it where it is.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "1",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "6e8b294d-60ce-4f88-bfc1-6ada8a9e5489",
+                            "text": "Open the Chest",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.or",
+                                                "left": {
+                                                    "type": "expressions.inTags",
+                                                    "scope": "script",
+                                                    "scopeId": null,
+                                                    "scopeFilterId": null,
+                                                    "tags": "item1_taken",
+                                                    "has": false
+                                                },
+                                                "right": {
+                                                    "type": "expressions.or",
+                                                    "left": {
+                                                        "type": "expressions.inTags",
+                                                        "scope": "script",
+                                                        "scopeId": null,
+                                                        "scopeFilterId": null,
+                                                        "tags": "item2_taken",
+                                                        "has": false
+                                                    },
+                                                    "right": {
+                                                        "type": "expressions.inTags",
+                                                        "scope": "script",
+                                                        "scopeId": null,
+                                                        "scopeFilterId": null,
+                                                        "tags": "item3_taken",
+                                                        "has": false
+                                                    }
+                                                }
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "da48c709-55d0-4d22-b488-609eab50835f",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Wow! Jackpot!",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.comment",
+                                                    "message": "TODO The Won Ring (if Serpent Freed) or Serpent's Tooth (if Serpent Killed)",
+                                                    "commentor": "Joshua"
+                                                },
+                                                {
+                                                    "type": "nodes.showMenu",
+                                                    "id": "22a6a756-9e3b-47f6-98bf-a6165fc72e99",
+                                                    "options": [
+                                                        {
+                                                            "type": "options.text",
+                                                            "id": "a3669785-974e-4dc1-b884-428b79f4db47",
+                                                            "text": "Take The Won Ring",
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.changeInventory",
+                                                                    "id": "c684a5e9-2ecd-4044-9faa-aeecc0f19a69",
+                                                                    "propId": "19166871-b5bb-47f4-92f7-dde0b84249b9",
+                                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                                    "change": "1",
+                                                                    "count": 1,
+                                                                    "notify": true
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeTags",
+                                                                    "id": "3152f61c-3a22-45cb-b4cd-8a4f3db0e68c",
+                                                                    "scope": "script",
+                                                                    "scopeId": null,
+                                                                    "scopeFilterId": null,
+                                                                    "tagsToAdd": "item1_taken",
+                                                                    "tagsToRemove": null
+                                                                }
+                                                            ],
+                                                            "expression": {
+                                                                "type": "expressions.inTags",
+                                                                "scope": "script",
+                                                                "scopeId": null,
+                                                                "scopeFilterId": null,
+                                                                "tags": "item1_taken",
+                                                                "has": false
+                                                            },
+                                                            "ignoreChildAvailability": false,
+                                                            "minutes": 0,
+                                                            "ExitMenu": false
+                                                        },
+                                                        {
+                                                            "type": "options.text",
+                                                            "id": "08634f8a-1f87-4723-9552-58b8a17b7d79",
+                                                            "text": "Take Serpent's Tooth",
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.changeInventory",
+                                                                    "id": "0976eddd-9db9-49a6-a0b7-4ba7a0f000cc",
+                                                                    "propId": "adfcee68-ce57-40fe-9123-b18b9869eaf6",
+                                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                                    "change": "1",
+                                                                    "count": 1,
+                                                                    "notify": true
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeTags",
+                                                                    "id": "ca832564-99f6-41dc-9ca7-0a9af9a153f0",
+                                                                    "scope": "script",
+                                                                    "scopeId": null,
+                                                                    "scopeFilterId": null,
+                                                                    "tagsToAdd": "item2_taken",
+                                                                    "tagsToRemove": null
+                                                                }
+                                                            ],
+                                                            "expression": {
+                                                                "type": "expressions.inTags",
+                                                                "scope": "script",
+                                                                "scopeId": null,
+                                                                "scopeFilterId": null,
+                                                                "tags": "item2_taken",
+                                                                "has": false
+                                                            },
+                                                            "ignoreChildAvailability": false,
+                                                            "minutes": 0,
+                                                            "ExitMenu": false
+                                                        },
+                                                        {
+                                                            "type": "options.text",
+                                                            "id": "4844cad8-9ed2-42fd-bcfd-dd4afebc9a63",
+                                                            "text": "Take Fitness Pills",
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.changeInventory",
+                                                                    "id": "c9692cf6-fe54-42f7-8c4a-bf388ae98830",
+                                                                    "propId": "7ea0c967-4a05-44c5-b0b0-968433166d7e",
+                                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                                    "change": "1",
+                                                                    "count": "3",
+                                                                    "notify": true
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeTags",
+                                                                    "id": "352a023e-a322-4a80-8518-d3e7dd94913d",
+                                                                    "scope": "script",
+                                                                    "scopeId": null,
+                                                                    "scopeFilterId": null,
+                                                                    "tagsToAdd": "item3_taken",
+                                                                    "tagsToRemove": null
+                                                                }
+                                                            ],
+                                                            "expression": {
+                                                                "type": "expressions.inTags",
+                                                                "scope": "script",
+                                                                "scopeId": null,
+                                                                "scopeFilterId": null,
+                                                                "tags": "item3_taken",
+                                                                "has": false
+                                                            },
+                                                            "ignoreChildAvailability": false,
+                                                            "minutes": 0,
+                                                            "ExitMenu": false
+                                                        }
+                                                    ],
+                                                    "AutoAddDone": true,
+                                                    "Unique": false
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "8e178418-4a4b-4d4f-ad17-46938f5a930c",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "I don't want to get greedy.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "37c9e03f-c274-42f5-9c39-8300958f7075",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Besides, it's empty now.",
+                                                    "emotion": "2",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.comment",
+                                    "message": "TODO Update logic if we limit the items required to \"empty\" the chest (see Joshua comment above)",
+                                    "commentor": "Charles"
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.and",
+                                                "left": {
+                                                    "type": "expressions.inTags",
+                                                    "scope": "script",
+                                                    "scopeId": null,
+                                                    "scopeFilterId": null,
+                                                    "tags": "item1_taken",
+                                                    "has": true
+                                                },
+                                                "right": {
+                                                    "type": "expressions.and",
+                                                    "left": {
+                                                        "type": "expressions.inTags",
+                                                        "scope": "script",
+                                                        "scopeId": null,
+                                                        "scopeFilterId": null,
+                                                        "tags": "item2_taken",
+                                                        "has": true
+                                                    },
+                                                    "right": {
+                                                        "type": "expressions.inTags",
+                                                        "scope": "script",
+                                                        "scopeId": null,
+                                                        "scopeFilterId": null,
+                                                        "tags": "item3_taken",
+                                                        "has": true
+                                                    }
+                                                }
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "e6b659d7-acc9-461b-aaec-71a20f2d9cb5",
+                                                    "scope": "prop",
+                                                    "scopeId": "7760a871-cd70-42ee-afbb-a4f7d82f3907",
+                                                    "scopeFilterId": "5bf05db2-b4fe-4863-b426-f058e04e908c",
+                                                    "tagsToAdd": "looted",
+                                                    "tagsToRemove": null
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

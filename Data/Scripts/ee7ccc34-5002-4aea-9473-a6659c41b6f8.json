@@ -1,0 +1,340 @@
+{
+    "type": "script",
+    "id": "ee7ccc34-5002-4aea-9473-a6659c41b6f8",
+    "name": "Dining Hall Day 1: Terk After Dinner",
+    "storyEventId": "62c80bd1-3d98-4e9e-86c0-2ee4c6d3a927",
+    "sceneId": "bf8b9872-cbdd-47c6-997c-1cd3ad91bc1e",
+    "trigger": {
+        "type": "triggers.manual",
+        "name": "Manual"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "36d7cefd-d24c-44c6-8dda-685cee707392",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.comment",
+                    "message": "Adding a tag to keep track of whether the post-dinner conversation with Terk has happened.",
+                    "commentor": "Cidney"
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "scene",
+                                "scopeId": "bf8b9872-cbdd-47c6-997c-1cd3ad91bc1e",
+                                "scopeFilterId": null,
+                                "tags": "TerkConvoDay1",
+                                "has": false
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.setTime",
+                                    "id": "878b416e-448a-40bd-a774-b3ffdd7fddb1",
+                                    "day": "1",
+                                    "hour": "19",
+                                    "minute": 0,
+                                    "notify": false
+                                },
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "e9b0c2c9-2c1f-4f86-af89-e8c1350565fe",
+                                    "scope": "scene",
+                                    "scopeId": "bf8b9872-cbdd-47c6-997c-1cd3ad91bc1e",
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "TerkConvoDay1",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.placeActor",
+                                    "actorId": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+                                    "spawnId": "17a93ddf-9df9-4ef9-b896-5ab616dcbf04",
+                                    "pose": null,
+                                    "behaviour": "Idle",
+                                    "immediate": null
+                                },
+                                {
+                                    "type": "nodes.placeActor",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "spawnId": "1bb39f3c-597f-4086-a442-526817677209",
+                                    "pose": null,
+                                    "behaviour": "Idle",
+                                    "immediate": null
+                                },
+                                {
+                                    "type": "nodes.setCameraTarget",
+                                    "propId": null,
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "time": 0,
+                                    "translateX": 0,
+                                    "translateY": "0.68",
+                                    "translateZ": 0,
+                                    "postWaitTime": 0,
+                                    "scope": "actor"
+                                },
+                                {
+                                    "type": "nodes.setCameraFOV",
+                                    "wait": false,
+                                    "fov": "4",
+                                    "time": 0
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "2b2be9aa-d337-4360-84e1-030da8b1ec17",
+                                    "actorId": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "You will be rooming with Aeolus - a Bard student. The two of you should be quite compatible - You are both worthless scum who have no business being in a school for Heroes.",
+                                    "emotion": "0",
+                                    "emotion2": "4",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "1cbb23e9-6d11-4344-828c-89036f03a491",
+                                    "actorId": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "Your room is the first door on the Bard Dorm Hallway, next to the stairs. ",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "ea9bf0db-7062-4cf7-980b-0a96218d2084",
+                                    "actorId": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "Curfew is at 10 each night. If I catch you wandering the halls afterwards, you will receive demerits. Any questions?",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.showMenu",
+                                    "id": "68128046-054f-4844-8920-029c91a3235e",
+                                    "options": [
+                                        {
+                                            "type": "options.text",
+                                            "id": "fa23d0f6-85c8-4d92-b5e2-6e92b5f7808b",
+                                            "text": "Give a Polite reply",
+                                            "nodes": [
+                                                {
+                                                    "id": "4f6b782e-325f-4d3e-8e75-dd66189faf55",
+                                                    "type": "nodes.skillBranch",
+                                                    "skill": "Charm",
+                                                    "target": "20",
+                                                    "success": {
+                                                        "type": "nodes.block",
+                                                        "nodes": []
+                                                    },
+                                                    "failure": {
+                                                        "type": "nodes.block",
+                                                        "nodes": []
+                                                    },
+                                                    "notify": true
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "472eb1df-fa36-46eb-a57f-011c458c7d52",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+                                                    "text": "Thank you, sir. I really appreciate it that you went out of your way to do your job for me.",
+                                                    "emotion": "1",
+                                                    "emotion2": "4",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "bc2fcaa1-9fd0-4394-b15b-cacc7371e468",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+                                                    "text": "I look forward to our next conversation. You are an inspiration in your dedication to such an unpleasant task.",
+                                                    "emotion": "1",
+                                                    "emotion2": "4",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "2c924a38-f328-4037-b1a7-b5645a645eff",
+                                                    "actorId": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "Good...",
+                                                    "emotion": "4",
+                                                    "emotion2": "1",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ],
+                                            "expression": null,
+                                            "ignoreChildAvailability": false,
+                                            "minutes": "3",
+                                            "ExitMenu": true
+                                        },
+                                        {
+                                            "type": "options.text",
+                                            "id": "3f4871e2-36db-4a2a-9a68-31812ee18477",
+                                            "text": "Give a Clever reply",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "240d7981-582b-4d8a-bce7-5e12a0df4dd0",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+                                                    "text": "I understand you only too well, sir. I will do whatever I can to avoid you... er... avoid annoying you.",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "id": "8c4ec17d-f045-42b6-9bfa-7cc444424c06",
+                                                    "type": "nodes.skillBranch",
+                                                    "skill": "Smarts",
+                                                    "target": "20",
+                                                    "success": {
+                                                        "type": "nodes.block",
+                                                        "nodes": []
+                                                    },
+                                                    "failure": {
+                                                        "type": "nodes.block",
+                                                        "nodes": []
+                                                    },
+                                                    "notify": true
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "0bb1efa3-345e-4d61-9717-9d44e212e72c",
+                                                    "actorId": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "See that you do.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ],
+                                            "expression": null,
+                                            "ignoreChildAvailability": false,
+                                            "minutes": "2",
+                                            "ExitMenu": true
+                                        },
+                                        {
+                                            "type": "options.text",
+                                            "id": "ca255f17-3f49-46af-80bf-257b41590e27",
+                                            "text": "Give a Snarky reply",
+                                            "nodes": [
+                                                {
+                                                    "id": "ca7eb7ba-d36a-4db2-bd3d-0882a8248913",
+                                                    "type": "nodes.skillBranch",
+                                                    "skill": "Moxie",
+                                                    "target": "15",
+                                                    "success": {
+                                                        "type": "nodes.block",
+                                                        "nodes": []
+                                                    },
+                                                    "failure": {
+                                                        "type": "nodes.block",
+                                                        "nodes": []
+                                                    },
+                                                    "notify": true
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "61123e51-bc67-4dfc-91c4-22df68dbf18b",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+                                                    "text": "Your words of warning are a true inspiration to me. I'll go out of my way to avoid having you catch me out past curfew. ",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "4a23a9f0-be3d-4b9d-b2ff-c0130ae2c1ca",
+                                                    "actorId": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "Very well.",
+                                                    "emotion": "0",
+                                                    "emotion2": "1",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ],
+                                            "expression": null,
+                                            "ignoreChildAvailability": false,
+                                            "minutes": "3",
+                                            "ExitMenu": true
+                                        }
+                                    ],
+                                    "AutoAddDone": false,
+                                    "Unique": false
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "a804edb5-57be-4db1-8b9c-434317b12c3e",
+                                    "actorId": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "You are dismissed. You would be wise to go to your dorm room and study for your class.",
+                                    "emotion": "0",
+                                    "emotion2": "4",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "2e1b4426-a858-424d-9976-63152f23fece",
+                                    "actorId": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "You undoubtedly have a lot to learn in order to catch up with the rest of that group of losers you call classmates.",
+                                    "emotion": "0",
+                                    "emotion2": "3",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.resetCamera",
+                                    "wait": false,
+                                    "time": "1"
+                                },
+                                {
+                                    "type": "nodes.quests",
+                                    "id": "541f762f-a2ba-4271-90ee-de56757878ce",
+                                    "sceneId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                                    "propId": "a4c241e6-645a-4a88-8a74-edeb6ad65a89",
+                                    "target": "0",
+                                    "notify": true
+                                },
+                                {
+                                    "type": "nodes.moveActor",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "propId": "0c16f66a-ed57-4add-a9f9-a1feeb21cd3d",
+                                    "movement": "Walking"
+                                },
+                                {
+                                    "type": "nodes.wait",
+                                    "waitForSeconds": "1"
+                                },
+                                {
+                                    "type": "nodes.changeScene",
+                                    "sceneId": "40f18665-4cc2-4acd-b17e-5189e68b7a33",
+                                    "spawnId": "79718290-002e-41e8-b58f-bb747de925d0",
+                                    "fadeTime": 2
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

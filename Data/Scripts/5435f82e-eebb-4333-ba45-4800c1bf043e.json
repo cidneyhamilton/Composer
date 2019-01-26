@@ -1,0 +1,140 @@
+{
+    "type": "script",
+    "id": "5435f82e-eebb-4333-ba45-4800c1bf043e",
+    "name": "Make Super Gooey",
+    "sceneId": "4c80661d-0537-46d4-b6d6-422313186fac",
+    "trigger": {
+        "type": "triggers.manual",
+        "name": "Manual"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "2744bf86-e8ae-4b1f-a780-185c01f2ff8c",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.setVariable",
+                    "name": "gooeyCount",
+                    "scope": "script",
+                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                    "source": {
+                        "type": "variables.count",
+                        "target": "80355c35-99af-4aad-a628-b180a2904692",
+                        "useArticle": false,
+                        "includeText": false,
+                        "text": "",
+                        "displayName": "Count"
+                    },
+                    "add": false
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.variableComparison",
+                                "variableScope": "script",
+                                "variableName": "gooeyCount",
+                                "operator": "gte",
+                                "compareTo": "3",
+                                "sceneId": null,
+                                "propId": null
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "9d7521cf-7ab8-490a-ac1b-29347711c0fe",
+                                    "actorId": "38b1ca94-de8c-4873-8810-3d0b02df469a",
+                                    "text": "It takes 3 Gooeys to make a Super Gluey over 20 minutes. You have ${script.gooeyCount} Gooeys with ${scene.craftTimeRemaining} minutes remaining. Continue crafting?",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.showMenu",
+                                    "id": "7fe3eee7-bba0-4349-a1c8-572e865a1c3a",
+                                    "options": [
+                                        {
+                                            "type": "options.text",
+                                            "id": "4d9c5ef3-1d4e-4176-8b69-5a46b24a1f78",
+                                            "text": "Continue Crafting",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.setVariable",
+                                                    "name": "ItemsMade",
+                                                    "scope": "scene",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "source": {
+                                                        "type": "variables.literal",
+                                                        "value": "2",
+                                                        "displayName": "Literal"
+                                                    },
+                                                    "add": true
+                                                },
+                                                {
+                                                    "type": "nodes.setVariable",
+                                                    "name": "craftTimeRemaining",
+                                                    "scope": "scene",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "source": {
+                                                        "type": "variables.literal",
+                                                        "value": "-20",
+                                                        "displayName": "Literal"
+                                                    },
+                                                    "add": true
+                                                },
+                                                {
+                                                    "type": "nodes.changeInventory",
+                                                    "id": "434eb005-6da2-43c6-82e7-f95c3c7e87fe",
+                                                    "propId": "80355c35-99af-4aad-a628-b180a2904692",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "change": "0",
+                                                    "count": "3",
+                                                    "notify": true
+                                                },
+                                                {
+                                                    "type": "nodes.changeInventory",
+                                                    "id": "9d5cebd2-3087-4185-98be-3abde1497360",
+                                                    "propId": "7835cc20-43ad-41ed-b6fb-5c4b3a49599d",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "change": "1",
+                                                    "count": 1,
+                                                    "notify": true
+                                                }
+                                            ],
+                                            "expression": null,
+                                            "ignoreChildAvailability": true,
+                                            "minutes": 0,
+                                            "ExitMenu": true
+                                        }
+                                    ],
+                                    "AutoAddDone": true,
+                                    "Unique": false
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "be6199f4-1373-4f94-900e-07092e9e81c7",
+                                    "actorId": "38b1ca94-de8c-4873-8810-3d0b02df469a",
+                                    "text": "You do not have enough materials. It takes 3 Gooeys to make a Super Gluey. You have ${script.gooeyCount} Gooeys.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

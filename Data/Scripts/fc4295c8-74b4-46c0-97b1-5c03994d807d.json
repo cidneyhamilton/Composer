@@ -1,0 +1,192 @@
+{
+    "type": "script",
+    "id": "fc4295c8-74b4-46c0-97b1-5c03994d807d",
+    "name": "Interact with Door to Underground Corridor",
+    "sceneId": "db7d4f5f-2dc0-4f21-beed-ee153ded5491",
+    "propId": "907dea72-52bf-4fb3-b6d1-2c467e9a24f2",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "2ce262ea-68cf-43e2-b3c0-aa1a1bd2c14a",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "cebb3315-776a-46f6-aaa0-2fbd3ff4fb42",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "3fbb27cd-3cac-4e18-bf4b-da02d324a6af",
+                            "text": "Look at the Door",
+                            "nodes": [
+                                {
+                                    "type": "nodes.onceOnly",
+                                    "id": "70837c4b-c0ca-45dd-b2b3-e76d19bd39ee",
+                                    "nodes": [
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "f560680e-a427-4b57-a490-1755cea668f2",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "text": "What a weird place to put a secret door - in the middle of a prisoner cell? Did they want prisoners to escape?",
+                                            "emotion": "4",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "30c0d6ee-38e7-4fe4-8e8c-b32a53839e61",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "text": "Or was this just some form of psychological torture, letting the prisoner know that there was a way to escape, but that they couldn't pull the lever from the cell?",
+                                            "emotion": "2",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "d8e60ec7-12ed-4143-b6f0-631df6f12701",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "I'm sure no prisoner was going to find a way through THIS door.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "d8e703fc-40e7-45c1-91e9-621c94d05058",
+                            "text": "Open the Door",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "target",
+                                                "scopeId": null,
+                                                "scopeFilterId": null,
+                                                "tags": "FirstTime",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "b8b543b8-1677-4e96-8fe6-e3bc1dc335d4",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "I don't see a keyhole, but maybe it's not locked...",
+                                                    "emotion": "4",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.playSoundEffect",
+                                                    "soundEffectName": "Heavy_Door_Unlock.wav",
+                                                    "wait": false
+                                                },
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "a129a4d5-ae37-4286-a660-455650b0863c",
+                                                    "scope": "target",
+                                                    "scopeId": null,
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "FirstTime",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "a5dce619-2e1c-4459-8f5c-38674cebf481",
+                                                    "scriptId": "a1004657-984b-46ba-8870-9550cbfb4b35",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "f8f990c0-0d24-4341-922a-f4a3e550c7bc",
+                                                    "scriptId": "9fa4d248-591a-41c0-80ce-fb321d66a555",
+                                                    "entryPointId": "19e2f710-5669-4e2f-a815-1d6f1470208b",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                },
+                                                {
+                                                    "type": "nodes.changeScene",
+                                                    "sceneId": "ed2b858e-927a-44b9-86ee-4d3fe4dcfc33",
+                                                    "spawnId": "51bf281d-d518-4eaa-beea-fadd1fc9863f",
+                                                    "fadeTime": 2
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "ccf1cb9c-86bd-42ae-b401-47d30321a17a",
+                                                    "scriptId": "a1004657-984b-46ba-8870-9550cbfb4b35",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "647e2364-22d5-4aa9-8bd2-a5158575c7e0",
+                                                    "scriptId": "9fa4d248-591a-41c0-80ce-fb321d66a555",
+                                                    "entryPointId": "19e2f710-5669-4e2f-a815-1d6f1470208b",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                },
+                                                {
+                                                    "type": "nodes.changeScene",
+                                                    "sceneId": "ed2b858e-927a-44b9-86ee-4d3fe4dcfc33",
+                                                    "spawnId": "51bf281d-d518-4eaa-beea-fadd1fc9863f",
+                                                    "fadeTime": 2
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

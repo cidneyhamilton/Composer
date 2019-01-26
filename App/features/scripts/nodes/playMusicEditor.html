@@ -1,0 +1,34 @@
+<div data-bind="compose: { mode:'templated', view:'nodeEditor' }">
+    <div data-part="read" class="text">
+        <!--ko if: node.channel == "1"-->
+            <span>Play Music Track (main)</span> <span class="actor" data-bind="text:node.musicTrack"></span>
+        <!--/ko-->
+
+        <!--ko if: node.channel == "2"-->
+            <span>Play Music Track (ambient)</span> <span class="actor" data-bind="text:node.musicTrack"></span>
+        <!--/ko-->
+
+        <!--ko if: node.loopType == "1"-->
+            <span> (play once)</span>
+        <!--/ko-->
+        <!--ko if: node.loopType == "2"-->
+            <span> (repeat at interval)</span>
+         <!--/ko-->
+    </div>
+
+    <div data-part="write">
+       
+        <select data-bind="options: musicTracks, value: node.musicTrack, optionsCaption: 'Select Music Track'"></select>
+        <br/>
+        Music files cannot be previewed.
+        <select data-bind="value: node.channel">
+            <option value="1">Main</option>
+            <option value="2">Ambient</option>
+        </select>
+        </br>
+        <select data-bind="value: node.loopType">
+            <option value="1">PlayOnce</option>
+            <option value="2">RepeatAtInterval</option>
+        </select>
+    </div>
+</div>

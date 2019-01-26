@@ -1,0 +1,72 @@
+{
+    "type": "script",
+    "id": "bac723de-74d5-46db-96e2-55331d2024e8",
+    "name": "Gaming Skill Up",
+    "sceneId": "84006d08-8e6d-4558-b9b5-101f3c3054fe",
+    "trigger": {
+        "type": "triggers.manual",
+        "name": "Manual"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "11bc4d64-bbc4-46a7-b610-e214f2857366",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.comment",
+                    "message": "Called from each \"Play *** with NPC\" game script - each game will increase Shawn's Gaming Skill.",
+                    "commentor": "Charles"
+                },
+                {
+                    "type": "nodes.comment",
+                    "message": "Put this here so I can invoke in-line for each outcome and not need to duplicate logic",
+                    "commentor": "Charles"
+                },
+                {
+                    "type": "nodes.comment",
+                    "message": "... which of course will let me change this logic more easily!",
+                    "commentor": "Charles"
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "scene",
+                                "scopeId": "84006d08-8e6d-4558-b9b5-101f3c3054fe",
+                                "scopeFilterId": null,
+                                "tags": "ShawnWon",
+                                "has": true
+                            },
+                            "nodes": [
+                                {
+                                    "id": "16f1ad75-eefb-4b06-860e-61fdf25c2051",
+                                    "type": "nodes.improveSkill",
+                                    "skill": "Gaming",
+                                    "amount": "2",
+                                    "notify": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "id": "bd624569-446a-40f8-8a0c-40ba166dee35",
+                                    "type": "nodes.improveSkill",
+                                    "skill": "Gaming",
+                                    "amount": "1",
+                                    "notify": true
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

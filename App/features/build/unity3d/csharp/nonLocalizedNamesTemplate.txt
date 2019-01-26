@@ -1,0 +1,41 @@
+using System;
+using System.Collections.Generic;
+
+namespace Assets.Composer {
+    /** This contains the ID-to-hardcoded-English-name-and-displayname values for actors, props, achievements, scenes, and storyevents
+    	This is used to help distinguish between the internal name, the English display name, and the localized label
+    	This is needed because of Unity hardcoded stuff based on the English names
+    	(ex: scene changes, portrait image / inventory lookups, savegame serialization / deserialization, etc.) **/
+    public static class NonLocalizedNames {
+
+        private static readonly string emptyGUID = "00000000-0000-0000-0000-000000000000";
+        private static readonly KeyValuePair<string, string> emptyKVP = new KeyValuePair<string, string>(emptyGUID, emptyGUID);
+
+        public static string get(Guid id) {
+            return Lookup.ContainsKey(id.ToString()) ? Lookup[id.ToString()].Key : id.ToString();
+        }
+
+        public static string getDisplayName(Guid id) {
+            return Lookup.ContainsKey(id.ToString()) ? Lookup[id.ToString()].Value : id.ToString();
+        }
+
+        /** KVP of <Name, DisplayName> **/
+	    private static Dictionary<string, KeyValuePair<string, string>> Lookup = new Dictionary<string, KeyValuePair<string, string>>
+	    {
+	    	// Actors
+	    	{actors}
+
+	    	// Props (and achievements)
+	    	{props}
+
+	    	// Scenes
+	    	{scenes}
+
+	    	// StoryEvents
+    		{storyEvents}
+
+    		// Stupid placeholder to negate the last comma
+    		{emptyGUID, emptyKVP}
+    	};
+    }
+}

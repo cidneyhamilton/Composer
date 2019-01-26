@@ -1,0 +1,589 @@
+{
+    "type": "script",
+    "id": "0d442003-00c9-427c-80f0-afaf50969946",
+    "name": "Interact with Bone Display Cabinet",
+    "sceneId": "96064b1c-7fee-41c6-ab46-b8425d3af2de",
+    "propId": "17a7d4b5-453d-44a4-91ba-8dfe29012674",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "5ca3b6fd-ce7e-48ba-9185-06fe40c76bf5",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.onceDaily",
+                    "id": "b10bdb30-5ee6-438b-8ce8-d2f672273305",
+                    "nodes": [
+                        {
+                            "type": "nodes.changeTags",
+                            "id": "851c34fb-025f-46d8-a4a8-7eacd6dc6e1d",
+                            "scope": "target",
+                            "scopeId": "6951c2ed-a073-44f2-a608-2ce0c62018a9",
+                            "scopeFilterId": "96064b1c-7fee-41c6-ab46-b8425d3af2de",
+                            "tagsToAdd": "locked",
+                            "tagsToRemove": null
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.showCloseUp",
+                    "imageName": "LeoDisplay_withBone_closeup.png"
+                },
+                {
+                    "type": "nodes.showMenu",
+                    "id": "f8c6db56-743e-4142-beec-9194f14d1cdf",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "aa99b584-7584-4d40-ac9f-e6d61cf1ec57",
+                            "text": "Look at the Display Cabinet",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "3d080c59-7e91-4051-b3e1-ccd324ac772a",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "According to the plaque, this display celebrates the life and loves of Leo the Lionhearted. The items here are his favorite brush, his favorite pillow, and his favorite bone.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "6ab19327-8a4a-4db9-874c-767201b14045",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "An entire display cabinet devoted to a dog? He must be some special canine.",
+                                    "emotion": "4",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.hasActiveQuest",
+                                                "propId": "b27b5234-b03a-4c9b-8d44-32ab976fb35b",
+                                                "sceneId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                                                "questStatus": "0"
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "be2a60ea-e6f1-48e7-b4b9-8973f7857d13",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Wait... Leo is the name of the dog in the Library painting. This must be his bone!",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "346125c4-6733-4cc6-af8a-174b9c36f300",
+                            "text": "Open the Display Cabinet",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "target",
+                                                "scopeId": null,
+                                                "scopeFilterId": null,
+                                                "tags": "locked",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "b4b85b92-158e-4e69-b91d-375499449543",
+                                                    "scriptId": "0d442003-00c9-427c-80f0-afaf50969946",
+                                                    "entryPointId": "e2580a31-0f95-4245-8c3c-670c8bc33ac5",
+                                                    "currentScope": "Current",
+                                                    "currentSceneId": "96064b1c-7fee-41c6-ab46-b8425d3af2de",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "2aa2699f-e7c5-435c-b2e4-b5238ddceee8",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "It's locked.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "bf815ca0-36bc-4372-b1e0-d35ddd503ec4",
+                                                    "scope": "target",
+                                                    "scopeId": null,
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "triedtoopen",
+                                                    "tagsToRemove": null
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "877ed0a1-7f2f-47ca-8244-a459f4869ba7",
+                            "text": "Pick the Lock on the Display Cabinet",
+                            "nodes": [
+                                {
+                                    "type": "nodes.hideCloseUp",
+                                    "waitForSeconds": 1
+                                },
+                                {
+                                    "type": "nodes.comment",
+                                    "message": "lockpickattempted is added by the generic pick lock scripts.",
+                                    "commentor": "Joshua"
+                                },
+                                {
+                                    "type": "nodes.playAnimation",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "animationName": "KneelDown",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.incrementTime",
+                                    "id": "bd20b22b-d615-414b-880f-8c9c7b87335f",
+                                    "days": 0,
+                                    "hours": 0,
+                                    "minutes": "10"
+                                },
+                                {
+                                    "id": "bb798902-053d-499c-8ffc-97448ee263d9",
+                                    "type": "nodes.skillBranch",
+                                    "skill": "Tool Use",
+                                    "target": "20",
+                                    "success": {
+                                        "type": "nodes.block",
+                                        "nodes": [
+                                            {
+                                                "type": "nodes.invokeScript",
+                                                "id": "44cfbb03-3413-4323-a969-98bc7013fc23",
+                                                "scriptId": "f214e893-43e1-4ba8-bb48-5ad1177e61de",
+                                                "entryPointId": "",
+                                                "currentScope": "Scenes",
+                                                "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                                "currentActorId": null,
+                                                "currentStoryEventId": null,
+                                                "currentPropId": null
+                                            },
+                                            {
+                                                "type": "nodes.showCloseUp",
+                                                "imageName": "LeoDisplay_withBone_closeup.png"
+                                            },
+                                            {
+                                                "type": "nodes.invokeScript",
+                                                "id": "582d0d68-aedb-4f21-8a14-11b92376a19a",
+                                                "scriptId": "0d442003-00c9-427c-80f0-afaf50969946",
+                                                "entryPointId": "e2580a31-0f95-4245-8c3c-670c8bc33ac5",
+                                                "currentScope": "Current",
+                                                "currentSceneId": "96064b1c-7fee-41c6-ab46-b8425d3af2de",
+                                                "currentActorId": null,
+                                                "currentStoryEventId": null,
+                                                "currentPropId": null
+                                            }
+                                        ]
+                                    },
+                                    "failure": {
+                                        "type": "nodes.block",
+                                        "nodes": [
+                                            {
+                                                "type": "nodes.invokeScript",
+                                                "id": "bbf6e29f-71c3-4fc9-b1e0-a6d5f209c33c",
+                                                "scriptId": "c806f4c0-6bc6-471a-97ab-fc59190de6da",
+                                                "entryPointId": "",
+                                                "currentScope": "Scenes",
+                                                "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                                "currentActorId": null,
+                                                "currentStoryEventId": null,
+                                                "currentPropId": null
+                                            },
+                                            {
+                                                "type": "nodes.showCloseUp",
+                                                "imageName": "LeoDisplay_withBone_closeup.png"
+                                            },
+                                            {
+                                                "type": "nodes.speak",
+                                                "id": "a12bc1d4-305e-41ec-a271-63d2a5ddc6f0",
+                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                "actorId2": null,
+                                                "text": "I'd better not try that again today; someone might catch me. I'll come back after I've had more lockpicking practice.",
+                                                "emotion": "2",
+                                                "emotion2": "0",
+                                                "device": "0",
+                                                "device2": "0"
+                                            }
+                                        ]
+                                    },
+                                    "notify": true
+                                },
+                                {
+                                    "type": "nodes.playAnimation",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "animationName": "KneelUp",
+                                    "wait": false
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inTags",
+                                    "scope": "target",
+                                    "scopeId": null,
+                                    "scopeFilterId": null,
+                                    "tags": "locked",
+                                    "has": true
+                                },
+                                "right": {
+                                    "type": "expressions.and",
+                                    "left": {
+                                        "type": "expressions.variableComparison",
+                                        "variableScope": "global",
+                                        "variableName": "ego.haslockpick",
+                                        "operator": "eq",
+                                        "compareTo": "true",
+                                        "sceneId": "96064b1c-7fee-41c6-ab46-b8425d3af2de",
+                                        "propId": null
+                                    },
+                                    "right": {
+                                        "type": "expressions.and",
+                                        "left": {
+                                            "type": "expressions.inTags",
+                                            "scope": "target",
+                                            "scopeId": null,
+                                            "scopeFilterId": null,
+                                            "tags": "triedtoopen",
+                                            "has": true
+                                        },
+                                        "right": {
+                                            "type": "expressions.inTags",
+                                            "scope": "target",
+                                            "scopeId": null,
+                                            "scopeFilterId": null,
+                                            "tags": "lockpickattempted",
+                                            "has": false
+                                        }
+                                    }
+                                }
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "60ceca9a-a566-4b7f-97cf-5b35c11fa643",
+                            "text": "Sense Magic on the Display Cabinet",
+                            "nodes": [
+                                {
+                                    "type": "nodes.hideCloseUp",
+                                    "waitForSeconds": 1
+                                },
+                                {
+                                    "type": "nodes.invokeScript",
+                                    "id": "c7434132-4f54-4652-b6ab-7b943aca3187",
+                                    "scriptId": "533e1ce1-13d3-439f-8544-dbdf808d30c4",
+                                    "entryPointId": "",
+                                    "currentScope": "Scenes",
+                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                    "currentActorId": null,
+                                    "currentStoryEventId": null,
+                                    "currentPropId": null
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inTags",
+                                    "scope": "actor",
+                                    "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "scopeFilterId": null,
+                                    "tags": "sensemagic",
+                                    "has": true
+                                },
+                                "right": {
+                                    "type": "expressions.inTags",
+                                    "scope": "target",
+                                    "scopeId": null,
+                                    "scopeFilterId": null,
+                                    "tags": "sensedmagic",
+                                    "has": false
+                                }
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "2",
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                },
+                {
+                    "type": "nodes.hideCloseUp",
+                    "waitForSeconds": 1
+                }
+            ]
+        },
+        {
+            "type": "scripts.entryPoint",
+            "id": "e2580a31-0f95-4245-8c3c-670c8bc33ac5",
+            "name": "Open Case",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "c9e5b6be-15db-4734-9a69-413d9e49418a",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "f792bd19-f984-407e-a7f3-bdb1e7ec9769",
+                            "text": "Take the Brush",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "902638b9-3257-4d69-a297-cd31bb92ab89",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "I don't need a brush. I like the 'messy hair' look. Besides, it looks like it's covered in dog fur.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "ef3729b8-dd1b-409d-b044-16fb846a41da",
+                            "text": "Take the Bone",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.hasActiveQuest",
+                                                "propId": "b27b5234-b03a-4c9b-8d44-32ab976fb35b",
+                                                "sceneId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                                                "questStatus": "0"
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.incrementTime",
+                                                    "id": "a7b715e3-cdde-44fe-ae9e-9443d1f4542f",
+                                                    "days": 0,
+                                                    "hours": 0,
+                                                    "minutes": "2"
+                                                },
+                                                {
+                                                    "type": "nodes.changePropVisibility",
+                                                    "id": "1e9dfcd3-5021-46af-b48c-5c99eab0369a",
+                                                    "propId": "17a7d4b5-453d-44a4-91ba-8dfe29012674",
+                                                    "sceneId": "96064b1c-7fee-41c6-ab46-b8425d3af2de",
+                                                    "status": "Hidden",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.changePropVisibility",
+                                                    "id": "b691839c-196d-4a1f-b934-09ff5fc0c498",
+                                                    "propId": "0ace6dac-982c-40d7-9441-648de4c48611",
+                                                    "sceneId": "96064b1c-7fee-41c6-ab46-b8425d3af2de",
+                                                    "status": "Visible",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.showCloseUp",
+                                                    "imageName": "LeoDisplay_noBone_closeup.png"
+                                                },
+                                                {
+                                                    "type": "nodes.changeInventory",
+                                                    "id": "1a039b02-4132-48ef-a572-58f97aa1d05e",
+                                                    "propId": "e8fb7381-df96-4f05-805b-e9cc39b85133",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "change": "1",
+                                                    "count": 1,
+                                                    "notify": true
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "b46f78f9-4b68-4841-8d9e-2edcea1eb95a",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "I think I know someone who might enjoy having this back...",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.quests",
+                                                    "id": "09214893-80ca-4a49-ab74-c7417b8601bc",
+                                                    "sceneId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                                                    "propId": "b27b5234-b03a-4c9b-8d44-32ab976fb35b",
+                                                    "target": "1",
+                                                    "notify": false
+                                                },
+                                                {
+                                                    "type": "nodes.quests",
+                                                    "id": "1fef7384-8882-45a4-a26c-2467fbc487ec",
+                                                    "sceneId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                                                    "propId": "7b339a48-cf2a-4f09-8a5a-d52e3269762d",
+                                                    "target": "0",
+                                                    "notify": true
+                                                },
+                                                {
+                                                    "type": "nodes.hideCloseUp",
+                                                    "waitForSeconds": 1
+                                                },
+                                                {
+                                                    "type": "nodes.playAnimation",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "animationName": "KneelUp"
+                                                },
+                                                {
+                                                    "type": "nodes.addJournalEntry",
+                                                    "id": "b31f6110-8641-4cb0-8ae8-41b1909892d1",
+                                                    "name": "Knick-knack Paddywack",
+                                                    "notify": false,
+                                                    "description": "I've got Leo the Lionhearted's bone. I'll bet even a ghost doggy wants his bone back."
+                                                },
+                                                {
+                                                    "type": "nodes.endScript"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "360c300a-8c2e-4590-80f7-5df09f7bad0d",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "I don't want to mess around with some dog's old bone. It's a very personal thing to a dog. He'd probably bite me for it.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "c07a57da-1c1b-45b6-87fc-7c8cdd3d5d7f",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Then again, he'd probably be really happy to get the bone back.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "0",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "f0a7de67-0167-4e69-9da0-81f59e66d792",
+                            "text": "Take the Pillow",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "262a78a1-c9ad-4856-b1a8-3f431854b61c",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "What good is a dog-hair covered pillow? No thanks. ",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "0ca5a20b-bc70-4140-b194-a995771a9a7a",
+                            "text": "Leave the Case Alone",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "b108ff37-1302-4fe9-baa8-37fbe3cdfac0",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "I don't have any real use for any of this stuff right now.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": true
+                        }
+                    ],
+                    "AutoAddDone": false,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

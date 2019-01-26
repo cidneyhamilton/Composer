@@ -1,0 +1,115 @@
+{
+    "type": "script",
+    "id": "ef053bed-75c8-4a98-9e4f-12b618e6c7a0",
+    "name": "Zone Trigger to Spot Concealed Door",
+    "sceneId": "e8288a23-0b06-4dd7-94d2-9761390d6484",
+    "trigger": {
+        "type": "triggers.zone",
+        "name": "Zone"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "6e397a6a-4492-4e90-916c-5932eb12573d",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.enteredScene",
+                                    "sceneId": "d89cc4ad-2296-471c-9321-6082c2c57962",
+                                    "scope": "DuringGame",
+                                    "operator": "eq",
+                                    "count": 0
+                                },
+                                "right": {
+                                    "type": "expressions.inTags",
+                                    "scope": "scene",
+                                    "scopeId": "e8288a23-0b06-4dd7-94d2-9761390d6484",
+                                    "scopeFilterId": null,
+                                    "tags": "SpottedConcealedDoor",
+                                    "has": false
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.skillCheck",
+                                                "skill": "Perception",
+                                                "target": "40"
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "id": "86c0b03b-6f94-44e2-9bad-b236249e7e75",
+                                                    "type": "nodes.skillBranch",
+                                                    "skill": "Perception",
+                                                    "target": "40",
+                                                    "success": {
+                                                        "type": "nodes.block",
+                                                        "nodes": [
+                                                            {
+                                                                "type": "nodes.stopPlayer"
+                                                            },
+                                                            {
+                                                                "type": "nodes.turnActor",
+                                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                "propId": "33ee9736-406a-427a-b74f-53388e880dbf",
+                                                                "scope": "prop",
+                                                                "targetActorId": null
+                                                            },
+                                                            {
+                                                                "type": "nodes.speak",
+                                                                "id": "217459de-d21c-42ef-8f59-a0a55d1d7ec5",
+                                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                "actorId2": null,
+                                                                "text": "There's something odd about this wall.",
+                                                                "emotion": "0",
+                                                                "emotion2": "0",
+                                                                "device": "0",
+                                                                "device2": "0"
+                                                            },
+                                                            {
+                                                                "type": "nodes.changeTags",
+                                                                "id": "9b58d232-b6eb-4d0d-aaf7-41b6987d5a86",
+                                                                "scope": "scene",
+                                                                "scopeId": "e8288a23-0b06-4dd7-94d2-9761390d6484",
+                                                                "scopeFilterId": null,
+                                                                "tagsToAdd": "SpottedConcealedDoor",
+                                                                "tagsToRemove": null
+                                                            },
+                                                            {
+                                                                "type": "nodes.changePropVisibility",
+                                                                "id": "862f3261-1bc5-4bfc-aa48-abfef7753b5a",
+                                                                "propId": "1974bf8d-5f91-4401-86d0-1814529a5bd9",
+                                                                "sceneId": "e8288a23-0b06-4dd7-94d2-9761390d6484",
+                                                                "status": "Visible",
+                                                                "wait": false
+                                                            }
+                                                        ]
+                                                    },
+                                                    "failure": {
+                                                        "type": "nodes.block",
+                                                        "nodes": []
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

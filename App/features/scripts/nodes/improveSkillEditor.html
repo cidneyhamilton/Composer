@@ -1,0 +1,23 @@
+<div class="composite" data-bind="compose: { mode:'templated', view:'nodeEditor' }">
+    <div data-part="read">
+        <div>
+            Improve <span class="skill" data-bind="text:node.skill"></span><span> by </span><span data-bind="text: node.amount">.</span>
+        </div>
+    </div>
+
+    <div data-part="write">
+        <div>
+            Improve <select data-bind="foreach: skillsAndAtts, value: node.skill">
+                   <optgroup data-bind="attr: {label: group}, foreach: options">
+                        <option data-bind="text: $data, option: $data"></option>
+                    </optgroup>
+            </select>
+            <span> by </span>
+            <input type="text" data-bind="value: node.amount, valueUpdate: 'afterkeydown'" placeholder="amount">
+        </div>
+        <div class="form-inline" style="margin-left: 100px; margin-top: 50px;">
+            <input type="checkbox" data-bind="checked: node.notify" />
+            <label>Show Notification?</label>
+        </div>
+    </div>
+</div>

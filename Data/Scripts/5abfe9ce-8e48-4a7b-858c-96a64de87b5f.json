@@ -1,0 +1,363 @@
+{
+    "type": "script",
+    "id": "5abfe9ce-8e48-4a7b-858c-96a64de87b5f",
+    "name": "_OnLoad",
+    "sceneId": "e8606d3d-9743-4b44-a3b3-117a393b42ae",
+    "trigger": {
+        "type": "triggers.load",
+        "name": "Load"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "d0ae9322-de50-4c7c-be2a-67a4324a997a",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.onceDaily",
+                    "id": "e33dfe0b-c2d8-462f-b398-952554b9a1e6",
+                    "nodes": [
+                        {
+                            "type": "nodes.comment",
+                            "message": "Once Daily to keep the chest from disappearing until a Reset Day occurs. Putting this here (rather than in \"onResetDay scripts) makes it easier to keep in sync with other visibility setups.",
+                            "commentor": "Charles"
+                        },
+                        {
+                            "type": "nodes.branch",
+                            "sections": [
+                                {
+                                    "type": "nodes.branchSection",
+                                    "expression": {
+                                        "type": "expressions.inTags",
+                                        "scope": "prop",
+                                        "scopeId": "95ed432b-b4cd-4d2a-9b21-c111e86e8810",
+                                        "scopeFilterId": "e8606d3d-9743-4b44-a3b3-117a393b42ae",
+                                        "tags": "looted",
+                                        "has": true
+                                    },
+                                    "nodes": [
+                                        {
+                                            "type": "nodes.changePropVisibility",
+                                            "id": "941d1c2d-a4ae-41be-81e7-07b27bee47ac",
+                                            "propId": "95ed432b-b4cd-4d2a-9b21-c111e86e8810",
+                                            "sceneId": "e8606d3d-9743-4b44-a3b3-117a393b42ae",
+                                            "status": "Hidden",
+                                            "wait": true
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.changePropVisibility",
+                    "id": "779192a6-5406-449b-aa0b-431de88a9ef4",
+                    "propId": "eb76373b-73d0-4d6d-a0d1-3302cbeab41a",
+                    "sceneId": "e8606d3d-9743-4b44-a3b3-117a393b42ae",
+                    "status": "Hidden",
+                    "wait": false
+                },
+                {
+                    "type": "nodes.invokeCommand",
+                    "id": "97b1d305-8033-4f54-bd07-53f81da52fb2",
+                    "entityType": "prop",
+                    "entityFilterId": "e8606d3d-9743-4b44-a3b3-117a393b42ae",
+                    "entityId": "ac403295-df6a-4ad7-bbc4-547437353c25",
+                    "command": "despawn",
+                    "resultVariableScope": "script"
+                },
+                {
+                    "type": "nodes.invokeCommand",
+                    "id": "832a93a3-9aa9-490b-861e-7b359edee36d",
+                    "entityType": "prop",
+                    "entityFilterId": "e8606d3d-9743-4b44-a3b3-117a393b42ae",
+                    "entityId": "96280212-e39a-438f-88a6-2981e48a2933",
+                    "command": "despawn",
+                    "resultVariableScope": "script"
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.or",
+                                "left": {
+                                    "type": "expressions.variableComparison",
+                                    "variableScope": "global",
+                                    "variableName": "time.day",
+                                    "operator": "eq",
+                                    "compareTo": "32",
+                                    "sceneId": "e8606d3d-9743-4b44-a3b3-117a393b42ae",
+                                    "propId": null
+                                },
+                                "right": {
+                                    "type": "expressions.variableComparison",
+                                    "variableScope": "global",
+                                    "variableName": "time.day",
+                                    "operator": "eq",
+                                    "compareTo": "33",
+                                    "sceneId": "e8606d3d-9743-4b44-a3b3-117a393b42ae",
+                                    "propId": null
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.changePropVisibility",
+                                    "id": "c34da63b-a8c8-4280-b495-dedfe26602f2",
+                                    "propId": "c753203a-05ad-49b7-b4b2-174aa2b4af4c",
+                                    "sceneId": "e8606d3d-9743-4b44-a3b3-117a393b42ae",
+                                    "status": "Hidden",
+                                    "wait": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.changePropVisibility",
+                                    "id": "de7cdda5-8bb9-43b8-9184-e169efe82b2c",
+                                    "propId": "c753203a-05ad-49b7-b4b2-174aa2b4af4c",
+                                    "sceneId": "e8606d3d-9743-4b44-a3b3-117a393b42ae",
+                                    "status": "Visible",
+                                    "wait": true
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inTags",
+                                    "scope": "actor",
+                                    "scopeId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                    "scopeFilterId": null,
+                                    "tags": "KyroSaved",
+                                    "has": false
+                                },
+                                "right": {
+                                    "type": "expressions.and",
+                                    "left": {
+                                        "type": "expressions.variableComparison",
+                                        "variableScope": "global",
+                                        "variableName": "time.day",
+                                        "operator": "gte",
+                                        "compareTo": "32",
+                                        "sceneId": "e8606d3d-9743-4b44-a3b3-117a393b42ae",
+                                        "propId": null
+                                    },
+                                    "right": {
+                                        "type": "expressions.and",
+                                        "left": {
+                                            "type": "expressions.inTags",
+                                            "scope": "actor",
+                                            "scopeId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                            "scopeFilterId": null,
+                                            "tags": "KyroDead",
+                                            "has": false
+                                        },
+                                        "right": {
+                                            "type": "expressions.inTags",
+                                            "scope": "actor",
+                                            "scopeId": "fb00cd5f-e210-44b2-bc7d-5384a9a3db74",
+                                            "scopeFilterId": null,
+                                            "tags": "destroyed",
+                                            "has": false
+                                        }
+                                    }
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.comment",
+                                    "message": "At start of day 32, Joel is caught",
+                                    "commentor": "Joel in Danger"
+                                },
+                                {
+                                    "type": "nodes.changePropVisibility",
+                                    "id": "78c8355c-9ded-4952-8058-935f5563e922",
+                                    "propId": "eb76373b-73d0-4d6d-a0d1-3302cbeab41a",
+                                    "sceneId": "e8606d3d-9743-4b44-a3b3-117a393b42ae",
+                                    "status": "Visible",
+                                    "wait": false
+                                },
+                                {
+                                    "type": "nodes.placeActor",
+                                    "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                    "spawnId": "0035cff1-5ddb-4996-9571-303d86eb23bf",
+                                    "pose": null,
+                                    "behaviour": "Injured",
+                                    "immediate": true
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.and",
+                                                "left": {
+                                                    "type": "expressions.inTags",
+                                                    "scope": "scene",
+                                                    "scopeId": "e8606d3d-9743-4b44-a3b3-117a393b42ae",
+                                                    "scopeFilterId": null,
+                                                    "tags": "MoiraToRescue",
+                                                    "has": true
+                                                },
+                                                "right": {
+                                                    "type": "expressions.and",
+                                                    "left": {
+                                                        "type": "expressions.variableComparison",
+                                                        "variableScope": "global",
+                                                        "variableName": "time.day",
+                                                        "operator": "gte",
+                                                        "compareTo": "32",
+                                                        "sceneId": "e8606d3d-9743-4b44-a3b3-117a393b42ae",
+                                                        "propId": null
+                                                    },
+                                                    "right": {
+                                                        "type": "expressions.variableComparison",
+                                                        "variableScope": "global",
+                                                        "variableName": "time.day",
+                                                        "operator": "lte",
+                                                        "compareTo": "33",
+                                                        "sceneId": "e8606d3d-9743-4b44-a3b3-117a393b42ae",
+                                                        "propId": null
+                                                    }
+                                                }
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeCommand",
+                                                    "id": "0c23318a-4340-43b8-912b-d2fee474a6ca",
+                                                    "entityType": "prop",
+                                                    "entityFilterId": "e8606d3d-9743-4b44-a3b3-117a393b42ae",
+                                                    "entityId": "ac403295-df6a-4ad7-bbc4-547437353c25",
+                                                    "command": "spawn",
+                                                    "resultVariableScope": "script"
+                                                },
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "b26e952a-cbda-495c-bf6c-e289f5257ec3",
+                                                    "scope": "actor",
+                                                    "scopeId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "MoiraWraith",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.placeActor",
+                                                    "actorId": "6b30a3a9-2324-487d-9db9-03ce174e0e80",
+                                                    "spawnId": "215f4364-b8e5-43f3-9759-bbb8d2a902cd",
+                                                    "pose": null,
+                                                    "behaviour": "Idle",
+                                                    "immediate": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.and",
+                                                "left": {
+                                                    "type": "expressions.inTags",
+                                                    "scope": "actor",
+                                                    "scopeId": "fb00cd5f-e210-44b2-bc7d-5384a9a3db74",
+                                                    "scopeFilterId": null,
+                                                    "tags": "BarrierTaunt",
+                                                    "has": true
+                                                },
+                                                "right": {
+                                                    "type": "expressions.inTags",
+                                                    "scope": "actor",
+                                                    "scopeId": "fb00cd5f-e210-44b2-bc7d-5384a9a3db74",
+                                                    "scopeFilterId": null,
+                                                    "tags": "bottledup",
+                                                    "has": false
+                                                }
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.comment",
+                                                    "message": "If Shawn was defeated in combat before defeating Zac, this makes sure he spawns again.",
+                                                    "commentor": "Cidney"
+                                                },
+                                                {
+                                                    "type": "nodes.invokeCommand",
+                                                    "id": "cf7d18b1-fb7c-43a5-984b-d6a343c7960e",
+                                                    "entityType": "prop",
+                                                    "entityFilterId": "e8606d3d-9743-4b44-a3b3-117a393b42ae",
+                                                    "entityId": "ac403295-df6a-4ad7-bbc4-547437353c25",
+                                                    "command": "spawn",
+                                                    "resultVariableScope": "script"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.or",
+                                "left": {
+                                    "type": "expressions.inTags",
+                                    "scope": "actor",
+                                    "scopeId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                    "scopeFilterId": null,
+                                    "tags": "KyroSaved",
+                                    "has": true
+                                },
+                                "right": {
+                                    "type": "expressions.or",
+                                    "left": {
+                                        "type": "expressions.inTags",
+                                        "scope": "actor",
+                                        "scopeId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                        "scopeFilterId": null,
+                                        "tags": "KyroDead",
+                                        "has": true
+                                    },
+                                    "right": {
+                                        "type": "expressions.inTags",
+                                        "scope": "actor",
+                                        "scopeId": "fb00cd5f-e210-44b2-bc7d-5384a9a3db74",
+                                        "scopeFilterId": null,
+                                        "tags": "destroyed",
+                                        "has": true
+                                    }
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.invokeCommand",
+                                    "id": "bc631c5e-1ec0-4b06-8163-46df65b24967",
+                                    "entityType": "prop",
+                                    "entityFilterId": "e8606d3d-9743-4b44-a3b3-117a393b42ae",
+                                    "entityId": "ac403295-df6a-4ad7-bbc4-547437353c25",
+                                    "command": "despawn",
+                                    "resultVariableScope": "script"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

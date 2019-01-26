@@ -1,0 +1,692 @@
+{
+    "type": "script",
+    "id": "85545e55-678a-425e-bc15-482b053adc01",
+    "name": "Secret Door Script",
+    "sceneId": "0f09f7d6-26b1-438e-aa73-fc5f6065ad9e",
+    "trigger": {
+        "type": "triggers.manual",
+        "name": "Manual"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "1ec9865a-4597-4dd9-bc4d-25918392c6ac",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "2ee94ff2-4a38-4cd6-bae6-2b5baa06a2a6",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "4acc3d25-b606-4693-b4da-6d42ea5ede0f",
+                            "text": "Examine the Alcove",
+                            "nodes": [
+                                {
+                                    "type": "nodes.showCloseUp",
+                                    "imageName": "mortuai_door_closeup.png"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "faca957e-4a85-4f46-8611-0001b473a1cc",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "This area looks like it was made of solid wood with a carving in the center. It's like a door with no obvious hinges, handle, or keyhole.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "b45cfe36-97f5-4221-811e-d74f76b4634e",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "I can't hear anything through it - it seems pretty thick.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.hideCloseUp",
+                                    "waitForSeconds": 1
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "2",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "06f7db32-55e1-460f-8ac3-6069ccc4c0cb",
+                            "text": "Open the Alcove",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "scene",
+                                                "scopeId": "0f09f7d6-26b1-438e-aa73-fc5f6065ad9e",
+                                                "scopeFilterId": null,
+                                                "tags": "hasOpenedAlcove",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "2e85fdf1-dc7a-443e-a909-b2f3ce58c66a",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Okay, one magic candle placed in just the right spot...",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.playAnimation",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "animationName": "ReachOut"
+                                                },
+                                                {
+                                                    "type": "nodes.wait",
+                                                    "waitForSeconds": "0.2"
+                                                },
+                                                {
+                                                    "type": "nodes.playSoundEffect",
+                                                    "soundEffectName": "Trap Slide.wav",
+                                                    "wait": false
+                                                },
+                                                {
+                                                    "type": "nodes.wait",
+                                                    "waitForSeconds": "0.5"
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "c7015fd4-178a-4ff8-90ce-80ce2f183a68",
+                                                    "scriptId": "9fa4d248-591a-41c0-80ce-fb321d66a555",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "8223aad6-892e-4d62-9160-f141a790e995",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Once more unto the breach...",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.changeScene",
+                                                    "sceneId": "db7d4f5f-2dc0-4f21-beed-ee153ded5491",
+                                                    "spawnId": "99aa686f-6728-4580-8ce2-32981f7ac113",
+                                                    "fadeTime": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.playAnimation",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "animationName": "ReachOut"
+                                                },
+                                                {
+                                                    "type": "nodes.wait",
+                                                    "waitForSeconds": "0.2"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "6a2fbb16-7979-46b2-a637-22e86ebb0620",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "This thing won't budge. It must weigh a ton.",
+                                                    "emotion": "3",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "5",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "a4829b62-e72a-4a5d-ab91-8e59284ee73f",
+                            "text": "Knock on the Alcove",
+                            "nodes": [
+                                {
+                                    "type": "nodes.playAnimation",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "animationName": "ReachOut"
+                                },
+                                {
+                                    "type": "nodes.wait",
+                                    "waitForSeconds": "0.2"
+                                },
+                                {
+                                    "type": "nodes.playSoundEffect",
+                                    "soundEffectName": "Barrel_Hollow_Triple_Knock.wav",
+                                    "wait": false
+                                },
+                                {
+                                    "type": "nodes.wait",
+                                    "waitForSeconds": "0.2"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "5c84c06e-9b7c-4c0b-88c3-f782373f7417",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "<knock> May I come in?",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.wait",
+                                    "waitForSeconds": "0.5"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "9364538d-f098-46ef-94c3-79944551995a",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "<shrug> Oh well, worth a try.",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "60ce1ef5-1eb9-4d02-84a3-2070d81fb798",
+                            "text": "Examine the Carving",
+                            "nodes": [
+                                {
+                                    "type": "nodes.showCloseUp",
+                                    "imageName": "mortuai_door_closeup.png"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "39c6bd73-bde8-4b73-a648-f38d5bfda776",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "It looks like someone carved out the shape of a candle in a candleholder and surrounded it with the words, \"Per Lucem, Tenebras Frangimus.\" Pretty fancy stuff...",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "9736a9f4-790e-47a2-886d-37f7c8eda324",
+                                    "scope": "scene",
+                                    "scopeId": "0f09f7d6-26b1-438e-aa73-fc5f6065ad9e",
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "ExaminedCarving",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.hideCloseUp",
+                                    "waitForSeconds": 1
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "2",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "ca5cbd05-3cd0-4266-a947-35c99fe4b88b",
+                            "text": "Sense Magic",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "86015652-03a6-43be-ba76-4a62287dba8a",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "The whole alcove feels magical, but the magic seems concentrated upon the carved area of the door.",
+                                    "emotion": "4",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "1195123b-c727-4871-92bc-30d22ef93cf6",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Per Lucem... by the light...",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "id": "614c3a87-8687-4462-b8df-a136fc3e0633",
+                                    "type": "nodes.skillBranch",
+                                    "skill": "Magic",
+                                    "target": "50",
+                                    "success": {
+                                        "type": "nodes.block",
+                                        "nodes": [
+                                            {
+                                                "type": "nodes.branch",
+                                                "sections": [
+                                                    {
+                                                        "type": "nodes.branchSection",
+                                                        "expression": {
+                                                            "type": "expressions.inInventory",
+                                                            "propId": "7ef8bf45-b578-4ccf-b111-4cd7318e42a9",
+                                                            "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                            "has": true
+                                                        },
+                                                        "nodes": [
+                                                            {
+                                                                "type": "nodes.speak",
+                                                                "id": "277ca263-9014-4d5c-8e02-4e9d530486a4",
+                                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                "actorId2": null,
+                                                                "text": "If I were a real Wizard, I'd probably cast a Glow spell on the door.",
+                                                                "emotion": "0",
+                                                                "emotion2": "0",
+                                                                "device": "0",
+                                                                "device2": "0"
+                                                            },
+                                                            {
+                                                                "type": "nodes.speak",
+                                                                "id": "511d1395-73a8-4ada-845e-b90daf0816ab",
+                                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                "actorId2": null,
+                                                                "text": "How do they do it without a runestone? My runestone has the symbols of \"Light\" and \"Self\"... I guess they would just use the symbol for \"Light.\"",
+                                                                "emotion": "4",
+                                                                "emotion2": "0",
+                                                                "device": "0",
+                                                                "device2": "0"
+                                                            },
+                                                            {
+                                                                "type": "nodes.speak",
+                                                                "id": "4bfc5cfe-b705-4003-a960-90eee051c5e0",
+                                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                "actorId2": null,
+                                                                "text": "Maybe if I just visualize the Light rune and trace it on the door...",
+                                                                "emotion": "4",
+                                                                "emotion2": "0",
+                                                                "device": "0",
+                                                                "device2": "0"
+                                                            },
+                                                            {
+                                                                "type": "nodes.playAnimation",
+                                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                "animationName": "ReachOut",
+                                                                "wait": false
+                                                            },
+                                                            {
+                                                                "type": "nodes.wait",
+                                                                "waitForSeconds": "0.2"
+                                                            },
+                                                            {
+                                                                "type": "nodes.playSoundEffect",
+                                                                "soundEffectName": "Trap Slide.wav",
+                                                                "wait": false
+                                                            },
+                                                            {
+                                                                "type": "nodes.wait",
+                                                                "waitForSeconds": "0.5"
+                                                            },
+                                                            {
+                                                                "type": "nodes.speak",
+                                                                "id": "f7339f29-4dc0-43ff-a40d-c5a55c803b06",
+                                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                "actorId2": null,
+                                                                "text": "What do you know? The alcove is opening! I did it! I did real magic!",
+                                                                "emotion": "4",
+                                                                "emotion2": "0",
+                                                                "device": "0",
+                                                                "device2": "0"
+                                                            },
+                                                            {
+                                                                "type": "nodes.changeTags",
+                                                                "id": "d9189aef-5be1-4fbf-8913-582fc7e4502f",
+                                                                "scope": "scene",
+                                                                "scopeId": "0f09f7d6-26b1-438e-aa73-fc5f6065ad9e",
+                                                                "scopeFilterId": null,
+                                                                "tagsToAdd": "hasOpenedAlcove",
+                                                                "tagsToRemove": null
+                                                            },
+                                                            {
+                                                                "type": "nodes.invokeScript",
+                                                                "id": "ef5e840e-454d-40e5-9f1a-a34cf477a444",
+                                                                "scriptId": "9fa4d248-591a-41c0-80ce-fb321d66a555",
+                                                                "entryPointId": "120f9488-ff41-42ac-b63a-8c181c8a6be8",
+                                                                "currentScope": "Scenes",
+                                                                "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                                                "currentActorId": null,
+                                                                "currentStoryEventId": null,
+                                                                "currentPropId": null
+                                                            },
+                                                            {
+                                                                "type": "nodes.speak",
+                                                                "id": "8ead16c9-8434-4fae-aa39-78d34b772b52",
+                                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                "actorId2": null,
+                                                                "text": "Okay, here we go... It's pretty creepy; it's probably dangerous; but I'm a Wizard Rogue and I can handle anything!",
+                                                                "emotion": "1",
+                                                                "emotion2": "0",
+                                                                "device": "0",
+                                                                "device2": "0"
+                                                            },
+                                                            {
+                                                                "type": "nodes.speak",
+                                                                "id": "0e01f981-a218-498d-8bf6-7402e44dcecb",
+                                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                "actorId2": null,
+                                                                "text": "Then again... maybe not... ",
+                                                                "emotion": "2",
+                                                                "emotion2": "0",
+                                                                "device": "0",
+                                                                "device2": "0"
+                                                            },
+                                                            {
+                                                                "type": "nodes.changeScene",
+                                                                "sceneId": "db7d4f5f-2dc0-4f21-beed-ee153ded5491",
+                                                                "spawnId": "99aa686f-6728-4580-8ce2-32981f7ac113",
+                                                                "fadeTime": "0"
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    "failure": {
+                                        "type": "nodes.block",
+                                        "nodes": [
+                                            {
+                                                "type": "nodes.speak",
+                                                "id": "eb2db592-5c3f-4fd4-8fbf-0e30a19e216e",
+                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                "actorId2": null,
+                                                "text": "I bet a real Wizard could have opened this door with a magical spell.",
+                                                "emotion": "2",
+                                                "emotion2": "0",
+                                                "device": "0",
+                                                "device2": "0"
+                                            }
+                                        ]
+                                    },
+                                    "notify": true
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inTags",
+                                    "scope": "actor",
+                                    "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "scopeFilterId": null,
+                                    "tags": "SenseMagic",
+                                    "has": true
+                                },
+                                "right": {
+                                    "type": "expressions.inTags",
+                                    "scope": "scene",
+                                    "scopeId": "0f09f7d6-26b1-438e-aa73-fc5f6065ad9e",
+                                    "scopeFilterId": null,
+                                    "tags": "hasOpenedAlcove",
+                                    "has": false
+                                }
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "5",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "bfea1bd5-6b44-46f5-82bb-5f7fe4b0b0b3",
+                            "text": "Interact with the Carving",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "b98cd82d-ac13-4f2c-8cb9-69364545fbbd",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "It looks like it was designed to have something placed into the carving...",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.comment",
+                                    "message": "Should probably make this more challenging? Make Shawn select from a menu, etc.",
+                                    "commentor": "Cidney"
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inInventory",
+                                                "propId": "5e356690-1021-446f-a9ff-47fd60b27b1f",
+                                                "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "0226d430-6bee-435b-b387-dd41faaf764e",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "And I just happen to have the perfect item to place in it - the Magical Candle!",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.playAnimation",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "animationName": "ReachOut",
+                                                    "wait": false
+                                                },
+                                                {
+                                                    "type": "nodes.wait",
+                                                    "waitForSeconds": "0.2"
+                                                },
+                                                {
+                                                    "type": "nodes.changeInventory",
+                                                    "id": "36bf7dbe-fe45-4bf9-a2a4-41fdd950c6fa",
+                                                    "propId": "5e356690-1021-446f-a9ff-47fd60b27b1f",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "change": "0",
+                                                    "count": 1,
+                                                    "notify": true
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "2ff9dd38-364e-4e12-bc2d-2da65ef5ea4a",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Let's see... it's a perfect fit!",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.comment",
+                                                    "message": "Need to show the door opening and light in the door.",
+                                                    "commentor": "XXX Show Light XXX"
+                                                },
+                                                {
+                                                    "type": "nodes.playSoundEffect",
+                                                    "soundEffectName": "Trap Slide.wav",
+                                                    "wait": false
+                                                },
+                                                {
+                                                    "type": "nodes.wait",
+                                                    "waitForSeconds": "0.5"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "4e21f2c8-9074-4e1d-aa34-de1ad4237a8a",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "And the wooden alcove is sliding open! I did it! ",
+                                                    "emotion": "4",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "7c3230c1-ca10-4d38-994d-d0e209366d39",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "I'd better grab the Magical Candle before it lose it... and hope that doesn't close it all up again.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.changeInventory",
+                                                    "id": "3ee4d054-af44-4284-8ddc-b89c178d922a",
+                                                    "propId": "5e356690-1021-446f-a9ff-47fd60b27b1f",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "change": "1",
+                                                    "count": 1,
+                                                    "notify": true
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "59e7b437-72aa-4386-a533-35896250278b",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Good... it's working.",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "9abefa54-6afb-4e4d-ba31-7022bf00c766",
+                                                    "scope": "scene",
+                                                    "scopeId": "0f09f7d6-26b1-438e-aa73-fc5f6065ad9e",
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "hasOpenedAlcove",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "a0a2ddca-a9c2-4b4a-9b4c-c050b48cdeb0",
+                                                    "scriptId": "9fa4d248-591a-41c0-80ce-fb321d66a555",
+                                                    "entryPointId": "120f9488-ff41-42ac-b63a-8c181c8a6be8",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "57081414-c02d-4d68-a403-ed63c1666e3a",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Okay, here I go, down into danger!",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.changeScene",
+                                                    "sceneId": "db7d4f5f-2dc0-4f21-beed-ee153ded5491",
+                                                    "spawnId": "99aa686f-6728-4580-8ce2-32981f7ac113",
+                                                    "fadeTime": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "bb61e049-4ee7-4f0e-9281-372d08a21d9b",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "<sigh> I'm pretty sure that something is supposed to be stuck in the carving, but I don't have it with me.",
+                                                    "emotion": "2",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inTags",
+                                    "scope": "scene",
+                                    "scopeId": "0f09f7d6-26b1-438e-aa73-fc5f6065ad9e",
+                                    "scopeFilterId": null,
+                                    "tags": "ExaminedCarving",
+                                    "has": true
+                                },
+                                "right": {
+                                    "type": "expressions.inTags",
+                                    "scope": "scene",
+                                    "scopeId": "0f09f7d6-26b1-438e-aa73-fc5f6065ad9e",
+                                    "scopeFilterId": null,
+                                    "tags": "hasOpenedAlcove",
+                                    "has": false
+                                }
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "5",
+                            "ExitMenu": true
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

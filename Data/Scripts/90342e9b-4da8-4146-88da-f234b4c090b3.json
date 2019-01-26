@@ -1,0 +1,282 @@
+{
+    "type": "script",
+    "id": "90342e9b-4da8-4146-88da-f234b4c090b3",
+    "name": "Wall Aura Zone Trigger",
+    "sceneId": "981ec865-3e1b-4f3e-bb0d-11df2bc7d593",
+    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+    "trigger": {
+        "type": "triggers.zone",
+        "name": "Zone"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "f68346d0-0d3c-4f61-862e-e9442f42f853",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.variableComparison",
+                                    "variableScope": "global",
+                                    "variableName": "time.day",
+                                    "operator": "lte",
+                                    "compareTo": "42",
+                                    "sceneId": null,
+                                    "propId": null
+                                },
+                                "right": {
+                                    "type": "expressions.inTags",
+                                    "scope": "scene",
+                                    "scopeId": "981ec865-3e1b-4f3e-bb0d-11df2bc7d593",
+                                    "scopeFilterId": null,
+                                    "tags": "SensedMagicArea",
+                                    "has": false
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.invokeCommand",
+                                    "id": "e7861292-baaf-4d52-bc13-b2b79d2277b5",
+                                    "entityType": "actor",
+                                    "entityId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "command": "Stop",
+                                    "resultVariableScope": "script"
+                                },
+                                {
+                                    "type": "nodes.wait",
+                                    "waitForSeconds": "0.5"
+                                },
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "44bb3a06-c45a-4ec1-8969-920b50143616",
+                                    "scope": "scene",
+                                    "scopeId": "981ec865-3e1b-4f3e-bb0d-11df2bc7d593",
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "SensedMagicArea",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "c8ae6144-d9d1-42ce-a377-342eedb7f5ac",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "That's odd - It feels really, really cold in this area - the cold as death sort of cold.",
+                                    "emotion": "4",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inTags",
+                                    "scope": "scene",
+                                    "scopeId": "981ec865-3e1b-4f3e-bb0d-11df2bc7d593",
+                                    "scopeFilterId": null,
+                                    "tags": "SensedMagicMagic",
+                                    "has": false
+                                },
+                                "right": {
+                                    "type": "expressions.and",
+                                    "left": {
+                                        "type": "expressions.skillCheck",
+                                        "skill": "Magic",
+                                        "target": "40"
+                                    },
+                                    "right": {
+                                        "type": "expressions.variableComparison",
+                                        "variableScope": "global",
+                                        "variableName": "time.day",
+                                        "operator": "lt",
+                                        "compareTo": "42",
+                                        "sceneId": null,
+                                        "propId": null
+                                    }
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.invokeCommand",
+                                    "id": "be2794c3-d6c3-47d9-ac18-74e228336429",
+                                    "entityType": "actor",
+                                    "entityId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "command": "Stop",
+                                    "resultVariableScope": "script"
+                                },
+                                {
+                                    "type": "nodes.wait",
+                                    "waitForSeconds": "0.5"
+                                },
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "4fc38c61-63d5-4ca1-82f1-cb15e3da1313",
+                                    "scope": "scene",
+                                    "scopeId": "981ec865-3e1b-4f3e-bb0d-11df2bc7d593",
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "SensedMagicMagic",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "8153e3b3-6e6d-4baa-949b-02f138f76aa8",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Whatever it is about this area, it gives me the willies. It just feels wrong.",
+                                    "emotion": "2",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.variableComparison",
+                                    "variableScope": "global",
+                                    "variableName": "time.day",
+                                    "operator": "gte",
+                                    "compareTo": "42",
+                                    "sceneId": null,
+                                    "propId": null
+                                },
+                                "right": {
+                                    "type": "expressions.and",
+                                    "left": {
+                                        "type": "expressions.variableComparison",
+                                        "variableScope": "global",
+                                        "variableName": "time.day",
+                                        "operator": "lte",
+                                        "compareTo": "44",
+                                        "sceneId": null,
+                                        "propId": null
+                                    },
+                                    "right": {
+                                        "type": "expressions.inTags",
+                                        "scope": "scene",
+                                        "scopeId": "981ec865-3e1b-4f3e-bb0d-11df2bc7d593",
+                                        "scopeFilterId": null,
+                                        "tags": "PassageClue",
+                                        "has": false
+                                    }
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "9c43bf36-e5b5-4739-b441-a8523d33a1e5",
+                                    "scope": "scene",
+                                    "scopeId": "981ec865-3e1b-4f3e-bb0d-11df2bc7d593",
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "PassageClue",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.invokeCommand",
+                                    "id": "33368bbb-d9c1-46e1-a858-917905f4db49",
+                                    "entityType": "actor",
+                                    "entityId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "command": "Stop",
+                                    "resultVariableScope": "script"
+                                },
+                                {
+                                    "type": "nodes.wait",
+                                    "waitForSeconds": "0.5"
+                                },
+                                {
+                                    "type": "nodes.turnActor",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "propId": "e3a88aa4-f419-4978-9388-fa9f79e1546f",
+                                    "wait": true,
+                                    "scope": "prop",
+                                    "targetActorId": null
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "03bf2af3-ea8f-4d1e-9a31-512fe0a07692",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "I'm shivering. Why do I get such a bad feeling here? ",
+                                    "emotion": "4",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "e8a728ac-40e1-44ea-b0f9-6c5dfd727545",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "It's that feeling you get when you know you have to do something you really, really don't want to do, but you have to do it anyway.",
+                                    "emotion": "2",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.skillCheck",
+                                                "skill": "Magic",
+                                                "target": "40"
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "02feccc3-3d86-45b6-8308-b95fae1837f5",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "The magic says \"go away.\" Whoever cast the magical spell on this area doesn't want me here.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "c733eba5-9585-4062-bef0-791fa4f2f386",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "He doesn't know Rogues very well, does he?",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

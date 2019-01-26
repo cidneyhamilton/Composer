@@ -1,0 +1,415 @@
+{
+    "type": "script",
+    "id": "62729280-edb2-4e93-ac16-6e3ad97d1cf4",
+    "name": "Interact_Plaque_Refidnats (Ghost)",
+    "sceneId": "dc706bb3-df41-4404-827c-3583baea588f",
+    "propId": "9c735fab-598f-49a5-b7e7-b3cfc2449c4d",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "697ecf0a-28e6-4382-82da-eeb760ba4770",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showCloseUp",
+                    "imageName": "Catacombs_plaque_magicuser_2.png"
+                },
+                {
+                    "type": "nodes.speak",
+                    "id": "24677c0d-a169-4c5a-a78b-ae0dc3314b71",
+                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "text": "The epitaph reads <i>Refidnats the Pink:\n\"THERE IS A LIGHT THAT NEVER GOES OUT\"</i>",
+                    "emotion": "0",
+                    "emotion2": "0",
+                    "device": "0",
+                    "device2": "0"
+                },
+                {
+                    "type": "nodes.speak",
+                    "id": "21f5f0fa-b92b-47f6-aa5c-7a5f2881d225",
+                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "actorId2": null,
+                    "text": "Heh. I bet the engraver got paid more for capital letters.",
+                    "emotion": "1",
+                    "emotion2": "0",
+                    "device": "0",
+                    "device2": "0"
+                },
+                {
+                    "type": "nodes.turnActor",
+                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "propId": "541c6d10-20ff-4db6-bd5c-a60610a215b4",
+                    "wait": true,
+                    "scope": "prop",
+                    "targetActorId": null
+                },
+                {
+                    "type": "nodes.hideCloseUp",
+                    "waitForSeconds": 1
+                },
+                {
+                    "type": "nodes.playSoundEffect",
+                    "soundEffectName": "magic_twinkle_loop.wav",
+                    "wait": false
+                },
+                {
+                    "type": "nodes.placeActor",
+                    "actorId": "3a4573e4-8419-448a-9142-9b27153f36a2",
+                    "spawnId": "541c6d10-20ff-4db6-bd5c-a60610a215b4",
+                    "pose": null,
+                    "behaviour": "Ghost",
+                    "immediate": null
+                },
+                {
+                    "type": "nodes.onceOnly",
+                    "id": "49523c0f-d2d2-4349-9676-bfece6ca2132",
+                    "nodes": [
+                        {
+                            "type": "nodes.playAnimation",
+                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                            "animationName": "JumpScare",
+                            "wait": true
+                        },
+                        {
+                            "type": "nodes.speak",
+                            "id": "28ecb671-2c5c-47d2-9d1d-44fdd30569e5",
+                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                            "actorId2": null,
+                            "text": "Not another ghost!",
+                            "emotion": "4",
+                            "emotion2": "0",
+                            "device": "0",
+                            "device2": "0"
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.inInventory",
+                                "propId": "34e8cb8d-654c-4e30-81d2-11a9e533e39e",
+                                "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                "has": true
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.and",
+                                                "left": {
+                                                    "type": "expressions.variableComparison",
+                                                    "variableScope": "global",
+                                                    "variableName": "time.day",
+                                                    "operator": "gte",
+                                                    "compareTo": "32",
+                                                    "sceneId": "dc706bb3-df41-4404-827c-3583baea588f",
+                                                    "propId": null
+                                                },
+                                                "right": {
+                                                    "type": "expressions.and",
+                                                    "left": {
+                                                        "type": "expressions.variableComparison",
+                                                        "variableScope": "global",
+                                                        "variableName": "time.day",
+                                                        "operator": "lte",
+                                                        "compareTo": "33",
+                                                        "sceneId": "dc706bb3-df41-4404-827c-3583baea588f",
+                                                        "propId": null
+                                                    },
+                                                    "right": {
+                                                        "type": "expressions.inTags",
+                                                        "scope": "actor",
+                                                        "scopeId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                        "scopeFilterId": null,
+                                                        "tags": "SavedEarly",
+                                                        "has": false
+                                                    }
+                                                }
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "d05ae6e1-b09f-47ea-8ef6-40ac7f40914b",
+                                                    "actorId": "3a4573e4-8419-448a-9142-9b27153f36a2",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "Your friend is in great danger - you must save him from the Wraith!",
+                                                    "emotion": "0",
+                                                    "emotion2": "4",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "65412cd4-9b70-4e26-bbd6-ee0330505279",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": "3a4573e4-8419-448a-9142-9b27153f36a2",
+                                                    "text": "Where is the Wraith?",
+                                                    "emotion": "3",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "cd448e98-a0b9-4d66-8b32-79005407948a",
+                                                    "actorId": "3a4573e4-8419-448a-9142-9b27153f36a2",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "Why, in the Catacombs, of course. ",
+                                                    "emotion": "0",
+                                                    "emotion2": "4",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "actor",
+                                                "scopeId": "7c7e1c22-df6c-456c-a19e-762f7d0bb566",
+                                                "scopeFilterId": null,
+                                                "tags": "FoundMaster",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "8df7ee82-c603-40c8-92ff-70e7e817ec9f",
+                                                    "actorId": "3a4573e4-8419-448a-9142-9b27153f36a2",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "Minou, I found her! Well, rather, you found her. Thank you.",
+                                                    "emotion": "1",
+                                                    "emotion2": "4",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.playSoundEffect",
+                                                    "soundEffectName": "cat_meow_02.wav",
+                                                    "wait": false
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "ccb1825c-0c5e-4e36-a3ab-d5c3505417b3",
+                                                    "actorId": "7c7e1c22-df6c-456c-a19e-762f7d0bb566",
+                                                    "actorId2": null,
+                                                    "text": "(Mrrroooww)",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "83648c22-46d7-4679-a2f7-d31bea1a4744",
+                                                    "actorId": "3a4573e4-8419-448a-9142-9b27153f36a2",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "Now we will be together forever!",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "3ebc14c3-16fe-492a-88f1-bd09389ddc8e",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": "3a4573e4-8419-448a-9142-9b27153f36a2",
+                                                    "text": "I'm happy for you both.",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "39ae1bb8-bf54-419b-a8ab-5c305ff08f49",
+                                                    "actorId": "3a4573e4-8419-448a-9142-9b27153f36a2",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "Farewell and beware the Wraiths - they are wrathful.",
+                                                    "emotion": "0",
+                                                    "emotion2": "4",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "060cbaf0-28c6-4d8b-a5c9-afc883b5cfc1",
+                                                    "actorId": "3a4573e4-8419-448a-9142-9b27153f36a2",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "Minou... have you seen Minou?",
+                                                    "emotion": "0",
+                                                    "emotion2": "4",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "actor",
+                                                "scopeId": "3a4573e4-8419-448a-9142-9b27153f36a2",
+                                                "scopeFilterId": null,
+                                                "tags": "MetGhost",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "28daebc9-a175-4a86-b10a-b290deecac7f",
+                                                    "scope": "actor",
+                                                    "scopeId": "3a4573e4-8419-448a-9142-9b27153f36a2",
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "MetGhost",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "4307842c-00eb-4ab0-a032-ac9a667e873f",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Didn't I meet you somewhere before? The Nights of the Dead, maybe?",
+                                                    "emotion": "4",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "8d7efa98-c14c-436f-8f4e-11513c688190",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": "3a4573e4-8419-448a-9142-9b27153f36a2",
+                                                    "text": "I don't know if I have or not... who's Minou?",
+                                                    "emotion": "4",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "4eee7d39-73d0-48b7-aa1c-891dafa0c7db",
+                                    "actorId": "3a4573e4-8419-448a-9142-9b27153f36a2",
+                                    "actorId2": null,
+                                    "text": "Here kitty, kitty kitty... Minou, where are you?",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "42385144-3052-4596-b96e-94b69de36ebc",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Oh, so Minou's a cat?",
+                                    "emotion": "4",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.playSoundEffect",
+                                    "soundEffectName": "Ghost Wail.wav",
+                                    "wait": false
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "2b66a100-b199-40bb-bf5c-e7b06bbc0e03",
+                                    "actorId": "3a4573e4-8419-448a-9142-9b27153f36a2",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "Oooooooooaaaaa.",
+                                    "emotion": "0",
+                                    "emotion2": "2",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "06955548-7d81-4ad5-9a2a-b32d2a36ac82",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "There has got to be some way to understand what this ghost is saying... I just need to find it.",
+                                    "emotion": "2",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.invokeScript",
+                                    "id": "0ae39293-aaf8-436f-9f13-015b45eed72e",
+                                    "scriptId": "98bed7e3-6d3d-4482-ae95-e3913dd384ed",
+                                    "entryPointId": "ac278914-c9dd-451f-a4f3-c0510129d5d3",
+                                    "currentScope": "Scenes",
+                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                    "currentActorId": null,
+                                    "currentStoryEventId": null,
+                                    "currentPropId": null
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.playSoundEffect",
+                    "soundEffectName": "magic_teleport.wav",
+                    "wait": false
+                },
+                {
+                    "type": "nodes.invokeCommand",
+                    "id": "892a793b-b482-46d2-91ce-eebb66c45b80",
+                    "entityType": "actor",
+                    "entityId": "3a4573e4-8419-448a-9142-9b27153f36a2",
+                    "command": "fadeout",
+                    "wait": true,
+                    "resultVariableScope": "script"
+                },
+                {
+                    "type": "nodes.removeActor",
+                    "id": "2a5b50fe-a7ee-4872-b4cf-f91550bb2385",
+                    "actorId": "3a4573e4-8419-448a-9142-9b27153f36a2"
+                }
+            ]
+        }
+    ]
+}

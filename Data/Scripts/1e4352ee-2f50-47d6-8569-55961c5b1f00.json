@@ -1,0 +1,271 @@
+{
+    "type": "script",
+    "id": "1e4352ee-2f50-47d6-8569-55961c5b1f00",
+    "name": "Make Perception Pills",
+    "sceneId": "df6088fa-a6d6-441a-9a00-7af3baa62e14",
+    "trigger": {
+        "type": "triggers.manual",
+        "name": "Manual"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "c92aba05-3f02-41a4-8958-f45b58a8e2e8",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.setVariable",
+                    "name": "AmanitaCount",
+                    "scope": "script",
+                    "source": {
+                        "type": "variables.count",
+                        "target": "2dfbdcd3-18c3-4115-b45f-7301c16a7931",
+                        "useArticle": false,
+                        "includeText": false,
+                        "text": "",
+                        "displayName": "Count"
+                    },
+                    "add": false
+                },
+                {
+                    "type": "nodes.setVariable",
+                    "name": "ChanterelleCount",
+                    "scope": "script",
+                    "source": {
+                        "type": "variables.count",
+                        "target": "a5f3462b-dfe1-4708-836c-6f87aef2bf3d",
+                        "useArticle": false,
+                        "includeText": false,
+                        "text": "",
+                        "displayName": "Count"
+                    },
+                    "add": false
+                },
+                {
+                    "type": "nodes.setVariable",
+                    "name": "FairyCount",
+                    "scope": "script",
+                    "source": {
+                        "type": "variables.count",
+                        "target": "e81826e9-efa7-4dbf-b232-df831c130aa9",
+                        "useArticle": false,
+                        "includeText": false,
+                        "text": "",
+                        "displayName": "Count"
+                    },
+                    "add": false
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "script",
+                                "scopeId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                "scopeFilterId": null,
+                                "tags": "ForceCraft",
+                                "has": true
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "69b15517-7ddb-4019-9385-aa8375d1f976",
+                                    "scope": "script",
+                                    "scopeId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                    "scopeFilterId": null,
+                                    "tagsToRemove": "ForceCraft"
+                                },
+                                {
+                                    "type": "nodes.invokeScript",
+                                    "id": "284fca15-d508-4615-a098-6606926b764c",
+                                    "scriptId": "1e4352ee-2f50-47d6-8569-55961c5b1f00",
+                                    "entryPointId": "734b2a8a-6b22-4295-926a-8f82aaf76fbc",
+                                    "currentScope": "Current",
+                                    "currentSceneId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                    "currentActorId": null,
+                                    "currentStoryEventId": null,
+                                    "currentPropId": null
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.variableComparison",
+                                    "variableScope": "script",
+                                    "variableName": "AmanitaCount",
+                                    "operator": "gte",
+                                    "compareTo": "5",
+                                    "sceneId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                    "propId": null
+                                },
+                                "right": {
+                                    "type": "expressions.and",
+                                    "left": {
+                                        "type": "expressions.variableComparison",
+                                        "variableScope": "script",
+                                        "variableName": "ChanterelleCount",
+                                        "operator": "gte",
+                                        "compareTo": "3",
+                                        "sceneId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                        "propId": null
+                                    },
+                                    "right": {
+                                        "type": "expressions.variableComparison",
+                                        "variableScope": "script",
+                                        "variableName": "FairyCount",
+                                        "operator": "gte",
+                                        "compareTo": "2",
+                                        "sceneId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                        "propId": null
+                                    }
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "8970d78c-f281-444a-b3bb-405f818984a0",
+                                    "actorId": "38b1ca94-de8c-4873-8810-3d0b02df469a",
+                                    "actorId2": null,
+                                    "text": "It takes 5 Amanitas, 3 Chanterelles, and 2 Fairy Parasols to make 3 Perception Pills. You have ${script.AmanitaCount} Amanitas, ${script.ChanterelleCount} Chanterelles, and ${script.FairyCount} Fairy Parasols. Continue crafting?",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.showMenu",
+                                    "id": "be5b3650-9588-4a28-b355-ae9587f44fb6",
+                                    "options": [
+                                        {
+                                            "type": "options.text",
+                                            "id": "36e7cc19-6bf9-4bac-a557-c71ee84380a3",
+                                            "text": "Continue Crafting",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.setVariable",
+                                                    "name": "CraftCount",
+                                                    "scope": "script",
+                                                    "source": {
+                                                        "type": "variables.literal",
+                                                        "value": "1",
+                                                        "displayName": "Literal"
+                                                    },
+                                                    "add": true
+                                                },
+                                                {
+                                                    "type": "nodes.changeInventory",
+                                                    "id": "8d9fe5fd-e4c5-4681-ba5e-2f27b4e4e9d7",
+                                                    "propId": "2dfbdcd3-18c3-4115-b45f-7301c16a7931",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "change": "0",
+                                                    "count": "5",
+                                                    "notify": true
+                                                },
+                                                {
+                                                    "type": "nodes.changeInventory",
+                                                    "id": "a26d7499-120b-4070-bf22-6f78ad55a2fa",
+                                                    "propId": "e81826e9-efa7-4dbf-b232-df831c130aa9",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "change": "0",
+                                                    "count": "2",
+                                                    "notify": true
+                                                },
+                                                {
+                                                    "type": "nodes.changeInventory",
+                                                    "id": "884863de-decb-4bf1-bf35-d2cee93cb1f2",
+                                                    "propId": "a5f3462b-dfe1-4708-836c-6f87aef2bf3d",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "change": "0",
+                                                    "count": "3",
+                                                    "notify": true
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "5bdeb8cf-81ea-4103-a09e-3d1aa0a57f17",
+                                                    "scriptId": "1e4352ee-2f50-47d6-8569-55961c5b1f00",
+                                                    "entryPointId": "734b2a8a-6b22-4295-926a-8f82aaf76fbc",
+                                                    "currentScope": "Current",
+                                                    "currentSceneId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ],
+                                            "expression": null,
+                                            "ignoreChildAvailability": true,
+                                            "minutes": 0,
+                                            "ExitMenu": true
+                                        }
+                                    ],
+                                    "AutoAddDone": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "17fc3da3-b55a-4997-86a8-d11a17bd2721",
+                                    "actorId": "38b1ca94-de8c-4873-8810-3d0b02df469a",
+                                    "actorId2": null,
+                                    "text": "You do not have enough materials. It takes 5 Amanitas, 3 Chanterelles, and 2 Fairy Parasols to make 3 Perception Pills. You have ${script.AmanitaCount} Amanitas, ${script.ChanterelleCount} Chanterelles, and ${script.FairyCount} Fairy Parasols.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "scripts.entryPoint",
+            "id": "734b2a8a-6b22-4295-926a-8f82aaf76fbc",
+            "name": "Craft",
+            "nodes": [
+                {
+                    "type": "nodes.playSoundEffect",
+                    "soundEffectName": "mortar_pestle.wav",
+                    "wait": true
+                },
+                {
+                    "type": "nodes.playSoundEffect",
+                    "soundEffectName": "stamp.wav",
+                    "wait": true
+                },
+                {
+                    "type": "nodes.playSoundEffect",
+                    "soundEffectName": "stamp.wav",
+                    "wait": true
+                },
+                {
+                    "type": "nodes.playSoundEffect",
+                    "soundEffectName": "stamp.wav",
+                    "wait": true
+                },
+                {
+                    "type": "nodes.changeInventory",
+                    "id": "96436b49-7936-4d92-88cd-af1d5eaf0632",
+                    "propId": "2d1d5029-bdb4-4dfa-8dd9-788079392bd2",
+                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                    "change": "1",
+                    "count": "3",
+                    "notify": true
+                },
+                {
+                    "type": "nodes.wait",
+                    "waitForSeconds": 1
+                }
+            ]
+        }
+    ]
+}

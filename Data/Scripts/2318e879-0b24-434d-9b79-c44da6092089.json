@@ -1,0 +1,119 @@
+{
+    "type": "script",
+    "id": "2318e879-0b24-434d-9b79-c44da6092089",
+    "name": "Interact with Potted Plant",
+    "propId": "c9549dea-223f-472b-82bf-27eb0bd84138",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "22735039-3848-4157-b2ea-c3ef3787dd72",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "84cded97-f604-40c9-8629-7790da5209cd",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "fc32b9df-edf6-4466-be23-12ed6b3263a4",
+                            "text": "Look at the Plant",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "f6b0e596-7535-49ad-b1af-d2cf7296144b",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Someone lavishes a lot of attention on the greenery. I'm sure Darla would love this.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "ff2b2eea-fb1c-414b-9271-73a0c588c833",
+                            "text": "Search the Plant",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "prop",
+                                                "scopeId": "16e27ef6-589c-40ab-b256-c6dce4919624",
+                                                "scopeFilterId": "0f09f7d6-26b1-438e-aa73-fc5f6065ad9e",
+                                                "tags": "SearchedPlant",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.playAnimation",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "animationName": "KneelDown",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "efe0f70c-a570-4c95-ad88-3509efc92bab",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "I'm looking, but... no scrolls, no gems, no lost earrings. There's nothing in this little tree that doesn't belong here.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.playAnimation",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "animationName": "KneelUp",
+                                                    "wait": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "e1d5e7b0-37e3-43da-bb48-3f3f41314aa8",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "There's no need. Why take the risk?",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

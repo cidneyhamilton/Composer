@@ -1,0 +1,61 @@
+{
+    "type": "script",
+    "id": "4f306342-84e6-4f77-8f8d-9a0b5c1ea951",
+    "name": "_OnResetDay",
+    "sceneId": "1a0d7041-b6c8-43c3-a293-06dece2e6997",
+    "trigger": {
+        "type": "triggers.OnResetDay",
+        "name": "OnResetDay"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "f94fcb50-0eae-4311-b9de-c79d58033632",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.comment",
+                    "message": "Variables initialized OnceOnly in OnLoad, so the \"greater than 0\" should protect us",
+                    "commentor": "Charles"
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.enteredScene",
+                                "sceneId": "1a0d7041-b6c8-43c3-a293-06dece2e6997",
+                                "scope": "DuringGame",
+                                "operator": "gt",
+                                "count": 0
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.invokeScript",
+                                    "id": "756eab28-fdad-4196-91e9-9a79da109105",
+                                    "scriptId": "53b3e475-9f46-42e8-a1b3-096a7acf2fab",
+                                    "entryPointId": "f94fcb50-0eae-4311-b9de-c79d58033632",
+                                    "currentScope": "Scenes",
+                                    "currentSceneId": "1a0d7041-b6c8-43c3-a293-06dece2e6997",
+                                    "currentActorId": null,
+                                    "currentStoryEventId": null,
+                                    "currentPropId": null
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.changeTags",
+                    "id": "51612d45-e661-400b-9f02-a88948d067f1",
+                    "scope": "prop",
+                    "scopeId": "10a22894-917b-4790-82df-7a4c40fe0da3",
+                    "scopeFilterId": "1a0d7041-b6c8-43c3-a293-06dece2e6997",
+                    "tagsToAdd": "trapped, locked",
+                    "tagsToRemove": null
+                }
+            ]
+        }
+    ]
+}

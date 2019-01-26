@@ -1,0 +1,95 @@
+{
+    "type": "script",
+    "id": "cae95d16-b776-4b86-9713-595357b49f59",
+    "name": "_Gerhard'sOffice Load",
+    "sceneId": "eceae806-6f55-4cde-b517-c73b1c924fd9",
+    "trigger": {
+        "type": "triggers.load",
+        "name": "Load"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "e6a60da0-e4b8-441e-94a7-1c16bc39b6a3",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.changeTags",
+                    "id": "9d6e2c0b-05a8-4b23-944e-467eacb3a21b",
+                    "scope": "scene",
+                    "scopeId": "eceae806-6f55-4cde-b517-c73b1c924fd9",
+                    "scopeFilterId": null,
+                    "tagsToRemove": "GerhardPresent"
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "scene",
+                                "scopeId": "eceae806-6f55-4cde-b517-c73b1c924fd9",
+                                "scopeFilterId": null,
+                                "tags": "GOBreakin",
+                                "has": true
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.placeActor",
+                                    "actorId": "b7cbd02d-8e2f-4a8d-99a7-02b132d86e1d",
+                                    "spawnId": "fe29610f-cce8-4d73-91e8-a11b995ef283",
+                                    "pose": null,
+                                    "behaviour": "Idle",
+                                    "immediate": true
+                                },
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "cdd5710c-4985-473a-b81f-7d63b2158bbb",
+                                    "scope": "scene",
+                                    "scopeId": "eceae806-6f55-4cde-b517-c73b1c924fd9",
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "16 Break In",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.comment",
+                                    "message": "Play breaking in music",
+                                    "commentor": "Cidney"
+                                },
+                                {
+                                    "type": "nodes.playMusic",
+                                    "musicTrack": "Incidental 2.mp3",
+                                    "channel": "1",
+                                    "loopType": "2"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "nodes": [
+                                {
+                                    "type": "nodes.placeActor",
+                                    "actorId": "b7cbd02d-8e2f-4a8d-99a7-02b132d86e1d",
+                                    "spawnId": "054da8fe-7036-47e1-bfa7-7172bf65b784",
+                                    "pose": "sitting",
+                                    "behaviour": "Sitting",
+                                    "immediate": true
+                                },
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "a3eb6fd6-ab11-47af-8cbc-f7952d3ccdc2",
+                                    "scope": "scene",
+                                    "scopeId": "eceae806-6f55-4cde-b517-c73b1c924fd9",
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "GerhardPresent",
+                                    "tagsToRemove": null
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

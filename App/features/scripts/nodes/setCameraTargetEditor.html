@@ -1,0 +1,36 @@
+<div data-bind="compose: { mode:'templated', view:'nodeEditor' }">
+    <div data-part="read" class="text">
+
+        <span>Set Camera Target on <span class="prop" data-bind="text: spawnPoint.name"></span><span> over (</span><span data-bind="text: node.time"></span><span>) seconds</span><span data-bind="visible: node.wait"> (wait)</span>.
+
+    </div>
+
+    <div data-part="write">
+
+        <span>Scope:</span><select data-bind="options: availableScope, value: node.scope, optionsCaption: 'Select Scope'"></select><br>
+
+      
+        <!--ko if: node.scope == 'actor'-->
+        <span>Actor:</span>
+        <select data-bind="options: availableActors, optionsText: 'name', optionsValue: 'id', value: node.actorId, optionsCaption: 'Select Camera Location'"></select>
+         <!--/ko-->
+
+        <!--ko if: node.scope == 'prop'-->
+        <span>Prop:</span>
+        <select data-bind="options: availableProps, optionsText: 'name', optionsValue: 'id', value: node.propId, optionsCaption: 'Select Camera Location'"></select>
+         <!--/ko-->
+        <br>
+
+        <span class="control-label">Time (Seconds):</span>
+        <input type="text" data-bind="value: node.time, valueUpdate: 'afterkeydown'" style="width: 60px" />
+        <br>
+
+        <span class="control-label">Translate:</span><span class="control-label"> X:</span><input type="text" data-bind="value: node.translateX, valueUpdate: 'afterkeydown'" style="width: 60px" /><span class="control-label"> Y:</span><input type="text" data-bind="value: node.translateY, valueUpdate: 'afterkeydown'" style="width: 60px" /><span class="control-label"> Z:</span><input type="text" data-bind="value: node.translateZ, valueUpdate: 'afterkeydown'" style="width: 60px" />
+        <br>
+
+        <div class="form-inline">
+            <input type="checkbox" data-bind="checked: node.wait" />
+            <label>Wait for command completion?</label>
+        </div>
+    </div>
+</div>

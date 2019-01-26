@@ -1,0 +1,82 @@
+{
+    "type": "script",
+    "id": "11865139-9e9e-43a7-81d0-2ab1b3542a6d",
+    "name": "Esme Leaves",
+    "sceneId": "af912e02-46a1-4d88-a547-59f3d2093c7b",
+    "trigger": {
+        "type": "triggers.manual",
+        "name": "Manual"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "d69dacc9-5d77-44e8-b446-96e47ba81057",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.comment",
+                    "message": "Invoked when Esme leaves through the door",
+                    "commentor": "Cidney"
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.actorPresent",
+                                "actorId": "98ea49aa-86cf-4fa9-9bd5-6aa2fe7c809d",
+                                "hasNot": false
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.moveActor",
+                                    "actorId": "98ea49aa-86cf-4fa9-9bd5-6aa2fe7c809d",
+                                    "propId": "e50948d0-3f02-4776-89ec-295137fe52ec",
+                                    "movement": "Walking",
+                                    "wait": false
+                                },
+                                {
+                                    "type": "nodes.wait",
+                                    "waitForSeconds": "0.25"
+                                },
+                                {
+                                    "type": "nodes.fade",
+                                    "scope": "FadeOut",
+                                    "fadeTime": "1",
+                                    "fadeTime2": "1",
+                                    "wait": false,
+                                    "fadeDown": 0.5,
+                                    "fadeColorR": 0,
+                                    "fadeColorG": 0,
+                                    "fadeColorB": 0
+                                },
+                                {
+                                    "type": "nodes.playSoundEffect",
+                                    "soundEffectName": "door_open_shut.wav",
+                                    "wait": false
+                                },
+                                {
+                                    "type": "nodes.removeActor",
+                                    "id": "f6dd6767-02a4-46de-bd3a-e36938b2dfb4",
+                                    "actorId": "98ea49aa-86cf-4fa9-9bd5-6aa2fe7c809d"
+                                },
+                                {
+                                    "type": "nodes.fade",
+                                    "scope": "FadeIn",
+                                    "fadeTime": 2,
+                                    "fadeTime2": "1",
+                                    "wait": true,
+                                    "fadeDown": 0.5,
+                                    "fadeColorR": 0,
+                                    "fadeColorG": 0,
+                                    "fadeColorB": 0
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

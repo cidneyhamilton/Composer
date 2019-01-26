@@ -1,0 +1,185 @@
+{
+    "type": "script",
+    "id": "7c21f7c5-3e94-4199-9a81-95c883ef5288",
+    "name": "Interact Burial Alcove H (Treasure)",
+    "sceneId": "72d81484-b84f-475d-940b-c354978b3248",
+    "propId": "85f1549c-d299-4304-99c3-6dd782ddddfd",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "1c605f4f-60a0-4f20-9053-83124ae5f9f5",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "aff51ca5-685e-48e3-b373-5016ee9ecc6e",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "f377f219-950c-403d-8ffc-fbfae3d35944",
+                            "text": "Examine the Alcoves",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "809ed8a8-3427-4016-acfb-fe19ad855976",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Two piles of bones in the top alcoves and a skeleton underneath...",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "1",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "02d37d1d-34e2-4468-b9c4-1d8c1404a61f",
+                            "text": "Search the Alcoves",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "scene",
+                                                "scopeId": "72d81484-b84f-475d-940b-c354978b3248",
+                                                "scopeFilterId": null,
+                                                "tags": "H_Treasure",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "64b98b92-cc22-4c0d-9b6b-57bd9b8c64ed",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "There's nothing left here but the bare bones.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "scene",
+                                                "scopeId": "72d81484-b84f-475d-940b-c354978b3248",
+                                                "scopeFilterId": null,
+                                                "tags": "H_Treasure",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "8a40c6a3-0768-46b8-8541-ba9d3f26fef5",
+                                                    "scope": "scene",
+                                                    "scopeId": "72d81484-b84f-475d-940b-c354978b3248",
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "H_Treasure",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "b19da770-650e-4487-a9fd-bccedfb241ac",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Someone left two coins on the skull of the skeleton.",
+                                                    "emotion": "4",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.playAnimation",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "animationName": "KneelDown",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "8ae9ef3e-b4f2-44c7-a721-c1ea210e0b62",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "I see an amulet resting on the rib cage.",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.changeInventory",
+                                                    "id": "99aa2a24-aae5-426e-9485-de8611212fa4",
+                                                    "propId": "8cf4afa3-33f5-4e1f-9446-805424dd17ae",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "change": "1",
+                                                    "count": 1,
+                                                    "notify": true
+                                                },
+                                                {
+                                                    "type": "nodes.changeMoney",
+                                                    "id": "a8d9d092-13fb-4f8d-ab37-f6f58eddfde7",
+                                                    "amount": "2",
+                                                    "change": "1",
+                                                    "currency": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.playAnimation",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "animationName": "KneelUp",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "7f92fb3c-8990-4d3d-849f-aa69cd426444",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Grave robbing for fun and profit. After all, this guy wasn't using these things.",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "97ac133f-f2a7-4898-b506-934adfcfe1b6",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "I hope...",
+                                                    "emotion": "2",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "2",
+                            "ExitMenu": true
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

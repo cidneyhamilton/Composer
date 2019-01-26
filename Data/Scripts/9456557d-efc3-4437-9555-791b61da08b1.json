@@ -1,0 +1,217 @@
+{
+    "type": "script",
+    "id": "9456557d-efc3-4437-9555-791b61da08b1",
+    "name": "_OnEnter",
+    "sceneId": "5df54949-2ba0-4a24-ac96-5eca5cf06c12",
+    "trigger": {
+        "type": "triggers.enter",
+        "name": "Enter"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "c9a51577-b21b-4b50-8f8f-855697086238",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.comment",
+                    "message": "Minotaur might need to be placed as part of the spawning process of hostiles.",
+                    "commentor": "Joshua"
+                },
+                {
+                    "type": "nodes.changeTags",
+                    "id": "df102608-1156-48c0-ada4-f0a3944bc394",
+                    "scope": "scene",
+                    "scopeId": "5df54949-2ba0-4a24-ac96-5eca5cf06c12",
+                    "scopeFilterId": null,
+                    "tagsToRemove": "MinotaurHostile"
+                },
+                {
+                    "type": "nodes.changeTags",
+                    "id": "d1818b82-1f38-483c-8b3b-df486933c49d",
+                    "scope": "scene",
+                    "scopeId": "5df54949-2ba0-4a24-ac96-5eca5cf06c12",
+                    "scopeFilterId": null,
+                    "tagsToAdd": "",
+                    "tagsToRemove": "talked_ghosts"
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "scene",
+                                "scopeId": "5df54949-2ba0-4a24-ac96-5eca5cf06c12",
+                                "scopeFilterId": null,
+                                "tags": "minotaur_dead",
+                                "has": true
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.onceOnly",
+                                    "id": "d76b45da-3af4-43d4-9e30-921049f60fb3",
+                                    "nodes": [
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "5e39e1a1-06ae-4b5d-a776-57562f6da050",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "I should be proud that I brought down a mighty Minotaur by wits and tricks, shouldn't I? I mean, it was clearly a monster. ",
+                                            "emotion": "0",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "c8a401aa-f32e-4803-b247-e47e4da59d02",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "A monster that played chess... and wore overalls... and made his bed...",
+                                            "emotion": "2",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "72546c4d-7f9e-4636-812c-60d60cf9154a",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "I'm not sure I'm really cut out for the life of an adventurer if I have to question whether it is morally right to pillage and loot.",
+                                            "emotion": "0",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.or",
+                                                "left": {
+                                                    "type": "expressions.inTags",
+                                                    "scope": "scene",
+                                                    "scopeId": "5df54949-2ba0-4a24-ac96-5eca5cf06c12",
+                                                    "scopeFilterId": null,
+                                                    "tags": "got_locket",
+                                                    "has": true
+                                                },
+                                                "right": {
+                                                    "type": "expressions.inTags",
+                                                    "scope": "scene",
+                                                    "scopeId": "5df54949-2ba0-4a24-ac96-5eca5cf06c12",
+                                                    "scopeFilterId": null,
+                                                    "tags": "won_game",
+                                                    "has": true
+                                                }
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "fcee112f-adbf-4779-8f68-9e77bf054047",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "I've already got the locket. I should leave him to his game.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.changeScene",
+                                                    "sceneId": "8bcd4d6e-ac80-41f9-862b-e5fba80c4928",
+                                                    "spawnId": "f7222915-a573-4592-ab4d-8f74f6d23360",
+                                                    "fadeTime": 2
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.onceOnly",
+                                    "id": "a407eb11-274e-46ee-a71d-6698a1400ace",
+                                    "nodes": [
+                                        {
+                                            "type": "nodes.turnActor",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "propId": "0bbe0afa-a6b0-4a7d-8d5b-28f1abe1b674",
+                                            "scope": "prop",
+                                            "targetActorId": "1d1d9564-e615-4662-bf0a-f07766d54b6d"
+                                        },
+                                        {
+                                            "type": "nodes.wait",
+                                            "waitForSeconds": "0.5"
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "d819b69c-c84d-460f-ae7d-3ab3f88cdd1b",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "Whoa, what's that?",
+                                            "emotion": "4",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.setCameraTarget",
+                                            "propId": "a25af8a8-f62f-49f5-8675-ea44a7f84c52",
+                                            "actorId": "1d1d9564-e615-4662-bf0a-f07766d54b6d",
+                                            "time": "1",
+                                            "translateX": 0,
+                                            "translateY": 0,
+                                            "translateZ": 0,
+                                            "postWaitTime": 0,
+                                            "wait": true,
+                                            "scope": "prop"
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "648a2732-8b30-4311-9916-017e71dab05b",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "He looks nasty, or at least in the middle of something. Maybe I should leave him alone.",
+                                            "emotion": "0",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.resetCamera",
+                                            "wait": true,
+                                            "time": "1"
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "864dd439-d8dc-416b-a4f6-3bf06147dbe3",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "But a real thief... ah, I mean... rogue would probably do some surveying just in case there's something valuable the owner no longer required.",
+                                            "emotion": "0",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

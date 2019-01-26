@@ -1,0 +1,33 @@
+<div class="components-container">
+    <div class="header-container">
+        <div class="btn-group">
+            <button class="dropdown-toggle hint--rounded hint--left" data-hint="Add Component" data-toggle="dropdown">
+                <i class="icon-cog"></i>
+            </button>
+            <ul class="dropdown-menu pull-right scrollable-list" role="menu" aria-labelledby="dropdownMenu">
+                <!--ko foreach: availableComponents-->
+                <li>
+                    <a href="#" data-bind="text:'Add ' + $data.displayName, click: function() { $parent.addComponent($data); }"></a>
+                </li>
+                <!--/ko-->
+            </ul>
+        </div>
+        <h3>Components</h3>
+    </div>
+
+    <div data-bind="foreach: entity.components, style: { top:y }" style="overflow-y: auto;position: absolute;bottom: 0;left: 16px;right: 16px;">
+        <div class="component-container">
+            <div>
+                <div>
+                    <h4 data-bind="text: constructor.displayName"></h4>
+                </div>
+                <div class="remove">
+                    <button class="hint--rounded hint--left" data-hint="Remove" data-bind="click: function() { $parent.removeComponent($data); }">
+                        <i class="icon-trash"></i>
+                    </button>
+                </div>
+            </div>
+            <div data-bind="compose: {model:$data, preserveContext:true}"></div>
+        </div>
+    </div>
+</div>

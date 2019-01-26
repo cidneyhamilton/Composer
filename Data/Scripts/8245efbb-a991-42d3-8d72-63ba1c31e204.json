@@ -1,0 +1,641 @@
+{
+    "type": "script",
+    "id": "8245efbb-a991-42d3-8d72-63ba1c31e204",
+    "name": "OnLooted",
+    "actorId": "aa36dcd4-d6c0-4c8e-9a80-21af17dade07",
+    "trigger": {
+        "type": "triggers.loot",
+        "name": "Loot"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "17f1547e-738b-4f7d-8d3e-320660f5818e",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.playAnimation",
+                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "animationName": "KneelDown",
+                    "wait": true
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "target",
+                                "scopeId": null,
+                                "scopeFilterId": null,
+                                "tags": "U_LOOTED",
+                                "has": true
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "3d5ff782-d1e1-4f13-8956-5b9553ca043e",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "There's nothing left but slimy Gog guts.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.setVariable",
+                                    "name": "hasloot",
+                                    "scope": "script",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "source": {
+                                        "type": "variables.random",
+                                        "value": "",
+                                        "min": 1,
+                                        "max": 100,
+                                        "displayName": "Random"
+                                    },
+                                    "add": false
+                                },
+                                {
+                                    "type": "nodes.setVariable",
+                                    "name": "lootValue",
+                                    "scope": "script",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "source": {
+                                        "type": "variables.random",
+                                        "value": "",
+                                        "min": 1,
+                                        "max": "10",
+                                        "displayName": "Random"
+                                    },
+                                    "add": false
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "script",
+                                                "variableName": "hasloot",
+                                                "operator": "lte",
+                                                "compareTo": "20",
+                                                "sceneId": null,
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "2c865c29-4cb1-4109-b6d2-9416ae108dbd",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "The Gog was carrying only a dried fish. Poor Gog.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.changeInventory",
+                                                    "id": "99d9e6b0-a6b6-4b75-9049-7f49428492d2",
+                                                    "propId": "247c7690-2a0c-48d5-86a3-3aa68f9850d0",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "change": "1",
+                                                    "count": 1,
+                                                    "notify": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "script",
+                                                "variableName": "hasloot",
+                                                "operator": "lte",
+                                                "compareTo": "50",
+                                                "sceneId": null,
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.variableComparison",
+                                                                "variableScope": "script",
+                                                                "variableName": "lootValue",
+                                                                "operator": "lte",
+                                                                "compareTo": "3",
+                                                                "sceneId": null,
+                                                                "propId": null
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "e91cff32-0817-4c88-9586-81c131b0cfcf",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "This Gog has a pouch with 3 Lyra in it.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeMoney",
+                                                                    "id": "5febce24-0285-4c7c-95fc-38c5e5b6f45e",
+                                                                    "amount": "3",
+                                                                    "change": "1",
+                                                                    "currency": "0"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.variableComparison",
+                                                                "variableScope": "script",
+                                                                "variableName": "lootValue",
+                                                                "operator": "lte",
+                                                                "compareTo": "6",
+                                                                "sceneId": null,
+                                                                "propId": null
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "ee49fa36-48e5-49e9-b367-c30b3e12f932",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "This Gog has a pouch with 6 Lyra in it.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeMoney",
+                                                                    "id": "d6773c12-dd76-432f-810b-f1b901e2cfab",
+                                                                    "amount": "6",
+                                                                    "change": "1",
+                                                                    "currency": "0"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.variableComparison",
+                                                                "variableScope": "script",
+                                                                "variableName": "lootValue",
+                                                                "operator": "lte",
+                                                                "compareTo": "9",
+                                                                "sceneId": null,
+                                                                "propId": null
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "8d963714-24c4-43e2-80b9-e82f7f4e2eda",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "This Gog has a pouch with 9 Lyra in it.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeMoney",
+                                                                    "id": "862b71bb-e4ba-4f6b-9ce1-f78a2332cad8",
+                                                                    "amount": "9",
+                                                                    "change": "1",
+                                                                    "currency": "0"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": null,
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "f8748009-939c-4133-922f-1a69d8a3f105",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "This Gog has a pouch with 15 Lyra in it - and a dried fish!",
+                                                                    "emotion": "1",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeMoney",
+                                                                    "id": "cd45ea06-9ba3-46a6-8a5e-e4a7bc2a58a2",
+                                                                    "amount": "15",
+                                                                    "change": "1",
+                                                                    "currency": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeInventory",
+                                                                    "id": "5c9eb31f-814a-488a-8655-af8ac8b7f6f4",
+                                                                    "propId": "247c7690-2a0c-48d5-86a3-3aa68f9850d0",
+                                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                                    "change": "1",
+                                                                    "count": 1,
+                                                                    "notify": true
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "script",
+                                                "variableName": "hasloot",
+                                                "operator": "lte",
+                                                "compareTo": "90",
+                                                "sceneId": null,
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.variableComparison",
+                                                                "variableScope": "script",
+                                                                "variableName": "lootValue",
+                                                                "operator": "lte",
+                                                                "compareTo": "3",
+                                                                "sceneId": null,
+                                                                "propId": null
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "5737b168-3f9e-458a-9b34-321ca4937ca5",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "This Gog has a pouch with 3 dried fish and 5 Lyra in it.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeMoney",
+                                                                    "id": "d3c5174b-4746-4753-8652-2996b4847e20",
+                                                                    "amount": "5",
+                                                                    "change": "1",
+                                                                    "currency": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeInventory",
+                                                                    "id": "5c95a80f-56f0-4c4e-bdf7-bfadbb601586",
+                                                                    "propId": "247c7690-2a0c-48d5-86a3-3aa68f9850d0",
+                                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                                    "change": "1",
+                                                                    "count": "3",
+                                                                    "notify": true
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.variableComparison",
+                                                                "variableScope": "script",
+                                                                "variableName": "lootValue",
+                                                                "operator": "lte",
+                                                                "compareTo": "6",
+                                                                "sceneId": null,
+                                                                "propId": null
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "5ee931fc-c71c-4726-bf5f-1427a1bef7ba",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "This Gog has a pouch with 2 dried fish and 6 Lyra in it.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeMoney",
+                                                                    "id": "c99f5576-445f-434e-aed8-552f74071168",
+                                                                    "amount": "6",
+                                                                    "change": "1",
+                                                                    "currency": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeInventory",
+                                                                    "id": "06e60244-83cb-4c36-a286-9d510e49de75",
+                                                                    "propId": "247c7690-2a0c-48d5-86a3-3aa68f9850d0",
+                                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                                    "change": "1",
+                                                                    "count": "2",
+                                                                    "notify": true
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.variableComparison",
+                                                                "variableScope": "script",
+                                                                "variableName": "lootValue",
+                                                                "operator": "lte",
+                                                                "compareTo": "9",
+                                                                "sceneId": null,
+                                                                "propId": null
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "06476e61-4f60-44ce-aa28-443f3448ad95",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "This Gog has a pouch with 8 Lyra and 3 dried fish in it.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeMoney",
+                                                                    "id": "581b6eff-2dd2-4e9f-b4e2-ddcc789baac4",
+                                                                    "amount": "8",
+                                                                    "change": "1",
+                                                                    "currency": "0"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": null,
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "21719049-14c0-43fd-88f7-b120b59a93b9",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "This Gog has a pouch with 12 Lyra and 2 dried fish in it.",
+                                                                    "emotion": "1",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeMoney",
+                                                                    "id": "d39d4c52-099a-4e5c-9e1d-6ab50caf3c97",
+                                                                    "amount": "12",
+                                                                    "change": "1",
+                                                                    "currency": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeInventory",
+                                                                    "id": "b7ca25cc-899c-412a-8802-97c4acb1093b",
+                                                                    "propId": "247c7690-2a0c-48d5-86a3-3aa68f9850d0",
+                                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                                    "change": "1",
+                                                                    "count": "3",
+                                                                    "notify": true
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.variableComparison",
+                                                                "variableScope": "script",
+                                                                "variableName": "lootValue",
+                                                                "operator": "lte",
+                                                                "compareTo": "3",
+                                                                "sceneId": null,
+                                                                "propId": null
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "2236ff0c-ded7-458e-81f5-4b002d8d6e02",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "This Gog was rich - by Gog standards. He had five dried fish and 20 Lyra in his pouch!",
+                                                                    "emotion": "1",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeMoney",
+                                                                    "id": "28feed1f-30ca-442f-8812-02a697bab51a",
+                                                                    "amount": "20",
+                                                                    "change": "1",
+                                                                    "currency": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeInventory",
+                                                                    "id": "5b1c3e4c-f17b-4ad2-84d5-5d83a58e03db",
+                                                                    "propId": "247c7690-2a0c-48d5-86a3-3aa68f9850d0",
+                                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                                    "change": "1",
+                                                                    "count": "5",
+                                                                    "notify": true
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.variableComparison",
+                                                                "variableScope": "script",
+                                                                "variableName": "lootValue",
+                                                                "operator": "lte",
+                                                                "compareTo": "6",
+                                                                "sceneId": null,
+                                                                "propId": null
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "9b25180b-0c81-43b0-93bd-f14ae8208387",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "Hey, this Gog had a throwing dagger stuck in his pouch along with 5 Lyra.",
+                                                                    "emotion": "1",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeMoney",
+                                                                    "id": "314d6feb-99da-4d74-92ec-2d3105017e2a",
+                                                                    "amount": "5",
+                                                                    "change": "1",
+                                                                    "currency": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeInventory",
+                                                                    "id": "a49992e3-91d4-41ac-bd76-ea88734d7e43",
+                                                                    "propId": "cb08f2ac-0112-4d0f-b96f-3f10239d2e51",
+                                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                                    "change": "1",
+                                                                    "count": "1",
+                                                                    "notify": true
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.variableComparison",
+                                                                "variableScope": "script",
+                                                                "variableName": "lootValue",
+                                                                "operator": "lte",
+                                                                "compareTo": "9",
+                                                                "sceneId": null,
+                                                                "propId": null
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "1b9aa8ad-b558-4eae-b495-4849db0dd8be",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "Nice... this Gog carried a Healing potion and some coins in his pouch.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeMoney",
+                                                                    "id": "be849542-8c06-4f54-9f3c-0c7e03c66c67",
+                                                                    "amount": "18",
+                                                                    "change": "1",
+                                                                    "currency": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeInventory",
+                                                                    "id": "e69d7b88-462b-4f7a-80a8-3a47cdcd05c2",
+                                                                    "propId": "126e380b-ceda-4884-994f-ca03cca884b8",
+                                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                                    "change": "1",
+                                                                    "count": "1",
+                                                                    "notify": true
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": null,
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "b67e6783-3832-40bd-9897-bfbcd186eb8e",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "This Gog had a pouch full of coins, a Healing Potion, a Fine Throwing Knife, and three Magical Bandages. He must have been a VIG - Very Important Gog.",
+                                                                    "emotion": "1",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeMoney",
+                                                                    "id": "e4a21646-dd2e-4e85-9bfa-86483efb1332",
+                                                                    "amount": "8",
+                                                                    "change": "1",
+                                                                    "currency": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeInventory",
+                                                                    "id": "15d36959-55f6-4450-8ec3-50180b53c2e3",
+                                                                    "propId": "126e380b-ceda-4884-994f-ca03cca884b8",
+                                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                                    "change": "1",
+                                                                    "count": "1",
+                                                                    "notify": true
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeInventory",
+                                                                    "id": "ed045950-7c9e-45cc-85ef-0fc8ae079158",
+                                                                    "propId": "cb08f2ac-0112-4d0f-b96f-3f10239d2e51",
+                                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                                    "change": "1",
+                                                                    "count": "1",
+                                                                    "notify": true
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeInventory",
+                                                                    "id": "cff54b04-6e98-4507-97a7-bbf1a17a4889",
+                                                                    "propId": "df614b92-e485-45b2-a6ad-be3ef31c0c9a",
+                                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                                    "change": "1",
+                                                                    "count": "1",
+                                                                    "notify": true
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "94ce7f25-9f3b-4432-81b4-f3a02acde695",
+                                    "scope": "target",
+                                    "scopeId": null,
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "U_LOOTED",
+                                    "tagsToRemove": null
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.playAnimation",
+                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "animationName": "KneelUp",
+                    "wait": true
+                }
+            ]
+        }
+    ]
+}

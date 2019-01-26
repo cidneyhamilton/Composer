@@ -1,0 +1,273 @@
+{
+    "type": "script",
+    "id": "4f68b5ee-0cc0-4d60-ac2a-44acd9dc0cb0",
+    "name": "_TerksOffice Load",
+    "sceneId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+    "trigger": {
+        "type": "triggers.load",
+        "name": "Load"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "5c829c88-4b8f-4b57-befe-74a4176cdf4b",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.variableComparison",
+                                "variableScope": "global",
+                                "variableName": "time.day",
+                                "operator": "eq",
+                                "compareTo": "0",
+                                "sceneId": null,
+                                "propId": null
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.comment",
+                                    "message": "If it's Day 0 we are bootstrapping the scene from Unity. Change it to the first event in Terk's Office.",
+                                    "commentor": "Cidney"
+                                },
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "9b1559f0-5ff7-4c50-bebd-e6915b03f848",
+                                    "scope": "scene",
+                                    "scopeId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "Debug",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.setTime",
+                                    "id": "eef49149-ad28-40ed-ab17-9d372276a2f6",
+                                    "day": "1",
+                                    "hour": "10",
+                                    "minute": 0,
+                                    "notify": false
+                                },
+                                {
+                                    "type": "nodes.changeStoryEvent",
+                                    "storyEventId": "62c80bd1-3d98-4e9e-86c0-2ee4c6d3a927"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "prop",
+                                "scopeId": "431c44b1-534d-493c-8fee-e00f5ec4a7e3",
+                                "scopeFilterId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+                                "tags": "paintingmoved",
+                                "has": true
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.changePropVisibility",
+                                    "id": "30c3aca5-4b73-4117-9000-9398acd83b9f",
+                                    "propId": "010af9f6-10b2-4abd-a968-73443ac1a40e",
+                                    "sceneId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+                                    "status": "Visible",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.changePropVisibility",
+                                    "id": "42617729-8f97-4419-a086-108a66a878d5",
+                                    "propId": "8cbe049c-7f49-4f5c-aa19-17af41f6c427",
+                                    "sceneId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+                                    "status": "Open",
+                                    "wait": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.changePropVisibility",
+                                    "id": "9c2f2ecc-c16e-46a9-8931-60329399c906",
+                                    "propId": "e44175ae-50cb-4482-93c2-f7796ef6e9d6",
+                                    "sceneId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+                                    "visible": false,
+                                    "status": "Hidden",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.changePropVisibility",
+                                    "id": "91e6186d-ebae-4e4a-a4a4-437f75c04c2b",
+                                    "propId": "8cbe049c-7f49-4f5c-aa19-17af41f6c427",
+                                    "sceneId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+                                    "status": "Closed",
+                                    "wait": true
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "scene",
+                                "scopeId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+                                "scopeFilterId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+                                "tags": "defacedpainting",
+                                "has": false
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.changePropVisibility",
+                                    "id": "07e28c32-b1b3-417e-9b80-0d9106230726",
+                                    "propId": "15edf0ec-fc5e-473d-9392-74ec67aed68b",
+                                    "sceneId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+                                    "status": "Hidden",
+                                    "wait": false
+                                },
+                                {
+                                    "type": "nodes.changePropVisibility",
+                                    "id": "4f71ae3e-4077-46d6-bce7-7e8b153f9f74",
+                                    "propId": "431c44b1-534d-493c-8fee-e00f5ec4a7e3",
+                                    "sceneId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+                                    "status": "Visible",
+                                    "wait": false
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.changePropVisibility",
+                                    "id": "13ab03cf-d05e-4f73-8082-9cb2d54e86ab",
+                                    "propId": "431c44b1-534d-493c-8fee-e00f5ec4a7e3",
+                                    "sceneId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+                                    "status": "Hidden",
+                                    "wait": false
+                                },
+                                {
+                                    "type": "nodes.changePropVisibility",
+                                    "id": "b72dda28-7d86-4a24-b041-40870a726fe6",
+                                    "propId": "15edf0ec-fc5e-473d-9392-74ec67aed68b",
+                                    "sceneId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+                                    "status": "Visible",
+                                    "wait": true
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.changeTags",
+                    "id": "94ad1308-df94-48d4-90e8-8c6c15d0c4ae",
+                    "scope": "prop",
+                    "scopeId": "23e97201-8e73-4fc0-930d-a673cab98411",
+                    "scopeFilterId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+                    "tagsToAdd": "islocked",
+                    "tagsToRemove": "isopen"
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "scene",
+                                "scopeId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+                                "scopeFilterId": null,
+                                "tags": "BreakingIn",
+                                "has": true
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.comment",
+                                    "message": "If Shawn broke in, play the sneaking music.",
+                                    "commentor": "Cidney"
+                                },
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "3f627b78-bf82-49b5-9f32-48a5025781cb",
+                                    "scope": "scene",
+                                    "scopeId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "",
+                                    "tagsToRemove": "TerkEvent"
+                                },
+                                {
+                                    "type": "nodes.playMusic",
+                                    "musicTrack": "Incidental 2.mp3",
+                                    "channel": "1",
+                                    "loopType": "2"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "2e0a649f-a0e8-4502-9ea1-ca98584419ad",
+                                    "scope": "scene",
+                                    "scopeId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "TerkEvent",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.invokeScript",
+                                    "id": "860128c4-529c-4564-9d79-93ecfeeb5196",
+                                    "scriptId": "4f68b5ee-0cc0-4d60-ac2a-44acd9dc0cb0",
+                                    "entryPointId": "5a5adf85-3df1-4522-9e95-d51e31d6507b",
+                                    "currentScope": "Current",
+                                    "currentSceneId": null,
+                                    "currentActorId": null,
+                                    "currentStoryEventId": null,
+                                    "currentPropId": null
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "scripts.entryPoint",
+            "id": "5a5adf85-3df1-4522-9e95-d51e31d6507b",
+            "name": "Seat Terk and Shawn",
+            "nodes": [
+                {
+                    "type": "nodes.placeActor",
+                    "actorId": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+                    "spawnId": "26528fa5-044f-4512-a964-1d1b4cd64462",
+                    "pose": "sitting",
+                    "behaviour": "Sitting",
+                    "immediate": true
+                },
+                {
+                    "type": "nodes.placeActor",
+                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "spawnId": "58936730-d579-4964-8f23-fcb704faed08",
+                    "pose": "sitting",
+                    "behaviour": "Sitting",
+                    "immediate": true
+                }
+            ]
+        }
+    ]
+}

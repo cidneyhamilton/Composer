@@ -1,0 +1,16 @@
+<div data-bind="compose: { mode:'templated', view:'nodeEditor' }">
+    <div data-part="read" class="text">
+
+        <span class="add">Use Item: </span><span class="prop" data-bind="text:prop.name"></span>
+
+    </div>
+
+    <div data-part="write">
+        <select data-bind="options: scenes, optionsText: 'name', optionsValue: 'id', value: node.sceneId, optionsCaption: 'Select Scene'"></select>
+        <!--ko if: node.sceneId-->
+        <div class="form-inline">
+			<select data-bind="options: props, optionsText: 'name', optionsValue: 'id', value: node.propId, optionsCaption: 'Select Prop'"></select>
+        </div>
+        <!--/ko-->
+    </div>
+</div>

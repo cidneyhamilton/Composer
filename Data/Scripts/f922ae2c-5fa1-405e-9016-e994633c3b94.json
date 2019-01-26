@@ -1,0 +1,341 @@
+{
+    "type": "script",
+    "id": "f922ae2c-5fa1-405e-9016-e994633c3b94",
+    "name": "Interact with Couch",
+    "sceneId": "25782df1-4461-4651-9bab-1fb4e1b4e366",
+    "propId": "df057761-3f75-4088-af32-a375dc15c1ff",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "27fe83f4-0548-499a-b09a-76d73a0eabcb",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "48b6a19a-0906-4eeb-8d82-708cd54869a8",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "684fe07a-37c0-4464-bded-391bb6b86354",
+                            "text": "Look at the Couch",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "ff99618b-8f16-4359-bc4a-2877dce10515",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "I love the green color, the high back, the tufted padding...",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "a914ed59-4a28-4181-bbb5-67d1227ff4c3",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "... why, it's all simply divan!",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "d70f9e9f-459d-4e38-8355-201a47559e0a",
+                            "text": "Sit on the Couch",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "d0701c2d-e0a3-4dd1-b3bf-9529425dc6e2",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "If I sit on one of these, I'll probably never get up. I'd just melt into it and nestle there forever.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "4dfd0e1d-df7f-4163-93ce-2e2dae5f0034",
+                            "text": "Search the Couch",
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "8eda1b67-043c-4838-96c2-d3a7bb779864",
+                                    "scope": "target",
+                                    "scopeId": null,
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "searchedtoday",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "abb28eb7-0754-490d-a681-95ce3c462321",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "So let's see if any Lyra fell into the cracks of the couch...",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.playAnimation",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "animationName": "KneelDown",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.playSoundEffect",
+                                    "soundEffectName": "couch_search.wav",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.nodeCycle",
+                                    "id": "35b4fd3a-56b3-454d-aacf-bbcc35a82582",
+                                    "nodes": [
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "5cdce7d4-6e5f-4cef-ab44-773d2fbe1b9a",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "Darn, nothing hidden here today.",
+                                            "emotion": "0",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.branch",
+                                            "sections": [
+                                                {
+                                                    "type": "nodes.branchSection",
+                                                    "expression": {
+                                                        "type": "expressions.inTags",
+                                                        "scope": "target",
+                                                        "scopeId": null,
+                                                        "scopeFilterId": null,
+                                                        "tags": "cash1",
+                                                        "has": false
+                                                    },
+                                                    "nodes": [
+                                                        {
+                                                            "type": "nodes.changeTags",
+                                                            "id": "7cacdc4f-189c-4994-b4da-af056f22f0a7",
+                                                            "scope": "target",
+                                                            "scopeId": null,
+                                                            "scopeFilterId": null,
+                                                            "tagsToAdd": "cash1",
+                                                            "tagsToRemove": null
+                                                        },
+                                                        {
+                                                            "type": "nodes.speak",
+                                                            "id": "937b5da8-eec4-433d-bb05-4ddab28c2a60",
+                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                            "actorId2": null,
+                                                            "text": "Yes! There are some coins here...",
+                                                            "emotion": "1",
+                                                            "emotion2": "0",
+                                                            "device": "0",
+                                                            "device2": "0"
+                                                        },
+                                                        {
+                                                            "type": "nodes.changeMoney",
+                                                            "id": "6f3dcf12-7c13-43f5-b93c-45481c21eaef",
+                                                            "amount": "2",
+                                                            "change": "1",
+                                                            "currency": "0"
+                                                        },
+                                                        {
+                                                            "type": "nodes.speak",
+                                                            "id": "bca51a1b-25ea-4ef3-9d91-315f0caa41df",
+                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                            "actorId2": null,
+                                                            "text": "I found two Lyra! I'm rich! I'm rich! I'm fabulously wealthy!",
+                                                            "emotion": "1",
+                                                            "emotion2": "0",
+                                                            "device": "0",
+                                                            "device2": "0"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "nodes.branchSection",
+                                                    "expression": null,
+                                                    "nodes": [
+                                                        {
+                                                            "type": "nodes.speak",
+                                                            "id": "b1e750d7-84ca-4652-92b8-4e757d4b88fd",
+                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                            "actorId2": null,
+                                                            "text": "Pity, no one dropped any coins here recently.",
+                                                            "emotion": "2",
+                                                            "emotion2": "0",
+                                                            "device": "0",
+                                                            "device2": "0"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "a9f1f397-6975-40aa-8e83-b8c132c361e3",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "Darn, nothing hidden here today.",
+                                            "emotion": "0",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.branch",
+                                            "sections": [
+                                                {
+                                                    "type": "nodes.branchSection",
+                                                    "expression": {
+                                                        "type": "expressions.inTags",
+                                                        "scope": "target",
+                                                        "scopeId": null,
+                                                        "scopeFilterId": null,
+                                                        "tags": "cash2",
+                                                        "has": false
+                                                    },
+                                                    "nodes": [
+                                                        {
+                                                            "type": "nodes.changeTags",
+                                                            "id": "e181f020-a0e7-4c6c-a63f-0884e49ee150",
+                                                            "scope": "target",
+                                                            "scopeId": null,
+                                                            "scopeFilterId": null,
+                                                            "tagsToAdd": "cash2",
+                                                            "tagsToRemove": null
+                                                        },
+                                                        {
+                                                            "type": "nodes.speak",
+                                                            "id": "50089e9f-4d0a-4378-a145-fa9a69bc140b",
+                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                            "actorId2": null,
+                                                            "text": "Yes! There are some coins here...",
+                                                            "emotion": "1",
+                                                            "emotion2": "0",
+                                                            "device": "0",
+                                                            "device2": "0"
+                                                        },
+                                                        {
+                                                            "type": "nodes.changeMoney",
+                                                            "id": "594713cc-a316-4dd5-9165-217799985c48",
+                                                            "amount": "4",
+                                                            "change": "1",
+                                                            "currency": "0"
+                                                        },
+                                                        {
+                                                            "type": "nodes.speak",
+                                                            "id": "4d552536-0975-4e65-b857-84091b43407f",
+                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                            "actorId2": null,
+                                                            "text": "There are four whole Lyra that slipped in the corner of this couch. Lucky me! ",
+                                                            "emotion": "1",
+                                                            "emotion2": "0",
+                                                            "device": "0",
+                                                            "device2": "0"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "nodes.branchSection",
+                                                    "expression": null,
+                                                    "nodes": [
+                                                        {
+                                                            "type": "nodes.speak",
+                                                            "id": "8b0d1ea3-1e32-450e-b8df-8a2c36d36fc5",
+                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                            "actorId2": null,
+                                                            "text": "Rats. No money lost here for me to find.",
+                                                            "emotion": "0",
+                                                            "emotion2": "0",
+                                                            "device": "0",
+                                                            "device2": "0"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.playAnimation",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "animationName": "KneelUp",
+                                    "wait": true
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "target",
+                                "scopeId": null,
+                                "scopeFilterId": null,
+                                "tags": "searchedtoday",
+                                "has": false
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "5",
+                            "ExitMenu": true
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "80ae2ccd-59a6-44ce-ac48-c0807110a590",
+                            "text": "Search the Couch Again",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "a84f2a13-cdcd-4624-a0a1-b31879c5020e",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "I've already search this couch today. They say a watched couch yields no spoils. Or something like that.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "target",
+                                "scopeId": null,
+                                "scopeFilterId": null,
+                                "tags": "searchedtoday",
+                                "has": true
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": true
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

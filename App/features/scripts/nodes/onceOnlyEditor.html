@@ -1,0 +1,20 @@
+<div class="composite" data-bind="compose: { mode:'templated', view:'nodeEditor' }">
+    <div data-part="read">
+        <span class="cycle-header">Once Only</span>
+        <div>
+            <!--ko foreach: node.nodes-->
+            <!--ko compose: { model:'features/scripts/' + $data.type.replace('.', '/') + 'Editor', activationData: [$parent, $data] }--><!--/ko-->
+            <!--/ko-->
+        </div>
+    </div>
+
+    <div data-part="write">
+        <div>
+            <!--ko foreach: node.nodes-->
+            <!--ko compose: { model:'features/scripts/' + $data.type.replace('.', '/') + 'Editor', activationData: [$parent.node, $data] }--><!--/ko-->
+            <!--/ko-->
+
+            <div style="margin: 16px 82px" data-bind="compose: { model:'features/scripts/nodes/nodeCreator', activationData:$data.node }"></div>
+        </div>
+    </div>
+</div>

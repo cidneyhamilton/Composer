@@ -1,0 +1,64 @@
+<div data-bind="compose: { mode:'templated', view:'nodeEditor' }">
+    <div data-part="read" class="text">
+        AddStoreStock <span style="color:green" data-bind="text:prop.name"></span><span> (<span style="color:blue;" data-bind="text:node.availability"></span>)</span> - Vendor's Buy Price:<span data-bind="text:node.buyPrice"></span> Vendor's Sell Price:<span data-bind="text:node.sellPrice"></span> Qty:(
+
+                    <!--ko if: node.qty <= 1 -->
+                    <span data-bind="text:node.qty"></span>
+                    <!--/ko-->
+
+                    <!--ko if: node.qty > 1 -->
+                    <span style="color:green">infinite</span>
+                    <!--/ko-->
+                    ) 
+        <!-- Restock is deprecated and no longer supported in Unity -->
+        <!-- <span style="color:green" data-bind="visible:node.restock">restock</span> -->
+    </div>
+
+    <div data-part="write">
+        <label class="control-label">Inventory Item:</label>
+        <select data-bind="options: props, optionsText: 'name', optionsValue: 'id', value: node.propId, optionsCaption: 'Select Prop'"></select>
+        
+        <br>
+        <label class="control-label">Qty:</label>
+        <input type="text" data-bind="value: node.qty, valueUpdate: 'afterkeydown'" style="width: 60px" />
+
+        <br>
+        <label class="control-label">Vendor's Buy Price</label>
+        <input type="text" data-bind="value: node.buyPrice, valueUpdate: 'afterkeydown'" style="width: 60px" />
+
+        <br>
+        <label class="control-label">Vendor's Sell Price</label>
+        <input type="text" data-bind="value: node.sellPrice, valueUpdate: 'afterkeydown'" style="width: 60px" />
+
+        <br>
+        <label class="control-label">Availability</label>
+        <input type="text" data-bind="value: node.availability, valueUpdate: 'afterkeydown'" style="width: 60px" />
+
+        <br>
+        <select data-bind="value: node.category">
+            <option value="0">None</option>
+            <option value="1">Clothing</option>
+            <option value="2">Goods</option>
+            <option value="3">Special</option>
+            <option value="4">Joel's Stash</option>
+            <option value="5">Fester's Farrago</option>
+        </select>
+
+        <br>
+        <label class="control-label">On Look Field</label>
+        <input type="text" data-bind="value: node.onLookField, valueUpdate: 'afterkeydown'" style="width: 400px" />
+
+        <br>
+        <label class="control-label">On Purchase Field</label>
+        <input type="text" data-bind="value: node.onPurchaseField, valueUpdate: 'afterkeydown'" style="width: 400px" />
+        <Br>
+
+        <!-- Restock is deprecated and no longer supported in Unity -->
+        <!--
+        <br>
+        <label class="control-label">Restock Daily</label>
+        <input type="checkbox" data-bind="checked: node.restock, valueUpdate: 'afterkeydown'" />
+        -->
+
+    </div>
+</div>

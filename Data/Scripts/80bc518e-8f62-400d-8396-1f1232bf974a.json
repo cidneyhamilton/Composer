@@ -1,0 +1,68 @@
+{
+    "type": "script",
+    "id": "80bc518e-8f62-400d-8396-1f1232bf974a",
+    "name": "_ResetMusic",
+    "sceneId": "5c81204b-2c5b-4eb0-9e84-85acb2fc9d13",
+    "trigger": {
+        "type": "triggers.manual",
+        "name": "Manual"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "948f50e4-5711-4f8b-82c9-f8efa4f833a9",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.or",
+                                "left": {
+                                    "type": "expressions.variableComparison",
+                                    "variableScope": "global",
+                                    "variableName": "time.hour",
+                                    "operator": "lte",
+                                    "compareTo": "1",
+                                    "sceneId": "46c58bc7-e4b0-4cf3-af42-68930aa03476",
+                                    "propId": null
+                                },
+                                "right": {
+                                    "type": "expressions.variableComparison",
+                                    "variableScope": "global",
+                                    "variableName": "time.hour",
+                                    "operator": "gte",
+                                    "compareTo": "19",
+                                    "sceneId": "46c58bc7-e4b0-4cf3-af42-68930aa03476",
+                                    "propId": null
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.playMusic",
+                                    "musicTrack": "2017 Bedroom Theme 1.ogg",
+                                    "channel": "1",
+                                    "loopType": "2"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.playMusic",
+                                    "musicTrack": "2017 theme variation 1.ogg",
+                                    "channel": "1",
+                                    "loopType": "2"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

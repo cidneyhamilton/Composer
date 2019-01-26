@@ -1,0 +1,137 @@
+{
+    "type": "script",
+    "id": "da5f104e-754d-4bb9-a8b2-afb367c66eeb",
+    "name": "Interact with Exit to Rogue Dorm Hallway",
+    "sceneId": "40f18665-4cc2-4acd-b17e-5189e68b7a33",
+    "propId": "28a40119-68c8-4e8c-9487-5f3b76dbbe04",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "8c4c3311-58e7-4925-8ecc-0dcbaac16eef",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.variableComparison",
+                                    "variableScope": "global",
+                                    "variableName": "time.day",
+                                    "operator": "gte",
+                                    "compareTo": "14",
+                                    "sceneId": "40f18665-4cc2-4acd-b17e-5189e68b7a33",
+                                    "propId": null
+                                },
+                                "right": {
+                                    "type": "expressions.and",
+                                    "left": {
+                                        "type": "expressions.variableComparison",
+                                        "variableScope": "global",
+                                        "variableName": "time.day",
+                                        "operator": "lte",
+                                        "compareTo": "16",
+                                        "sceneId": "40f18665-4cc2-4acd-b17e-5189e68b7a33",
+                                        "propId": null
+                                    },
+                                    "right": {
+                                        "type": "expressions.and",
+                                        "left": {
+                                            "type": "expressions.variableComparison",
+                                            "variableScope": "global",
+                                            "variableName": "time.hour",
+                                            "operator": "lt",
+                                            "compareTo": "4",
+                                            "sceneId": "40f18665-4cc2-4acd-b17e-5189e68b7a33",
+                                            "propId": null
+                                        },
+                                        "right": {
+                                            "type": "expressions.inTags",
+                                            "scope": "scene",
+                                            "scopeId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                            "scopeFilterId": null,
+                                            "tags": "KwirkNoise",
+                                            "has": true
+                                        }
+                                    }
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "e4097302-d585-404d-b89c-25402bf4f09e",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "It's late, should I just end my investigation and head back to bed?",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.showMenu",
+                                    "id": "ad7634aa-6b3d-41db-9e87-2536fdc73307",
+                                    "options": [
+                                        {
+                                            "type": "options.text",
+                                            "id": "d451272c-50b1-4c73-8a24-cb2d1be7a20d",
+                                            "text": "Stay and investigate",
+                                            "nodes": [],
+                                            "expression": null,
+                                            "ignoreChildAvailability": true,
+                                            "minutes": 0,
+                                            "ExitMenu": true
+                                        },
+                                        {
+                                            "type": "options.text",
+                                            "id": "3ffa1407-c1c0-4e0a-b39b-98243aaaa3a8",
+                                            "text": "Go back to sleep.",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.playSoundEffect",
+                                                    "soundEffectName": "wooden_door_opening.wav",
+                                                    "wait": false
+                                                },
+                                                {
+                                                    "type": "nodes.changeScene",
+                                                    "sceneId": "afb9f72c-1888-43db-ac71-fb6a81d41f47",
+                                                    "spawnId": null,
+                                                    "fadeTime": 2
+                                                }
+                                            ],
+                                            "expression": null,
+                                            "ignoreChildAvailability": true,
+                                            "minutes": 0,
+                                            "ExitMenu": false
+                                        }
+                                    ],
+                                    "AutoAddDone": false,
+                                    "Unique": false
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeScene",
+                                    "sceneId": "82da26e2-b64a-4951-bca9-a3e78101825e",
+                                    "spawnId": "a989abc4-add9-422e-b644-3160e97709c6",
+                                    "fadeTime": 2
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

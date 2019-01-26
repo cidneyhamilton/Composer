@@ -1,0 +1,16 @@
+﻿<div class="form-inline">
+	<label class="control-label">Source Var Scope:</label>
+	<select data-bind="options: scopes, value: scopedVariable.scope" style="width: 80px"></select>
+
+	<!--ko if: scopedVariable.scope == 'prop'-->
+	<select data-bind="options: scenes, optionsText: 'name', optionsValue: 'id', value: scopedVariable.sceneId, optionsCaption: 'Origin Scene'" style="width: 120px"></select>
+		<!--ko if: scopedVariable.sceneId-->
+	<select data-bind="options: props, optionsText: 'name', optionsValue: 'id', value: scopedVariable.scopeId, optionsCaption: 'Select Prop'" style="width: 120px"></select>
+		<!--/ko-->
+	<!--/ko-->
+</div>
+
+<div class="form-inline" style="margin-top: 16px">
+	<label class="control-label">Source Var Name:</label>
+	<input type="text" data-bind="value: scopedVariable.name, valueUpdate: 'afterkeydown'" style="width: 100px" />
+</div>

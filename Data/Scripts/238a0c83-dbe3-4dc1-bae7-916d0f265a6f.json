@@ -1,0 +1,269 @@
+{
+    "type": "script",
+    "id": "238a0c83-dbe3-4dc1-bae7-916d0f265a6f",
+    "name": "Make Fitness Pills",
+    "sceneId": "df6088fa-a6d6-441a-9a00-7af3baa62e14",
+    "trigger": {
+        "type": "triggers.manual",
+        "name": "Manual"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "b3040b81-08fa-4560-a00f-36153a9e76ad",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.setVariable",
+                    "name": "PuffCount",
+                    "scope": "script",
+                    "source": {
+                        "type": "variables.count",
+                        "target": "414d7c9f-1649-4dae-8ace-96421d0928c9",
+                        "useArticle": false,
+                        "includeText": false,
+                        "text": "",
+                        "displayName": "Count"
+                    },
+                    "add": false
+                },
+                {
+                    "type": "nodes.setVariable",
+                    "name": "MorelCount",
+                    "scope": "script",
+                    "source": {
+                        "type": "variables.count",
+                        "target": "b5cfb598-7611-4fe9-9a5b-6c0a4625931a",
+                        "useArticle": false,
+                        "includeText": false,
+                        "text": "",
+                        "displayName": "Count"
+                    },
+                    "add": false
+                },
+                {
+                    "type": "nodes.setVariable",
+                    "name": "FairyCount",
+                    "scope": "script",
+                    "source": {
+                        "type": "variables.count",
+                        "target": "e81826e9-efa7-4dbf-b232-df831c130aa9",
+                        "useArticle": false,
+                        "includeText": false,
+                        "text": "",
+                        "displayName": "Count"
+                    },
+                    "add": false
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "script",
+                                "scopeId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                "scopeFilterId": null,
+                                "tags": "ForceCraft",
+                                "has": true
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "547078ef-04ff-4eb8-b6c2-2f01a1cc0040",
+                                    "scope": "script",
+                                    "scopeId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                    "scopeFilterId": null,
+                                    "tagsToRemove": "ForceCraft"
+                                },
+                                {
+                                    "type": "nodes.invokeScript",
+                                    "id": "d0be4971-01d1-4b4e-a787-ea7e9e92e175",
+                                    "scriptId": "238a0c83-dbe3-4dc1-bae7-916d0f265a6f",
+                                    "entryPointId": "df384591-d707-484b-bea5-7a01390bdbd7",
+                                    "currentScope": "Current",
+                                    "currentSceneId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                    "currentActorId": null,
+                                    "currentStoryEventId": null,
+                                    "currentPropId": null
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.variableComparison",
+                                    "variableScope": "script",
+                                    "variableName": "PuffCount",
+                                    "operator": "gte",
+                                    "compareTo": "4",
+                                    "sceneId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                    "propId": null
+                                },
+                                "right": {
+                                    "type": "expressions.and",
+                                    "left": {
+                                        "type": "expressions.variableComparison",
+                                        "variableScope": "script",
+                                        "variableName": "MorelCount",
+                                        "operator": "gte",
+                                        "compareTo": "4",
+                                        "sceneId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                        "propId": null
+                                    },
+                                    "right": {
+                                        "type": "expressions.variableComparison",
+                                        "variableScope": "script",
+                                        "variableName": "FairyCount",
+                                        "operator": "gte",
+                                        "compareTo": "4",
+                                        "sceneId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                        "propId": null
+                                    }
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "516ad05b-3d19-456e-8498-99b2dae9f351",
+                                    "actorId": "38b1ca94-de8c-4873-8810-3d0b02df469a",
+                                    "text": "It takes 4 Puffballs, 4 Morels, and 4 Fairy Parasols to make 5 Fitness Pills. You have ${script.PuffCount} Puffballs, ${script.MorelCount} Morels, and ${script.FairyCount} Fairy Parasols. Continue crafting?",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.showMenu",
+                                    "id": "f1f2444c-e6e1-449c-8bc9-d1c06709a36e",
+                                    "options": [
+                                        {
+                                            "type": "options.text",
+                                            "id": "07427960-13bd-4d83-81f9-4c7f2f6ab6e3",
+                                            "text": "Continue Crafting",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.setVariable",
+                                                    "name": "CraftCount",
+                                                    "scope": "script",
+                                                    "source": {
+                                                        "type": "variables.literal",
+                                                        "value": "1",
+                                                        "displayName": "Literal"
+                                                    },
+                                                    "add": true
+                                                },
+                                                {
+                                                    "type": "nodes.changeInventory",
+                                                    "id": "3004cf25-9199-4a6b-9529-026e14a17556",
+                                                    "propId": "414d7c9f-1649-4dae-8ace-96421d0928c9",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "change": "0",
+                                                    "count": "4",
+                                                    "notify": true
+                                                },
+                                                {
+                                                    "type": "nodes.changeInventory",
+                                                    "id": "dce9d80b-2e39-4166-85f8-671ef327ed4b",
+                                                    "propId": "b5cfb598-7611-4fe9-9a5b-6c0a4625931a",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "change": "0",
+                                                    "count": "4",
+                                                    "notify": true
+                                                },
+                                                {
+                                                    "type": "nodes.changeInventory",
+                                                    "id": "6cc77511-a7fa-4036-bfab-56bc1121b885",
+                                                    "propId": "e81826e9-efa7-4dbf-b232-df831c130aa9",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "change": "0",
+                                                    "count": "4",
+                                                    "notify": true
+                                                },
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "4c00a360-b2a0-4da6-a0d1-f9cb58a6ae5a",
+                                                    "scriptId": "238a0c83-dbe3-4dc1-bae7-916d0f265a6f",
+                                                    "entryPointId": "df384591-d707-484b-bea5-7a01390bdbd7",
+                                                    "currentScope": "Current",
+                                                    "currentSceneId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ],
+                                            "expression": null,
+                                            "ignoreChildAvailability": true,
+                                            "minutes": 0,
+                                            "ExitMenu": true
+                                        }
+                                    ],
+                                    "AutoAddDone": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "fc2082da-8bff-41a7-8ced-1725cc0f461f",
+                                    "actorId": "38b1ca94-de8c-4873-8810-3d0b02df469a",
+                                    "text": "You do not have enough materials. It takes 4 Puffballs, 4 Morels, and 4 Fairy Parasols to make 5 Fitness Pills. You have ${script.PuffCount} Puffballs, ${script.MorelCount} Morels, and ${script.FairyCount} Fairy Parasols.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "scripts.entryPoint",
+            "id": "df384591-d707-484b-bea5-7a01390bdbd7",
+            "name": "Craft",
+            "nodes": [
+                {
+                    "type": "nodes.playSoundEffect",
+                    "soundEffectName": "mortar_pestle.wav",
+                    "wait": true
+                },
+                {
+                    "type": "nodes.playSoundEffect",
+                    "soundEffectName": "stamp.wav",
+                    "wait": true
+                },
+                {
+                    "type": "nodes.playSoundEffect",
+                    "soundEffectName": "stamp.wav",
+                    "wait": true
+                },
+                {
+                    "type": "nodes.playSoundEffect",
+                    "soundEffectName": "stamp.wav",
+                    "wait": true
+                },
+                {
+                    "type": "nodes.changeInventory",
+                    "id": "995437c7-f3c4-440c-90b9-9059a9bee9ea",
+                    "propId": "7ea0c967-4a05-44c5-b0b0-968433166d7e",
+                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                    "change": "1",
+                    "count": "5",
+                    "notify": true
+                },
+                {
+                    "type": "nodes.wait",
+                    "waitForSeconds": 1
+                }
+            ]
+        }
+    ]
+}

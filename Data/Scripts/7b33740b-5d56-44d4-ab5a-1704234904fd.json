@@ -1,0 +1,863 @@
+{
+    "type": "script",
+    "id": "7b33740b-5d56-44d4-ab5a-1704234904fd",
+    "name": "Safe Interact (Closed)",
+    "sceneId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+    "propId": "e44175ae-50cb-4482-93c2-f7796ef6e9d6",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "3e4de697-9b9d-4101-9e49-347c9baaa48a",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "29ad60d8-396a-43bc-b1db-8d8bed389c3d",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "171890e2-eba2-47d5-8135-ab93c0d83db6",
+                            "text": "Examine the Safe",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "actor",
+                                                "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                "scopeFilterId": null,
+                                                "tags": "readAL",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.onceOnly",
+                                                    "id": "9be054b3-3c31-43d5-a5f1-a6422f0b3f3f",
+                                                    "nodes": [
+                                                        {
+                                                            "id": "36f519ee-1471-4785-95cf-1499296292ac",
+                                                            "type": "nodes.skillBranch",
+                                                            "skill": "Perception",
+                                                            "target": "50",
+                                                            "success": {
+                                                                "type": "nodes.block",
+                                                                "nodes": []
+                                                            },
+                                                            "failure": {
+                                                                "type": "nodes.block",
+                                                                "nodes": []
+                                                            },
+                                                            "notify": true
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "b9791669-27ef-4ddd-b384-764c154b528c",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "According to the guide to Tool Use, this is a Wolfe class lock. It's a moderately difficult lock and requires the use of the Houdini tool.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "11b4443e-3903-4875-845d-cda1a46e6755",
+                                    "scope": "scene",
+                                    "scopeId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "examinesafe",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inInventory",
+                                                "propId": "1d6a6851-2078-498c-b9de-8e72576a462b",
+                                                "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "b12db9af-1697-459a-a0b0-0213010c79bf",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "(sigh) This is an advanced lock. I don't have the tools to open this safe.",
+                                                    "emotion": "2",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.skillCheck",
+                                                "skill": "Tool Use",
+                                                "target": "70"
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "cae67fd9-9046-4531-a582-539b7a38600c",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "This should be a piece of cake to open. Okay, so it's a piece of cake that takes a lot of time to make, bake, and decorate... It's not easy, but it's tasty when you get it done...",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "eb533e07-3a66-4dce-b6f8-89467d4e61fd",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Did I just get lost in a metaphor?",
+                                                    "emotion": "4",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "f2750e05-34f4-4e53-96eb-8ffc7b902507",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "I have the tools - but this safe looks hard! I might need a bit more practice before I can take this one on.",
+                                                    "emotion": "2",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "5",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "8c73637e-c9fc-4169-be18-75d3ecbc8ea8",
+                            "text": "Open the Safe",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "prop",
+                                                "scopeId": "e44175ae-50cb-4482-93c2-f7796ef6e9d6",
+                                                "scopeFilterId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+                                                "tags": "unlocked",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "f6bf109b-5de9-4acc-9749-b146f5cf4720",
+                                                    "scriptId": "7b33740b-5d56-44d4-ab5a-1704234904fd",
+                                                    "entryPointId": "2677f2cb-2175-44f3-bc6b-b93f9b5f9310",
+                                                    "currentScope": "Current",
+                                                    "currentSceneId": null,
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "126eeddd-3ed8-4027-9d8c-feadc87841d5",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Just as I suspected... this safe is locked!",
+                                                    "emotion": "0",
+                                                    "device": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "44bf1eaf-ece6-44ad-beba-ce12c8689bd8",
+                                                    "scope": "scene",
+                                                    "scopeId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "examinesafe",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.inInventory",
+                                                                "propId": "1d6a6851-2078-498c-b9de-8e72576a462b",
+                                                                "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                                "has": false
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "1dcda282-285f-4d79-b249-69950ecf5b98",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "I'm also pretty sure I don't have the right tools to unlock it.",
+                                                                    "emotion": "2",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "2",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "de79b460-f343-4003-8d06-d84f8b5447ba",
+                            "text": "Crack the Safe",
+                            "nodes": [
+                                {
+                                    "type": "nodes.incrementTime",
+                                    "id": "e250dc5d-e155-4931-aa5d-33a16fd4a35d",
+                                    "days": 0,
+                                    "hours": 0,
+                                    "minutes": "15"
+                                },
+                                {
+                                    "id": "536f59d6-b042-4bb1-ae90-e911dd30cddd",
+                                    "type": "nodes.skillBranch",
+                                    "skill": "Tool Use",
+                                    "target": "70",
+                                    "success": {
+                                        "type": "nodes.block",
+                                        "nodes": [
+                                            {
+                                                "type": "nodes.playSoundEffect",
+                                                "soundEffectName": "lockpick_success.wav",
+                                                "wait": true
+                                            },
+                                            {
+                                                "type": "nodes.speak",
+                                                "id": "613dbb33-18ad-4e9d-b631-ca4ae17c318e",
+                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                "text": "Woo-hoo! Did it.",
+                                                "emotion": "1",
+                                                "emotion2": "0",
+                                                "device": "0",
+                                                "device2": "0"
+                                            },
+                                            {
+                                                "type": "nodes.changeTags",
+                                                "id": "f4117d58-9c9a-4c84-9ac3-92a4979f3cbc",
+                                                "scope": "prop",
+                                                "scopeId": "e44175ae-50cb-4482-93c2-f7796ef6e9d6",
+                                                "scopeFilterId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+                                                "tagsToAdd": "unlocked",
+                                                "tagsToRemove": null
+                                            },
+                                            {
+                                                "type": "nodes.invokeScript",
+                                                "id": "1df8d014-2dca-4bbd-a9fa-08ddfcd3c934",
+                                                "scriptId": "7b33740b-5d56-44d4-ab5a-1704234904fd",
+                                                "entryPointId": "2677f2cb-2175-44f3-bc6b-b93f9b5f9310",
+                                                "currentScope": "Current",
+                                                "currentSceneId": null,
+                                                "currentActorId": null,
+                                                "currentStoryEventId": null,
+                                                "currentPropId": null
+                                            }
+                                        ]
+                                    },
+                                    "failure": {
+                                        "type": "nodes.block",
+                                        "nodes": [
+                                            {
+                                                "type": "nodes.playSoundEffect",
+                                                "soundEffectName": "lockpick_failure.wav",
+                                                "wait": true
+                                            },
+                                            {
+                                                "type": "nodes.branch",
+                                                "sections": [
+                                                    {
+                                                        "type": "nodes.branchSection",
+                                                        "expression": {
+                                                            "type": "expressions.inInventory",
+                                                            "propId": "1d6a6851-2078-498c-b9de-8e72576a462b",
+                                                            "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                            "has": true
+                                                        },
+                                                        "nodes": [
+                                                            {
+                                                                "type": "nodes.speak",
+                                                                "id": "1d3acd33-ee71-4162-a96c-ef81e2d7b619",
+                                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                "actorId2": null,
+                                                                "text": "Damn... looks like I need to practice my safecracking skills more before I can open this safe.",
+                                                                "emotion": "3",
+                                                                "device": "0"
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "type": "nodes.branchSection",
+                                                        "expression": null,
+                                                        "nodes": [
+                                                            {
+                                                                "type": "nodes.speak",
+                                                                "id": "58273463-a609-4ecb-9646-d0e0986093a8",
+                                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                "actorId2": null,
+                                                                "text": "I have no idea how to open this sort of lock with just a lockpick. I need to get some better tools.",
+                                                                "emotion": "2",
+                                                                "emotion2": "0",
+                                                                "device": "0",
+                                                                "device2": "0"
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    "notify": true
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "326232f8-accd-475a-88ac-92f6979355dc",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "I should put the picture back so Terk doesn't realize someone found his safe.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.playSoundEffect",
+                                    "soundEffectName": "Search Behind Painting.wav",
+                                    "wait": false
+                                },
+                                {
+                                    "type": "nodes.changePropVisibility",
+                                    "id": "b42c848e-c1cf-4356-8962-a839e05bff5e",
+                                    "propId": "8cbe049c-7f49-4f5c-aa19-17af41f6c427",
+                                    "sceneId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+                                    "visible": true,
+                                    "status": "Visible",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.changePropVisibility",
+                                    "id": "38ba69d6-8600-4353-ab82-a741ff8ba9ba",
+                                    "propId": "8cbe049c-7f49-4f5c-aa19-17af41f6c427",
+                                    "sceneId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+                                    "status": "Closing",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.changePropVisibility",
+                                    "id": "2ae38bff-2792-4f5b-beb0-f387a5a520b3",
+                                    "propId": "8cbe049c-7f49-4f5c-aa19-17af41f6c427",
+                                    "sceneId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+                                    "status": "Closed",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.changePropVisibility",
+                                    "id": "358f1248-882d-4b95-8b2d-cdd1aa99f774",
+                                    "propId": "e44175ae-50cb-4482-93c2-f7796ef6e9d6",
+                                    "sceneId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+                                    "status": "Hidden",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.wait",
+                                    "waitForSeconds": "0.25"
+                                },
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "56ebff4e-692e-414f-a848-78920393a18d",
+                                    "scope": "prop",
+                                    "scopeId": "8cbe049c-7f49-4f5c-aa19-17af41f6c427",
+                                    "scopeFilterId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+                                    "tagsToRemove": "paintingmoved"
+                                },
+                                {
+                                    "type": "nodes.endScript"
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inTags",
+                                    "scope": "scene",
+                                    "scopeId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+                                    "scopeFilterId": null,
+                                    "tags": "examinesafe",
+                                    "has": true
+                                },
+                                "right": {
+                                    "type": "expressions.and",
+                                    "left": {
+                                        "type": "expressions.inTags",
+                                        "scope": "prop",
+                                        "scopeId": "e44175ae-50cb-4482-93c2-f7796ef6e9d6",
+                                        "scopeFilterId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+                                        "tags": "unlocked",
+                                        "has": false
+                                    },
+                                    "right": {
+                                        "type": "expressions.inInventory",
+                                        "propId": "1d6a6851-2078-498c-b9de-8e72576a462b",
+                                        "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                        "has": true
+                                    }
+                                }
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "0",
+                            "ExitMenu": true
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "813a6ee8-75a8-4139-9601-b8a9b6623e7a",
+                            "text": "Sense Magic",
+                            "nodes": [
+                                {
+                                    "type": "nodes.onceOnly",
+                                    "id": "9924fd44-750a-4b10-917b-fa7bec8bb842",
+                                    "nodes": [
+                                        {
+                                            "id": "0f6a26ea-5ae4-4afa-9c7d-77fa62d8b434",
+                                            "type": "nodes.skillBranch",
+                                            "skill": "Magic",
+                                            "target": "1",
+                                            "success": {
+                                                "type": "nodes.block",
+                                                "nodes": []
+                                            },
+                                            "failure": {
+                                                "type": "nodes.block",
+                                                "nodes": []
+                                            },
+                                            "notify": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "63cf8337-e374-4229-8f6e-16bf7582ef09",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "It's unmistakeably unmagical, and merely mechanical.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "actor",
+                                "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                "scopeFilterId": null,
+                                "tags": "SenseMagic",
+                                "has": true
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "5",
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        },
+        {
+            "type": "scripts.entryPoint",
+            "id": "2677f2cb-2175-44f3-bc6b-b93f9b5f9310",
+            "name": "Use Open Safe",
+            "nodes": [
+                {
+                    "type": "nodes.changePropVisibility",
+                    "id": "ca6d0c3a-c6d3-48b6-bb5d-34d887eeec26",
+                    "propId": "e44175ae-50cb-4482-93c2-f7796ef6e9d6",
+                    "sceneId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+                    "status": "Hidden",
+                    "wait": false
+                },
+                {
+                    "type": "nodes.playSoundEffect",
+                    "soundEffectName": "cabinet_open.wav",
+                    "wait": false
+                },
+                {
+                    "type": "nodes.changePropVisibility",
+                    "id": "ece8cfee-53ea-48d3-951e-a22019076fef",
+                    "propId": "010af9f6-10b2-4abd-a968-73443ac1a40e",
+                    "sceneId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+                    "status": "Visible",
+                    "wait": true
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "prop",
+                                "scopeId": "010af9f6-10b2-4abd-a968-73443ac1a40e",
+                                "scopeFilterId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+                                "tags": "GotLedger",
+                                "has": true
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "269ff15e-9ec2-4429-a539-a047c4a7beff",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "There's nothing left. The least Terk could have done is replace his petty cash.",
+                                    "emotion": "2",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.hasActiveQuest",
+                                "propId": "43bc76e9-74d9-4ced-881d-7d0b81cca1f6",
+                                "sceneId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                                "questStatus": "0"
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "prop",
+                                                "scopeId": "010af9f6-10b2-4abd-a968-73443ac1a40e",
+                                                "scopeFilterId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+                                                "tags": "hasOpened",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "d2e02233-c269-496d-a428-d7187ad0937a",
+                                                    "scope": "prop",
+                                                    "scopeId": "010af9f6-10b2-4abd-a968-73443ac1a40e",
+                                                    "scopeFilterId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+                                                    "tagsToAdd": "hasOpened",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "63619bd5-f1b8-4e20-8f0f-cdda530a3f3f",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "All I see in the safe is some sort of ledger book... sigh. All that work and all I find is a lousy accounting book?",
+                                                    "emotion": "2",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "62e04074-8779-4e01-bbb1-59f2a6c9a993",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Then again, why does Terk keep a book in this safe? Maybe there is more to this book than it seems...",
+                                                    "emotion": "4",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "50429cf3-f998-4dcc-9a62-d798f36b436a",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "There's nothing here but this ledger book.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "502fe5f7-26e6-450b-aacc-39d942c49dba",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "I'll take it to Master von Urwald. Maybe he can make some sense of it.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "87cca80c-0a31-4844-a910-ae271a16c2c6",
+                                    "scope": "prop",
+                                    "scopeId": "010af9f6-10b2-4abd-a968-73443ac1a40e",
+                                    "scopeFilterId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+                                    "tagsToAdd": "GotLedger",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.changeInventory",
+                                    "id": "e700f2b9-eb95-45ad-8702-f607e12efb3a",
+                                    "propId": "a455851a-06a5-45a8-be4f-b1205302e816",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "change": "1",
+                                    "count": 1,
+                                    "notify": true
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.hasActiveQuest",
+                                                "propId": "43bc76e9-74d9-4ced-881d-7d0b81cca1f6",
+                                                "sceneId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                                                "questStatus": "0"
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.quests",
+                                                    "id": "a1df75b7-7f31-4625-924d-0850b16afb29",
+                                                    "sceneId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                                                    "propId": "43bc76e9-74d9-4ced-881d-7d0b81cca1f6",
+                                                    "target": "1",
+                                                    "notify": true
+                                                },
+                                                {
+                                                    "type": "nodes.quests",
+                                                    "id": "1525b67e-c2bc-49ed-bd94-072fabc7129c",
+                                                    "sceneId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                                                    "propId": "43671d02-d7f6-441d-98cc-fbdeea33a771",
+                                                    "target": "0",
+                                                    "notify": true
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "prop",
+                                "scopeId": "010af9f6-10b2-4abd-a968-73443ac1a40e",
+                                "scopeFilterId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+                                "tags": "hasOpened",
+                                "has": false
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "f29d9ee0-cec6-463f-8b8b-22165b7ecf99",
+                                    "scope": "prop",
+                                    "scopeId": "010af9f6-10b2-4abd-a968-73443ac1a40e",
+                                    "scopeFilterId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+                                    "tagsToAdd": "hasOpened",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "0635e421-5583-4e9e-b441-a1245d4da7a8",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "All I see in the safe is some sort of ledger book... sigh. All that work and all I find is a lousy accounting book?",
+                                    "emotion": "2",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "0fc3f8f6-385a-4e36-964b-2722da4dc3bd",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Ahah! There is 50 Lyra hiding under the book. I think Terk owes me that for all the grief he's given me!",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.changeMoney",
+                                    "id": "dd35c224-8753-4326-a1f2-9d88b2151348",
+                                    "amount": "50",
+                                    "change": "1",
+                                    "currency": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "1f3d0b3b-1a75-414c-8519-e0c6c2174d8f",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "There's only a stupid ledger book left in the safe.",
+                                    "emotion": "2",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "prop",
+                                "scopeId": "e44175ae-50cb-4482-93c2-f7796ef6e9d6",
+                                "scopeFilterId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+                                "tags": "hasclosed",
+                                "has": false
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "9c72aeb3-8905-4a63-adc7-ae61170789fc",
+                                    "scope": "prop",
+                                    "scopeId": "e44175ae-50cb-4482-93c2-f7796ef6e9d6",
+                                    "scopeFilterId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+                                    "tagsToAdd": "hasclosed",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "d7ab3b8b-17cb-4233-a4ab-819ac85aff0d",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "I'd better close the safe before Terk realizes someone broke into it. I don't want him to notice anything is gone.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "db2c5b80-2e60-4d80-9491-705c7c0ee9e0",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "I'll just close the safe again so Terk doesn't notice anything.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.playSoundEffect",
+                    "soundEffectName": "cabinet_close.wav",
+                    "wait": false
+                },
+                {
+                    "type": "nodes.changePropVisibility",
+                    "id": "8a12aa26-8049-4483-9a62-ce3386ca48e7",
+                    "propId": "010af9f6-10b2-4abd-a968-73443ac1a40e",
+                    "sceneId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+                    "status": "Hidden",
+                    "wait": false
+                },
+                {
+                    "type": "nodes.changePropVisibility",
+                    "id": "698f1093-c40e-4144-b62e-c0591aa5447a",
+                    "propId": "e44175ae-50cb-4482-93c2-f7796ef6e9d6",
+                    "sceneId": "60cb5886-83dd-4e8f-9953-a9eafd43c179",
+                    "status": "Visible",
+                    "wait": true
+                }
+            ]
+        }
+    ]
+}

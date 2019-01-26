@@ -1,0 +1,1358 @@
+{
+    "type": "script",
+    "id": "158bafa2-abeb-4adb-af42-9dae8b2a30f4",
+    "name": "RCC08 Joel Poobah Two",
+    "sceneId": "3256b6d8-50b9-4764-b016-01ea538ea55f",
+    "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+    "trigger": {
+        "type": "triggers.manual",
+        "name": "Manual"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "22dfd937-17bc-4bbf-b09a-6cd4e26eff9b",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.setVariable",
+                    "name": "cashonhand",
+                    "scope": "script",
+                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                    "source": {
+                        "type": "variables.count",
+                        "target": "money",
+                        "useArticle": false,
+                        "includeText": false,
+                        "text": "",
+                        "displayName": "Count"
+                    },
+                    "add": false
+                },
+                {
+                    "type": "nodes.showMenu",
+                    "id": "7fb2f4f1-40ce-47d4-8111-0319a8ca4665",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "1b014117-8239-49f0-b567-55c1bde82193",
+                            "text": "Ask About Joel",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "actor",
+                                                "scopeId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                "scopeFilterId": null,
+                                                "tags": "JPT8",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "017630d0-98e4-4b24-b1c6-9803cac016ae",
+                                                    "scope": "actor",
+                                                    "scopeId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "JPT8",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "edd15d63-19a7-4996-b277-194fcbe6ff84",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                    "text": "Got any plans for tomorrow?",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "d8872c02-632a-4a65-a9c2-059d06a4853a",
+                                                    "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "I will be going into Caligari to do more research into the various guilds of Sardonia. It is a... hobby of mine.",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.showMenu",
+                                                    "id": "88786451-ab1d-4136-9736-682909f48a61",
+                                                    "options": [
+                                                        {
+                                                            "type": "options.text",
+                                                            "id": "cb4258ab-f7bb-42f5-9517-28900231eb96",
+                                                            "text": "Say Something Polite to Please Joel",
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "469eb190-9ed0-4cd7-8c9d-e2f5f5691a35",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                                    "text": "Have a good time in Sardonia and good luck with your hobby.",
+                                                                    "emotion": "1",
+                                                                    "emotion2": "1",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "id": "ebc18e04-58fa-4a85-8a58-6c31411cfc33",
+                                                                    "type": "nodes.skillBranch",
+                                                                    "skill": "Charm",
+                                                                    "target": "30",
+                                                                    "success": {
+                                                                        "type": "nodes.block",
+                                                                        "nodes": [
+                                                                            {
+                                                                                "type": "nodes.speak",
+                                                                                "id": "9c8660a5-634f-4b16-bfca-05d14035d898",
+                                                                                "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                                                "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                "text": "I hope that your day off will be equally useful for you.",
+                                                                                "emotion": "1",
+                                                                                "emotion2": "1",
+                                                                                "device": "0",
+                                                                                "device2": "0"
+                                                                            },
+                                                                            {
+                                                                                "type": "nodes.changeReputation",
+                                                                                "id": "e807108f-d11c-45e9-affc-e32cbac24ec1",
+                                                                                "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                                                "amount": "1",
+                                                                                "change": "1",
+                                                                                "notify": true
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    "failure": {
+                                                                        "type": "nodes.block",
+                                                                        "nodes": [
+                                                                            {
+                                                                                "type": "nodes.speak",
+                                                                                "id": "af94d9c0-a264-4faf-b173-d1e26cd3d525",
+                                                                                "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                                                "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                "text": "It's less a matter of luck, and more a matter of being alert to every opportunity.",
+                                                                                "emotion": "0",
+                                                                                "emotion2": "0",
+                                                                                "device": "0",
+                                                                                "device2": "0"
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    "notify": true
+                                                                }
+                                                            ],
+                                                            "expression": null,
+                                                            "ignoreChildAvailability": false,
+                                                            "minutes": "2",
+                                                            "ExitMenu": false
+                                                        },
+                                                        {
+                                                            "type": "options.text",
+                                                            "id": "6e52f06f-354d-45a0-87c0-eeceafc85988",
+                                                            "text": "Say Something Clever to Help Joel",
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "1c683ea2-5981-43e4-8e6a-8fcfffa38d5f",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                                    "text": "So... these guilds you are researching... would they happen to be Thieves' Guilds?",
+                                                                    "emotion": "1",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "84e55b71-0359-401b-a42e-d5f1c3b9668a",
+                                                                    "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "text": "Why yes, they would.",
+                                                                    "emotion": "1",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "defca52f-dc36-443d-bd9d-7796c35df9de",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                                    "text": "Check out the Con Game Guild... The Chief Thief seems like a very likable sort of guy.",
+                                                                    "emotion": "1",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "id": "6711ac3e-8ae0-4a31-9e43-1b50624be9e0",
+                                                                    "type": "nodes.skillBranch",
+                                                                    "skill": "Smarts",
+                                                                    "target": "30",
+                                                                    "success": {
+                                                                        "type": "nodes.block",
+                                                                        "nodes": [
+                                                                            {
+                                                                                "type": "nodes.speak",
+                                                                                "id": "040f56ee-88d1-42de-9567-bc2151dbe321",
+                                                                                "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                                                "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                "text": "I will do that, thank you.",
+                                                                                "emotion": "1",
+                                                                                "emotion2": "1",
+                                                                                "device": "0",
+                                                                                "device2": "0"
+                                                                            },
+                                                                            {
+                                                                                "type": "nodes.changeReputation",
+                                                                                "id": "07f88891-35a4-4349-9139-11723a35b4a9",
+                                                                                "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                                                "amount": "1",
+                                                                                "change": "1",
+                                                                                "notify": true
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    "failure": {
+                                                                        "type": "nodes.block",
+                                                                        "nodes": [
+                                                                            {
+                                                                                "type": "nodes.speak",
+                                                                                "id": "90fba86b-8004-461e-ad72-bb3404634435",
+                                                                                "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                                                "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                "text": "It's kind of you to offer advice, but I already have very specific plans.",
+                                                                                "emotion": "0",
+                                                                                "emotion2": "2",
+                                                                                "device": "0",
+                                                                                "device2": "0"
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    "notify": true
+                                                                }
+                                                            ],
+                                                            "expression": null,
+                                                            "ignoreChildAvailability": false,
+                                                            "minutes": "5",
+                                                            "ExitMenu": false
+                                                        },
+                                                        {
+                                                            "type": "options.text",
+                                                            "id": "5bb2297f-9817-49ab-8d0a-1d786584233a",
+                                                            "text": "Say Something Snarky to Learn More About Joel",
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "5084bac4-a48a-4198-a8f6-66d75baf3d64",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                                    "text": "So this research into guilds you are doing - what, do you think they will recruit you after you graduate with a degree in 'Disbarred Bards?' That'll look good on your resume.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "id": "65ee4393-0edd-4167-a5e2-9e85f060e3b4",
+                                                                    "type": "nodes.skillBranch",
+                                                                    "skill": "Moxie",
+                                                                    "target": "30",
+                                                                    "success": {
+                                                                        "type": "nodes.block",
+                                                                        "nodes": [
+                                                                            {
+                                                                                "type": "nodes.speak",
+                                                                                "id": "d0c56cc4-ca8d-428b-87ce-dbbd940613ce",
+                                                                                "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                                                "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                "text": "It might surprise you to learn that some guilds are very interested in graduates with a degree from this school. It just depends upon the guild.",
+                                                                                "emotion": "3",
+                                                                                "emotion2": "2",
+                                                                                "device": "0",
+                                                                                "device2": "0"
+                                                                            },
+                                                                            {
+                                                                                "type": "nodes.changeReputation",
+                                                                                "id": "cd6a3a6a-0479-4299-ab41-cd9e262d44c0",
+                                                                                "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                                                "amount": "1",
+                                                                                "change": "1",
+                                                                                "notify": true
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    "failure": {
+                                                                        "type": "nodes.block",
+                                                                        "nodes": [
+                                                                            {
+                                                                                "type": "nodes.speak",
+                                                                                "id": "d0c56cc4-ca8d-428b-87ce-dbbd940613ce",
+                                                                                "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                                                "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                "text": "It might surprise you to learn that some guilds are very interested in graduates with a degree from this school. It just depends upon the guild.",
+                                                                                "emotion": "3",
+                                                                                "emotion2": "2",
+                                                                                "device": "0",
+                                                                                "device2": "0"
+                                                                            },
+                                                                            {
+                                                                                "type": "nodes.changeReputation",
+                                                                                "id": "de503213-a6b4-4863-ab1a-74c4b069b648",
+                                                                                "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                                                "amount": "1",
+                                                                                "change": "0",
+                                                                                "notify": true
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    "notify": true
+                                                                }
+                                                            ],
+                                                            "expression": null,
+                                                            "ignoreChildAvailability": false,
+                                                            "minutes": 0,
+                                                            "ExitMenu": false
+                                                        }
+                                                    ],
+                                                    "AutoAddDone": false,
+                                                    "Unique": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "dc781c84-e641-439f-aa9d-9299975f3081",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                    "text": "Are you ready for the big Poobah game?",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "f3592e0f-2560-4fa3-a27a-5df6bf953163",
+                                                    "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "Of course! I am always prepared to make money.",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "3",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "d1f62129-d17b-44c0-a6f7-e33be66d8253",
+                            "text": "Ask About Joel's Shop",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "03fa6196-ac84-4cff-8c36-caee937832d0",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                    "text": "Got anything new for sale?",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "bcf2791c-f081-48d1-8b81-733d92a32980",
+                                    "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "Indeed, I have two new items could prove useful in dangerous situations.",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "2dbf9f7f-7217-4915-83c6-76d6ae5eea53",
+                                    "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "The first is a Flambe. It is a bottle of flammable liquid that will explode in flames when thrown at a monster. It is most effective against vermin.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "cd7b2c77-5b7c-49cc-9034-c2675224b764",
+                                    "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "The second item I have for sale is a Boom. This is a form of trap that explodes when something brushes up against it. The Boom does a great deal of damage.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "6d401731-2780-4a20-8d93-666c88823710",
+                                    "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "Both of these items are good to have when exploring dangerous areas like the Sea Caves. Since they are one shots, so to speak, you might want to pick up several of each.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "9c7500d6-a1fc-409e-90c3-388110f3da13",
+                                    "scope": "script",
+                                    "scopeId": null,
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "seacavestag",
+                                    "tagsToRemove": null
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": false,
+                            "minutes": "8",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "d24c5039-c4b0-4e49-8e9f-926b1722a2a5",
+                            "text": "Ask About Rumors",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "995cefba-d0ed-485d-a6ea-4b34aafc4fe1",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "Got any juicy rumors today?",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "c05d9c25-3b6c-46bb-9a83-9fe5ca97d217",
+                                    "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "Caesari is very good at Poobah... but he takes too many chances, particularly when he is upset. And of course, losing any hand upsets him.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "37c47250-cc43-41c4-95c0-8370980830f4",
+                                    "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "I do hope you will join us at the game tonight. Caesari so looks forward to beating you and taking your money.",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "27c64b4d-9475-4cb7-9f44-c57311b0f77b",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                    "text": "We'll see about that.",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": false,
+                            "minutes": "5",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "052d6d47-c8d4-4f2d-baa6-8b5dca59856b",
+                            "text": "Ask About the Sea Caves",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "d1b80ecd-9a55-4b25-965c-36cbc8195d67",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                    "text": "What do you know about the Sea Caves?",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "a2b13c6c-6989-49de-94e6-9ec4b23e07e3",
+                                    "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "The Sea Caves are an extensive set of underground passageways, waterways, and caverns. It is extremely dangerous - there are many nasty things that crawl and hunt down there.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "8782cbe4-cef4-4e2c-a394-e07ea51e486a",
+                                    "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "There is supposed to be pirate treasure hidden there, but the Sea Caves are massive. It would be very easy to get lost.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "1020d6d1-ccec-4faa-bd37-be90e577f722",
+                                    "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "I am not a fan of the things that lurk in the Sea Caves. Besides, it is wet and slimy down there. It would ruin my shoes.",
+                                    "emotion": "3",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.showMenu",
+                                    "id": "7457131f-9ac4-49c4-a0b5-c5a1f8257c7c",
+                                    "options": [
+                                        {
+                                            "type": "options.text",
+                                            "id": "034d969d-d08a-4188-bca3-9af8e47b0e49",
+                                            "text": "Ask How to Find the Sea Caves",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "ce55c1e2-37f4-4f85-b505-8b01e09a59fb",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                    "text": "So is there some way I can get to the sea caves from here?",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "d8f0bac1-6890-42cc-94bf-8279149527c9",
+                                                    "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "You do not know yet? It is supposed to be kept a secret. It would be very bad if someone like Terk found out about it.",
+                                                    "emotion": "2",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.reputationComparison",
+                                                                "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                                "operator": "gte",
+                                                                "value": "30"
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "31afb275-cca8-49bf-b833-cbe1ab9ce3e8",
+                                                                    "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "text": "Of course, I know this secret will be safe with you, since we are such good friends. And I will not even charge you for it, if you truly wish to know.",
+                                                                    "emotion": "1",
+                                                                    "emotion2": "1",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.showMenu",
+                                                                    "id": "7e2cdb5d-c1b4-41cf-88a6-8f6f0d8de6b2",
+                                                                    "options": [
+                                                                        {
+                                                                            "type": "options.text",
+                                                                            "id": "e48de14d-a7e6-4307-88b3-1370c6a97054",
+                                                                            "text": "Ask for the Secret",
+                                                                            "nodes": [
+                                                                                {
+                                                                                    "type": "nodes.speak",
+                                                                                    "id": "ff33ecbe-0d65-4865-9629-0cb361262e92",
+                                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                    "actorId2": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                                                    "text": "I'm listening.",
+                                                                                    "emotion": "1",
+                                                                                    "emotion2": "1",
+                                                                                    "device": "0",
+                                                                                    "device2": "0"
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.speak",
+                                                                                    "id": "98e2df92-53a3-47d1-ac4c-bad7c9c6d8a1",
+                                                                                    "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                    "text": "Do you know the secret door from the Hall of Heroes that leads to the Dark Passage? Almost directly across from the Hall of Heroes secret door, you will find one that opens to a staircase leading down to the Sea Caves.",
+                                                                                    "emotion": "0",
+                                                                                    "emotion2": "0",
+                                                                                    "device": "0",
+                                                                                    "device2": "0"
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.branch",
+                                                                                    "sections": [
+                                                                                        {
+                                                                                            "type": "nodes.branchSection",
+                                                                                            "expression": {
+                                                                                                "type": "expressions.reputationComparison",
+                                                                                                "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                                                                "operator": "gte",
+                                                                                                "value": "40"
+                                                                                            },
+                                                                                            "nodes": [
+                                                                                                {
+                                                                                                    "type": "nodes.speak",
+                                                                                                    "id": "b0833e0d-6784-49eb-832c-93d0ee6a7ebc",
+                                                                                                    "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                                    "text": "And because we are such <i>very</i> good friends, I will even tell you how to open the secret door, if you truly wish to know.",
+                                                                                                    "emotion": "1",
+                                                                                                    "emotion2": "1",
+                                                                                                    "device": "0",
+                                                                                                    "device2": "0"
+                                                                                                },
+                                                                                                {
+                                                                                                    "type": "nodes.showMenu",
+                                                                                                    "id": "e43752b0-3a31-40a1-8049-ae1e58ccf00f",
+                                                                                                    "options": [
+                                                                                                        {
+                                                                                                            "type": "options.text",
+                                                                                                            "id": "2884ee62-fa1c-4d19-ac41-84922efdb2af",
+                                                                                                            "text": "Ask About Opening the Secret Door",
+                                                                                                            "nodes": [
+                                                                                                                {
+                                                                                                                    "type": "nodes.speak",
+                                                                                                                    "id": "8c9f0759-a9aa-4039-b29f-23be0a01ec61",
+                                                                                                                    "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                                                    "text": "If you rotate the shield upon the wall, it will reveal a keyhole. It is a trivial matter to pick that lock when one is a skilled rogue.",
+                                                                                                                    "emotion": "1",
+                                                                                                                    "emotion2": "1",
+                                                                                                                    "device": "0",
+                                                                                                                    "device2": "0"
+                                                                                                                }
+                                                                                                            ],
+                                                                                                            "expression": null,
+                                                                                                            "ignoreChildAvailability": false,
+                                                                                                            "minutes": 0,
+                                                                                                            "ExitMenu": true
+                                                                                                        },
+                                                                                                        {
+                                                                                                            "type": "options.text",
+                                                                                                            "id": "863b2ce1-8d40-4b6a-b6fe-4cab410955e9",
+                                                                                                            "text": "No, Thank You",
+                                                                                                            "nodes": [
+                                                                                                                {
+                                                                                                                    "type": "nodes.speak",
+                                                                                                                    "id": "e95e5a52-28f4-44d4-8201-5aaf82185fac",
+                                                                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                                                    "actorId2": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                                                                                    "text": "Thanks, but I'll get it on my own.",
+                                                                                                                    "emotion": "0",
+                                                                                                                    "emotion2": "0",
+                                                                                                                    "device": "0",
+                                                                                                                    "device2": "0"
+                                                                                                                },
+                                                                                                                {
+                                                                                                                    "type": "nodes.speak",
+                                                                                                                    "id": "7e55b23b-aa00-4c13-9e81-fc35792cb07c",
+                                                                                                                    "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                                                    "text": "As you wish. But do remember that I offered.",
+                                                                                                                    "emotion": "1",
+                                                                                                                    "emotion2": "1",
+                                                                                                                    "device": "0",
+                                                                                                                    "device2": "0"
+                                                                                                                }
+                                                                                                            ],
+                                                                                                            "expression": null,
+                                                                                                            "ignoreChildAvailability": false,
+                                                                                                            "minutes": 0,
+                                                                                                            "ExitMenu": true
+                                                                                                        }
+                                                                                                    ],
+                                                                                                    "AutoAddDone": false,
+                                                                                                    "Unique": false
+                                                                                                }
+                                                                                            ]
+                                                                                        },
+                                                                                        {
+                                                                                            "type": "nodes.branchSection",
+                                                                                            "expression": null,
+                                                                                            "nodes": [
+                                                                                                {
+                                                                                                    "type": "nodes.speak",
+                                                                                                    "id": "50794f41-f15f-47f1-b28c-d5fee711bf9b",
+                                                                                                    "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                                    "text": "Of course, finding the secret door is the easy part. Getting it open, well, it is more difficult. For that information, it will cost you a mere five Lyra.",
+                                                                                                    "emotion": "1",
+                                                                                                    "emotion2": "3",
+                                                                                                    "device": "0",
+                                                                                                    "device2": "0"
+                                                                                                },
+                                                                                                {
+                                                                                                    "type": "nodes.showMenu",
+                                                                                                    "id": "9f9b0e83-2acf-4292-9a5f-5c98bdbe440f",
+                                                                                                    "options": [
+                                                                                                        {
+                                                                                                            "type": "options.text",
+                                                                                                            "id": "9db3696e-254c-47af-b129-e7544c90d20c",
+                                                                                                            "text": "Pay the Lyra",
+                                                                                                            "nodes": [
+                                                                                                                {
+                                                                                                                    "type": "nodes.changeTags",
+                                                                                                                    "id": "a3551b55-4f5e-4a8d-a576-ac3776c4776b",
+                                                                                                                    "scope": "target",
+                                                                                                                    "scopeId": null,
+                                                                                                                    "scopeFilterId": null,
+                                                                                                                    "tagsToAdd": "secretdoorrumor",
+                                                                                                                    "tagsToRemove": null
+                                                                                                                },
+                                                                                                                {
+                                                                                                                    "type": "nodes.speak",
+                                                                                                                    "id": "0439cc9e-d122-4bb3-83aa-848b8301f674",
+                                                                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                                                    "actorId2": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                                                                                    "text": "Okay... here's your money. Now how do I open the secret door?",
+                                                                                                                    "emotion": "3",
+                                                                                                                    "emotion2": "0",
+                                                                                                                    "device": "0",
+                                                                                                                    "device2": "0"
+                                                                                                                },
+                                                                                                                {
+                                                                                                                    "type": "nodes.changeMoney",
+                                                                                                                    "id": "6988211b-241d-42b6-8b5e-d593060c1095",
+                                                                                                                    "amount": "5",
+                                                                                                                    "change": "0",
+                                                                                                                    "currency": "0"
+                                                                                                                },
+                                                                                                                {
+                                                                                                                    "type": "nodes.speak",
+                                                                                                                    "id": "fba05e27-4f7e-428f-9e97-219ce4f56f2f",
+                                                                                                                    "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                                                    "text": "If you rotate the shield upon the wall, it will reveal a keyhole. It is a trivial matter to pick that lock when one is a skilled rogue.",
+                                                                                                                    "emotion": "1",
+                                                                                                                    "emotion2": "1",
+                                                                                                                    "device": "0",
+                                                                                                                    "device2": "0"
+                                                                                                                }
+                                                                                                            ],
+                                                                                                            "expression": {
+                                                                                                                "type": "expressions.and",
+                                                                                                                "left": {
+                                                                                                                    "type": "expressions.variableComparison",
+                                                                                                                    "variableScope": "script",
+                                                                                                                    "variableName": "cashonhand",
+                                                                                                                    "operator": "gte",
+                                                                                                                    "compareTo": "10",
+                                                                                                                    "sceneId": null,
+                                                                                                                    "propId": null
+                                                                                                                },
+                                                                                                                "right": {
+                                                                                                                    "type": "expressions.inTags",
+                                                                                                                    "scope": "target",
+                                                                                                                    "scopeId": null,
+                                                                                                                    "scopeFilterId": null,
+                                                                                                                    "tags": "secretdoorrumor",
+                                                                                                                    "has": false
+                                                                                                                }
+                                                                                                            },
+                                                                                                            "ignoreChildAvailability": false,
+                                                                                                            "minutes": 0,
+                                                                                                            "ExitMenu": false
+                                                                                                        },
+                                                                                                        {
+                                                                                                            "type": "options.text",
+                                                                                                            "id": "4a5b5825-1eed-4192-bda4-6fff59b11639",
+                                                                                                            "text": "No Way I'd Pay",
+                                                                                                            "nodes": [
+                                                                                                                {
+                                                                                                                    "type": "nodes.changeTags",
+                                                                                                                    "id": "2f957993-af7f-40b4-baac-32719eb315be",
+                                                                                                                    "scope": "target",
+                                                                                                                    "scopeId": null,
+                                                                                                                    "scopeFilterId": null,
+                                                                                                                    "tagsToAdd": "secretdoorrumor",
+                                                                                                                    "tagsToRemove": null
+                                                                                                                },
+                                                                                                                {
+                                                                                                                    "type": "nodes.speak",
+                                                                                                                    "id": "2cf6082a-b790-406d-bebc-79a102b5e967",
+                                                                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                                                    "actorId2": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                                                                                    "text": "I think I'll try to figure that out for myself, thanks.",
+                                                                                                                    "emotion": "3",
+                                                                                                                    "emotion2": "0",
+                                                                                                                    "device": "0",
+                                                                                                                    "device2": "0"
+                                                                                                                },
+                                                                                                                {
+                                                                                                                    "type": "nodes.speak",
+                                                                                                                    "id": "cbafdcb5-0eff-44cc-a601-63a76db6ac0a",
+                                                                                                                    "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                                                    "text": "That is, of course, the best way. Good luck with it.",
+                                                                                                                    "emotion": "0",
+                                                                                                                    "emotion2": "0",
+                                                                                                                    "device": "0",
+                                                                                                                    "device2": "0"
+                                                                                                                }
+                                                                                                            ],
+                                                                                                            "expression": {
+                                                                                                                "type": "expressions.inTags",
+                                                                                                                "scope": "target",
+                                                                                                                "scopeId": null,
+                                                                                                                "scopeFilterId": null,
+                                                                                                                "tags": "secretdoorrumor",
+                                                                                                                "has": false
+                                                                                                            },
+                                                                                                            "ignoreChildAvailability": false,
+                                                                                                            "minutes": 0,
+                                                                                                            "ExitMenu": false
+                                                                                                        }
+                                                                                                    ],
+                                                                                                    "AutoAddDone": false,
+                                                                                                    "Unique": true
+                                                                                                }
+                                                                                            ]
+                                                                                        }
+                                                                                    ]
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.speak",
+                                                                                    "id": "d5bd06d1-4d4f-4fd2-8963-61fea1429c7a",
+                                                                                    "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                    "text": "Of course, finding the secret door is the easy part. Getting it open, well, it is more difficult. For that information, it will cost you a mere five Lyra.",
+                                                                                    "emotion": "1",
+                                                                                    "emotion2": "3",
+                                                                                    "device": "0",
+                                                                                    "device2": "0"
+                                                                                }
+                                                                            ],
+                                                                            "expression": null,
+                                                                            "ignoreChildAvailability": false,
+                                                                            "minutes": 0,
+                                                                            "ExitMenu": false
+                                                                        },
+                                                                        {
+                                                                            "type": "options.text",
+                                                                            "id": "a310a752-2413-4c95-98ba-e95356f24e1b",
+                                                                            "text": "Decline Joel's Offer",
+                                                                            "nodes": [],
+                                                                            "expression": null,
+                                                                            "ignoreChildAvailability": false,
+                                                                            "minutes": 0,
+                                                                            "ExitMenu": false
+                                                                        }
+                                                                    ],
+                                                                    "AutoAddDone": false,
+                                                                    "Unique": true
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "2495a8e3-7d29-419f-85de-6ffed6adeb39",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                                    "text": "No thanks.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "2",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": null,
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "09c508f4-deba-45f2-8f57-ade9d4c4fbb8",
+                                                                    "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "text": "However, if you really want to know a way to the Sea Caves and you are willing to, say, compensate me ten Lyra for the information, I could be persuaded to let you know the secret way to the Sea Caves.",
+                                                                    "emotion": "1",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.showMenu",
+                                                                    "id": "95886c29-3d76-41f0-8ada-350a5e62c729",
+                                                                    "options": [
+                                                                        {
+                                                                            "type": "options.text",
+                                                                            "id": "6c2659b2-c8f1-4fb9-b0dc-0f62b2b0789c",
+                                                                            "text": "Pay Ten Lyra to Learn the Secret Way to the Sea Caves",
+                                                                            "nodes": [
+                                                                                {
+                                                                                    "type": "nodes.speak",
+                                                                                    "id": "d033043c-9aa3-496b-89ea-7547b63a3327",
+                                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                    "actorId2": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                                                    "text": "All right... here's ten Lyra. Now how do I find the Sea Caves?",
+                                                                                    "emotion": "0",
+                                                                                    "emotion2": "0",
+                                                                                    "device": "0",
+                                                                                    "device2": "0"
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.changeMoney",
+                                                                                    "id": "16f9d63a-de83-43a1-a07c-613664bb2443",
+                                                                                    "amount": "10",
+                                                                                    "change": "0",
+                                                                                    "currency": "0"
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.speak",
+                                                                                    "id": "d76ef463-7a58-45df-9ed7-fa038040a501",
+                                                                                    "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                    "text": "Do you know the secret door from the Hall of Heroes that leads to the Dark Passage? Almost directly across from the Hall of Heroes secret door, you will find one that opens to a staircase leading down to the Sea Caves.",
+                                                                                    "emotion": "0",
+                                                                                    "emotion2": "0",
+                                                                                    "device": "0",
+                                                                                    "device2": "0"
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.changeReputation",
+                                                                                    "id": "e9a2b091-5336-4178-ac6d-5f5927c4bd7f",
+                                                                                    "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                                                    "amount": "1",
+                                                                                    "change": "1",
+                                                                                    "notify": true
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.changeTags",
+                                                                                    "id": "8217d5a2-9087-44f2-9fc1-a0296bd3f7cc",
+                                                                                    "scope": "actor",
+                                                                                    "scopeId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                                                    "scopeFilterId": null,
+                                                                                    "tagsToAdd": "SeaCaveSecretDoor",
+                                                                                    "tagsToRemove": null
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.addJournalEntry",
+                                                                                    "id": "a0e61500-52f7-4e09-a436-ff3e94a122cd",
+                                                                                    "name": "Sea Cave Entrance",
+                                                                                    "notify": true,
+                                                                                    "description": "There's a secret door from the Dark Passage next to the Hall of Heroes that leads to the Sea Caves - I can get out of the school!"
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.speak",
+                                                                                    "id": "ae55067c-049b-42f6-a0a0-dd2e15fe946e",
+                                                                                    "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                    "text": "Of course, finding the secret door is the easy part. Getting it open, well, it is more difficult. For that information, it will cost you a mere five Lyra.",
+                                                                                    "emotion": "1",
+                                                                                    "emotion2": "3",
+                                                                                    "device": "0",
+                                                                                    "device2": "0"
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.showMenu",
+                                                                                    "id": "c698e3f4-0800-40c1-b764-2d6b54881366",
+                                                                                    "options": [
+                                                                                        {
+                                                                                            "type": "options.text",
+                                                                                            "id": "2b4edabd-67c9-44f0-afda-1ce9a14e530e",
+                                                                                            "text": "Pay the Lyra",
+                                                                                            "nodes": [
+                                                                                                {
+                                                                                                    "type": "nodes.changeTags",
+                                                                                                    "id": "a3572e7a-5e1c-4c63-aa12-e041d9b0a1a8",
+                                                                                                    "scope": "target",
+                                                                                                    "scopeId": null,
+                                                                                                    "scopeFilterId": null,
+                                                                                                    "tagsToAdd": "secretdoorrumor",
+                                                                                                    "tagsToRemove": null
+                                                                                                },
+                                                                                                {
+                                                                                                    "type": "nodes.speak",
+                                                                                                    "id": "d39aba65-33ec-4bba-b7ed-1818ba491a6d",
+                                                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                                    "actorId2": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                                                                    "text": "Okay... here's your money. Now how do I open the secret door?",
+                                                                                                    "emotion": "3",
+                                                                                                    "emotion2": "0",
+                                                                                                    "device": "0",
+                                                                                                    "device2": "0"
+                                                                                                },
+                                                                                                {
+                                                                                                    "type": "nodes.changeMoney",
+                                                                                                    "id": "b8192d04-aee6-435d-a98a-9d8fecbb917a",
+                                                                                                    "amount": "5",
+                                                                                                    "change": "0",
+                                                                                                    "currency": "0"
+                                                                                                },
+                                                                                                {
+                                                                                                    "type": "nodes.speak",
+                                                                                                    "id": "daaaa99f-b27c-415e-909c-3677ee159d96",
+                                                                                                    "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                                    "text": "If you rotate the shield upon the wall, it will reveal a keyhole. It is a trivial matter to pick that lock when one is a skilled rogue.",
+                                                                                                    "emotion": "1",
+                                                                                                    "emotion2": "1",
+                                                                                                    "device": "0",
+                                                                                                    "device2": "0"
+                                                                                                }
+                                                                                            ],
+                                                                                            "expression": {
+                                                                                                "type": "expressions.and",
+                                                                                                "left": {
+                                                                                                    "type": "expressions.variableComparison",
+                                                                                                    "variableScope": "script",
+                                                                                                    "variableName": "cashonhand",
+                                                                                                    "operator": "gte",
+                                                                                                    "compareTo": "10",
+                                                                                                    "sceneId": null,
+                                                                                                    "propId": null
+                                                                                                },
+                                                                                                "right": {
+                                                                                                    "type": "expressions.inTags",
+                                                                                                    "scope": "target",
+                                                                                                    "scopeId": null,
+                                                                                                    "scopeFilterId": null,
+                                                                                                    "tags": "secretdoorrumor",
+                                                                                                    "has": false
+                                                                                                }
+                                                                                            },
+                                                                                            "ignoreChildAvailability": false,
+                                                                                            "minutes": 0,
+                                                                                            "ExitMenu": false
+                                                                                        },
+                                                                                        {
+                                                                                            "type": "options.text",
+                                                                                            "id": "5216358f-fc3d-4f63-b836-ef3c60e96f2c",
+                                                                                            "text": "No Way I'd Pay",
+                                                                                            "nodes": [
+                                                                                                {
+                                                                                                    "type": "nodes.changeTags",
+                                                                                                    "id": "5bd97551-039f-4c9b-8dcd-1d71c2229f41",
+                                                                                                    "scope": "target",
+                                                                                                    "scopeId": null,
+                                                                                                    "scopeFilterId": null,
+                                                                                                    "tagsToAdd": "secretdoorrumor",
+                                                                                                    "tagsToRemove": null
+                                                                                                },
+                                                                                                {
+                                                                                                    "type": "nodes.speak",
+                                                                                                    "id": "5a686a9c-c27b-4f30-ac64-935bc433f8cf",
+                                                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                                    "actorId2": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                                                                    "text": "I think I'll try to figure that out for myself, thanks.",
+                                                                                                    "emotion": "3",
+                                                                                                    "emotion2": "0",
+                                                                                                    "device": "0",
+                                                                                                    "device2": "0"
+                                                                                                },
+                                                                                                {
+                                                                                                    "type": "nodes.speak",
+                                                                                                    "id": "bf05ea0f-2ea0-4e52-82ce-94fe279c0f0f",
+                                                                                                    "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                                    "text": "That is, of course, the best way. Good luck with it.",
+                                                                                                    "emotion": "0",
+                                                                                                    "emotion2": "0",
+                                                                                                    "device": "0",
+                                                                                                    "device2": "0"
+                                                                                                }
+                                                                                            ],
+                                                                                            "expression": {
+                                                                                                "type": "expressions.inTags",
+                                                                                                "scope": "target",
+                                                                                                "scopeId": null,
+                                                                                                "scopeFilterId": null,
+                                                                                                "tags": "secretdoorrumor",
+                                                                                                "has": false
+                                                                                            },
+                                                                                            "ignoreChildAvailability": false,
+                                                                                            "minutes": 0,
+                                                                                            "ExitMenu": false
+                                                                                        }
+                                                                                    ],
+                                                                                    "AutoAddDone": false,
+                                                                                    "Unique": true
+                                                                                }
+                                                                            ],
+                                                                            "expression": {
+                                                                                "type": "expressions.and",
+                                                                                "left": {
+                                                                                    "type": "expressions.variableComparison",
+                                                                                    "variableScope": "script",
+                                                                                    "variableName": "cashonhand",
+                                                                                    "operator": "gte",
+                                                                                    "compareTo": "15",
+                                                                                    "sceneId": null,
+                                                                                    "propId": null
+                                                                                },
+                                                                                "right": {
+                                                                                    "type": "expressions.inTags",
+                                                                                    "scope": "target",
+                                                                                    "scopeId": null,
+                                                                                    "scopeFilterId": null,
+                                                                                    "tags": "seacavesclue",
+                                                                                    "has": false
+                                                                                }
+                                                                            },
+                                                                            "ignoreChildAvailability": false,
+                                                                            "minutes": "10",
+                                                                            "ExitMenu": false
+                                                                        },
+                                                                        {
+                                                                            "type": "options.text",
+                                                                            "id": "2eb263b5-37c7-4357-acbd-caff80fbcf42",
+                                                                            "text": "No Way I'd Pay",
+                                                                            "nodes": [
+                                                                                {
+                                                                                    "type": "nodes.changeTags",
+                                                                                    "id": "547018a9-6e92-41cc-837e-33f690ba986c",
+                                                                                    "scope": "target",
+                                                                                    "scopeId": null,
+                                                                                    "scopeFilterId": null,
+                                                                                    "tagsToAdd": "seacavesclue",
+                                                                                    "tagsToRemove": null
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.speak",
+                                                                                    "id": "dc373c20-1e91-442e-a612-5518deaa5bcf",
+                                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                    "actorId2": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                                                    "text": "I wouldn't want you to have to spill a secret. I'll just look for it myself.",
+                                                                                    "emotion": "0",
+                                                                                    "emotion2": "0",
+                                                                                    "device": "0",
+                                                                                    "device2": "0"
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.speak",
+                                                                                    "id": "7bb4831c-6264-45d1-9cf4-2e961ef863d8",
+                                                                                    "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                    "text": "Good luck with that. Of course, if you do not discover the secret door, I am always glad to be of service.",
+                                                                                    "emotion": "1",
+                                                                                    "emotion2": "0",
+                                                                                    "device": "0",
+                                                                                    "device2": "0"
+                                                                                }
+                                                                            ],
+                                                                            "expression": {
+                                                                                "type": "expressions.inTags",
+                                                                                "scope": "target",
+                                                                                "scopeId": null,
+                                                                                "scopeFilterId": null,
+                                                                                "tags": "seacavesclue",
+                                                                                "has": false
+                                                                            },
+                                                                            "ignoreChildAvailability": false,
+                                                                            "minutes": 0,
+                                                                            "ExitMenu": false
+                                                                        },
+                                                                        {
+                                                                            "type": "options.text",
+                                                                            "id": "0837078f-b50b-41a9-ab55-477df3a719ae",
+                                                                            "text": "Not Enough Money",
+                                                                            "nodes": [
+                                                                                {
+                                                                                    "type": "nodes.speak",
+                                                                                    "id": "20cbe23f-0327-4e16-a439-fb5ad56c567f",
+                                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                    "actorId2": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                                                    "text": "Maybe some other time.",
+                                                                                    "emotion": "2",
+                                                                                    "emotion2": "0",
+                                                                                    "device": "0",
+                                                                                    "device2": "0"
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.speak",
+                                                                                    "id": "0e7b62fa-9524-42fd-90bf-334d7c857eba",
+                                                                                    "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                    "text": "You know where to find me.",
+                                                                                    "emotion": "1",
+                                                                                    "emotion2": "0",
+                                                                                    "device": "0",
+                                                                                    "device2": "0"
+                                                                                }
+                                                                            ],
+                                                                            "expression": {
+                                                                                "type": "expressions.variableComparison",
+                                                                                "variableScope": "script",
+                                                                                "variableName": "cashonhand",
+                                                                                "operator": "lt",
+                                                                                "compareTo": "10",
+                                                                                "sceneId": null,
+                                                                                "propId": null
+                                                                            },
+                                                                            "ignoreChildAvailability": false,
+                                                                            "minutes": 0,
+                                                                            "ExitMenu": false
+                                                                        }
+                                                                    ],
+                                                                    "AutoAddDone": false,
+                                                                    "Unique": true
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "expression": {
+                                                "type": "expressions.enteredScene",
+                                                "sceneId": "c7f12eb6-9936-4c11-8028-d012d60c9ba3",
+                                                "scope": "DuringGame",
+                                                "operator": "lt",
+                                                "count": "1"
+                                            },
+                                            "ignoreChildAvailability": false,
+                                            "minutes": 0,
+                                            "ExitMenu": false
+                                        },
+                                        {
+                                            "type": "options.text",
+                                            "id": "ce803553-62ae-4c58-bdcc-7ddafb2239aa",
+                                            "text": "Ask About Pirates",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "47144c2e-d93a-4023-a2bd-12e5c213d63d",
+                                                    "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "This island was once the port of call for many a pirate ship. There are secluded coves all around the island. It is said that the pirates used the Sea Caves to hide their ill-gotten booty.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "32f16661-471b-4d7c-bc59-a7379d309a70",
+                                                    "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "It is also said that the Sea Caves are haunted by all the restless dead pirates who died from greed for gold, and now seek vengeance upon the living. ",
+                                                    "emotion": "2",
+                                                    "emotion2": "4",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "532a7159-8d37-41ab-8733-8546c05ac0dd",
+                                                    "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "All in all, it seems that the Sea Caves are a most unpleasant and dangerous place to explore.",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ],
+                                            "expression": null,
+                                            "ignoreChildAvailability": false,
+                                            "minutes": 0,
+                                            "ExitMenu": false
+                                        }
+                                    ],
+                                    "AutoAddDone": true,
+                                    "Unique": false
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "script",
+                                "scopeId": null,
+                                "scopeFilterId": null,
+                                "tags": "seacavestag",
+                                "has": true
+                            },
+                            "ignoreChildAvailability": false,
+                            "minutes": "6",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "5b8c7b40-e780-42f4-9b99-4b4131222ecf",
+                            "text": "Say Goodbye",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "007839b8-72dd-460e-b1b0-0cabb9da99db",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                    "text": "Bye for now.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "e83402a8-becd-46b4-9c7d-397b88b4af0d",
+                                    "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "I hope to see you later at the Poobah game.",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "2",
+                            "ExitMenu": true
+                        }
+                    ],
+                    "AutoAddDone": false,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,450 @@
+{
+    "type": "script",
+    "id": "a89ef3b4-6797-4a1d-b096-5d83d65a97a5",
+    "name": "SS E12 QueenOver",
+    "sceneId": "af912e02-46a1-4d88-a547-59f3d2093c7b",
+    "actorId": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+    "trigger": {
+        "type": "triggers.manual",
+        "name": "Manual"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "65be5b52-b1f9-423e-9ec8-26944fde142f",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "36d11a2a-d0ce-4269-a343-1e91953dc79e",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "9a4287dd-fd7c-44eb-81af-223d8001bde1",
+                            "text": "Ask About Gregor",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "e34c4632-13fd-40c7-9c0f-b41689ac97fc",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                    "text": "You sound cheery.",
+                                    "emotion": "1",
+                                    "emotion2": "1",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "96cb938e-02e3-46f8-86e8-f84f6931f049",
+                                    "actorId": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "No more Warrior Drats chasing Gregor! Gregor can go home now to comfy chair and steaming bowl of Drat fricassee! Good times!\n",
+                                    "emotion": "1",
+                                    "emotion2": "1",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.changeReputation",
+                                    "id": "f86e03d4-dc4f-43fa-b146-4740fe1c9961",
+                                    "actorId": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                    "amount": "2",
+                                    "change": "1",
+                                    "notify": true
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": false,
+                            "minutes": "3",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "ca0fd272-28a1-4f6a-b10b-7ee135292638",
+                            "text": "Talk About the Drat Queen",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "actor",
+                                                "scopeId": "3ec7237c-65ea-4a23-9e21-697f17a2dbe8",
+                                                "scopeFilterId": null,
+                                                "tags": "DratQueenDead",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.comment",
+                                                    "message": "",
+                                                    "commentor": "Shawn killed the Queen"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "510a36ec-1a53-400f-8579-aa5354534f72",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                                    "text": "I stopped the Drat Queen so that the Warrior Drats will never go after you again.",
+                                                    "emotion": "1",
+                                                    "emotion2": "4",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "6d796459-e03e-4ca9-864f-e79344efded5",
+                                                    "actorId": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "Master Shawn saved Gregor from the Queen Drat's Warriors! Master Shawn is true hero!",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.changeReputation",
+                                                    "id": "1b26fd3f-c0fd-4b85-b28c-0d8f588d2825",
+                                                    "actorId": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                                    "amount": "30",
+                                                    "change": "1",
+                                                    "notify": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "actor",
+                                                "scopeId": "3ec7237c-65ea-4a23-9e21-697f17a2dbe8",
+                                                "scopeFilterId": null,
+                                                "tags": "DratT&E",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.comment",
+                                                    "message": "",
+                                                    "commentor": "Esme and Thomas killed the Queen"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "75eea072-c64b-4aaa-89e2-30f84f6cf2f0",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                                    "text": "Sounds like Esme and Thomas were the heroes of the day who stopped the Queen Drat.",
+                                                    "emotion": "0",
+                                                    "emotion2": "1",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "ac20099e-f861-41f8-9337-4b19cec45538",
+                                                    "actorId": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "Wonderful Mistress Esme and fine Mist... Master Thomas - so very brave and good! Gregor is safe from Warrior Drats and nasty Queens. ",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "f207972a-89ae-4b5d-9faf-e56a6bdaff24",
+                                                    "actorId": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "Master Shawn is very brave, too. Just not as brave and fine as Mistress Esme and Master Thomas!",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.changeReputation",
+                                                    "id": "628356f3-ad5d-4b7e-80e1-6434b515b6c9",
+                                                    "actorId": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                                    "amount": "2",
+                                                    "change": "1",
+                                                    "notify": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.comment",
+                                                    "message": "",
+                                                    "commentor": "Shawn made a deal with the Queen"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "18aa3f84-e0c8-459a-88ff-441964252a01",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                                    "text": "I made a deal with the Drat Queen. She won't bother you or the school again.",
+                                                    "emotion": "0",
+                                                    "emotion2": "4",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "4b28cad1-f708-4eb5-9b41-a538149eccce",
+                                                    "actorId": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "The Queen Drat is still alive!",
+                                                    "emotion": "4",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "5ceffff7-a047-4fdf-8e64-30780d2c955e",
+                                                    "actorId": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "The Queen Drat is still dangerous. Do not trust Drats. Drats are wicked and treacherous. ",
+                                                    "emotion": "3",
+                                                    "emotion2": "4",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "446bad33-2c0d-4909-b1d8-6ea334fc9ddc",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                                    "text": "I don't think the Drat Queen will bother us anymore. She was furious that I found her secret lair. She'll have to move away from here.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "80d19d7b-2cad-43f7-8311-6931e9855ee9",
+                                                    "actorId": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "Gregor hopes Queen Drat takes her Warrior Drats on long boat ride far, far from here - and boat sinks in the middle of the sea.",
+                                                    "emotion": "3",
+                                                    "emotion2": "4",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "e43e140c-aebc-41ac-b1a6-49819aa0ae92",
+                                                    "actorId": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "Gregor is glad Queen Drat goes away. Gregor is very grateful to Master Shawn.",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.changeReputation",
+                                                    "id": "982bed95-0f77-4707-a154-05ea9f209f4d",
+                                                    "actorId": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                                    "amount": "20",
+                                                    "change": "1",
+                                                    "notify": true
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": false,
+                            "minutes": "4",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "15fdc168-b31b-4e93-973d-f7720cd7561b",
+                            "text": "Ask About Ratties",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "a887f066-92d5-4a59-bf6c-0aa1b48bab6f",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                    "text": "So what sort of monsters do your Ratties have to face?",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "6b02a8b3-ddee-4950-be32-5405b206cb47",
+                                    "actorId": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "Worst bad monster Ratties face is humans.",
+                                    "emotion": "0",
+                                    "emotion2": "4",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "40af1a04-65e3-495b-a793-861ad6d6749c",
+                                    "actorId": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "Humans call Ratties vermin and thieves. Humans think Ratties are like Drats, only not as tasty. Ratties have to hide from humans most places.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "d36972f3-bfca-4c21-a0fb-5a26b1eeea97",
+                                    "actorId": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "Good thing Ratties very good at hiding!",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "d03a4a64-f077-47c4-8653-e101cf6ed62d",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                    "text": "Why are you not hiding away from humans like the other Ratties?",
+                                    "emotion": "0",
+                                    "emotion2": "1",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "b7c53ad5-94d5-45f9-bfe4-51f34ae53ad2",
+                                    "actorId": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "Gregor was Silmarian tribe. Humans in Silmaria not like Ratties, but Ratties useful. So humans in Silmaria mostly ignore Ratties.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "41444e91-e548-4343-a940-6332ca187f31",
+                                    "actorId": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "One day, Gregor find hurt human Little on street. Gregor scared that humans think Gregor hurt Little, but Little needed help. So Gregor took hurt human Little to healing place in city.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "9e256f7e-628a-4b15-9362-6ebf7c4f6255",
+                                    "actorId": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "Lady Moira at healing place. Lady Moira sweet and kind, helped human Little. Lady Moira happy Gregor helped human Little. Lady Moira said Gregor was hero!",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "2286342b-7896-4e89-beb2-0f1406c418ff",
+                                    "actorId": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "So Gregor go Hero School!",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "4963221b-d5a9-47df-9710-9b570c473bbf",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                    "text": "So you really do belong at this school, don't you, Gregor?",
+                                    "emotion": "1",
+                                    "emotion2": "1",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "93b09ce9-f2ab-4e1e-b93f-e6984075f6e6",
+                                    "actorId": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "Yes! Gregor is hero, too!",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.changeReputation",
+                                    "id": "5abc210b-48c2-4c93-bffc-bf9f6408c213",
+                                    "actorId": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                    "amount": "10",
+                                    "change": "1",
+                                    "notify": true
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": false,
+                            "minutes": "15",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "e16c4d0a-700f-4051-bf5d-4cd3f6eb2f67",
+                            "text": "Say Goodbye",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "446d9542-d69b-4545-893a-e48c260bccd1",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                    "text": "Enjoy your day free from the Warrior Drats and the Drat Queen!",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "a82fa619-772f-45ad-8bdd-20e4ce15d6fb",
+                                    "actorId": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "Gregor have very great, amazing day. Thank you, Master Shawn.",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": true
+                        }
+                    ],
+                    "AutoAddDone": false,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

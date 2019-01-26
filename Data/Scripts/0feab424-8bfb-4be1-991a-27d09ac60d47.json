@@ -1,0 +1,357 @@
+{
+    "type": "script",
+    "id": "0feab424-8bfb-4be1-991a-27d09ac60d47",
+    "name": "Interact with Darla's Wing Door",
+    "sceneId": "f1d169df-e10e-451d-8481-0d0290b7cbbe",
+    "propId": "20f4c77d-2c57-43fb-a984-935fcceda1f4",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "7cd70eab-3771-492e-b49e-2c5983948a53",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "ae043875-a05e-43e3-8f2c-e9bea5a958ff",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "e1cf7976-408c-4d73-b527-f25b04f79292",
+                            "text": "Look at the Door",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "277f1574-14d5-4865-b642-92fb95f78255",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "Now <i>this</i> is a door with personality. Look at the carvings, look at the extraordinary hardware. Even the Headmaster doesn't get a door like this.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "24e2ddf7-25c8-4954-b872-33b2279227ae",
+                            "text": "Knock on the Door",
+                            "nodes": [
+                                {
+                                    "type": "nodes.playAnimation",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "animationName": "ReachOut"
+                                },
+                                {
+                                    "type": "nodes.wait",
+                                    "waitForSeconds": "0.2"
+                                },
+                                {
+                                    "type": "nodes.playSoundEffect",
+                                    "soundEffectName": "Barrel_Hollow_Double_Knock.wav",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "prop",
+                                                "scopeId": "20f4c77d-2c57-43fb-a984-935fcceda1f4",
+                                                "scopeFilterId": "f1d169df-e10e-451d-8481-0d0290b7cbbe",
+                                                "tags": "isNoise",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "266d489d-b445-440c-a73a-bf6ee096c3be",
+                                                    "actorId": "bdddd1b1-bbf3-4dd5-bbd6-0ef3115d8b66",
+                                                    "actorId2": null,
+                                                    "text": "The door is unlocked - you can come in.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "1",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "b8dd26b0-4521-40ab-bc24-458bfd53c4c5",
+                                                    "scope": "prop",
+                                                    "scopeId": "20f4c77d-2c57-43fb-a984-935fcceda1f4",
+                                                    "scopeFilterId": "f1d169df-e10e-451d-8481-0d0290b7cbbe",
+                                                    "tagsToAdd": "hasKnocked",
+                                                    "tagsToRemove": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "1ce9c1eb-4a2f-4432-b1d7-4e573dbf3a55",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "There's no answer to my knocking.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "prop",
+                                "scopeId": "20f4c77d-2c57-43fb-a984-935fcceda1f4",
+                                "scopeFilterId": "f1d169df-e10e-451d-8481-0d0290b7cbbe",
+                                "tags": "hasKnocked",
+                                "has": false
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "1",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "865b60a4-a9f2-4877-9775-ec7020e63625",
+                            "text": "Listen at the Door",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.and",
+                                                "left": {
+                                                    "type": "expressions.variableComparison",
+                                                    "variableScope": "global",
+                                                    "variableName": "time.hour",
+                                                    "operator": "gte",
+                                                    "compareTo": "8",
+                                                    "sceneId": "f1d169df-e10e-451d-8481-0d0290b7cbbe",
+                                                    "propId": null
+                                                },
+                                                "right": {
+                                                    "type": "expressions.variableComparison",
+                                                    "variableScope": "global",
+                                                    "variableName": "time.hour",
+                                                    "operator": "lt",
+                                                    "compareTo": "19",
+                                                    "sceneId": "f1d169df-e10e-451d-8481-0d0290b7cbbe",
+                                                    "propId": null
+                                                }
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "4fe44830-8257-4a66-8cbd-22084a4de9dd",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "No sense in getting caught with my ear pressed up against the door if Terk comes looking for trouble. I'll try this later.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.playAnimation",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "animationName": "KneelDown",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.inTags",
+                                                                "scope": "prop",
+                                                                "scopeId": "20f4c77d-2c57-43fb-a984-935fcceda1f4",
+                                                                "scopeFilterId": "f1d169df-e10e-451d-8481-0d0290b7cbbe",
+                                                                "tags": "hasListenedDarla",
+                                                                "has": false
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "id": "0c47ffa9-be82-435d-bd48-fc33471ab498",
+                                                                    "type": "nodes.skillBranch",
+                                                                    "skill": "Perception",
+                                                                    "target": "30",
+                                                                    "success": {
+                                                                        "type": "nodes.block",
+                                                                        "nodes": []
+                                                                    },
+                                                                    "failure": {
+                                                                        "type": "nodes.block",
+                                                                        "nodes": []
+                                                                    },
+                                                                    "notify": true
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeTags",
+                                                                    "id": "cac44539-c01d-4348-bfc3-570c3770e572",
+                                                                    "scope": "prop",
+                                                                    "scopeId": "20f4c77d-2c57-43fb-a984-935fcceda1f4",
+                                                                    "scopeFilterId": "f1d169df-e10e-451d-8481-0d0290b7cbbe",
+                                                                    "tagsToAdd": "hasListenedDarla",
+                                                                    "tagsToRemove": null
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.inTags",
+                                                                "scope": "prop",
+                                                                "scopeId": "20f4c77d-2c57-43fb-a984-935fcceda1f4",
+                                                                "scopeFilterId": "f1d169df-e10e-451d-8481-0d0290b7cbbe",
+                                                                "tags": "isNoise",
+                                                                "has": true
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.branch",
+                                                                    "sections": [
+                                                                        {
+                                                                            "type": "nodes.branchSection",
+                                                                            "expression": {
+                                                                                "type": "expressions.skillCheck",
+                                                                                "skill": "Perception",
+                                                                                "target": "30"
+                                                                            },
+                                                                            "nodes": [
+                                                                                {
+                                                                                    "type": "nodes.speak",
+                                                                                    "id": "154554f0-231f-4e43-b055-b738f344fe60",
+                                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                    "actorId2": null,
+                                                                                    "text": "I can't make out the words, but someone is talking in the room.",
+                                                                                    "emotion": "0",
+                                                                                    "emotion2": "0",
+                                                                                    "device": "0",
+                                                                                    "device2": "0"
+                                                                                }
+                                                                            ]
+                                                                        },
+                                                                        {
+                                                                            "type": "nodes.branchSection",
+                                                                            "expression": null,
+                                                                            "nodes": [
+                                                                                {
+                                                                                    "type": "nodes.speak",
+                                                                                    "id": "8f298df1-5ea7-4756-8353-fb0421c18d8a",
+                                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                    "actorId2": null,
+                                                                                    "text": "I thought I heard noise in the room. Maybe I need to clean the wax out of my ears more.",
+                                                                                    "emotion": "2",
+                                                                                    "emotion2": "0",
+                                                                                    "device": "0",
+                                                                                    "device2": "0"
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": null,
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "bfaedbe8-eeb4-406f-af07-79a345f1b3bd",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "I don't hear anything.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "nodes.playAnimation",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "animationName": "KneelUp",
+                                                    "wait": true
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "1",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "e852177d-d445-4ac9-a3d6-a95750cbb623",
+                            "text": "Open the Door",
+                            "nodes": [
+                                {
+                                    "type": "nodes.invokeScript",
+                                    "id": "4161fbd6-f850-4074-850a-a302c49b0802",
+                                    "scriptId": "a1004657-984b-46ba-8870-9550cbfb4b35",
+                                    "entryPointId": "7cd70eab-3771-492e-b49e-2c5983948a53",
+                                    "currentScope": "Scenes",
+                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                    "currentActorId": null,
+                                    "currentStoryEventId": null,
+                                    "currentPropId": null
+                                },
+                                {
+                                    "type": "nodes.changeScene",
+                                    "sceneId": "25782df1-4461-4651-9bab-1fb4e1b4e366",
+                                    "spawnId": "94fff923-f153-4bc8-a03d-3997b98013fc",
+                                    "fadeTime": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

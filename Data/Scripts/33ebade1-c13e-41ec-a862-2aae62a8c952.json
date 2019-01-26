@@ -1,0 +1,722 @@
+{
+    "type": "script",
+    "id": "33ebade1-c13e-41ec-a862-2aae62a8c952",
+    "name": "Interact with Reception Door",
+    "sceneId": "cf824b0f-5af6-4a19-bac8-552a2a1bbebf",
+    "propId": "318320e6-40d0-4e0b-9925-8a35ac1a3e7c",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "68790c4d-bd19-464f-be9c-05a9fe814125",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.or",
+                                "left": {
+                                    "type": "expressions.variableComparison",
+                                    "variableScope": "global",
+                                    "variableName": "time.hour",
+                                    "operator": "lte",
+                                    "compareTo": "6",
+                                    "sceneId": "cf824b0f-5af6-4a19-bac8-552a2a1bbebf",
+                                    "propId": null
+                                },
+                                "right": {
+                                    "type": "expressions.variableComparison",
+                                    "variableScope": "global",
+                                    "variableName": "time.hour",
+                                    "operator": "gte",
+                                    "compareTo": "18",
+                                    "sceneId": "cf824b0f-5af6-4a19-bac8-552a2a1bbebf",
+                                    "propId": null
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "f482b17c-0f9e-428e-b11e-b887e0a1eda0",
+                                    "scope": "target",
+                                    "scopeId": null,
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "locked",
+                                    "tagsToRemove": null
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "scene",
+                                "scopeId": "cf824b0f-5af6-4a19-bac8-552a2a1bbebf",
+                                "scopeFilterId": null,
+                                "tags": "IsHoliday",
+                                "has": true
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "67f1497f-1ba9-47c5-a95d-66402732a1fb",
+                                    "scope": "target",
+                                    "scopeId": null,
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "locked",
+                                    "tagsToRemove": null
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "586e411b-fda1-457f-8e35-0c68dac7ff27",
+                                    "scope": "target",
+                                    "scopeId": "318320e6-40d0-4e0b-9925-8a35ac1a3e7c",
+                                    "scopeFilterId": "cf824b0f-5af6-4a19-bac8-552a2a1bbebf",
+                                    "tagsToRemove": "locked"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.showMenu",
+                    "id": "28a9ac75-48ae-42cd-ba57-ce408ea2d066",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "74fcbdf6-6635-4627-a5e4-e869f827b65f",
+                            "text": "Look at the Door",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "4423f78a-4bb9-4fe3-9d8a-a0a5d0ca4739",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "The plaque on the door says, \"Reception Area.\" I'm glad they labeled it. It's easy to get confused around here.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "1a34f5bf-2bcb-4f4a-9192-1d2448facdef",
+                            "text": "Examine the Lock",
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "4104bdc7-c142-455c-b60b-fb749454a1bb",
+                                    "scope": "prop",
+                                    "scopeId": "318320e6-40d0-4e0b-9925-8a35ac1a3e7c",
+                                    "scopeFilterId": "cf824b0f-5af6-4a19-bac8-552a2a1bbebf",
+                                    "tagsToAdd": "ExaminedLock",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.skillCheck",
+                                                "skill": "Perception",
+                                                "target": "30"
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "e74ea3ca-d993-4699-81e2-7006d8d8b22e",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "This looks like a Hardy class lock. That means it just needs some skill in Tool Use.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "70f6df39-02bf-400a-a3e2-5c8d639b349e",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "97778ffd-f856-4cee-85a8-aacd705667c9",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Looks like a lock to me. No clue about anything else about it.",
+                                                    "emotion": "2",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inTags",
+                                    "scope": "actor",
+                                    "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "scopeFilterId": null,
+                                    "tags": "ReadAL",
+                                    "has": true
+                                },
+                                "right": {
+                                    "type": "expressions.inTags",
+                                    "scope": "prop",
+                                    "scopeId": "318320e6-40d0-4e0b-9925-8a35ac1a3e7c",
+                                    "scopeFilterId": "cf824b0f-5af6-4a19-bac8-552a2a1bbebf",
+                                    "tags": "ExaminedLock",
+                                    "has": false
+                                }
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "2fc343e6-ce89-45a0-a280-f1adaad461fc",
+                            "text": "Listen at the Door",
+                            "nodes": [
+                                {
+                                    "type": "nodes.playAnimation",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "animationName": "KneelDown",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.onceOnly",
+                                    "id": "eae1be86-95e5-4d5b-bc58-abd218245923",
+                                    "nodes": [
+                                        {
+                                            "id": "765fbfa8-6966-47e2-8b45-1ea19cf8b53d",
+                                            "type": "nodes.skillBranch",
+                                            "skill": "Perception",
+                                            "target": "20",
+                                            "success": {
+                                                "type": "nodes.block",
+                                                "nodes": []
+                                            },
+                                            "failure": {
+                                                "type": "nodes.block",
+                                                "nodes": []
+                                            },
+                                            "notify": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.and",
+                                                "left": {
+                                                    "type": "expressions.variableComparison",
+                                                    "variableScope": "global",
+                                                    "variableName": "time.hour",
+                                                    "operator": "gte",
+                                                    "compareTo": "8",
+                                                    "sceneId": "cf824b0f-5af6-4a19-bac8-552a2a1bbebf",
+                                                    "propId": null
+                                                },
+                                                "right": {
+                                                    "type": "expressions.variableComparison",
+                                                    "variableScope": "global",
+                                                    "variableName": "time.hour",
+                                                    "operator": "lte",
+                                                    "compareTo": "18",
+                                                    "sceneId": "cf824b0f-5af6-4a19-bac8-552a2a1bbebf",
+                                                    "propId": null
+                                                }
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.inTags",
+                                                                "scope": "scene",
+                                                                "scopeId": "cf824b0f-5af6-4a19-bac8-552a2a1bbebf",
+                                                                "scopeFilterId": null,
+                                                                "tags": "IsHoliday",
+                                                                "has": true
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "445abbc4-9881-48dd-b00e-890eb2b712ae",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "I don't hear anything. Maybe the receptionist is away for the break.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.and",
+                                                                "left": {
+                                                                    "type": "expressions.variableComparison",
+                                                                    "variableScope": "global",
+                                                                    "variableName": "time.day",
+                                                                    "operator": "gte",
+                                                                    "compareTo": "11",
+                                                                    "sceneId": "cf824b0f-5af6-4a19-bac8-552a2a1bbebf",
+                                                                    "propId": null
+                                                                },
+                                                                "right": {
+                                                                    "type": "expressions.and",
+                                                                    "left": {
+                                                                        "type": "expressions.variableComparison",
+                                                                        "variableScope": "global",
+                                                                        "variableName": "time.day",
+                                                                        "operator": "lte",
+                                                                        "compareTo": "16",
+                                                                        "sceneId": "cf824b0f-5af6-4a19-bac8-552a2a1bbebf",
+                                                                        "propId": null
+                                                                    },
+                                                                    "right": {
+                                                                        "type": "expressions.inTags",
+                                                                        "scope": "actor",
+                                                                        "scopeId": "6378f038-f4cd-49aa-8357-dcb46a978684",
+                                                                        "scopeFilterId": null,
+                                                                        "tags": "Had4thTalk",
+                                                                        "has": false
+                                                                    }
+                                                                }
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "bb67fb34-04b8-4903-9918-bcad85b24a7b",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "I think I hear someone angrily shoving things around in a desk drawer...",
+                                                                    "emotion": "4",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.and",
+                                                                "left": {
+                                                                    "type": "expressions.inTags",
+                                                                    "scope": "actor",
+                                                                    "scopeId": "6378f038-f4cd-49aa-8357-dcb46a978684",
+                                                                    "scopeFilterId": null,
+                                                                    "tags": "Had10thTalk",
+                                                                    "has": false
+                                                                },
+                                                                "right": {
+                                                                    "type": "expressions.and",
+                                                                    "left": {
+                                                                        "type": "expressions.variableComparison",
+                                                                        "variableScope": "global",
+                                                                        "variableName": "time.day",
+                                                                        "operator": "gte",
+                                                                        "compareTo": "36",
+                                                                        "sceneId": "cf824b0f-5af6-4a19-bac8-552a2a1bbebf",
+                                                                        "propId": null
+                                                                    },
+                                                                    "right": {
+                                                                        "type": "expressions.variableComparison",
+                                                                        "variableScope": "global",
+                                                                        "variableName": "time.day",
+                                                                        "operator": "lte",
+                                                                        "compareTo": "38",
+                                                                        "sceneId": "cf824b0f-5af6-4a19-bac8-552a2a1bbebf",
+                                                                        "propId": null
+                                                                    }
+                                                                }
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "46670c09-d069-4950-a718-6930ed4e653a",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "Sounds like Sophia just slammed a book down on her desk.",
+                                                                    "emotion": "4",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.and",
+                                                                "left": {
+                                                                    "type": "expressions.variableComparison",
+                                                                    "variableScope": "global",
+                                                                    "variableName": "time.day",
+                                                                    "operator": "gte",
+                                                                    "compareTo": "41",
+                                                                    "sceneId": "cf824b0f-5af6-4a19-bac8-552a2a1bbebf",
+                                                                    "propId": null
+                                                                },
+                                                                "right": {
+                                                                    "type": "expressions.and",
+                                                                    "left": {
+                                                                        "type": "expressions.variableComparison",
+                                                                        "variableScope": "global",
+                                                                        "variableName": "time.day",
+                                                                        "operator": "lte",
+                                                                        "compareTo": "43",
+                                                                        "sceneId": "cf824b0f-5af6-4a19-bac8-552a2a1bbebf",
+                                                                        "propId": null
+                                                                    },
+                                                                    "right": {
+                                                                        "type": "expressions.inTags",
+                                                                        "scope": "actor",
+                                                                        "scopeId": "6378f038-f4cd-49aa-8357-dcb46a978684",
+                                                                        "scopeFilterId": null,
+                                                                        "tags": "Had11thTalk",
+                                                                        "has": false
+                                                                    }
+                                                                }
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "f41aaeb8-5aaf-4bb0-8dd5-2f0c13868933",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "Sounds like Sophia is sharpening a knife...",
+                                                                    "emotion": "4",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": null,
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.nodeCycle",
+                                                                    "id": "c7b63ae4-109a-4d1d-a08d-fa064ffb664f",
+                                                                    "nodes": [
+                                                                        {
+                                                                            "type": "nodes.speak",
+                                                                            "id": "6d9e2668-df40-4632-a17b-339db1246550",
+                                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                            "actorId2": null,
+                                                                            "text": "I can hear someone humming...",
+                                                                            "emotion": "0",
+                                                                            "emotion2": "0",
+                                                                            "device": "0",
+                                                                            "device2": "0"
+                                                                        },
+                                                                        {
+                                                                            "type": "nodes.speak",
+                                                                            "id": "e9fbeb50-58c4-4954-af6c-cb405d635879",
+                                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                            "actorId2": null,
+                                                                            "text": "I can hear someone buffing her nails...",
+                                                                            "emotion": "1",
+                                                                            "emotion2": "0",
+                                                                            "device": "0",
+                                                                            "device2": "0"
+                                                                        },
+                                                                        {
+                                                                            "type": "nodes.speak",
+                                                                            "id": "ae38aecd-0014-41ad-b038-68409d44826f",
+                                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                            "actorId2": null,
+                                                                            "text": "Sounds like someone slamming shut a desk drawer...",
+                                                                            "emotion": "0",
+                                                                            "emotion2": "0",
+                                                                            "device": "0",
+                                                                            "device2": "0"
+                                                                        },
+                                                                        {
+                                                                            "type": "nodes.speak",
+                                                                            "id": "171407a2-2bff-45f7-80b2-78f99df3df7d",
+                                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                            "actorId2": null,
+                                                                            "text": "I think I hear the sound of papers being shuffled...",
+                                                                            "emotion": "0",
+                                                                            "emotion2": "0",
+                                                                            "device": "0",
+                                                                            "device2": "0"
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "3a11d2e2-13df-41bd-8ce8-e2ba9a2961ce",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "I don't hear anything in there.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.playAnimation",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "animationName": "KneelUp",
+                                    "wait": true
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "5",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "9e01d9b3-c197-4aa9-a6b4-ad8b7783d0ff",
+                            "text": "Open the Door",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "target",
+                                                "scopeId": "318320e6-40d0-4e0b-9925-8a35ac1a3e7c",
+                                                "scopeFilterId": "cf824b0f-5af6-4a19-bac8-552a2a1bbebf",
+                                                "tags": "locked",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "2003bf40-a622-473e-9b0a-cf8f743e4523",
+                                                    "scriptId": "0742870b-eb5a-49da-bff7-5caf4138f132",
+                                                    "entryPointId": "68790c4d-bd19-464f-be9c-05a9fe814125",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                },
+                                                {
+                                                    "type": "nodes.changeScene",
+                                                    "sceneId": "905016da-4317-4d06-945d-1357b12b0d73",
+                                                    "spawnId": "08ebeb82-d515-4c30-ae83-2d361cc4c7fa",
+                                                    "fadeTime": 2
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "ca441dc8-4380-456f-8b38-e23a636941f9",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "The door is locked. Must be after reception hours now.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "2",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "d6bcba10-ef0c-4ed0-be72-3db9ed0ddf95",
+                            "text": "Pick the Lock",
+                            "nodes": [
+                                {
+                                    "id": "efa6a105-0e90-4892-9bc9-393af571287e",
+                                    "type": "nodes.skillBranch",
+                                    "skill": "Tool Use",
+                                    "target": "30",
+                                    "success": {
+                                        "type": "nodes.block",
+                                        "nodes": [
+                                            {
+                                                "type": "nodes.playAnimation",
+                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                "animationName": "KneelDown",
+                                                "wait": true
+                                            },
+                                            {
+                                                "type": "nodes.invokeScript",
+                                                "id": "71a67c28-b989-47dd-bd66-1cf1832095b4",
+                                                "scriptId": "f214e893-43e1-4ba8-bb48-5ad1177e61de",
+                                                "entryPointId": "",
+                                                "currentScope": "Scenes",
+                                                "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                                "currentActorId": null,
+                                                "currentStoryEventId": null,
+                                                "currentPropId": null
+                                            },
+                                            {
+                                                "type": "nodes.playAnimation",
+                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                "animationName": "KneelUp",
+                                                "wait": false
+                                            },
+                                            {
+                                                "type": "nodes.speak",
+                                                "id": "9d65d2f8-2e02-41a0-95ea-1921a874d3e7",
+                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                "actorId2": null,
+                                                "text": "Now I can reconnoiter the reception room.",
+                                                "emotion": "0",
+                                                "emotion2": "0",
+                                                "device": "0",
+                                                "device2": "0"
+                                            },
+                                            {
+                                                "type": "nodes.invokeScript",
+                                                "id": "d9a45e09-32b8-40fe-9603-a38197bf3e18",
+                                                "scriptId": "0742870b-eb5a-49da-bff7-5caf4138f132",
+                                                "entryPointId": "68790c4d-bd19-464f-be9c-05a9fe814125",
+                                                "currentScope": "Scenes",
+                                                "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                                "currentActorId": null,
+                                                "currentStoryEventId": null,
+                                                "currentPropId": null
+                                            },
+                                            {
+                                                "type": "nodes.changeScene",
+                                                "sceneId": "905016da-4317-4d06-945d-1357b12b0d73",
+                                                "spawnId": "08ebeb82-d515-4c30-ae83-2d361cc4c7fa",
+                                                "fadeTime": 2
+                                            }
+                                        ]
+                                    },
+                                    "failure": {
+                                        "type": "nodes.block",
+                                        "nodes": [
+                                            {
+                                                "type": "nodes.playAnimation",
+                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                "animationName": "KneelDown",
+                                                "wait": true
+                                            },
+                                            {
+                                                "type": "nodes.invokeScript",
+                                                "id": "a2a9d3bf-3459-4e83-81ab-cf9cc387a1f6",
+                                                "scriptId": "c806f4c0-6bc6-471a-97ab-fc59190de6da",
+                                                "entryPointId": "",
+                                                "currentScope": "Scenes",
+                                                "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                                "currentActorId": null,
+                                                "currentStoryEventId": null,
+                                                "currentPropId": null
+                                            },
+                                            {
+                                                "type": "nodes.playAnimation",
+                                                "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                "animationName": "KneelUp"
+                                            }
+                                        ]
+                                    },
+                                    "notify": true
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inTags",
+                                    "scope": "target",
+                                    "scopeId": null,
+                                    "scopeFilterId": null,
+                                    "tags": "locked",
+                                    "has": true
+                                },
+                                "right": {
+                                    "type": "expressions.variableComparison",
+                                    "variableScope": "global",
+                                    "variableName": "ego.haslockpick",
+                                    "operator": "eq",
+                                    "compareTo": "true",
+                                    "sceneId": "cf824b0f-5af6-4a19-bac8-552a2a1bbebf",
+                                    "propId": null
+                                }
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "5",
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

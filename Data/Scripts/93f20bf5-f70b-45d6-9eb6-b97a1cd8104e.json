@@ -1,0 +1,178 @@
+{
+    "type": "script",
+    "id": "93f20bf5-f70b-45d6-9eb6-b97a1cd8104e",
+    "name": "Exit_toCataA",
+    "sceneId": "aee3c0c9-4f51-4537-843d-07e84acaff1a",
+    "propId": "20090137-fd31-48b8-a9cc-d5b34c2cb458",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "dca4cb4e-54ed-493e-b805-d9a17264ddff",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "44e0772f-681b-47c8-a525-9e075efbe208",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "c0f57a55-c1a3-4b85-bae3-b089a8bfe0f3",
+                            "text": "Examine the Door",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "dc6f01c2-4bfa-4366-ab6b-b3f8f3741871",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "This door says it leads to the \"Cubiculum Luminari,\" whatever that means.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "03cf188f-40d6-47cb-802c-da875d0c2958",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "It's not locked... and it looks like it's been recently opened.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "target",
+                                                "scopeId": null,
+                                                "scopeFilterId": null,
+                                                "tags": "marked",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "ceba42f4-8936-42b1-bca1-946cf4d11eba",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "I can see my chalk writing. This leads to the \"Light\" room.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "24d4ca5a-97dc-41ea-82af-19d23645a21d",
+                            "text": "Open the Door",
+                            "nodes": [
+                                {
+                                    "type": "nodes.incrementTime",
+                                    "id": "4a819038-3ed8-43e0-b7c1-b33fc7aa895e",
+                                    "days": 0,
+                                    "hours": 0,
+                                    "minutes": "5"
+                                },
+                                {
+                                    "type": "nodes.invokeScript",
+                                    "id": "86b2f9be-b0d0-4d44-b8c8-f8445882f09c",
+                                    "scriptId": "0742870b-eb5a-49da-bff7-5caf4138f132",
+                                    "entryPointId": "dca4cb4e-54ed-493e-b805-d9a17264ddff",
+                                    "currentScope": "Scenes",
+                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                    "currentActorId": null,
+                                    "currentStoryEventId": null,
+                                    "currentPropId": null
+                                },
+                                {
+                                    "type": "nodes.changeScene",
+                                    "sceneId": "dc706bb3-df41-4404-827c-3583baea588f",
+                                    "spawnId": "66461236-6dd9-4300-b56e-f5bbbfb1d798",
+                                    "fadeTime": 2
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "895a9493-4cab-4483-aaf6-55c59170f96d",
+                            "text": "Mark the Door",
+                            "nodes": [
+                                {
+                                    "type": "nodes.playSoundEffect",
+                                    "soundEffectName": "Using Chalk.wav",
+                                    "wait": false
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "d4a98a5f-2cd6-4cbb-9194-6b04aa37fcdd",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "I'll mark this door with \"Light.\" ",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "8f787af6-1477-4820-8e73-61251b645f1c",
+                                    "scope": "target",
+                                    "scopeId": null,
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "marked",
+                                    "tagsToRemove": null
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inInventory",
+                                    "propId": "646cea66-c6c6-4dba-b093-6ec5b7e987a5",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "has": true
+                                },
+                                "right": {
+                                    "type": "expressions.inTags",
+                                    "scope": "target",
+                                    "scopeId": null,
+                                    "scopeFilterId": null,
+                                    "tags": "marked",
+                                    "has": false
+                                }
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "5",
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

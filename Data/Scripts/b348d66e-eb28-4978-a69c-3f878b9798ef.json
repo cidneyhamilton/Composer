@@ -1,0 +1,189 @@
+{
+    "type": "script",
+    "id": "b348d66e-eb28-4978-a69c-3f878b9798ef",
+    "name": "Interact with Nido Door",
+    "sceneId": "f1d169df-e10e-451d-8481-0d0290b7cbbe",
+    "propId": "41d8cec9-9415-43d7-9fe1-c5831bcad4fe",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "1f66127e-536d-443a-a770-8adc9de26a65",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "7b979e82-b933-4b79-8627-b2b08ae74922",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "4e649eed-c973-44ff-b9e9-3b98eee8b592",
+                            "text": "Look at the Door",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "0051d5ea-3393-48e8-b3d2-568465ee55fc",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "This is a pretty fancy door. The plaque says that this leads to the Nido Wing.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "663da991-f030-4c6d-a9ae-286cd294c4a7",
+                            "text": "Open the Door",
+                            "nodes": [
+                                {
+                                    "type": "nodes.invokeScript",
+                                    "id": "34234ad4-ca36-4ee5-ba28-b3d3fcc852e8",
+                                    "scriptId": "a1004657-984b-46ba-8870-9550cbfb4b35",
+                                    "entryPointId": "1f66127e-536d-443a-a770-8adc9de26a65",
+                                    "currentScope": "Scenes",
+                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                    "currentActorId": null,
+                                    "currentStoryEventId": null,
+                                    "currentPropId": null
+                                },
+                                {
+                                    "type": "nodes.changeScene",
+                                    "sceneId": "5aa634b1-8fc5-4b1c-a556-7719d1e665a3",
+                                    "spawnId": "10689b93-3a8a-46d4-ad7f-e832bd35b6e7",
+                                    "fadeTime": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "d6f2be6c-6898-409b-b045-ae70016549ab",
+                            "text": "Listen at the Door",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.and",
+                                                "left": {
+                                                    "type": "expressions.variableComparison",
+                                                    "variableScope": "global",
+                                                    "variableName": "time.hour",
+                                                    "operator": "gte",
+                                                    "compareTo": "8",
+                                                    "sceneId": "f1d169df-e10e-451d-8481-0d0290b7cbbe",
+                                                    "propId": null
+                                                },
+                                                "right": {
+                                                    "type": "expressions.variableComparison",
+                                                    "variableScope": "global",
+                                                    "variableName": "time.hour",
+                                                    "operator": "lt",
+                                                    "compareTo": "19",
+                                                    "sceneId": "f1d169df-e10e-451d-8481-0d0290b7cbbe",
+                                                    "propId": null
+                                                }
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "683f8db9-ffda-44a7-9938-219788d605f2",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "It's too early in the day. I'd look pretty silly trying to listen to this door if someone caught me at it. ",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.playAnimation",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "animationName": "KneelDown",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.onceOnly",
+                                                    "id": "2aac71dc-c09b-4bf9-8ce3-acb73adab01d",
+                                                    "nodes": [
+                                                        {
+                                                            "id": "b29ca423-2c35-4574-b7f7-6ae8e9b0f170",
+                                                            "type": "nodes.improveSkill",
+                                                            "skill": "Perception",
+                                                            "amount": "1",
+                                                            "notify": true
+                                                        },
+                                                        {
+                                                            "id": "cc3cffe0-ac68-496f-b6bc-e6d56276d417",
+                                                            "type": "nodes.skillBranch",
+                                                            "skill": "Perception",
+                                                            "target": "30",
+                                                            "success": {
+                                                                "type": "nodes.block",
+                                                                "nodes": []
+                                                            },
+                                                            "failure": {
+                                                                "type": "nodes.block",
+                                                                "nodes": []
+                                                            },
+                                                            "notify": true
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "de08aa86-9bd2-49bd-bb14-4996432dab6d",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "I can't hear anything in the room.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.playAnimation",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "animationName": "KneelUp",
+                                                    "wait": true
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "1",
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

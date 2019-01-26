@@ -1,0 +1,887 @@
+{
+    "type": "script",
+    "id": "24a8afed-3cad-4970-9b33-5abd219fb320",
+    "name": "_Store Load",
+    "sceneId": "af912e02-46a1-4d88-a547-59f3d2093c7b",
+    "actorId": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+    "trigger": {
+        "type": "triggers.load",
+        "name": "Load"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "26b549be-bf65-469b-a3b7-b1f550d4afeb",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.changePropVisibility",
+                    "id": "a3fe867a-13b2-404a-9c11-718b5383cf31",
+                    "propId": "74c53735-37d9-4ca3-99e3-ab6e5da1f9d1",
+                    "sceneId": "af912e02-46a1-4d88-a547-59f3d2093c7b",
+                    "status": "Hidden",
+                    "wait": true
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.enteredScene",
+                                "sceneId": "af912e02-46a1-4d88-a547-59f3d2093c7b",
+                                "scope": "DuringCurrentEvent",
+                                "operator": "eq",
+                                "count": 0
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "e641a3a1-aa8c-41cf-986f-6dbe76edf745",
+                                    "scope": "actor",
+                                    "scopeId": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                    "scopeFilterId": null,
+                                    "tagsToRemove": "GreetedToday"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.placeActor",
+                    "actorId": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                    "spawnId": "f8931823-0b5d-4c7c-8d9a-6de6881c7c08",
+                    "pose": "sitting",
+                    "behaviour": "Idle",
+                    "immediate": null
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "actor",
+                                "scopeId": "00707f50-1f0d-4c1c-98b3-a2780d28cf0e",
+                                "scopeFilterId": null,
+                                "tags": "TalkedtoGregor",
+                                "has": false
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.setVariable",
+                                    "name": "GregorState",
+                                    "scope": "scene",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "source": {
+                                        "type": "variables.literal",
+                                        "value": "FirstVisit",
+                                        "displayName": "Literal"
+                                    },
+                                    "add": false
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.enteredScene",
+                                    "sceneId": "af912e02-46a1-4d88-a547-59f3d2093c7b",
+                                    "scope": "DuringCurrentEvent",
+                                    "operator": "eq",
+                                    "count": 0
+                                },
+                                "right": {
+                                    "type": "expressions.and",
+                                    "left": {
+                                        "type": "expressions.inTags",
+                                        "scope": "target",
+                                        "scopeId": "af912e02-46a1-4d88-a547-59f3d2093c7b",
+                                        "scopeFilterId": null,
+                                        "tags": "Had2ndVisit",
+                                        "has": false
+                                    },
+                                    "right": {
+                                        "type": "expressions.variableComparison",
+                                        "variableScope": "global",
+                                        "variableName": "time.day",
+                                        "operator": "lt",
+                                        "compareTo": "5",
+                                        "sceneId": null,
+                                        "propId": null
+                                    }
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.comment",
+                                    "message": "Has been in store before, but this is first time on this day.",
+                                    "commentor": "First entrance on new day"
+                                },
+                                {
+                                    "type": "nodes.setVariable",
+                                    "name": "GregorState",
+                                    "scope": "scene",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "source": {
+                                        "type": "variables.literal",
+                                        "value": "SecondVisit",
+                                        "displayName": "Literal"
+                                    },
+                                    "add": false
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.variableComparison",
+                                    "variableScope": "global",
+                                    "variableName": "time.day",
+                                    "operator": "gte",
+                                    "compareTo": "5",
+                                    "sceneId": null,
+                                    "propId": null
+                                },
+                                "right": {
+                                    "type": "expressions.variableComparison",
+                                    "variableScope": "global",
+                                    "variableName": "time.day",
+                                    "operator": "lt",
+                                    "compareTo": "9",
+                                    "sceneId": null,
+                                    "propId": null
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "scene",
+                                                "scopeId": "af912e02-46a1-4d88-a547-59f3d2093c7b",
+                                                "scopeFilterId": null,
+                                                "tags": "HadEsmeHere",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.comment",
+                                                    "message": "Stay in neutral state",
+                                                    "commentor": "3rd or more visit in this state"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "scene",
+                                                "variableName": "GregorState",
+                                                "operator": "eq",
+                                                "compareTo": "EsmeHere",
+                                                "sceneId": null,
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.comment",
+                                                    "message": "Esme is no longer here",
+                                                    "commentor": "2nd time in this event"
+                                                },
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "f49d86c3-4b73-415c-8e44-505e0f7d1608",
+                                                    "scope": "scene",
+                                                    "scopeId": "af912e02-46a1-4d88-a547-59f3d2093c7b",
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "HadEsmeHere",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.comment",
+                                                    "message": "Keep track of the day Shawn met Esme, so she doesn't spawn in the Wine Cellar until the next day.",
+                                                    "commentor": "Cidney"
+                                                },
+                                                {
+                                                    "type": "nodes.setVariable",
+                                                    "name": "GregorState",
+                                                    "scope": "scene",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "source": {
+                                                        "type": "variables.literal",
+                                                        "value": "Neutral",
+                                                        "displayName": "Literal"
+                                                    },
+                                                    "add": false
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "global",
+                                                "variableName": "time.hour",
+                                                "operator": "gte",
+                                                "compareTo": "18",
+                                                "sceneId": null,
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.comment",
+                                                    "message": "Esme is here, Shawn can talk to her and Gregor",
+                                                    "commentor": "First visit during these days"
+                                                },
+                                                {
+                                                    "type": "nodes.setVariable",
+                                                    "name": "GregorState",
+                                                    "scope": "scene",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "source": {
+                                                        "type": "variables.literal",
+                                                        "value": "EsmeHere",
+                                                        "displayName": "Literal"
+                                                    },
+                                                    "add": false
+                                                },
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "c8a95fc1-6dc9-43f0-b00d-d5bef7559698",
+                                                    "scope": "scene",
+                                                    "scopeId": "af912e02-46a1-4d88-a547-59f3d2093c7b",
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "EsmeLeftStore",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.placeActor",
+                                                    "actorId": "98ea49aa-86cf-4fa9-9bd5-6aa2fe7c809d",
+                                                    "spawnId": "cb861aa5-3b0f-4d2d-8808-fe0cd569feae",
+                                                    "pose": "Stand",
+                                                    "behaviour": "Idle",
+                                                    "immediate": true
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.variableComparison",
+                                    "variableScope": "global",
+                                    "variableName": "time.day",
+                                    "operator": "gte",
+                                    "compareTo": "9",
+                                    "sceneId": null,
+                                    "propId": null
+                                },
+                                "right": {
+                                    "type": "expressions.variableComparison",
+                                    "variableScope": "global",
+                                    "variableName": "time.day",
+                                    "operator": "lte",
+                                    "compareTo": "10",
+                                    "sceneId": null,
+                                    "propId": null
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "scene",
+                                                "scopeId": "af912e02-46a1-4d88-a547-59f3d2093c7b",
+                                                "scopeFilterId": null,
+                                                "tags": "HadEsmeAgain",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.comment",
+                                                    "message": "Stay in neutral state",
+                                                    "commentor": "3rd or more visit in this state"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "scene",
+                                                "variableName": "GregorState",
+                                                "operator": "eq",
+                                                "compareTo": "EsmeAgain",
+                                                "sceneId": null,
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.comment",
+                                                    "message": "Esme is no longer here",
+                                                    "commentor": "2nd time in this event"
+                                                },
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "5c96d5fa-b718-4f4b-ae71-418f74f58da6",
+                                                    "scope": "scene",
+                                                    "scopeId": "af912e02-46a1-4d88-a547-59f3d2093c7b",
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "HadEsmeAgain",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.setVariable",
+                                                    "name": "GregorState",
+                                                    "scope": "scene",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "source": {
+                                                        "type": "variables.literal",
+                                                        "value": "Neutral",
+                                                        "displayName": "Literal"
+                                                    },
+                                                    "add": false
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "global",
+                                                "variableName": "time.hour",
+                                                "operator": "gte",
+                                                "compareTo": "18",
+                                                "sceneId": null,
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.comment",
+                                                    "message": "Esme is here, Shawn can talk to her and Gregor",
+                                                    "commentor": "First visit during these days"
+                                                },
+                                                {
+                                                    "type": "nodes.setVariable",
+                                                    "name": "GregorState",
+                                                    "scope": "scene",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "source": {
+                                                        "type": "variables.literal",
+                                                        "value": "EsmeAgain",
+                                                        "displayName": "Literal"
+                                                    },
+                                                    "add": false
+                                                },
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "1c90c707-9802-49d0-9d92-981581e9e781",
+                                                    "scope": "scene",
+                                                    "scopeId": "af912e02-46a1-4d88-a547-59f3d2093c7b",
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "EsmeLeftStore",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.placeActor",
+                                                    "actorId": "98ea49aa-86cf-4fa9-9bd5-6aa2fe7c809d",
+                                                    "spawnId": "cb861aa5-3b0f-4d2d-8808-fe0cd569feae",
+                                                    "pose": "Stand",
+                                                    "behaviour": "Idle",
+                                                    "immediate": true
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.variableComparison",
+                                    "variableScope": "global",
+                                    "variableName": "time.day",
+                                    "operator": "gte",
+                                    "compareTo": "11",
+                                    "sceneId": null,
+                                    "propId": null
+                                },
+                                "right": {
+                                    "type": "expressions.variableComparison",
+                                    "variableScope": "global",
+                                    "variableName": "time.day",
+                                    "operator": "lte",
+                                    "compareTo": "13",
+                                    "sceneId": null,
+                                    "propId": null
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.setVariable",
+                                    "name": "GregorState",
+                                    "scope": "scene",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "source": {
+                                        "type": "variables.literal",
+                                        "value": "Traps",
+                                        "displayName": "Literal"
+                                    },
+                                    "add": false
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.variableComparison",
+                                    "variableScope": "global",
+                                    "variableName": "time.day",
+                                    "operator": "gte",
+                                    "compareTo": "16",
+                                    "sceneId": null,
+                                    "propId": null
+                                },
+                                "right": {
+                                    "type": "expressions.variableComparison",
+                                    "variableScope": "global",
+                                    "variableName": "time.day",
+                                    "operator": "lte",
+                                    "compareTo": "19",
+                                    "sceneId": null,
+                                    "propId": null
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.setVariable",
+                                    "name": "GregorState",
+                                    "scope": "scene",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "source": {
+                                        "type": "variables.literal",
+                                        "value": "Grapnel",
+                                        "displayName": "Literal"
+                                    },
+                                    "add": false
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.variableComparison",
+                                    "variableScope": "global",
+                                    "variableName": "time.day",
+                                    "operator": "gte",
+                                    "compareTo": "20",
+                                    "sceneId": null,
+                                    "propId": null
+                                },
+                                "right": {
+                                    "type": "expressions.variableComparison",
+                                    "variableScope": "global",
+                                    "variableName": "time.day",
+                                    "operator": "lte",
+                                    "compareTo": "31",
+                                    "sceneId": null,
+                                    "propId": null
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.setVariable",
+                                    "name": "GregorState",
+                                    "scope": "scene",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "source": {
+                                        "type": "variables.literal",
+                                        "value": "Houdini",
+                                        "displayName": "Literal"
+                                    },
+                                    "add": false
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.variableComparison",
+                                    "variableScope": "global",
+                                    "variableName": "time.day",
+                                    "operator": "gte",
+                                    "compareTo": "32",
+                                    "sceneId": null,
+                                    "propId": null
+                                },
+                                "right": {
+                                    "type": "expressions.variableComparison",
+                                    "variableScope": "global",
+                                    "variableName": "time.day",
+                                    "operator": "lte",
+                                    "compareTo": "35",
+                                    "sceneId": null,
+                                    "propId": null
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.setVariable",
+                                    "name": "GregorState",
+                                    "scope": "scene",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "source": {
+                                        "type": "variables.literal",
+                                        "value": "Magic",
+                                        "displayName": "Literal"
+                                    },
+                                    "add": false
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.variableComparison",
+                                    "variableScope": "global",
+                                    "variableName": "time.day",
+                                    "operator": "gte",
+                                    "compareTo": "36",
+                                    "sceneId": null,
+                                    "propId": null
+                                },
+                                "right": {
+                                    "type": "expressions.variableComparison",
+                                    "variableScope": "global",
+                                    "variableName": "time.day",
+                                    "operator": "lte",
+                                    "compareTo": "38",
+                                    "sceneId": null,
+                                    "propId": null
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.setVariable",
+                                    "name": "GregorState",
+                                    "scope": "scene",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "source": {
+                                        "type": "variables.literal",
+                                        "value": "NightsDead",
+                                        "displayName": "Literal"
+                                    },
+                                    "add": false
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.variableComparison",
+                                    "variableScope": "global",
+                                    "variableName": "time.day",
+                                    "operator": "gte",
+                                    "compareTo": "41",
+                                    "sceneId": null,
+                                    "propId": null
+                                },
+                                "right": {
+                                    "type": "expressions.variableComparison",
+                                    "variableScope": "global",
+                                    "variableName": "time.day",
+                                    "operator": "lte",
+                                    "compareTo": "43",
+                                    "sceneId": null,
+                                    "propId": null
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.changePropVisibility",
+                                    "id": "a0f581b3-a4e3-431b-8787-0fd1964f2c09",
+                                    "propId": "74c53735-37d9-4ca3-99e3-ab6e5da1f9d1",
+                                    "sceneId": "af912e02-46a1-4d88-a547-59f3d2093c7b",
+                                    "status": "Visible",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.setVariable",
+                                    "name": "GregorState",
+                                    "scope": "scene",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "source": {
+                                        "type": "variables.literal",
+                                        "value": "DratQueen",
+                                        "displayName": "Literal"
+                                    },
+                                    "add": false
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.variableComparison",
+                                    "variableScope": "global",
+                                    "variableName": "time.day",
+                                    "operator": "gte",
+                                    "compareTo": "44",
+                                    "sceneId": null,
+                                    "propId": null
+                                },
+                                "right": {
+                                    "type": "expressions.and",
+                                    "left": {
+                                        "type": "expressions.variableComparison",
+                                        "variableScope": "global",
+                                        "variableName": "time.day",
+                                        "operator": "lte",
+                                        "compareTo": "45",
+                                        "sceneId": null,
+                                        "propId": null
+                                    },
+                                    "right": {
+                                        "type": "expressions.inTags",
+                                        "scope": "actor",
+                                        "scopeId": "3ec7237c-65ea-4a23-9e21-697f17a2dbe8",
+                                        "scopeFilterId": null,
+                                        "tags": "QueenDone",
+                                        "has": false
+                                    }
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.setVariable",
+                                    "name": "GregorState",
+                                    "scope": "scene",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "source": {
+                                        "type": "variables.literal",
+                                        "value": "ScaryQueen",
+                                        "displayName": "Literal"
+                                    },
+                                    "add": false
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.variableComparison",
+                                    "variableScope": "global",
+                                    "variableName": "time.day",
+                                    "operator": "gte",
+                                    "compareTo": "16",
+                                    "sceneId": "af912e02-46a1-4d88-a547-59f3d2093c7b",
+                                    "propId": null
+                                },
+                                "right": {
+                                    "type": "expressions.variableComparison",
+                                    "variableScope": "global",
+                                    "variableName": "time.day",
+                                    "operator": "lte",
+                                    "compareTo": "17",
+                                    "sceneId": "af912e02-46a1-4d88-a547-59f3d2093c7b",
+                                    "propId": null
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "scene",
+                                                "scopeId": "af912e02-46a1-4d88-a547-59f3d2093c7b",
+                                                "scopeFilterId": null,
+                                                "tags": "HadEsmeProach",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.comment",
+                                                    "message": "Stay in neutral state",
+                                                    "commentor": "3rd or more visit in this state"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "scene",
+                                                "variableName": "GregorState",
+                                                "operator": "eq",
+                                                "compareTo": "EsmeProach",
+                                                "sceneId": null,
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.comment",
+                                                    "message": "Esme is no longer here",
+                                                    "commentor": "2nd time in this event"
+                                                },
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "41e7a1d1-c663-4a9f-be56-c8b49be79de3",
+                                                    "scope": "scene",
+                                                    "scopeId": "af912e02-46a1-4d88-a547-59f3d2093c7b",
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "HadEsmeProach",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.setVariable",
+                                                    "name": "GregorState",
+                                                    "scope": "scene",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "source": {
+                                                        "type": "variables.literal",
+                                                        "value": "Neutral",
+                                                        "displayName": "Literal"
+                                                    },
+                                                    "add": false
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "global",
+                                                "variableName": "time.hour",
+                                                "operator": "gte",
+                                                "compareTo": "18",
+                                                "sceneId": null,
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.comment",
+                                                    "message": "Esme is here, Shawn can talk to her and Gregor",
+                                                    "commentor": "First visit during these days"
+                                                },
+                                                {
+                                                    "type": "nodes.setVariable",
+                                                    "name": "GregorState",
+                                                    "scope": "scene",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "source": {
+                                                        "type": "variables.literal",
+                                                        "value": "EsmeProach",
+                                                        "displayName": "Literal"
+                                                    },
+                                                    "add": false
+                                                },
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "ff359f29-d3db-46d6-8d5c-2a211b9e84b8",
+                                                    "scope": "scene",
+                                                    "scopeId": "af912e02-46a1-4d88-a547-59f3d2093c7b",
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "EsmeLeftStore",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.placeActor",
+                                                    "actorId": "98ea49aa-86cf-4fa9-9bd5-6aa2fe7c809d",
+                                                    "spawnId": "cb861aa5-3b0f-4d2d-8808-fe0cd569feae",
+                                                    "pose": "Stand",
+                                                    "behaviour": "Idle",
+                                                    "immediate": true
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "actor",
+                                "scopeId": "3ec7237c-65ea-4a23-9e21-697f17a2dbe8",
+                                "scopeFilterId": null,
+                                "tags": "QueenDone",
+                                "has": true
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.setVariable",
+                                    "name": "GregorState",
+                                    "scope": "scene",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "source": {
+                                        "type": "variables.literal",
+                                        "value": "QueenOver",
+                                        "displayName": "Literal"
+                                    },
+                                    "add": false
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.setVariable",
+                                    "name": "GregorState",
+                                    "scope": "scene",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "source": {
+                                        "type": "variables.literal",
+                                        "value": "Neutral",
+                                        "displayName": "Literal"
+                                    },
+                                    "add": false
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

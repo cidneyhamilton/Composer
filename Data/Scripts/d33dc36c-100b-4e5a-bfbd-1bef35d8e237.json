@@ -1,0 +1,66 @@
+{
+    "type": "script",
+    "id": "d33dc36c-100b-4e5a-bfbd-1bef35d8e237",
+    "name": "Interact with Exit To Main",
+    "sceneId": "27f9108a-26aa-498b-b5b6-f98e8d0ec519",
+    "propId": "ecede107-3b60-4685-87c2-e3702e336153",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "5a9a4731-4061-4a9c-b326-9f445072169c",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "target",
+                                "scopeId": null,
+                                "scopeFilterId": null,
+                                "tags": "oiled",
+                                "has": false
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.playSoundEffect",
+                                    "soundEffectName": "WineCellarDoor.wav",
+                                    "wait": false
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.playSoundEffect",
+                                    "soundEffectName": "wooden_door_opening.wav",
+                                    "wait": false
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.comment",
+                    "message": "Move Shawn into barrelmaking room.",
+                    "commentor": "TODO: Need to show gate open"
+                },
+                {
+                    "type": "nodes.changeScene",
+                    "sceneId": "a670cb9b-f14e-4b92-b052-fbb75035f7fe",
+                    "spawnId": "c8738569-dbb7-44ed-992b-4e444d6fd1a8",
+                    "fadeTime": 2
+                }
+            ]
+        }
+    ]
+}

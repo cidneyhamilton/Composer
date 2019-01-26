@@ -1,0 +1,173 @@
+{
+    "type": "script",
+    "id": "949e4450-b7b7-44ad-8906-fbfff75440f5",
+    "name": "Interact with Skull Pile",
+    "sceneId": "cbb5c07c-7918-4558-8c19-e4ed45b19ba2",
+    "propId": "45c9da6f-d6d5-4c2f-8931-d41b848fc711",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "2e5952df-0337-4cfc-9829-8d0809097a6d",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "66930a1d-57ad-4323-abff-08c11be56c35",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "e621f1bc-aa2c-47be-aa7f-1229bf4adca8",
+                            "text": "Examine the Skulls",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "7a5344a1-b474-4a7d-94de-06d7d890b052",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "So many skulls around this place. I guess the rest of their bones make up the walls of this Catacombs.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "4",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "545634b7-a928-45b0-9f25-4ee3dae51dd5",
+                            "text": "Search the Skulls",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "scene",
+                                                "scopeId": "cbb5c07c-7918-4558-8c19-e4ed45b19ba2",
+                                                "scopeFilterId": null,
+                                                "tags": "F_Treasure",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "f2b9fba5-a31c-4a1a-b339-ae67f12e003d",
+                                                    "scope": "scene",
+                                                    "scopeId": "cbb5c07c-7918-4558-8c19-e4ed45b19ba2",
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "F_Treasure",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "6d360405-40a3-4bd3-8d53-7efaa36a8758",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Someone left a beaded necklace around one of the skulls.",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.changeInventory",
+                                                    "id": "7f3d9d7d-3ebe-4fa2-9f8f-f6b6ad83611a",
+                                                    "propId": "13351bce-2263-456d-8387-f85cb9af24c4",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "change": "1",
+                                                    "count": 1,
+                                                    "notify": true
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "9e824dfd-1f4c-4abe-8bd3-eed000a2b28f",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "One of these skulls is filled with coins!",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.changeMoney",
+                                                    "id": "bf928582-9530-4530-ac46-2cadb828d3df",
+                                                    "amount": "120",
+                                                    "change": "1",
+                                                    "currency": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "a73d674a-92ea-4340-9ef0-77628df374ab",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "All this is now is a pile of skulls.",
+                                                    "emotion": "2",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "5",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "0ef1fb18-f0de-4dba-b0a7-f350a1c1749c",
+                            "text": "Sense Magic",
+                            "nodes": [
+                                {
+                                    "type": "nodes.invokeScript",
+                                    "id": "d4eb0184-19b8-407d-9ff0-80f1f34ff522",
+                                    "scriptId": "533e1ce1-13d3-439f-8544-dbdf808d30c4",
+                                    "entryPointId": "606547e2-f3a9-4314-9bd0-36074f540765",
+                                    "currentScope": "Scenes",
+                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                    "currentActorId": null,
+                                    "currentStoryEventId": null,
+                                    "currentPropId": null
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "actor",
+                                "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                "scopeFilterId": null,
+                                "tags": "SenseMagic",
+                                "has": true
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "5",
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

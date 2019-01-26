@@ -1,0 +1,53 @@
+﻿<div data-bind="compose: { mode:'templated', view:'nodeEditor' }">
+    <div data-part="read" class="text">
+        <span class="actor" data-bind="text:actor.name"></span>
+        <span style="font-size: small; color: green">[<span data-bind="text: emotionsMap.getEmotionById(node.emotion)"></span>]</span>
+
+        <!--ko if: node.device == "1"-->
+            <span style="font-style: italic">(Interior Monologue)</span>
+        <!--/ko-->
+
+        <!--ko if:  node.actorId2 != null-->
+            to 
+            <span class="actor" data-bind="text:actor2.name"></span>
+            <span style="font-size: small; color: green">[<span data-bind="text: emotionsMap.getEmotionById(node.emotion2)"></span>]</span>
+
+            <!--ko if: node.device2 == "1"-->
+                <span style="font-style: italic">(Interior Monologue)</span>
+            <!--/ko-->
+        <!--/ko-->
+        <span>: </span><span data-bind="text: node.text" style="white-space: pre-wrap"></span>
+        <br/>
+        <span>Translation Notes: </span><span data-bind="text: node.notes" style="white-space: pre-wrap"></span>
+    </div>
+
+    <div data-part="write">
+        <div>
+            <h3>Speaker (Left-Hand Portrait)</h3>
+            <select data-bind="options: actors, optionsText: 'name', optionsValue: 'id', value: node.actorId, optionsCaption: 'Select Speaker'"></select>
+            <select data-bind="options: emotionsMap.emotions, optionsText: 'name', optionsValue: 'id', value: node.emotion" style="float: right"></select>
+            <select data-bind="options: emotionsMap.devices, optionsText: 'name', optionsValue: 'id', value: node.device" style="float: right"></select>
+        </div>
+
+        <div>
+            <h3>Message Text</h3>
+            <textarea rows="3" data-bind="value: node.text, valueUpdate: 'afterkeydown'" placeholder="speech"></textarea>
+        </div>
+
+        <div>
+            <h3>Translation Notes</h3>
+            <textarea rows="3" data-bind="value: node.notes, valueUpdate: 'afterkeydown'" placeholder="Translation Notes"></textarea>
+        </div>
+        <div>
+            <h3>Listener (Right-Hand Portrait)</h3>
+            <select data-bind="options: actors2, 
+                optionsText: 'name', 
+                optionsValue: 'id', 
+                value: node.actorId2, 
+                optionsCaption: 'Select Listener'">
+            </select>
+            <select data-bind="options: emotionsMap.emotions, optionsText: 'name', optionsValue: 'id', value: node.emotion2" style="float: right"></select>
+            <select data-bind="options: emotionsMap.devices, optionsText: 'name', optionsValue: 'id', value: node.device2" style="float: right"></select>
+        </div>
+    </div>
+</div>

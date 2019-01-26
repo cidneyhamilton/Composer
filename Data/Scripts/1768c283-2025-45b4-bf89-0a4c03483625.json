@@ -1,0 +1,265 @@
+{
+    "type": "script",
+    "id": "1768c283-2025-45b4-bf89-0a4c03483625",
+    "name": "Make Flambe",
+    "sceneId": "4c80661d-0537-46d4-b6d6-422313186fac",
+    "trigger": {
+        "type": "triggers.manual",
+        "name": "Manual"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "48b6d143-8b6f-41d5-a7fd-05d33bd939fd",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inInventory",
+                                    "propId": "45d0b999-a434-427e-8410-14c34295cb61",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "has": true
+                                },
+                                "right": {
+                                    "type": "expressions.and",
+                                    "left": {
+                                        "type": "expressions.inInventory",
+                                        "propId": "d80613f1-d750-4e73-a8f4-802859d4f0c4",
+                                        "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                        "has": true
+                                    },
+                                    "right": {
+                                        "type": "expressions.and",
+                                        "left": {
+                                            "type": "expressions.variableComparison",
+                                            "variableScope": "prop",
+                                            "variableName": "FillAmount",
+                                            "operator": "gt",
+                                            "compareTo": "0",
+                                            "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                            "propId": "45d0b999-a434-427e-8410-14c34295cb61"
+                                        },
+                                        "right": {
+                                            "type": "expressions.variableComparison",
+                                            "variableScope": "prop",
+                                            "variableName": "FillAmount",
+                                            "operator": "gt",
+                                            "compareTo": "0",
+                                            "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                            "propId": "d80613f1-d750-4e73-a8f4-802859d4f0c4"
+                                        }
+                                    }
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.setVariable",
+                                    "name": "charcoalAmount",
+                                    "scope": "script",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "source": {
+                                        "type": "variables.scopedVariable",
+                                        "name": "FillAmount",
+                                        "scope": "prop",
+                                        "scopeId": "45d0b999-a434-427e-8410-14c34295cb61",
+                                        "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                        "displayName": "Variable Value"
+                                    },
+                                    "add": false
+                                },
+                                {
+                                    "type": "nodes.setVariable",
+                                    "name": "mineralAmount",
+                                    "scope": "script",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "source": {
+                                        "type": "variables.scopedVariable",
+                                        "name": "FillAmount",
+                                        "scope": "prop",
+                                        "scopeId": "d80613f1-d750-4e73-a8f4-802859d4f0c4",
+                                        "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                        "displayName": "Variable Value"
+                                    },
+                                    "add": false
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "686a28a2-45fe-4f1b-bf86-e86b951ed0e8",
+                                    "actorId": "38b1ca94-de8c-4873-8810-3d0b02df469a",
+                                    "actorId2": null,
+                                    "text": "It takes 1 portion of Charcoal and 1 portions of Phosphorous to make a Flambe over 20 minutes. You have ${script.charcoalAmount} portions of Charcoal and ${script.mineralAmount} portions of Phosphorous with ${scene.craftTimeRemaining} minutes remaining. Continue crafting?",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.showMenu",
+                                    "id": "e453d505-67ef-42b4-af3a-b5ef039dca01",
+                                    "options": [
+                                        {
+                                            "type": "options.text",
+                                            "id": "f6f1876e-e3ce-4785-b6a3-f933fa6e68ad",
+                                            "text": "Continue Crafting",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.setVariable",
+                                                    "name": "ItemsMade",
+                                                    "scope": "scene",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "source": {
+                                                        "type": "variables.literal",
+                                                        "value": "2",
+                                                        "displayName": "Literal"
+                                                    },
+                                                    "add": true
+                                                },
+                                                {
+                                                    "type": "nodes.setVariable",
+                                                    "name": "craftTimeRemaining",
+                                                    "scope": "scene",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "source": {
+                                                        "type": "variables.literal",
+                                                        "value": "-20",
+                                                        "displayName": "Literal"
+                                                    },
+                                                    "add": true
+                                                },
+                                                {
+                                                    "type": "nodes.setVariable",
+                                                    "name": "FillAmount",
+                                                    "scope": "prop",
+                                                    "scopeId": "45d0b999-a434-427e-8410-14c34295cb61",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "source": {
+                                                        "type": "variables.literal",
+                                                        "value": "-1",
+                                                        "displayName": "Literal"
+                                                    },
+                                                    "add": true
+                                                },
+                                                {
+                                                    "type": "nodes.setVariable",
+                                                    "name": "FillAmount",
+                                                    "scope": "prop",
+                                                    "scopeId": "d80613f1-d750-4e73-a8f4-802859d4f0c4",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "source": {
+                                                        "type": "variables.literal",
+                                                        "value": "-1",
+                                                        "displayName": "Literal"
+                                                    },
+                                                    "add": true
+                                                },
+                                                {
+                                                    "type": "nodes.changeInventory",
+                                                    "id": "b25026cf-782c-416b-82a4-911356870bcc",
+                                                    "propId": "98432bd0-5252-4bce-a90a-c9243902be62",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "change": "1",
+                                                    "count": 1,
+                                                    "notify": true
+                                                }
+                                            ],
+                                            "expression": null,
+                                            "ignoreChildAvailability": true,
+                                            "minutes": 0,
+                                            "ExitMenu": true
+                                        }
+                                    ],
+                                    "AutoAddDone": true,
+                                    "Unique": false
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.or",
+                                "left": {
+                                    "type": "expressions.inInventory",
+                                    "propId": "d80613f1-d750-4e73-a8f4-802859d4f0c4",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "has": false
+                                },
+                                "right": {
+                                    "type": "expressions.inInventory",
+                                    "propId": "45d0b999-a434-427e-8410-14c34295cb61",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "has": false
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "f78b20af-396d-42bc-bf60-d8ebe82ded80",
+                                    "actorId": "38b1ca94-de8c-4873-8810-3d0b02df469a",
+                                    "actorId2": null,
+                                    "text": "You do not have enough materials. It takes 1 portion of Charcoal and 1 portions of Phosphorous to make a Flambe - but you need a Charcoal Jar and Phosphorous Jar to collect them.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.setVariable",
+                                    "name": "charcoalAmount",
+                                    "scope": "script",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "source": {
+                                        "type": "variables.scopedVariable",
+                                        "name": "FillAmount",
+                                        "scope": "prop",
+                                        "scopeId": "45d0b999-a434-427e-8410-14c34295cb61",
+                                        "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                        "displayName": "Variable Value"
+                                    },
+                                    "add": false
+                                },
+                                {
+                                    "type": "nodes.setVariable",
+                                    "name": "mineralAmount",
+                                    "scope": "script",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "source": {
+                                        "type": "variables.scopedVariable",
+                                        "name": "FillAmount",
+                                        "scope": "prop",
+                                        "scopeId": "d80613f1-d750-4e73-a8f4-802859d4f0c4",
+                                        "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                        "displayName": "Variable Value"
+                                    },
+                                    "add": false
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "654481d3-88d1-44db-bbfe-23b66d177bd0",
+                                    "actorId": "38b1ca94-de8c-4873-8810-3d0b02df469a",
+                                    "actorId2": null,
+                                    "text": "You do not have enough materials. It takes 1 portion of Charcoal and 1 portions of Phosphorous to make a Flambe. You have ${script.charcoalAmount} portions of Charcoal and ${script.mineralAmount} portions of Phosphorous.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

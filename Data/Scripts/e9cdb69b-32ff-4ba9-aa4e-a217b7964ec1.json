@@ -1,0 +1,1278 @@
+{
+    "type": "script",
+    "id": "e9cdb69b-32ff-4ba9-aa4e-a217b7964ec1",
+    "name": "_Great Hall Enter",
+    "sceneId": "40f18665-4cc2-4acd-b17e-5189e68b7a33",
+    "trigger": {
+        "type": "triggers.enter",
+        "name": "Enter"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "1a99eb3a-7362-4326-8fa3-7da398ca57c1",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.comment",
+                    "message": "Award trophy for wearing the School Uniform if it's currently equipped.",
+                    "commentor": "Cidney"
+                },
+                {
+                    "type": "nodes.invokeScript",
+                    "id": "990265b1-be54-4d0f-8208-4073fa63b73c",
+                    "scriptId": "d3113b55-e10f-4ac8-a631-c6f6e09f07dd",
+                    "entryPointId": "1a99eb3a-7362-4326-8fa3-7da398ca57c1",
+                    "currentScope": "Scenes",
+                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                    "currentActorId": null,
+                    "currentStoryEventId": null,
+                    "currentPropId": null
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.variableComparison",
+                                    "variableScope": "global",
+                                    "variableName": "time.day",
+                                    "operator": "eq",
+                                    "compareTo": "14",
+                                    "sceneId": "40f18665-4cc2-4acd-b17e-5189e68b7a33",
+                                    "propId": null
+                                },
+                                "right": {
+                                    "type": "expressions.and",
+                                    "left": {
+                                        "type": "expressions.variableComparison",
+                                        "variableScope": "global",
+                                        "variableName": "time.hour",
+                                        "operator": "gte",
+                                        "compareTo": "18",
+                                        "sceneId": "40f18665-4cc2-4acd-b17e-5189e68b7a33",
+                                        "propId": null
+                                    },
+                                    "right": {
+                                        "type": "expressions.variableComparison",
+                                        "variableScope": "global",
+                                        "variableName": "time.hour",
+                                        "operator": "lte",
+                                        "compareTo": "22",
+                                        "sceneId": "40f18665-4cc2-4acd-b17e-5189e68b7a33",
+                                        "propId": null
+                                    }
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.onceDaily",
+                                    "id": "cfcc8a15-11b7-4838-ae99-c49883a7a1fa",
+                                    "nodes": [
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "24c3097f-5502-4250-9593-fd3f8888e208",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "Since the thief only comes out late at night, I might as well enjoy myself for a while.",
+                                            "emotion": "0",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        },
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "befbfcec-729c-472d-8ff5-dc95b2ad1e56",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "No point in searching for him before bedtime.",
+                                            "emotion": "2",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.variableComparison",
+                                    "variableScope": "global",
+                                    "variableName": "time.hour",
+                                    "operator": "gte",
+                                    "compareTo": "19",
+                                    "sceneId": null,
+                                    "propId": null
+                                },
+                                "right": {
+                                    "type": "expressions.and",
+                                    "left": {
+                                        "type": "expressions.inTags",
+                                        "scope": "actor",
+                                        "scopeId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                        "scopeFilterId": null,
+                                        "tags": "SosiSetup",
+                                        "has": false
+                                    },
+                                    "right": {
+                                        "type": "expressions.variableComparison",
+                                        "variableScope": "global",
+                                        "variableName": "time.day",
+                                        "operator": "eq",
+                                        "compareTo": "23",
+                                        "sceneId": null,
+                                        "propId": null
+                                    }
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.placeActor",
+                                    "actorId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                    "spawnId": "479f11de-705d-4e30-b027-b96f3bfd2586",
+                                    "pose": null,
+                                    "behaviour": "Idle",
+                                    "immediate": true
+                                },
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "02fff7a1-f75a-4f97-89a4-85a2a6cef43f",
+                                    "scope": "actor",
+                                    "scopeId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "SosiSetup",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.invokeScript",
+                                    "id": "1db7cf00-3c01-4821-a2a9-03f4d44e12a4",
+                                    "scriptId": "58f26071-48f9-4a73-890b-7b469d9d9c27",
+                                    "entryPointId": "1a99eb3a-7362-4326-8fa3-7da398ca57c1",
+                                    "currentScope": "StoryEvents",
+                                    "currentSceneId": "40f18665-4cc2-4acd-b17e-5189e68b7a33",
+                                    "currentActorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "currentStoryEventId": "80a03a74-a297-4969-ad69-af9bb3d3538a",
+                                    "currentPropId": null
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.variableComparison",
+                                    "variableScope": "global",
+                                    "variableName": "time.day",
+                                    "operator": "eq",
+                                    "compareTo": "41",
+                                    "sceneId": "40f18665-4cc2-4acd-b17e-5189e68b7a33",
+                                    "propId": null
+                                },
+                                "right": {
+                                    "type": "expressions.variableComparison",
+                                    "variableScope": "global",
+                                    "variableName": "time.hour",
+                                    "operator": "gte",
+                                    "compareTo": "14",
+                                    "sceneId": "40f18665-4cc2-4acd-b17e-5189e68b7a33",
+                                    "propId": null
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.onceOnly",
+                                    "id": "928196f4-e000-4578-87cd-9c813814b191",
+                                    "nodes": [
+                                        {
+                                            "type": "nodes.branch",
+                                            "sections": [
+                                                {
+                                                    "type": "nodes.branchSection",
+                                                    "expression": {
+                                                        "type": "expressions.previousScene",
+                                                        "sceneId": "82da26e2-b64a-4951-bca9-a3e78101825e"
+                                                    },
+                                                    "nodes": [
+                                                        {
+                                                            "type": "nodes.changeTags",
+                                                            "id": "a69cb631-91ba-45b1-9c42-2c9f9fc8f0cf",
+                                                            "scope": "actor",
+                                                            "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                            "scopeFilterId": "40f18665-4cc2-4acd-b17e-5189e68b7a33",
+                                                            "tagsToAdd": "SawDratsBeforeDinner",
+                                                            "tagsToRemove": null
+                                                        },
+                                                        {
+                                                            "type": "nodes.comment",
+                                                            "message": "Ambush!",
+                                                            "commentor": "Cidney"
+                                                        },
+                                                        {
+                                                            "type": "nodes.invokeCommand",
+                                                            "id": "bff04b32-0cfb-42bd-a714-db0899c1b4a6",
+                                                            "entityType": "prop",
+                                                            "entityFilterId": "40f18665-4cc2-4acd-b17e-5189e68b7a33",
+                                                            "entityId": "b993a400-cefb-4db4-a24d-20be17c085dc",
+                                                            "command": "spawn",
+                                                            "resultVariableScope": "script"
+                                                        },
+                                                        {
+                                                            "type": "nodes.speak",
+                                                            "id": "1e31ff0d-2aa5-4949-b18c-c6cef2d351c2",
+                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                            "actorId2": null,
+                                                            "text": "Yikes, what are these?",
+                                                            "emotion": "0",
+                                                            "emotion2": "0",
+                                                            "device": "0",
+                                                            "device2": "0"
+                                                        },
+                                                        {
+                                                            "type": "nodes.comment",
+                                                            "message": "Camera pan to Warrior Drats",
+                                                            "commentor": "Cidney"
+                                                        },
+                                                        {
+                                                            "type": "nodes.speak",
+                                                            "id": "760aee70-c5aa-4d9a-86e5-2204b2f972ec",
+                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                            "actorId2": null,
+                                                            "text": "They look like Drats, but they're HUGE!",
+                                                            "emotion": "0",
+                                                            "emotion2": "0",
+                                                            "device": "0",
+                                                            "device2": "0"
+                                                        },
+                                                        {
+                                                            "type": "nodes.invokeCommand",
+                                                            "id": "3147fbcf-b607-4442-9cbc-92385f6a633f",
+                                                            "entityType": "prop",
+                                                            "entityFilterId": "40f18665-4cc2-4acd-b17e-5189e68b7a33",
+                                                            "entityId": "b993a400-cefb-4db4-a24d-20be17c085dc",
+                                                            "command": "startcombat",
+                                                            "resultVariableScope": "script"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "nodes.branchSection",
+                                                    "expression": null,
+                                                    "nodes": [
+                                                        {
+                                                            "type": "nodes.comment",
+                                                            "message": "Removed spawning unless you came from the Rogue Dorm Hall",
+                                                            "commentor": "Joshua"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inTags",
+                                    "scope": "scene",
+                                    "scopeId": "40f18665-4cc2-4acd-b17e-5189e68b7a33",
+                                    "scopeFilterId": "40f18665-4cc2-4acd-b17e-5189e68b7a33",
+                                    "tags": "KwirkNoise",
+                                    "has": false
+                                },
+                                "right": {
+                                    "type": "expressions.inTags",
+                                    "scope": "scene",
+                                    "scopeId": "9897ecb3-4200-4884-867a-2840471747b8",
+                                    "scopeFilterId": null,
+                                    "tags": "KwirkNoise",
+                                    "has": true
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "abefc5c3-0a49-4802-b976-44a652894dbb",
+                                    "scope": "scene",
+                                    "scopeId": "40f18665-4cc2-4acd-b17e-5189e68b7a33",
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "KwirkNoise",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.and",
+                                                "left": {
+                                                    "type": "expressions.variableComparison",
+                                                    "variableScope": "global",
+                                                    "variableName": "time.day",
+                                                    "operator": "gte",
+                                                    "compareTo": "14",
+                                                    "sceneId": "40f18665-4cc2-4acd-b17e-5189e68b7a33",
+                                                    "propId": null
+                                                },
+                                                "right": {
+                                                    "type": "expressions.and",
+                                                    "left": {
+                                                        "type": "expressions.variableComparison",
+                                                        "variableScope": "global",
+                                                        "variableName": "time.day",
+                                                        "operator": "lte",
+                                                        "compareTo": "16",
+                                                        "sceneId": "40f18665-4cc2-4acd-b17e-5189e68b7a33",
+                                                        "propId": null
+                                                    },
+                                                    "right": {
+                                                        "type": "expressions.and",
+                                                        "left": {
+                                                            "type": "expressions.variableComparison",
+                                                            "variableScope": "global",
+                                                            "variableName": "time.hour",
+                                                            "operator": "lt",
+                                                            "compareTo": "4",
+                                                            "sceneId": "40f18665-4cc2-4acd-b17e-5189e68b7a33",
+                                                            "propId": null
+                                                        },
+                                                        "right": {
+                                                            "type": "expressions.previousScene",
+                                                            "sceneId": "82da26e2-b64a-4951-bca9-a3e78101825e"
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.playSoundEffect",
+                                                    "soundEffectName": "run_away.wav",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.playSoundEffect",
+                                                    "soundEffectName": "door_open_shut.wav",
+                                                    "wait": false
+                                                },
+                                                {
+                                                    "type": "nodes.nodeCycle",
+                                                    "id": "c56f7605-2561-48d9-bb91-d1076d33a4a9",
+                                                    "nodes": [
+                                                        {
+                                                            "type": "nodes.speak",
+                                                            "id": "b24e600f-ff54-4f28-be42-f7e6ca645564",
+                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                            "actorId2": null,
+                                                            "text": "That was probably the Thief! Who else would be up this time of night?",
+                                                            "emotion": "0",
+                                                            "emotion2": "0",
+                                                            "device": "0",
+                                                            "device2": "0"
+                                                        },
+                                                        {
+                                                            "type": "nodes.speak",
+                                                            "id": "1e4d2c4d-77ce-481f-9258-0a2226fffb01",
+                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                            "actorId2": null,
+                                                            "text": "Okay, it definitely came this way. Was that a door closing?",
+                                                            "emotion": "0",
+                                                            "emotion2": "0",
+                                                            "device": "0",
+                                                            "device2": "0"
+                                                        },
+                                                        {
+                                                            "type": "nodes.speak",
+                                                            "id": "55549514-6739-4824-a5dc-a3a77f514fc4",
+                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                            "actorId2": null,
+                                                            "text": "That's definitely a door sound. I think the noise came from the center of the hall...",
+                                                            "emotion": "0",
+                                                            "emotion2": "0",
+                                                            "device": "0",
+                                                            "device2": "0"
+                                                        },
+                                                        {
+                                                            "type": "nodes.speak",
+                                                            "id": "ec2a9f79-3aff-4cf1-8422-50f9b9252f3b",
+                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                            "actorId2": null,
+                                                            "text": "Okay, so where did that Thief go?",
+                                                            "emotion": "0",
+                                                            "emotion2": "0",
+                                                            "device": "0",
+                                                            "device2": "0"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.comment",
+                    "message": "Putting First Aid Journal entries here because it feels better to get the journal entry after class",
+                    "commentor": "Charles"
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.previousScene",
+                                    "sceneId": "df6088fa-a6d6-441a-9a00-7af3baa62e14"
+                                },
+                                "right": {
+                                    "type": "expressions.inTags",
+                                    "scope": "scene",
+                                    "scopeId": "df6088fa-a6d6-441a-9a00-7af3baa62e14",
+                                    "scopeFilterId": null,
+                                    "tags": "FirstAidClassEnded",
+                                    "has": true
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "b0e37dff-74fe-4b16-a99b-85294c3cf909",
+                                    "scope": "scene",
+                                    "scopeId": "df6088fa-a6d6-441a-9a00-7af3baa62e14",
+                                    "scopeFilterId": null,
+                                    "tagsToRemove": "FirstAidClassEnded"
+                                },
+                                {
+                                    "type": "nodes.comment",
+                                    "message": "Using the same logic (minus hours, due to tag above) as seen in the Enter script for Infirmary. Would prefer to have a var to check, though didn't think it was worth adding at this point",
+                                    "commentor": "Charles"
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "actor",
+                                                "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                "scopeFilterId": null,
+                                                "tags": "firstaidelective2",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.variableComparison",
+                                                                "variableScope": "global",
+                                                                "variableName": "time.day",
+                                                                "operator": "eq",
+                                                                "compareTo": "28",
+                                                                "sceneId": null,
+                                                                "propId": null
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.addJournalEntry",
+                                                                    "id": "56e70a64-b8f1-42d2-854d-0dbdb5436ae2",
+                                                                    "name": "Advanced First Aid - A New Start",
+                                                                    "notify": true,
+                                                                    "description": "Time for First Aid, round two! I'm hopeful these new classes will give me an even better time handling injuries - especially to my own person.\n\nToday mostly covered setting bones and safe practices, but Lady Moira did mention bringing lots of mushrooms to future classes. I'd better keep an eye out, just in case!"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.variableComparison",
+                                                                "variableScope": "global",
+                                                                "variableName": "time.day",
+                                                                "operator": "eq",
+                                                                "compareTo": "29",
+                                                                "sceneId": null,
+                                                                "propId": null
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.addJournalEntry",
+                                                                    "id": "13ac3802-15e2-40e3-bf79-2438f86e51f5",
+                                                                    "name": "Advanced First Aid Lesson 2 - Prep Work",
+                                                                    "notify": true,
+                                                                    "description": "More garden work today, but I'm excited that we're finally going to get to crafting real medicines soon! We start with a Healing Pill tomorrow. I need to gather as many puffballs as I can - I guess they're a major ingredient in Healing Pills?\n\nOtherwise, the class just talked about taking care of yourself and keeping fit. I suppose a few more sessions of climbing rope couldn't hurt..."
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.variableComparison",
+                                                                "variableScope": "global",
+                                                                "variableName": "time.day",
+                                                                "operator": "eq",
+                                                                "compareTo": "30",
+                                                                "sceneId": null,
+                                                                "propId": null
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.addJournalEntry",
+                                                                    "id": "acebeb15-a2ee-4d34-ac81-dd7fd6e031f1",
+                                                                    "name": "Advanced First Aid Lesson 3 - Healing Pills",
+                                                                    "notify": true,
+                                                                    "description": "Making a Healing Pill is a lot of work! It takes 10 whole Puffballs just to make a batch of 3 Pills! I'm glad Lady Moira keeps the other ingredients in stock, I'd never remember them. Guess that means I'm stuck making them only in class... oh well. Just need to look for more mushrooms.\n\nOn that note, it seems like I'll have free time at the end of class most days to make a few extra supplies! That should prove really helpful."
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.variableComparison",
+                                                                "variableScope": "global",
+                                                                "variableName": "time.day",
+                                                                "operator": "eq",
+                                                                "compareTo": "31",
+                                                                "sceneId": null,
+                                                                "propId": null
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.addJournalEntry",
+                                                                    "id": "09fba4dc-97c8-4890-b3c6-9da034494534",
+                                                                    "name": "Advanced First Aid Lesson 4 - Agility Pills",
+                                                                    "notify": true,
+                                                                    "description": "It's Agility Pills today: 10 Morels for a batch of 3. It's nice to be able to avoid those queasy after-effects of eating the morels straight, though.\n\nIf we keep learning more recipes, I'm going to have trouble deciding what to craft during class. I'll have to plan carefully to avoid wasting my time."
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.variableComparison",
+                                                                "variableScope": "global",
+                                                                "variableName": "time.day",
+                                                                "operator": "eq",
+                                                                "compareTo": "32",
+                                                                "sceneId": null,
+                                                                "propId": null
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.addJournalEntry",
+                                                                    "id": "e29b77d8-491b-444d-9fdd-919218806d06",
+                                                                    "name": "Advanced First Aid Lesson 5 - Magic Pills",
+                                                                    "notify": true,
+                                                                    "description": "Magic Pills today! I think I'm noticing a theme. These pills take 10 Fairy Parasols to craft but should greatly enhance my ability to take a magical explosion to the face... of course, I'll just take Lady Moira's word for that. "
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.variableComparison",
+                                                                "variableScope": "global",
+                                                                "variableName": "time.day",
+                                                                "operator": "eq",
+                                                                "compareTo": "33",
+                                                                "sceneId": null,
+                                                                "propId": null
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.addJournalEntry",
+                                                                    "id": "73ef3b3c-43e9-452c-aea7-d624b3ddc896",
+                                                                    "name": "Advanced First Aid Lesson 6 - Fitness Pills",
+                                                                    "notify": true,
+                                                                    "description": "Today we tackled a tricky one - Fitness Pills. It takes multiple mushrooms! 4 Puffballs, 4 Morels, and 4 Fairy Parasols. That's going to cut into my supplies for all the other types of pills considerably... but at least I get 5 pills out of the deal."
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.variableComparison",
+                                                                "variableScope": "global",
+                                                                "variableName": "time.day",
+                                                                "operator": "eq",
+                                                                "compareTo": "34",
+                                                                "sceneId": null,
+                                                                "propId": null
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.addJournalEntry",
+                                                                    "id": "04a524ec-95a6-4389-b8af-0bc132b998a4",
+                                                                    "name": "Advanced First Aid Lesson 7 - Perception Pills",
+                                                                    "notify": true,
+                                                                    "description": "Today's craft required a new type of mushroom I'm suprised we hadn't covered before - the <i>amanitas</i>. It's apparently quite poisonous, but mixing it with Chanterelle can completely nuetralize the negative effects. So the recipe is 5 Amanitas, 3 Chanterelles, and 2 Fairy Parasols to create 3 Perception Pills. \n\nThe Perception Pills increase intelligence, which is a bit ironic. Who would've guessed that eating something so poisonous was actually the smart thing to do? "
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.variableComparison",
+                                                                "variableScope": "global",
+                                                                "variableName": "time.day",
+                                                                "operator": "eq",
+                                                                "compareTo": "35",
+                                                                "sceneId": null,
+                                                                "propId": null
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.addJournalEntry",
+                                                                    "id": "c5c45a8d-340c-4fb6-a76d-717e9b303b06",
+                                                                    "name": "Advanced First Aid Lesson 8 - Antidote Potion",
+                                                                    "notify": true,
+                                                                    "description": "I can't help but think some poor soul failed spectacularly at our last lesson and ingested too much Amanitas. It seems so fitting that right after learning about the crazy dangerous poison mushroom, we're now introduced to the concoction that can nuetralize it: The Antidote Potion.\n\nFor a meager 5 Chanterelles, 4 Puffballs, and 1 Fairy Parasol I can craft an important tool for staying alive. Sigh... these recipes aren't going to get any easier, are they?"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.variableComparison",
+                                                                "variableScope": "global",
+                                                                "variableName": "time.day",
+                                                                "operator": "eq",
+                                                                "compareTo": "36",
+                                                                "sceneId": null,
+                                                                "propId": null
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.addJournalEntry",
+                                                                    "id": "1493bf4c-f055-469f-a6be-1ccc0cb818b6",
+                                                                    "name": "Advanced First Aid Lesson 9 - Healing Potion",
+                                                                    "notify": true,
+                                                                    "description": "Today we added the Healing Potion to our repetoire. It's about time we learned it. 5 Puffballs, 3 Fairy Parasols, and 2 Morels to develop a single flask of the stuff.\n\nHealing Potions are \"must have\" items for any hero, and especially for a rogue. I hope I have the materials to craft more next class."
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.variableComparison",
+                                                                "variableScope": "global",
+                                                                "variableName": "time.day",
+                                                                "operator": "eq",
+                                                                "compareTo": "37",
+                                                                "sceneId": null,
+                                                                "propId": null
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.addJournalEntry",
+                                                                    "id": "a1e3b840-7dd9-417b-a473-c0cf417a6ad7",
+                                                                    "name": "Advanced First Aid Lesson 10 - Full Heal Potion?!",
+                                                                    "notify": true,
+                                                                    "description": "This is some kind of cruel joke. Lady Moira seemed so kind, but now she's introduced us to the most advanced potion only to tell us we won't be able to ever make any. I mean, sure, we could spend a year waiting around for it to mature... but who's got time for that?\n\nI am grateful she gave us one, though. Maybe I'll save it for a truly rainy day... like the Final Exam in the next class. Ugh."
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.variableComparison",
+                                                                "variableScope": "global",
+                                                                "variableName": "time.day",
+                                                                "operator": "eq",
+                                                                "compareTo": "38",
+                                                                "sceneId": null,
+                                                                "propId": null
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.addJournalEntry",
+                                                                    "id": "68b02bad-fc3f-4b98-aa06-c30a1b282ebc",
+                                                                    "name": "Advanced First Aid - The Finals",
+                                                                    "notify": true,
+                                                                    "description": "Another day of free crafting! ... well... after another grueling exam, that is. No sense worrying about it now, though. It's over and I won't know how I did until next class.\n\nSpeaking of, the next class is the last time I'll be able to make use of all the crafting recipes I learned... I should make sure to stock up beforehand."
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.variableComparison",
+                                                                "variableScope": "global",
+                                                                "variableName": "time.day",
+                                                                "operator": "eq",
+                                                                "compareTo": "39",
+                                                                "sceneId": null,
+                                                                "propId": null
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.branch",
+                                                                    "sections": [
+                                                                        {
+                                                                            "type": "nodes.branchSection",
+                                                                            "expression": {
+                                                                                "type": "expressions.variableComparison",
+                                                                                "variableScope": "ego",
+                                                                                "variableName": "FAE2Quiz",
+                                                                                "operator": "gte",
+                                                                                "compareTo": "4",
+                                                                                "sceneId": null,
+                                                                                "propId": null
+                                                                            },
+                                                                            "nodes": [
+                                                                                {
+                                                                                    "type": "nodes.addJournalEntry",
+                                                                                    "id": "4069a109-7f1e-4392-8df2-05137aa8ed4f",
+                                                                                    "name": "Advanced First Aid - Last Day",
+                                                                                    "notify": true,
+                                                                                    "description": "I got my test results back and it looks like I passed with flying colors! I really can be a decent student, if I put some effort in.\n\nIt's a shame I won't have any more classes here. I shudder to think that if I run out of supplies I'll now have to.. <i>buy</i> them! Gah."
+                                                                                }
+                                                                            ]
+                                                                        },
+                                                                        {
+                                                                            "type": "nodes.branchSection",
+                                                                            "expression": null,
+                                                                            "nodes": [
+                                                                                {
+                                                                                    "type": "nodes.addJournalEntry",
+                                                                                    "id": "9fff7dbb-a6ae-48aa-a0b6-72f3ab7f28f0",
+                                                                                    "name": "Advanced First Aid - Last Day",
+                                                                                    "notify": true,
+                                                                                    "description": "I got my test results back... it didn't come out too great. I'm a little disappointed, but the real shame is I won't have any more classes here. I shudder to think that if I run out of supplies I'll now have to.. <i>buy</i> them! Gah."
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.and",
+                                                "left": {
+                                                    "type": "expressions.inTags",
+                                                    "scope": "actor",
+                                                    "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "scopeFilterId": null,
+                                                    "tags": "firstaidelective1",
+                                                    "has": true
+                                                },
+                                                "right": {
+                                                    "type": "expressions.inTags",
+                                                    "scope": "actor",
+                                                    "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "scopeFilterId": null,
+                                                    "tags": "firstaidelective2",
+                                                    "has": false
+                                                }
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.or",
+                                                                "left": {
+                                                                    "type": "expressions.variableComparison",
+                                                                    "variableScope": "global",
+                                                                    "variableName": "time.day",
+                                                                    "operator": "eq",
+                                                                    "compareTo": "10",
+                                                                    "sceneId": null,
+                                                                    "propId": null
+                                                                },
+                                                                "right": {
+                                                                    "type": "expressions.variableComparison",
+                                                                    "variableScope": "global",
+                                                                    "variableName": "time.day",
+                                                                    "operator": "eq",
+                                                                    "compareTo": "28",
+                                                                    "sceneId": null,
+                                                                    "propId": null
+                                                                }
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.addJournalEntry",
+                                                                    "id": "d4c6fdfb-8b82-4b25-a1b5-e1dcbcdd502d",
+                                                                    "name": "First Day of First Aid",
+                                                                    "notify": true,
+                                                                    "description": "I decided to take First Aid as an elective, taught by Moira Glenshannon. She'll be a nice change of pace from Master von Urwald. Less sneering, at least.\n\nThe class should be useful, though. Everybody needs to stay healthy, after all! If the rogue thing doesn't work out, maybe I can use what I learn here to craft and sell bandages and herbal remedies to folks. That's kind of like being a doctor, right? Mom would be proud! "
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.or",
+                                                                "left": {
+                                                                    "type": "expressions.variableComparison",
+                                                                    "variableScope": "global",
+                                                                    "variableName": "time.day",
+                                                                    "operator": "eq",
+                                                                    "compareTo": "11",
+                                                                    "sceneId": null,
+                                                                    "propId": null
+                                                                },
+                                                                "right": {
+                                                                    "type": "expressions.variableComparison",
+                                                                    "variableScope": "global",
+                                                                    "variableName": "time.day",
+                                                                    "operator": "eq",
+                                                                    "compareTo": "29",
+                                                                    "sceneId": null,
+                                                                    "propId": null
+                                                                }
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.addJournalEntry",
+                                                                    "id": "263cf232-e349-4cba-9139-e60ff329dd72",
+                                                                    "name": "First Aid Lesson 2 - Wrapping Up",
+                                                                    "notify": true,
+                                                                    "description": "Apparently bandages are far more complex than I gave them credit for! Admittedly I glazed over as the lecture went on, but I caught enough to make me afraid of bandages made of anything besides the materials provided here in class. Infections are scary <i>and</i> disgusting!\n\nTo boot, I now know how to properly wrap a wound. No more bow knots for me!"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.or",
+                                                                "left": {
+                                                                    "type": "expressions.variableComparison",
+                                                                    "variableScope": "global",
+                                                                    "variableName": "time.day",
+                                                                    "operator": "eq",
+                                                                    "compareTo": "12",
+                                                                    "sceneId": null,
+                                                                    "propId": null
+                                                                },
+                                                                "right": {
+                                                                    "type": "expressions.variableComparison",
+                                                                    "variableScope": "global",
+                                                                    "variableName": "time.day",
+                                                                    "operator": "eq",
+                                                                    "compareTo": "30",
+                                                                    "sceneId": null,
+                                                                    "propId": null
+                                                                }
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.addJournalEntry",
+                                                                    "id": "bc8c8604-d5ec-4a26-b4c4-b5143cbf7eba",
+                                                                    "name": "First Aid Lesson 3 - Garden Hearty",
+                                                                    "notify": true,
+                                                                    "description": "Lady Moira showed us around the Tower Garden today. It's a lot of work managing the plants, but luckily for us, she does the lion's share of it outside of class. \n\nBeyond digging around, we discussed differences between various plants and fungi. I already knew the difference between a mushroom and a flower, but hey, never hurts to be sure! \n\nFrom here the class will focus on identifying particularly handy plants and how to use them. I just hope we start with the money tree!"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.or",
+                                                                "left": {
+                                                                    "type": "expressions.variableComparison",
+                                                                    "variableScope": "global",
+                                                                    "variableName": "time.day",
+                                                                    "operator": "eq",
+                                                                    "compareTo": "13",
+                                                                    "sceneId": null,
+                                                                    "propId": null
+                                                                },
+                                                                "right": {
+                                                                    "type": "expressions.variableComparison",
+                                                                    "variableScope": "global",
+                                                                    "variableName": "time.day",
+                                                                    "operator": "eq",
+                                                                    "compareTo": "31",
+                                                                    "sceneId": null,
+                                                                    "propId": null
+                                                                }
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.addJournalEntry",
+                                                                    "id": "c5d4ceb8-bbe4-4c74-8980-f0203e1299a1",
+                                                                    "name": "First Aid Lesson 4 - Much Ado About Mushrooms",
+                                                                    "notify": true,
+                                                                    "description": "More garden work today, with a special focus on mushrooms. Apparently some mushrooms are poisonous, so I'll need to be careful before just casually popping one in my mouth.\n\nHey! Wait a sec! I wonder if this class will end up teaching me how to make my own poisons?\n\n... unfortunately I'm guessing no. Lady Moira doesn't seem the type and there's probably some code about it she'd never break."
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.or",
+                                                                "left": {
+                                                                    "type": "expressions.variableComparison",
+                                                                    "variableScope": "global",
+                                                                    "variableName": "time.day",
+                                                                    "operator": "eq",
+                                                                    "compareTo": "14",
+                                                                    "sceneId": null,
+                                                                    "propId": null
+                                                                },
+                                                                "right": {
+                                                                    "type": "expressions.variableComparison",
+                                                                    "variableScope": "global",
+                                                                    "variableName": "time.day",
+                                                                    "operator": "eq",
+                                                                    "compareTo": "32",
+                                                                    "sceneId": null,
+                                                                    "propId": null
+                                                                }
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.addJournalEntry",
+                                                                    "id": "353ff29a-0a8d-40af-a4a4-38c4b200e403",
+                                                                    "name": "First Aid Lesson 5 - Puffballs",
+                                                                    "notify": true,
+                                                                    "description": "The infamous <i>Puffball</i> was the topic today. It's a curative plant, but also makes your stomach sick when eaten raw. What irony. I think I'll be able to handle it during combat if I really needed to, but no reason I need to force them down otherwise.\n\nOh, and Lady Moira gave us each three to keep. Finally, free stuff!"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.or",
+                                                                "left": {
+                                                                    "type": "expressions.variableComparison",
+                                                                    "variableScope": "global",
+                                                                    "variableName": "time.day",
+                                                                    "operator": "eq",
+                                                                    "compareTo": "15",
+                                                                    "sceneId": null,
+                                                                    "propId": null
+                                                                },
+                                                                "right": {
+                                                                    "type": "expressions.variableComparison",
+                                                                    "variableScope": "global",
+                                                                    "variableName": "time.day",
+                                                                    "operator": "eq",
+                                                                    "compareTo": "33",
+                                                                    "sceneId": null,
+                                                                    "propId": null
+                                                                }
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.addJournalEntry",
+                                                                    "id": "b774b108-896b-428e-8480-85841afd5b92",
+                                                                    "name": "First Aid Lesson 6 - Morel Authority",
+                                                                    "notify": true,
+                                                                    "description": "Today's class was on the mighty <i>Morel</i>. It tastes good cooked, but gives an amazing boost to agility when eaten raw! There might be something to this whole organic movement after all. \n\nMorels are found growing on dead trees or on exposed roots in caves. Next time I'm spelunking I'd better keep an eye out for some!"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.or",
+                                                                "left": {
+                                                                    "type": "expressions.variableComparison",
+                                                                    "variableScope": "global",
+                                                                    "variableName": "time.day",
+                                                                    "operator": "eq",
+                                                                    "compareTo": "16",
+                                                                    "sceneId": null,
+                                                                    "propId": null
+                                                                },
+                                                                "right": {
+                                                                    "type": "expressions.variableComparison",
+                                                                    "variableScope": "global",
+                                                                    "variableName": "time.day",
+                                                                    "operator": "eq",
+                                                                    "compareTo": "34",
+                                                                    "sceneId": null,
+                                                                    "propId": null
+                                                                }
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.addJournalEntry",
+                                                                    "id": "bc216e4d-2cb6-469b-8fea-eddb3b32076d",
+                                                                    "name": "First Aid Lesson 7 - Chanterelles",
+                                                                    "notify": true,
+                                                                    "description": "Finally we have a mushroom you can eat without getting sick: the <i>Chanterelle</i>! Lady Moira really drove home how important this one is. It can stop any poison in its tracks, so it seems incredibly important for a rogue to keep handy - especially one in training.\n\nShe also mentioned they are very rare and grow in deep caverns... wonder where I might find some of those?"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.or",
+                                                                "left": {
+                                                                    "type": "expressions.variableComparison",
+                                                                    "variableScope": "global",
+                                                                    "variableName": "time.day",
+                                                                    "operator": "eq",
+                                                                    "compareTo": "17",
+                                                                    "sceneId": null,
+                                                                    "propId": null
+                                                                },
+                                                                "right": {
+                                                                    "type": "expressions.variableComparison",
+                                                                    "variableScope": "global",
+                                                                    "variableName": "time.day",
+                                                                    "operator": "eq",
+                                                                    "compareTo": "35",
+                                                                    "sceneId": null,
+                                                                    "propId": null
+                                                                }
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.addJournalEntry",
+                                                                    "id": "98ddc40f-5c46-4093-9431-ba314b9beb75",
+                                                                    "name": "First Aid Lesson 8 - Indigo Policy",
+                                                                    "notify": true,
+                                                                    "description": "I'm starting to think Lady Moira has tailored her class just for me! Today's mushroom was the <i>Indigo Cap</i>, a mushroom that makes you practically invisible! Oh the places I'll go... \n\nI got a few, but I can't wait to find more. Hopefully they aren't as hard to find as I will be!"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.or",
+                                                                "left": {
+                                                                    "type": "expressions.variableComparison",
+                                                                    "variableScope": "global",
+                                                                    "variableName": "time.day",
+                                                                    "operator": "eq",
+                                                                    "compareTo": "18",
+                                                                    "sceneId": null,
+                                                                    "propId": null
+                                                                },
+                                                                "right": {
+                                                                    "type": "expressions.variableComparison",
+                                                                    "variableScope": "global",
+                                                                    "variableName": "time.day",
+                                                                    "operator": "eq",
+                                                                    "compareTo": "36",
+                                                                    "sceneId": null,
+                                                                    "propId": null
+                                                                }
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.addJournalEntry",
+                                                                    "id": "6e561617-4c0d-445f-8513-6f69f9b2a145",
+                                                                    "name": "First Aid Lesson 9 - Fairie Parasol",
+                                                                    "notify": true,
+                                                                    "description": "Today we covered the <i>Fairie Parasol</i>, a magical sort of mushroom that can help shield against magical attacks. Probably best if I never need this kind of effect, but always good to keep it handy in the event of a Revenant attack."
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.or",
+                                                                "left": {
+                                                                    "type": "expressions.variableComparison",
+                                                                    "variableScope": "global",
+                                                                    "variableName": "time.day",
+                                                                    "operator": "eq",
+                                                                    "compareTo": "20",
+                                                                    "sceneId": null,
+                                                                    "propId": null
+                                                                },
+                                                                "right": {
+                                                                    "type": "expressions.variableComparison",
+                                                                    "variableScope": "global",
+                                                                    "variableName": "time.day",
+                                                                    "operator": "eq",
+                                                                    "compareTo": "37",
+                                                                    "sceneId": null,
+                                                                    "propId": null
+                                                                }
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.addJournalEntry",
+                                                                    "id": "cd1a6a35-d3b2-41f5-99f1-90bc1458cd8e",
+                                                                    "name": "First Aid Lesson 10 - Magical Bandages",
+                                                                    "notify": true,
+                                                                    "description": "Today it finally all came together... with mortar and pestle in hand, I was able to craft a bandage with incredible healing ability! It took a lot of materials... 3 Puffballs, 2 Fairy Parasols, and 6 Bandages gives me just 3 Magical Bandages. But each one is a masterpiece, and proof that I'm doing pretty well at this!\n\nNext class is the quiz, though. I'd better study up and make sure I know my stuff."
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.or",
+                                                                "left": {
+                                                                    "type": "expressions.variableComparison",
+                                                                    "variableScope": "global",
+                                                                    "variableName": "time.day",
+                                                                    "operator": "eq",
+                                                                    "compareTo": "21",
+                                                                    "sceneId": null,
+                                                                    "propId": null
+                                                                },
+                                                                "right": {
+                                                                    "type": "expressions.variableComparison",
+                                                                    "variableScope": "global",
+                                                                    "variableName": "time.day",
+                                                                    "operator": "eq",
+                                                                    "compareTo": "38",
+                                                                    "sceneId": null,
+                                                                    "propId": null
+                                                                }
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.addJournalEntry",
+                                                                    "id": "b7b76588-7d7e-4bce-9d32-3ffe22ff5b82",
+                                                                    "name": "First Aid Quiz",
+                                                                    "notify": true,
+                                                                    "description": "Class took place in the garden again today, after a quick quiz. I'm not sure how I did on ithe quiz - it didn't leave mushroom for error. But I doubt the downtrodden who have need of a hero check GPA's.\n\nThe next class will be the last one of the semester. I wonder if I should take the advanced First Aid courses or pick something else?"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.or",
+                                                                "left": {
+                                                                    "type": "expressions.variableComparison",
+                                                                    "variableScope": "global",
+                                                                    "variableName": "time.day",
+                                                                    "operator": "eq",
+                                                                    "compareTo": "22",
+                                                                    "sceneId": null,
+                                                                    "propId": null
+                                                                },
+                                                                "right": {
+                                                                    "type": "expressions.variableComparison",
+                                                                    "variableScope": "global",
+                                                                    "variableName": "time.day",
+                                                                    "operator": "eq",
+                                                                    "compareTo": "39",
+                                                                    "sceneId": null,
+                                                                    "propId": null
+                                                                }
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.comment",
+                                                                    "message": "Quiz had 5 questions, this mimics the logic behind Moira's responses during class",
+                                                                    "commentor": "Charles"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.branch",
+                                                                    "sections": [
+                                                                        {
+                                                                            "type": "nodes.branchSection",
+                                                                            "expression": {
+                                                                                "type": "expressions.variableComparison",
+                                                                                "variableScope": "ego",
+                                                                                "variableName": "FAQuiz1",
+                                                                                "operator": "gte",
+                                                                                "compareTo": "4",
+                                                                                "sceneId": null,
+                                                                                "propId": null
+                                                                            },
+                                                                            "nodes": [
+                                                                                {
+                                                                                    "type": "nodes.addJournalEntry",
+                                                                                    "id": "cd09210c-27a2-4827-b0e2-a3ee1100a27b",
+                                                                                    "name": "First Aid - End of Session",
+                                                                                    "notify": true,
+                                                                                    "description": "Today was the final First Aid class for the session. It was mostly review in the garden, but I did get to find out my grade on the quiz... I got a great score! Maybe that career as a medicine man isn't so far fetched afterall?\n\nI still need to figure out if I'm going to take the advanced courses. Lady Moira gave out a Healing Potion to everyone to entice us. It's pretty convincing... to think, I could one day craft this!"
+                                                                                }
+                                                                            ]
+                                                                        },
+                                                                        {
+                                                                            "type": "nodes.branchSection",
+                                                                            "expression": {
+                                                                                "type": "expressions.variableComparison",
+                                                                                "variableScope": "ego",
+                                                                                "variableName": "FAQuiz1",
+                                                                                "operator": "lte",
+                                                                                "compareTo": "1",
+                                                                                "sceneId": null,
+                                                                                "propId": null
+                                                                            },
+                                                                            "nodes": [
+                                                                                {
+                                                                                    "type": "nodes.addJournalEntry",
+                                                                                    "id": "bb159a51-59a6-4c8b-8abb-f9620942ece0",
+                                                                                    "name": "First Aid - End of Session",
+                                                                                    "notify": true,
+                                                                                    "description": "Today was the final First Aid class for the session. It was mostly review in the garden, but I did get to find out my grade on the quiz... I didn't do so well. But at least I got some nifty mushrooms out of this course."
+                                                                                }
+                                                                            ]
+                                                                        },
+                                                                        {
+                                                                            "type": "nodes.branchSection",
+                                                                            "expression": null,
+                                                                            "nodes": [
+                                                                                {
+                                                                                    "type": "nodes.addJournalEntry",
+                                                                                    "id": "0d847db7-f8bb-4bdc-8bc6-5ab0062db709",
+                                                                                    "name": "First Aid - End of Session",
+                                                                                    "notify": true,
+                                                                                    "description": "Today was the final First Aid class for the session. It was mostly review in the garden, but I did get to find out my grade on the quiz... I did pretty well! I'm not so bad at this medical stuff after all.\n\nI still need to figure out if I'm going to take the advanced courses. Lady Moira gave out a Healing Potion to everyone to entice us. It's pretty convincing... to think I could one day craft this!"
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

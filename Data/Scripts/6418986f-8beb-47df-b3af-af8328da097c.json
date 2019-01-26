@@ -1,0 +1,222 @@
+{
+    "type": "script",
+    "id": "6418986f-8beb-47df-b3af-af8328da097c",
+    "name": "zone_Serpent_A_Enter",
+    "sceneId": "5bf05db2-b4fe-4863-b426-f058e04e908c",
+    "trigger": {
+        "type": "triggers.zone",
+        "name": "Zone"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "058cbe15-9e49-4f6d-845e-4d462529c76f",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "scene",
+                                "scopeId": "5bf05db2-b4fe-4863-b426-f058e04e908c",
+                                "scopeFilterId": null,
+                                "tags": "sea_serpent_completed",
+                                "has": false
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.and",
+                                                "left": {
+                                                    "type": "expressions.inTags",
+                                                    "scope": "scene",
+                                                    "scopeId": "5bf05db2-b4fe-4863-b426-f058e04e908c",
+                                                    "scopeFilterId": null,
+                                                    "tags": "sea_serpent_met",
+                                                    "has": false
+                                                },
+                                                "right": {
+                                                    "type": "expressions.and",
+                                                    "left": {
+                                                        "type": "expressions.inTags",
+                                                        "scope": "scene",
+                                                        "scopeId": "5bf05db2-b4fe-4863-b426-f058e04e908c",
+                                                        "scopeFilterId": null,
+                                                        "tags": "sea_serpent_dead",
+                                                        "has": false
+                                                    },
+                                                    "right": {
+                                                        "type": "expressions.inTags",
+                                                        "scope": "scene",
+                                                        "scopeId": "5bf05db2-b4fe-4863-b426-f058e04e908c",
+                                                        "scopeFilterId": null,
+                                                        "tags": "sea_serpent_injured",
+                                                        "has": false
+                                                    }
+                                                }
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "9c5a396b-eac5-4fee-8a71-8dd2c7072a65",
+                                                    "scope": "actor",
+                                                    "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "EncounteredSeaSerpent",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.stopPlayer"
+                                                },
+                                                {
+                                                    "type": "nodes.playSoundEffect",
+                                                    "soundEffectName": "splash-big.wav",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.turnActor",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "propId": "5961fc73-6b4a-4c96-8434-807ec0985791",
+                                                    "scope": "prop",
+                                                    "targetActorId": "2a25765d-66a4-4216-9f83-1dc76a908bfd"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "b049a64f-09b5-488a-8882-82f5e315eea1",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "What was that?",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "e908955a-01bc-459f-9db2-74ecc5a63419",
+                                                    "scope": "scene",
+                                                    "scopeId": "5bf05db2-b4fe-4863-b426-f058e04e908c",
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "sea_serpent_met",
+                                                    "tagsToRemove": null
+                                                },
+                                                {
+                                                    "type": "nodes.setCameraFOV",
+                                                    "wait": false,
+                                                    "fov": "8",
+                                                    "time": "1"
+                                                },
+                                                {
+                                                    "type": "nodes.playSoundEffect",
+                                                    "soundEffectName": "Sea Serpet Surfaces.wav",
+                                                    "wait": false
+                                                },
+                                                {
+                                                    "type": "nodes.invokeCommand",
+                                                    "id": "eda1a5bc-c293-4e89-b061-8e32547638e0",
+                                                    "entityType": "prop",
+                                                    "entityFilterId": "5bf05db2-b4fe-4863-b426-f058e04e908c",
+                                                    "entityId": "9fb5f8e3-2686-477e-bf34-aa3ec47908a8",
+                                                    "command": "appear_a",
+                                                    "wait": true,
+                                                    "resultVariableScope": "script"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "cf54ded8-c913-44e9-a5c0-a11789b0129c",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Yikes! A Sea Serpent!",
+                                                    "emotion": "4",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "15949324-990f-4344-8f9c-065f4cc9fd60",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "It's huge... and it's swimming in a small pool of water. Looks like the Gogs must have built a dam to keep it here. Wonder why?",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.playSoundEffect",
+                                                    "soundEffectName": "Sea Surpent Spit.wav",
+                                                    "wait": false
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "99d6a80b-82a9-460d-84e1-a3ae75527df1",
+                                                    "actorId": "2a25765d-66a4-4216-9f83-1dc76a908bfd",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "*Sniff* *Sniff*",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "ca2bf3fe-f7f2-4884-8aa1-47c1442eb4af",
+                                                    "actorId": "2a25765d-66a4-4216-9f83-1dc76a908bfd",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "Grrrr!",
+                                                    "emotion": "3",
+                                                    "emotion2": "4",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.playSoundEffect",
+                                                    "soundEffectName": "Sea Serpet Submerges.wav",
+                                                    "wait": false
+                                                },
+                                                {
+                                                    "type": "nodes.invokeCommand",
+                                                    "id": "dc176cc4-1b6a-4584-b39c-90ba4447b3d2",
+                                                    "entityType": "prop",
+                                                    "entityFilterId": "5bf05db2-b4fe-4863-b426-f058e04e908c",
+                                                    "entityId": "9fb5f8e3-2686-477e-bf34-aa3ec47908a8",
+                                                    "command": "disappear_a",
+                                                    "wait": true,
+                                                    "resultVariableScope": "script"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "6cd086ce-241a-4ae9-9c4c-bea09b6bc0a9",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "He looked pretty hungry. I hope I'm not on the menu.",
+                                                    "emotion": "4",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.resetCamera",
+                                                    "wait": true,
+                                                    "time": "1"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,875 @@
+{
+    "type": "script",
+    "id": "813bf765-22d6-477f-a718-474b56994d8f",
+    "name": "Great Hall Terk Greets 1: Initial Encounter",
+    "sceneId": "40f18665-4cc2-4acd-b17e-5189e68b7a33",
+    "actorId": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+    "trigger": {
+        "type": "triggers.manual",
+        "name": "Manual"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "6fc20d9a-479d-4ef2-a8a5-cd31bd9eb535",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.speak",
+                    "id": "dfa9caf3-d3df-490f-8ac0-486d300707fb",
+                    "actorId": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "text": "You should be in class.",
+                    "emotion": "3",
+                    "emotion2": "4",
+                    "device": "0",
+                    "device2": "0"
+                },
+                {
+                    "type": "nodes.turnActor",
+                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "propId": null,
+                    "scope": "actor",
+                    "targetActorId": "5ffe0a3d-d152-412f-bc75-480092ca6256"
+                },
+                {
+                    "type": "nodes.turnActor",
+                    "actorId": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+                    "propId": null,
+                    "scope": "actor",
+                    "targetActorId": "30ee2636-15e3-452e-a2db-09cbb9012970"
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.or",
+                                "left": {
+                                    "type": "expressions.hasActiveQuest",
+                                    "propId": "7d70f789-572f-408a-9968-719e557ad1fc",
+                                    "sceneId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                                    "questStatus": "0"
+                                },
+                                "right": {
+                                    "type": "expressions.hasActiveQuest",
+                                    "propId": "7d70f789-572f-408a-9968-719e557ad1fc",
+                                    "sceneId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                                    "questStatus": "1"
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.comment",
+                                    "message": "Only interested in the \"Else\" case, so no code here.",
+                                    "commentor": "School Uniform Quest"
+                                },
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "25e415f5-b88c-4642-8484-d2dfd1330506",
+                                    "scope": "script",
+                                    "scopeId": null,
+                                    "scopeFilterId": null,
+                                    "tagsToRemove": "NeedUniform"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.comment",
+                                    "message": "Shawn had to ask! Now he must get a uniform.",
+                                    "commentor": "School Uniform"
+                                },
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "0ad27278-b2a9-4885-926d-3415f1959fc6",
+                                    "scope": "script",
+                                    "scopeId": null,
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "NeedUniform",
+                                    "tagsToRemove": null
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.showMenu",
+                    "id": "fd053d15-84d4-4ec7-a007-123e693ba2bf",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "dad4fe44-07fe-4bb4-868d-776f0d01a930",
+                            "text": "Say Something Polite",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "714e51ce-c6f1-4185-9f82-0d929cff1542",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+                                    "text": "Good afternoon, Mr. Terk. The Disbarred Bards class is over for the day and I wanted to make sure I know my way around the school. I wouldn't want to get lost on my way to school events, after all.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "19fe1673-3208-4395-9024-1bf9182188f0",
+                                    "actorId": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "Hmph. The class is out already? Then you are most likely expected to study your lessons in the afternoon rather than dillydallying around the school.",
+                                    "emotion": "0",
+                                    "emotion2": "4",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "f634bc66-ec22-4a78-a62a-50e1cb31f02e",
+                                    "actorId": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "Because you are new here, I'll overlook your slacking off for today. The Dining Room is further down this hall and will be open at six for supper. ",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "id": "67264aa0-339d-46b5-98fe-401e4385413b",
+                                    "type": "nodes.skillBranch",
+                                    "skill": "Charm",
+                                    "target": "15",
+                                    "success": {
+                                        "type": "nodes.block",
+                                        "nodes": []
+                                    },
+                                    "failure": {
+                                        "type": "nodes.block",
+                                        "nodes": []
+                                    },
+                                    "notify": true
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": false,
+                            "minutes": "6",
+                            "ExitMenu": true
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "abfb2845-cfe2-4ba0-b806-89b41f059a80",
+                            "text": "Explain the Situation",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "ca0482d7-30d6-426a-b52f-0b56c0f6c690",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+                                    "text": "Class is over for the day, sir. I'm exploring the school right now so that I learn my way around. After all, I wouldn't want to be late for anything.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "5448f8ca-1cb2-45af-a824-297c48f3c88f",
+                                    "actorId": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "Hmph. The class is out already? Then you are most likely expected to study your lessons in the afternoon rather than dillydallying around the school.",
+                                    "emotion": "0",
+                                    "emotion2": "4",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "13c379c5-4afc-4223-bb0f-05f844c69be2",
+                                    "actorId": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "Because you are new here, I'll overlook your slacking off for today. The Dining Room is further down this hall and will be open at six for supper. ",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "id": "be037185-ff27-4c06-8fc7-c7bb3439f08a",
+                                    "type": "nodes.skillBranch",
+                                    "skill": "Smarts",
+                                    "target": "15",
+                                    "success": {
+                                        "type": "nodes.block",
+                                        "nodes": []
+                                    },
+                                    "failure": {
+                                        "type": "nodes.block",
+                                        "nodes": []
+                                    },
+                                    "notify": true
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": false,
+                            "minutes": "6",
+                            "ExitMenu": true
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "5093d908-9410-45d7-a7c2-543205076dd7",
+                            "text": "Invent an Excuse",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "919a1c3f-0ef6-4784-91f0-834270bb7a68",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+                                    "text": "I was told by Master von Urwald that I needed to buy a thieves' toolkit kit, so I thought I'd just head back to Caligari to find one.",
+                                    "emotion": "1",
+                                    "emotion2": "4",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "441ae5b6-4a68-436c-a36a-6c962657358f",
+                                    "actorId": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "A thieves' toolkit? It is outrageous that such an illegal activity be taught at this school! ",
+                                    "emotion": "3",
+                                    "emotion2": "1",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "4120fbed-3d46-4496-ae82-5712d9613bac",
+                                    "actorId": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "As for you, young man, you are on probation. You are not to leave the castle. Any purchases you need can be made at the School Store.",
+                                    "emotion": "0",
+                                    "emotion2": "4",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "275e00bc-714e-4594-8ff7-dac8ee9eef11",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+                                    "text": "I can't leave the castle? For how long?",
+                                    "emotion": "4",
+                                    "emotion2": "1",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "a107b179-c7ba-4d99-8ba4-fc6a3a60565c",
+                                    "actorId": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "You must stay inside this castle until you are expelled for poor behavior, fail your Disbarred Bards class, or in the unlikely event that you make it to the end of the semester.",
+                                    "emotion": "0",
+                                    "emotion2": "2",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "id": "f8a4cbdd-d97e-4886-8bfa-ac58fb179717",
+                                    "type": "nodes.skillBranch",
+                                    "skill": "Smarts",
+                                    "target": "15",
+                                    "success": {
+                                        "type": "nodes.block",
+                                        "nodes": []
+                                    },
+                                    "failure": {
+                                        "type": "nodes.block",
+                                        "nodes": []
+                                    },
+                                    "notify": true
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": false,
+                            "minutes": "8",
+                            "ExitMenu": true
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "2db5d58c-d1c5-450a-a233-a49d3b096ec0",
+                            "text": "Say Something Snarky",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "48dbb200-155b-4850-a9b1-993889cf9f19",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+                                    "text": "So, is there some rule that says I can't walk around the school after my class is over? Is this area off-limits for me or something?",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "b9c7e7f1-8e60-420a-a505-aedc8d8639ac",
+                                    "actorId": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "Watch your tone, young man. If your class is over, then you are expected to study your lessons. The Practice Room is downstairs by your classroom.",
+                                    "emotion": "3",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "740da32a-dbbb-4b9b-a7eb-8d7e377ce9e6",
+                                    "actorId": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "The Library is through the door over there to the courtyard. The door to the Dining Hall is further down this corridor, and the door to the stairs down to the school store is around the corner.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "248b7f4f-2d7f-4e92-9bc4-6a4f5b26bb3c",
+                                    "actorId": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "Use your time wisely, Mr. O'Conner. Don't waste it.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "id": "68046325-6500-43ed-a4ea-6def9d2978fa",
+                                    "type": "nodes.skillBranch",
+                                    "skill": "Moxie",
+                                    "target": "15",
+                                    "success": {
+                                        "type": "nodes.block",
+                                        "nodes": []
+                                    },
+                                    "failure": {
+                                        "type": "nodes.block",
+                                        "nodes": []
+                                    },
+                                    "notify": true
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": false,
+                            "minutes": "7",
+                            "ExitMenu": true
+                        }
+                    ],
+                    "AutoAddDone": false,
+                    "Unique": true
+                },
+                {
+                    "type": "nodes.showMenu",
+                    "id": "15700d2a-459b-426d-97e3-fb345e348055",
+                    "options": [],
+                    "AutoAddDone": true,
+                    "Unique": false
+                },
+                {
+                    "type": "nodes.showMenu",
+                    "id": "ccbc0841-197d-484f-ba91-51b8f520021b",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "a4398d38-f3c7-4831-9514-60b7faec0db1",
+                            "text": "Ask About Terk",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "58eae8c0-d04e-45b0-8241-03cac0e1ab84",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+                                    "text": "So are you the guy in charge of this school?",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "9170d36f-2cea-439f-a82b-648709f70fc6",
+                                    "actorId": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "While the Headmaster may have founded the school, I am the person in charge of making certain that all students follow the rules and properly respect authority. ",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "4bef616c-c77e-4a0a-9098-f9145fe3803e",
+                                    "actorId": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "If I were in charge of this school, there would be no \"Disbarred Bards\" class, nor would the likes of you be allowed in this school.",
+                                    "emotion": "3",
+                                    "emotion2": "4",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": false,
+                            "minutes": "5",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "e312db07-1ad9-48c5-9b42-c8510fb323e2",
+                            "text": "Ask About the School",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "3c3f7168-4483-4611-bb6f-8371d1cb2c67",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+                                    "text": "What's the point of this school?",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "74e7971a-a4fb-4c7c-8cc6-44d19f053a89",
+                                    "actorId": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "This university gives students the proper tools and education to do heroic things and make the world a better place. ",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "599984f8-2976-4398-bed3-6d6568da44fa",
+                                    "actorId": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "What heroism has to do with you, I do not know. The Headmaster is in grave error if he believes that you or your classmates will become anything other than criminals.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": false,
+                            "minutes": "4",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "b1e1b8d4-2358-4bf5-bd30-5a5df4564313",
+                            "text": "Ask About the Store",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "38025836-89a0-4fb4-ba4c-ce558482403a",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+                                    "text": "I'm told that I need to buy something from the School Store.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "1ed70155-ab27-4d7d-ad42-c3c1ba19f2a9",
+                                    "actorId": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "A likely excuse. The store is downstairs from here. Go to the end of the corridor, turn right, and through the door. ",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "4b772ab2-f3c9-410b-8b0c-ffba427153ea",
+                                    "actorId": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "The shopkeeper is another example of how ill-managed this university is. Why that overgrown rodent is tolerated here, I have no idea.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": false,
+                            "minutes": "4",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "d5655fb1-1b6f-484f-b03f-94995916fc99",
+                            "text": "Ask How You Can Better Fit In at the School",
+                            "nodes": [
+                                {
+                                    "type": "nodes.comment",
+                                    "message": "Only show this if Shawn is not already wearing the school uniform.",
+                                    "commentor": "Cidney"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "28f0a704-1893-46e9-86a6-1a01b60c68da",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+                                    "text": "Tell me, sir, what I can do to better fit in around here? I'd like to make a good impression.",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "93ed7e17-ee1a-4151-8e21-f0ed1a683223",
+                                    "actorId": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+                                    "actorId2": null,
+                                    "text": "Hmph. If you want to try to make something of yourself - get yourself a school uniform from the store and wear it during school hours. At least that way, you won't look like a ragamuffin tramp.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.addJournalEntry",
+                                    "id": "2357117d-3009-46ef-8f69-1f0425eaa4fc",
+                                    "name": "School Uniform",
+                                    "notify": true,
+                                    "description": "Great. Mr. Terk expects me to buy a school uniform. I suppose he wants me to wear it, too. I guess I should learn to avoid Terk whenever possible."
+                                },
+                                {
+                                    "type": "nodes.showMenu",
+                                    "id": "d0812589-dd4b-4896-a15c-05f4bb544745",
+                                    "options": [
+                                        {
+                                            "type": "options.text",
+                                            "id": "9e39bf0e-5d69-42c8-9b2c-1a1930070c94",
+                                            "text": "Agree to Get a Uniform",
+                                            "nodes": [
+                                                {
+                                                    "id": "f5eb361f-dc4f-44f1-8b71-ff9df59bdb45",
+                                                    "type": "nodes.skillBranch",
+                                                    "skill": "Charm",
+                                                    "target": "20",
+                                                    "success": {
+                                                        "type": "nodes.block",
+                                                        "nodes": []
+                                                    },
+                                                    "failure": {
+                                                        "type": "nodes.block",
+                                                        "nodes": []
+                                                    },
+                                                    "notify": true
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "c54d326d-38bb-4edd-b839-36d83fe89eff",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+                                                    "text": "That's clearly a fine suggestion. I'll buy one as soon as I can.",
+                                                    "emotion": "1",
+                                                    "emotion2": "4",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "9f18255c-3b99-4d8f-bd84-a2b5465cee3c",
+                                                    "actorId": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "See that you do. I expect you to be wearing it the next time I see you during school hours.",
+                                                    "emotion": "0",
+                                                    "emotion2": "4",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ],
+                                            "expression": null,
+                                            "ignoreChildAvailability": false,
+                                            "minutes": "1",
+                                            "ExitMenu": true
+                                        },
+                                        {
+                                            "type": "options.text",
+                                            "id": "c6490167-20b9-492f-9a66-babc599bec0e",
+                                            "text": "Take His Suggestion Under Consideration",
+                                            "nodes": [
+                                                {
+                                                    "id": "1062fbe2-b08b-445f-8574-8cd7776aebb4",
+                                                    "type": "nodes.skillBranch",
+                                                    "skill": "Smarts",
+                                                    "target": "20",
+                                                    "success": {
+                                                        "type": "nodes.block",
+                                                        "nodes": []
+                                                    },
+                                                    "failure": {
+                                                        "type": "nodes.block",
+                                                        "nodes": []
+                                                    },
+                                                    "notify": true
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "e4c66e1d-4415-402c-878f-1f469099f83a",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+                                                    "text": "I didn't realize that there even was a school uniform. I'll look into it.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "ee1da512-0022-4e59-acd0-b1024617c40b",
+                                                    "actorId": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "At the moment, you look like a total disgrace to this school. You need to dress up or get out.",
+                                                    "emotion": "3",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ],
+                                            "expression": null,
+                                            "ignoreChildAvailability": false,
+                                            "minutes": "2",
+                                            "ExitMenu": true
+                                        },
+                                        {
+                                            "type": "options.text",
+                                            "id": "7e74834f-57f9-4fd5-ab0a-64244802336d",
+                                            "text": "Mock Terk's Suggestion",
+                                            "nodes": [
+                                                {
+                                                    "id": "12f62e91-d119-435b-9928-97be2d13537d",
+                                                    "type": "nodes.skillBranch",
+                                                    "skill": "Moxie",
+                                                    "target": "20",
+                                                    "success": {
+                                                        "type": "nodes.block",
+                                                        "nodes": []
+                                                    },
+                                                    "failure": {
+                                                        "type": "nodes.block",
+                                                        "nodes": []
+                                                    },
+                                                    "notify": true
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "682043ca-2ba0-4ca3-ac88-17e470dd5b69",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+                                                    "text": "Why isn't everyone here wearing an <i>Official Hero University Uniform?</i> It sounds like the sort of order you would enforce.",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "a13dd8b4-ea38-4306-bdfa-df1cbfe1b971",
+                                                    "actorId": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "I've made that suggestion several times to the Headmaster. Students should look like they belong in a school for higher learning rather than the streets of Caligari.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "e2cba706-42f0-4c17-938c-7bb7b8f2a669",
+                                                    "actorId": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "But Gerhard insists that students should be allowed to dress as they see fit. Bah! This is a university! Students need to learn to follow orders and do as they are told - not think for themselves.",
+                                                    "emotion": "3",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "876e8c15-e44b-48a0-9d72-2f14f2e9d67f",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+                                                    "text": "Yes, clearly you should lead the students to knowledge, but you can't let them think.",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "92ec7340-041b-4862-a667-360692230731",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+                                                    "text": "After all, they may think that wearing school uniforms is a stupid waste of money.",
+                                                    "emotion": "1",
+                                                    "emotion2": "4",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "76d9e76a-cc75-45ea-b104-d8c6960a518b",
+                                                    "actorId": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "Insolence will not be tolerated! I'm giving you five demerits. Watch your tongue from now on.",
+                                                    "emotion": "3",
+                                                    "emotion2": "3",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.changeMoney",
+                                                    "id": "c9ff011a-d1c2-4401-93d2-b32dc43df110",
+                                                    "amount": "5",
+                                                    "change": "1",
+                                                    "currency": "2"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "3e1b5602-b1f1-48bb-bbaa-10570ffb396f",
+                                                    "actorId": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+                                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "And get yourself a school uniform or you'll get demerits every time I see you out of it!",
+                                                    "emotion": "3",
+                                                    "emotion2": "2",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ],
+                                            "expression": null,
+                                            "ignoreChildAvailability": false,
+                                            "minutes": "10",
+                                            "ExitMenu": true
+                                        }
+                                    ],
+                                    "AutoAddDone": false,
+                                    "Unique": true
+                                },
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "6e00e4a9-4ca7-42d2-a92c-05cbd8d8a999",
+                                    "scope": "scene",
+                                    "scopeId": "40f18665-4cc2-4acd-b17e-5189e68b7a33",
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "UniformWarning",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.quests",
+                                    "id": "faccf43c-dcc6-4978-8552-9537a977ba30",
+                                    "sceneId": "e8520824-d970-4c6e-8aec-6c308c8846ab",
+                                    "propId": "7d70f789-572f-408a-9968-719e557ad1fc",
+                                    "target": "0",
+                                    "notify": true
+                                },
+                                {
+                                    "type": "nodes.setTimer",
+                                    "id": "c8d7a0c4-d75f-4520-92d0-7d3095755227",
+                                    "repeatEveryDay": false,
+                                    "days": "7",
+                                    "hours": "0",
+                                    "minutes": 0,
+                                    "scopeName": "ego",
+                                    "scriptId": "eb4568e1-c798-449e-aee7-7aad81e39f86"
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inTags",
+                                    "scope": "actor",
+                                    "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "scopeFilterId": null,
+                                    "tags": "SchoolUniform",
+                                    "has": false
+                                },
+                                "right": {
+                                    "type": "expressions.inTags",
+                                    "scope": "script",
+                                    "scopeId": null,
+                                    "scopeFilterId": null,
+                                    "tags": "NeedUniform",
+                                    "has": true
+                                }
+                            },
+                            "ignoreChildAvailability": false,
+                            "minutes": "3",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "bd2f5cb4-4448-43c9-840a-399cb67f98b4",
+                            "text": "Say Goodbye",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "3301cee0-078f-4aa7-9fd1-a50dfa3c9ac0",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+                                    "text": "I'll see you later, sir.",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "2fcc0a87-6792-4a11-8ac0-c350915ad407",
+                                    "actorId": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "I want to see you as little as possible, Conner. Stay out of trouble and away from me. Curfew is at 10pm. If I catch you walking around the halls after that, you will receive demerits.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "ea4e458c-f0ac-4ada-95b1-353e15882a7a",
+                                    "actorId": "5ffe0a3d-d152-412f-bc75-480092ca6256",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "We shall see how quickly you earn 100 demerits so that I can say farewell to you for good.",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": false,
+                            "minutes": "4",
+                            "ExitMenu": true
+                        }
+                    ],
+                    "AutoAddDone": false,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

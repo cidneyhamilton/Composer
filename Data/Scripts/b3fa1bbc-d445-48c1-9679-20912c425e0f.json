@@ -1,0 +1,1259 @@
+{
+    "type": "script",
+    "id": "b3fa1bbc-d445-48c1-9679-20912c425e0f",
+    "name": "Default Lock Interaction",
+    "sceneId": "5c81204b-2c5b-4eb0-9e84-85acb2fc9d13",
+    "trigger": {
+        "type": "triggers.manual",
+        "name": "Manual"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "59ce8c4b-72dc-4e32-9be3-9c6a529fcaf1",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.onceDaily",
+                    "id": "031f5866-6ac6-48f1-addf-d2babbbf95a6",
+                    "nodes": [
+                        {
+                            "type": "nodes.changeTags",
+                            "id": "47c5e3f6-562e-4aa5-bc9e-96b4493648df",
+                            "scope": "scene",
+                            "scopeId": "5c81204b-2c5b-4eb0-9e84-85acb2fc9d13",
+                            "scopeFilterId": null,
+                            "tagsToRemove": "examinedlocktoday"
+                        },
+                        {
+                            "type": "nodes.setVariable",
+                            "name": "lockAttempts",
+                            "scope": "scene",
+                            "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                            "source": {
+                                "type": "variables.literal",
+                                "value": "0",
+                                "displayName": "Literal"
+                            },
+                            "add": false
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.fade",
+                    "scope": "FadeOut",
+                    "fadeTime": ".5",
+                    "fadeTime2": 2,
+                    "wait": true,
+                    "fadeDown": 0.5,
+                    "fadeColorR": 0,
+                    "fadeColorG": 0,
+                    "fadeColorB": 0
+                },
+                {
+                    "type": "nodes.showVignette",
+                    "vignetteName": "Lockroom_PickingLocks.png",
+                    "crossFadeTime": 0
+                },
+                {
+                    "type": "nodes.fade",
+                    "scope": "FadeIn",
+                    "fadeTime": ".5",
+                    "fadeTime2": "1",
+                    "wait": true,
+                    "fadeDown": ".25",
+                    "fadeColorR": 0,
+                    "fadeColorG": 0,
+                    "fadeColorB": 0
+                },
+                {
+                    "type": "nodes.showMenu",
+                    "id": "fc08a946-764b-4493-a972-7c9641d8cca5",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "829fe48b-975b-4f5b-88d8-b015e77f4f65",
+                            "text": "Examine Lock",
+                            "nodes": [
+                                {
+                                    "type": "nodes.onceDaily",
+                                    "id": "9ff8ce85-35e4-47ab-8517-8579eb730a2a",
+                                    "nodes": [
+                                        {
+                                            "id": "08e43ae9-0fb5-4d57-b6b2-c22a2364cd01",
+                                            "type": "nodes.skillBranch",
+                                            "skill": "Perception",
+                                            "target": "20",
+                                            "success": {
+                                                "type": "nodes.block",
+                                                "nodes": []
+                                            },
+                                            "failure": {
+                                                "type": "nodes.block",
+                                                "nodes": []
+                                            },
+                                            "notify": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.skillCheck",
+                                                "skill": "Perception",
+                                                "target": "20"
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.variableComparison",
+                                                                "variableScope": "global",
+                                                                "variableName": "time.day",
+                                                                "operator": "lte",
+                                                                "compareTo": "10",
+                                                                "sceneId": "5c81204b-2c5b-4eb0-9e84-85acb2fc9d13",
+                                                                "propId": null
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "ef616a6d-6ca1-4fab-98c1-1351b4950fa0",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "It looks like a pretty basic lock.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.branch",
+                                                                    "sections": [
+                                                                        {
+                                                                            "type": "nodes.branchSection",
+                                                                            "expression": {
+                                                                                "type": "expressions.inTags",
+                                                                                "scope": "actor",
+                                                                                "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                "scopeFilterId": null,
+                                                                                "tags": "ReadAL",
+                                                                                "has": true
+                                                                            },
+                                                                            "nodes": [
+                                                                                {
+                                                                                    "type": "nodes.speak",
+                                                                                    "id": "908eb925-fee5-4dc9-901e-49c18331beef",
+                                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                    "actorId2": null,
+                                                                                    "text": "This is a Brown class, only used for training.",
+                                                                                    "emotion": "0",
+                                                                                    "emotion2": "0",
+                                                                                    "device": "0",
+                                                                                    "device2": "0"
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.and",
+                                                                "left": {
+                                                                    "type": "expressions.variableComparison",
+                                                                    "variableScope": "global",
+                                                                    "variableName": "time.day",
+                                                                    "operator": "gte",
+                                                                    "compareTo": "11",
+                                                                    "sceneId": "5c81204b-2c5b-4eb0-9e84-85acb2fc9d13",
+                                                                    "propId": null
+                                                                },
+                                                                "right": {
+                                                                    "type": "expressions.variableComparison",
+                                                                    "variableScope": "global",
+                                                                    "variableName": "time.day",
+                                                                    "operator": "lte",
+                                                                    "compareTo": "16",
+                                                                    "sceneId": "5c81204b-2c5b-4eb0-9e84-85acb2fc9d13",
+                                                                    "propId": null
+                                                                }
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "9dab9222-3d2e-450c-ac27-830dd892586d",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "It's a newer style lock than the basic lock.",
+                                                                    "emotion": "4",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.branch",
+                                                                    "sections": [
+                                                                        {
+                                                                            "type": "nodes.branchSection",
+                                                                            "expression": {
+                                                                                "type": "expressions.inTags",
+                                                                                "scope": "actor",
+                                                                                "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                "scopeFilterId": null,
+                                                                                "tags": "ReadAL",
+                                                                                "has": true
+                                                                            },
+                                                                            "nodes": [
+                                                                                {
+                                                                                    "type": "nodes.speak",
+                                                                                    "id": "0d80ab60-92f4-4786-a936-bb7030577e4b",
+                                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                    "actorId2": null,
+                                                                                    "text": "This is a Hardy class lock, one of the cheapest locks around.",
+                                                                                    "emotion": "0",
+                                                                                    "emotion2": "0",
+                                                                                    "device": "0",
+                                                                                    "device2": "0"
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.and",
+                                                                "left": {
+                                                                    "type": "expressions.variableComparison",
+                                                                    "variableScope": "global",
+                                                                    "variableName": "time.day",
+                                                                    "operator": "gte",
+                                                                    "compareTo": "17",
+                                                                    "sceneId": "5c81204b-2c5b-4eb0-9e84-85acb2fc9d13",
+                                                                    "propId": null
+                                                                },
+                                                                "right": {
+                                                                    "type": "expressions.variableComparison",
+                                                                    "variableScope": "global",
+                                                                    "variableName": "time.day",
+                                                                    "operator": "lte",
+                                                                    "compareTo": "21",
+                                                                    "sceneId": "5c81204b-2c5b-4eb0-9e84-85acb2fc9d13",
+                                                                    "propId": null
+                                                                }
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "0886855e-17d9-497a-b407-afdf984893c2",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "This is one of the more common locks available.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.branch",
+                                                                    "sections": [
+                                                                        {
+                                                                            "type": "nodes.branchSection",
+                                                                            "expression": {
+                                                                                "type": "expressions.inTags",
+                                                                                "scope": "actor",
+                                                                                "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                "scopeFilterId": null,
+                                                                                "tags": "ReadAL",
+                                                                                "has": true
+                                                                            },
+                                                                            "nodes": [
+                                                                                {
+                                                                                    "type": "nodes.speak",
+                                                                                    "id": "ed5dc931-7d3f-40c4-b325-1da64f987545",
+                                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                    "actorId2": null,
+                                                                                    "text": "It's the tricky L-Bow class.",
+                                                                                    "emotion": "0",
+                                                                                    "emotion2": "0",
+                                                                                    "device": "0",
+                                                                                    "device2": "0"
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.and",
+                                                                "left": {
+                                                                    "type": "expressions.variableComparison",
+                                                                    "variableScope": "global",
+                                                                    "variableName": "time.day",
+                                                                    "operator": "gte",
+                                                                    "compareTo": "22",
+                                                                    "sceneId": "5c81204b-2c5b-4eb0-9e84-85acb2fc9d13",
+                                                                    "propId": null
+                                                                },
+                                                                "right": {
+                                                                    "type": "expressions.variableComparison",
+                                                                    "variableScope": "global",
+                                                                    "variableName": "time.day",
+                                                                    "operator": "lte",
+                                                                    "compareTo": "28",
+                                                                    "sceneId": "5c81204b-2c5b-4eb0-9e84-85acb2fc9d13",
+                                                                    "propId": null
+                                                                }
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "1a06990c-8405-4a1b-bc02-6eab38c2ec3e",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "This lock is complex - it requires a Houdini to open it.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.branch",
+                                                                    "sections": [
+                                                                        {
+                                                                            "type": "nodes.branchSection",
+                                                                            "expression": {
+                                                                                "type": "expressions.inTags",
+                                                                                "scope": "actor",
+                                                                                "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                "scopeFilterId": null,
+                                                                                "tags": "ReadAL",
+                                                                                "has": true
+                                                                            },
+                                                                            "nodes": [
+                                                                                {
+                                                                                    "type": "nodes.speak",
+                                                                                    "id": "cf69d0fa-508b-4d56-ae7d-2de0542062c2",
+                                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                    "actorId2": null,
+                                                                                    "text": "Looks like a Marple class.",
+                                                                                    "emotion": "0",
+                                                                                    "emotion2": "0",
+                                                                                    "device": "0",
+                                                                                    "device2": "0"
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.and",
+                                                                "left": {
+                                                                    "type": "expressions.variableComparison",
+                                                                    "variableScope": "global",
+                                                                    "variableName": "time.day",
+                                                                    "operator": "gte",
+                                                                    "compareTo": "29",
+                                                                    "sceneId": "5c81204b-2c5b-4eb0-9e84-85acb2fc9d13",
+                                                                    "propId": null
+                                                                },
+                                                                "right": {
+                                                                    "type": "expressions.variableComparison",
+                                                                    "variableScope": "global",
+                                                                    "variableName": "time.day",
+                                                                    "operator": "lte",
+                                                                    "compareTo": "37",
+                                                                    "sceneId": "5c81204b-2c5b-4eb0-9e84-85acb2fc9d13",
+                                                                    "propId": null
+                                                                }
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.branch",
+                                                                    "sections": [
+                                                                        {
+                                                                            "type": "nodes.branchSection",
+                                                                            "expression": {
+                                                                                "type": "expressions.inTags",
+                                                                                "scope": "actor",
+                                                                                "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                "scopeFilterId": null,
+                                                                                "tags": "ReadAL",
+                                                                                "has": true
+                                                                            },
+                                                                            "nodes": [
+                                                                                {
+                                                                                    "type": "nodes.speak",
+                                                                                    "id": "8ad6290e-d263-4261-a512-3f52d724c855",
+                                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                    "actorId2": null,
+                                                                                    "text": "Looks like a frustrating Columbo class.",
+                                                                                    "emotion": "0",
+                                                                                    "emotion2": "0",
+                                                                                    "device": "0",
+                                                                                    "device2": "0"
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "67bf946d-9193-434a-ae09-5f4edbd4ee2f",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "Another complex lock.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": null,
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "e3f30f62-1366-439b-81c7-290783019a00",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "This is one of the trickiest locks out there.",
+                                                                    "emotion": "3",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.branch",
+                                                                    "sections": [
+                                                                        {
+                                                                            "type": "nodes.branchSection",
+                                                                            "expression": {
+                                                                                "type": "expressions.inTags",
+                                                                                "scope": "actor",
+                                                                                "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                "scopeFilterId": null,
+                                                                                "tags": "ReadAL",
+                                                                                "has": true
+                                                                            },
+                                                                            "nodes": [
+                                                                                {
+                                                                                    "type": "nodes.speak",
+                                                                                    "id": "50aa14bc-8434-4b81-aeef-70b39a60f980",
+                                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                                    "actorId2": null,
+                                                                                    "text": "It's a Marlowe.",
+                                                                                    "emotion": "2",
+                                                                                    "emotion2": "0",
+                                                                                    "device": "0",
+                                                                                    "device2": "0"
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "72fa08b5-21ca-4bcb-8b19-24cff45a336b",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "It's a lock. That much I can tell. ",
+                                                    "emotion": "2",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "0",
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "e4b0c743-b497-4216-b3ce-e85820166e45",
+                            "text": "Pick the Lock",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "scene",
+                                                "variableName": "lockAttempts",
+                                                "operator": "eq",
+                                                "compareTo": "20",
+                                                "sceneId": "5c81204b-2c5b-4eb0-9e84-85acb2fc9d13",
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "86bd2265-7592-4670-b98c-ea87aa738728",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "This is exhausting. I've been staring at locks for much too long. I'm starting to cramp up. That's enough for today.",
+                                                    "emotion": "5",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.hideVignette",
+                                                    "waitForSeconds": 1
+                                                },
+                                                {
+                                                    "type": "nodes.endScript"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.and",
+                                                "left": {
+                                                    "type": "expressions.variableComparison",
+                                                    "variableScope": "global",
+                                                    "variableName": "time.hour",
+                                                    "operator": "eq",
+                                                    "compareTo": "17",
+                                                    "sceneId": "5c81204b-2c5b-4eb0-9e84-85acb2fc9d13",
+                                                    "propId": null
+                                                },
+                                                "right": {
+                                                    "type": "expressions.variableComparison",
+                                                    "variableScope": "global",
+                                                    "variableName": "time.minute",
+                                                    "operator": "gte",
+                                                    "compareTo": "45",
+                                                    "sceneId": "5c81204b-2c5b-4eb0-9e84-85acb2fc9d13",
+                                                    "propId": null
+                                                }
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "a0e93803-1a73-49d4-b75a-9a80802bb667",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Is it getting close to suppertime? I'm starting to get hungry, too hungry to concentrate on lockpicking...",
+                                                    "emotion": "4",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.hideVignette",
+                                                    "waitForSeconds": 1
+                                                },
+                                                {
+                                                    "type": "nodes.endScript"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "global",
+                                                "variableName": "time.hour",
+                                                "operator": "lt",
+                                                "compareTo": "7",
+                                                "sceneId": "5c81204b-2c5b-4eb0-9e84-85acb2fc9d13",
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "2c96cbfc-39e0-44fe-939c-4dfda9bac618",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Yeah, I know, \"Thieves do it in the middle of the night.\" But we Rogues need our beauty sleep, so forget it!",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.hideVignette",
+                                                    "waitForSeconds": 1
+                                                },
+                                                {
+                                                    "type": "nodes.endScript"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "global",
+                                                "variableName": "time.hour",
+                                                "operator": "lt",
+                                                "compareTo": "8",
+                                                "sceneId": "5c81204b-2c5b-4eb0-9e84-85acb2fc9d13",
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "33cb69a6-acc9-49b9-84c0-c310f3ad07ad",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "(Yawn) I'm getting really sleepy. It's too late to bother with this now.",
+                                                    "emotion": "5",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.hideVignette",
+                                                    "waitForSeconds": 1
+                                                },
+                                                {
+                                                    "type": "nodes.endScript"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.and",
+                                                "left": {
+                                                    "type": "expressions.variableComparison",
+                                                    "variableScope": "global",
+                                                    "variableName": "time.day",
+                                                    "operator": "gte",
+                                                    "compareTo": "22",
+                                                    "sceneId": "5c81204b-2c5b-4eb0-9e84-85acb2fc9d13",
+                                                    "propId": null
+                                                },
+                                                "right": {
+                                                    "type": "expressions.inInventory",
+                                                    "propId": "1d6a6851-2078-498c-b9de-8e72576a462b",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "has": false
+                                                }
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "a9cfce5d-d7dd-4d66-bb96-415fdbd8afec",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Oh, man, this lock requires a Houdini to open it! They all do...",
+                                                    "emotion": "4",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "3be0e381-367e-48d8-bf4f-92b18b30c95a",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "I've definitely got to get me one.",
+                                                    "emotion": "2",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.hideVignette",
+                                                    "waitForSeconds": 1
+                                                },
+                                                {
+                                                    "type": "nodes.endScript"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.incrementTime",
+                                                    "id": "c9328c49-2da5-4da7-bbd5-f184d7fce2f9",
+                                                    "days": "0",
+                                                    "hours": "0",
+                                                    "minutes": "5"
+                                                },
+                                                {
+                                                    "type": "nodes.setVariable",
+                                                    "name": "lockAttempts",
+                                                    "scope": "scene",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "source": {
+                                                        "type": "variables.literal",
+                                                        "value": "1",
+                                                        "displayName": "Literal"
+                                                    },
+                                                    "add": true
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.variableComparison",
+                                                                "variableScope": "global",
+                                                                "variableName": "time.day",
+                                                                "operator": "lte",
+                                                                "compareTo": "10",
+                                                                "sceneId": "5c81204b-2c5b-4eb0-9e84-85acb2fc9d13",
+                                                                "propId": null
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "id": "eec529d3-25c8-4b40-bcac-ca89b58faef9",
+                                                                    "type": "nodes.skillBranch",
+                                                                    "skill": "Tool Use",
+                                                                    "target": "20",
+                                                                    "success": {
+                                                                        "type": "nodes.block",
+                                                                        "nodes": [
+                                                                            {
+                                                                                "type": "nodes.invokeScript",
+                                                                                "id": "74e67a41-fe64-4a8e-a9ff-b55cb810ce7c",
+                                                                                "scriptId": "f214e893-43e1-4ba8-bb48-5ad1177e61de",
+                                                                                "entryPointId": "7ffa7587-c22f-4755-a05a-c3d8eedcdae1",
+                                                                                "currentScope": "Scenes",
+                                                                                "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                                                                "currentActorId": null,
+                                                                                "currentStoryEventId": null,
+                                                                                "currentPropId": null
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    "failure": {
+                                                                        "type": "nodes.block",
+                                                                        "nodes": [
+                                                                            {
+                                                                                "type": "nodes.invokeScript",
+                                                                                "id": "5b2a34c0-c047-4fa7-8137-20ca375e2ccb",
+                                                                                "scriptId": "c806f4c0-6bc6-471a-97ab-fc59190de6da",
+                                                                                "entryPointId": "",
+                                                                                "currentScope": "Scenes",
+                                                                                "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                                                                "currentActorId": null,
+                                                                                "currentStoryEventId": null,
+                                                                                "currentPropId": null
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    "notify": true
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.and",
+                                                                "left": {
+                                                                    "type": "expressions.variableComparison",
+                                                                    "variableScope": "global",
+                                                                    "variableName": "time.day",
+                                                                    "operator": "gte",
+                                                                    "compareTo": "11",
+                                                                    "sceneId": "5c81204b-2c5b-4eb0-9e84-85acb2fc9d13",
+                                                                    "propId": null
+                                                                },
+                                                                "right": {
+                                                                    "type": "expressions.variableComparison",
+                                                                    "variableScope": "global",
+                                                                    "variableName": "time.day",
+                                                                    "operator": "lte",
+                                                                    "compareTo": "16",
+                                                                    "sceneId": "5c81204b-2c5b-4eb0-9e84-85acb2fc9d13",
+                                                                    "propId": null
+                                                                }
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.onceOnly",
+                                                                    "id": "1cb52dba-9d7d-48fe-bfad-16bf56f9f85e",
+                                                                    "nodes": [
+                                                                        {
+                                                                            "type": "nodes.speak",
+                                                                            "id": "902e6bdf-2605-416c-b692-9dcc9ecc0374",
+                                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                            "actorId2": null,
+                                                                            "text": "Hmmm... this lock is trickier than the other ones.",
+                                                                            "emotion": "0",
+                                                                            "emotion2": "0",
+                                                                            "device": "0",
+                                                                            "device2": "0"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "id": "8d18e0b2-7740-4165-bea9-472c846eeab9",
+                                                                    "type": "nodes.skillBranch",
+                                                                    "skill": "Tool Use",
+                                                                    "target": "30",
+                                                                    "success": {
+                                                                        "type": "nodes.block",
+                                                                        "nodes": [
+                                                                            {
+                                                                                "type": "nodes.invokeScript",
+                                                                                "id": "e2eaea48-6742-4c22-834f-40a14e9a20a0",
+                                                                                "scriptId": "f214e893-43e1-4ba8-bb48-5ad1177e61de",
+                                                                                "entryPointId": "7ffa7587-c22f-4755-a05a-c3d8eedcdae1",
+                                                                                "currentScope": "Scenes",
+                                                                                "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                                                                "currentActorId": null,
+                                                                                "currentStoryEventId": null,
+                                                                                "currentPropId": null
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    "failure": {
+                                                                        "type": "nodes.block",
+                                                                        "nodes": [
+                                                                            {
+                                                                                "type": "nodes.invokeScript",
+                                                                                "id": "5bc6acd4-7f09-4ed4-8f72-083dfc19456e",
+                                                                                "scriptId": "c806f4c0-6bc6-471a-97ab-fc59190de6da",
+                                                                                "entryPointId": "",
+                                                                                "currentScope": "Scenes",
+                                                                                "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                                                                "currentActorId": null,
+                                                                                "currentStoryEventId": null,
+                                                                                "currentPropId": null
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    "notify": true
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.and",
+                                                                "left": {
+                                                                    "type": "expressions.variableComparison",
+                                                                    "variableScope": "global",
+                                                                    "variableName": "time.day",
+                                                                    "operator": "gte",
+                                                                    "compareTo": "17",
+                                                                    "sceneId": "5c81204b-2c5b-4eb0-9e84-85acb2fc9d13",
+                                                                    "propId": null
+                                                                },
+                                                                "right": {
+                                                                    "type": "expressions.variableComparison",
+                                                                    "variableScope": "global",
+                                                                    "variableName": "time.day",
+                                                                    "operator": "lte",
+                                                                    "compareTo": "21",
+                                                                    "sceneId": "5c81204b-2c5b-4eb0-9e84-85acb2fc9d13",
+                                                                    "propId": null
+                                                                }
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.onceOnly",
+                                                                    "id": "ec82d898-9519-4992-b8db-941e70dcc7f6",
+                                                                    "nodes": [
+                                                                        {
+                                                                            "type": "nodes.speak",
+                                                                            "id": "a63540a3-0ad4-4d1e-ab7f-3518a314ff68",
+                                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                            "actorId2": null,
+                                                                            "text": "Huh, this is a different mechanism than the basic locks.",
+                                                                            "emotion": "4",
+                                                                            "emotion2": "0",
+                                                                            "device": "0",
+                                                                            "device2": "0"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "id": "45270eab-9e03-46d1-a884-fb3959de6e71",
+                                                                    "type": "nodes.skillBranch",
+                                                                    "skill": "Tool Use",
+                                                                    "target": "40",
+                                                                    "success": {
+                                                                        "type": "nodes.block",
+                                                                        "nodes": [
+                                                                            {
+                                                                                "type": "nodes.invokeScript",
+                                                                                "id": "050a37ef-83f3-4feb-a3d5-f0fd465557d4",
+                                                                                "scriptId": "f214e893-43e1-4ba8-bb48-5ad1177e61de",
+                                                                                "entryPointId": "7ffa7587-c22f-4755-a05a-c3d8eedcdae1",
+                                                                                "currentScope": "Scenes",
+                                                                                "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                                                                "currentActorId": null,
+                                                                                "currentStoryEventId": null,
+                                                                                "currentPropId": null
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    "failure": {
+                                                                        "type": "nodes.block",
+                                                                        "nodes": [
+                                                                            {
+                                                                                "type": "nodes.invokeScript",
+                                                                                "id": "487c097a-1938-42b3-9238-87d249bd206b",
+                                                                                "scriptId": "c806f4c0-6bc6-471a-97ab-fc59190de6da",
+                                                                                "entryPointId": "",
+                                                                                "currentScope": "Scenes",
+                                                                                "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                                                                "currentActorId": null,
+                                                                                "currentStoryEventId": null,
+                                                                                "currentPropId": null
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    "notify": true
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.and",
+                                                                "left": {
+                                                                    "type": "expressions.variableComparison",
+                                                                    "variableScope": "global",
+                                                                    "variableName": "time.day",
+                                                                    "operator": "gte",
+                                                                    "compareTo": "22",
+                                                                    "sceneId": "5c81204b-2c5b-4eb0-9e84-85acb2fc9d13",
+                                                                    "propId": null
+                                                                },
+                                                                "right": {
+                                                                    "type": "expressions.variableComparison",
+                                                                    "variableScope": "global",
+                                                                    "variableName": "time.day",
+                                                                    "operator": "lte",
+                                                                    "compareTo": "28",
+                                                                    "sceneId": "5c81204b-2c5b-4eb0-9e84-85acb2fc9d13",
+                                                                    "propId": null
+                                                                }
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.onceOnly",
+                                                                    "id": "26161cf6-92a6-45b8-9b62-8cf6b39fe8f7",
+                                                                    "nodes": [
+                                                                        {
+                                                                            "type": "nodes.speak",
+                                                                            "id": "1f2d88fa-080a-4cf8-a06e-a62650587191",
+                                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                            "actorId2": null,
+                                                                            "text": "Man, this Houdini lockpicking is really complicated...",
+                                                                            "emotion": "4",
+                                                                            "emotion2": "0",
+                                                                            "device": "0",
+                                                                            "device2": "0"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "type": "nodes.incrementTime",
+                                                                    "id": "6121c0da-a5a1-40d6-acb2-7bf86613136b",
+                                                                    "days": "0",
+                                                                    "hours": "0",
+                                                                    "minutes": "2"
+                                                                },
+                                                                {
+                                                                    "id": "2e93d803-b7a0-45e4-a1af-23f6f0935d24",
+                                                                    "type": "nodes.skillBranch",
+                                                                    "skill": "Tool Use",
+                                                                    "target": "50",
+                                                                    "success": {
+                                                                        "type": "nodes.block",
+                                                                        "nodes": [
+                                                                            {
+                                                                                "type": "nodes.invokeScript",
+                                                                                "id": "46cca9e5-ac3c-4557-b43a-b7165ab8ec96",
+                                                                                "scriptId": "f214e893-43e1-4ba8-bb48-5ad1177e61de",
+                                                                                "entryPointId": "7ffa7587-c22f-4755-a05a-c3d8eedcdae1",
+                                                                                "currentScope": "Scenes",
+                                                                                "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                                                                "currentActorId": null,
+                                                                                "currentStoryEventId": null,
+                                                                                "currentPropId": null
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    "failure": {
+                                                                        "type": "nodes.block",
+                                                                        "nodes": [
+                                                                            {
+                                                                                "type": "nodes.invokeScript",
+                                                                                "id": "4f787aa5-e33c-45a7-bc86-04454d874217",
+                                                                                "scriptId": "c806f4c0-6bc6-471a-97ab-fc59190de6da",
+                                                                                "entryPointId": "",
+                                                                                "currentScope": "Scenes",
+                                                                                "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                                                                "currentActorId": null,
+                                                                                "currentStoryEventId": null,
+                                                                                "currentPropId": null
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    "notify": true
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.and",
+                                                                "left": {
+                                                                    "type": "expressions.variableComparison",
+                                                                    "variableScope": "global",
+                                                                    "variableName": "time.day",
+                                                                    "operator": "gte",
+                                                                    "compareTo": "29",
+                                                                    "sceneId": "5c81204b-2c5b-4eb0-9e84-85acb2fc9d13",
+                                                                    "propId": null
+                                                                },
+                                                                "right": {
+                                                                    "type": "expressions.variableComparison",
+                                                                    "variableScope": "global",
+                                                                    "variableName": "time.day",
+                                                                    "operator": "lte",
+                                                                    "compareTo": "37",
+                                                                    "sceneId": "5c81204b-2c5b-4eb0-9e84-85acb2fc9d13",
+                                                                    "propId": null
+                                                                }
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.onceOnly",
+                                                                    "id": "7eb5f799-15a1-427b-9f18-6f43619ddb0f",
+                                                                    "nodes": [
+                                                                        {
+                                                                            "type": "nodes.speak",
+                                                                            "id": "e088a61b-afaf-44e9-839b-3e241710fb6a",
+                                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                            "actorId2": null,
+                                                                            "text": "Bleh. This is even tougher than the last lock.",
+                                                                            "emotion": "4",
+                                                                            "emotion2": "0",
+                                                                            "device": "0",
+                                                                            "device2": "0"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "type": "nodes.incrementTime",
+                                                                    "id": "b2ad1d71-a8d2-48fc-9702-8f6f888163aa",
+                                                                    "days": "0",
+                                                                    "hours": "0",
+                                                                    "minutes": "3"
+                                                                },
+                                                                {
+                                                                    "id": "6ead70ba-bcfa-438e-8aae-b8787ce2ce38",
+                                                                    "type": "nodes.skillBranch",
+                                                                    "skill": "Tool Use",
+                                                                    "target": "60",
+                                                                    "success": {
+                                                                        "type": "nodes.block",
+                                                                        "nodes": [
+                                                                            {
+                                                                                "type": "nodes.invokeScript",
+                                                                                "id": "0059c09c-0c71-466d-ba6f-8c236029362f",
+                                                                                "scriptId": "f214e893-43e1-4ba8-bb48-5ad1177e61de",
+                                                                                "entryPointId": "7ffa7587-c22f-4755-a05a-c3d8eedcdae1",
+                                                                                "currentScope": "Scenes",
+                                                                                "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                                                                "currentActorId": null,
+                                                                                "currentStoryEventId": null,
+                                                                                "currentPropId": null
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    "failure": {
+                                                                        "type": "nodes.block",
+                                                                        "nodes": [
+                                                                            {
+                                                                                "type": "nodes.invokeScript",
+                                                                                "id": "69d48fa3-fe0a-42a4-b854-29a71311d6a3",
+                                                                                "scriptId": "c806f4c0-6bc6-471a-97ab-fc59190de6da",
+                                                                                "entryPointId": "",
+                                                                                "currentScope": "Scenes",
+                                                                                "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                                                                "currentActorId": null,
+                                                                                "currentStoryEventId": null,
+                                                                                "currentPropId": null
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    "notify": true
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": null,
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.incrementTime",
+                                                                    "id": "4ed42451-d887-42bd-a299-16dabee79166",
+                                                                    "days": "0",
+                                                                    "hours": "0",
+                                                                    "minutes": "4"
+                                                                },
+                                                                {
+                                                                    "type": "nodes.onceOnly",
+                                                                    "id": "bf9812d3-e1c5-42f2-9fb1-ef68991144ce",
+                                                                    "nodes": [
+                                                                        {
+                                                                            "type": "nodes.speak",
+                                                                            "id": "52404cc5-5cc1-43f0-9b38-36e5604fdacf",
+                                                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                            "actorId2": null,
+                                                                            "text": "These locks keep getting more and more complex.",
+                                                                            "emotion": "2",
+                                                                            "emotion2": "0",
+                                                                            "device": "0",
+                                                                            "device2": "0"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "id": "33ac2ca4-13d9-43f7-baff-0d7c18e9c21f",
+                                                                    "type": "nodes.skillBranch",
+                                                                    "skill": "Tool Use",
+                                                                    "target": "85",
+                                                                    "success": {
+                                                                        "type": "nodes.block",
+                                                                        "nodes": [
+                                                                            {
+                                                                                "type": "nodes.invokeScript",
+                                                                                "id": "88a897b8-fd72-4dff-8fd0-b4e8fd91666c",
+                                                                                "scriptId": "f214e893-43e1-4ba8-bb48-5ad1177e61de",
+                                                                                "entryPointId": "7ffa7587-c22f-4755-a05a-c3d8eedcdae1",
+                                                                                "currentScope": "Scenes",
+                                                                                "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                                                                "currentActorId": null,
+                                                                                "currentStoryEventId": null,
+                                                                                "currentPropId": null
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    "failure": {
+                                                                        "type": "nodes.block",
+                                                                        "nodes": [
+                                                                            {
+                                                                                "type": "nodes.invokeScript",
+                                                                                "id": "a5acac6f-6b1f-48ad-b464-309704989b7b",
+                                                                                "scriptId": "c806f4c0-6bc6-471a-97ab-fc59190de6da",
+                                                                                "entryPointId": "",
+                                                                                "currentScope": "Scenes",
+                                                                                "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                                                                "currentActorId": null,
+                                                                                "currentStoryEventId": null,
+                                                                                "currentPropId": null
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    "notify": true
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": {
+                                "type": "expressions.variableComparison",
+                                "variableScope": "global",
+                                "variableName": "ego.haslockpick",
+                                "operator": "eq",
+                                "compareTo": "true",
+                                "sceneId": "5c81204b-2c5b-4eb0-9e84-85acb2fc9d13",
+                                "propId": null
+                            },
+                            "ignoreChildAvailability": true,
+                            "minutes": "0",
+                            "ExitMenu": true
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                },
+                {
+                    "type": "nodes.fade",
+                    "scope": "FadeOut",
+                    "fadeTime": "0.5",
+                    "fadeTime2": 2,
+                    "wait": true,
+                    "fadeDown": 0.5,
+                    "fadeColorR": 0,
+                    "fadeColorG": 0,
+                    "fadeColorB": 0
+                },
+                {
+                    "type": "nodes.hideVignette",
+                    "waitForSeconds": 1
+                },
+                {
+                    "type": "nodes.fade",
+                    "scope": "FadeIn",
+                    "fadeTime": "0.5",
+                    "fadeTime2": "0.5",
+                    "wait": true,
+                    "fadeDown": "0",
+                    "fadeColorR": 0,
+                    "fadeColorG": 0,
+                    "fadeColorB": 0
+                }
+            ]
+        }
+    ]
+}

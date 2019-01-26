@@ -1,0 +1,309 @@
+{
+    "type": "script",
+    "id": "794034fb-e89f-407d-a919-956015ab7888",
+    "name": "_onLoad_2I",
+    "sceneId": "7014e626-f1ea-4a83-919c-63443c35fc3f",
+    "trigger": {
+        "type": "triggers.load",
+        "name": "Load"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "34149e7d-9285-43d3-8a2e-592f89473d12",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "scene",
+                                "scopeId": "46c58bc7-e4b0-4cf3-af42-68930aa03476",
+                                "scopeFilterId": null,
+                                "tags": "SCC_R9_Hidden",
+                                "has": true
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.changePropVisibility",
+                                    "id": "d36c35b1-f2e7-4dba-ab15-69adc60ceaf7",
+                                    "propId": "1415221e-f46d-4b86-ad73-2f9f4515cb33",
+                                    "sceneId": "7014e626-f1ea-4a83-919c-63443c35fc3f",
+                                    "status": "Hidden",
+                                    "wait": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.changePropVisibility",
+                                    "id": "9af2ac1e-51f9-4eb1-b822-94b852661f87",
+                                    "propId": "1415221e-f46d-4b86-ad73-2f9f4515cb33",
+                                    "sceneId": "7014e626-f1ea-4a83-919c-63443c35fc3f",
+                                    "status": "Visible",
+                                    "wait": true
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.onceDaily",
+                    "id": "24f94e4f-7a55-42eb-b8cb-1cb3822c6151",
+                    "nodes": [
+                        {
+                            "type": "nodes.comment",
+                            "message": "Once Daily to keep the chest from disappearing until a Reset Day occurs. Putting this here (rather than in \"onResetDay scripts) makes it easier to keep in sync with the SCC_*_Hidden tag setups.",
+                            "commentor": "Charles"
+                        },
+                        {
+                            "type": "nodes.branch",
+                            "sections": [
+                                {
+                                    "type": "nodes.branchSection",
+                                    "expression": {
+                                        "type": "expressions.inTags",
+                                        "scope": "prop",
+                                        "scopeId": "1415221e-f46d-4b86-ad73-2f9f4515cb33",
+                                        "scopeFilterId": "7014e626-f1ea-4a83-919c-63443c35fc3f",
+                                        "tags": "looted",
+                                        "has": true
+                                    },
+                                    "nodes": [
+                                        {
+                                            "type": "nodes.changePropVisibility",
+                                            "id": "7ba6dcee-42e6-4d20-9ded-7a9276151a4b",
+                                            "propId": "1415221e-f46d-4b86-ad73-2f9f4515cb33",
+                                            "sceneId": "7014e626-f1ea-4a83-919c-63443c35fc3f",
+                                            "status": "Hidden",
+                                            "wait": true
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inTags",
+                                    "scope": "scene",
+                                    "scopeId": "7014e626-f1ea-4a83-919c-63443c35fc3f",
+                                    "scopeFilterId": null,
+                                    "tags": "FirstMatePresent",
+                                    "has": false
+                                },
+                                "right": {
+                                    "type": "expressions.and",
+                                    "left": {
+                                        "type": "expressions.inTags",
+                                        "scope": "scene",
+                                        "scopeId": "91e73978-0245-4bb2-8c83-eaa7f3954455",
+                                        "scopeFilterId": null,
+                                        "tags": "FirstMatePresent",
+                                        "has": false
+                                    },
+                                    "right": {
+                                        "type": "expressions.inTags",
+                                        "scope": "actor",
+                                        "scopeId": "31e7b33f-83fe-48aa-bbfe-23730a880c40",
+                                        "scopeFilterId": null,
+                                        "tags": "Dead",
+                                        "has": false
+                                    }
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "1de314a4-f9dd-4482-be0d-0643de587bfd",
+                                    "scope": "scene",
+                                    "scopeId": "7014e626-f1ea-4a83-919c-63443c35fc3f",
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "FirstMatePresent",
+                                    "tagsToRemove": null
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inTags",
+                                    "scope": "actor",
+                                    "scopeId": "31e7b33f-83fe-48aa-bbfe-23730a880c40",
+                                    "scopeFilterId": null,
+                                    "tags": "FollowShawn",
+                                    "has": true
+                                },
+                                "right": {
+                                    "type": "expressions.inTags",
+                                    "scope": "scene",
+                                    "scopeId": "91e73978-0245-4bb2-8c83-eaa7f3954455",
+                                    "scopeFilterId": null,
+                                    "tags": "FirstMatePresent",
+                                    "has": true
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.playMusic",
+                                    "musicTrack": "pirate shanty.mp3",
+                                    "channel": "1",
+                                    "loopType": "2"
+                                },
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "0ff0b8cc-2481-4a3d-a6d7-9cc72c36fd61",
+                                    "scope": "scene",
+                                    "scopeId": "7014e626-f1ea-4a83-919c-63443c35fc3f",
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "FirstMatePresent",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "61471be8-c198-4812-9310-27e953beeaa6",
+                                    "scope": "scene",
+                                    "scopeId": "91e73978-0245-4bb2-8c83-eaa7f3954455",
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "",
+                                    "tagsToRemove": "FirstMatePresent"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inTags",
+                                    "scope": "scene",
+                                    "scopeId": "7014e626-f1ea-4a83-919c-63443c35fc3f",
+                                    "scopeFilterId": null,
+                                    "tags": "FirstMatePresent",
+                                    "has": true
+                                },
+                                "right": {
+                                    "type": "expressions.inTags",
+                                    "scope": "actor",
+                                    "scopeId": "31e7b33f-83fe-48aa-bbfe-23730a880c40",
+                                    "scopeFilterId": null,
+                                    "tags": "Dead",
+                                    "has": false
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.placeActor",
+                                    "actorId": "31e7b33f-83fe-48aa-bbfe-23730a880c40",
+                                    "spawnId": "1bf011a5-a49c-4a21-a0c2-ec2ec237469b",
+                                    "pose": null,
+                                    "behaviour": "Idle",
+                                    "immediate": true
+                                },
+                                {
+                                    "type": "nodes.changePropVisibility",
+                                    "id": "67273d4a-9cdf-465b-8c4a-7c315739f6d1",
+                                    "propId": "18ae2416-6422-4b1f-9424-a6f2008055c5",
+                                    "sceneId": "7014e626-f1ea-4a83-919c-63443c35fc3f",
+                                    "status": "Visible",
+                                    "wait": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.changePropVisibility",
+                                    "id": "d96a647b-3f54-4ee8-aa77-f75123cd250d",
+                                    "propId": "18ae2416-6422-4b1f-9424-a6f2008055c5",
+                                    "sceneId": "7014e626-f1ea-4a83-919c-63443c35fc3f",
+                                    "status": "Hidden",
+                                    "wait": true
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.variableComparison",
+                                "variableScope": "global",
+                                "variableName": "time.hour",
+                                "operator": "lt",
+                                "compareTo": "2",
+                                "sceneId": "7014e626-f1ea-4a83-919c-63443c35fc3f",
+                                "propId": null
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.setTime",
+                                    "id": "56f19c35-6706-40a0-9db9-1f89805a60ed",
+                                    "day": -1,
+                                    "hour": "0",
+                                    "minute": 0,
+                                    "notify": false
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.enteredScene",
+                                "sceneId": "7014e626-f1ea-4a83-919c-63443c35fc3f",
+                                "scope": "DuringGame",
+                                "operator": "eq",
+                                "count": 0
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.placeActor",
+                                    "actorId": "0b49e2c8-5b7f-4534-bd10-21a0a36a6cbe",
+                                    "spawnId": "7765e58c-6888-4a82-a62e-46d2fb15efda",
+                                    "pose": null,
+                                    "behaviour": "Kneeling",
+                                    "immediate": true
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

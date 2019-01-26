@@ -1,0 +1,68 @@
+{
+    "type": "script",
+    "id": "90c7d51d-5345-48a7-b648-560d60314c3e",
+    "name": "KwirkDeadEnd",
+    "sceneId": "40f18665-4cc2-4acd-b17e-5189e68b7a33",
+    "trigger": {
+        "type": "triggers.zone",
+        "name": "Zone"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "070bc71e-b98b-4498-822d-f2d579b766cb",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.inTags",
+                                    "scope": "scene",
+                                    "scopeId": "40f18665-4cc2-4acd-b17e-5189e68b7a33",
+                                    "scopeFilterId": null,
+                                    "tags": "kwirknoise",
+                                    "has": true
+                                },
+                                "right": {
+                                    "type": "expressions.variableComparison",
+                                    "variableScope": "global",
+                                    "variableName": "time.day",
+                                    "operator": "lt",
+                                    "compareTo": "14",
+                                    "sceneId": "40f18665-4cc2-4acd-b17e-5189e68b7a33",
+                                    "propId": null
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.stopPlayer"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "4f232271-3d74-4b9b-b78a-e76825d0e7b9",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "(Yawn) I don't hear any sign of the thief now. Guess it's back to bed for me. I'll have to check this some other time.",
+                                    "emotion": "5",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.changeScene",
+                                    "sceneId": "afb9f72c-1888-43db-ac71-fb6a81d41f47",
+                                    "fadeTime": 2
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

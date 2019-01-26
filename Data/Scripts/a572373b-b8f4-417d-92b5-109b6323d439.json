@@ -1,0 +1,210 @@
+{
+    "type": "script",
+    "id": "a572373b-b8f4-417d-92b5-109b6323d439",
+    "name": "Interact with Chanterelle Mushrooms 2",
+    "sceneId": "d8980246-7825-4b4a-9b40-d814c22486c7",
+    "propId": "11050a67-4baf-40f0-9415-9fed1946db3e",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "8749cae8-f1d2-40e8-beec-10d640905762",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.playAnimation",
+                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "animationName": "KneelDown"
+                },
+                {
+                    "type": "nodes.showMenu",
+                    "id": "da548080-32b7-4d35-83a4-0c7dd61fc728",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "5a807988-5e48-4d14-af99-dcdc5de0edb3",
+                            "text": "Look at the Mushrooms",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "actor",
+                                                "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                "scopeFilterId": null,
+                                                "tags": "MushroomLore",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "dbe4ebe3-b538-4a99-af87-2f7992b44ff0",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Ah, yes. The common chanterelle mushroom, also known as <i>Cantharellus cibarius</i>, although I'll deny I ever said it!",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "e0194e75-53a9-4668-8683-ed7c545e0e16",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "That's a mushroom! See? Can't put anything past me!",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "8255ad9a-7b64-4235-aaf6-8de20db38c98",
+                            "text": "Gather Some Mushrooms",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "actor",
+                                                "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                "scopeFilterId": null,
+                                                "tags": "MushroomLore",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.playSoundEffect",
+                                                    "soundEffectName": "Collect Mushrooms.wav",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.changeInventory",
+                                                    "id": "f17bd291-b7d0-4361-a900-223ce118785e",
+                                                    "propId": "a5f3462b-dfe1-4708-836c-6f87aef2bf3d",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "change": "1",
+                                                    "count": 1,
+                                                    "notify": true
+                                                },
+                                                {
+                                                    "type": "nodes.changePropVisibility",
+                                                    "id": "d3539bb2-e097-4af4-9d19-5e0cd3efb8ca",
+                                                    "propId": "11050a67-4baf-40f0-9415-9fed1946db3e",
+                                                    "sceneId": "d8980246-7825-4b4a-9b40-d814c22486c7",
+                                                    "visible": false,
+                                                    "status": "Hidden",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "836fcc23-6a0c-4ca2-92c2-9cfc94810b3c",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "This is the only full-grown one worth taking. The rest are only shoots.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.setVariable",
+                                                    "name": "respawn_timer",
+                                                    "scope": "prop",
+                                                    "scopeId": "11050a67-4baf-40f0-9415-9fed1946db3e",
+                                                    "sceneId": "d8980246-7825-4b4a-9b40-d814c22486c7",
+                                                    "source": {
+                                                        "type": "variables.random",
+                                                        "value": "",
+                                                        "min": 1,
+                                                        "max": "3",
+                                                        "displayName": "Random"
+                                                    },
+                                                    "add": false
+                                                },
+                                                {
+                                                    "type": "nodes.playAnimation",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "animationName": "KneelUp"
+                                                },
+                                                {
+                                                    "type": "nodes.endScript"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "797a1923-5671-4f9b-9dcd-3d92048ea94a",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Let me see... if it's a good mushroom, I'm ahead of the game. But if it's deadly, I could die just from touching it! What shall it be? What <i>shall</i> it be?",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "89550f7d-7b84-48dc-854f-8aa2b8918233",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Oh, wait! Forget about poison mushrooms, now I'm thinking about shallots! Yum!",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "2",
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                },
+                {
+                    "type": "nodes.playAnimation",
+                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "animationName": "KneelUp"
+                }
+            ]
+        }
+    ]
+}

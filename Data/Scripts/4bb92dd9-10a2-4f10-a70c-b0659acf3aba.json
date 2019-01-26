@@ -1,0 +1,255 @@
+{
+    "type": "script",
+    "id": "4bb92dd9-10a2-4f10-a70c-b0659acf3aba",
+    "name": "Interact with Plaque Dennis (Ghost)",
+    "sceneId": "65bf97bc-9989-4004-b745-6bc20dd3cac7",
+    "propId": "5138c5b0-63ac-4823-a89e-5f3a6907579e",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "cb66b37c-df20-4627-849f-1c0adb0dca97",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showCloseUp",
+                    "imageName": "Catacombs_plaque_magicuser_2.png"
+                },
+                {
+                    "type": "nodes.speak",
+                    "id": "2c168158-6f3f-4d41-bc8a-0e988fbf55d3",
+                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "actorId2": null,
+                    "text": "The plaque reads...",
+                    "emotion": "0",
+                    "emotion2": "0",
+                    "device": "0",
+                    "device2": "0"
+                },
+                {
+                    "type": "nodes.speak",
+                    "id": "52db0779-fb9b-49e4-a51d-b92d180a33f4",
+                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "actorId2": null,
+                    "text": "\"Here lies Dennis Lam\"",
+                    "emotion": "0",
+                    "emotion2": "0",
+                    "device": "0",
+                    "device2": "0"
+                },
+                {
+                    "type": "nodes.speak",
+                    "id": "c03cb580-0776-494c-b733-243e4e9ee99f",
+                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "actorId2": null,
+                    "text": "\"I'm still here...\"",
+                    "emotion": "0",
+                    "emotion2": "0",
+                    "device": "0",
+                    "device2": "0"
+                },
+                {
+                    "type": "nodes.hideCloseUp",
+                    "waitForSeconds": 1
+                },
+                {
+                    "type": "nodes.turnActor",
+                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "propId": "4c6c1af0-ac1c-4b31-95d6-e27c60ed9386",
+                    "wait": true,
+                    "scope": "prop",
+                    "targetActorId": null
+                },
+                {
+                    "type": "nodes.playSoundEffect",
+                    "soundEffectName": "magic_twinkle_loop.wav",
+                    "wait": false
+                },
+                {
+                    "type": "nodes.placeActor",
+                    "actorId": "7885ae68-864f-4692-be76-08a60ed3189a",
+                    "spawnId": "4c6c1af0-ac1c-4b31-95d6-e27c60ed9386",
+                    "pose": null,
+                    "behaviour": "Ghost",
+                    "immediate": null
+                },
+                {
+                    "type": "nodes.onceOnly",
+                    "id": "cdfe9885-6352-4d71-8262-a206bceded79",
+                    "nodes": [
+                        {
+                            "type": "nodes.speak",
+                            "id": "dd10cd01-9e78-4850-92b0-cc07bea44b84",
+                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                            "actorId2": null,
+                            "text": "What?",
+                            "emotion": "4",
+                            "emotion2": "0",
+                            "device": "0",
+                            "device2": "0"
+                        },
+                        {
+                            "type": "nodes.speak",
+                            "id": "13f5f73a-25fa-4a2f-81f7-4afaecc919e4",
+                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                            "actorId2": null,
+                            "text": "Oh, I guess you are really still here.",
+                            "emotion": "4",
+                            "emotion2": "0",
+                            "device": "0",
+                            "device2": "0"
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.inInventory",
+                                "propId": "34e8cb8d-654c-4e30-81d2-11a9e533e39e",
+                                "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                "has": false
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.playSoundEffect",
+                                    "soundEffectName": "Ghost Wail.wav",
+                                    "wait": false
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "71b95fcc-4e43-4915-88d1-be6d87468a90",
+                                    "actorId": "7885ae68-864f-4692-be76-08a60ed3189a",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "Daaaaaaaaaarrrrrrrrrrr...",
+                                    "emotion": "0",
+                                    "emotion2": "4",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.invokeScript",
+                                    "id": "1cb5a6ff-138a-4e36-898e-ebdca52fc2b7",
+                                    "scriptId": "98bed7e3-6d3d-4482-ae95-e3913dd384ed",
+                                    "entryPointId": "cb66b37c-df20-4627-849f-1c0adb0dca97",
+                                    "currentScope": "Scenes",
+                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                    "currentActorId": null,
+                                    "currentStoryEventId": null,
+                                    "currentPropId": null
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.variableComparison",
+                                    "variableScope": "global",
+                                    "variableName": "time.day",
+                                    "operator": "gte",
+                                    "compareTo": "32",
+                                    "sceneId": "72d81484-b84f-475d-940b-c354978b3248",
+                                    "propId": null
+                                },
+                                "right": {
+                                    "type": "expressions.and",
+                                    "left": {
+                                        "type": "expressions.variableComparison",
+                                        "variableScope": "global",
+                                        "variableName": "time.day",
+                                        "operator": "lte",
+                                        "compareTo": "33",
+                                        "sceneId": "72d81484-b84f-475d-940b-c354978b3248",
+                                        "propId": null
+                                    },
+                                    "right": {
+                                        "type": "expressions.inTags",
+                                        "scope": "actor",
+                                        "scopeId": "4b05c425-ca25-4abb-9a36-7d793370842f",
+                                        "scopeFilterId": null,
+                                        "tags": "SavedEarly",
+                                        "has": false
+                                    }
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "5f391d2f-00bd-4ac9-af64-212e6894e560",
+                                    "actorId": "7885ae68-864f-4692-be76-08a60ed3189a",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "Something wicked nearby lies\nTo hold a soul that all despise.\nDefeat the Wraith to send it back\nDestroy the vessel to slay Zac.\n",
+                                    "emotion": "0",
+                                    "emotion2": "4",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "299453fd-50e2-42a3-9b35-2ea8ebd1689b",
+                                    "actorId": "7885ae68-864f-4692-be76-08a60ed3189a",
+                                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "text": "Dire danger in the dungeon -\nDrastic tactics must be taken\nEnter areas long forsaken\n'Ere the Dark One is Awakened.",
+                                    "emotion": "0",
+                                    "emotion2": "4",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.onceOnly",
+                                    "id": "b82bd4d2-83aa-402c-9a81-6fbd09213a75",
+                                    "nodes": [
+                                        {
+                                            "type": "nodes.speak",
+                                            "id": "c93f8fad-d3c0-4579-aeab-5620eb6289a9",
+                                            "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                            "actorId2": null,
+                                            "text": "Say what? ",
+                                            "emotion": "4",
+                                            "emotion2": "0",
+                                            "device": "0",
+                                            "device2": "0"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.playSoundEffect",
+                    "soundEffectName": "magic_teleport.wav",
+                    "wait": false
+                },
+                {
+                    "type": "nodes.invokeCommand",
+                    "id": "477f347c-560a-448e-8349-6f86f9ccb57a",
+                    "entityType": "actor",
+                    "entityId": "7885ae68-864f-4692-be76-08a60ed3189a",
+                    "command": "fadeout",
+                    "wait": true,
+                    "resultVariableScope": "script"
+                },
+                {
+                    "type": "nodes.removeActor",
+                    "id": "d294185c-a383-4d07-a8cf-fea7af85821d",
+                    "actorId": "7885ae68-864f-4692-be76-08a60ed3189a"
+                }
+            ]
+        }
+    ]
+}

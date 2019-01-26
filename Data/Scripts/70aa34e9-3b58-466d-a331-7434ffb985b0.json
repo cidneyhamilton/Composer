@@ -1,0 +1,127 @@
+{
+    "type": "script",
+    "id": "70aa34e9-3b58-466d-a331-7434ffb985b0",
+    "name": "Interact with Underglover",
+    "propId": "58c7b1e5-39de-425b-82a6-8bf9cadf176c",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "1c290bac-8b43-41b1-b353-c00f5b91d2e9",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "978db256-ce16-4e45-9baa-4f219ccb6f6c",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "507ad4d9-2c3a-4fe1-9a70-3573b24f29df",
+                            "text": "Examine the Underglovers",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "0ba8d775-062c-4e0d-9d65-1af2571c91b3",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "They're lithe and supple... and clearly magical. Just the thing for the delicate art of lockpicking.",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "f409bfd1-2b4d-45e3-b643-62a44d9f0505",
+                            "text": "Search the Underglovers",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "target",
+                                                "scopeId": null,
+                                                "scopeFilterId": null,
+                                                "tags": "Searched",
+                                                "has": false
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "acb1af40-5d26-476b-9663-fcf4957e3216",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Drat... nothing hidden in the gloves. But I'm not surprised. They're so thin and flexible, I don't think you <i>could</i> hide anything in these.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "d427b026-41bc-40ac-8016-1533b7ed38ae",
+                                                    "scope": "target",
+                                                    "scopeId": null,
+                                                    "scopeFilterId": null,
+                                                    "tagsToAdd": "Searched",
+                                                    "tagsToRemove": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "0dda20f8-0ec6-4695-b988-8211ee694f85",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "I already turned them inside out looking for anything fun or unusual.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "779c2d37-3f41-4e70-9ac3-ea1cf227fc1e",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "But there was no way.",
+                                                    "emotion": "2",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": "0",
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

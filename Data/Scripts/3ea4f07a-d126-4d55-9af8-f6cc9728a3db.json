@@ -1,0 +1,85 @@
+{
+    "type": "script",
+    "id": "3ea4f07a-d126-4d55-9af8-f6cc9728a3db",
+    "name": "_OnLoadFacultyLounge",
+    "sceneId": "44d6c76f-13a2-419f-b675-4fe3a00f8f17",
+    "trigger": {
+        "type": "triggers.load",
+        "name": "Load"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "8d0be192-21e5-4dd7-abe3-a0b5252cd16f",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.changePropVisibility",
+                    "id": "80250d8a-87dd-47bb-a7d4-89b3909ddf77",
+                    "propId": "2be93187-4570-4fc9-a32b-36e0369213b1",
+                    "sceneId": "44d6c76f-13a2-419f-b675-4fe3a00f8f17",
+                    "status": "Hidden",
+                    "wait": true
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.and",
+                                "left": {
+                                    "type": "expressions.variableComparison",
+                                    "variableScope": "global",
+                                    "variableName": "time.day",
+                                    "operator": "gte",
+                                    "compareTo": "41",
+                                    "sceneId": "ed2b858e-927a-44b9-86ee-4d3fe4dcfc33",
+                                    "propId": null
+                                },
+                                "right": {
+                                    "type": "expressions.and",
+                                    "left": {
+                                        "type": "expressions.variableComparison",
+                                        "variableScope": "global",
+                                        "variableName": "time.day",
+                                        "operator": "lte",
+                                        "compareTo": "43",
+                                        "sceneId": "ed2b858e-927a-44b9-86ee-4d3fe4dcfc33",
+                                        "propId": null
+                                    },
+                                    "right": {
+                                        "type": "expressions.inTags",
+                                        "scope": "actor",
+                                        "scopeId": "3ec7237c-65ea-4a23-9e21-697f17a2dbe8",
+                                        "scopeFilterId": null,
+                                        "tags": "QueenDone",
+                                        "has": false
+                                    }
+                                }
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.changePropVisibility",
+                                    "id": "d70c374b-5a69-48cd-aa3c-c38c9efbf4bd",
+                                    "propId": "2be93187-4570-4fc9-a32b-36e0369213b1",
+                                    "sceneId": "44d6c76f-13a2-419f-b675-4fe3a00f8f17",
+                                    "status": "Visible",
+                                    "wait": true
+                                },
+                                {
+                                    "type": "nodes.invokeCommand",
+                                    "id": "2907868c-6807-4a8f-83dd-42b251e1b2e1",
+                                    "entityType": "actor",
+                                    "entityId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "command": "allowcombat",
+                                    "resultVariableScope": "script"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

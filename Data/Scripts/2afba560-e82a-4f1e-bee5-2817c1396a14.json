@@ -1,0 +1,138 @@
+{
+    "type": "script",
+    "id": "2afba560-e82a-4f1e-bee5-2817c1396a14",
+    "name": "Interact with Hanging Plant",
+    "sceneId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+    "propId": "6f27302a-7637-41b8-bbb2-af1e7c308320",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "812dc0bc-3594-46b5-b51f-63c81a23e913",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.showMenu",
+                    "id": "e95d75be-b1ba-4593-a301-60dc5411950d",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "803c0dc9-4f37-4ee8-81de-09f8165b9ca7",
+                            "text": "Look at the Plant",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "d5f96d53-7762-487a-aaa0-4f8c48adb4fb",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "All this greenery is a great idea. Not only do you get a steady supply of herbs, but they make the room a lot more pleasant for the patients. ",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "6d070e1e-6acb-4afb-a1b4-763d04a393c8",
+                            "text": "Steal the Plant",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "3c176afc-ffe8-4a12-914f-bcb52ba9cb0c",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "I've never 'arbored a desire to steal hanging plants!",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "b19cedc9-a0db-47f2-9f8e-221e2713c028",
+                            "text": "Search the Plant",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "prop",
+                                                "scopeId": "6f27302a-7637-41b8-bbb2-af1e7c308320",
+                                                "scopeFilterId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                                "tags": "SearchedPlant",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "8f48e9db-36d4-4c63-bea7-8d9e6273128e",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "text": "Did that, found nothing. I don't <i>plant</i> on messing with it again.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "9f2fc3c1-9c55-4b8b-ac58-b201434280aa",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "There's nothing in it except dirt and plant.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.changeTags",
+                                                    "id": "a7fedde2-596f-4e8a-a7f9-b4a66ac13612",
+                                                    "scope": "prop",
+                                                    "scopeId": "6f27302a-7637-41b8-bbb2-af1e7c308320",
+                                                    "scopeFilterId": "1c60250c-dab6-4aaa-aaeb-b7f4203ccb9d",
+                                                    "tagsToAdd": "SearchedPlant",
+                                                    "tagsToRemove": null
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

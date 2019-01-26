@@ -1,0 +1,41 @@
+using System.Linq;
+using Assets.Transolar.Runtime.Actors;
+using UnityEditor;
+using UnityEngine;
+
+namespace Assets.Editor.Composer {
+    [CustomPropertyDrawer(typeof(ActorAttribute))]
+    public class ActorDrawer : PropertyDrawer {
+        int index;
+
+        public class Item {
+            public string Name;
+            public string Id;
+
+            public Item(string id, string name) {
+                Id = id;
+                Name = name;
+            }
+        }
+
+        public static Item[] Items = new Item[] {{list items}
+        };
+
+        public override void OnGUI(Rect position, SerializedProperty property, GUIContent label) {
+            EditorGUI.BeginChangeCheck();
+
+            for(var i = 0; i < Items.Length; i++) {
+                if(property.stringValue == Items[i].Id) {
+                    index = i;
+                    break;
+                }
+            }
+
+            index = EditorGUI.Popup(position, "Actor", index, Items.Select(x => x.Name).ToArray());
+
+            if(EditorGUI.EndChangeCheck()) {
+                property.stringValue = Items[index].Id;
+            }
+        }
+    }
+}

@@ -1,0 +1,202 @@
+{
+    "type": "script",
+    "id": "dbbcb6c6-20d6-4ed9-8378-c88f8e718ced",
+    "name": "Interact with Phosphorus",
+    "sceneId": "c7f12eb6-9936-4c11-8028-d012d60c9ba3",
+    "propId": "12608351-5811-44e8-9f7f-51896926cb7f",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "c5bb5339-676f-4d0e-818d-56ef36d78b67",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.comment",
+                    "message": "Look at moving this script out into a global script that targets the prop using {target} scope",
+                    "commentor": "Joshua"
+                },
+                {
+                    "type": "nodes.showMenu",
+                    "id": "d5e75145-a6c8-44ef-946e-3bb818f4af4d",
+                    "options": [
+                        {
+                            "type": "options.text",
+                            "id": "c7fcd3d2-879d-452c-88f4-7782e6f20fe2",
+                            "text": "Look at Phosphorus",
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "9dab1cb2-68e9-44d6-a386-e53f7ec8dde5",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "That's a lot of phosphorus.",
+                                    "emotion": "0",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                },
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "f7690ac2-ee4d-4f3c-a873-0f28c42b589b",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "That's a lot of phos for <i>any</i>one!",
+                                    "emotion": "1",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        },
+                        {
+                            "type": "options.text",
+                            "id": "c6bb0f43-27a5-4919-be11-327a83318b28",
+                            "text": "Take Phosphorus",
+                            "nodes": [
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "prop",
+                                                "variableName": "mineral_count",
+                                                "operator": "lte",
+                                                "compareTo": "0",
+                                                "sceneId": "c7f12eb6-9936-4c11-8028-d012d60c9ba3",
+                                                "propId": "12608351-5811-44e8-9f7f-51896926cb7f"
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "05fcf689-e165-4c89-a3bc-a7c7b62d3656",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "I dug out all the pure phosphorus from here that I can. And I was lucky to find it. This stuff doesn't grow on trees.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.invokeScript",
+                                                    "id": "5507bc79-3b72-4aff-abb3-033a09e0b36c",
+                                                    "scriptId": "4a864929-1259-42b7-ae7e-ef81abb28a19",
+                                                    "entryPointId": "",
+                                                    "currentScope": "Scenes",
+                                                    "currentSceneId": "5f4c53b2-540d-4627-af71-7ede35c6d84b",
+                                                    "currentActorId": null,
+                                                    "currentStoryEventId": null,
+                                                    "currentPropId": null
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.variableComparison",
+                                                                "variableScope": "target",
+                                                                "variableName": "rv_collect_mineral",
+                                                                "operator": "eq",
+                                                                "compareTo": "1",
+                                                                "sceneId": null,
+                                                                "propId": null
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.setVariable",
+                                                                    "name": "mineral_count",
+                                                                    "scope": "prop",
+                                                                    "scopeId": "12608351-5811-44e8-9f7f-51896926cb7f",
+                                                                    "sceneId": "c7f12eb6-9936-4c11-8028-d012d60c9ba3",
+                                                                    "source": {
+                                                                        "type": "variables.literal",
+                                                                        "value": "-1",
+                                                                        "displayName": "Literal"
+                                                                    },
+                                                                    "add": true
+                                                                },
+                                                                {
+                                                                    "type": "nodes.branch",
+                                                                    "sections": [
+                                                                        {
+                                                                            "type": "nodes.branchSection",
+                                                                            "expression": {
+                                                                                "type": "expressions.variableComparison",
+                                                                                "variableScope": "prop",
+                                                                                "variableName": "mineral_count",
+                                                                                "operator": "lte",
+                                                                                "compareTo": "0",
+                                                                                "sceneId": "c7f12eb6-9936-4c11-8028-d012d60c9ba3",
+                                                                                "propId": "12608351-5811-44e8-9f7f-51896926cb7f"
+                                                                            },
+                                                                            "nodes": [
+                                                                                {
+                                                                                    "type": "nodes.changePropVisibility",
+                                                                                    "id": "bc648f8a-47ca-4369-b878-d088e96f663c",
+                                                                                    "propId": "12608351-5811-44e8-9f7f-51896926cb7f",
+                                                                                    "sceneId": "c7f12eb6-9936-4c11-8028-d012d60c9ba3",
+                                                                                    "status": "Hidden",
+                                                                                    "wait": true
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.setVariable",
+                                                                                    "name": "mineral_respawn",
+                                                                                    "scope": "prop",
+                                                                                    "scopeId": "12608351-5811-44e8-9f7f-51896926cb7f",
+                                                                                    "sceneId": "c7f12eb6-9936-4c11-8028-d012d60c9ba3",
+                                                                                    "source": {
+                                                                                        "type": "variables.random",
+                                                                                        "value": "",
+                                                                                        "min": "2",
+                                                                                        "max": "4",
+                                                                                        "displayName": "Random"
+                                                                                    },
+                                                                                    "add": false
+                                                                                },
+                                                                                {
+                                                                                    "type": "nodes.endScript"
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "expression": null,
+                            "ignoreChildAvailability": true,
+                            "minutes": 0,
+                            "ExitMenu": false
+                        }
+                    ],
+                    "AutoAddDone": true,
+                    "Unique": false
+                }
+            ]
+        }
+    ]
+}

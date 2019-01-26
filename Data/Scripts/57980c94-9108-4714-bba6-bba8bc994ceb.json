@@ -1,0 +1,262 @@
+{
+    "type": "script",
+    "id": "57980c94-9108-4714-bba6-bba8bc994ceb",
+    "name": "Interact with Antechamber Door",
+    "sceneId": "a670cb9b-f14e-4b92-b052-fbb75035f7fe",
+    "propId": "f0344d06-eaab-43e1-acd2-6dd0435e40da",
+    "actorId": null,
+    "trigger": {
+        "type": "triggers.interact",
+        "name": "Interact"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "27ff8811-3b10-47b1-a1cb-50a6ed6043fd",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "prop",
+                                "scopeId": "af11645b-9c6d-4f5e-9c89-6f980d62aedb",
+                                "scopeFilterId": "b403b96f-e954-4aa2-948b-9fdd998bc395",
+                                "tags": "opened",
+                                "has": true
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.playAnimation",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "animationName": "ReachOut",
+                                    "wait": false
+                                },
+                                {
+                                    "type": "nodes.wait",
+                                    "waitForSeconds": "0.2"
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.inTags",
+                                                "scope": "prop",
+                                                "scopeId": "af11645b-9c6d-4f5e-9c89-6f980d62aedb",
+                                                "scopeFilterId": "b403b96f-e954-4aa2-948b-9fdd998bc395",
+                                                "tags": "oiled",
+                                                "has": true
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.playSoundEffect",
+                                                    "soundEffectName": "wooden_door_opening.wav",
+                                                    "wait": false
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": null,
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.playSoundEffect",
+                                                    "soundEffectName": "WineCellarDoor.wav",
+                                                    "wait": false
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "nodes.changeScene",
+                                    "sceneId": "b403b96f-e954-4aa2-948b-9fdd998bc395",
+                                    "spawnId": "50d86fef-4d42-43bf-8d9c-41be6651ab1e",
+                                    "fadeTime": 2
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.showMenu",
+                                    "id": "faf185cd-5504-4e83-8ab0-42902d275f29",
+                                    "options": [
+                                        {
+                                            "type": "options.text",
+                                            "id": "52f0e9cb-84a9-42d2-9682-2bee9c45890a",
+                                            "text": "Examine the Door",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "3ae9d573-7fac-410c-8939-330e1e916198",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "It's a slightly rusted but still solid iron gate, and I can just make out an iron bar on the other side that is sealing this shut. I can't really see much on the other side, but there looks like something is moving in the darkness.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0",
+                                                    "notes": ""
+                                                }
+                                            ],
+                                            "expression": null,
+                                            "ignoreChildAvailability": true,
+                                            "minutes": "1",
+                                            "ExitMenu": false,
+                                            "notes": ""
+                                        },
+                                        {
+                                            "type": "options.text",
+                                            "id": "cdd9913f-2dc1-4490-bec9-81441f0c98e1",
+                                            "text": "Open the Door",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.playAnimation",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "animationName": "ReachOut",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.branch",
+                                                    "sections": [
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": {
+                                                                "type": "expressions.inTags",
+                                                                "scope": "prop",
+                                                                "scopeId": "af11645b-9c6d-4f5e-9c89-6f980d62aedb",
+                                                                "scopeFilterId": "b403b96f-e954-4aa2-948b-9fdd998bc395",
+                                                                "tags": "Opened",
+                                                                "has": true
+                                                            },
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.playSoundEffect",
+                                                                    "soundEffectName": "Heavy_Door_Unlock.wav",
+                                                                    "wait": true
+                                                                },
+                                                                {
+                                                                    "type": "nodes.changeScene",
+                                                                    "sceneId": "b403b96f-e954-4aa2-948b-9fdd998bc395",
+                                                                    "spawnId": "50d86fef-4d42-43bf-8d9c-41be6651ab1e",
+                                                                    "fadeTime": 2
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "nodes.branchSection",
+                                                            "expression": null,
+                                                            "nodes": [
+                                                                {
+                                                                    "type": "nodes.speak",
+                                                                    "id": "94e78722-0319-4411-b8cf-88c00f16cc78",
+                                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                                    "actorId2": null,
+                                                                    "text": "The door is barred from the other side.",
+                                                                    "emotion": "0",
+                                                                    "emotion2": "0",
+                                                                    "device": "0",
+                                                                    "device2": "0",
+                                                                    "notes": ""
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "expression": null,
+                                            "ignoreChildAvailability": true,
+                                            "minutes": "2",
+                                            "ExitMenu": false,
+                                            "notes": ""
+                                        },
+                                        {
+                                            "type": "options.text",
+                                            "id": "05690516-a478-4025-aad2-b84cc9633d97",
+                                            "text": "Pick the Lock",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.playAnimation",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "animationName": "ReachOut",
+                                                    "wait": true
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "2cca1ac1-4266-44e8-b0bc-a3cde4364afb",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "It's not locked. This gate is barred from the other side.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0",
+                                                    "notes": ""
+                                                }
+                                            ],
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "global",
+                                                "variableName": "ego.haslockpick",
+                                                "operator": "eq",
+                                                "compareTo": "true",
+                                                "sceneId": "a670cb9b-f14e-4b92-b052-fbb75035f7fe",
+                                                "propId": null
+                                            },
+                                            "ignoreChildAvailability": true,
+                                            "minutes": "1",
+                                            "ExitMenu": false,
+                                            "notes": ""
+                                        },
+                                        {
+                                            "type": "options.text",
+                                            "id": "4071db8b-ad6a-40df-a8f2-957345033116",
+                                            "text": "Look for Traps",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "e4fd05c3-01f7-496e-b3bf-d0e57ba37494",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "I don't see any traps on this gate.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0",
+                                                    "notes": ""
+                                                }
+                                            ],
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "global",
+                                                "variableName": "time.day",
+                                                "operator": "gte",
+                                                "compareTo": "20",
+                                                "sceneId": "a670cb9b-f14e-4b92-b052-fbb75035f7fe",
+                                                "propId": null
+                                            },
+                                            "ignoreChildAvailability": true,
+                                            "minutes": "1",
+                                            "ExitMenu": false,
+                                            "notes": ""
+                                        }
+                                    ],
+                                    "AutoAddDone": true,
+                                    "Unique": false
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

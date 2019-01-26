@@ -1,0 +1,167 @@
+{
+    "type": "script",
+    "id": "8c171c85-2bb2-4e14-acc4-6eb2c1d260b8",
+    "name": "KilledByEgo",
+    "actorId": "fdf2a22c-39ae-4ce9-8f9d-13ba189897a3",
+    "trigger": {
+        "type": "triggers.killedByEgo",
+        "name": "KilledByEgo"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "3fcc4bd2-401e-42d2-a705-c2d68d7d0071",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.changeTags",
+                    "id": "1c7faaee-ad98-459e-8427-9f5eddfd7057",
+                    "scope": "actor",
+                    "scopeId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "scopeFilterId": null,
+                    "tagsToAdd": "",
+                    "tagsToRemove": "CaptainDuel"
+                },
+                {
+                    "type": "nodes.wait",
+                    "waitForSeconds": "1.5"
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.actorPresent",
+                                "actorId": "fdf2a22c-39ae-4ce9-8f9d-13ba189897a3",
+                                "hasNot": false
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.setCameraTarget",
+                                    "propId": null,
+                                    "actorId": "fdf2a22c-39ae-4ce9-8f9d-13ba189897a3",
+                                    "time": "1",
+                                    "translateX": 0,
+                                    "translateY": 0,
+                                    "translateZ": 0,
+                                    "postWaitTime": 0,
+                                    "wait": false,
+                                    "scope": "actor"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.changeTags",
+                    "id": "6651329e-85a7-4120-878f-8db179129ace",
+                    "scope": "actor",
+                    "scopeId": "fdf2a22c-39ae-4ce9-8f9d-13ba189897a3",
+                    "scopeFilterId": null,
+                    "tagsToAdd": "dead",
+                    "tagsToRemove": null
+                },
+                {
+                    "type": "nodes.changeTags",
+                    "id": "2d36b832-69a5-4e24-8454-aa64970e6dd0",
+                    "scope": "actor",
+                    "scopeId": "fdf2a22c-39ae-4ce9-8f9d-13ba189897a3",
+                    "scopeFilterId": null,
+                    "tagsToAdd": "deadbyduel",
+                    "tagsToRemove": null
+                },
+                {
+                    "type": "nodes.speak",
+                    "id": "4094d3c3-56a3-47ba-9e8c-4b1240c99e2f",
+                    "actorId": "fdf2a22c-39ae-4ce9-8f9d-13ba189897a3",
+                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "text": "You got me... this time, lad...",
+                    "emotion": "4",
+                    "emotion2": "1",
+                    "device": "0",
+                    "device2": "0"
+                },
+                {
+                    "type": "nodes.speak",
+                    "id": "f3427732-fe03-4e0d-bded-b02699ae1f46",
+                    "actorId": "fdf2a22c-39ae-4ce9-8f9d-13ba189897a3",
+                    "actorId2": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "text": "But ye can't keep a good zombie down, ya bilge rat. I'll... be... back...",
+                    "emotion": "3",
+                    "emotion2": "4",
+                    "device": "0",
+                    "device2": "0"
+                },
+                {
+                    "type": "nodes.setCameraTarget",
+                    "propId": null,
+                    "actorId": "31e7b33f-83fe-48aa-bbfe-23730a880c40",
+                    "time": "1",
+                    "translateX": 0,
+                    "translateY": 0,
+                    "translateZ": 0,
+                    "postWaitTime": 0,
+                    "wait": false,
+                    "scope": "actor"
+                },
+                {
+                    "type": "nodes.speak",
+                    "id": "f767c11a-1ce5-4b80-a296-24f8bc0a05f0",
+                    "actorId": "31e7b33f-83fe-48aa-bbfe-23730a880c40",
+                    "actorId2": null,
+                    "text": "The cap'n isn't gonna be too happy when he wakes up. Alrighty lads, let's move out!",
+                    "emotion": "4",
+                    "emotion2": "0",
+                    "device": "0",
+                    "device2": "0"
+                },
+                {
+                    "type": "nodes.fade",
+                    "scope": "FadeOut",
+                    "fadeTime": "1",
+                    "fadeTime2": 2,
+                    "wait": true,
+                    "fadeDown": 0.5,
+                    "fadeColorR": 0,
+                    "fadeColorG": 0,
+                    "fadeColorB": 0
+                },
+                {
+                    "type": "nodes.invokeCommand",
+                    "id": "6af712a8-79e5-495f-a2fc-86e2b0283147",
+                    "entityType": "actor",
+                    "entityId": "fdf2a22c-39ae-4ce9-8f9d-13ba189897a3",
+                    "command": "removePirates",
+                    "parameter": "true",
+                    "wait": true,
+                    "resultVariableScope": "script"
+                },
+                {
+                    "type": "nodes.changePropVisibility",
+                    "id": "24c3be22-d93e-43d2-85d1-9f2192b60d64",
+                    "propId": "79482bef-f4d9-4e11-9808-cdcd271bed07",
+                    "sceneId": "9637d472-d1dd-4373-a09f-489014e31666",
+                    "status": "Hidden",
+                    "wait": true
+                },
+                {
+                    "type": "nodes.resetCamera",
+                    "wait": true,
+                    "time": 0
+                },
+                {
+                    "type": "nodes.fade",
+                    "scope": "FadeIn",
+                    "fadeTime": "1",
+                    "fadeTime2": "1",
+                    "wait": true,
+                    "fadeDown": "0",
+                    "fadeColorR": 0,
+                    "fadeColorG": 0,
+                    "fadeColorB": 0
+                }
+            ]
+        }
+    ]
+}

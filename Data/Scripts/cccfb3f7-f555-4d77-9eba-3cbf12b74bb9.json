@@ -1,0 +1,268 @@
+{
+    "type": "script",
+    "id": "cccfb3f7-f555-4d77-9eba-3cbf12b74bb9",
+    "name": "OnLoot",
+    "actorId": "e754296c-ddb5-4592-b304-ec45a2dbac93",
+    "trigger": {
+        "type": "triggers.loot",
+        "name": "Loot"
+    },
+    "entryPoints": [
+        {
+            "type": "scripts.entryPoint",
+            "id": "60b413c6-8273-4448-8b62-fc927482d62d",
+            "name": "Main",
+            "nodes": [
+                {
+                    "type": "nodes.playAnimation",
+                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "animationName": "KneelDown",
+                    "wait": true
+                },
+                {
+                    "type": "nodes.branch",
+                    "sections": [
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": {
+                                "type": "expressions.inTags",
+                                "scope": "target",
+                                "scopeId": null,
+                                "scopeFilterId": null,
+                                "tags": "U_LOOTED",
+                                "has": true
+                            },
+                            "nodes": [
+                                {
+                                    "type": "nodes.speak",
+                                    "id": "fb4e1ba4-b66c-413d-a0c3-d97e60061799",
+                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                    "actorId2": null,
+                                    "text": "There's nothing left on this skeleton worth salvaging.",
+                                    "emotion": "2",
+                                    "emotion2": "0",
+                                    "device": "0",
+                                    "device2": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "nodes.branchSection",
+                            "expression": null,
+                            "nodes": [
+                                {
+                                    "type": "nodes.changeTags",
+                                    "id": "be24dc9f-e367-4661-ac89-674fb48783f9",
+                                    "scope": "target",
+                                    "scopeId": null,
+                                    "scopeFilterId": null,
+                                    "tagsToAdd": "U_LOOTED",
+                                    "tagsToRemove": null
+                                },
+                                {
+                                    "type": "nodes.setVariable",
+                                    "name": "SWLoot",
+                                    "scope": "script",
+                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                    "source": {
+                                        "type": "variables.random",
+                                        "value": "",
+                                        "min": 1,
+                                        "max": 100,
+                                        "displayName": "Random"
+                                    },
+                                    "add": false
+                                },
+                                {
+                                    "type": "nodes.branch",
+                                    "sections": [
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "script",
+                                                "variableName": "SWLoot",
+                                                "operator": "gt",
+                                                "compareTo": "90",
+                                                "sceneId": null,
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "3d8cdda1-1769-4ede-88be-69e032a814b6",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Hah, someone stuck this guy with a dagger and just left it.",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.changeInventory",
+                                                    "id": "007a2f70-1df3-4b2e-bb86-0f09cc00b714",
+                                                    "propId": "f84a00b4-8d39-4a38-8aef-6835d300f36e",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "change": "1",
+                                                    "count": 1,
+                                                    "notify": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "script",
+                                                "variableName": "SWLoot",
+                                                "operator": "gt",
+                                                "compareTo": "80",
+                                                "sceneId": null,
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "c4cfae2e-9cbf-4c34-ac2d-aed82d24271e",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Hah. someone's thrown daggers at this skeleton before I did.",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.changeInventory",
+                                                    "id": "6d4ce2cc-3f0e-43c8-944e-4ab4d3af75d8",
+                                                    "propId": "cb08f2ac-0112-4d0f-b96f-3f10239d2e51",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "change": "1",
+                                                    "count": "2",
+                                                    "notify": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "expression": {
+                                                "type": "expressions.variableComparison",
+                                                "variableScope": "script",
+                                                "variableName": "SWLoot",
+                                                "operator": "gt",
+                                                "compareTo": "75",
+                                                "sceneId": null,
+                                                "propId": null
+                                            },
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "b3319396-2cfd-4352-a98d-717da4493c07",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "Hmmm, there's a throwing knife stuck in the rusted armor.",
+                                                    "emotion": "4",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "745a3c25-c786-41ef-a4bb-c62e42f5fdaa",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "I guess someone tried the old \"throw and run\" ploy. That trick never works!",
+                                                    "emotion": "1",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.changeInventory",
+                                                    "id": "c40a0905-f53a-44b6-bd55-fa5307847484",
+                                                    "propId": "cb08f2ac-0112-4d0f-b96f-3f10239d2e51",
+                                                    "sceneId": "a2508b7e-a177-4a96-93bd-4d8ab88dffc4",
+                                                    "change": "1",
+                                                    "count": "1",
+                                                    "notify": true
+                                                },
+                                                {
+                                                    "type": "nodes.hideCloseUp",
+                                                    "waitForSeconds": 1
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "nodes.branchSection",
+                                            "nodes": [
+                                                {
+                                                    "type": "nodes.speak",
+                                                    "id": "0faaf742-5b5b-47b2-8f18-39cb78e92105",
+                                                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                                                    "actorId2": null,
+                                                    "text": "There's a pouch on the body with some coins in it.",
+                                                    "emotion": "0",
+                                                    "emotion2": "0",
+                                                    "device": "0",
+                                                    "device2": "0"
+                                                },
+                                                {
+                                                    "type": "nodes.nodeCycle",
+                                                    "id": "b2403b65-3e49-46cd-911b-b71c463cc2b1",
+                                                    "nodes": [
+                                                        {
+                                                            "type": "nodes.changeMoney",
+                                                            "id": "1e15419b-05bf-4ef0-8620-8eb8a31aa1b9",
+                                                            "amount": "25",
+                                                            "change": "1",
+                                                            "currency": "0"
+                                                        },
+                                                        {
+                                                            "type": "nodes.changeMoney",
+                                                            "id": "f6913bae-7ec0-4291-96f7-93bba21ecd6f",
+                                                            "amount": "21",
+                                                            "change": "1",
+                                                            "currency": "0"
+                                                        },
+                                                        {
+                                                            "type": "nodes.changeMoney",
+                                                            "id": "738ea689-c630-411f-bd62-f07adfb0961e",
+                                                            "amount": "4",
+                                                            "change": "1",
+                                                            "currency": "0"
+                                                        },
+                                                        {
+                                                            "type": "nodes.changeMoney",
+                                                            "id": "f3d7b6a7-94ac-4528-8cce-cb69293119ab",
+                                                            "amount": "17",
+                                                            "change": "1",
+                                                            "currency": "0"
+                                                        },
+                                                        {
+                                                            "type": "nodes.changeMoney",
+                                                            "id": "70e9b72c-2d94-4d5a-b456-6c3ef86bca66",
+                                                            "amount": "10",
+                                                            "change": "1",
+                                                            "currency": "0"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "nodes.playAnimation",
+                    "actorId": "30ee2636-15e3-452e-a2db-09cbb9012970",
+                    "animationName": "KneelUp",
+                    "wait": true
+                }
+            ]
+        }
+    ]
+}

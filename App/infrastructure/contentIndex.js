@@ -44,7 +44,7 @@ define(function(require) {
                     return 1;
             });
         } else {
-            fileSystem.makeDirectory(that.dataDirectory);
+            //fileSystem.makeDirectory(that.dataDirectory);
         }
     };
 

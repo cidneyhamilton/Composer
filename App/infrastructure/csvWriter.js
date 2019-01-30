@@ -70,9 +70,5 @@ define(function(require){
         return new ctor(writeStream, options);
     };
 
-    ctor.createStreamWriter = function(writeStream, options) {
-        return new ctor(writeStream, options);
-    };
-
     return ctor;
 });

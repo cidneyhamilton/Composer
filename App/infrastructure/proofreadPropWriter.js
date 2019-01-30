@@ -172,9 +172,5 @@ define(function(reqire){
         return writer;
     };
 
-    ctor.createStreamWriter = function(writeStream) {
-        return new ctor(writeStream);
-    };
-
     return ctor;
 });

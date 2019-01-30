@@ -57,7 +57,7 @@ define(['durandal/system', 'knockout'], function (system, ko) {
 
     function deactivate(item, close, settings, dfd, setter) {
         if (item && item.deactivate) {
-            system.log('Deactivating', item);
+            //system.log('Deactivating', item);
 
             var result;
             try {
@@ -92,7 +92,7 @@ define(['durandal/system', 'knockout'], function (system, ko) {
     function activate(newItem, activeItem, callback, activationData) {
         if (newItem) {
             if (newItem.activate) {
-                system.log('Activating', newItem);
+                //system.log('Activating', newItem);
 
                 var result;
                 try {

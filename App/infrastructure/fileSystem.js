@@ -8,7 +8,7 @@
 
     function makeDirectory(path) {
         try {
-            fs.mkdirSync(path);
+            fs.mkdirSync(path, { recursive: true});
         } catch (err) {
             // If the error wasn't just "this directory already existed",
             // show the error.

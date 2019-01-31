@@ -1,14 +1,34 @@
 ﻿define(function(require) {
     var fs = requireNode('fs'),
+        path = requireNode('path'),
         system = require('durandal/system');
 
     function exists(fileName) {
         return fs.existsSync(fileName);
     }
 
-    function makeDirectory(path) {
+    function makeDirectory(dir) {
+        // Composer currently uses node-webkit v8
+        // They added options to fs.mkdirSync in v10, but it broke Composer's css styling
+        // (since Durandal apparently was only designed with an older Node version in mind)
+        // In node-webkit v13, they removed the toolbar, so we can't upgrade past that 
+        // No idea what versions of Node our Mac / Linux devs are running,
+        // so...  we're just going to *sigh* reinvent the wheel here
+        // and roll our own stupid recursive mkdir
+
+        // If the dir exists, return.
+        if (exists(dir)) {
+            return;
+        }
+
+        // Check if the dir's parent exists
+        var parentDir = path.join(dir, '../..');
+        if (!exists(parentDir)) {
+            makeDirectory(parentDir);
+        }
+
         try {
-            fs.mkdirSync(path, { recursive: true});
+            fs.mkdirSync(dir);
         } catch (err) {
             // If the error wasn't just "this directory already existed",
             // show the error.
@@ -18,18 +38,18 @@
         }
     }
 
-    function read(path) {
+    function read(dir) {
         try {
-            return fs.readFileSync(path).toString('utf8').replace(/^\uFEFF/, '');
+            return fs.readFileSync(dir).toString('utf8').replace(/^\uFEFF/, '');
         } catch (err) {
             system.error("Read failed: " + err);
             return;
         }
     }
 
-    function readDir(path) {
+    function readDir(dir) {
         try {
-            return fs.readdirSync(path);
+            return fs.readdirSync(dir);
         } catch (err) {
             system.error("Directory Read failed: " + err);
             return;
@@ -60,19 +80,19 @@
         }
     }
 
-    function clearDirectory(path) {
+    function clearDirectory(dir) {
         try {
-            if (exists(path)) {
-                readDir(path).forEach(function(file,index){
-                    var curPath = path + "/" + file;
-                    if (isDirectory(curPath)) {
-                        clearDirectory(curPath);
+            if (exists(dir)) {
+                readDir(dir).forEach(function(file,index){
+                    var curDir = dir + "/" + file;
+                    if (isDirectory(curDir)) {
+                        clearDirectory(curDir);
                     } else {
-                        remove(curPath);
+                        remove(curDir);
                     }
                 });
             } else {
-                makeDirectory(path);
+                makeDirectory(dir);
             }
         } catch (err) {
             system.error("Clear Directory failed: " + err);
@@ -106,14 +126,14 @@
         exists: function(fileName) {
             return exists(fileName);
         },
-        makeDirectory: function(path) {
-            makeDirectory(path);
+        makeDirectory: function(dir) {
+            makeDirectory(dir);
         },
-        read: function(path) {
-            return read(path);
+        read: function(dir) {
+            return read(dir);
         },
-        readDir: function(path) {
-            return readDir(path);
+        readDir: function(dir) {
+            return readDir(dir);
         },
         write: function(fileName, data) {
             write(fileName, data);
@@ -121,8 +141,8 @@
         remove: function(fileName) {
             remove(fileName);
         },
-        clearDirectory: function(path) {
-            clearDirectory(path);
+        clearDirectory: function(dir) {
+            clearDirectory(dir);
         },
         copyDirectory: function(src, dest) {
             copyDirectory(src, dest);

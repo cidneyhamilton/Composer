@@ -33,13 +33,18 @@
     var shell = {
         activeDocument: activator.create(),
         activate: function() {
+        }
+    };
+
+    app.on('app:navigate:loadProject').then(function(project) {
+        shell.activeProjectDir = project.dir;
+        shell.activeProjectFormat = project.format;        
             return $.when(
                 assetDatabase.load(),
                 installFeatures(),
                 system.wait(1000)
             );
-        }
-    };
+    });
 
     app.on('app:navigate:feature').then(function(metadata) {
         system.acquire(metadata.moduleId).then(function(section) {

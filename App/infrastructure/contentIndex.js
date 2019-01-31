@@ -2,13 +2,11 @@ define(function(require) {
     var path = requireNode('path'),
         inflection = require('./inflection'),
         fileSystem = require('./fileSystem'),
-        serializer = require('plugins/serializer');
-
-    var dataDirectory = path.join(process.cwd(), '../Game/Assets/Resources/Composer/');
+        serializer = require('plugins/serializer'),
+        selectedGame = require('features/projectSelector/index');
 
     var ctor = function(name) {
         this.name = name;
-        this.dataDirectory = path.join(dataDirectory, name);
         this.entries = [];
     };
 
@@ -21,10 +19,12 @@ define(function(require) {
      
         var i = 0;
 
+        var dataDirectory = path.join(selectedGame.activeProject.dir, '../Game/Assets/Resources/Composer/', that.name);
+
         //console.log(that.dataDirectory);
 
-        if (fileSystem.exists(that.dataDirectory)) {
-            var dir = that.dataDirectory + "/";
+        if (fileSystem.exists(dataDirectory)) {
+            var dir = dataDirectory + "/";
             //console.log(dir);
             var files = fileSystem.readDir(dir);
             for(var i=0;i<files.length;i++) {
@@ -44,7 +44,7 @@ define(function(require) {
                     return 1;
             });
         } else {
-            //fileSystem.makeDirectory(that.dataDirectory);
+            fileSystem.makeDirectory(dataDirectory);
         }
     };
 

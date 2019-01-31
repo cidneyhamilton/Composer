@@ -3,10 +3,10 @@
         fileSystem = require('infrastructure/fileSystem'),
         serializer = require('plugins/serializer'),
         commonDialogs = require('infrastructure/commonDialogs'),
-        runner = require('./runner');
+        runner = require('./runner'),
+        selectedGame = require('features/projectSelector/index');
 
-    var dataDirectory = path.join(process.cwd(), 'Data');
-    var projectPath = path.join(dataDirectory, 'project.json');
+    var projectPath = path.join(selectedGame.activeProject.dir, 'Data/project.json');
 
     var index = {
         save:function(){
@@ -22,7 +22,7 @@
             var that = this;
             commonDialogs.chooseDirectory().then(function(result){
                 if(result){
-                    that.project.build.dataOutputDirectory = path.relative(process.cwd(), result);
+                    that.project.build.dataOutputDirectory = path.relative(selectedGame.activeProject.dir, result);
                     fileSystem.write(projectPath, serializer.serialize(that.project, 4));
                 }
             });
@@ -31,7 +31,7 @@
             var that = this;
             commonDialogs.chooseDirectory().then(function(result){
                 if(result){
-                    that.project.build.codeOutputDirectory = path.relative(process.cwd(), result);
+                    that.project.build.codeOutputDirectory = path.relative(selectedGame.activeProject.dir, result);
                     fileSystem.write(projectPath, serializer.serialize(that.project, 4));
                 }
             });
@@ -40,7 +40,7 @@
             var that = this;
             commonDialogs.chooseDirectory().then(function(result){
                 if(result){
-                    that.project.build.editorOutputDirectory = path.relative(process.cwd(), result);
+                    that.project.build.editorOutputDirectory = path.relative(selectedGame.activeProject.dir, result);
                     fileSystem.write(projectPath, serializer.serialize(that.project, 4));
                 }
             });
@@ -49,7 +49,7 @@
             var that = this;
             commonDialogs.chooseDirectory().then(function(result){
                 if(result){
-                    that.project.build.localizationOutputDirectory = path.relative(process.cwd(), result);
+                    that.project.build.localizationOutputDirectory = path.relative(selectedGame.activeProject.dir, result);
                     fileSystem.write(projectPath, serializer.serialize(that.project, 4));
                 }
             });
@@ -58,7 +58,7 @@
             var that = this;
             commonDialogs.chooseDirectory().then(function(result){
                 if(result){
-                    that.project.build.translationOutputDirectory = path.relative(process.cwd(), result);
+                    that.project.build.translationOutputDirectory = path.relative(selectedGame.activeProject.dir, result);
                     fileSystem.write(projectPath, serializer.serialize(that.project, 4));
                 }
             });
@@ -67,7 +67,7 @@
             var that = this;
             commonDialogs.chooseDirectory().then(function(result){
                 if(result){
-                    that.project.build.internalDocOutputDirectory = path.relative(process.cwd(), result);
+                    that.project.build.internalDocOutputDirectory = path.relative(selectedGame.activeProject.dir, result);
                     fileSystem.write(projectPath, serializer.serialize(that.project, 4));
                 }
             });

@@ -4,7 +4,8 @@ define(function(require) {
     path = requireNode('path'),
     fileSystem = require('infrastructure/fileSystem'),
     serializer = require('plugins/serializer'),
-    runner = require('features/build/runner');
+    runner = require('features/build/runner'),    
+    selectedGame = require('features/projectSelector/index');
 
     var toolbar = {
         activeSection: null,
@@ -21,6 +22,7 @@ define(function(require) {
             }
         },
         sections: [
+            new Section('Game', 'icon-sitemap', 'features/projectSelector/index'),
             new Section('Home', 'icon-home'),
             new Section('Events', 'icon-film', 'features/storyEvents/index'),
             new Section('Actors', 'icon-user'),
@@ -29,8 +31,7 @@ define(function(require) {
             new Section('Build Config', 'icon-building', 'features/build/index')
         ],
         build: function() {
-            var dataDirectory = path.join(process.cwd(), 'Data');
-            var projectPath = path.join(dataDirectory, 'project.json');
+            var projectPath = path.join(selectedGame.activeProject.dir, 'Data/project.json');
 
             if(fileSystem.exists(projectPath)) {
                 var data = fileSystem.read(projectPath);
@@ -48,7 +49,7 @@ define(function(require) {
     // AUTOMATED BUILD MODE! THIS BUILDS AND SHUTS DOWN COMPOSER!
     if(myArgs.indexOf('batchBuild') > -1)
     {
-        toolbar.select(toolbar.sections[5]);
+        toolbar.select(toolbar.sections[6]);
         // HACK: We can't click the build button right away because of the transition
         // above. If we click the build button right away then we won't
         // have the full build transition handled.

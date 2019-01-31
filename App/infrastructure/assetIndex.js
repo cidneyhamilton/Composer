@@ -3,15 +3,13 @@ define(function(require) {
         AssetEntry = require('./assetEntry'),
         inflection = require('./inflection'),
         fileSystem = require('./fileSystem'),
-        serializer = require('plugins/serializer');
-
-    var dataDirectory = path.join(process.cwd(), 'Data');
+        serializer = require('plugins/serializer'),
+        selectedGame = require('features/projectSelector/index');
 
     var ctor = function(name, CreateItem, CreateEntry, folderName, type) {
         this.name = name;
+        this.folderName = folderName;
         this.type = type || inflection.singularize(this.name).toLowerCase();
-        this.indexFilePath = path.join(dataDirectory, (folderName || name), "index.json");
-        this.dataDirectory = path.join(dataDirectory, (folderName || name));
         this.entries = [];
         this.lookup = {};
         this.CreateItem = CreateItem;
@@ -23,6 +21,10 @@ define(function(require) {
         var that = e;
      
         var i = 0;
+
+        debugger;
+
+        that.dataDirectory = path.join(selectedGame.activeProject.dir, '/Data/',  (that.folderName || that.name));
 
         //console.log(that.dataDirectory);
 
@@ -65,7 +67,7 @@ define(function(require) {
                         return 1;
                 });
         } else {
-            fileSystem.makeDirectory(that.dataDirectory);
+            fileSystem.makeDirectory(dataDirectory);
         }
     };
 

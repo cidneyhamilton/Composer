@@ -3,7 +3,8 @@ define(function(require){
         WorkIndicator = require('infrastructure/workIndicator'),
         fileSystem = require('infrastructure/fileSystem'),
         dialog = require('plugins/dialog'),
-        system = require('durandal/system');
+        system = require('durandal/system'),
+        selectedGame = require('features/projectSelector/index');
 
     function cleanDirs(context) {
         return system.defer(function(task) {
@@ -76,14 +77,14 @@ define(function(require){
                 project:project,
                 mode: mode,
                 indicator:indicator,
-                dataOutputDirectory:path.resolve(process.cwd(), project.build.dataOutputDirectory),
-                codeOutputDirectory:path.resolve(process.cwd(), project.build.codeOutputDirectory),
-                editorOutputDirectory:path.resolve(process.cwd(), project.build.editorOutputDirectory),
-                localizationOutputDirectory:path.resolve(process.cwd(), project.build.localizationOutputDirectory),
-                translationOutputDirectory:path.resolve(process.cwd(), project.build.translationOutputDirectory),
-                internalDocOutputDirectory:path.resolve(process.cwd(), project.build.internalDocOutputDirectory),
-                reportsOutputDirectory: path.join(path.resolve(process.cwd(), project.build.internalDocOutputDirectory), 'Reports'),
-                doneFile: path.join(path.resolve(process.cwd(), project.build.internalDocOutputDirectory), 'buildDone.txt'),
+                dataOutputDirectory:path.resolve(selectedGame.activeProject.dir, project.build.dataOutputDirectory),
+                codeOutputDirectory:path.resolve(selectedGame.activeProject.dir, project.build.codeOutputDirectory),
+                editorOutputDirectory:path.resolve(selectedGame.activeProject.dir, project.build.editorOutputDirectory),
+                localizationOutputDirectory:path.resolve(selectedGame.activeProject.dir, project.build.localizationOutputDirectory),
+                translationOutputDirectory:path.resolve(selectedGame.activeProject.dir, project.build.translationOutputDirectory),
+                internalDocOutputDirectory:path.resolve(selectedGame.activeProject.dir, project.build.internalDocOutputDirectory),
+                reportsOutputDirectory: path.join(path.resolve(selectedGame.activeProject.dir, project.build.internalDocOutputDirectory), 'Reports'),
+                doneFile: path.join(path.resolve(selectedGame.activeProject.dir, project.build.internalDocOutputDirectory), 'buildDone.txt'),
                 gameModel: {
                     entityModels:[],
                     scriptIndex:[]

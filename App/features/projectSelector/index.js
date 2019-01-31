@@ -3,19 +3,15 @@ define(function(require) {
         fileSystem = require('infrastructure/fileSystem'),
         serializer = require('plugins/serializer'),
         commonDialogs = require('infrastructure/commonDialogs'),
-        app = require('durandal/app');
+        app = require('durandal/app'),
+        ko = require('knockout');
 
     var projectPath = path.join(process.cwd(), 'Data/projectSelector.json');
 
     var index = {
-    	loadHeroU: function() {
+        load: function(selectedProject) {
             var that = this;
-            that.activeProject = that.projects.heroU;
-            app.trigger('app:navigate:loadProject', that.activeProject);
-    	},
-        loadSummerDaze: function() {
-            var that = this;
-            that.activeProject = that.projects.summerDaze;
+            that.activeProject = ko.toJS(selectedProject);
             app.trigger('app:navigate:loadProject', that.activeProject);
         },
         save:function(){
@@ -49,10 +45,12 @@ define(function(require) {
             } else {
                that.projects = {
                		heroU : {
+                        gameName: 'Hero-U',
                			dir: '../Hero-U/Composer',
                			format: 'json'
                		},
                		summerDaze: {
+                        gameName: 'Summer Daze',
                			dir: '',
                			format: 'ink'
                		}

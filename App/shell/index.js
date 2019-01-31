@@ -42,7 +42,8 @@
             return $.when(
                 assetDatabase.load(),
                 installFeatures(),
-                system.wait(1000)
+                system.wait(1000),
+                app.trigger('app:navigate:projectLoaded', project)
             );
     });
 

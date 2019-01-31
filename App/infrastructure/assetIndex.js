@@ -22,8 +22,6 @@ define(function(require) {
      
         var i = 0;
 
-        debugger;
-
         that.dataDirectory = path.join(selectedGame.activeProject.dir, '/Data/',  (that.folderName || that.name));
 
         //console.log(that.dataDirectory);

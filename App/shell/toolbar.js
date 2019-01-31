@@ -22,7 +22,7 @@ define(function(require) {
             }
         },
         sections: [
-            new Section('Game', 'icon-sitemap', 'features/projectSelector/index'),
+            new Section('Select Game', 'icon-play', 'features/projectSelector/index', true),
             new Section('Home', 'icon-home'),
             new Section('Events', 'icon-film', 'features/storyEvents/index'),
             new Section('Actors', 'icon-user'),
@@ -43,6 +43,11 @@ define(function(require) {
             }
         }
     };
+
+    app.on('app:navigate:projectLoaded').then(function(project) {
+        toolbar.sections[0].name = project.gameName;
+        toolbar.select(toolbar.sections[1]);
+    });
 
     toolbar.select(toolbar.sections[0]);
     var myArgs = require('nw.gui').App.argv;

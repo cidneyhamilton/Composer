@@ -4,10 +4,12 @@ define(function(require) {
     path = requireNode('path'),
     fileSystem = require('infrastructure/fileSystem'),
     serializer = require('plugins/serializer'),
-    runner = require('features/build/runner'),    
+    runner = require('features/build/runner'),
+    $ = require('jquery'),
     selectedGame = require('features/projectSelector/index');
 
     var toolbar = {
+        isVisible: true,
         activeSection: null,
         select: function(section) {
             if (this.activeSection) {
@@ -44,9 +46,24 @@ define(function(require) {
         }
     };
 
+    app.on('app:navigate:loadProject').then(function(project) {
+        toolbar.isVisible = false;
+        app.trigger('app:navigate:screen','features/loadingScreen/index');
+    });
+
     app.on('app:navigate:projectLoaded').then(function(project) {
-        toolbar.sections[0].name = project.gameName;
-        toolbar.select(toolbar.sections[1]);
+        setTimeout(function(){
+            toolbar.sections[0].name = project.gameName;
+            return $.when(
+                toolbar.select(toolbar.sections[1])
+            ).done(
+                // The window-switching has a 1s transition fade.
+                // Re-enable the toolbar after the fade.
+                setTimeout(function(){
+                    toolbar.isVisible = true;
+                }, 1001)
+            )
+        }, 1000);
     });
 
     toolbar.select(toolbar.sections[0]);

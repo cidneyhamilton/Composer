@@ -7,45 +7,11 @@
         $ = require('jquery'),
         gui = require('nw.gui');
 
-    var featureMains = [];
-
-    function installFeatures() {
-        return system.defer(function(dfd) {
-            require(featureMains, function() {
-                for (var i = 0; i < arguments.length; i++) {
-                    arguments[i].install();
-                }
-                dfd.resolve();
-            });
-        }).promise();
-    }
-
-    function features() {
-        for (var i = 0; i < arguments.length; i++) {
-            featureMains.push('features/' + arguments[i] + '/main');
-        }
-    }
-
-    features('components', 'scripts', 'actors', 'storyEvents', 'props', 'scenes', 'localization');
-
     bindingHandlers.install();
 
     var shell = {
-        activeDocument: activator.create(),
-        activate: function() {
-        }
+        activeDocument: activator.create()
     };
-
-    app.on('app:navigate:loadProject').then(function(project) {
-        shell.activeProjectDir = project.dir;
-        shell.activeProjectFormat = project.format;        
-            return $.when(
-                assetDatabase.load(),
-                installFeatures(),
-                system.wait(1000),
-                app.trigger('app:navigate:projectLoaded', project)
-            );
-    });
 
     app.on('app:navigate:feature').then(function(metadata) {
         system.acquire(metadata.moduleId).then(function(section) {

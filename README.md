@@ -42,6 +42,19 @@ When adding a new game for Composer loading, please update add the new game name
 2. App/shell/toolbar.js
 3. Composer.bat
 
+## Automated Builds
+
+To run composer in automated builds, it's much like the same process, except you pass the game name in as a parameter.  (It will default to "heroU", aka "Rogue to Redemption").
+
+ex: 
+```
+Composer.bat batchBuild heroU
+```
+
+The "valid" options are:
+* heroU
+* summerDaze
+
 ### Open Source Licenses
 
 * The JSON Serializer/Deserializer is an altered version of [fastJSON](http://www.codeproject.com/Articles/159450/fastJSON). License found [here](http://www.codeproject.com/info/cpol10.aspx)

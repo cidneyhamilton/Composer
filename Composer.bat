@@ -3,6 +3,7 @@ cd Platforms\Windows\
 
 set BatchBuild=
 set DebugOption=
+set Game=heroU
 
 REM ==========================================================
 REM Command line parser. Kind of goofy
@@ -18,6 +19,12 @@ if "%1" == "batchBuild" (
 if "%1" == "debug" ( 
 	set DebugOption=debug
 )
+if "%1" == "heroU" (
+	set Game=heroU
+)
+if "%1" == "summerDaze" (
+	set Game=summerDaze
+)
 shift
 goto CMDNEXT
 :CMDEND
@@ -30,7 +37,7 @@ if "%BatchBuild%" == "batchBuild" (
 	echo .
 	echo .   BATCH BUILD
 	echo .
-	start /WAIT nw ..\..\ %BatchBuild% %DebugOption%	
+	start /WAIT nw ..\..\ %BatchBuild% %DebugOption% %Game%
 ) ELSE (
 	echo GUI MODE
 	start nw ..\..\ 

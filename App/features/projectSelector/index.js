@@ -38,24 +38,36 @@ define(function(require) {
         },
         activate:function(){
             var that = this;
+            that.projects = {
+                heroU : {
+                    gameName: 'Hero-U',
+                    dir: '../Hero-U/Composer',
+                    format: 'json'
+                },
+                summerDaze: {
+                    gameName: 'Summer Daze',
+                    dir: '',
+                    format: 'ink'
+                }
+            };
             if(fileSystem.exists(projectPath)) {
                 var data = fileSystem.read(projectPath);
                 var rawJsonText = String(data);
-                that.projects = serializer.deserialize(rawJsonText);
-            } else {
-               that.projects = {
-               		heroU : {
-                        gameName: 'Hero-U',
-               			dir: '../Hero-U/Composer',
-               			format: 'json'
-               		},
-               		summerDaze: {
-                        gameName: 'Summer Daze',
-               			dir: '',
-               			format: 'ink'
-               		}
-               };
-            }
+                var loadedProjects = serializer.deserialize(rawJsonText);
+
+                // We'll override our local things with the loaded options (this allows people with existing configs to pick up any configs added for new games)
+                for (var loadedGame in loadedProjects) {
+                    // If we don't recognize this game, preserve it (don't delete user data!)
+                    if (! that.projects[loadedGame]) {
+                        // For everything else, just copy over the name, dir, and format.
+                        that.projects[loadedGame] = {};
+                        that.projects[loadedGame].gameName = loadedProjects[loadedGame].gameName;
+                        that.projects[loadedGame].format = loadedProjects[loadedGame].format;
+                    }
+                    //... We always want to pick up any directories, since that's the only thing people can override in the UI.
+                    that.projects[loadedGame].dir = loadedProjects[loadedGame].dir;
+                }
+            } 
         }
     };
 

@@ -6,6 +6,7 @@ define(function(require) {
     serializer = require('plugins/serializer'),
     runner = require('features/build/runner'),
     $ = require('jquery'),
+    loader = require('features/loadingScreen/loader'),
     selectedGame = require('features/projectSelector/index');
 
     var toolbar = {
@@ -73,11 +74,21 @@ define(function(require) {
         }, 1000);
     });
 
-    toolbar.select(toolbar.sections[0]);
     var myArgs = require('nw.gui').App.argv;
     // AUTOMATED BUILD MODE! THIS BUILDS AND SHUTS DOWN COMPOSER!
     if(myArgs.indexOf('batchBuild') > -1)
     {
+        toolbar.hasButtonsEnabled = true;
+        selectedGame.activate();
+
+        if (myArgs.indexOf('summerDaze') > -1) {
+            selectedGame.activeProject = selectedGame.projects.summerDaze;
+        } else {
+            debugger;
+            selectedGame.activeProject = selectedGame.projects.heroU;
+        }
+
+        loader.load();
         toolbar.select(toolbar.sections[6]);
         // HACK: We can't click the build button right away because of the transition
         // above. If we click the build button right away then we won't
@@ -98,7 +109,10 @@ define(function(require) {
             //       down the build indicator.
 
         }, 5000);
-    }    
+    } else {
+        // For the normal UI flow, go to the project select screen.
+        toolbar.select(toolbar.sections[0]);
+    }
 
     return toolbar;
 })

@@ -9,6 +9,7 @@ define(function(require) {
     selectedGame = require('features/projectSelector/index');
 
     var toolbar = {
+        hasButtonsEnabled: false,
         isVisible: true,
         activeSection: null,
         select: function(section) {
@@ -47,8 +48,13 @@ define(function(require) {
     };
 
     app.on('app:navigate:loadProject').then(function(project) {
-        toolbar.isVisible = false;
-        app.trigger('app:navigate:screen','features/loadingScreen/index');
+            return $.when(
+                app.trigger('app:navigate:screen','features/loadingScreen/index')
+            ).done(
+                setTimeout(function(){
+                toolbar.isVisible = false
+            }, 600)
+            );
     });
 
     app.on('app:navigate:projectLoaded').then(function(project) {
@@ -60,8 +66,9 @@ define(function(require) {
                 // The window-switching has a 1s transition fade.
                 // Re-enable the toolbar after the fade.
                 setTimeout(function(){
+                    toolbar.hasButtonsEnabled = true;
                     toolbar.isVisible = true;
-                }, 1001)
+                }, 1300)
             )
         }, 1000);
     });

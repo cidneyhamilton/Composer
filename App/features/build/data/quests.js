@@ -4,10 +4,11 @@ define(function(require){
         serializer = require('plugins/serializer'),
         db = require('infrastructure/assetDatabase'),
         system = require('durandal/system'),
-        template = require('text!./questsTemplate.txt');
+        template = require('text!./questsTemplate.txt'),
+        selectedGame = require('features/projectSelector/index');
     return {
         run:function(context){
-            var outputDirectory = "../Game/Assets/CodeGen/";
+            var outputDirectory = path.join(selectedGame.activeProject.dir, "../Game/Assets/CodeGen/");
             var fileName = path.join(outputDirectory, 'Quests.cs'); 
 
             context.indicator.message = 'Writing Quests';

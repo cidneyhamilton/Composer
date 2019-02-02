@@ -5,14 +5,14 @@
     </header>
     
     <!--ko foreach: sections-->
-    <button data-bind="css:{selected:isSelected}, click:function(){$parent.select($data);}">
+    <button data-bind="enable: ($parent.hasButtonsEnabled || 0 == $index), css:{selected:isSelected}, click:function(){$parent.select($data);}">
         <span>
             <i class="icon" data-bind="css:iconClass"></i><span data-bind="text: name"></span>
         </span>
     </button>
     <!--/ko-->
 
-    <button class="btn" accesskey="b" data-bind="click: build">
+    <button class="btn" accesskey="b" data-bind="enable: hasButtonsEnabled, click: build">
         Build
     </button>
 </nav>

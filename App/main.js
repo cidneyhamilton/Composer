@@ -1,9 +1,9 @@
 ﻿requirejs.config({
     paths: {
         'text': '../Scripts/text',
-        'durandal':'../Scripts/durandal/js',
-        'plugins' : '../Scripts/durandal/js/plugins',
-        'transitions' : '../Scripts/durandal/js/transitions',
+        'durandal':'../Scripts/durandal_2_2_0/js',
+        'plugins' : '../Scripts/durandal_2_2_0/js/plugins',
+        'transitions' : '../Scripts/durandal_2_2_0/js/transitions',
         'knockout': '../Scripts/knockout-3.0.0rc',
         'bootstrap': '../Scripts/bootstrap',
         'jquery': '../Scripts/jquery-1.9.1',

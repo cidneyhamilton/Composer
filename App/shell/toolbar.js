@@ -83,8 +83,11 @@ define(function(require) {
 
         if (myArgs.indexOf('summerDaze') > -1) {
             selectedGame.activeProject = selectedGame.projects.summerDaze;
+        } else if (myArgs.indexOf('wizardsWay') > -1) {
+            selectedGame.activeProject = selectedGame.projects.wizardsWay;
+        } else if (myArgs.indexOf('r2rDemo') > -1) {
+            selectedGame.activeProject = selectedGame.projects.r2rDemo;
         } else {
-            debugger;
             selectedGame.activeProject = selectedGame.projects.heroU;
         }
 

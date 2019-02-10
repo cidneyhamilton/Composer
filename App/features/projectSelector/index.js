@@ -11,27 +11,14 @@ define(function(require) {
     var index = {
         load: function(selectedProject) {
             var that = this;
-            that.activeProject = ko.toJS(selectedProject);
+            that.activeProject = that.projects[selectedProject];
             app.trigger('app:navigate:loadProject', that.activeProject);
         },
-        save:function(){
-            var json = serializer.serialize(this.project, 4);
-            fileSystem.write(projectPath, json);
-        },
-        chooseHeroUDir:function(){
+        chooseDir:function(selectedProject){
             var that = this;
             commonDialogs.chooseDirectory().then(function(result){
                 if(result){
-                    that.projects.heroU.dir = path.relative(process.cwd(), result);
-                    fileSystem.write(projectPath, serializer.serialize(that.projects, 4));
-                }
-            });
-        },
-        chooseSummerDazeDir:function(){
-            var that = this;
-            commonDialogs.chooseDirectory().then(function(result){
-                if(result){
-                    that.projects.summerDaze.dir = path.relative(process.cwd(), result);
+                    that.projects[selectedProject].dir = path.relative(process.cwd(), result);
                     fileSystem.write(projectPath, serializer.serialize(that.projects, 4));
                 }
             });
@@ -48,6 +35,16 @@ define(function(require) {
                     gameName: 'Summer Daze',
                     dir: '',
                     format: 'ink'
+                },
+                r2rdemo : {
+                    gameName: 'Demo: R2R',
+                    dir: '',
+                    format: 'json'
+                },
+                wizardsway : {
+                    gameName: 'Wizards Way',
+                    dir: '',
+                    format: 'json'
                 }
             };
             if(fileSystem.exists(projectPath)) {
@@ -67,7 +64,7 @@ define(function(require) {
                     //... We always want to pick up any directories, since that's the only thing people can override in the UI.
                     that.projects[loadedGame].dir = loadedProjects[loadedGame].dir;
                 }
-            } 
+            }
         }
     };
 

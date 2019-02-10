@@ -25,6 +25,12 @@ if "%1" == "heroU" (
 if "%1" == "summerDaze" (
 	set Game=summerDaze
 )
+if "%1" == "r2rDemo" (
+	set Game=r2rDemo
+)
+if "%1" == "wizardsWay" (
+	set Game=wizardsWay
+)
 shift
 goto CMDNEXT
 :CMDEND

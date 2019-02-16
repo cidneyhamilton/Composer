@@ -7,10 +7,16 @@ define(function(require) {
         observable = require('plugins/observable'),
         ko = require('knockout'),
         assetDatabase = require('infrastructure/assetDatabase'),
-        loader = require('features/loadingScreen/loader');
+        loader = require('features/loadingScreen/loader'),
+        fileSystem = require('infrastructure/fileSystem');
 
     var ctor = function() {
 		this.imgSrc = path.join(selectedGame.activeProject.dir, '/Content/images/splash.jpg');
+
+        // If the game doesn't have a custom splash screen, use the Standalone default
+        if (!fileSystem.exists(this.imgSrc)) {
+            this.imgSrc = path.join(process.cwd(), '/Content/images/splash.jpg');
+        }
 
 		this.loadAssets = function() {
 			setTimeout(function(){

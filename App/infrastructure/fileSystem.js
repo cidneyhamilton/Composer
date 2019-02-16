@@ -22,7 +22,7 @@
         }
 
         // Check if the dir's parent exists
-        var parentDir = path.join(dir, '../..');
+        var parentDir = path.join(dir, '../');
         if (!exists(parentDir)) {
             makeDirectory(parentDir);
         }

@@ -65,7 +65,7 @@ define(function(require) {
                         return 1;
                 });
         } else {
-            fileSystem.makeDirectory(dataDirectory);
+            fileSystem.makeDirectory(that.dataDirectory);
         }
     };
 

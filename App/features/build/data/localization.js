@@ -41,7 +41,18 @@ define(function(require){
 
                         // Generate the English translation master file
                         var translationsDir = path.join(context.translationOutputDirectory, '/Translations');
-                        var enUsTranslationFile = path.join(translationsDir, '/en-US/translation.csv');
+
+                        if (!fileSystem.exists(translationsDir)) {
+                            fileSystem.makeDirectory(translationsDir);
+                        }
+
+                        var enUsTranslationFileDir = path.join(translationsDir, '/en-US');
+
+                        if (!fileSystem.exists(enUsTranslationFileDir)) {
+                            fileSystem.makeDirectory(enUsTranslationFileDir);
+                        }
+
+                        var enUsTranslationFile = path.join(enUsTranslationFileDir, '/translation.csv');
                         var translationGoldFileWriter = CSVWriter.createFileWriter(enUsTranslationFile);
                         var translationHeaders = [ { 0: 'Original Text', 1: 'Translation', 2 : 'Speaker (DO NOT TRANSLATE)',  3: 'Translation Notes (DO NOT TRANSLATE)', 4: 'Keys (DO NOT TRANSLATE OR DELETE)' }]
                         translationGoldFileWriter.writeRecord(translationHeaders);
@@ -61,7 +72,18 @@ define(function(require){
 
                         // Generate the English game_text file; after that's done, copy over all the localized game output files
                         var localizedGoldFilesDir = path.join(context.translationOutputDirectory, '/Locales');
-                        var enUsGoldFile = path.join(localizedGoldFilesDir, '/en-US/game_text.txt');
+
+                        if (!fileSystem.exists(localizedGoldFilesDir)) {
+                            fileSystem.makeDirectory(localizedGoldFilesDir);
+                        }
+
+                        var enUsGoldFileDir = path.join(localizedGoldFilesDir, '/en-US');
+
+                        if (!fileSystem.exists(enUsGoldFileDir)) {
+                            fileSystem.makeDirectory(enUsGoldFileDir);
+                        }
+
+                        var enUsGoldFile = path.join(enUsGoldFileDir, '/game_text.txt');
                         var enUsGoldFileWriter = CSVWriter.createFileWriter(enUsGoldFile, undefined,  function() {
                             fileSystem.copyDirectory(localizedGoldFilesDir, context.localizationOutputDirectory);
 

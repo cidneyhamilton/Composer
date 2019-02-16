@@ -15,6 +15,8 @@
         },
         // This is the build button.
         build:function(){
+            var that = this;
+            fileSystem.write(projectPath, serializer.serialize(that.project, 4));
             runner.run(this.project, this.mode);
         },
         mode:'debug',
@@ -81,16 +83,25 @@
             } else {
                that.project = {
                    build:{
-                       targetPlatform:'unity3d',
-                       targetLanguage:'csharp',
-                       dataOutputDirectory:'',
-                       codeOutputDirectory:'',
-                       editorOutputDirectory:'',
-                       localizationOutputDirectory:'',
-                       internalDocOutputDirectory:''
+                        targetPlatform:'unity3d',
+                        targetLanguage:'csharp',
+                        dataOutputDirectory: "../Game/Assets/Resources/Composer",
+                        codeOutputDirectory: "../Game/Assets/Scripts/Composer",
+                        editorOutputDirectory: "../Game/Assets/Scripts/Editor",
+                        localizationOutputDirectory: "../Game/Assets/Resources/Locales",
+                        translationOutputDirectory: "../Translations",
+                        internalDocOutputDirectory: "../Proofread"
                    }
                };
             }
+
+            // Ensure all of the directories exist
+            fileSystem.makeDirectory(path.resolve(selectedGame.activeProject.dir, that.project.build.dataOutputDirectory));
+            fileSystem.makeDirectory(path.resolve(selectedGame.activeProject.dir, that.project.build.codeOutputDirectory));
+            fileSystem.makeDirectory(path.resolve(selectedGame.activeProject.dir, that.project.build.editorOutputDirectory));
+            fileSystem.makeDirectory(path.resolve(selectedGame.activeProject.dir, that.project.build.localizationOutputDirectory));
+            fileSystem.makeDirectory(path.resolve(selectedGame.activeProject.dir, that.project.build.translationOutputDirectory));
+            fileSystem.makeDirectory(path.resolve(selectedGame.activeProject.dir, that.project.build.internalDocOutputDirectory));
         }
     };
 

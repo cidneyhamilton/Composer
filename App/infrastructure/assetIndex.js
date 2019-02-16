@@ -30,40 +30,44 @@ define(function(require) {
             var dir = that.dataDirectory + "/";
             //console.log(dir);
             var files = fileSystem.readDir(dir);
-                for(var i=0;i<files.length;i++) {
-                    var file = files[i];
-                    var fullname = dir + file;
 
-                    try {
-                        var x = JSON.parse(fileSystem.read(fullname));
+            that.lookup = {};
+            that.entries = [];
 
-                        if (x != null) {
-                            x.type = e.type;
-                            var entry = new that.CreateEntry(that, x);
+            for(var i=0;i<files.length;i++) {
+                var file = files[i];
+                var fullname = dir + file;
 
-                            if (x.type == 'script') {
-                                //console.log(x);
-                                entry.triggerType = x.trigger.type;
-                                //console.log(entry.triggerType);
-                            }
+                try {
+                    var x = JSON.parse(fileSystem.read(fullname));
 
-                            that.lookup[entry.id] = entry;
-                            that.entries.push(entry);
+                    if (x != null) {
+                        x.type = e.type;
+                        var entry = new that.CreateEntry(that, x);
+
+                        if (x.type == 'script') {
+                            //console.log(x);
+                            entry.triggerType = x.trigger.type;
+                            //console.log(entry.triggerType);
                         }
-                    }
-                    catch(ex) {
-                        console.log('Error parsing file: ' + fullname + ex);
+
+                        that.lookup[entry.id] = entry;
+                        that.entries.push(entry);
                     }
                 }
+                catch(ex) {
+                    console.log('Error parsing file: ' + fullname + ex);
+                }
+            }
 
-                that.entries.sort(function(a,b) {
-                    if(a.name == b.name)
-                        return 0;
-                    if(a.name < b.name)
-                        return -1;
-                    if(a.name > b.name)
-                        return 1;
-                });
+            that.entries.sort(function(a,b) {
+                if(a.name == b.name)
+                    return 0;
+                if(a.name < b.name)
+                    return -1;
+                if(a.name > b.name)
+                    return 1;
+            });
         } else {
             fileSystem.makeDirectory(that.dataDirectory);
         }

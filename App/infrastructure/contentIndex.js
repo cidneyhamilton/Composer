@@ -24,6 +24,8 @@ define(function(require) {
         //console.log(that.dataDirectory);
 
         if (fileSystem.exists(dataDirectory)) {
+            that.entries = [];
+
             var dir = dataDirectory + "/";
             //console.log(dir);
             var files = fileSystem.readDir(dir);

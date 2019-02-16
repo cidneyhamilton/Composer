@@ -64,6 +64,8 @@ define(function(require) {
                     //... We always want to pick up any directories, since that's the only thing people can override in the UI.
                     that.projects[loadedGame].dir = loadedProjects[loadedGame].dir;
                 }
+            } else {
+                fileSystem.makeDirectory( path.join(process.cwd(), 'Data'));
             }
         }
     };

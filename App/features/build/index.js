@@ -6,7 +6,10 @@
         runner = require('./runner'),
         selectedGame = require('features/projectSelector/index');
 
-    var projectPath = path.join(selectedGame.activeProject.dir, 'Data/project.json');
+    // Ensure the Composer/Data directory exists
+    var projectPathDir =  path.join(selectedGame.activeProject.dir, '/Data');
+    fileSystem.makeDirectory(projectPathDir);
+    var projectPath = path.join(projectPathDir, 'project.json');
 
     var index = {
         save:function(){

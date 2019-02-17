@@ -41,7 +41,7 @@ define(function(require) {
                     result = this.storyEvents;
                     break;
                 case "Props":
-                    console.log("Locating Props");
+                    //console.log("Locating Props");
                     // List of manual scripts that have a prop entry
                     var scripts = assetDatabase.scripts.entries.filter(function(entry){
                                 return entry.triggerType == 'triggers.manual' && entry.propId != null;
@@ -88,7 +88,7 @@ define(function(require) {
             var currentScriptId = this.node.scriptId;
             var currentEntryPointId = this.node.entryPointId;
 
-            console.log("Finding script for scope" + currentScope);
+            //console.log("Finding script for scope" + currentScope);
 
             if (currentScope == "Actors") {
                 if (currentActorId) {

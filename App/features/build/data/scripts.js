@@ -3,7 +3,13 @@ define(function(require){
         fileSystem = require('infrastructure/fileSystem'),
         serializer = require('plugins/serializer'),
         db = require('infrastructure/assetDatabase'),
-        system = require('durandal/system');
+        system = require('durandal/system'),
+        selectedGame = require('features/projectSelector/index'),
+        ink = require('features/build/data/inkConvert');
+
+    function getFileFormat() {
+        return (selectedGame.activeProject.format == 'ink') ? '.ink' : '.txt';
+    }
 
     function processEntry(context, entry, outputDirectory){
         entry.open();
@@ -17,8 +23,15 @@ define(function(require){
         delete clone.actorId;
         delete clone.trigger.name;
 
-        var output = serializer.serialize(clone, context.getJsonSpacing());
-        var fileName = path.join(outputDirectory, entry.id + '.txt');
+        var output; 
+        var fileFormat = getFileFormat();
+        if (fileFormat == '.ink') {
+            // Convert the javascript object, not the json string
+            output = ink.convertScript(clone);
+        } else {
+            output = serializer.serialize(clone, context.getJsonSpacing());   
+        }
+        var fileName = path.join(outputDirectory, entry.id + fileFormat);
 
         fileSystem.write(fileName, output);
         entry.close();
@@ -33,6 +46,7 @@ define(function(require){
                 var len = db.scripts.entries.length;
                 var outputDirectory = path.join(context.dataOutputDirectory, 'scripts');
                 var current;
+                var fileFormat = getFileFormat();
 
                 if (!fileSystem.exists(outputDirectory)) {
                     fileSystem.makeDirectory(outputDirectory);
@@ -55,11 +69,11 @@ define(function(require){
                         processEntry(context, current, outputDirectory);
 
                         // If this was an existing file, remove it from the staleScripts list
-                        var fileIndex = staleScripts.indexOf(current.id + '.txt');
+                        var fileIndex = staleScripts.indexOf(current.id + fileFormat);
                         if (fileIndex > -1) {
                             staleScripts.splice(fileIndex, 1);
                             // Also remove its associated .meta file, if any
-                            fileIndex = staleScripts.indexOf(current.id + '.txt.meta');
+                            fileIndex = staleScripts.indexOf(current.id + fileFormat + '.meta');
                             if (fileIndex > -1) {
                                 staleScripts.splice(fileIndex, 1);
                             }

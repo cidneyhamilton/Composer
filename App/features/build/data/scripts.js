@@ -26,8 +26,8 @@ define(function(require){
         var output; 
         var fileFormat = getFileFormat();
         if (fileFormat == '.ink') {
-            // Convert the javascript object, not the json string
-            output = ink.convertScript(clone);
+            // Convert the unlocalized javascript object, not the clone or the json string
+            output = ink.convertScript(entry.item);
         } else {
             output = serializer.serialize(clone, context.getJsonSpacing());   
         }

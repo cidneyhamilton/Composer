@@ -59,7 +59,7 @@ define(function(require){
 		for (var i = 0; i < children.length; i++) {
 			var child = children[i];
 			var s = parse_nodeByType(child, depth + 1);
-			appendIfNotEmpty(result, s);
+			result = appendIfNotEmpty(result, s);
 		}
  
     	return result;
@@ -131,10 +131,10 @@ define(function(require){
 	function parse_node_changeTags(node, depth) {
 		var result = "";
 		if (node.tagsToAdd) {
-			appendIfNotEmpty(result, parse_node_changeTags_helper(node.tagsToAdd, "~ Tags +=", depth));
+			result = appendIfNotEmpty(result, parse_node_changeTags_helper(node.tagsToAdd, "~ Tags +=", depth));
 		}
 		if (node.tagsToRemove) {
-			appendIfNotEmpty(result, parse_node_changeTags_helper(node.tagsToRemove, "~ Tags -=", depth));
+			result = appendIfNotEmpty(result, parse_node_changeTags_helper(node.tagsToRemove, "~ Tags -=", depth));
 		}
 		return result;
 	}
@@ -172,24 +172,72 @@ define(function(require){
 	}
 
 	function parse_node_setVariable(node, depth) {
-		// TODO
+		var result = indent(depth);
 
-		var result = "";
+		// TODO: Implement for values and ranges of values
+		result += "~ {0} = {1}".format(node.name, 0);
 		return result;
 	}
 
 	function parse_node_showMenu(node, depth) {
-		// TODO
+		var options = node.options;
+		var weaveName = removeWhitespace(node.id);
 
-		var result = "";
+		var autoAddDone = !!node.AutoAddDone;
+
+		// TODO: unique is not used??
+		var unique = !!node.Unique;
+
+		var result = indent(depth) + "- ({0})".format(weaveName);
+
+		if (options) {
+			for (var i = 0; i < options.length; i++) {
+				result += parse_option(options[i], depth, weaveName);
+			}
+		}
+		if (autoAddDone) {
+			result += (indent(depth) + "+ Done\n  -> DONE");
+		}
+
+		return result;
+	}
+
+	function parse_option(node, depth, parentId) {
+		var alwaysShow = !!node.ignoreChildAvailability;
+		var expression = node.expression;
+
+		var result = indent(depth);
+
+		if (alwaysShow) {
+			result += "+ ";
+		} else {
+			result += "* ";
+		}
+		if (expression) {
+			result += "{{ {0} }} ".format(parse_expression(expression));
+		}
+		if (node.text) {
+			result += "{0}".format(node.text);
+		}
+
+		result += parseNodes(node.nodes, depth);
+		result += indent(depth) + "-> {0}".format(parentId);
+
 		return result;
 	}
 
 	function parse_node_speak(node, depth) {
-		// TODO
+		var result = indent(depth);
 
-		var result = "";
-		return result;		
+		var speaker = node.actorId;
+		speaker = (speaker == null ? "" : db.actors.lookup[speaker].name);
+
+		// TODO: Listener is never used?
+		var listener = node.actorId2;
+		listener = (listener == null ? "" : db.actors.lookup[listener].name);
+
+		result += "{0}: {1}".format(speaker, node.text);
+		return result;
 	}
 
 	function parse_node_branch(node, depth) {
@@ -228,10 +276,112 @@ define(function(require){
 	}
 
 	function parse_expression(node) {
-        // TODO
+        var left = node.left;
+        var right = node.right;
+        var tags = node.tags;
+        var has = node.has;
+        var prop = node.propId;
 
         var result = "";
-        return result;      
+
+        switch(node.type) {
+            case "expressions.variableComparison":
+            	var operatorVal;
+            	switch(node.operator) {
+            		 case "lt":
+			            operatorVal = "<";
+			            break;
+			        case "lte":
+			            operatorVal = "<=";
+			            break;
+			        case "gt":
+			            operatorVal = ">";
+			            break;
+			        case "gte":
+			            operatorVal = ">=";
+			            break;
+			        case "eq":
+			            operatorVal = "==";
+			            break;
+			        case "ne":
+			            operatorVal = "!=";
+			            break;
+            	}
+            	var varName = removeWhitespace(node.variableName);
+            	append_var_list(varName);
+            	var constName = removeWhitespace(node.compareTo);
+            	append_const_list(constName);
+            	result += "{0} {1} {2}".format(varName, operatorVal, constName);
+                break;
+            case "expressions.or":
+                result += "{0} {1} {2}".format(parse_expression(left), "||", parse_expression(right));
+                break;
+            case "expressions.and":
+                result += "{0} {1} {2}".format(parse_expression(left), "&&", parse_expression(right));
+                break;
+            case "expressions.inInventory":
+            	prop = db.props.lookup[prop].name;
+            	addToArray(inv_list, prop);
+            	if (has) {
+					result += "Inventory has {0}".format(prop);
+            	} else {
+            		result += "Inventory has ({0})".format(prop);
+            	}
+                break;
+            case "expressions.inTags":
+            	append_tag_list(tags);
+            	if (has) {
+            		result += "Tags has {0}".format(tags);
+            	} else {
+            		result += "Tags has ({0})".format(tags);
+            	}
+                break;
+            case "expressions.skillCheck":
+                result += "true";
+                break;
+            case "expressions.previousScene":
+                result += "true";
+                break;
+            case "expressions.isPoisoned":
+                result += "false";
+                break;
+            case "expressions.propStatus":
+                result += "true";
+                break;
+            case "expressions.debugOnly":
+                result += "true";
+                break;
+
+            case "expressions.currentScene":
+                // TODO: Implement Has Active Quest
+                result += "true";
+                break;
+            case "expressions.actorPresent":
+                // TODO: Implement Actor Present
+                result += "true";
+                break;
+            case "expressions.isEquipped":
+                // TODO: Implement Is Equipped
+                result += "true";
+                break;
+            case "expressions.hasActiveQuest":
+                // TODO: Implement Has Active Quest
+                result += "true";
+                break;
+            case "expressions.reputationComparison":
+                // TODO: Implement Reputation Comparison
+                result += "true";
+                break;
+            case "expressions.enteredScene":
+                // TODO: Implement Entered Scene
+                result += "true";
+                break;
+            default:
+                result += "ERROR_NOT_IMPLEMENTED_" + node.type;
+                break;
+        }
+
+        return result;
 	}
 
 	var tag_list = [];
@@ -253,22 +403,28 @@ define(function(require){
 	}
 
 	function getScriptInkName(scriptId) {
-		if (! scriptIdToInkName[scriptId]) {
-			var scriptEntry = db.scripts.lookup[scriptId];
-			if (scriptEntry) {
-				scriptIdToInkName[scriptId] = removeWhitespace(scriptEntry.name);
-			} else {
-				return "ERROR_UNKNOWN_SCRIPT_" + scriptId;
+		if (isNotEmpty(scriptId)) {
+			if (! scriptIdToInkName[scriptId]) {
+				var scriptEntry = db.scripts.lookup[scriptId];
+				if (scriptEntry) {
+					scriptIdToInkName[scriptId] = removeWhitespace(scriptEntry.name);
+				} else {
+					return "ERROR_UNKNOWN_SCRIPT_" + scriptId;
+				}
 			}
+			return scriptIdToInkName[scriptId];
 		}
-		return scriptIdToInkName[scriptId];
+		return "";
 	}
 
 	function getEntrypointInkName(entryPointId) {
-		if (! entryPointIdToInkName[entryPointId]) {
-			return "ERROR_UNKNOWN_ENTRYPOINT_" + entryPointId;
+		if (isNotEmpty(entryPointId)) {
+			if (! entryPointIdToInkName[entryPointId]) {
+				return "ERROR_UNKNOWN_ENTRYPOINT_" + entryPointId;
+			}
+			return entryPointIdToInkName[entryPointId];
 		}
-		return entryPointIdToInkName[entryPointId];
+		return "";
 	}
 
 	function append_tag_list(tags) {
@@ -280,19 +436,72 @@ define(function(require){
 		}
 	}
 
+	function append_var_list(singleVar) {
+		if (isNotEmpty(singleVar)) {
+			singleVar = singleVar.replace(/\./g,'');
+			addToArray(var_list, singleVar);
+		}
+	}
+
+	function append_const_list(singleConst) {
+		// Check to make sure the constant isn't a number
+		if (isNotEmpty(singleConst) && Number.isNaN(singleConst)) {
+			addToArray(const_list, singleConst);
+		}
+	}
+
+	/* Initialize a list of tags, used for game state. All tags here are GLOBAL. */
+	function init_tags() {
+		var result = "\nLIST Tags = ";
+		for (var i = 0; i < tag_list.length; i++) {
+			result += "({0})".format(tag_list[i]);
+			if (i < (tag_list.length - 1)) {
+				result += ", ";
+			}
+		}
+		return result;
+	}
+
+	/* Initialize variables used in the game */
+	function init_vars() {
+		var result = "";
+		for (var i = 0; i < var_list.length; i++) {
+			result += "\nVAR {0} = false".format(var_list[i]);
+		}
+		return result;
+	}
+
+	/* Initialize constant values (such as variable names) used in the game */
+	function init_consts() {
+		var result = "";
+		for (var i = 0; i < const_list.length; i++) {
+			result += "\nCONST {0} = {1}".format(const_list[i], i);
+		}
+		return result;
+	}
+
+	/* Initialize the inventory list */
+	function init_inventory() {
+		var result = "\nLIST Inventory = "
+		for (var i = 0; i < inv_list.length; i++) {
+			result += "({0})".format(inv_list[i]);
+			if (i < (inv_list.length - 1)) {
+				result += ", ";
+			}
+		}
+		return result;
+	}
+
     return {
         convertScript:function(script) {
         	inititalize();
         	var result = parseScript(script.id, script.name, script.entryPoints);
 
             var output = "";
-            /*
-                print >>f, init_tags()
-                print >>f, init_vars()
-                print >>f, init_consts()
-                print >>f, init_inventory()
-                */
-
+            output += init_tags() + "\n";
+            output += init_vars() + "\n";
+            output += init_consts() + "\n";
+            output += init_inventory() + "\n";
             output += result;
             output += "\n\n=== invoke ===\n+ Something\n-> DONE";
 

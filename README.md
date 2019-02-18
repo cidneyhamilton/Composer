@@ -56,10 +56,10 @@ Composer.bat batchBuild heroU
 ```
 
 The "valid" options are:
-* heroU
-* summerDaze
-* r2rDemo
-* wizardsWay
+* [heroU](https://github.com/Transolar/Hero-U)
+* [summerDaze](https://github.com/Transolar/SummerDaze)
+* [r2rDemo](https://github.com/Transolar/R2R-Demo)
+* [wizardsWay](https://github.com/Transolar/WizardWay)
 
 ### Open Source Licenses
 

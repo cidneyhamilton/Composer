@@ -5,7 +5,7 @@ define(function(require){
         db = require('infrastructure/assetDatabase'),
         system = require('durandal/system');
 
-    // Courtesy of https://stackoverflow.com/questions/610406/javascript-equivalent-to-printf-string-format
+  // Courtesy of https://stackoverflow.com/questions/610406/javascript-equivalent-to-printf-string-format
 	// First, checks if it isn't implemented yet.
 	if (!String.prototype.format) {
 	  String.prototype.format = function() {
@@ -120,6 +120,9 @@ define(function(require){
 				break;
 			case 'nodes.speak' : 
 				output = parse_node_speak(node, depth);
+				break;
+			case 'nodes.comment' :
+				output = parseComment(node, depth);
 				break;
 			default:
 				output = "\n# TODO - " + node.type;
@@ -382,6 +385,12 @@ define(function(require){
         }
 
         return result;
+	}
+
+	function parseComment(node, depth) {
+		result = indent(depth);
+		result += "### {0}".format(node.message);
+		return result;
 	}
 
 	var tag_list = [];

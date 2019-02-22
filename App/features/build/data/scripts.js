@@ -7,8 +7,8 @@ define(function(require){
         selectedGame = require('features/projectSelector/index'),
         ink = require('features/build/data/inkConvert');
 
-    function getFileFormat() {
-        return (selectedGame.activeProject.format == 'ink') ? '.ink' : '.txt';
+    function alsoPrintInk() {
+        return (selectedGame.activeProject.format == 'ink');
     }
 
     function processEntry(context, entry, outputDirectory){
@@ -24,16 +24,18 @@ define(function(require){
         delete clone.trigger.name;
 
         var output; 
-        var fileFormat = getFileFormat();
-        if (fileFormat == '.ink') {
+        var fileName;
+        if (alsoPrintInk()) {
             // Convert the unlocalized javascript object, not the clone or the json string
             output = ink.convertScript(entry.item);
-        } else {
-            output = serializer.serialize(clone, context.getJsonSpacing());   
+            fileName = path.join(outputDirectory, entry.id + ".ink");
+            fileSystem.write(fileName, output);
         }
-        var fileName = path.join(outputDirectory, entry.id + fileFormat);
 
+        output = serializer.serialize(clone, context.getJsonSpacing());   
+        fileName = path.join(outputDirectory, entry.id + ".txt");
         fileSystem.write(fileName, output);
+        
         entry.close();
     }
 
@@ -46,7 +48,6 @@ define(function(require){
                 var len = db.scripts.entries.length;
                 var outputDirectory = path.join(context.dataOutputDirectory, 'scripts');
                 var current;
-                var fileFormat = getFileFormat();
 
                 if (!fileSystem.exists(outputDirectory)) {
                     fileSystem.makeDirectory(outputDirectory);
@@ -69,13 +70,20 @@ define(function(require){
                         processEntry(context, current, outputDirectory);
 
                         // If this was an existing file, remove it from the staleScripts list
-                        var fileIndex = staleScripts.indexOf(current.id + fileFormat);
-                        if (fileIndex > -1) {
-                            staleScripts.splice(fileIndex, 1);
-                            // Also remove its associated .meta file, if any
-                            fileIndex = staleScripts.indexOf(current.id + fileFormat + '.meta');
+                        var fileFormats = [".txt"];
+                        if (alsoPrintInk()) {
+                            fileFormats.push(".ink");
+                        }
+                        for (var j = 0; j < fileFormats.length; j++) {
+                            var fileFormat = fileFormats[j];
+                            var fileIndex = staleScripts.indexOf(current.id + fileFormat);
                             if (fileIndex > -1) {
                                 staleScripts.splice(fileIndex, 1);
+                                // Also remove its associated .meta file, if any
+                                fileIndex = staleScripts.indexOf(current.id + fileFormat + '.meta');
+                                if (fileIndex > -1) {
+                                    staleScripts.splice(fileIndex, 1);
+                                }
                             }
                         }
 

@@ -3,7 +3,7 @@
 
     var ctor = function() {
         this.name = 'Main';
-        this.componentIndex = new ComponentIndex('440px');
+        this.componentIndex = new ComponentIndex('600');
     };
 
     return ctor;

@@ -31,7 +31,7 @@ define(function(require){
         timeUsage = reporter.create('timeUsage'),
         badLocalizationGroups = reporter.create('badLocalizationGroups'),
 
-        reportsToGenerate = [resourceUsage, invokeCommandUsage, tagUsage, 
+        reportsToGenerate = [resourceUsage, invokeCommandUsage, /*tagUsage, // handled by generateAddlOutpu */ 
                              badTagUsage, variableUsage, badVariableUsage, badGuids, badHtml, badExpressions, badInvokeScript, badLocalizationGroups,
                              autosaveUsage, speechScopeAndVariableUsage, timeUsage, allQuests],
 

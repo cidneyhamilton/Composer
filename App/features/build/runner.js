@@ -134,7 +134,7 @@ define(function(require){
                 .then(runner('features/build/data/gameModel', context))
                 .then(runner('features/build/data/localization', context, localizationTable, translationTable, translationTableKeys))
                 .then(runner('features/build/data/internalDoc', context, localizationDupes))
-                //.then(runner('features/build/data/generateAddlOutput', context, localizationDupes))
+                .then(runner('features/build/data/generateAddlOutput', context, localizationDupes))
                 .then(runner('features/build/data/achievements', context))
                 .then(runner('features/build/data/quests', context))
                 .then(runner('features/build/data/inventoryIds', context))
@@ -146,7 +146,7 @@ define(function(require){
                 // There are 15 runners defined above, but
                 // codeId(actors) and codeId(scenes) also calls generateRegistry(),
                 // which separately appends to context.completed
-                .then(runner('features/build/data/buildDone', context, 18 ))
+                .then(runner('features/build/data/buildDone', context, 19 ))
                 .then(function(){
                     // Try to wait for files to be written.
                     // Node doesn't offer a flush() command so there's no way

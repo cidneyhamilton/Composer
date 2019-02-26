@@ -22,7 +22,7 @@ define(function(require) {
 
     var Controller = function(y){
         this.props = assetDatabase.props.entries;
-        this.y = y || '300px';
+        this.y = y || '500px';
     };
 
     Controller.allComponents = allComponents;

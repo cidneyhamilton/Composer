@@ -9,12 +9,16 @@ define(function(require){
     ctor.prototype.initialize = function(idMap) {
     };
 
-    ctor.prototype.parseScript = function(idMap, script) {};
-    ctor.prototype.parseEntryPoint = function(idMap, script, entryPoint) {};
-    ctor.prototype.parseSection = function(idMap, script, allEntryPoints, parentNode, section, singleSection) {};
-    ctor.prototype.parseExpression = function(idMap, script, expression) {};
+    ctor.prototype.parseScript = function(idMap, sceneName, script) {};
+    ctor.prototype.parseEntryPoint = function(idMap, sceneName, script, entryPoint) {};
+    ctor.prototype.parseSectionArray = function(idMap, sceneName, script, sectionArray) {};
+    ctor.prototype.parseSection = function(idMap, sceneName, script, section) {};
+    ctor.prototype.parseNodeArray = function(idMap, sceneName, script, nodeArray) {};
+    ctor.prototype.parseNode = function(idMap, sceneName, script, node) {};
+    ctor.prototype.parseTopLevelExpression = function(idMap, sceneName, script, expression) {};
+    ctor.prototype.parseExpression = function(idMap, sceneName, script, expression) {};
 
-    ctor.prototype.finish = function() {};
+    ctor.prototype.finish = function(idMap) {};
         
     return ctor;
 });

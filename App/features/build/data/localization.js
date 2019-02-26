@@ -84,7 +84,7 @@ define(function(require){
                         }
 
                         var enUsGoldFile = path.join(enUsGoldFileDir, '/game_text.txt');
-                        var enUsGoldFileWriter = CSVWriter.createFileWriter(enUsGoldFile, undefined,  function() {
+                        var enUsGoldFileWriter = CSVWriter.createFileWriter(enUsGoldFile, function() {
                             fileSystem.copyDirectory(localizedGoldFilesDir, context.localizationOutputDirectory);
 
                             context.completed.push('features/build/data/localization');

@@ -28,21 +28,25 @@ define(function(require) {
             that.projects = {
                 heroU : {
                     gameName: 'Hero-U',
+                    gameInternalName: "heroU",
                     dir: '../Hero-U/Composer',
                     format: 'json'
                 },
                 summerDaze: {
                     gameName: 'Summer Daze',
+                    gameInternalName: 'summerDaze',
                     dir: '',
                     format: 'ink'
                 },
                 r2rdemo : {
                     gameName: 'Demo: R2R',
+                    gameInternalName: 'r2rdemo',
                     dir: '',
                     format: 'json'
                 },
                 wizardsway : {
                     gameName: 'Wizards Way',
+                    gameInternalName: 'wizardsway',
                     dir: '',
                     format: 'json'
                 }

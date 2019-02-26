@@ -1,42 +1,18 @@
 define(function(require){
-    var fs = requireNode('fs'),
-        events = requireNode('events'),
-        papaParse = require('papaparse')
+    var papaParse = require('papaparse'),
+        baseWriter = require('infrastructure/baseWriter')
         ;
 
-    var sys;
-    try {
-        sys = requireNode('util');
-    } catch (e) {
-        sys = requireNode('sys');
-    }
+    var ctor = function(path, callbackOnEnd) {
+        baseWriter.call(this, path);
 
-    function _setOptions(obj, options) {
-        options = options || {};
-        obj.separator = (typeof options.separator !== 'undefined') ? options.separator : ',';
-        obj.quotechar = (typeof options.quote !== 'undefined') ? options.quote : '"';
-        obj.escapechar = (typeof options.escape !== 'undefined') ? options.escape : '"';
-        obj.commentchar = (typeof options.comment !== 'undefined') ? options.comment : '';
-        obj.columnNames = (typeof options.columnNames !== 'undefined') ? options.columnNames : [];
-        obj.columnsFromHeader = (typeof options.columnsFromHeader !== 'undefined') ? options.columnsFromHeader : false;
-        obj.nestedQuotes = (typeof options.nestedQuotes !== 'undefined') ? options.nestedQuotes : false;
-    }
-
-    var ctor = function(writeStream, options) {
-        this.writeStream = writeStream;
-        _setOptions(this, options);
-        this.encoding = options.encoding || 'utf8';
-
-        if (typeof writeStream.setEncoding === 'function') {
-            writeStream.setEncoding(this.encoding);
+        if(callbackOnEnd) {
+            this.writeStream.on('finish', callbackOnEnd);
         }
-
-        writeStream.addListener('drain', this.emit.bind(this, 'drain'));
-        writeStream.addListener('error', this.emit.bind(this, 'error'));
-        writeStream.addListener('close', this.emit.bind(this, 'close'));
     };
 
-    sys.inherits(ctor, events.EventEmitter);
+    ctor.prototype = Object.create(baseWriter.prototype);
+    ctor.prototype.constructor = baseWriter;
 
     ctor.prototype.writeRecord = function(rec) {
         if (!rec) return; // ignore empty records
@@ -52,22 +28,8 @@ define(function(require){
         }
     };
 
-    ctor.prototype.end = function(){
-        this.writeStream.end();
-    };
-
-    ctor.createFileWriter = function(path, options, callbackOnEnd) {
-        options = options || {'flags': 'w'};
-
-        var writeStream = fs.createWriteStream(path, {
-            'flags': options.flags || 'w'
-        });
-
-        if(callbackOnEnd) {
-            writeStream.on('finish', callbackOnEnd);
-        }
-
-        return new ctor(writeStream, options);
+    ctor.createFileWriter = function(path, callbackOnEnd) {
+        return new ctor(path, callbackOnEnd);
     };
 
     return ctor;

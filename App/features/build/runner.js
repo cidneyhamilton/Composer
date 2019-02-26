@@ -77,6 +77,7 @@ define(function(require){
                 project:project,
                 mode: mode,
                 indicator:indicator,
+                game: selectedGame.activeProject,
                 dataOutputDirectory:path.resolve(selectedGame.activeProject.dir, project.build.dataOutputDirectory),
                 codeOutputDirectory:path.resolve(selectedGame.activeProject.dir, project.build.codeOutputDirectory),
                 editorOutputDirectory:path.resolve(selectedGame.activeProject.dir, project.build.editorOutputDirectory),
@@ -133,6 +134,7 @@ define(function(require){
                 .then(runner('features/build/data/gameModel', context))
                 .then(runner('features/build/data/localization', context, localizationTable, translationTable, translationTableKeys))
                 .then(runner('features/build/data/internalDoc', context, localizationDupes))
+                //.then(runner('features/build/data/generateAddlOutput', context, localizationDupes))
                 .then(runner('features/build/data/achievements', context))
                 .then(runner('features/build/data/quests', context))
                 .then(runner('features/build/data/inventoryIds', context))

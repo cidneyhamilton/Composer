@@ -1,15 +1,5 @@
 define(function(reqire){
-    var fs = requireNode('fs'),
-        events = requireNode('events');
-
-    var sys;
-    try {
-        sys = requireNode('util');
-    } catch (e) {
-        sys = requireNode('sys');
-    }
-
-    var newline = "\r\n<br/>\r\n";
+    var baseWriter = require('infrastructure/proofreadSimpleWriter');
 
     function SectionAtts(layer, unique, autoAddDone) {
         var sectionAtts = {};
@@ -19,33 +9,7 @@ define(function(reqire){
         return sectionAtts
     }
 
-    function _htmlEscape(out, itemToWrite) {
-        if (itemToWrite) {
-            out.push(itemToWrite.replace(/</g, '&lt;').replace(/>/g, '&gt;'));
-        }
-    }
-
-    function _writeItemStart(out) {
-        out.push("<li>");
-    }
-
-    function _writeItemEnd(out) {
-        out.push("</li>\r\n");
-    }
-
-    function _writeItemListStart(out, hideStyle) {
-        out.push("<ul");
-        if (hideStyle) {
-            out.push(" class=\"hideStyle\"");
-        }
-        out.push(">\r\n");
-    }
-
-    function _writeItemListEnd(out) {
-        out.push("</ul>\r\n");
-    }
-
-    function _writeSection(out, index, section, sectionAtts) {
+    function _writeSection(writer, out, index, section, sectionAtts) {
         if (section.text) {
             out.push((index + 1) + ". " + section.text);
             if (sectionAtts.unique) {
@@ -69,23 +33,23 @@ define(function(reqire){
         }
         if (section.nodes) {
             sectionAtts.layer++;
-            _writeNodesArr(out, section.nodes, sectionAtts);
+            _writeNodesArr(writer, out, section.nodes, sectionAtts);
         }
     }
 
-    function _writeSectionArr(out, sectionArr, sectionAtts) {
-        _writeItemListStart(out, sectionAtts.layer == 1);
+    function _writeSectionArr(writer, out, sectionArr, sectionAtts) {
+        baseWriter.writeItemListStart(out, sectionAtts.layer == 1);
         for (var i = 0; i < sectionArr.length; i++) {
-            _writeItemStart(out);
-            _writeSection(out, i, sectionArr[i], sectionAtts);
-            _writeItemEnd(out);
+            baseWriter.writeItemStart(out);
+            _writeSection(writer, out, i, sectionArr[i], sectionAtts);
+            baseWriter.writeItemEnd(out);
         }
         if (sectionAtts.autoAddDone) {
-            _writeItemStart(out);
-            _writeSection(out, sectionArr.length, { text: "Done <i>(Auto Added)</i>" }, new SectionAtts(sectionAtts.layer));
-            _writeItemEnd(out);
+            baseWriter.writeItemStart(out);
+            _writeSection(writer, out, sectionArr.length, { text: "Done <i>(Auto Added)</i>" }, new SectionAtts(sectionAtts.layer));
+            baseWriter.writeItemEnd(out);
         }
-        _writeItemListEnd(out);
+        baseWriter.writeItemListEnd(out);
     }
 
     function _writeTime(out, days, hours, minutes) {
@@ -98,7 +62,7 @@ define(function(reqire){
         out.push((potentiallyNullValue ? potentiallyNullValue : "???"));
     }
 
-    function _writeNode(out, index, node, sectionAtts) {
+    function _writeNode(writer, out, index, node, sectionAtts) {
         var nodeTopLevel = (node.desc || node.type);
 
 		// To show all node values for an item: Object.keys(node).forEach(function (key) { out.push("(" + key + ":" + node[key] + ")"); });
@@ -122,9 +86,9 @@ define(function(reqire){
                 // Restock is deprecated
             	//out.push(", Restock Daily: " + (node.restock ? "Yes" : "No"));
             	out.push(", On Look Description: ");
-            	_htmlEscape(out, node.onLookField);
+            	baseWriter.htmlEscape(out, node.onLookField);
             	out.push(", On Purchase Description: ");
-            	_htmlEscape(out, node.onLookField);
+            	baseWriter.htmlEscape(out, node.onLookField);
                 break;
             case 'AutoSave' :
                 out.push('AutoSave');
@@ -159,7 +123,7 @@ define(function(reqire){
                 break;
             case 'Comment' :
                 out.push("COMMENT (" + node.commentor + "): ");
-                _htmlEscape(out, node.message);
+                baseWriter.htmlEscape(out, node.message);
                 break;
             case 'Currency' :
                 out.push(node.change + " " + node.amount + 
@@ -218,8 +182,8 @@ define(function(reqire){
             case 'Journal Entry' :
                 out.push("Journal: [" + node.name + "]");
                 out.push(node.isDeed ? " (Deeds List)" : "");
-                out.push(newline);
-                _htmlEscape(out, node.description);
+                out.push(writer.newline);
+                baseWriter.htmlEscape(out, node.description);
                 break;
             case 'Minigame' :
                 out.push("Minigame: " + node.minigame);
@@ -240,7 +204,7 @@ define(function(reqire){
                 if (node.actor) {
                     out.push("[" + node.actor + "]");
                 }
-                _htmlEscape(out, node.animationName);
+                baseWriter.htmlEscape(out, node.animationName);
                 if (node.wait) {
                     out.push (" (Wait for command completion)");
                 }
@@ -280,7 +244,7 @@ define(function(reqire){
                 break;
             case 'Play Sound Effect' :
                 out.push("Play Sound Effect: " );
-                _htmlEscape(out, node.soundEffectName);
+                baseWriter.htmlEscape(out, node.soundEffectName);
                 if (node.wait) {
                     out.push (" (Wait for command completion)");
                 }
@@ -296,7 +260,7 @@ define(function(reqire){
                 break;
             case 'Q&A' :
                 out.push(node.actor + ": ");
-                _htmlEscape(out, node.text);
+                baseWriter.htmlEscape(out, node.text);
                 break;
             case 'Quests' :
             	var questOp=['Add Quest','Complete Quest','Fail Quest'];
@@ -350,30 +314,30 @@ define(function(reqire){
                 break;
             case 'Show Close Up' :
                 out.push("Show Close Up: " );
-                _htmlEscape(out, node.imageName);
+                baseWriter.htmlEscape(out, node.imageName);
                 break;
             case 'Show Store' :
                 out.push("Show Store");
                 break;
             case 'Show Vignette' :
                 out.push("Show Vignette: " );
-                _htmlEscape(out, node.vignetteName);
+                baseWriter.htmlEscape(out, node.vignetteName);
                 break;
             case 'Stat Branch':
-                out.push(node.skill + " check vs " + node.target + newline);
+                out.push(node.skill + " check vs " + node.target + writer.newline);
 
-                _writeItemListStart(out);
-                _writeItemStart(out);
-                out.push("Success: " + newline);
+                baseWriter.writeItemListStart(out);
+                baseWriter.writeItemStart(out);
+                out.push("Success: " + writer.newline);
 
-                _writeSection(out, 0, node.success, new SectionAtts(sectionAtts.layer + 1));
-                _writeItemEnd(out);
+                _writeSection(writer, out, 0, node.success, new SectionAtts(sectionAtts.layer + 1));
+                baseWriter.writeItemEnd(out);
 
-                _writeItemStart(out);
-                out.push("Failure: " + newline);
-                _writeSection(out, 0, node.failure, new SectionAtts(sectionAtts.layer + 1));
-                _writeItemEnd(out);
-                _writeItemListEnd(out);
+                baseWriter.writeItemStart(out);
+                out.push("Failure: " + writer.newline);
+                _writeSection(writer, out, 0, node.failure, new SectionAtts(sectionAtts.layer + 1));
+                baseWriter.writeItemEnd(out);
+                baseWriter.writeItemListEnd(out);
                 break;
             case 'Stop Player' :
                 out.push("Stop Player");
@@ -392,7 +356,7 @@ define(function(reqire){
                     }
                 }
                 out.push(" : ");
-                _htmlEscape(out, node.text);
+                baseWriter.htmlEscape(out, node.text);
                 break;
             case 'Tags' :
                 out.push('Change tags for ' + node.scope + ": ");
@@ -423,19 +387,19 @@ define(function(reqire){
                 _writeMysteriousIfNull(out, node.prop);
                 break;
             case 'Use Skill Branch':
-                out.push(node.skill + " check vs " + node.target + newline);
+                out.push(node.skill + " check vs " + node.target + writer.newline);
 
-                _writeItemListStart(out);
-                _writeItemStart(out);
-                out.push("Success: " + newline);
-                _writeSection(out, 0, node.success, new SectionAtts(sectionAtts.layer + 1));
-                _writeItemEnd(out);
+                baseWriter.writeItemListStart(out);
+                baseWriter.writeItemStart(out);
+                out.push("Success: " + writer.newline);
+                _writeSection(writer, out, 0, node.success, new SectionAtts(sectionAtts.layer + 1));
+                baseWriter.writeItemEnd(out);
 
-                _writeItemStart(out);
-                out.push("Failure: " + newline);
-                _writeSection(out, 0, node.failure, new SectionAtts(sectionAtts.layer + 1));
-                _writeItemEnd(out);
-                _writeItemListEnd(out);
+                baseWriter.writeItemStart(out);
+                out.push("Failure: " + writer.newline);
+                _writeSection(writer, out, 0, node.failure, new SectionAtts(sectionAtts.layer + 1));
+                baseWriter.writeItemEnd(out);
+                baseWriter.writeItemListEnd(out);
                 break;
             case 'Variable' :
 				if( node.add ) { out.push('Add to variable \''); }
@@ -461,7 +425,7 @@ define(function(reqire){
                 }
                 if (node.text) {
                     out.push("   text: ");
-                    _htmlEscape(out, node.text);
+                    baseWriter.htmlEscape(out, node.text);
                 }
                 // fallthrough
             case 'Branch' :
@@ -470,59 +434,59 @@ define(function(reqire){
                 break;
         }
         if (node.nodes && node.nodes.length > 0) {
-            _writeNodesArr(out, node.nodes, new SectionAtts(sectionAtts.layer + 1));
+            _writeNodesArr(writer, out, node.nodes, new SectionAtts(sectionAtts.layer + 1));
         }
 
         if (node.sections && node.sections.length > 0) {
-            _writeSectionArr(out, node.sections, new SectionAtts(sectionAtts.layer, node.Unique, node.AutoAddDone));
+            _writeSectionArr(writer, out, node.sections, new SectionAtts(sectionAtts.layer, node.Unique, node.AutoAddDone));
         }
 
     }
 
-    function _writeNodesArr(out, nodesArr, sectionAtts) {
-        _writeItemListStart(out, sectionAtts.layer == 1);
+    function _writeNodesArr(writer, out, nodesArr, sectionAtts) {
+        baseWriter.writeItemListStart(out, sectionAtts.layer == 1);
         for (var i = 0; i < nodesArr.length; i++) {
-            _writeItemStart(out);
-            _writeNode(out, i, nodesArr[i], sectionAtts);
-             _writeItemEnd(out);
+            baseWriter.writeItemStart(out);
+            _writeNode(writer, out, i, nodesArr[i], sectionAtts);
+            baseWriter.writeItemEnd(out);
         }
-        _writeItemListEnd(out);
+        baseWriter.writeItemListEnd(out);
     }
 
-    function _writeEntryPoint(out, entryPoint) {
+    function _writeEntryPoint(writer, out, entryPoint) {
         if (entryPoint.nodes) {
             out.push("<div class=\"right\">\r\n");
-            _writeNodesArr(out, entryPoint.nodes, 1);
+            _writeNodesArr(writer, out, entryPoint.nodes, 1);
             out.push("</div>\r\n");
         }
     }
 
-    function _writeScript(out, scene, script) {   
+    function _writeScript(writer, out, scene, script) {   
 
         if (script.entryPoints) {
             for (var i = 0; i < script.entryPoints.length; i++) { 
                 out.push("<section>\r\n");
                 out.push("<div class=\"left\">\r\n");
                 out.push("<div class=\"floater\">" );
-                out.push("<b>Scene</b>: " + scene + newline);
-                out.push("<b>Script</b>: " + script.name + newline);
+                out.push("<b>Scene</b>: " + scene + writer.newline);
+                out.push("<b>Script</b>: " + script.name + writer.newline);
                 if (script.storyEvent) {
-                    out.push("<b>During</b>: " + script.storyEvent + newline);
+                    out.push("<b>During</b>: " + script.storyEvent + writer.newline);
                 }
                 if (script.prop) {
-                    out.push("<b>For</b>: " + script.prop + newline);
+                    out.push("<b>For</b>: " + script.prop + writer.newline);
                 }
                 if (script.actor) {
-                    out.push("<b>For</b>: " + script.actor + newline);
+                    out.push("<b>For</b>: " + script.actor + writer.newline);
                 }
                 if (script.trigger) {
-                    out.push("<b>On</b>: " + script.trigger + newline);
+                    out.push("<b>On</b>: " + script.trigger + writer.newline);
                 }
-                out.push("<b>EntryPoint</b>: " + script.entryPoints[i].name + newline);
-                out.push("<b>Script Id</b>: " + script.id + newline);
+                out.push("<b>EntryPoint</b>: " + script.entryPoints[i].name + writer.newline);
+                out.push("<b>Script Id</b>: " + script.id + writer.newline);
                 out.push("</div>\r\n");
                 out.push("</div>\r\n");
-                _writeEntryPoint(out, script.entryPoints[i]);
+                _writeEntryPoint(writer, out, script.entryPoints[i]);
                 out.push("<div class=\"clear\"></div>\r\n");
                 out.push("</section>\r\n");
             }
@@ -532,40 +496,17 @@ define(function(reqire){
     function _writeScripts(writer, scene, scripts) {
         var out = [];
         for (var i = 0; i < scripts.length; i++) {
-            _writeScript(out, scene, scripts[i]);
+            _writeScript(writer, out, scene, scripts[i]);
         }
         writer.writeStream.write(out.join(''), this.encoding);
     }
 
-    var ctor = function(writeStream) {
-        this.writeStream = writeStream;
-        this.encoding = 'utf8';
-
-        if (typeof writeStream.setEncoding === 'function') {
-            writeStream.setEncoding(this.encoding);
-        }
-
-        writeStream.addListener('drain', this.emit.bind(this, 'drain'));
-        writeStream.addListener('error', this.emit.bind(this, 'error'));
-        writeStream.addListener('close', this.emit.bind(this, 'close'));
+    var ctor = function(path) {
+        baseWriter.call(this, path);
     };
 
-    sys.inherits(ctor, events.EventEmitter);
-
-    ctor.prototype.writeHtmlHeader = function() {
-        this.writeStream.write("<!DOCTYPE html>\r\n" 
-            + "<html>\r\n"
-            + "<head>\r\n"
-            + "<meta charset=\"UTF-8\">"
-            + "<title>Hero-U: Rogue to Redemption (Proofread)</title>\r\n"
-            + "<link rel=\"stylesheet\" href=\"game_text.css\"/>\r\n"
-            + "</head>\r\n" 
-            + "<body>\r\n"
-            + "<script src=\"jquery-1.11.3.min.js\"></script>\r\n"
-            + "<script src=\"jquery.viewport.mini.js\"></script>\r\n"
-            + "\r\n"
-            , this.encoding);
-    };
+    ctor.prototype = Object.create(baseWriter.prototype);
+    ctor.prototype.constructor = baseWriter;
 
     ctor.prototype.writeHtmlFooter = function() {
         this.writeStream.write(
@@ -574,7 +515,7 @@ define(function(reqire){
             , this.encoding);
     };
 
-    ctor.prototype.writeScene = function(scene, scripts) {
+    ctor.prototype.writeData = function(scene, scripts) {
         if (!scripts) return; // ignore scenes without scripts
         if (!Array.isArray(scripts)) {
             throw new Error("proofreadWriter.writeScene() expects a scripts array!");
@@ -587,19 +528,8 @@ define(function(reqire){
 
     };
 
-    ctor.prototype.end = function(){
-        this.writeStream.end();
-    };
-
     ctor.createFileWriter = function(path) {
-
-        var writeStream = fs.createWriteStream(path, {
-            'flags': 'w'
-        });
-
-        var writer = new ctor(writeStream);
-        writer.wri
-
+        var writer = new ctor(path);
         return writer;
     };
 

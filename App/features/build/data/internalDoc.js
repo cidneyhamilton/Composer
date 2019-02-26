@@ -5,7 +5,7 @@ define(function(require){
         db = require('infrastructure/assetDatabase'),
         inventoryPicklists = require('features/constants/inventoryPicklists'),
         ProofreadWriter = require('infrastructure/proofreadWriter'),
-        ProofreadPropWriter = require('infrastructure/proofreadPropWriter'),
+        ProofreadSimpleWriter = require('infrastructure/proofreadSimpleWriter'),
         commaDelimiter = /\s*,\s*/,
         idMap = {},    // Map of [GUID, <Name of [Actor | Prop | Scene | Script | StoryEvent]> ]
         minigamesMap = require('features/constants/minigames'),
@@ -726,7 +726,7 @@ define(function(require){
                 function writeProofreadFile(writer, table) {
                     writer.writeHtmlHeader();
                     for(var key in table){
-                        writer.writeScene(key, table[key]);
+                        writer.writeData(key, table[key]);
                     }
                     writer.writeHtmlFooter();
                     writer.end();
@@ -800,12 +800,12 @@ define(function(require){
                     writeProofreadFile(ProofreadWriter.createFileWriter(gameTextFileName), scriptTable);
 
                     var propTextFileName = path.join(context.internalDocOutputDirectory, 'prop_text.html');
-                    writeProofreadFile(ProofreadPropWriter.createFileWriter(propTextFileName, 'Prop'), propTable);
+                    writeProofreadFile(ProofreadSimpleWriter.createFileWriter(propTextFileName, 'Prop'), propTable);
 
                     var actorTextFileName = path.join(context.internalDocOutputDirectory, 'actor_text.html');
                     var actorTable = {};
                     actorTable[""] = actorsList;
-                    writeProofreadFile(ProofreadPropWriter.createFileWriter(actorTextFileName, 'Actor'), actorTable);
+                    writeProofreadFile(ProofreadSimpleWriter.createFileWriter(actorTextFileName, 'Actor'), actorTable);
 
                     generateBadTags();
                     generateBadVariables();

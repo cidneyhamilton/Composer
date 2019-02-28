@@ -17,11 +17,9 @@ define(function(require){
 
         resourceUsage = reporter.create('resourceUsage'),
         invokeCommandUsage = reporter.create('invokeCommandUsage'),
-        badTagUsage = reporter.create('badTagUsage'),
         badVariableUsage = reporter.create('badVariableUsage'),
         badExpressions = reporter.create('badExpressions'),
         allQuests = reporter.create('allQuests'),
-        tagUsage = reporter.create('tagUsage'),
         variableUsage = reporter.create('variableUsage'),
         badGuids = reporter.create('badGuids'), 
         badHtml = reporter.create('badHtml'), 
@@ -31,8 +29,8 @@ define(function(require){
         timeUsage = reporter.create('timeUsage'),
         badLocalizationGroups = reporter.create('badLocalizationGroups'),
 
-        reportsToGenerate = [resourceUsage, invokeCommandUsage, /*tagUsage, // handled by generateAddlOutpu */ 
-                             badTagUsage, variableUsage, badVariableUsage, badGuids, badHtml, badExpressions, badInvokeScript, badLocalizationGroups,
+        reportsToGenerate = [resourceUsage, invokeCommandUsage, variableUsage, badVariableUsage, 
+                             badGuids, badHtml, badExpressions, badInvokeScript, badLocalizationGroups,
                              autosaveUsage, speechScopeAndVariableUsage, timeUsage, allQuests],
 
         htmlTagRegex = /(<([^>]+)>)/ig,
@@ -100,12 +98,7 @@ define(function(require){
     }
 
     function validateExpressionRecursive(sceneName, scriptData, scriptName, expression, mixedConditionals) {
-        if (expression.tags) {
-            registerTags(expression.scopeId ? 
-                (expression.scope + ' : ' + getDisplayValue(sceneName, scriptData, expression.scope, expression.scopeId)) 
-                : (sceneName + ' : ' + scriptName), expression.tags, 'Check : ' + (expression.has ? 'Has' : 'Not Tagged With')
-            );
-        } else if (expression.variableName) {
+        if (expression.variableName) {
             variableUsage.log(expression.variableName, expression.variableScope, sceneName + ' : ' + scriptName);
         } else {
             if ('expressions.or' == expression.type) {
@@ -144,13 +137,6 @@ define(function(require){
         }
 
         invokeCommandUsage.log(displayCommand, displayParameters, sceneName + ' : ' + scriptName);
-    }
-
-    function registerTags(source, tagNames, addRemoveOrCheck) {
-        var splitTagNames = tagNames.split(commaDelimiter);
-        for (var i in splitTagNames) {
-            tagUsage.log(splitTagNames[i].replace(/\s/g,'').toLowerCase(), source, addRemoveOrCheck);
-        }
     }
 
     function parseAndLogHtmlTags(text, sceneName, scriptName) {
@@ -271,12 +257,6 @@ define(function(require){
         }
         if (node.propId) {
             nodeData.prop = getDisplayValue(sceneName, scriptData, 'prop', node.propId);
-        }
-        if (node.tagsToAdd) {
-            registerTags(nodeData.scope ? (node.scope + ' : ' + nodeData.scope) : (sceneName + ' : ' + scriptName), node.tagsToAdd, 'Added');
-        }
-        if (node.tagsToRemove) {
-            registerTags(nodeData.scope ? (node.scope + ' : ' + nodeData.scope) : (sceneName + ' : ' + scriptName), node.tagsToRemove, 'Removed');
         }
         if (node.success) {
             var success = {};
@@ -625,12 +605,11 @@ define(function(require){
 
                 // We'll need actors, props, and storyEvents across all maps - populate these first
                 function populateData() {
-                    var tmpTags = [];
-                    miniPopulate('actor', idMap, db.actors.entries, tmpTags);
-                    miniPopulate('prop', idMap, db.props.entries, tmpTags);
-                    miniPopulate('scene', idMap, db.scenes.entries, tmpTags);
-                    miniPopulate('script', idMap, db.scripts.entries, tmpTags);
-                    miniPopulate('storyEvent', idMap, db.storyEvents.entries, tmpTags);
+                    miniPopulate('actor', idMap, db.actors.entries);
+                    miniPopulate('prop', idMap, db.props.entries);
+                    miniPopulate('scene', idMap, db.scenes.entries);
+                    miniPopulate('script', idMap, db.scripts.entries);
+                    miniPopulate('storyEvent', idMap, db.storyEvents.entries);
 
                     // Populate actors
                     db.actors.entries.forEach(function(item) {
@@ -639,11 +618,6 @@ define(function(require){
                         processPropOrActor("", item, actorData);
                         actorsList.push(actorData);
                     });
-
-                    // Register any tags defined on those objects
-                    for (var i = 0; i < tmpTags.length; i++) {
-                        registerTags(tmpTags[i].type + ':' + idMap[tmpTags[i].sourceId], tmpTags[i].tags, 'Initialized');
-                    }
 
                     // Props may have bad sceneIds
                     for (var i = 0; i < db.props.entries.length; i++) {
@@ -671,25 +645,9 @@ define(function(require){
                     }
                 }
 
-                function miniPopulate(dataType, mapToPopulate, sourceMap, allTags) {
+                function miniPopulate(dataType, mapToPopulate, sourceMap) {
                     for (var i = 0; i < sourceMap.length ; i++) {
                         mapToPopulate[sourceMap[i].id] = sourceMap[i].name;
-
-                        // This is really stupid, but no other way to access the components...
-                        var openedSource = sourceMap[i].open();
-                        if (openedSource.components && openedSource.components.length > 0) {
-                            for (var j = 0; j < openedSource.components.length; j++) {
-                                if ('components.initialTags' == openedSource.components[j].type) {
-                                    allTags.push({
-                                        type: dataType,
-                                        tags: openedSource.components[j].tags,
-                                        sourceId: sourceMap[i].id
-                                    });
-                                }
-                            }
-                        }
-
-                        sourceMap[i].close();
                     }
                 }
 
@@ -732,41 +690,6 @@ define(function(require){
                     writer.end();
                 }
 
-                // The "Bad Tags" report is basically a subset of the Tags report.
-                function generateBadTags() {
-                    for(var i in tagUsage.UsageList) {
-                        var tag = tagUsage.UsageList[i];
-                        for (var j in tagUsage.WithParamsMap[tag]) {
-                            var isBadTag = false;
-                            var target = tagUsage.WithParamsMap[tag][j];
-                            var numTagsUsed = Object.keys(tagUsage.FullMap[tag][target]).length;
-                            // If this tag is only accessed once, it's probably a bad tag.
-                            if (numTagsUsed <= 1) {
-                                isBadTag = true;
-                            } else {
-                                var isChecked = false;
-                                var isAdded = false;
-                                for (var k in Object.keys(tagUsage.FullMap[tag][target])) {
-                                    var howTagIsUsed = Object.keys(tagUsage.FullMap[tag][target])[k];
-                                    if (howTagIsUsed.indexOf('Check') != -1) {
-                                        isChecked = true;
-                                    } else if (howTagIsUsed.indexOf('Add') != -1) {
-                                        isAdded = true;
-                                    }
-                                }
-                                // If this tag is never added or checked, it's probably a bad tag.
-                                isBadTag = !isChecked || !isAdded;
-                            }
-
-                            if (isBadTag) {
-                                for (var k in Object.keys(tagUsage.FullMap[tag][target])) {
-                                    badTagUsage.log(tag, target, Object.keys(tagUsage.FullMap[tag][target])[k]);
-                                }
-                            }
-                        }
-                    }
-                }
-
                 // The "Bad Variables" report is basically a subset of the VariablesUsage report.
                 function generateBadVariables() {
                     for(var i in variableUsage.UsageList) {
@@ -807,7 +730,6 @@ define(function(require){
                     actorTable[""] = actorsList;
                     writeProofreadFile(ProofreadSimpleWriter.createFileWriter(actorTextFileName, 'Actor'), actorTable);
 
-                    generateBadTags();
                     generateBadVariables();
                     generatebadLocalizationGroups();
                     for (var i in reportsToGenerate) {

@@ -45,12 +45,6 @@ define(function(require){
     };
 
 
-
-    ctor.prototype.parseScript = function(idMap, sceneName, script) {
-        // TODO
-    };
-
-
     ctor.prototype.parseNode = function(idMap, sceneName, script, node) {
         var displayScope = idMap.getDisplayValue(script, node.scope, node.scopeId);
         if (node.tagsToAdd) {
@@ -74,11 +68,47 @@ define(function(require){
     };
 
     ctor.prototype.finish = function(context) {
+        // generate the tagUsage report
         baseReportProcessor.prototype.finish.call(this, context);
         if (context.game.format == 'ink') {
             var writer = InkWriter.createFileWriter(path.join(context.dataOutputDirectory, 'AllTags'));
             writer.writeList("TAGS", this.report.UsageList);
             writer.end();
+        }
+
+        var badTagUsage = new baseReportProcessor('badTagUsage');
+        // also generate the bad tags report, since it's basically a subset of the Tags report.
+        for(var i in this.report.UsageList) {
+            var tag = this.report.UsageList[i];
+            for (var j in this.report.WithParamsMap[tag]) {
+                var isBadTag = false;
+                var target = this.report.WithParamsMap[tag][j];
+                var numTagsUsed = Object.keys(this.report.FullMap[tag][target]).length;
+                // If this tag is only accessed once, it's probably a bad tag.
+                if (numTagsUsed <= 1) {
+                    isBadTag = true;
+                } else {
+                    var isChecked = false;
+                    var isAdded = false;
+                    for (var k in Object.keys(this.report.FullMap[tag][target])) {
+                        var howTagIsUsed = Object.keys(this.report.FullMap[tag][target])[k];
+                        if (howTagIsUsed.indexOf('Check') != -1) {
+                            isChecked = true;
+                        } else if (howTagIsUsed.indexOf('Add') != -1) {
+                            isAdded = true;
+                        }
+                    }
+                    // If this tag is never added or checked, it's probably a bad tag.
+                    isBadTag = !isChecked || !isAdded;
+                }
+
+                if (isBadTag) {
+                    for (var k in Object.keys(this.report.FullMap[tag][target])) {
+                        badTagUsage.report.log(tag, target, Object.keys(this.report.FullMap[tag][target])[k]);
+                    }
+                }
+            }
+            badTagUsage.finish(context);
         }
     };
 

@@ -6,6 +6,10 @@ define(function(require){
 
         // Processors
         tagUsageReportProcessor = require('features/build/data/processors/tagUsageReportProcessor');
+        htmlTagReportProcessor = require('features/build/data/processors/htmlTagReportProcessor');
+
+
+        var allProcessors = [tagUsageReportProcessor, htmlTagReportProcessor];
 
 
 
@@ -16,6 +20,8 @@ define(function(require){
             return system.defer(function(dfd){
 
                 var badIds = []; 
+
+                // Map of [GUID, <Name of [Actor | Prop | Scene | Script | StoryEvent]> ]
                 var idMap = {
                     flagInvalidGuid: function(script, type, typeId) {
                         badIds.push({
@@ -49,8 +55,7 @@ define(function(require){
                         return displayValue;
                     }
 
-                };    // Map of [GUID, <Name of [Actor | Prop | Scene | Script | StoryEvent]> ]
-                var allProcessors = [tagUsageReportProcessor];
+                };
 
                 function generate() {
 

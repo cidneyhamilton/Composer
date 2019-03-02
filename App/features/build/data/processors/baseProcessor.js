@@ -3,13 +3,15 @@ define(function(require){
     var ctor = function () { 
     };
 
-    ctor.prototype.populateAssetMap = function(assetType, assetEntry) {
-    };
+    // All of these are post-idMap-initialization
 
-    ctor.prototype.initialize = function(idMap) {
-    };
+    ctor.prototype.parseLocalizationGroup = function(context, idMap, localizationGroup) {};
+    ctor.prototype.parseScene = function(context, idMap, scene) {};
+    ctor.prototype.parseActor = function(context, idMap, actor) {};
+    ctor.prototype.parseStoryEvent = function(context, idMap, storyEvent) {};
+    ctor.prototype.parseProp = function(context, idMap, prop) {};
+    ctor.prototype.parseScript = function(context, idMap, script, sceneName) {};
 
-    ctor.prototype.parseScript = function(idMap, sceneName, script) {};
     ctor.prototype.parseEntryPoint = function(idMap, sceneName, script, entryPoint) {};
     ctor.prototype.parseSectionArray = function(idMap, sceneName, script, sectionArray) {};
     ctor.prototype.parseSection = function(idMap, sceneName, script, section) {};

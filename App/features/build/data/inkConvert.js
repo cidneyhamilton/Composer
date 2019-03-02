@@ -502,6 +502,16 @@ define(function(require){
 	}
 
     return {
+        convertList: function(listName, listContents, depth) {
+            var output = indent(depth) + "LIST " + listName + " = ";
+            for (var i = 0; i < listContents.length; i++) {
+                output += "({0})".format(listContents[i]);
+                if (i < (listContents.length - 1)) {
+                    output += ", ";
+                }
+            }
+            return output;
+        },
         convertScript:function(script) {
         	inititalize();
         	var result = parseScript(script.id, script.name, script.entryPoints);

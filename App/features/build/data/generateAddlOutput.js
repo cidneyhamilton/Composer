@@ -5,19 +5,25 @@ define(function(require){
         db = require('infrastructure/assetDatabase'),
 
         // Processors
-        tagUsageReportProcessor = require('features/build/data/processors/tagUsageReportProcessor');
-        htmlTagReportProcessor = require('features/build/data/processors/htmlTagReportProcessor');
-
-
-        var allProcessors = [tagUsageReportProcessor, htmlTagReportProcessor];
-
-
+        tagUsageReportProcessor = require('features/build/data/processors/tagUsageReportProcessor'),
+        htmlTagReportProcessor = require('features/build/data/processors/htmlTagReportProcessor'),
+        codeGenProcessor = require('features/build/data/processors/codeGenProcessor'),
+        localizationProcessor = require('features/build/data/processors/localizationProcessor'),
+        scriptDataProcessor = require('features/build/data/processors/scriptDataProcessor'),
+        inkProcessor = require('features/build/data/processors/inkProcessor'),
+        gameModelProcessor = require('features/build/data/processors/gameModelProcessor'),
+        selectedGame = require('features/projectSelector/index');
 
     return {
         run: function(context, localizationDupes) {
             context.indicator.message = 'Generating additional output...';
 
             return system.defer(function(dfd){
+                var allProcessors = [tagUsageReportProcessor, htmlTagReportProcessor, gameModelProcessor, codeGenProcessor, localizationProcessor, scriptDataProcessor];
+
+                if (selectedGame.activeProject.format == 'ink') {
+                    allProcessors.push(inkProcessor);
+                }
 
                 var badIds = []; 
 
@@ -58,12 +64,48 @@ define(function(require){
                 };
 
                 function generate() {
+                    var assets = [
+                        { 
+                            type: 'actor',
+                            entries: db.actors.entries
+                        },
+                        { 
+                            type: 'prop',
+                            entries: db.props.entries
+                        },
+                        { 
+                            type: 'storyEvent',
+                            entries: db.storyEvents.entries
+                        },
+                        { 
+                            type: 'scene',
+                            entries: db.scenes.entries
+                        },
+                        { 
+                            type: 'script',
+                            entries: db.scripts.entries
+                        },
+                        {
+                            type: 'localizationGroup',
+                            entries: db.localizationGroups.entries
+                        }
+
+                    ];
 
                     // Populate the idMap
-                    populateIdMap();
+                    for (var i = 0; i < assets.length; i++) {
+                        for (var j = 0; j < assets[i].entries.length; j++) {
+                            var assetEntry = assets[i].entries[j];
+                             idMap[assetEntry.id] = assetEntry.name;
+                        }
+                    }
 
-                    // Iterate over each script
-                    processScripts();
+                    // Iterate over each asset
+                    for (var i = 0; i < assets.length; i++) {
+                        for (var j = 0; j < assets[i].entries.length; j++) {
+                            processAsset(assets[i].type, assets[i].entries[j]);
+                        }
+                    }
                 
                     for(var i = 0; i < allProcessors.length; i++) {
                         allProcessors[i].finish(context);
@@ -73,55 +115,51 @@ define(function(require){
                     dfd.resolve();
                 }
 
-                function populateIdMap() {
-                    initializeIdMap('actor', db.actors.entries);
-                    initializeIdMap('prop', db.props.entries);
-                    initializeIdMap('scene', db.scenes.entries);
-                    initializeIdMap('script', db.scripts.entries);
-                    initializeIdMap('storyEvent', db.storyEvents.entries);
+                function processAsset(assetType, assetEntry) {
+                    var sceneName;
+                    assetEntry.open();
 
-                    // Initialize processors                    
-                    for(var i = 0; i < allProcessors.length; i++) {
-                        allProcessors[i].initialize(idMap);
-                    }
-                }
-
-                function initializeIdMap(dataType, sourceMap) {
-                    for (var i = 0; i < sourceMap.length ; i++) {
-                        idMap[sourceMap[i].id] = sourceMap[i].name;
-                        for(var j = 0; j < allProcessors.length; j++) {
-                            allProcessors[j].populateAssetMap(dataType, sourceMap[i]);
-                        }
-                    }
-                }
-
-                function processScripts() {
-                    for (var i = 0; i < db.scripts.entries.length ; i++) {
-                        var script = db.scripts.entries[i];
-                        script.open();
-
-                        var sceneName;
+                    if ('script' == assetType) {
                         // If we're on a scene that is hanging off a prop or a script, use that name instead of the scene name
-                        if (null == script.sceneId) {
-                            if (null != script.propId) {
-                                sceneName = '[Prop : ' + idMap.getDisplayValue(script, 'prop', script.propId) + ' ]';
-                            } else if (null != script.actorId) {
-                                sceneName = '[Actor: ' + idMap.getDisplayValue(script, 'actor', script.actorId) + ' ]';
+                        if (null == assetEntry.sceneId) {
+                            if (null != assetEntry.propId) {
+                                sceneName = '[Prop : ' + idMap.getDisplayValue(assetEntry, 'prop', assetEntry.propId) + ' ]';
+                            } else if (null != assetEntry.actorId) {
+                                sceneName = '[Actor: ' + idMap.getDisplayValue(assetEntry, 'actor', assetEntry.actorId) + ' ]';
                             }
                         } else {
-                            sceneName = idMap.getDisplayValue(script, 'scene', script.sceneId);
+                            sceneName = idMap.getDisplayValue(assetEntry, 'scene', assetEntry.sceneId);
                         }
-                        for(var j = 0; j < allProcessors.length; j++) {
-                            var processor = allProcessors[j];
-                            processor.parseScript(idMap, sceneName, script);
+                    } 
+                    for(var i = 0; i < allProcessors.length; i++) {
+                        var processor = allProcessors[i];
+                        switch (assetType) {
+                            case 'actor':
+                                processor.parseActor(context, idMap, assetEntry);
+                                break;
+                            case 'localizationGroup':
+                                processor.parseLocalizationGroup(context, idMap, assetEntry);
+                                break;
+                            case 'prop':
+                                processor.parseProp(context, idMap, assetEntry);
+                                break;
+                            case 'storyEvent':
+                                processor.parseStoryEvent(context, idMap, assetEntry);
+                                break;
+                            case 'scene':
+                                processor.parseScene(context, idMap, assetEntry);
+                                break;
+                            case 'script': 
+                                processor.parseScript(context, idMap, assetEntry, sceneName);
 
-                            // If the script has entry points defined, parse them too.
-                            if (script.item.entryPoints) {
-                                processEntryPoints(sceneName, script, processor, script.item.entryPoints);
-                            }
+                                // If the script has entry points defined, parse them too.
+                                if (assetEntry.item.entryPoints) {
+                                    processEntryPoints(sceneName, assetEntry, processor, assetEntry.item.entryPoints);
+                                }
+                                break;
                         }
-                        script.close();
                     }
+                    assetEntry.close();
                 }
 
                 function processEntryPoints(sceneName, script, processor, entryPoints) {

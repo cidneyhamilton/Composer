@@ -70,5 +70,10 @@ define(function(require){
         }
     };
 
+    ctor.prototype.finish = function(context) {
+        // generate the htmlTag report
+        baseReportProcessor.prototype.finish.call(this, context);
+    }
+
     return new ctor();
 });

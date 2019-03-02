@@ -1,5 +1,6 @@
 define(function(reqire){
-    var baseWriter = require('infrastructure/baseWriter')
+    var baseWriter = require('infrastructure/baseWriter'),
+        inkConvert = require('features/build/data/inkConvert')
         ;
 
     var newline = "\r\n";
@@ -21,18 +22,17 @@ define(function(reqire){
     ctor.prototype = Object.create(baseWriter.prototype);
     ctor.prototype.constructor = baseWriter;
 
+    ctor.prototype.writeScript = function(script) {
+        var output;
+
+        this.writeStream.write(output, this.encoding);
+    };
+
     ctor.prototype.writeList = function(listName, listContents, depth) {
         if (!Array.isArray(listContents)) {
             throw new Error("inkWriter.writeList() expects a listContents array!");
         }
-
-        var output = indent(depth) + "LIST " + listName + " = ";
-        for (var i = 0; i < listContents.length; i++) {
-            output += "({0})".format(listContents[i]);
-            if (i < (listContents.length - 1)) {
-                output += ", ";
-            }
-        }
+        var output = inkConvert.convertList(listName, listContents, depth);
 
         this.writeStream.write(output, this.encoding);
     };

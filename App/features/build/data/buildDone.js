@@ -10,9 +10,13 @@ define(function(require){
 
                 function next(){
                     if(context.completed.length == numExpected){
-                    	fileSystem.write(context.doneFile, 'Build started at: ' + context.startTime + '\nBuild completed at: ' + new Date().toLocaleString());
+                        var endTime = new Date();
+                    	fileSystem.write(context.doneFile, 'Build started at: ' + context.startTime.toLocaleString() + '\nBuild completed at: ' + endTime.toLocaleString());
+                        console.log("Build completed in " +  ((endTime.getTime() - context.startTime.getTime()) / 1000) + " seconds");
                         dfd.resolve();
                     } else {
+                        var currTime = new Date();
+                        context.indicator.message = "Building (" + ((currTime.getTime() - context.startTime.getTime()) / 1000) + " seconds elapsed)";
                     	setTimeout(function() { next(); }, 50);
                     }
                 }

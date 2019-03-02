@@ -1,0 +1,50 @@
+using System;
+using System.Collections.Generic;
+using Assets.Transolar.Runtime;
+using Assets.Transolar.Runtime.Entities;
+using Assets.Transolar.Runtime.Serialization.JSON;
+using Assets.Composer;
+
+namespace Assets.CodeGen
+{
+    public class Achievement: IHaveId, IHaveName
+    {
+        public Guid Id { get; set; }
+
+        public Achievement(Guid id) {
+            Id = id;
+        }
+
+        public Achievement() {
+            // Parameterless Constructor Required for serialisation
+        }
+
+        [Ignore]
+        public string Name {
+            get { return NonLocalizedNames.get(Id); }
+        }
+
+        [Ignore]
+        public string DisplayName {
+            get { return NonLocalizedNames.getDisplayName(Id); }
+        }
+
+        [Ignore]
+        public string Label {
+            get { return Game.Localizer.Localize(Id.ToString()); }
+        }
+
+        [Ignore]
+        public string Description {
+            get { return Game.Localizer.Localize(Id + "_Description"); }
+        }
+    }
+
+    public static class Achievements
+    {
+        public static Dictionary<Guid, Achievement> AchievementsDictionary = new Dictionary<Guid, Achievement>()
+        {
+/*{{ListItems}}*/
+        };
+    }
+}

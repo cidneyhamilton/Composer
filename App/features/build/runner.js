@@ -9,6 +9,8 @@ define(function(require){
     function cleanDirs(context) {
         return system.defer(function(task) {
 
+            context.indicator.message = 'Initializing...';
+
             // Can't blindly clean these directories, beccause there are
             // checked-in, non-generated files mixed in with the generated ones.
 
@@ -66,13 +68,9 @@ define(function(require){
             var indicator = new WorkIndicator();
             dialog.show(indicator);
 
-            var localizationDupes = {};
-            var localizationTable = {};
-            var translationTable = {};
-            var translationTableKeys = [];
             var completed = [];
             var context = {
-                startTime: new Date().toLocaleString(),
+                startTime: new Date(),
                 completed: completed,
                 project:project,
                 mode: mode,
@@ -86,58 +84,15 @@ define(function(require){
                 internalDocOutputDirectory:path.resolve(selectedGame.activeProject.dir, project.build.internalDocOutputDirectory),
                 reportsOutputDirectory: path.join(path.resolve(selectedGame.activeProject.dir, project.build.internalDocOutputDirectory), 'Reports'),
                 doneFile: path.join(path.resolve(selectedGame.activeProject.dir, project.build.internalDocOutputDirectory), 'buildDone.txt'),
-                gameModel: {
-                    entityModels:[],
-                    scriptIndex:[]
-                },
                 getJsonSpacing:function(){
                     return this.mode == 'debug' ? 4 : undefined
-                },
-                addLocalizationEntry:function(id, text, notes, speaker) {
-                    // If the text was undefined, treat it as empty.
-                    if (text == undefined) {
-                        text = '';
-                    }
-                    // If a localizationTable entry has been defined multiple times for different values...
-                    if (localizationTable.hasOwnProperty(id) && localizationTable[id][1] != text) {
-                        if (!localizationDupes[id]) {
-                            localizationDupes[id] = [];
-                            localizationDupes[id].push(localizationTable[id][1]);
-                        }
-                        localizationDupes[id].push(text);
-                    }
-                    localizationTable[id] = [id,text];
-
-                    // The translationTable is basically a reverse lookup of the localizationTable,
-                    // as the same text could be defined for multiple ids.
-                    if (!translationTable[text]) {
-                        translationTableKeys.push(text);
-                        translationTable[text] = { 0: text, translations : [], speakers : [], notes : [], ids : [] };
-                    }
-                    if (speaker) {
-                        translationTable[text].speakers.push(speaker);
-                    }
-                    if (notes) {
-                        translationTable[text].notes.push(notes);
-                    }
-                    translationTable[text].ids.push(id);
                 }
-
             };
 
             return cleanDirs(context)
-                .then(runner('features/build/data/actors', context))
-                .then(runner('features/build/data/props', context))
-                .then(runner('features/build/data/storyEvents', context))
-                .then(runner('features/build/data/scenes', context))
-                .then(runner('features/build/data/scripts', context))
-                .then(runner('features/build/data/gameModel', context))
-                .then(runner('features/build/data/localization', context, localizationTable, translationTable, translationTableKeys))
-                .then(runner('features/build/data/internalDoc', context, localizationDupes))
-                .then(runner('features/build/data/generateAddlOutput', context, localizationDupes))
-                .then(runner('features/build/data/achievements', context))
-                .then(runner('features/build/data/quests', context))
-                .then(runner('features/build/data/inventoryIds', context))
+                //.then(runner('features/build/data/scripts', context))
+                //.then(runner('features/build/data/internalDoc', context, localizationDupes))
+                .then(runner('features/build/data/generateAddlOutput', context))
                 .then(runner(codeId(project, 'actors'), context))
                 .then(runner(codeId(project, 'storyEvents'), context))
                 .then(runner(codeId(project, 'scenes'), context))
@@ -146,7 +101,7 @@ define(function(require){
                 // There are 15 runners defined above, but
                 // codeId(actors) and codeId(scenes) also calls generateRegistry(),
                 // which separately appends to context.completed
-                .then(runner('features/build/data/buildDone', context, 19 ))
+                .then(runner('features/build/data/buildDone', context, 8))
                 .then(function(){
                     // Try to wait for files to be written.
                     // Node doesn't offer a flush() command so there's no way

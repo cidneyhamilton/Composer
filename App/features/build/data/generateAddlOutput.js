@@ -5,8 +5,18 @@ define(function(require){
         db = require('infrastructure/assetDatabase'),
 
         // Processors
+        reportAutosaveUsageProcessor = require('features/build/data/processors/reportAutosaveUsageProcessor'),
+        reportBadExpressionsProcessor = require('features/build/data/processors/reportBadExpressionsProcessor'),
+        reportBadGuidProcessor = require('features/build/data/processors/reportBadGuidProcessor'),
+        reportBadInvokeScriptProcessor = require('features/build/data/processors/reportBadInvokeScriptProcessor'),
         reportTagUsageProcessor = require('features/build/data/processors/reportTagUsageProcessor'),
         reportHtmlTagsProcessor = require('features/build/data/processors/reportHtmlTagsProcessor'),
+        reportResourceUsageProcessor = require('features/build/data/processors/reportResourceUsageProcessor'),
+        reportVariableUsageProcessor = require('features/build/data/processors/reportVariableUsageProcessor'),
+        reportSpeechVariableUsageProcessor = require('features/build/data/processors/reportSpeechVariableUsageProcessor'),
+        reportInvokeCommandUsageProcessor = require('features/build/data/processors/reportInvokeCommandUsageProcessor'),
+        reportTimeUsageProcessor = require('features/build/data/processors/reportTimeUsageProcessor'),
+        reportQuestUsageProcessor = require('features/build/data/processors/reportQuestUsageProcessor'),
         codeGenProcessor = require('features/build/data/processors/codeGenProcessor'),
         localizationProcessor = require('features/build/data/processors/localizationProcessor'),
         scriptDataProcessor = require('features/build/data/processors/scriptDataProcessor'),
@@ -19,25 +29,21 @@ define(function(require){
             context.indicator.message = 'Generating additional output...';
 
             return system.defer(function(dfd){
-                var allProcessors = [reportTagUsageProcessor, reportHtmlTagsProcessor, gameModelProcessor, codeGenProcessor, localizationProcessor, scriptDataProcessor];
+                var allProcessors = [reportTagUsageProcessor, reportHtmlTagsProcessor, reportResourceUsageProcessor, 
+                                     reportVariableUsageProcessor, reportSpeechVariableUsageProcessor,
+                                     reportAutosaveUsageProcessor, reportInvokeCommandUsageProcessor, 
+                                     reportBadExpressionsProcessor, reportTimeUsageProcessor, reportBadInvokeScriptProcessor, 
+                                     reportQuestUsageProcessor, reportBadGuidProcessor, 
+                                     gameModelProcessor, codeGenProcessor, localizationProcessor, scriptDataProcessor];
 
                 if (selectedGame.activeProject.format == 'ink') {
                     allProcessors.push(inkProcessor);
                 }
 
-                var badIds = []; 
-
                 // Map of [GUID, <Name of [Actor | Prop | Scene | Script | StoryEvent]> ]
                 var idMap = {
-                    flagInvalidGuid: function(script, type, typeId) {
-                        badIds.push({
-                            scriptId: script.id,
-                            sceneId: script.sceneId,
-                            typeId: typeId,
-                            type: type
-                        });
-                    },
-                    getDisplayValue: function(script, type, typeId) {
+                    badIds: [],
+                    getDisplayValue: function(sceneName, script, type, typeId) {
                         var displayValue;
                         switch(type){
                             case 'actor':
@@ -47,7 +53,13 @@ define(function(require){
                             case 'storyEvent':
                             case 'entryPoint':
                                 if (typeId && null != typeId && !idMap[typeId]) {
-                                    flagInvalidGuid(script, type, typeId);
+                                    this.badIds.push({
+                                        scriptId: script.id,
+                                        scriptName: script.name,
+                                        sceneName: sceneName,
+                                        typeId: typeId,
+                                        type: type
+                                    });
                                 }
                                 displayValue = idMap[typeId];
                                 break;
@@ -64,33 +76,7 @@ define(function(require){
                 };
 
                 function generate() {
-                    var assets = [
-                        { 
-                            type: 'actor',
-                            entries: db.actors.entries
-                        },
-                        { 
-                            type: 'prop',
-                            entries: db.props.entries
-                        },
-                        { 
-                            type: 'storyEvent',
-                            entries: db.storyEvents.entries
-                        },
-                        { 
-                            type: 'scene',
-                            entries: db.scenes.entries
-                        },
-                        { 
-                            type: 'script',
-                            entries: db.scripts.entries
-                        },
-                        {
-                            type: 'localizationGroup',
-                            entries: db.localizationGroups.entries
-                        }
-
-                    ];
+                    var assets = ['actors', 'props', 'storyEvents', 'scenes', 'scripts', 'localizationGroups'];
                 
                     // Initialize the processors
                     for(var i = 0; i < allProcessors.length; i++) {
@@ -99,21 +85,23 @@ define(function(require){
 
                     // Populate the idMap
                     for (var i = 0; i < assets.length; i++) {
-                        for (var j = 0; j < assets[i].entries.length; j++) {
-                            var assetEntry = assets[i].entries[j];
+                        var assetEntries = db[assets[i]].entries;
+                        for (var j = 0; j < assetEntries.length; j++) {
+                            var assetEntry = assetEntries[j];
                              idMap[assetEntry.id] = assetEntry.name;
                         }
                     }
 
                     // Iterate over each asset
                     for (var i = 0; i < assets.length; i++) {
-                        for (var j = 0; j < assets[i].entries.length; j++) {
-                            processAsset(assets[i].type, assets[i].entries[j]);
+                        var assetEntries = db[assets[i]].entries;
+                        for (var j = 0; j < assetEntries.length; j++) {
+                            processAsset(assets[i], assetEntries[j]);
                         }
                     }
                 
                     for(var i = 0; i < allProcessors.length; i++) {
-                        allProcessors[i].finish(context);
+                        allProcessors[i].finish(context, idMap);
                     } 
                     
                     context.completed.push('features/build/data/generateAddlOutput');
@@ -124,37 +112,37 @@ define(function(require){
                     var sceneName;
                     assetEntry.open();
 
-                    if ('script' == assetType) {
+                    if ('scripts' == assetType) {
                         // If we're on a scene that is hanging off a prop or a script, use that name instead of the scene name
                         if (null == assetEntry.sceneId) {
                             if (null != assetEntry.propId) {
-                                sceneName = '[Prop : ' + idMap.getDisplayValue(assetEntry, 'prop', assetEntry.propId) + ' ]';
+                                sceneName = '[Prop : ' + idMap.getDisplayValue('Prop: ' + assetEntry.propId, assetEntry, 'prop', assetEntry.propId) + ' ]';
                             } else if (null != assetEntry.actorId) {
-                                sceneName = '[Actor: ' + idMap.getDisplayValue(assetEntry, 'actor', assetEntry.actorId) + ' ]';
+                                sceneName = '[Actor: ' + idMap.getDisplayValue('Actor: ' + assetEntry.actorId, assetEntry, 'actor', assetEntry.actorId) + ' ]';
                             }
                         } else {
-                            sceneName = idMap.getDisplayValue(assetEntry, 'scene', assetEntry.sceneId);
+                            sceneName = idMap.getDisplayValue('Scene: ' + assetEntry.sceneId, assetEntry, 'scene', assetEntry.sceneId);
                         }
                     } 
                     for(var i = 0; i < allProcessors.length; i++) {
                         var processor = allProcessors[i];
                         switch (assetType) {
-                            case 'actor':
+                            case 'actors':
                                 processor.parseActor(context, idMap, assetEntry.item);
                                 break;
-                            case 'localizationGroup':
+                            case 'localizationGroups':
                                 processor.parseLocalizationGroup(context, idMap, assetEntry.item);
                                 break;
-                            case 'prop':
+                            case 'props':
                                 processor.parseProp(context, idMap, assetEntry.item);
                                 break;
-                            case 'storyEvent':
+                            case 'storyEvents':
                                 processor.parseStoryEvent(context, idMap, assetEntry.item);
                                 break;
-                            case 'scene':
+                            case 'scenes':
                                 processor.parseScene(context, idMap, assetEntry.item);
                                 break;
-                            case 'script': 
+                            case 'scripts': 
                                 processor.parseScript(context, idMap, assetEntry.item, sceneName);
 
                                 // If the script has entry points defined, parse them too.
@@ -228,17 +216,17 @@ define(function(require){
                     processor.parseSection(idMap, sceneName, script, processor, section);
 
                     if (section.expression) {
-                        processExpression(sceneName, script, processor, section.expression);
+                        processTopLevelExpression(sceneName, script, processor, section.expression);
                     }
                     if (section.nodes) {
                         processNodeArray(sceneName, script, processor, section.nodes);
                     }
                 }
 
-                function processTopLevelExpression(scenename, script, processor, expression) {
-                    processor.parseTopLevelExpression(idMap, sceneName, script, section.expression);
+                function processTopLevelExpression(sceneName, script, processor, expression) {
+                    processor.parseTopLevelExpression(idMap, sceneName, script, expression);
 
-                    processExpression(sceneName, script, processor, section.expression);
+                    processExpression(sceneName, script, processor, expression);
                 }
 
                 function processExpression(sceneName, script, processor, expression) {

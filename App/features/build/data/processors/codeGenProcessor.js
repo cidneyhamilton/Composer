@@ -59,7 +59,7 @@ define(function(require){
         }
     };
 
-    ctor.prototype.finish = function(context) {
+    ctor.prototype.finish = function(context, idMap) {
         baseProcessor.prototype.finish.call(this, context);
 
         fileSystem.makeDirectory(this.outputDirectory);

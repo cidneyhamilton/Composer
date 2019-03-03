@@ -278,7 +278,7 @@ define(function(require){
         this.localize(context, script);
     };
 
-    ctor.prototype.finish = function(context) {
+    ctor.prototype.finish = function(context, idMap) {
         this.generateOutput(context);
     };
 

@@ -1,7 +1,5 @@
 define(function(require){
     var baseReportProcessor = require('features/build/data/processors/baseReportProcessor'),
-        InkWriter = require('infrastructure/inkWriter'),
-        path = requireNode('path'),
         htmlTagRegex = /(<([^>]+)>)/ig,
 
         knownBadHtmlTags = [  '<?>', '<blows kiss>', '<blush>', '<burp>', '<chuckle>', '<claps hands>', '<clears throat>', '<cough>', '<deep sigh>', '<flips the coin>',
@@ -69,11 +67,6 @@ define(function(require){
             this.parseAndLogHtmlTags(node.title, sceneName, script.name);
         }
     };
-
-    ctor.prototype.finish = function(context) {
-        // generate the htmlTag report
-        baseReportProcessor.prototype.finish.call(this, context);
-    }
 
     return new ctor();
 });

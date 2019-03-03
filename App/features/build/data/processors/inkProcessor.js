@@ -23,7 +23,7 @@ define(function(require){
         fileSystem.write(fileName, output);
     };
 
-    ctor.prototype.finish = function(context) {
+    ctor.prototype.finish = function(context, idMap) {
         baseProcessor.prototype.finish.call(this, context);
     };
 

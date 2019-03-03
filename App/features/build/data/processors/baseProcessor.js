@@ -3,6 +3,7 @@ define(function(require){
     var ctor = function () { 
     };
 
+    // This is pre-idMap-initialization
     ctor.prototype.init = function() {};
 
     // All of these are post-idMap-initialization
@@ -22,7 +23,7 @@ define(function(require){
     ctor.prototype.parseTopLevelExpression = function(idMap, sceneName, script, expression) {};
     ctor.prototype.parseExpression = function(idMap, sceneName, script, expression) {};
 
-    ctor.prototype.finish = function(idMap) {};
+    ctor.prototype.finish = function(context, idMap) {};
         
     return ctor;
 });

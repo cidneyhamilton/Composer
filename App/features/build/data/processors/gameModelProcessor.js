@@ -53,7 +53,7 @@ define(function(require){
         this.parseAsset(context, prop, friendlyIdOverride, true);
     };
 
-    ctor.prototype.finish = function(context) {
+    ctor.prototype.finish = function(context, idMap) {
         this.gameModel.scriptIndex = serializer.deserialize(serializer.serialize(db.scripts.entries));
         var output = serializer.serialize(this.gameModel, context.getJsonSpacing());
         var fileName = path.join(context.dataOutputDirectory, 'model.txt');

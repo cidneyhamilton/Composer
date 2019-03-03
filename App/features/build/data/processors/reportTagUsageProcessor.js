@@ -5,7 +5,7 @@ define(function(require){
         commaDelimiter = /\s*,\s*/;
 
     var ctor = function () {        
-        baseReportProcessor.call(this, 'tagUsage');
+        baseReportProcessor.call(this, 'tagUsage', 'badTagUsage');
     };
 
     ctor.prototype = Object.create(baseReportProcessor.prototype);
@@ -50,7 +50,7 @@ define(function(require){
     };
 
     ctor.prototype.parseNode = function(idMap, sceneName, script, node) {
-        var displayScope = idMap.getDisplayValue(script, node.scope, node.scopeId);
+        var displayScope = idMap.getDisplayValue(sceneName, script, node.scope, node.scopeId);
         if (node.tagsToAdd) {
             this.registerTags(displayScope ? (node.scope + ' : ' + displayScope) : (sceneName + ' : ' + script.name), node.tagsToAdd, 'Added');
         }
@@ -62,23 +62,20 @@ define(function(require){
     ctor.prototype.parseExpression = function(idMap, sceneName, script, expression) {
         if (expression.tags) {
             this.registerTags(expression.scopeId ? 
-                (expression.scope + ' : ' + idMap.getDisplayValue(script, expression.scope, expression.scopeId)) 
+                (expression.scope + ' : ' + idMap.getDisplayValue(sceneName, script, expression.scope, expression.scopeId)) 
                 : (sceneName + ' : ' + script.name), expression.tags, 'Check : ' + (expression.has ? 'Has' : 'Not Tagged With')
             );
         }
     };
 
-    ctor.prototype.finish = function(context) {
+    ctor.prototype.finish = function(context, idMap) {
         // generate the tagUsage report
-        baseReportProcessor.prototype.finish.call(this, context);
         if (context.game.format == 'ink') {
             var writer = InkWriter.createFileWriter(path.join(context.dataOutputDirectory, 'AllTags'));
             writer.writeList("TAGS", this.report.UsageList);
             writer.end();
         }
 
-        var badTagUsage = new baseReportProcessor('badTagUsage');
-        badTagUsage.init();
         // also generate the bad tags report, since it's basically a subset of the Tags report.
         for(var i in this.report.UsageList) {
             var tag = this.report.UsageList[i];
@@ -106,12 +103,13 @@ define(function(require){
 
                 if (isBadTag) {
                     for (var k in Object.keys(this.report.FullMap[tag][target])) {
-                        badTagUsage.report.log(tag, target, Object.keys(this.report.FullMap[tag][target])[k]);
+                        this.reports['badTagUsage'].log(tag, target, Object.keys(this.report.FullMap[tag][target])[k]);
                     }
                 }
             }
-            badTagUsage.finish(context);
         }
+
+        baseReportProcessor.prototype.finish.call(this, context);
     };
 
     return new ctor();

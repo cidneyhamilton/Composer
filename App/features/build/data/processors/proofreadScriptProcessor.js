@@ -18,7 +18,7 @@ define(function(require){
         this.propTable = {};  
     };
 
-    ctor.prototype.finish = function(context) {
+    ctor.prototype.finish = function(context, idMap) {
         var gameTextFileName = path.join(context.internalDocOutputDirectory, 'game_text.html');
         writeProofreadFile(ProofreadWriter.createFileWriter(gameTextFileName), scriptTable);
     };

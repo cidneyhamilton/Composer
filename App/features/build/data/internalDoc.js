@@ -13,24 +13,6 @@ define(function(require){
         heroStatusEffects = require('features/constants/heroStatusEffects'),
         skillOrStatMap = require('features/constants/skillsAndAttributes'),
         damageSourceTypes = require('features/constants/damageSourceTypes'),
-        reporter = require('features/build/data/report'),
-
-        resourceUsage = reporter.create('resourceUsage'),
-        invokeCommandUsage = reporter.create('invokeCommandUsage'),
-        badVariableUsage = reporter.create('badVariableUsage'),
-        badExpressions = reporter.create('badExpressions'),
-        allQuests = reporter.create('allQuests'),
-        variableUsage = reporter.create('variableUsage'),
-        badGuids = reporter.create('badGuids'),
-        badInvokeScript = reporter.create('invokeScriptCurrentMain'),
-        autosaveUsage = reporter.create('autosaveUsage'),
-        speechScopeAndVariableUsage = reporter.create('speechScopeAndVariableUsage'),
-        timeUsage = reporter.create('timeUsage'),
-
-        reportsToGenerate = [resourceUsage, invokeCommandUsage, variableUsage, badVariableUsage, 
-                             badGuids, badExpressions, badInvokeScript, autosaveUsage, speechScopeAndVariableUsage, timeUsage, allQuests],
-
-        scopeAndVariableRegex = /(\$\{([^\}]+)\})/ig,
 
         activeThreadCounter = 0;      // Used to ensure all async threads are done processing
 
@@ -44,9 +26,6 @@ define(function(require){
             case 'scene':
             case 'script':
             case 'storyEvent':
-                if (typeId && null != typeId && !idMap[typeId]) {
-                    badGuids.log(sceneName + ' - Script: ' + scriptData.name + ' (file: Composer/Data/Scripts/' + scriptData.id + '.json)', ' Refers To Deleted ' + type + ": " + typeId);
-                }
                 displayValue = idMap[typeId];
                 break;
             case 'target':
@@ -68,40 +47,11 @@ define(function(require){
         }
         if (section.expression) {
             singleSection.expression = section.expression.getDescription();
-            validateExpression(sceneName, scriptData, scriptName, section.expression);
         }
         if (section.nodes && section.nodes.length > 0) {
             var nodes = [];
             singleSection.nodes = nodes;
             processNodeArray(sceneName, scriptData, allEntryPoints, section.nodes, singleSection.nodes);
-        }
-    }
-
-    function validateExpression(sceneName, scriptData, scriptName, expression) {
-        var mixedConditionals = {};
-        validateExpressionRecursive(sceneName, scriptData, scriptName, expression, mixedConditionals);
-        // If there were both AND and OR expressions
-        if (Object.keys(mixedConditionals).length == 2) {
-            badExpressions.log(sceneName + ' : ' + scriptName, expression.getDescription());
-        }
-    }
-
-    function validateExpressionRecursive(sceneName, scriptData, scriptName, expression, mixedConditionals) {
-        if (expression.variableName) {
-            variableUsage.log(expression.variableName, expression.variableScope, sceneName + ' : ' + scriptName);
-        } else {
-            if ('expressions.or' == expression.type) {
-                mixedConditionals['or'] = true;
-            } else if ('expressions.and' == expression.type) {
-                mixedConditionals['and'] = true;
-            }
-
-            if (expression.left) {
-                validateExpressionRecursive(sceneName, scriptData, scriptName, expression.left, mixedConditionals);
-            }
-            if (expression.right) {
-                validateExpressionRecursive(sceneName, scriptData, scriptName, expression.right, mixedConditionals);
-            }
         }
     }
 
@@ -111,29 +61,6 @@ define(function(require){
             var singleSection = {};
             processSection(sceneName, scriptData, allEntryPoints, parentNode, sectionArr[i], singleSection);
             sectionData.push(singleSection);
-        }
-    }
-
-    // Register an "invoke command" for additional documentation generation
-    function registerInvoke(sceneName, scriptName, invokeCommand, invokeParameters) {
-        var displayCommand = invokeCommand;
-        var displayParameters = invokeParameters;
-        if (!displayCommand) {
-            displayCommand = "(none)";
-        }
-        if (!displayParameters) {
-            displayParameters = "(none)";
-        }
-
-        invokeCommandUsage.log(displayCommand, displayParameters, sceneName + ' : ' + scriptName);
-    }
-
-    function parseAndLogScopeAndVariableUsage(text, sceneName, scriptName) {
-        var allScopeAndVariableUsages = text.match(scopeAndVariableRegex);
-        if (allScopeAndVariableUsages) {
-            for (var i in allScopeAndVariableUsages) {
-                speechScopeAndVariableUsage.log(sceneName + ' : ' + scriptName, text, allScopeAndVariableUsages[i]);
-            }
         }
     }
 
@@ -155,19 +82,6 @@ define(function(require){
 
         nodeData.desc = node.__proto__.constructor.displayName;
         var scriptName = scriptData.name;
-
-        if ('AutoSave' == nodeData.desc) {
-            autosaveUsage.log(sceneName + ' : ' + scriptName, nodeData.desc);
-        } else if ('Variable' == nodeData.desc) {
-            variableUsage.log(nodeData.name, nodeData.scope, sceneName + ' : ' + scriptName);
-        } else if ('Increment Time' == nodeData.desc) {
-            timeUsage.log(sceneName + ' : ' + scriptName, 'Increment Time by : ' + ((Math.abs(nodeData.days) > 0) ? (nodeData.days + ' day(s), ') : '') + ((Math.abs(nodeData.hours) > 0) ? (nodeData.hours + ' hour(s), ') : '')  + ((Math.abs(nodeData.minutes) > 0) ? (nodeData.minutes + ' minute(s)') : '') );
-        } else if ('Set Time' == nodeData.desc) {
-            timeUsage.log(sceneName + ' : ' + scriptName, 'Set Time to: Day ' + nodeData.day + ', ' + (Math.abs(nodeData.hour) < 10 ? '0' : '') + nodeData.hour + ':' + (Math.abs(nodeData.minute) < 10 ? '0' : '') + nodeData.minute);
-        } else if ('Quests' == nodeData.desc) {
-            var questOp=['Added','Completed','Failed'];
-            allQuests.log(getDisplayValue(sceneName, scriptData, 'prop', node.propId), questOp[node.target], sceneName + ' : ' + scriptName);
-        }
 
         if(node.scopeId) {
             nodeData.scope = getDisplayValue(sceneName, scriptData, node.scope, node.scopeId);
@@ -201,9 +115,6 @@ define(function(require){
                 nodeData.device2 = emotionsMap.getDeviceById(node.device2);
             }
         }
-        if (node.text) {
-            parseAndLogScopeAndVariableUsage(nodeData.text, sceneName, scriptName);
-        }
         if (node.propId) {
             nodeData.prop = getDisplayValue(sceneName, scriptData, 'prop', node.propId);
         }
@@ -235,9 +146,6 @@ define(function(require){
         if (node.entityType) {
             nodeData.entity = getDisplayValue(sceneName, scriptData, node.entityType, node.entityId);
         }
-        if (node.command) {
-            registerInvoke(sceneName, scriptName, node.command, node.parameter);
-        }
         if (node.sceneId) {
             nodeData.scene = getDisplayValue(sceneName, scriptData, "scene", node.sceneId);
         }
@@ -246,13 +154,6 @@ define(function(require){
         }
         if (node.currentScope && node.currentScope == 'Current') {
             nodeData.entryPoint = allEntryPoints[node.entryPointId] ? allEntryPoints[node.entryPointId] : 'Unknown Entry Point ID: ' + node.entryPointId;
-            if ("Main" == nodeData.entryPoint) {
-                badInvokeScript.log(sceneName + ' : ' +  scriptName + ' (file: Composer/Data/Scripts/' + scriptData.id + '.json)', "Current: Main detected.");
-            } else if ('' == node.entryPointId || null == node.entryPointId || !node.entryPointId) {
-                badInvokeScript.log(sceneName + ' : ' + scriptName + ' (file: Composer/Data/Scripts/' + scriptData.id + '.json)', "Current scope set, but no EntryPoint defined.");
-            } else if (node.entryPointId && '' != node.entryPointId && null != node.entryPointId && !allEntryPoints[node.entryPointId]) {
-                badInvokeScript.log(sceneName + ' : ' +  scriptName + ' (file: Composer/Data/Scripts/' + scriptData.id + '.json)', "Entry Point [" + node.entryPointId + "] not found in associated script: [" + node.scriptId + "]");
-            }
         }
         if (node.spawnId) {
             nodeData.spawn = getDisplayValue(sceneName, scriptData, "prop", node.spawnId);
@@ -266,26 +167,10 @@ define(function(require){
         if (node.minigameIndex) {
             nodeData.minigame = minigamesMap.getMinigameById(node.minigameIndex);
         }
-        if (node.movie) {
-           resourceUsage.log("Movies", node.movie, sceneName + ' : ' + scriptName);
-        }
         if (node.musicTrack) {
             var nodeChannel = (node.channel == 1 ? 'main' : 'ambient');
             var loopType = (node.loopType == 1 ? 'play once' : 'repeat at interval');
             nodeData.musicTrack = node.musicTrack + '(' + nodeChannel + ') (' + loopType + ')';
-            resourceUsage.log("Music", node.musicTrack, sceneName + ' : ' + scriptName);
-        }
-        if (node.soundEffectName) {
-            resourceUsage.log("Sounds", node.soundEffectName, sceneName + ' : ' + scriptName);
-        }
-        if (node.animationName) {
-            resourceUsage.log("Animations", node.animationName, sceneName + ' : ' + scriptName);
-        }
-        if (node.imageName) {
-            resourceUsage.log("Images", node.imageName, sceneName + ' : ' + scriptName);
-        }
-        if (node.vignetteName) {
-            resourceUsage.log("vignettes", node.vignetteName, sceneName + ' : ' + scriptName);
         }
         if (node.Unique && null != node.Unique) {
             nodeData.Unique = node.Unique;
@@ -561,31 +446,6 @@ define(function(require){
                         processPropOrActor("", item, actorData);
                         actorsList.push(actorData);
                     });
-
-                    // Props may have bad sceneIds
-                    for (var i = 0; i < db.props.entries.length; i++) {
-                        var prop = db.props.entries[i];
-                        if (prop.sceneId && !idMap[prop.sceneId]) {
-                            badGuids.log('Prop: ' + prop.name + ' (file: Composer/Data/Props/' + prop.id + '.json)', ' Is Orphaned by Deleted Scene: ' + prop.sceneId);
-                        }
-                    }
-
-                    // Scripts may have bad values too
-                    for (var i = 0; i < db.scripts.entries.length; i++) {
-                        var script = db.scripts.entries[i];
-                        if (script.storyEventId && !idMap[script.storyEventId]) {
-                            badGuids.log('Script: ' + script.name + ' (file: Composer/Data/Scripts/' + script.id + '.json)', ' Is Orphaned by Deleted StoryEvent: ' + script.storyEventId);
-                        }
-                        if (script.sceneId && !idMap[script.sceneId]) {
-                            badGuids.log('Script: ' + script.name + ' (file: Composer/Data/Scripts/' + script.id + '.json)', ' Is Orphaned by Deleted Scene: ' + script.sceneId);
-                        }
-                        if (script.propId && !idMap[script.propId]) {
-                            badGuids.log('Script: ' + script.name + ' (file: Composer/Data/Scripts/' + script.id + '.json)', ' Is Orphaned by Deleted Prop: ' + script.propId);
-                        }
-                        if (script.actorId && !idMap[script.actorId]) {
-                            badGuids.log('Script: ' + script.name + ' (file: Composer/Data/Scripts/' + script.id + '.json)', ' Is Orphaned by Deleted Actor: ' + script.actorId);
-                        }
-                    }
                 }
 
                 function miniPopulate(dataType, mapToPopulate, sourceMap) {
@@ -633,22 +493,6 @@ define(function(require){
                     writer.end();
                 }
 
-                // The "Bad Variables" report is basically a subset of the VariablesUsage report.
-                function generateBadVariables() {
-                    for(var i in variableUsage.UsageList) {
-                        var v = variableUsage.UsageList[i];
-                        // If this variable has > 2 scopes, it may be a bad variable
-                        if (variableUsage.WithParamsMap[v].length > 1) {
-                            for (var j in variableUsage.WithParamsMap[v]) {
-                                var target = variableUsage.WithParamsMap[v][j];
-                                for (var k in Object.keys(variableUsage.FullMap[v][target])) {
-                                    badVariableUsage.log(v, target, Object.keys(variableUsage.FullMap[v][target])[k]);
-                                }
-                            }
-                        }
-                    }
-                }
-
                 // Actually do the write to file.
                 function writeInternalDocs() {
                     // Copy any css over
@@ -664,11 +508,6 @@ define(function(require){
                     var actorTable = {};
                     actorTable[""] = actorsList;
                     writeProofreadFile(ProofreadSimpleWriter.createFileWriter(actorTextFileName, 'Actor'), actorTable);
-
-                    generateBadVariables();
-                    for (var i in reportsToGenerate) {
-                        reportsToGenerate[i].write(context.reportsOutputDirectory);
-                    }
 
                     context.completed.push('features/build/data/internalDoc');
                     dfd.resolve();

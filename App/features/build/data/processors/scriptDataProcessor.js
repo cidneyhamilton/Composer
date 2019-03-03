@@ -33,11 +33,8 @@ define(function(require){
         fileSystem.write(fileName, output);
     };
 
-    ctor.prototype.finish = function(context) {
-
+    ctor.prototype.finish = function(context, idMap) {
         // Clean up non-generated files
-        baseProcessor.prototype.finish.call(this, context);
-
         var outputDirectory = path.join(context.dataOutputDirectory, 'scripts');
         fileSystem.makeDirectory(outputDirectory);
         var filesInDir = fileSystem.readDir(outputDirectory);
@@ -49,6 +46,7 @@ define(function(require){
             }
         }
 
+        baseProcessor.prototype.finish.call(this, context);
     };
 
     return new ctor();

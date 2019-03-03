@@ -16,7 +16,7 @@ define(function(require){
         this.dataTable = {};
     };
 
-    ctor.prototype.finish = function(context) {
+    ctor.prototype.finish = function(context, idMap) {
         var gameTextFileName = path.join(context.internalDocOutputDirectory, this.filename + ".html");
         var writer = writerSource.createFileWriter(gameTextFileName);
         writer.writeHtmlHeader();

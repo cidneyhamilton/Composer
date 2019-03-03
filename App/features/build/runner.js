@@ -88,11 +88,10 @@ define(function(require){
             return cleanDirs(context)
                 .then(runner('features/build/data/internalDoc', context))
                 .then(runner('features/build/data/generateAddlOutput', context))
-                .then(runner(codeId(project, 'actors'), context))
                 .then(runner(codeId(project, 'scenes'), context))
                 .then(runner(codeId(project, 'scripts'), context))
                 .then(runner(codeId(project, 'localizationGroups'), context))
-                .then(runner('features/build/data/buildDone', context, 6))
+                .then(runner('features/build/data/buildDone', context, 5))
                 .then(function(){
                     // Try to wait for files to be written.
                     // Node doesn't offer a flush() command so there's no way

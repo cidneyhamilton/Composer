@@ -6,11 +6,14 @@ define(function(require){
         db = require('infrastructure/assetDatabase'),
         system = require('durandal/system'),
         selectedGame = require('features/projectSelector/index'),
-        speakingurl = require('speakingurl'),
+        getSlug = require('infrastructure/getSlug'),
 
         achievementsTemplate = require('text!features/build/unity3d/csharp/achievementsTemplate.txt'),
         inventoryIdsTemplate = require('text!features/build/unity3d/csharp/inventoryIdsTemplate.txt'),
         questsTemplate = require('text!features/build/unity3d/csharp/questsTemplate.txt'),
+
+        actorDrawerTemplate = require('text!features/build/unity3d/csharp/actorDrawerTemplate.txt'),
+
         registryTemplate = require('text!features/build/unity3d/csharp/registryTemplate.txt')
         ;
 
@@ -30,7 +33,7 @@ define(function(require){
     }
 
     var codeGenItem = function(fileName, sceneId, template, lineFormat) {
-        var item = baseItem(fileName, sceneId, template, "/*{{ListItems}}*/", lineFormat);
+        var item = baseItem(fileName, template, "/*{{ListItems}}*/", lineFormat);
         item.sceneId = sceneId;
         return item;
     };
@@ -50,6 +53,14 @@ define(function(require){
     var registryInstancedGenItem = function(entityName) {
         return baseRegistryGenItem(entityName, 'Instance', 'Registry');
     };
+
+    var drawerGenItem = function(fileName, template, lineFormat) {
+        var item = baseItem(fileName, template, '{list items}', lineFormat);
+        item.subEntryFormat = '\n                    new Item.ChildItem("{childId}", "{childName}"),';
+        // Map of [subEntry.id, subEntry.output]
+        item.subEntries = {};
+        return item;
+    }
 
     var ctor = function () {
         baseProcessor.call(this);
@@ -73,13 +84,15 @@ define(function(require){
         this.scenesRegistry = registryInstancedGenItem('Scene');
         this.storyEventsRegistry = registryInstancedGenItem('StoryEvent');
 
+        this.actorDrawer = drawerGenItem('ActorDrawer', actorDrawerTemplate, '            new Item("{id}", "{name}"),');
+
         this.codeGens = [this.achievements, this.inventory, this.quests];
         this.registryGens = [this.actorsRegistry, this.scenesRegistry, this.storyEventsRegistry];
+        this.drawerGens = [this.actorDrawer];
     };
 
     ctor.prototype.updateRegistry = function(registry, itemToUpdate) {
-        var slug = speakingurl(itemToUpdate.name, {separator: "_", maintainCase: true}).replace(/-/, '_');
-        registry.addOutput(registry.format.replace(/{slug}/g, slug).replace(/{id}/g, itemToUpdate.id));
+        registry.addOutput(registry.format.replace(/{slug}/g, getSlug(itemToUpdate.name)).replace(/{id}/g, itemToUpdate.id));
     };
 
     ctor.prototype.parseScene = function(context, idMap, scene) {
@@ -88,6 +101,9 @@ define(function(require){
     };
 
     ctor.prototype.parseActor = function(context, idMap, actor) {
+        // update the actorDrawer
+        this.actorDrawer.addOutput(this.actorDrawer.format.replace(/{id}/g, actor.id).replace(/{name}/g, actor.name));
+
         // update the actorsRegistry 
         this.updateRegistry(this.actorsRegistry, actor);
     };
@@ -111,6 +127,8 @@ define(function(require){
         baseProcessor.prototype.finish.call(this, context);
 
         fileSystem.makeDirectory(this.outputDirectory);
+        fileSystem.makeDirectory(context.codeOutputDirectory);
+        fileSystem.makeDirectory(context.editorOutputDirectory);
 
         for (var i = 0; i < this.codeGens.length; i++) {
             var generating = this.codeGens[i];
@@ -127,6 +145,18 @@ define(function(require){
             finalOutput = finalOutput.replace(/{entityType}/g, generating.entityType);
 
             var fileName = path.join(context.codeOutputDirectory, generating.fileName + '.cs'); 
+            fileSystem.write(fileName, finalOutput);
+        }
+
+        for (var i = 0; i < this.drawerGens.length; i++) {
+            var generating = this.drawerGens[i];
+            for (var subEntryId in generating.subEntries) {
+                generating.output = generating.output.replace('{' + subEntryId + '}', generating.subEntries[subEntryId]);
+            }
+
+            var finalOutput = generating.template.replace(generating.templateFormat, generating.output.slice(0, -3)); // Remove the last comma + newline
+
+            var fileName = path.join(context.editorOutputDirectory, generating.fileName + '.cs'); 
             fileSystem.write(fileName, finalOutput);
         }
     };

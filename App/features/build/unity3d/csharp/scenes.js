@@ -2,12 +2,10 @@ define(function(require){
     var path = requireNode('path'),
         fileSystem = require('infrastructure/fileSystem'),
         db = require('infrastructure/assetDatabase'),
-        propDrawerTemplate = require('text!./propDrawerTemplate.txt'),
-        generateRegistry = require('./generateRegistry');
+        propDrawerTemplate = require('text!./propDrawerTemplate.txt');
 
     return {
         run:function(context){
-            generateRegistry(context, 'scenes', 'Scene', 'Scenes.cs', true);
             var entries = db.scenes.entries;
             var absoluteEditorPath = path.join(context.editorOutputDirectory, 'PropDrawer.cs');
             var code = '';

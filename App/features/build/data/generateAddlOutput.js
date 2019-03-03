@@ -17,7 +17,7 @@ define(function(require){
         reportInvokeCommandUsageProcessor = require('features/build/data/processors/reportInvokeCommandUsageProcessor'),
         reportTimeUsageProcessor = require('features/build/data/processors/reportTimeUsageProcessor'),
         reportQuestUsageProcessor = require('features/build/data/processors/reportQuestUsageProcessor'),
-        codeGenProcessor = require('features/build/data/processors/codeGenProcessor'),
+        unityCodeGenProcessor = require('features/build/data/processors/unityCodeGenProcessor'),
         localizationProcessor = require('features/build/data/processors/localizationProcessor'),
         scriptDataProcessor = require('features/build/data/processors/scriptDataProcessor'),
         inkProcessor = require('features/build/data/processors/inkProcessor'),
@@ -34,7 +34,7 @@ define(function(require){
                                      reportAutosaveUsageProcessor, reportInvokeCommandUsageProcessor, 
                                      reportBadExpressionsProcessor, reportTimeUsageProcessor, reportBadInvokeScriptProcessor, 
                                      reportQuestUsageProcessor, reportBadGuidProcessor, 
-                                     gameModelProcessor, codeGenProcessor, localizationProcessor, scriptDataProcessor];
+                                     gameModelProcessor, unityCodeGenProcessor, localizationProcessor, scriptDataProcessor];
 
                 if (selectedGame.activeProject.format == 'ink') {
                     allProcessors.push(inkProcessor);

@@ -32,9 +32,11 @@ define(function(require) {
                 var loadedProject = serializer.deserialize(rawJsonText);
 
                 // We'll override the defaults with the loaded options (this allows people with existing configs to pick up any new attributes)
-                for (var loadedBuild in loadedProject) {
-                    for (var loadedBuildKey in loadedProject[loadedBuild]) {
-                        that.project[loadedBuild][loadedBuildKey] = loadedProject[loadedBuild][loadedBuildKey];
+                for (var projectBuild in that.project) {
+                    for (var projectBuildKey in that.project[projectBuild]) {
+                        if (loadedProject[projectBuild][projectBuildKey]) {
+                            that.project[projectBuild][projectBuildKey] = loadedProject[projectBuild][projectBuildKey];
+                        }
                     }
                 }
             }

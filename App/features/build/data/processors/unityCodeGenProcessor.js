@@ -12,6 +12,7 @@ define(function(require){
         inventoryIdsTemplate = require('text!features/build/unity3d/csharp/inventoryIdsTemplate.txt'),
         questsTemplate = require('text!features/build/unity3d/csharp/questsTemplate.txt'),
         localizationGroupTemplate = require('text!features/build/unity3d/csharp/localizationGroupTemplate.txt'),
+        nonLocalizedNamesTemplate = require('text!features/build/unity3d/csharp/nonLocalizedNamesTemplate.txt'),
 
         actorDrawerTemplate = require('text!features/build/unity3d/csharp/actorDrawerTemplate.txt'),
         propDrawerTemplate = require('text!features/build/unity3d/csharp/propDrawerTemplate.txt'),
@@ -20,8 +21,9 @@ define(function(require){
         registryTemplate = require('text!features/build/unity3d/csharp/registryTemplate.txt')
         ;
 
-    var baseItem = function(fileName, template, templateFormat, lineFormat) {
+    var baseItem = function(contextOutputDir, fileName, template, templateFormat, lineFormat) {
         var item = {
+            contextOutputDir: contextOutputDir,
             fileName: fileName,
             template: template,
             format: lineFormat,
@@ -30,22 +32,64 @@ define(function(require){
             addOutput: function(lineToAdd) {
                 var that = this;
                 that.output += lineToAdd + "\r\n";
+            },
+            preTemplateGen: function() {
+            },
+            templateGen: function() {
+                var that = this;
+                that.output = that.template.replace(that.templateFormat, that.output);
+            },
+            postTemplateGen: function() {
+            }
+        };
+        return item;
+    }
+
+    var baseItemWithSubItems = function(contextOutputDir, fileName, template, templateFormat, lineFormat, subEntryFormat, removeEndingComma) {
+        var item = baseItem(contextOutputDir, fileName, template, templateFormat, lineFormat);
+        item.removeEndingComma = removeEndingComma;
+        item.subEntryFormat = subEntryFormat;
+        // Map of [subEntry.id, subEntry.output]
+        item.subEntries = {};
+        item.initSubEntry = function(subEntryId) {
+            if (!item.subEntries[subEntryId]) {
+                item.subEntries[subEntryId] = ""; 
+            }          
+        };
+        item.addSubEntry = function(subEntryId, output) {
+            item.initSubEntry(subEntryId);
+            item.subEntries[subEntryId] += output + "\r\n";
+        };
+        item.preTemplateGen = function() {
+            if (item.removeEndingComma) {
+                for (var subEntryId in item.subEntries) {
+                    item.output = item.output.replace('{' + subEntryId + '}', item.subEntries[subEntryId].slice(0, -3));
+                }
+                item.output = item.output.slice(0, -3);
+            } else {
+                for (var subEntryId in item.subEntries) {
+                    item.output = item.output.replace('{' + subEntryId + '}', item.subEntries[subEntryId]);
+                }                
             }
         };
         return item;
     }
 
     var codeGenItem = function(fileName, sceneId, template, lineFormat) {
-        var item = baseItem(fileName, template, "/*{{ListItems}}*/", lineFormat);
+        var item = baseItem('codeGenOutputDirectory', fileName, template, "/*{{ListItems}}*/", lineFormat);
         item.sceneId = sceneId;
         return item;
     };
 
     var baseRegistryGenItem = function(entityName, entityType, lineFormatType) {
         var lineFormat = '        public static {entityType} {slug} { get { return Game.' + lineFormatType + '.Get<{entityType}>(new Guid("{id}"));  } }'
-        var item = baseItem(entityName + 's', registryTemplate, "{field declarations}", lineFormat);
+        var item = baseItem('codeOutputDirectory', entityName + 's', registryTemplate, "{field declarations}", lineFormat);
         item.entityName = entityName;
         item.entityType = entityName + entityType;
+        item.postTemplateGen = function() {
+            item.output = item.output.replace(/{entity}/g, item.entityName);
+            item.output = item.output.replace(/{entityType}/g, item.entityType);
+        };
         return item;
     }
 
@@ -58,20 +102,7 @@ define(function(require){
     };
 
     var drawerGenItem = function(fileName, template, lineFormat) {
-        var item = baseItem(fileName, template, '{list items}', lineFormat);
-        item.subEntryFormat = '                    new Item.ChildItem("{childId}", "{childName}"),';
-        // Map of [subEntry.id, subEntry.output]
-        item.subEntries = {};
-        item.initSubEntry = function(subEntryId) {
-            if (!item.subEntries[subEntryId]) {
-                item.subEntries[subEntryId] = ""; 
-            }          
-        }
-        item.addSubEntry = function(subEntryId, assetEntry) {
-            item.initSubEntry(subEntryId);
-            item.subEntries[subEntryId] += item.subEntryFormat.replace(/{childId}/g, assetEntry.id).replace(/{childName}/g, assetEntry.name) + "\r\n";
-        };
-        return item;
+        return baseItemWithSubItems('editorOutputDirectory', fileName, template, '{list items}', lineFormat, '                    new Item.ChildItem("{childId}", "{childName}"),', true);
     }
 
     var ctor = function () {
@@ -90,6 +121,11 @@ define(function(require){
         this.inventory = codeGenItem('InventoryItems', inventorySceneId, inventoryIdsTemplate, '            {new Guid("{id}"), new InventoryId(new Guid("{id}")) },');
         this.quests = codeGenItem('Quests', questsSceneId, questsTemplate, '            {new Guid("{id}"), new Quest(new Guid("{id}"), "{name}", {value} ) },');
 
+        this.localizationGroups = baseItem('codeOutputDirectory', 'LocalizationGroups', localizationGroupTemplate, '{localizationGroups}');
+        this.nonLocalizedNames = baseItemWithSubItems('codeOutputDirectory', 'NonLocalizedNames', nonLocalizedNamesTemplate, '{MadeUpValueSinceItIsNotUsedHere}');
+        // Terrible, but nonlocalizedNames does stuff post-gen rather than pre-gen.  WTF was I thinking?
+        this.nonLocalizedNames.postTemplateGen = function() { this.preTemplateGen(); };
+
         this.actorsRegistry = registryGenItem('Actor');
         this.scenesRegistry = registryInstancedGenItem('Scene');
         this.storyEventsRegistry = registryInstancedGenItem('StoryEvent');
@@ -98,16 +134,37 @@ define(function(require){
         this.propDrawer = drawerGenItem('PropDrawer', propDrawerTemplate, '            new Item("{name}") { \r\n                Children = new List<Item.ChildItem> {\r\n{childData}\r\n                }\r\n            },');
         this.scriptDrawer = drawerGenItem('ScriptDrawer', scriptDrawerTemplate, '            new Item("{name}") { \r\n                Children = new List<Item.ChildItem> {\r\n{childData}\r\n                }\r\n            },');
 
-        this.codeGens = [this.achievements, this.inventory, this.quests];
-        this.registryGens = [this.actorsRegistry, this.scenesRegistry, this.storyEventsRegistry];
-        this.drawerGens = [this.actorDrawer, this.propDrawer, this.scriptDrawer];
+        this.codeGens = [//this.achievements, this.inventory, this.quests, 
+                         //this.localizationGroups, 
+                         this.nonLocalizedNames,
+                         //this.actorsRegistry, this.scenesRegistry, this.storyEventsRegistry, 
+                         //this.actorDrawer, this.propDrawer, this.scriptDrawer
+                         ];
     };
 
     ctor.prototype.updateRegistry = function(registry, itemToUpdate) {
         registry.addOutput(registry.format.replace(/{slug}/g, getSlug(itemToUpdate.name)).replace(/{id}/g, itemToUpdate.id));
     };
 
+    ctor.prototype.parseNonLocalizedName = function(assetType, assetEntry) {
+        var name = assetEntry.name.replace(/"/g, '\\"');
+        var displayName = (!!assetEntry.displayName ? assetEntry.displayName.replace(/"/g, '\\"') : name);
+        this.nonLocalizedNames.addSubEntry(assetType, '            {"' + assetEntry.id + '", new KeyValuePair<string, string> ("' + name + '", "' + displayName + '") },');
+    };
+
+    ctor.prototype.parseLocalizationGroup = function(context, idMap, localizationGroup) {
+        // update the localizationGroups
+        this.localizationGroups.addOutput('        public static class ' + localizationGroup.name + ' { ');
+        localizationGroup.entries.forEach(function(locEntry) {
+            this.localizationGroups.addOutput('            public static readonly string ' + locEntry.id +' = "' + locEntry.id +'";');
+        }, this);
+        this.localizationGroups.addOutput('        }');
+    };
+
     ctor.prototype.parseScene = function(context, idMap, scene) {
+        // update the nonlocalizedNames
+        this.parseNonLocalizedName('scenes', scene);
+
         // update the propDrawer
         this.propDrawer.addOutput(this.propDrawer.format.replace(/{name}/g, scene.name).replace('{childData}', '{' + scene.id + '}'));
         this.propDrawer.initSubEntry(scene.id); // Explicitly generate a subentry for this; it's possible we may not have any props for this scene, but still want to generate an empty entry for it.
@@ -117,6 +174,9 @@ define(function(require){
     };
 
     ctor.prototype.parseActor = function(context, idMap, actor) {
+        // update the nonlocalizedNames
+        this.parseNonLocalizedName('actors', actor);
+
         // update the actorDrawer
         this.actorDrawer.addOutput(this.actorDrawer.format.replace(/{id}/g, actor.id).replace(/{name}/g, actor.name));
 
@@ -125,11 +185,17 @@ define(function(require){
     };
 
     ctor.prototype.parseStoryEvent = function(context, idMap, storyEvent) {
+        // update the nonlocalizedNames
+        this.parseNonLocalizedName('storyEvents', storyEvent);
+
         // update the storyEventsRegistry 
         this.updateRegistry(this.storyEventsRegistry, storyEvent);
     };
 
     ctor.prototype.parseProp = function(context, idMap, prop) {
+        // update the nonlocalizedNames
+        this.parseNonLocalizedName('props', prop);
+
         // update the codeGens
         if (this.achievements.sceneId == prop.sceneId) {
             this.achievements.addOutput(this.achievements.format.replace(/{id}/g, prop.id));
@@ -141,7 +207,7 @@ define(function(require){
 
         // update the propDrawer
         if (idMap[prop.sceneId]) {
-            this.propDrawer.addSubEntry(prop.sceneId, prop);
+            this.propDrawer.addSubEntry(prop.sceneId, this.propDrawer.subEntryFormat.replace(/{childId}/g, prop.id).replace(/{childName}/g, prop.name) );
         }
     };
 
@@ -152,7 +218,7 @@ define(function(require){
                 // Write the line item for this sceneId, replacing the generic {childData} with {script.sceneId} for future parsing
                 this.scriptDrawer.addOutput(this.scriptDrawer.format.replace(/{name}/g, idMap[script.sceneId]).replace('{childData}', '{' + script.sceneId + '}'));
             }
-            this.scriptDrawer.addSubEntry(script.sceneId, script);
+            this.scriptDrawer.addSubEntry(script.sceneId, this.scriptDrawer.subEntryFormat.replace(/{childId}/g, script.id).replace(/{childName}/g, script.name));
         }
     };
 
@@ -165,32 +231,11 @@ define(function(require){
 
         for (var i = 0; i < this.codeGens.length; i++) {
             var generating = this.codeGens[i];
-            var finalOutput = generating.template.replace(generating.templateFormat, generating.output);
-
-            var fileName = path.join(context.codeGenOutputDirectory, generating.fileName + '.cs'); 
-            fileSystem.write(fileName, finalOutput);
-        }
-
-        for (var i = 0; i < this.registryGens.length; i++) {
-            var generating = this.registryGens[i];
-            var finalOutput = generating.template.replace(generating.templateFormat, generating.output);
-            finalOutput = finalOutput.replace(/{entity}/g, generating.entityName);
-            finalOutput = finalOutput.replace(/{entityType}/g, generating.entityType);
-
-            var fileName = path.join(context.codeOutputDirectory, generating.fileName + '.cs'); 
-            fileSystem.write(fileName, finalOutput);
-        }
-
-        for (var i = 0; i < this.drawerGens.length; i++) {
-            var generating = this.drawerGens[i];
-            for (var subEntryId in generating.subEntries) {
-                generating.output = generating.output.replace('{' + subEntryId + '}', generating.subEntries[subEntryId].slice(0, -3));
-            }
-
-            var finalOutput = generating.template.replace(generating.templateFormat, generating.output.slice(0, -3)); // Remove the last comma + newline
-
-            var fileName = path.join(context.editorOutputDirectory, generating.fileName + '.cs'); 
-            fileSystem.write(fileName, finalOutput);
+            generating.preTemplateGen();
+            generating.templateGen();
+            generating.postTemplateGen();
+            var fileName = path.join(context[generating.contextOutputDir], generating.fileName + '.cs'); 
+            fileSystem.write(fileName, generating.output);
         }
     };
 

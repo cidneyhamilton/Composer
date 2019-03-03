@@ -74,6 +74,7 @@ define(function(require){
                 game: selectedGame.activeProject,
                 dataOutputDirectory:path.resolve(selectedGame.activeProject.dir, project.build.dataOutputDirectory),
                 codeOutputDirectory:path.resolve(selectedGame.activeProject.dir, project.build.codeOutputDirectory),
+                codeGenOutputDirectory:path.resolve(selectedGame.activeProject.dir, project.build.codeGenOutputDirectory),
                 editorOutputDirectory:path.resolve(selectedGame.activeProject.dir, project.build.editorOutputDirectory),
                 localizationOutputDirectory:path.resolve(selectedGame.activeProject.dir, project.build.localizationOutputDirectory),
                 translationOutputDirectory:path.resolve(selectedGame.activeProject.dir, project.build.translationOutputDirectory),
@@ -88,10 +89,8 @@ define(function(require){
             return cleanDirs(context)
                 .then(runner('features/build/data/internalDoc', context))
                 .then(runner('features/build/data/generateAddlOutput', context))
-                .then(runner(codeId(project, 'scenes'), context))
-                .then(runner(codeId(project, 'scripts'), context))
                 .then(runner(codeId(project, 'localizationGroups'), context))
-                .then(runner('features/build/data/buildDone', context, 5))
+                .then(runner('features/build/data/buildDone', context, 3))
                 .then(function(){
                     // Try to wait for files to be written.
                     // Node doesn't offer a flush() command so there's no way

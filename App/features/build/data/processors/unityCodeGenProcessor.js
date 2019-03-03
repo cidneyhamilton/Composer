@@ -11,8 +11,11 @@ define(function(require){
         achievementsTemplate = require('text!features/build/unity3d/csharp/achievementsTemplate.txt'),
         inventoryIdsTemplate = require('text!features/build/unity3d/csharp/inventoryIdsTemplate.txt'),
         questsTemplate = require('text!features/build/unity3d/csharp/questsTemplate.txt'),
+        localizationGroupTemplate = require('text!features/build/unity3d/csharp/localizationGroupTemplate.txt'),
 
         actorDrawerTemplate = require('text!features/build/unity3d/csharp/actorDrawerTemplate.txt'),
+        propDrawerTemplate = require('text!features/build/unity3d/csharp/propDrawerTemplate.txt'),
+        scriptDrawerTemplate = require('text!features/build/unity3d/csharp/scriptDrawerTemplate.txt'),
 
         registryTemplate = require('text!features/build/unity3d/csharp/registryTemplate.txt')
         ;
@@ -56,16 +59,23 @@ define(function(require){
 
     var drawerGenItem = function(fileName, template, lineFormat) {
         var item = baseItem(fileName, template, '{list items}', lineFormat);
-        item.subEntryFormat = '\n                    new Item.ChildItem("{childId}", "{childName}"),';
+        item.subEntryFormat = '                    new Item.ChildItem("{childId}", "{childName}"),';
         // Map of [subEntry.id, subEntry.output]
         item.subEntries = {};
+        item.initSubEntry = function(subEntryId) {
+            if (!item.subEntries[subEntryId]) {
+                item.subEntries[subEntryId] = ""; 
+            }          
+        }
+        item.addSubEntry = function(subEntryId, assetEntry) {
+            item.initSubEntry(subEntryId);
+            item.subEntries[subEntryId] += item.subEntryFormat.replace(/{childId}/g, assetEntry.id).replace(/{childName}/g, assetEntry.name) + "\r\n";
+        };
         return item;
     }
 
     var ctor = function () {
         baseProcessor.call(this);
-
-        this.outputDirectory = path.join(selectedGame.activeProject.dir, "../Game/Assets/CodeGen/");
     };
 
     ctor.prototype = Object.create(baseProcessor.prototype);
@@ -85,10 +95,12 @@ define(function(require){
         this.storyEventsRegistry = registryInstancedGenItem('StoryEvent');
 
         this.actorDrawer = drawerGenItem('ActorDrawer', actorDrawerTemplate, '            new Item("{id}", "{name}"),');
+        this.propDrawer = drawerGenItem('PropDrawer', propDrawerTemplate, '            new Item("{name}") { \r\n                Children = new List<Item.ChildItem> {\r\n{childData}\r\n                }\r\n            },');
+        this.scriptDrawer = drawerGenItem('ScriptDrawer', scriptDrawerTemplate, '            new Item("{name}") { \r\n                Children = new List<Item.ChildItem> {\r\n{childData}\r\n                }\r\n            },');
 
         this.codeGens = [this.achievements, this.inventory, this.quests];
         this.registryGens = [this.actorsRegistry, this.scenesRegistry, this.storyEventsRegistry];
-        this.drawerGens = [this.actorDrawer];
+        this.drawerGens = [this.actorDrawer, this.propDrawer, this.scriptDrawer];
     };
 
     ctor.prototype.updateRegistry = function(registry, itemToUpdate) {
@@ -96,6 +108,10 @@ define(function(require){
     };
 
     ctor.prototype.parseScene = function(context, idMap, scene) {
+        // update the propDrawer
+        this.propDrawer.addOutput(this.propDrawer.format.replace(/{name}/g, scene.name).replace('{childData}', '{' + scene.id + '}'));
+        this.propDrawer.initSubEntry(scene.id); // Explicitly generate a subentry for this; it's possible we may not have any props for this scene, but still want to generate an empty entry for it.
+
         // update the scenesRegistry
         this.updateRegistry(this.scenesRegistry, scene);
     };
@@ -114,6 +130,7 @@ define(function(require){
     };
 
     ctor.prototype.parseProp = function(context, idMap, prop) {
+        // update the codeGens
         if (this.achievements.sceneId == prop.sceneId) {
             this.achievements.addOutput(this.achievements.format.replace(/{id}/g, prop.id));
         } else if (this.inventory.sceneId == prop.sceneId) {
@@ -121,12 +138,28 @@ define(function(require){
         } else if (this.quests.sceneId == prop.sceneId) {
             this.quests.addOutput(this.quests.format.replace(/{id}/g, prop.id).replace(/{name}/g, (!!prop.displayName) ? prop.displayName : prop.name).replace(/{value}/g, prop.value || 0));
         }
+
+        // update the propDrawer
+        if (idMap[prop.sceneId]) {
+            this.propDrawer.addSubEntry(prop.sceneId, prop);
+        }
+    };
+
+    ctor.prototype.parseScript = function(context, idMap, script, sceneName) {
+        // update the scriptDrawer
+        if(script.sceneId && script.trigger.type == 'triggers.zone') {
+            if(!this.scriptDrawer.subEntries[script.sceneId]) {
+                // Write the line item for this sceneId, replacing the generic {childData} with {script.sceneId} for future parsing
+                this.scriptDrawer.addOutput(this.scriptDrawer.format.replace(/{name}/g, idMap[script.sceneId]).replace('{childData}', '{' + script.sceneId + '}'));
+            }
+            this.scriptDrawer.addSubEntry(script.sceneId, script);
+        }
     };
 
     ctor.prototype.finish = function(context, idMap) {
         baseProcessor.prototype.finish.call(this, context);
 
-        fileSystem.makeDirectory(this.outputDirectory);
+        fileSystem.makeDirectory(context.codeGenOutputDirectory);
         fileSystem.makeDirectory(context.codeOutputDirectory);
         fileSystem.makeDirectory(context.editorOutputDirectory);
 
@@ -134,7 +167,7 @@ define(function(require){
             var generating = this.codeGens[i];
             var finalOutput = generating.template.replace(generating.templateFormat, generating.output);
 
-            var fileName = path.join(this.outputDirectory, generating.fileName + '.cs'); 
+            var fileName = path.join(context.codeGenOutputDirectory, generating.fileName + '.cs'); 
             fileSystem.write(fileName, finalOutput);
         }
 
@@ -151,7 +184,7 @@ define(function(require){
         for (var i = 0; i < this.drawerGens.length; i++) {
             var generating = this.drawerGens[i];
             for (var subEntryId in generating.subEntries) {
-                generating.output = generating.output.replace('{' + subEntryId + '}', generating.subEntries[subEntryId]);
+                generating.output = generating.output.replace('{' + subEntryId + '}', generating.subEntries[subEntryId].slice(0, -3));
             }
 
             var finalOutput = generating.template.replace(generating.templateFormat, generating.output.slice(0, -3)); // Remove the last comma + newline

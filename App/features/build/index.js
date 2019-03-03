@@ -4,7 +4,8 @@
         serializer = require('plugins/serializer'),
         commonDialogs = require('infrastructure/commonDialogs'),
         runner = require('./runner'),
-        selectedGame = require('features/projectSelector/index');
+        selectedGame = require('features/projectSelector/index').
+        buildConfig = require('features/build/buildConfig');
 
     // Ensure the Composer/Data directory exists
     var projectPathDir =  path.join(selectedGame.activeProject.dir, '/Data');
@@ -37,6 +38,15 @@
             commonDialogs.chooseDirectory().then(function(result){
                 if(result){
                     that.project.build.codeOutputDirectory = path.relative(selectedGame.activeProject.dir, result);
+                    fileSystem.write(projectPath, serializer.serialize(that.project, 4));
+                }
+            });
+        },
+        chooseCodeGenOutputDirectory:function(){
+            var that = this;
+            commonDialogs.chooseDirectory().then(function(result){
+                if(result){
+                    that.project.build.codeGenOutputDirectory = path.relative(selectedGame.activeProject.dir, result);
                     fileSystem.write(projectPath, serializer.serialize(that.project, 4));
                 }
             });
@@ -79,32 +89,8 @@
         },
         activate:function(){
             var that = this;
-            if(fileSystem.exists(projectPath)) {
-                var data = fileSystem.read(projectPath);
-                var rawJsonText = String(data);
-                that.project = serializer.deserialize(rawJsonText);
-            } else {
-               that.project = {
-                   build:{
-                        targetPlatform:'unity3d',
-                        targetLanguage:'csharp',
-                        dataOutputDirectory: "../Game/Assets/Resources/Composer",
-                        codeOutputDirectory: "../Game/Assets/Scripts/Composer",
-                        editorOutputDirectory: "../Game/Assets/Scripts/Editor",
-                        localizationOutputDirectory: "../Game/Assets/Resources/Locales",
-                        translationOutputDirectory: "../Translations",
-                        internalDocOutputDirectory: "../Proofread"
-                   }
-               };
-            }
-
-            // Ensure all of the directories exist
-            fileSystem.makeDirectory(path.resolve(selectedGame.activeProject.dir, that.project.build.dataOutputDirectory));
-            fileSystem.makeDirectory(path.resolve(selectedGame.activeProject.dir, that.project.build.codeOutputDirectory));
-            fileSystem.makeDirectory(path.resolve(selectedGame.activeProject.dir, that.project.build.editorOutputDirectory));
-            fileSystem.makeDirectory(path.resolve(selectedGame.activeProject.dir, that.project.build.localizationOutputDirectory));
-            fileSystem.makeDirectory(path.resolve(selectedGame.activeProject.dir, that.project.build.translationOutputDirectory));
-            fileSystem.makeDirectory(path.resolve(selectedGame.activeProject.dir, that.project.build.internalDocOutputDirectory));
+            buildConfig.activate();
+            that.project = buildConfig.project;
         }
     };
 

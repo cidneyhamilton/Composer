@@ -5,6 +5,7 @@ define(function(require) {
     fileSystem = require('infrastructure/fileSystem'),
     serializer = require('plugins/serializer'),
     runner = require('features/build/runner'),
+    buildConfig = require('features/build/buildConfig'),
     $ = require('jquery'),
     loader = require('features/loadingScreen/loader'),
     selectedGame = require('features/projectSelector/index');
@@ -35,16 +36,8 @@ define(function(require) {
             new Section('Build Config', 'icon-building', 'features/build/index')
         ],
         build: function() {
-            var projectPath = path.join(selectedGame.activeProject.dir, 'Data/project.json');
-
-            if(fileSystem.exists(projectPath)) {
-                var data = fileSystem.read(projectPath);
-                var rawJsonText = String(data);
-                var project = serializer.deserialize(rawJsonText);
-                runner.run(project, 'debug');
-            } else {
-                alert("No build config found at: " + projectPath);
-            }
+            buildConfig.activate();
+            runner.run(buildConfig.project, 'debug');
         }
     };
 

@@ -5,8 +5,8 @@ define(function(require){
         db = require('infrastructure/assetDatabase'),
 
         // Processors
-        tagUsageReportProcessor = require('features/build/data/processors/tagUsageReportProcessor'),
-        htmlTagReportProcessor = require('features/build/data/processors/htmlTagReportProcessor'),
+        reportTagUsageProcessor = require('features/build/data/processors/reportTagUsageProcessor'),
+        reportHtmlTagsProcessor = require('features/build/data/processors/reportHtmlTagsProcessor'),
         codeGenProcessor = require('features/build/data/processors/codeGenProcessor'),
         localizationProcessor = require('features/build/data/processors/localizationProcessor'),
         scriptDataProcessor = require('features/build/data/processors/scriptDataProcessor'),
@@ -19,7 +19,7 @@ define(function(require){
             context.indicator.message = 'Generating additional output...';
 
             return system.defer(function(dfd){
-                var allProcessors = [tagUsageReportProcessor, htmlTagReportProcessor, gameModelProcessor, codeGenProcessor, localizationProcessor, scriptDataProcessor];
+                var allProcessors = [reportTagUsageProcessor, reportHtmlTagsProcessor, gameModelProcessor, codeGenProcessor, localizationProcessor, scriptDataProcessor];
 
                 if (selectedGame.activeProject.format == 'ink') {
                     allProcessors.push(inkProcessor);
@@ -91,6 +91,11 @@ define(function(require){
                         }
 
                     ];
+                
+                    // Initialize the processors
+                    for(var i = 0; i < allProcessors.length; i++) {
+                        allProcessors[i].init();
+                    }
 
                     // Populate the idMap
                     for (var i = 0; i < assets.length; i++) {
@@ -135,26 +140,26 @@ define(function(require){
                         var processor = allProcessors[i];
                         switch (assetType) {
                             case 'actor':
-                                processor.parseActor(context, idMap, assetEntry);
+                                processor.parseActor(context, idMap, assetEntry.item);
                                 break;
                             case 'localizationGroup':
-                                processor.parseLocalizationGroup(context, idMap, assetEntry);
+                                processor.parseLocalizationGroup(context, idMap, assetEntry.item);
                                 break;
                             case 'prop':
-                                processor.parseProp(context, idMap, assetEntry);
+                                processor.parseProp(context, idMap, assetEntry.item);
                                 break;
                             case 'storyEvent':
-                                processor.parseStoryEvent(context, idMap, assetEntry);
+                                processor.parseStoryEvent(context, idMap, assetEntry.item);
                                 break;
                             case 'scene':
-                                processor.parseScene(context, idMap, assetEntry);
+                                processor.parseScene(context, idMap, assetEntry.item);
                                 break;
                             case 'script': 
-                                processor.parseScript(context, idMap, assetEntry, sceneName);
+                                processor.parseScript(context, idMap, assetEntry.item, sceneName);
 
                                 // If the script has entry points defined, parse them too.
                                 if (assetEntry.item.entryPoints) {
-                                    processEntryPoints(sceneName, assetEntry, processor, assetEntry.item.entryPoints);
+                                    processEntryPoints(sceneName, assetEntry.item, processor, assetEntry.item.entryPoints);
                                 }
                                 break;
                         }

@@ -90,8 +90,7 @@ define(function(require){
             };
 
             return cleanDirs(context)
-                //.then(runner('features/build/data/scripts', context))
-                //.then(runner('features/build/data/internalDoc', context, localizationDupes))
+                .then(runner('features/build/data/internalDoc', context))
                 .then(runner('features/build/data/generateAddlOutput', context))
                 .then(runner(codeId(project, 'actors'), context))
                 .then(runner(codeId(project, 'storyEvents'), context))
@@ -101,7 +100,7 @@ define(function(require){
                 // There are 15 runners defined above, but
                 // codeId(actors) and codeId(scenes) also calls generateRegistry(),
                 // which separately appends to context.completed
-                .then(runner('features/build/data/buildDone', context, 8))
+                .then(runner('features/build/data/buildDone', context, 9))
                 .then(function(){
                     // Try to wait for files to be written.
                     // Node doesn't offer a flush() command so there's no way

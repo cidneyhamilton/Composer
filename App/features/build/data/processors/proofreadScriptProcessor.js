@@ -6,15 +6,17 @@ define(function(require){
 
     var ctor = function (filename) {
         baseProcessor.call(this);
-
-        this.report = reporter.create(filename);
-
-        this.scriptTable = {};
-        this.propTable = {};
+        this.fileName = filename;
     };
 
     ctor.prototype = Object.create(baseProcessor.prototype);
     ctor.prototype.constructor = baseProcessor;
+
+    ctor.prototype.init = function() {
+        this.report = reporter.create(this.fileName);
+        this.scriptTable = {};
+        this.propTable = {};  
+    };
 
     ctor.prototype.finish = function(context) {
         var gameTextFileName = path.join(context.internalDocOutputDirectory, 'game_text.html');

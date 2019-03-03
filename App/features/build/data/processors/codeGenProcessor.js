@@ -31,11 +31,16 @@ define(function(require){
     var ctor = function () {
         baseProcessor.call(this);
 
+        this.outputDirectory = path.join(selectedGame.activeProject.dir, "../Game/Assets/CodeGen/");
+    };
+
+    ctor.prototype = Object.create(baseProcessor.prototype);
+    ctor.prototype.constructor = baseProcessor;
+
+    ctor.prototype.init = function() {
         var achievementsSceneId = 'a4d66827-dd60-451f-8015-62b8abb42f0c';
         var inventorySceneId = 'a2508b7e-a177-4a96-93bd-4d8ab88dffc4';
         var questsSceneId = 'e8520824-d970-4c6e-8aec-6c308c8846ab';
-
-        this.outputDirectory = path.join(selectedGame.activeProject.dir, "../Game/Assets/CodeGen/");
 
         this.achievements = codeGenItem('Achievements', achievementsSceneId, achievementsTemplate, '            {new Guid("{id}"), new Achievement(new Guid("{id}")) },');
         this.inventory = codeGenItem('InventoryItems', inventorySceneId, inventoryIdsTemplate, '            {new Guid("{id}"), new InventoryId(new Guid("{id}")) },');
@@ -43,9 +48,6 @@ define(function(require){
 
         this.toGenerate = [this.achievements, this.inventory, this.quests];
     };
-
-    ctor.prototype = Object.create(baseProcessor.prototype);
-    ctor.prototype.constructor = baseProcessor;
 
     ctor.prototype.parseProp = function(context, idMap, prop) {
         if (this.achievements.sceneId == prop.sceneId) {

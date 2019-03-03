@@ -18,7 +18,7 @@ define(function(require){
         var outputDirectory = path.join(context.dataOutputDirectory, 'scripts');
         fileSystem.makeDirectory(outputDirectory);
 
-        var output = ink.convertScript(script.item);
+        var output = ink.convertScript(script);
         var fileName = path.join(outputDirectory, script.id + ".ink");
         fileSystem.write(fileName, output);
     };

@@ -14,7 +14,7 @@ define(function(require){
     ctor.prototype.constructor = baseProcessor;
 
     ctor.prototype.parseScript = function(context, idMap, script, sceneName) {
-        var clone = serializer.deserialize(serializer.serialize(script.item));
+        var clone = serializer.deserialize(serializer.serialize(script));
 
         //clone.localize(context);
 

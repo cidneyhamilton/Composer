@@ -11,18 +11,21 @@ define(function(require){
 
     var ctor = function () {
         baseProcessor.call(this);
-        this.localizationDupes = {};
-        this.localizationTable = {};
-        this.translationTable = {};
-        this.translationTableKeys = [];
     };
 
     ctor.prototype = Object.create(baseProcessor.prototype);
     ctor.prototype.constructor = baseProcessor;
 
+    ctor.prototype.init = function() {
+        this.localizationDupes = {};
+        this.localizationTable = {};
+        this.translationTable = {};
+        this.translationTableKeys = [];        
+    };
+
     ctor.prototype.localize = function(context, asset, friendlyId) {
         var that = this;
-        var clone = serializer.deserialize(serializer.serialize(asset.item));
+        var clone = serializer.deserialize(serializer.serialize(asset));
         if (friendlyId) {
             clone.friendlyId = (friendlyId == null ? clone.name : friendlyId);
         }
@@ -243,7 +246,7 @@ define(function(require){
     };
 
     ctor.prototype.parseLocalizationGroup = function(context, idMap, localizationGroup) {
-        localizationGroup.item.entries.forEach(function(locEntry) {
+        localizationGroup.entries.forEach(function(locEntry) {
             this.addLocalizationEntry(locEntry.id, locEntry.value, locEntry.notes);
         }, this);
     };

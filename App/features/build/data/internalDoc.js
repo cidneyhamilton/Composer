@@ -26,11 +26,9 @@ define(function(require){
         autosaveUsage = reporter.create('autosaveUsage'),
         speechScopeAndVariableUsage = reporter.create('speechScopeAndVariableUsage'),
         timeUsage = reporter.create('timeUsage'),
-        badLocalizationGroups = reporter.create('badLocalizationGroups'),
 
         reportsToGenerate = [resourceUsage, invokeCommandUsage, variableUsage, badVariableUsage, 
-                             badGuids, badExpressions, badInvokeScript, badLocalizationGroups,
-                             autosaveUsage, speechScopeAndVariableUsage, timeUsage, allQuests],
+                             badGuids, badExpressions, badInvokeScript, autosaveUsage, speechScopeAndVariableUsage, timeUsage, allQuests],
 
         scopeAndVariableRegex = /(\$\{([^\}]+)\})/ig,
 
@@ -537,7 +535,7 @@ define(function(require){
     }
 
     return {
-        run:function(context, localizationDupes) {
+        run:function(context) {
             context.indicator.message = 'Creating internal documentation...';
 
             return system.defer(function(dfd){
@@ -651,14 +649,6 @@ define(function(require){
                     }
                 }
 
-                function generatebadLocalizationGroups() {
-                    Object.keys(localizationDupes).forEach(function(key) {
-                        for(var i in localizationDupes[key]) {
-                            badLocalizationGroups.log(key, localizationDupes[key][i]);
-                        }
-                    });
-                }
-
                 // Actually do the write to file.
                 function writeInternalDocs() {
                     // Copy any css over
@@ -676,7 +666,6 @@ define(function(require){
                     writeProofreadFile(ProofreadSimpleWriter.createFileWriter(actorTextFileName, 'Actor'), actorTable);
 
                     generateBadVariables();
-                    generatebadLocalizationGroups();
                     for (var i in reportsToGenerate) {
                         reportsToGenerate[i].write(context.reportsOutputDirectory);
                     }

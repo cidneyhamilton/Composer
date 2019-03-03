@@ -6,36 +6,10 @@ define(function(require){
 
     var ctor = function () {        
         baseReportProcessor.call(this, 'tagUsage');
-        this.tagsToInit = [];
     };
 
     ctor.prototype = Object.create(baseReportProcessor.prototype);
     ctor.prototype.constructor = baseReportProcessor;
-
-    ctor.prototype.populateAssetMap = function(assetType, assetEntry) {
-        // This is really stupid, but no other way to access the components...
-        var openedEntry = assetEntry.open();
-        if (openedEntry.components && openedEntry.components.length > 0) {
-            for (var i = 0; i < openedEntry.components.length; i++) {
-                if ('components.initialTags' == openedEntry.components[i].type) {
-                    this.tagsToInit.push({
-                        type: assetType,
-                        tags: openedEntry.components[i].tags,
-                        sourceId: openedEntry.id
-                    });
-                }
-            }
-        }
-        assetEntry.close();
-    };
-
-    ctor.prototype.initialize = function(idMap) {
-        // Register any tags defined on those objects
-        for (var i = 0; i < this.tagsToInit.length; i++) {
-            this.registerTags(this.tagsToInit[i].type + ':' + idMap[this.tagsToInit[i].sourceId], this.tagsToInit[i].tags, 'Initialized');
-        }
-        delete this.tagsToInit;
-    };
 
     ctor.prototype.registerTags = function(source, tagNames, addRemoveOrCheck) {
         var splitTagNames = tagNames.split(commaDelimiter);
@@ -44,6 +18,36 @@ define(function(require){
         }
     };
 
+    ctor.prototype.parseInitialTags = function(idMap, assetType, assetEntry) {
+        // Register any tags defined on those objects
+        if (assetEntry.components && assetEntry.components.length > 0) {
+            for (var i = 0; i < assetEntry.components.length; i++) {
+                if ('components.initialTags' == assetEntry.components[i].type) {
+                    this.registerTags(assetType + ":" + idMap[assetEntry.id], assetEntry.components[i].tags, 'Initialized');
+                }
+            }
+        }
+    };
+
+    ctor.prototype.parseScene = function(context, idMap, scene) {
+        this.parseInitialTags(idMap, 'scene', scene);
+    };
+
+    ctor.prototype.parseActor = function(context, idMap, actor) {
+        this.parseInitialTags(idMap, 'actor', actor);
+    };
+
+    ctor.prototype.parseStoryEvent = function(context, idMap, storyEvent) {
+        this.parseInitialTags(idMap, 'storyEvent', storyEvent);
+    };
+
+    ctor.prototype.parseProp = function(context, idMap, prop) {
+        this.parseInitialTags(idMap, 'prop', prop);
+    };
+
+    ctor.prototype.parseScript = function(context, idMap, script, sceneName) {
+        this.parseInitialTags(idMap, 'script', script);
+    };
 
     ctor.prototype.parseNode = function(idMap, sceneName, script, node) {
         var displayScope = idMap.getDisplayValue(script, node.scope, node.scopeId);
@@ -57,9 +61,6 @@ define(function(require){
 
     ctor.prototype.parseExpression = function(idMap, sceneName, script, expression) {
         if (expression.tags) {
-            if ('script' == sceneName) {
-                debugger;
-            }
             this.registerTags(expression.scopeId ? 
                 (expression.scope + ' : ' + idMap.getDisplayValue(script, expression.scope, expression.scopeId)) 
                 : (sceneName + ' : ' + script.name), expression.tags, 'Check : ' + (expression.has ? 'Has' : 'Not Tagged With')
@@ -77,6 +78,7 @@ define(function(require){
         }
 
         var badTagUsage = new baseReportProcessor('badTagUsage');
+        badTagUsage.init();
         // also generate the bad tags report, since it's basically a subset of the Tags report.
         for(var i in this.report.UsageList) {
             var tag = this.report.UsageList[i];

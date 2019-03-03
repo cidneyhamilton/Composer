@@ -8,17 +8,20 @@ define(function(require){
 
     var ctor = function () {
         baseProcessor.call(this);
+    };
+
+    ctor.prototype = Object.create(baseProcessor.prototype);
+    ctor.prototype.constructor = baseProcessor;
+
+    ctor.prototype.init = function() {
         this.gameModel = {
             entityModels:[],
             scriptIndex:[]
         };
     };
 
-    ctor.prototype = Object.create(baseProcessor.prototype);
-    ctor.prototype.constructor = baseProcessor;
-
     ctor.prototype.parseAsset = function(context, asset, friendlyIdOverride, deleteSceneId) {
-        var clone = serializer.deserialize(serializer.serialize(asset.item));
+        var clone = serializer.deserialize(serializer.serialize(asset));
         clone.friendlyId = (friendlyIdOverride ? friendlyIdOverride : clone.name);
         delete clone.notes;
         if (deleteSceneId) {

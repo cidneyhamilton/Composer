@@ -3,6 +3,8 @@ define(function(require){
     var ctor = function () { 
     };
 
+    ctor.prototype.init = function() {};
+
     // All of these are post-idMap-initialization
 
     ctor.prototype.parseLocalizationGroup = function(context, idMap, localizationGroup) {};

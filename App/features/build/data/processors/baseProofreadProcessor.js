@@ -7,11 +7,14 @@ define(function(require){
         baseProcessor.call(this);
         this.writerSource = (!!writeExtended) ? ProofreadSimpleWriter : ProofreadWriter;
         this.filename = filename;
-        this.dataTable = {};
     };
 
     ctor.prototype = Object.create(baseProcessor.prototype);
     ctor.prototype.constructor = baseProcessor;
+
+    ctor.prototype.init = function() {
+        this.dataTable = {};
+    };
 
     ctor.prototype.finish = function(context) {
         var gameTextFileName = path.join(context.internalDocOutputDirectory, this.filename + ".html");

@@ -4,11 +4,15 @@ define(function(require){
 
     var ctor = function (filename) {
         baseProcessor.call(this);
-        this.report = reporter.create(filename);
+        this.filename = filename;
     };
 
     ctor.prototype = Object.create(baseProcessor.prototype);
     ctor.prototype.constructor = baseProcessor;
+
+    ctor.prototype.init = function() {
+        this.report = reporter.create(this.filename);
+    };
 
     ctor.prototype.finish = function(context) {
         this.report.write(context.reportsOutputDirectory);

@@ -7,7 +7,7 @@ define(function(require){
         this.filename = arguments[0];
         this.filenames = [];
         // Ugly, but this allows for a variable # of filenames.
-        for (var i = 1; i < arguments.length; ++i) {            
+        for (var i = 1; i < arguments.length; ++i) {
             this.filenames.push(arguments[i]);
         }
     };

@@ -38,7 +38,7 @@ define(function(require){
             var badGuid = badGuids[i];
             this.report.log(badGuid.sceneName + ' - Script: ' + badGuid.scriptName + ' (file: Composer/Data/Scripts/' + badGuid.scriptId + '.json)', ' Refers To Deleted ' + badGuid.type + ": " + badGuid.typeId);
         }
-        baseReportProcessor.prototype.finish.call(this, context);
+        baseReportProcessor.prototype.finish.call(this, context, idMap);
     };
 
     return new ctor();

@@ -22,6 +22,8 @@ define(function(require){
         scriptDataProcessor = require('features/build/data/processors/scriptDataProcessor'),
         inkProcessor = require('features/build/data/processors/inkProcessor'),
         gameModelProcessor = require('features/build/data/processors/gameModelProcessor'),
+        proofreadSimpleProcessor = require('features/build/data/processors/proofreadSimpleProcessor'),
+
         selectedGame = require('features/projectSelector/index');
 
     return {
@@ -34,7 +36,9 @@ define(function(require){
                                      reportAutosaveUsageProcessor, reportInvokeCommandUsageProcessor, 
                                      reportBadExpressionsProcessor, reportTimeUsageProcessor, reportBadInvokeScriptProcessor, 
                                      reportQuestUsageProcessor, reportBadGuidProcessor, 
-                                     gameModelProcessor, unityCodeGenProcessor, localizationProcessor, scriptDataProcessor];
+                                     gameModelProcessor, unityCodeGenProcessor, localizationProcessor, scriptDataProcessor,
+                                     proofreadSimpleProcessor
+                                     ];
 
                 if (selectedGame.activeProject.format == 'ink') {
                     allProcessors.push(inkProcessor);

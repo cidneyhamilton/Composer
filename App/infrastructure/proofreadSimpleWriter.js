@@ -1,8 +1,75 @@
 define(function(reqire){
-    var baseWriter = require('infrastructure/baseWriter');
+    var baseWriter = require('infrastructure/baseWriter'),
+        heroStatusEffects = require('features/constants/heroStatusEffects'),
+        skillOrStatMap = require('features/constants/skillsAndAttributes'),
+        damageSourceTypes = require('features/constants/damageSourceTypes'),
+
+        SKIPME = "~*~*~ {SKIP ME} ~*~*~";
+
+    function parseComponent(component, property) {
+        var returnVal = component[property];
+        switch(property) {
+            case "type" :
+                returnVal = component.__proto__.constructor.displayName;
+                break;
+            case "DamageSourceType" :
+                returnVal = damageSourceTypes.getDamageSourceById(component.DamageSourceType);
+                break;
+            case "alwaysHit" :
+                returnVal = damageSourceTypes.getAlwaysHitById(component.alwaysHit);
+                break;
+            case "EffectType" :
+                returnVal = heroStatusEffects.getStatusEffectById(component.EffectType);
+                break;
+            case "CuresDebuff" :
+                returnVal =  heroStatusEffects.getStatusEffectById(component.CuresDebuff);
+                break;
+            case "ItemType" :
+                returnVal = inventoryPicklists.getItemTypeById(component.ItemType);
+                break;
+            case "ItemBag" :
+                returnVal = inventoryPicklists.getInventoryBagById(component.ItemBag);
+                break;
+            case "CombatUseFilter" :
+                returnVal = inventoryPicklists.getCombatBagById(component.CombatUseFilter);
+                break;
+            case "toolClass" :
+                returnVal = inventoryPicklists.getToolClassById(component.toolClass);
+                break;
+            case "throwAction" :
+                returnVal = inventoryPicklists.getThrowActionById(component.throwAction);
+                break;
+            case "spawnEffect" :
+                returnVal = inventoryPicklists.getThrowEffectById(component.spawnEffect);
+                break;
+            case "modelType" :
+                returnVal = inventoryPicklists.getThrowModelTypeById(component.modelType);
+                break;
+            case "BuffTargetType" :
+                returnVal = skillOrStatMap.getSkillOrStatById(component.BuffTargetType);
+                break;
+
+            case "BuffA":
+            case "BuffB":
+            case "BuffC":
+                var buff = component[property];
+                if (buff.Value) {
+                    buff = skillOrStatMap.getSkillOrStatById(buff.Target) + ' (' + buff.Value + ')';
+                    if (!!buff) {
+                        returnVal = buff;
+                    } else {
+                        returnVal = SKIPME;
+                    }
+                } else {
+                    returnVal = SKIPME;
+                }
+                break;
+        }
+        return returnVal;
+    }
 
     function _writeComponent(writer, out, comp) {
-        out.push(comp.type + writer.newline);
+        out.push(parseComponent(comp, 'type') + writer.newline);
         ctor.writeItemListStart(out, false);
         Object.keys(comp).sort(function(a,b){return a.localeCompare(b)}).forEach(function(propertyName) {            
             // skip any system properties
@@ -13,9 +80,12 @@ define(function(reqire){
             if ("type" == propertyName) {
                 return;
             }
-            ctor.writeItemStart(out);
-            out.push(propertyName + ': ' + comp[propertyName]);
-            ctor.writeItemEnd(out);
+            var componentPropertyValue = parseComponent(comp, propertyName);
+            if (SKIPME !== componentPropertyValue) {
+                ctor.writeItemStart(out);
+                out.push(propertyName + ': ' + componentPropertyValue);
+                ctor.writeItemEnd(out);
+            }
 
         });
         ctor.writeItemListEnd(out);
@@ -41,7 +111,7 @@ define(function(reqire){
         	out.push("<b>Description</b>: " + item.description + "\r\n");
         	ctor.writeItemEnd(out);
     	}
-        if (item.components) {
+        if (item.components && item.components.length > 0) {
             out.push("<hr/>\r\n");
         	_writeComponents(writer, out, item);
         }

@@ -46,7 +46,7 @@ define(function(require){
             }
         }
 
-        baseProcessor.prototype.finish.call(this, context);
+        baseProcessor.prototype.finish.call(this, context, idMap);
     };
 
     return new ctor();

@@ -1,31 +1,49 @@
 define(function(require){
-    var baseProcessor = require('features/build/data/processors/baseProcessor'), 
-        ProofreadSimpleWriter = require('infrastructure/proofreadSimpleWriter');
-        ProofreadWriter = require('infrastructure/proofreadWriter');
+    var baseProcessor = require('features/build/data/processors/baseProcessor'),
+        path = requireNode('path');
 
-    var ctor = function (filename, writeExtended) {
+    var ctor = function () {
         baseProcessor.call(this);
-        this.writerSource = (!!writeExtended) ? ProofreadSimpleWriter : ProofreadWriter;
-        this.filename = filename;
+
+        this.filename = arguments[0];
+        this.filenames = [];
+        // Ugly, but this allows for a variable # of filenames.
+        for (var i = 1; i < arguments.length; ++i) {
+            this.filenames.push(arguments[i]);
+        }
     };
 
     ctor.prototype = Object.create(baseProcessor.prototype);
     ctor.prototype.constructor = baseProcessor;
 
     ctor.prototype.init = function() {
+        this.dataTables = {};
         this.dataTable = {};
+        this.dataTables[this.filename] = this.dataTable;
+        for (var i = 0; i < this.filenames.length; i++) {
+            var file = this.filenames[i];
+            this.dataTables[file] = {};
+        }
     };
 
+    ctor.prototype.createWriter = function(fileName, filePath) {};
+
     ctor.prototype.finish = function(context, idMap) {
-        var gameTextFileName = path.join(context.internalDocOutputDirectory, this.filename + ".html");
-        var writer = writerSource.createFileWriter(gameTextFileName);
-        writer.writeHtmlHeader();
-        for(var key in dataTable){
-            writer.writeData(key, dataTable[key]);
+        for (var file in this.dataTables) {
+            var gameTextFilePath = path.join(context.internalDocOutputDirectory, file + ".html");
+            var writer = this.createWriter(file, gameTextFilePath);
+            writer.writeHtmlHeader();
+            var orderedKeys = [];
+            for(var key in this.dataTables[file]){
+                orderedKeys.push(key);
+            }
+            orderedKeys.sort();
+            for (var i = 0; i < orderedKeys.length; i++) {
+                writer.writeData(orderedKeys[i],this.dataTables[file][orderedKeys[i]]);
+            }
+            writer.writeHtmlFooter();
+            writer.end();
         }
-        writer.writeHtmlFooter();
-        writer.end();
-    
     };
 
     return ctor;

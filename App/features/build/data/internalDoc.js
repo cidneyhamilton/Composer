@@ -65,7 +65,7 @@ define(function(require){
     }
 
     function populateDefaults(original, copy) {
-        Object.getOwnPropertyNames(original).forEach(function(propertyName) {            
+        Object.getOwnPropertyNames(original).forEach(function(propertyName) {
             // skip any system properties
             if (propertyName.indexOf("__") != -1) {
                 return;
@@ -258,109 +258,7 @@ define(function(require){
         script.close();
     }
 
-    function parseComponentBuff(buff) {
-        if (buff.Value) {
-            return skillOrStatMap.getSkillOrStatById(buff.Target) + ' (' + buff.Value + ')';
-        }
-        return '';
-    }
-
-    function processPropOrActorComponent(component, componentData) {
-        populateDefaults(component, componentData);
-
-        componentData["type"] = component.__proto__.constructor.displayName;
-
-        if (component.DamageSourceType) {
-            componentData.DamageSourceType = damageSourceTypes.getDamageSourceById(component.DamageSourceType);
-        }
-        if (component.alwaysHit) {
-            componentData.alwaysHit = damageSourceTypes.getAlwaysHitById(component.alwaysHit);
-        }
-
-        if (component.EffectType) {
-            componentData.EffectType = heroStatusEffects.getStatusEffectById(component.EffectType);
-        }
-        if (component.CuresDebuff) {
-            componentData.CuresDebuff =  heroStatusEffects.getStatusEffectById(component.CuresDebuff);
-        }
-
-        if (component.ItemType) {
-            componentData.ItemType = inventoryPicklists.getItemTypeById(component.ItemType);
-        }
-        if (component.ItemBag) {
-            componentData.ItemBag = inventoryPicklists.getInventoryBagById(component.ItemBag);
-        }
-        if (component.CombatUseFilter) {
-            componentData.CombatUseFilter = inventoryPicklists.getCombatBagById(component.CombatUseFilter);
-        }
-        if (component.toolClass) {
-            componentData.toolClass = inventoryPicklists.getToolClassById(component.toolClass);
-        }
-        if (component.throwAction) {
-            componentData.throwAction = inventoryPicklists.getThrowActionById(component.throwAction);
-        }
-        if (componentData.spawnEffect) {
-            componentData.spawnEffect = inventoryPicklists.getThrowEffectById(component.spawnEffect);
-        }
-        if (componentData.modelType) {
-            componentData.modelType = inventoryPicklists.getThrowModelTypeById(component.modelType);
-        }
-
-        if (component.BuffTargetType) {
-            componentData.BuffTargetType = skillOrStatMap.getSkillOrStatById(component.BuffTargetType);
-        }
-        if (component.BuffA) {
-            var buff = parseComponentBuff(component.BuffA);
-            if (!!buff) {
-                componentData.BuffA = buff;
-            } else {
-                delete componentData.BuffA;
-            }
-        }
-        if (component.BuffB) {
-            var buff = parseComponentBuff(component.BuffB);
-            if (!!buff) {
-                componentData.BuffB = buff;
-            } else {
-                delete componentData.BuffB;
-            }
-        }
-        if (component.BuffC) {
-            var buff = parseComponentBuff(component.BuffC);
-            if (!!buff) {
-                componentData.BuffC = buff;
-            } else {
-                delete componentData.BuffC;
-            }
-        }
-    }
-
-    // Process a single prop or actor
-    function processPropOrActor(sceneName, entry, docData){
-        var data = entry.open();
-        docData["id"] = data.id;
-        docData["name"] = data.name;
-        if (!!data.displayName) {
-            docData["displayName"] = data.displayName;
-        }
-        if (!!data.description) {
-            docData["description"] = data.description;
-        }
-        if (data.components && data.components.length > 0) {
-            var components = [];
-            docData["components"] = components;
-
-            for (var i = 0; i < data.components.length; i ++) {
-                var comp = {};
-                processPropOrActorComponent(data.components[i], comp);
-                components.push(comp);
-            }
-        }
-        activeThreadCounter--;
-        entry.close();
-    }
-
-    function processSceneInternal(sceneId, sceneName, scriptTable, propTable) {
+    function processSceneInternal(sceneId, sceneName, scriptTable) {
             // Find all scripts associated with this scene.
             var scriptsSelected = [];
             for (var scriptCounter = 0; scriptCounter < db.scripts.entries.length ; scriptCounter++) {
@@ -390,32 +288,13 @@ define(function(require){
                 scriptTable[sceneName] = scriptsSelected;
             }
 
-            // Find all props associated with this scene
-            var propsSelected = [];
-            for (var propCounter = 0; propCounter < db.props.entries.length ; propCounter++) {
-                var currProp = db.props.entries[propCounter];
-                // If this prop is part of this scene, then add it to our array.
-                var currPropSceneId = currProp['sceneId'];
-                if ((currPropSceneId === sceneId) || (null == sceneId && (!currPropSceneId || null == currPropSceneId)))  {
-                    var propData = {};
-                    activeThreadCounter++;
-                    processPropOrActor(sceneName, currProp, propData);
-                    propsSelected.push(propData);
-                }
-            }
-
-            // Only flag for prop file-write if there are props in the scene
-            if(propsSelected.length > 0) {
-                propTable[sceneName] = propsSelected;
-            }
-
             activeThreadCounter--;
     }
 
     // Processes a single scene
-    function processScene(scene, scriptTable, propTable) {
+    function processScene(scene, scriptTable) {
         scene.open();
-        processSceneInternal(scene.id, scene.name, scriptTable, propTable);
+        processSceneInternal(scene.id, scene.name, scriptTable);
         scene.close();
     }
 
@@ -428,8 +307,6 @@ define(function(require){
                 var numScenes = db.scenes.entries.length;
                 var currentScene;
                 var scriptTable = {};
-                var actorsList = [];
-                var propTable = {};
 
                 // We'll need actors, props, and storyEvents across all maps - populate these first
                 function populateData() {
@@ -438,14 +315,6 @@ define(function(require){
                     miniPopulate('scene', idMap, db.scenes.entries);
                     miniPopulate('script', idMap, db.scripts.entries);
                     miniPopulate('storyEvent', idMap, db.storyEvents.entries);
-
-                    // Populate actors
-                    db.actors.entries.forEach(function(item) {
-                        var actorData = {};
-                        activeThreadCounter++;
-                        processPropOrActor("", item, actorData);
-                        actorsList.push(actorData);
-                    });
                 }
 
                 function miniPopulate(dataType, mapToPopulate, sourceMap) {
@@ -459,14 +328,14 @@ define(function(require){
                     if(sceneCounter < numScenes){
                         currentScene = db.scenes.entries[sceneCounter];
                         activeThreadCounter++;
-                        processScene(currentScene, scriptTable, propTable);
+                        processScene(currentScene, scriptTable);
                         sceneCounter++;
                         nextScene();
                     } else if (sceneCounter == numScenes) {
                         // Create a mock-scene for all existing sceneless-scripts
                         var sceneName = "(No Scene)"
                         activeThreadCounter++;
-                        processSceneInternal(null, sceneName, scriptTable, propTable);
+                        processSceneInternal(null, sceneName, scriptTable);
                         sceneCounter++;
                         nextScene();
                     } else if (activeThreadCounter > 0) {
@@ -500,14 +369,6 @@ define(function(require){
 
                     var gameTextFileName = path.join(context.internalDocOutputDirectory, 'game_text.html');
                     writeProofreadFile(ProofreadWriter.createFileWriter(gameTextFileName), scriptTable);
-
-                    var propTextFileName = path.join(context.internalDocOutputDirectory, 'prop_text.html');
-                    writeProofreadFile(ProofreadSimpleWriter.createFileWriter(propTextFileName, 'Prop'), propTable);
-
-                    var actorTextFileName = path.join(context.internalDocOutputDirectory, 'actor_text.html');
-                    var actorTable = {};
-                    actorTable[""] = actorsList;
-                    writeProofreadFile(ProofreadSimpleWriter.createFileWriter(actorTextFileName, 'Actor'), actorTable);
 
                     context.completed.push('features/build/data/internalDoc');
                     dfd.resolve();

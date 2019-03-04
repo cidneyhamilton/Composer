@@ -35,7 +35,7 @@ define(function(require){
                 }
             }
         }
-        baseReportProcessor.prototype.finish.call(this, context);
+        baseReportProcessor.prototype.finish.call(this, context, idMap);
     };
 
     return new ctor();

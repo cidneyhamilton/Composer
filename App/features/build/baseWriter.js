@@ -11,6 +11,7 @@ define(function(require){
     }
 
     var ctor = function(path) {
+        this.path = path;
         this.writeStream = fs.createWriteStream(path, {
             'flags': 'w'
         });
@@ -22,6 +23,10 @@ define(function(require){
     };
 
     sys.inherits(ctor, events.EventEmitter);
+
+    ctor.prototype.write = function(output) {
+        this.writeStream.write(output, this.encoding);
+    };
 
     ctor.prototype.end = function(){
         this.writeStream.end();

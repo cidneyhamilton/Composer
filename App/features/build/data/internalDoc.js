@@ -4,15 +4,10 @@ define(function(require){
         system = require('durandal/system'),
         db = require('infrastructure/assetDatabase'),
         inventoryPicklists = require('features/constants/inventoryPicklists'),
-        ProofreadWriter = require('infrastructure/proofreadWriter'),
-        ProofreadSimpleWriter = require('infrastructure/proofreadSimpleWriter'),
-        commaDelimiter = /\s*,\s*/,
+        ProofreadWriter = require('features/build/proofreadWriter'),
         idMap = {},    // Map of [GUID, <Name of [Actor | Prop | Scene | Script | StoryEvent]> ]
         minigamesMap = require('features/constants/minigames'),
         emotionsMap = require('features/constants/emotions'),
-        heroStatusEffects = require('features/constants/heroStatusEffects'),
-        skillOrStatMap = require('features/constants/skillsAndAttributes'),
-        damageSourceTypes = require('features/constants/damageSourceTypes'),
 
         activeThreadCounter = 0;      // Used to ensure all async threads are done processing
 

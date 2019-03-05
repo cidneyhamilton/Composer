@@ -27,7 +27,7 @@ define(function(require) {
             var that = this;
             that.projects = {
                 heroU : {
-                    gameName: 'Hero-U',
+                    gameName: 'Hero-U: Rogue to Redemption',
                     gameInternalName: "heroU",
                     dir: '../Hero-U/Composer',
                     format: 'json'
@@ -45,7 +45,7 @@ define(function(require) {
                     format: 'json'
                 },
                 wizardsway : {
-                    gameName: 'Wizards Way',
+                    gameName: 'Hero-U: Wizards Way',
                     gameInternalName: 'wizardsway',
                     dir: '',
                     format: 'json'
@@ -60,7 +60,6 @@ define(function(require) {
                 for (var loadedGame in loadedProjects) {
                     // If we don't recognize this game, preserve it (don't delete user data!)
                     if (! that.projects[loadedGame]) {
-                        // For everything else, just copy over the name, dir, and format.
                         that.projects[loadedGame] = {};
                         that.projects[loadedGame].gameName = loadedProjects[loadedGame].gameName;
                         that.projects[loadedGame].format = loadedProjects[loadedGame].format;

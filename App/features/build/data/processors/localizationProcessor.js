@@ -5,7 +5,7 @@ define(function(require){
         serializer = require('plugins/serializer'),
         db = require('infrastructure/assetDatabase'),
         system = require('durandal/system'),
-        CSVWriter = require('infrastructure/csvWriter'),
+        CSVWriter = require('features/build/csvWriter'),
         papaParse = require('papaparse'),
         reporter = require('features/build/data/report');
 

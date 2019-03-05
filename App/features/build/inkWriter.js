@@ -1,5 +1,5 @@
 define(function(reqire){
-    var baseWriter = require('infrastructure/baseWriter'),
+    var baseWriter = require('features/build/baseWriter'),
         inkConvert = require('features/build/data/inkConvert')
         ;
 

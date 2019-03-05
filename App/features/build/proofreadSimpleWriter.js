@@ -1,5 +1,5 @@
 define(function(reqire){
-    var baseWriter = require('infrastructure/baseWriter'),
+    var baseWriter = require('features/build/baseWriter'),
         heroStatusEffects = require('features/constants/heroStatusEffects'),
         skillOrStatMap = require('features/constants/skillsAndAttributes'),
         damageSourceTypes = require('features/constants/damageSourceTypes'),

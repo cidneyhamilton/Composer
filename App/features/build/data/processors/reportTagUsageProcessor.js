@@ -1,6 +1,6 @@
 define(function(require){
     var baseReportProcessor = require('features/build/data/processors/baseReportProcessor'),
-        InkWriter = require('infrastructure/inkWriter'),
+        InkWriter = require('features/build/inkWriter'),
         path = requireNode('path'),
         commaDelimiter = /\s*,\s*/;
 

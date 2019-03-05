@@ -1,6 +1,6 @@
 define(function(require){
     var path = requireNode('path'),
-        NestedReportWriter = require('infrastructure/nestedReportWriter');
+        NestedReportWriter = require('features/build/nestedReportWriter');
 
     var ctor = function (fileName) {
     	this.filename = fileName;

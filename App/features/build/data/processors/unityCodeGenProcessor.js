@@ -134,11 +134,11 @@ define(function(require){
         this.propDrawer = drawerGenItem('PropDrawer', propDrawerTemplate, '            new Item("{name}") { \r\n                Children = new List<Item.ChildItem> {\r\n{childData}\r\n                }\r\n            },');
         this.scriptDrawer = drawerGenItem('ScriptDrawer', scriptDrawerTemplate, '            new Item("{name}") { \r\n                Children = new List<Item.ChildItem> {\r\n{childData}\r\n                }\r\n            },');
 
-        this.codeGens = [//this.achievements, this.inventory, this.quests, 
-                         //this.localizationGroups, 
+        this.codeGens = [this.achievements, this.inventory, this.quests, 
+                         this.localizationGroups, 
                          this.nonLocalizedNames,
-                         //this.actorsRegistry, this.scenesRegistry, this.storyEventsRegistry, 
-                         //this.actorDrawer, this.propDrawer, this.scriptDrawer
+                         this.actorsRegistry, this.scenesRegistry, this.storyEventsRegistry, 
+                         this.actorDrawer, this.propDrawer, this.scriptDrawer
                          ];
     };
 

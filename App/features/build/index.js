@@ -4,7 +4,7 @@
         serializer = require('plugins/serializer'),
         commonDialogs = require('infrastructure/commonDialogs'),
         runner = require('./runner'),
-        selectedGame = require('features/projectSelector/index').
+        selectedGame = require('features/projectSelector/index'),
         buildConfig = require('features/build/buildConfig');
 
     // Ensure the Composer/Data directory exists

@@ -3,8 +3,7 @@ define(function(require) {
         fileSystem = require('infrastructure/fileSystem'),
         serializer = require('plugins/serializer'),
         commonDialogs = require('infrastructure/commonDialogs'),
-        app = require('durandal/app'),
-        ko = require('knockout');
+        app = require('durandal/app');
 
     var projectPath = path.join(process.cwd(), 'Data/projectSelector.json');
 

@@ -56,15 +56,15 @@ define(function(require){
         }
     };
 
-    ctor.prototype.parseNode = function(idMap, sceneName, script, node) {
+    ctor.prototype.parseNode = function(idMap, node, nodeType, nodeIndex, epMetadata) {
         if (node.description) {
-            this.parseAndLogHtmlTags(node.description, sceneName, script.name);
+            this.parseAndLogHtmlTags(node.description, epMetadata.sceneName, epMetadata.script.name);
         }
         if (node.text) {
-            this.parseAndLogHtmlTags(node.text, sceneName, script.name);
+            this.parseAndLogHtmlTags(node.text, epMetadata.sceneName, epMetadata.script.name);
         }
         if (node.title) {
-            this.parseAndLogHtmlTags(node.title, sceneName, script.name);
+            this.parseAndLogHtmlTags(node.title, epMetadata.sceneName, epMetadata.script.name);
         }
     };
 

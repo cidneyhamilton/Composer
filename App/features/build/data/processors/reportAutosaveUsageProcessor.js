@@ -8,9 +8,9 @@ define(function(require){
     ctor.prototype = Object.create(baseReportProcessor.prototype);
     ctor.prototype.constructor = baseReportProcessor;
 
-    ctor.prototype.parseNode = function(idMap, sceneName, script, node) {
-        if ('AutoSave' == node.__proto__.constructor.displayName) {
-            this.report.log(sceneName + ' : ' + script.name, 'AutoSave');
+    ctor.prototype.parseNode = function(idMap, node, nodeType, nodeIndex, epMetadata) {
+        if ('AutoSave' == nodeType) {
+            this.report.log(epMetadata.sceneName + ' : ' + epMetadata.script.name, 'AutoSave');
         }
     };
 

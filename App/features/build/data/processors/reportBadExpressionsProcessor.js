@@ -1,15 +1,15 @@
 define(function(require){
     var baseReportProcessor = require('features/build/data/processors/baseReportProcessor');
 
-    function getExpressionId(sceneName, scriptEntry, expressionEntry) {
-        return sceneName + "_" + scriptEntry.name + "_" + expressionEntry.getDescription();
+    function getExpressionId(epMetadata, expressionEntry) {
+        return epMetadata.sceneName + "_" + epMetadata.script.name + "_" + expressionEntry.getDescription();
     }
 
-    var expressionHolder = function(sceneName, scriptEntry, expressionEntry) {
+    var expressionHolder = function(epMetadata, expressionEntry) {
         var item = {
-            id: getExpressionId(sceneName, scriptEntry, expressionEntry),
-            scene: sceneName,
-            script: scriptEntry.name,
+            id: getExpressionId(epMetadata, expressionEntry),
+            scene: epMetadata.sceneName,
+            script: epMetadata.script.name,
             expression: expressionEntry.getDescription(),
             conditionals: {}
         };
@@ -38,14 +38,14 @@ define(function(require){
         this.expressionParentLookup[expressionId] = parentExpressionId;
     };
 
-    ctor.prototype.parseTopLevelExpression = function(idMap, sceneName, script, expression) {
-        var expSummary = expressionHolder(sceneName, script, expression);
+    ctor.prototype.parseTopLevelExpression = function(idMap, expression, epMetadata) {
+        var expSummary = expressionHolder(epMetadata, expression);
         this.expressions[expSummary.id] = expSummary;
         this.setExpressionParent(expSummary.id, expSummary.id);
     };
 
-    ctor.prototype.parseExpression = function(idMap, sceneName, script, expression) {
-        var expSummaryId = getExpressionId(sceneName, script, expression);
+    ctor.prototype.parseExpression = function(idMap, expression, epMetadata) {
+        var expSummaryId = getExpressionId(epMetadata, expression);
         var expParent = this.getExpressionParent(expSummaryId);
         if ('expressions.or' == expression.type) {
             expParent.conditionals['or'] = true;
@@ -54,10 +54,10 @@ define(function(require){
         }
 
         if (expression.left) {
-            this.setExpressionParent(getExpressionId(sceneName, script, expression.left), expParent.id);
+            this.setExpressionParent(getExpressionId(epMetadata, expression.left), expParent.id);
         }
         if (expression.right) {
-            this.setExpressionParent(getExpressionId(sceneName, script, expression.right), expParent.id);
+            this.setExpressionParent(getExpressionId(epMetadata, expression.right), expParent.id);
         }
     };
 

@@ -9,12 +9,12 @@ define(function(require){
     ctor.prototype = Object.create(baseReportProcessor.prototype);
     ctor.prototype.constructor = baseReportProcessor;
 
-    ctor.prototype.parseNode = function(idMap, sceneName, script, node) {
+    ctor.prototype.parseNode = function(idMap, node, nodeType, nodeIndex, epMetadata) {
         if (node.text) {
             var allScopeAndVariableUsages = node.text.match(scopeAndVariableRegex);
             if (allScopeAndVariableUsages) {
                 for (var i in allScopeAndVariableUsages) {
-                    this.report.log(sceneName + ' : ' + script.name, node.text, allScopeAndVariableUsages[i]);
+                    this.report.log(epMetadata.sceneName + ' : ' + epMetadata.script.name, node.text, allScopeAndVariableUsages[i]);
                 }
             }
         }

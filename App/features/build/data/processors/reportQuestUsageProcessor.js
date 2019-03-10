@@ -9,11 +9,9 @@ define(function(require){
     ctor.prototype = Object.create(baseReportProcessor.prototype);
     ctor.prototype.constructor = baseReportProcessor;
 
-    ctor.prototype.parseNode = function(idMap, sceneName, script, node) {
-        var nodeType = node.__proto__.constructor.displayName;
-
+    ctor.prototype.parseNode = function(idMap, node, nodeType, nodeIndex, epMetadata) {
         if ('Quests' == nodeType) {
-            this.report.log(idMap.getDisplayValue(sceneName, script, 'prop', node.propId), questOp[node.target], sceneName + ' : ' + script.name);
+            this.report.log(idMap.getDisplayValue(epMetadata.sceneName, epMetadata.script, 'prop', node.propId), questOp[node.target], epMetadata.sceneName + ' : ' + epMetadata.script.name);
         }
     };
 

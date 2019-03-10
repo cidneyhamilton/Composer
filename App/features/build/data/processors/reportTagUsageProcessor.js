@@ -49,21 +49,21 @@ define(function(require){
         this.parseInitialTags(idMap, 'script', script);
     };
 
-    ctor.prototype.parseNode = function(idMap, sceneName, script, node) {
-        var displayScope = idMap.getDisplayValue(sceneName, script, node.scope, node.scopeId);
+    ctor.prototype.parseNode = function(idMap, node, nodeType, nodeIndex, epMetadata) {
+        var displayScope = idMap.getDisplayValue(epMetadata.sceneName, epMetadata.script, node.scope, node.scopeId);
         if (node.tagsToAdd) {
-            this.registerTags(displayScope ? (node.scope + ' : ' + displayScope) : (sceneName + ' : ' + script.name), node.tagsToAdd, 'Added');
+            this.registerTags(displayScope ? (node.scope + ' : ' + displayScope) : (epMetadata.sceneName + ' : ' + epMetadata.script.name), node.tagsToAdd, 'Added');
         }
         if (node.tagsToRemove) {
-            this.registerTags(displayScope ? (node.scope + ' : ' + displayScope) : (sceneName + ' : ' + script.name), node.tagsToRemove, 'Removed');
+            this.registerTags(displayScope ? (node.scope + ' : ' + displayScope) : (epMetadata.sceneName + ' : ' + epMetadata.script.name), node.tagsToRemove, 'Removed');
         }
     };
 
-    ctor.prototype.parseExpression = function(idMap, sceneName, script, expression) {
+    ctor.prototype.parseExpression = function(idMap, expression, epMetadata) {
         if (expression.tags) {
             this.registerTags(expression.scopeId ? 
-                (expression.scope + ' : ' + idMap.getDisplayValue(sceneName, script, expression.scope, expression.scopeId)) 
-                : (sceneName + ' : ' + script.name), expression.tags, 'Check : ' + (expression.has ? 'Has' : 'Not Tagged With')
+                (expression.scope + ' : ' + idMap.getDisplayValue(epMetadata.sceneName, epMetadata.script, expression.scope, expression.scopeId)) 
+                : (epMetadata.sceneName + ' : ' + epMetadata.script.name), expression.tags, 'Check : ' + (expression.has ? 'Has' : 'Not Tagged With')
             );
         }
     };

@@ -3,6 +3,7 @@ define(function(require){
         fileSystem = require('infrastructure/fileSystem'),
         system = require('durandal/system'),
         db = require('infrastructure/assetDatabase'),
+        scriptMetadataBuilder = require('features/build/data/scriptParsingMetadata'),
 
         // Processors
         reportAutosaveUsageProcessor = require('features/build/data/processors/reportAutosaveUsageProcessor'),
@@ -23,6 +24,7 @@ define(function(require){
         inkProcessor = require('features/build/data/processors/inkProcessor'),
         gameModelProcessor = require('features/build/data/processors/gameModelProcessor'),
         proofreadSimpleProcessor = require('features/build/data/processors/proofreadSimpleProcessor'),
+        proofreadScriptProcessor = require('features/build/data/processors/proofreadScriptProcessor'),
 
         selectedGame = require('features/projectSelector/index');
 
@@ -37,7 +39,7 @@ define(function(require){
                                      reportBadExpressionsProcessor, reportTimeUsageProcessor, reportBadInvokeScriptProcessor, 
                                      reportQuestUsageProcessor, reportBadGuidProcessor, 
                                      gameModelProcessor, unityCodeGenProcessor, localizationProcessor, scriptDataProcessor,
-                                     proofreadSimpleProcessor
+                                     proofreadSimpleProcessor, proofreadScriptProcessor
                                      ];
 
                 if (selectedGame.activeProject.format == 'ink') {
@@ -76,7 +78,6 @@ define(function(require){
                         }
                         return displayValue;
                     }
-
                 };
 
                 function generate() {
@@ -103,7 +104,8 @@ define(function(require){
                             processAsset(assets[i], assetEntries[j]);
                         }
                     }
-                
+
+                    // Notify all processors to finish
                     for(var i = 0; i < allProcessors.length; i++) {
                         allProcessors[i].finish(context, idMap);
                     } 
@@ -150,7 +152,7 @@ define(function(require){
                                 processor.parseScript(context, idMap, assetEntry.item, sceneName);
 
                                 // If the script has entry points defined, parse them too.
-                                if (assetEntry.item.entryPoints) {
+                                if (assetEntry.item.entryPoints && assetEntry.item.entryPoints.length) {
                                     processEntryPoints(sceneName, assetEntry.item, processor, assetEntry.item.entryPoints);
                                 }
                                 break;
@@ -166,81 +168,90 @@ define(function(require){
                         }
                         for (var i = 0; i < entryPoints.length; i++) {
                             var entryPoint = entryPoints[i];
-                            processor.parseEntryPoint(idMap, sceneName, script, entryPoint);
+                            var epMetadataBuilder = scriptMetadataBuilder.getBuilder(sceneName, script, entryPoint);
+                            var epMetadata = epMetadataBuilder.build();
+                            processor.parseEntryPoint(idMap, entryPoint, i, epMetadata);
 
                             if (entryPoint.nodes) {
-                                processNodeArray(sceneName, script, processor, entryPoint.nodes);
+                                var nodeEpMetadata = epMetadataBuilder.build(1);
+                                processNodeArray(processor, entryPoint.nodes, epMetadataBuilder, nodeEpMetadata);
                             }
+                            processor.parseEntryPointEnd(idMap, entryPoint, i, epMetadata);
                         }
                     }
                 }
 
-                function processNodeArray(sceneName, script, processor, nodeArray) {
-                    processor.parseNodeArray(idMap, sceneName, script, nodeArray);
+                function processNodeArray(processor, nodeArray, epMetadataBuilder, epMetadata) {
+                    processor.parseNodeArray(idMap, nodeArray, epMetadata);
 
                     for(var i = 0; i < nodeArray.length; i++) {
-                        processSingleNode(sceneName, script, processor, nodeArray[i]);
+                        processSingleNode(processor, nodeArray[i], i, epMetadataBuilder, epMetadata);
                     }
+                    processor.parseNodeArrayEnd(idMap, nodeArray, epMetadata);
                 }
 
-                function processSingleNode(sceneName, script, processor, node) {
-                    processor.parseNode(idMap, sceneName, script, node);
+                function processSingleNode(processor, node, nodeIndex, epMetadataBuilder, epMetadata) {
+                    var nodeType = node.__proto__.constructor.displayName || node.type;
+
+                    processor.parseNode(idMap, node, nodeType, nodeIndex, epMetadata);
 
                     if (node.success) {
-                        processSection(sceneName, script, processor, node.success);
+                        processSection(processor, node.success, 0, epMetadataBuilder, epMetadataBuilder.buildSuccessFailure(epMetadata.depth + 1, 'Success'));
                     }
                     if (node.failure) {
-                        processSection(sceneName, script, processor, node.failure);
+                        processSection(processor, node.failure, 0, epMetadataBuilder, epMetadataBuilder.buildSuccessFailure(epMetadata.depth + 1, 'Failure'));
                     }
 
-
-                    if (node.nodes) {
-                        processNodeArray(sceneName, script, processor, node.nodes);
+                    if (node.nodes && node.nodes.length > 0) {
+                        processNodeArray(processor, node.nodes, epMetadataBuilder, epMetadataBuilder.build(epMetadata.depth + 1));
                     }
 
-                    if (node.sections) {
-                        processSectionArray(sceneName, script, processor, node.sections);
+                    if (node.sections && node.sections.length > 0) {
+                        processSectionArray(processor, node.sections, epMetadataBuilder, epMetadataBuilder.buildUniqueAutoAdd(epMetadata.depth, node.Unique, node.AutoAddDone));
                     }
 
-                    if (node.options) {
-                        processSectionArray(sceneName, script, processor, node.options);
+                    if (node.options && node.options.length > 0) {
+                        processSectionArray(processor, node.options, epMetadataBuilder, epMetadataBuilder.buildUniqueAutoAdd(epMetadata.depth, node.Unique, node.AutoAddDone));
                     }
+                    processor.parseNodeEnd(idMap, node, nodeType, nodeIndex, epMetadata);
                 }
 
                 // Process an array of Sections in the script
-                function processSectionArray(sceneName, script, processor, sectionArray) {
-                    processor.parseSectionArray(idMap, sceneName, sectionArray);
+                function processSectionArray(processor, sectionArray, epMetadataBuilder, epMetadata) {
+                    processor.parseSectionArray(idMap, sectionArray, epMetadata);
 
                     for (var i = 0; i < sectionArray.length; i++) {
-                        processSection(sceneName, script, processor, sectionArray[i]);
+                        processSection(processor, sectionArray[i], i, epMetadataBuilder, epMetadata);
                     }
+                    processor.parseSectionArrayEnd(idMap, sectionArray, epMetadata);
                 }
 
-                function processSection(sceneName, script, processor, section) {
-                    processor.parseSection(idMap, sceneName, script, processor, section);
+                function processSection(processor, section, sectionIndex, epMetadataBuilder, epMetadata) {
+                    processor.parseSection(idMap, section, sectionIndex, epMetadata);
 
                     if (section.expression) {
-                        processTopLevelExpression(sceneName, script, processor, section.expression);
+                        processTopLevelExpression(processor, section.expression, epMetadataBuilder, epMetadata);
                     }
                     if (section.nodes) {
-                        processNodeArray(sceneName, script, processor, section.nodes);
+                        processNodeArray(processor, section.nodes, epMetadataBuilder, epMetadataBuilder.buildDeeper(epMetadata));
                     }
+                    processor.parseSectionEnd(idMap, section, sectionIndex, epMetadata);
                 }
 
-                function processTopLevelExpression(sceneName, script, processor, expression) {
-                    processor.parseTopLevelExpression(idMap, sceneName, script, expression);
+                function processTopLevelExpression(processor, expression, epMetadataBuilder, epMetadata) {
+                    processor.parseTopLevelExpression(idMap, expression, epMetadata);
 
-                    processExpression(sceneName, script, processor, expression);
+                    processExpression(processor, expression, epMetadataBuilder, epMetadata);
                 }
 
-                function processExpression(sceneName, script, processor, expression) {
-                    processor.parseExpression(idMap, sceneName, script, expression);
+                function processExpression(processor, expression, epMetadataBuilder, epMetadata) {
+                    processor.parseExpression(idMap, expression, epMetadata);
 
                     if (expression.left) {
-                        processExpression(sceneName, script, processor, expression.left);
+                        processExpression(processor, expression.left, epMetadataBuilder, epMetadata);
                     }
                     if (expression.right) {
-                        processExpression(sceneName, script, processor, expression.right);
+                        processExpression(processor, expression.right, epMetadataBuilder, epMetadata);
                     }
                 }
 

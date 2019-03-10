@@ -8,16 +8,15 @@ define(function(require){
     ctor.prototype = Object.create(baseReportProcessor.prototype);
     ctor.prototype.constructor = baseReportProcessor;
 
-    ctor.prototype.parseNode = function(idMap, sceneName, script, node) {
-        var nodeType = node.__proto__.constructor.displayName;
+    ctor.prototype.parseNode = function(idMap, node, nodeType, nodeIndex, epMetadata) {
         if ('Variable' == nodeType) {
-            this.report.log(node.name, node.scope, sceneName + ' : ' + script.name);
+            this.report.log(node.name, node.scope, epMetadata.sceneName + ' : ' + epMetadata.script.name);
         }
     };
 
-    ctor.prototype.parseExpression = function(idMap, sceneName, script, expression) {
+    ctor.prototype.parseExpression = function(idMap, expression, epMetadata) {
         if (expression.variableName) {
-            this.report.log(expression.variableName, expression.variableScope, sceneName + ' : ' + script.name);
+            this.report.log(expression.variableName, expression.variableScope, epMetadata.sceneName + ' : ' + epMetadata.script.name);
         }
     };
 

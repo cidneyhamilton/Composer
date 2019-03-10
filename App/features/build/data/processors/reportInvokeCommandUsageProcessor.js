@@ -8,14 +8,14 @@ define(function(require){
     ctor.prototype = Object.create(baseReportProcessor.prototype);
     ctor.prototype.constructor = baseReportProcessor;
 
-    ctor.prototype.parseNode = function(idMap, sceneName, script, node) {
+    ctor.prototype.parseNode = function(idMap, node, nodeType, nodeIndex, epMetadata) {
         if (node.command) {
             var displayParameters = node.parameter;
             if (!displayParameters) {
                 displayParameters = "(none)";
             }
 
-            this.report.log(node.command, displayParameters, sceneName + ' : ' + script.name);
+            this.report.log(node.command, displayParameters, epMetadata.sceneName + ' : ' + epMetadata.script.name);
         }
     };
 

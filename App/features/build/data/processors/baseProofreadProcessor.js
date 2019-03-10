@@ -70,9 +70,7 @@ define(function(require){
                         + "</div>\r\n" 
                         + "</div>\r\n"            
                         + "<div class=\"right\">\r\n"
-                        + this.listStartHidden
                         + item.right
-                        + this.listEnd
                         + "</div>\r\n"
                         + "<div class=\"clear\"></div>\r\n"
                         + "</section>\r\n");

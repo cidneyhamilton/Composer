@@ -112,7 +112,8 @@ define(function(require){
     };
 
     ctor.prototype.parseEntryRight = function(idMap, sceneName, entry) {
-        var output = this.listEntryStart
+        var output = this.listStartHidden
+                    + this.listEntryStart
                     + "<b>Display Name</b>: " + ( !!entry.displayName ? entry.displayName : (entry.name + ' (same as name)'))
                     + this.listEntryEnd;
         if (entry.description) {
@@ -142,7 +143,9 @@ define(function(require){
                         output += this.listEntryStart + propertyName + ': ' + componentPropertyValue + this.listEntryEnd;
                     }
                 }, this);
-                output += this.listEnd + this.listEntryEnd;
+                output += this.listEnd 
+                    + this.listEntryEnd
+                    + this.listEnd;
             }
         }
         return output;

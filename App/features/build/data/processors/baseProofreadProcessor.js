@@ -35,11 +35,7 @@ define(function(require){
         }
     };
 
-    ctor.prototype.writeSidebarEntry = function(idMap, writer, scene, entry, addlInfo) { };
-
-    ctor.prototype.writeMainEntry = function(idMap, writer, scene, entry, addlInfo) {};
-
-    ctor.prototype.getPageTitle = function(writer) {
+    ctor.prototype.getPageTitle = function(writer, filename) {
         return selectedGame.activeProject.gameName + " (Proofread)";
     };
 
@@ -50,12 +46,12 @@ define(function(require){
         return "";
     };
 
-    ctor.prototype.writeHtmlHeader = function(writer) {
+    ctor.prototype.writeHtmlHeader = function(writer, filename) {
         writer.write("<!DOCTYPE html>\r\n" 
             + "<html>\r\n"
             + "<head>\r\n"
             + "<meta charset=\"UTF-8\">"
-            + "<title>" + this.getPageTitle(writer) + "</title>\r\n"
+            + "<title>" + this.getPageTitle(writer, filename) + "</title>\r\n"
             + "<link rel=\"stylesheet\" href=\"game_text.css\"/>\r\n"
             + "</head>\r\n" 
             + "<body>\r\n"
@@ -64,30 +60,22 @@ define(function(require){
             + "\r\n");
     };
 
-    ctor.prototype.writeEntryLeft = function(idMap, writer, scene, entry, addlInfo) {
-        writer.write("<section>\r\n"
-                    + "<div class=\"left\">\r\n"
-                    + "<div class=\"floater\">" );
-        this.writeSidebarEntry(idMap, writer, scene, entry, addlInfo);
-        writer.write("</div>\r\n" 
-                    + "</div>\r\n");
-    };
-
-    ctor.prototype.writeEntryRight = function(idMap, writer, scene, entry, addlInfo) {
-        writer.write("<div class=\"right\">\r\n"
-                    + this.listStartHidden);
-        this.writeMainEntry(idMap, writer, scene, entry, addlInfo);
-        writer.write(this.listEnd
-                    + "</div>\r\n"
-                    + "<div class=\"clear\"></div>\r\n"
-                    + "</section>\r\n");
-    };
-
     ctor.prototype.writeData = function(idMap, writer, scene, data) {
         for (var i = 0; i < data.length; i++) {
             var item = data[i];
-            this.writeEntryLeft(idMap, writer, scene, item);
-            this.writeEntryRight(idMap, writer, scene, item);
+            writer.write("<section>\r\n"
+                        + "<div class=\"left\">\r\n"
+                        + "<div class=\"floater\">"
+                        + item.left
+                        + "</div>\r\n" 
+                        + "</div>\r\n"            
+                        + "<div class=\"right\">\r\n"
+                        + this.listStartHidden
+                        + item.right
+                        + this.listEnd
+                        + "</div>\r\n"
+                        + "<div class=\"clear\"></div>\r\n"
+                        + "</section>\r\n");
         }
     }
 
@@ -95,15 +83,11 @@ define(function(require){
         writer.write("</body>\r\n</html>");
     };
 
-    ctor.prototype.createWriter = function(fileName, gameTextFilePath) {
-        return baseWriter.createFileWriter(gameTextFilePath);
-    }
-
     ctor.prototype.finish = function(context, idMap) {
         for (var file in this.dataTables) {
             var gameTextFilePath = path.join(context.internalDocOutputDirectory, file + ".html");
-            var writer = this.createWriter(file, gameTextFilePath);
-            this.writeHtmlHeader(writer);
+            var writer = baseWriter.createFileWriter(gameTextFilePath);
+            this.writeHtmlHeader(writer, file);
             var orderedKeys = [];
             for(var key in this.dataTables[file]){
                 orderedKeys.push(key);

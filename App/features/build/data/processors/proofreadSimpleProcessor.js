@@ -72,9 +72,6 @@ define(function(require){
         this.propFilename = 'prop_text';
 
         baseProofreadProcessor.call(this, this.actorFilename, this.propFilename);
-        this.fileNameToType = {};
-        this.fileNameToType[this.actorFilename] = 'Actor';
-        this.fileNameToType[this.propFilename] = 'Prop';
     };
 
     ctor.prototype = Object.create(baseProofreadProcessor.prototype);
@@ -86,50 +83,51 @@ define(function(require){
     };
 
     ctor.prototype.parseActor = function(context, idMap, actor) {
-        this.dataTables[this.actorFilename][""].push(actor);
+        var entry = {};
+        entry.left = this.parseEntryLeft(idMap, 'Actor', undefined, actor);
+        entry.right  = this.parseEntryRight(idMap, undefined, actor);
+        this.dataTables[this.actorFilename][""].push(entry);
     };
 
     ctor.prototype.parseProp = function(context, idMap, prop) {
-        var sceneToPropMap = this.dataTables[this.propFilename][idMap[prop.sceneId]];
+        var sceneName = idMap[prop.sceneId];
+        var sceneToPropMap = this.dataTables[this.propFilename][sceneName];
         if (null == sceneToPropMap) {
-            this.dataTables[this.propFilename][idMap[prop.sceneId]] = [];
+            this.dataTables[this.propFilename][sceneName] = [];
         }
-        this.dataTables[this.propFilename][idMap[prop.sceneId]].push(prop);
+        var entry = {};
+        entry.left = this.parseEntryLeft(idMap, 'Prop', sceneName, prop);
+        entry.right  = this.parseEntryRight(idMap, sceneName, prop);
+        this.dataTables[this.propFilename][sceneName].push(entry);
     };
 
-    ctor.prototype.createWriter = function(fileName, gameTextFilePath) {
-        var defaultWriter = baseProofreadProcessor.prototype.createWriter.call(this, fileName, gameTextFilePath);
-        defaultWriter.itemType = this.fileNameToType[fileName];
-        return defaultWriter;
-    }
-
-    ctor.prototype.getPageTitle = function(writer) {
-        return  writer.itemType + "s for " + baseProofreadProcessor.prototype.getPageTitle.call(this);
+    ctor.prototype.getPageTitle = function(writer, filename) {
+        return  (filename == this.actorFilename ? 'Actors' : (filename == this.propFilename ? "Props" : "Unknown Types")) + " for " + baseProofreadProcessor.prototype.getPageTitle.call(this);
     };
 
-    ctor.prototype.writeSidebarEntry = function(idMap, writer, scene, entry) {
-        writer.write( (scene ? "<b>Scene</b>: " + scene + this.newline : "" )
-                    + "<b>" + writer.itemType + " Name</b>: " + entry.name + this.newline
-                    + "<b>" + writer.itemType + " Id</b>: " + entry.id + this.newline);
+    ctor.prototype.parseEntryLeft = function(idMap, entryType, sceneName, entry) {
+       return ((sceneName ? "<b>Scene</b>: " + sceneName + this.newline : "" )
+                    + "<b>" + entryType + " Name</b>: " + entry.name + this.newline
+                    + "<b>" + entryType + " Id</b>: " + entry.id + this.newline);
     };
 
-    ctor.prototype.writeMainEntry = function(idMap, writer, scene, entry) {
-        writer.write(this.listEntryStart
+    ctor.prototype.parseEntryRight = function(idMap, sceneName, entry) {
+        var output = this.listEntryStart
                     + "<b>Display Name</b>: " + ( !!entry.displayName ? entry.displayName : (entry.name + ' (same as name)'))
-                    + this.listEntryEnd);
+                    + this.listEntryEnd;
         if (entry.description) {
-            writer.write(this.listEntryStart 
+            output += this.listEntryStart 
                     + "<b>Description</b>: " + entry.description + "\r\n"
-                    + this.listEntryEnd);
+                    + this.listEntryEnd;
         }
         if (entry.components && entry.components.length > 0) {
-            writer.write("<hr/>\r\n");
+            output += "<hr/>\r\n";
 
             for (var i = 0; i < entry.components.length; i++) {
                 var comp = entry.components[i];
-                writer.write(this.listEntryStart
+                output += this.listEntryStart
                             + parseComponent(comp, 'type') + this.newline
-                            + this.listStart);
+                            + this.listStart;
                 Object.keys(comp).sort(function(a,b){return a.localeCompare(b)}).forEach(function(propertyName) {            
                     // skip any system properties
                     if (propertyName.indexOf("__") != -1) {
@@ -141,12 +139,13 @@ define(function(require){
                     }
                     var componentPropertyValue = parseComponent(comp, propertyName);
                     if (SKIPME !== componentPropertyValue) {
-                        writer.write(this.listEntryStart + propertyName + ': ' + componentPropertyValue + this.listEntryEnd);
+                        output += this.listEntryStart + propertyName + ': ' + componentPropertyValue + this.listEntryEnd;
                     }
                 }, this);
-                writer.write(this.listEnd + this.listEntryEnd);
+                output += this.listEnd + this.listEntryEnd;
             }
         }
+        return output;
     };
 
     return new ctor();

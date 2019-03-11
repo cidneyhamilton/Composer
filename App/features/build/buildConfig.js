@@ -17,7 +17,8 @@ define(function(require) {
                     editorOutputDirectory: "../Game/Assets/Scripts/Editor",
                     localizationOutputDirectory: "../Game/Assets/Resources/Locales",
                     translationOutputDirectory: "../Translations",
-                    internalDocOutputDirectory: "../Proofread"
+                    internalDocOutputDirectory: "../Proofread",
+                    inkOutputDirectory: "Output/Ink"
                 }
             };
 
@@ -49,6 +50,10 @@ define(function(require) {
             fileSystem.makeDirectory(path.resolve(selectedGame.activeProject.dir, that.project.build.localizationOutputDirectory));
             fileSystem.makeDirectory(path.resolve(selectedGame.activeProject.dir, that.project.build.translationOutputDirectory));
             fileSystem.makeDirectory(path.resolve(selectedGame.activeProject.dir, that.project.build.internalDocOutputDirectory));
+            // Only verify the ink dir for ink projects
+            if (selectedGame.activeProject.format == 'ink') {
+                fileSystem.makeDirectory(path.resolve(selectedGame.activeProject.dir, that.project.build.inkOutputDirectory));
+            }
         }
     };
 

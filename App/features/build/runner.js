@@ -79,6 +79,7 @@ define(function(require){
                 localizationOutputDirectory:path.resolve(selectedGame.activeProject.dir, project.build.localizationOutputDirectory),
                 translationOutputDirectory:path.resolve(selectedGame.activeProject.dir, project.build.translationOutputDirectory),
                 internalDocOutputDirectory:path.resolve(selectedGame.activeProject.dir, project.build.internalDocOutputDirectory),
+                inkOutputDirectory:path.resolve(selectedGame.activeProject.dir, project.build.inkOutputDirectory),
                 reportsOutputDirectory: path.join(path.resolve(selectedGame.activeProject.dir, project.build.internalDocOutputDirectory), 'Reports'),
                 doneFile: path.join(path.resolve(selectedGame.activeProject.dir, project.build.internalDocOutputDirectory), 'buildDone.txt'),
                 getJsonSpacing:function(){

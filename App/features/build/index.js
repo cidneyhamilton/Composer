@@ -13,6 +13,9 @@
     var projectPath = path.join(projectPathDir, 'project.json');
 
     var index = {
+        showInk: function() {
+            return 'ink' == selectedGame.activeProject.format;
+        },
         save:function(){
             var json = serializer.serialize(this.project, 4);
             fileSystem.write(projectPath, json);
@@ -83,6 +86,15 @@
             commonDialogs.chooseDirectory().then(function(result){
                 if(result){
                     that.project.build.internalDocOutputDirectory = path.relative(selectedGame.activeProject.dir, result);
+                    fileSystem.write(projectPath, serializer.serialize(that.project, 4));
+                }
+            });
+        },
+        chooseInkOutputDirectory:function(){
+            var that = this;
+            commonDialogs.chooseDirectory().then(function(result){
+                if(result){
+                    that.project.build.inkOutputDirectory = path.relative(selectedGame.activeProject.dir, result);
                     fileSystem.write(projectPath, serializer.serialize(that.project, 4));
                 }
             });

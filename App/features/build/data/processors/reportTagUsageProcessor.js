@@ -1,6 +1,5 @@
 define(function(require){
     var baseReportProcessor = require('features/build/data/processors/baseReportProcessor'),
-        InkWriter = require('features/build/inkWriter'),
         path = requireNode('path'),
         commaDelimiter = /\s*,\s*/;
 
@@ -69,12 +68,6 @@ define(function(require){
     };
 
     ctor.prototype.finish = function(context, idMap) {
-        // generate the tagUsage report
-        if (context.game.format == 'ink') {
-            var writer = InkWriter.createFileWriter(path.join(context.dataOutputDirectory, 'AllTags'));
-            writer.writeList("TAGS", this.report.UsageList);
-            writer.end();
-        }
 
         // also generate the bad tags report, since it's basically a subset of the Tags report.
         for(var i in this.report.UsageList) {

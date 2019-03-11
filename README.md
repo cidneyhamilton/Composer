@@ -61,6 +61,12 @@ The "valid" options are:
 * [r2rDemo](https://github.com/Transolar/R2R-Demo)
 * [wizardsWay](https://github.com/Transolar/WizardWay)
 
+## Generating more code / documentation
+
+The majority of the Composer "Build" logic is in App/features/build.  The runner is in runner.js, the configuration (default output directory configuration) is in buildConfig.js, although the per-user overrides are in Composer/Data/project.json.  
+
+If you want to generate new code / data, take a look at App/features/build/data/generateAddlOutput (which lists all of the "processors" currently generating data") and at the App/features/build/data/processors subdirectory (which contains the "processing" logic for one or more files.  baseProcessor is the lowest-level object; take a look at the others for examples of how to extend them.  All c# template files are currently in features/build/unity3d/csharp.)
+
 ### Open Source Licenses
 
 * The JSON Serializer/Deserializer is an altered version of [fastJSON](http://www.codeproject.com/Articles/159450/fastJSON). License found [here](http://www.codeproject.com/info/cpol10.aspx)

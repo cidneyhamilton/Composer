@@ -1,3 +1,6 @@
+// Generate .ink scripts within Composer
+// See https://github.com/inkle/ink/blob/master/Documentation/WritingWithInk.md for documentation
+
 define(function(require){
     var baseProcessor = require('features/build/data/processors/baseProcessor'), 
         baseWriter = require('features/build/baseWriter'),
@@ -106,18 +109,19 @@ define(function(require){
         }
     };
 
-    ctor.prototype.parse_node_changeTags = function(idMap, node, depth) {
+    // Handle Tag Changing
+    ctor.prototype.parseNodeChangeTags = function(idMap, node, depth) {
         var result = "";
         if (node.tagsToAdd) {
-            result = appendIfNotEmpty(result, this.parse_node_changeTags_helper(idMap, node.tagsToAdd, "~ Tags +=", depth));
+            result = appendIfNotEmpty(result, this.parseNodeChangeTagsHelper(idMap, node.tagsToAdd, "~ Tags +=", depth));
         }
         if (node.tagsToRemove) {
-            result = appendIfNotEmpty(result, this.parse_node_changeTags_helper(idMap, node.tagsToRemove, "~ Tags -=", depth));
+            result = appendIfNotEmpty(result, this.parseNodeChangeTagsHelper(idMap, node.tagsToRemove, "~ Tags -=", depth));
         }
         return result;
     };
 
-    ctor.prototype.parse_node_changeTags_helper = function(idMap, tagList, prefix, depth) {
+    ctor.prototype.parseNodeChangeTagsHelper = function(idMap, tagList, prefix, depth) {
         var result = "";
         if (isNotEmpty(tagList)) {
             tagList = tagList.replace(",", ", ");
@@ -134,7 +138,8 @@ define(function(require){
         return result;
     };
 
-    ctor.prototype.parse_node_invokeScript = function(idMap, node, depth) {
+    // Handle Invoke Scripts
+    ctor.prototype.parseNodeInvokeScript = function(idMap, node, depth) {
         var knot = this.getInkNameFromId(node.scriptId);
         var stitch = this.getInkNameFromId(node.entryPointId)
         
@@ -149,7 +154,8 @@ define(function(require){
         return result;
     };
 
-    ctor.prototype.parse_node_setVariable = function(idMap, node, depth) {
+    // Handle setting variables
+    ctor.prototype.parseNodeSetVariable = function(idMap, node, depth) {
         var result = indent(depth);
 
         // TODO: Implement for values and ranges of values
@@ -157,7 +163,8 @@ define(function(require){
         return result;
     };
 
-    ctor.prototype.parse_node_showMenu = function(idMap, node, depth) {
+    // Handle Show Menu nodes
+    ctor.prototype.parseNodeShowMenu = function(idMap, node, depth) {
         var options = node.options;
         var weaveName = removeWhitespace(node.id);
 
@@ -170,7 +177,7 @@ define(function(require){
 
         if (options) {
             for (var i = 0; i < options.length; i++) {
-                result += this.parse_option(idMap, options[i], depth, weaveName);
+                result += this.parseOption(idMap, options[i], depth, weaveName);
             }
         }
         if (autoAddDone) {
@@ -180,7 +187,8 @@ define(function(require){
         return result;
     };
 
-    ctor.prototype.parse_option = function(idMap, node, depth, parentId) {
+    // Handle Options
+    ctor.prototype.parseOption = function(idMap, node, depth, parentId) {
         var alwaysShow = !!node.ignoreChildAvailability;
         var expression = node.expression;
 
@@ -192,7 +200,7 @@ define(function(require){
             result += "* ";
         }
         if (expression) {
-            result += "{{ {0} }} ".format(this.parse_expression(idMap, expression));
+            result += "{{ {0} }} ".format(this.parseExpression(idMap, expression));
         }
         if (node.text) {
             result += "{0}".format(node.text);
@@ -204,7 +212,8 @@ define(function(require){
         return result;
     };
 
-    ctor.prototype.parse_node_speak = function(idMap, node, depth) {
+    // Handle Speak nodes
+    ctor.prototype.parseNodeSpeak = function(idMap, node, depth) {
         var result = indent(depth);
 
         var speaker = node.actorId;
@@ -218,11 +227,12 @@ define(function(require){
         return result;
     };
 
-    ctor.prototype.parse_node_branch = function(idMap, node, depth) {
+    // Handle Branching
+    ctor.prototype.parseNodeBranch = function(idMap, node, depth) {
         var result = "";
         if (node.sections && node.sections.length > 0) {
             for (var i = 0; i < node.sections.length; i++) {
-                var s = this.parse_node_branch_section(idMap, node.sections[i], depth + 1);
+                var s = this.parseNodeBranchSection(idMap, node.sections[i], depth + 1);
                 if (isNotEmpty(s)) {
                     result += indent(depth + 1) + "- {0}".format(s);
                 }
@@ -235,13 +245,14 @@ define(function(require){
         return result;
     };
 
-    ctor.prototype.parse_node_branch_section = function(idMap, section, depth) {
+    // Handle Branch Sections
+    ctor.prototype.parseNodeBranchSection = function(idMap, section, depth) {
         var expression = section["expression"];
         var result = "";
 
         var parsed_children = this.parseNodes(idMap, section["nodes"], depth);
         if (expression) {
-            result += "{0}:".format(this.parse_expression(idMap, expression));
+            result += "{0}:".format(this.parseExpression(idMap, expression));
             result += parsed_children;
         } else {
             // this is just a block of nodes; no expression to evaluate
@@ -253,7 +264,8 @@ define(function(require){
         return result;
     };
 
-    ctor.prototype.parse_expression = function(idMap, node) {
+    // Handle Expressions in Branches
+    ctor.prototype.parseExpression = function(idMap, node) {
         var left = node.left;
         var right = node.right;
         var tags = node.tags;
@@ -292,10 +304,10 @@ define(function(require){
                 result += "{0} {1} {2}".format(varName, operatorVal, constName);
                 break;
             case "expressions.or":
-                result += "{0} {1} {2}".format(this.parse_expression(idMap, left), "||", thisparse_expression(idMap, right));
+                result += "{0} {1} {2}".format(this.parseExpression(idMap, left), "||", thisparseExpression(idMap, right));
                 break;
             case "expressions.and":
-                result += "{0} {1} {2}".format(this.parse_expression(idMap, left), "&&", this.parse_expression(idMap, right));
+                result += "{0} {1} {2}".format(this.parseExpression(idMap, left), "&&", this.parseExpression(idMap, right));
                 break;
             case "expressions.inInventory":
                 prop = this.getInkNameFromId[prop];
@@ -362,11 +374,22 @@ define(function(require){
         return result;
     };
 
+    // Handle Composer-side comments
     ctor.prototype.parseComment = function(idMap, node, depth) {
         var result = indent(depth);
         result += "### {0}".format(node.message);
         return result;
     };
+
+    // Handle Change Scene nodes
+    ctor.prototype.parseChangeScene = function(idMap, node, depth) {
+        var sceneName = this.getInkNameFromId(node.sceneId);
+        // TODO: Call ~ChangeScene(sceneName), which should be an included Ink function
+        var result = indent(depth);
+        result += "~ ChangeScene({0})".format(sceneName);
+        return result;
+    }
+
 
     ctor.prototype.parseScene = function(context, idMap, scene) {
         var sceneInkName = this.getInkName(scene);
@@ -415,25 +438,28 @@ define(function(require){
     ctor.prototype.parseNode = function(idMap, node, nodeType, nodeIndex, epMetadata) {        
         switch(node.type) {
             case 'nodes.branch': 
-                output = this.parse_node_branch(idMap, node, epMetadata.depth + 1);
+                output = this.parseNodeBranch(idMap, node, epMetadata.depth + 1);
                 break;
             case 'nodes.changeTags' : 
-                output = this.parse_node_changeTags(idMap, node, epMetadata.depth + 1);
+                output = this.parseNodeChangeTags(idMap, node, epMetadata.depth + 1);
                 break;
             case 'nodes.invokeScript' : 
-                output = this.parse_node_invokeScript(idMap, node, epMetadata.depth + 1);
+                output = this.parseNodeInvokeScript(idMap, node, epMetadata.depth + 1);
                 break;
             case 'nodes.setVariable' : 
-                output = this.parse_node_setVariable(idMap, node, epMetadata.depth + 1);
+                output = this.parseNodeSetVariable(idMap, node, epMetadata.depth + 1);
                 break;
             case 'nodes.showMenu' : 
-                output = this.parse_node_showMenu(idMap, node, epMetadata.depth + 1);
+                output = this.parseNodeShowMenu(idMap, node, epMetadata.depth + 1);
                 break;
             case 'nodes.speak' : 
-                output = this.parse_node_speak(idMap, node, epMetadata.depth + 1);
+                output = this.parseNodeSpeak(idMap, node, epMetadata.depth + 1);
                 break;
             case 'nodes.comment' :
                 output = this.parseComment(idMap, node, epMetadata.depth + 1);
+                break;
+            case 'nodes.changeScene':
+                output = this.parseChangeScene(idMap, node, epMetadata.depth + 1);
                 break;
             default:
                 output = "\n# TODO - " + node.type;
@@ -461,7 +487,8 @@ define(function(require){
         var gameOutput = "\nINCLUDE Tags.ink"
             + "\nINCLUDE Inventory.ink"
             + "\nINCLUDE Constants.ink"
-            + "\nINCLUDE Variables.ink";
+            + "\nINCLUDE Variables.ink"
+            + "\nINCLUDE Functions.ink";
 
         // For each scene, generate its ink file and its associated scripts
         var orderedSceneNames = [];
@@ -480,7 +507,7 @@ define(function(require){
             sceneWriter.write(this.data.scenes[orderedSceneNames[i]].output);
             sceneWriter.end();
 
-            // also write its child scrips
+            // also write its child scripts
             var orderedScriptNames = [];
             for (var script in this.data.scenes[orderedSceneNames[i]].scripts) {
                 orderedScriptNames.push(script);

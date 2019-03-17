@@ -31,9 +31,15 @@ define(function(require) {
                     dir: '../Hero-U/Composer',
                     format: 'json'
                 },
-                summerDaze: {
-                    gameName: 'Summer Daze',
-                    gameInternalName: 'summerDaze',
+                summerDazeFemale: {
+                    gameName: 'Summer Daze: Tilly',
+                    gameInternalName: 'summerDazeTilly',
+                    dir: '',
+                    format: 'ink'
+                },
+                summerDazeMale: {
+                    gameName: 'Summer Daze: Ifeyo',
+                    gameInternalName: 'summerDazeIfeyo',
                     dir: '',
                     format: 'ink'
                 },

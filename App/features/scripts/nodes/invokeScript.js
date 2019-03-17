@@ -16,32 +16,6 @@ define(function(require) {
         this.currentStoryEventId = attributes.currentStoryEventId || null;
         this.currentPropId = attributes.currentPropId || null;
 
-        // Check for legacy Invoke Script nodes and patch the data
-        /*
-        if (attributes.currentSceneId == null &&
-            attributes.currentActorId == null &&
-            attributes.currentStoryEventId == null &&
-            attributes.scriptId != '') {
-           // && attributes.entryPointId == "") {
-
-            var results = assetDatabase.scripts.entries.filter(function(item){
-                return item.id == attributes.scriptId ;
-            });
-            var script = results[0];
-            if (script) {
-                if (script.sceneId) {
-                    this.currentScope = "Scenes";
-                    this.currentSceneId = script.sceneId;
-                } else if (script.actorId) {
-                    this.currentScope = "Actors";
-                    this.currentActorId = script.actorId;
-                } else if (script.storyEventId) {
-                    this.currentScope = "StoryEvents";
-                    this.currentStoryEventId = script.storyEventId;
-                }
-            }
-        }
-        */
     };
 
     ctor.type = 'nodes.invokeScript';

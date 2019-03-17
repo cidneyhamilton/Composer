@@ -142,8 +142,20 @@ define(function(require){
     ctor.prototype.parseNodeInvokeScript = function(idMap, node, depth) {
 
         var knot, stich;
-
+        
         knot = this.getInkNameFromId(node.scriptId);
+
+        // If the script hasn't been loaded yet, it won't be in the dictionary of script names
+        if (knot.includes("ERROR_UNKNOWN_ID_")) {
+            // If we haven't already figured out the name of this script, look it up from the assets DB
+            var scripts = db.scripts.entries.filter(function(entry) {
+                return entry.triggerType == 'triggers.manual';
+            }).filter(function(item){
+                return item.id == node.scriptId;
+            });
+
+            knot = scripts[0].name || '???';
+        }
 
         // If the script is in the current scope, use entry points; otherwise, default to Main
         if (this.currentScope == "Current") {
@@ -393,12 +405,20 @@ define(function(require){
     // Handle Change Scene nodes
     ctor.prototype.parseChangeScene = function(idMap, node, depth) {
         var sceneName = this.getInkNameFromId(node.sceneId);
-        // TODO: Call ~ChangeScene(sceneName), which should be an included Ink function
         var result = indent(depth);
         result += "~ ChangeScene({0})".format(sceneName);
         return result;
     }
 
+    ctor.prototype.parsePlayMusic = function(idMap, node, depth) {
+       var result = indent(depth);
+       var musicTrack = node.musicTrack.slice(0, node.musicTrack.indexOf('.'));
+
+       console.log("Music Track {0}".format(musicTrack));
+
+       result += "~ PlayMusic({0})".format(musicTrack);
+       return result;
+    }
 
     ctor.prototype.parseScene = function(context, idMap, scene) {
         var sceneInkName = this.getInkName(scene);
@@ -469,6 +489,9 @@ define(function(require){
                 break;
             case 'nodes.changeScene':
                 output = this.parseChangeScene(idMap, node, epMetadata.depth + 1);
+                break;
+            case 'nodes.playMusic':
+                output = this.parsePlayMusic(idMap, node, epMetadata.depth + 1);
                 break;
             default:
                 output = "\n# TODO - " + node.type;

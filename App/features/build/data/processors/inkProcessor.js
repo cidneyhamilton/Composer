@@ -8,7 +8,8 @@ define(function(require){
         fileSystem = require('infrastructure/fileSystem'),
         serializer = require('plugins/serializer'),
         db = require('infrastructure/assetDatabase'),
-        system = require('durandal/system');
+        system = require('durandal/system'),
+        emotionsMap = require('features/constants/emotions');
 
     // Courtesy of https://stackoverflow.com/questions/610406/javascript-equivalent-to-printf-string-format
     // First, checks if it isn't implemented yet.
@@ -240,11 +241,19 @@ define(function(require){
         var speaker = node.actorId;
         speaker = (speaker == null ? "" : idMap[speaker]);
 
-        // TODO: Listener is never used?
+        // Is there a listener?
         var listener = node.actorId2;
         listener = (listener == null ? "" : idMap[listener]);
 
-        result += "{0}: {1}".format(speaker, node.text);
+        // Tag the speak node with an emotion.
+        var tagString = "";
+        if (node.emotion != 0) {
+            tagString += "# {0} ".format(emotionsMap.getEmotionById(node.emotion));
+        } else if (listener != "" && node.emotion2 != 0) {
+            tagString += "# {0} ".format(emotionsMap.getEmotionById(node.emotion2));
+        }
+
+        result += "{0}: {1} {2}".format(speaker, node.text, tagString);
         return result;
     };
 

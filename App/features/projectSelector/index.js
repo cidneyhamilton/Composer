@@ -32,14 +32,14 @@ define(function(require) {
                     format: 'json'
                 },
                 summerDazeFemale: {
-                    gameName: 'Summer Daze: Tilly',
-                    gameInternalName: 'summerDazeTilly',
+                    gameName: 'Summer Daze: Female Protagonist',
+                    gameInternalName: 'SummerDazeF',
                     dir: '',
                     format: 'ink'
                 },
                 summerDazeMale: {
-                    gameName: 'Summer Daze: Ifeyo',
-                    gameInternalName: 'summerDazeIfeyo',
+                    gameName: 'Summer Daze: Male Protagonist',
+                    gameInternalName: 'SummerDazeM',
                     dir: '',
                     format: 'ink'
                 },

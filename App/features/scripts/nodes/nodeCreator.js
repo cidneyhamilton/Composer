@@ -1,8 +1,14 @@
 define(function(require){
     var nodeRegistry = require('./registry');
+    var selectedGame = require('features/projectSelector/index');
 
-    var ctor = function(){
-        this.availableNodes = nodeRegistry.addableNodes.map(function(item){
+    var ctor = function() {
+
+        // Determine if we should show only the basic nodes, or all nodes for 3D scripting
+        var showAdvanced = selectedGame.activeProject.format == 'json';
+        var nodes = showAdvanced ? nodeRegistry.addableNodes : nodeRegistry.baseNodes;
+
+        this.availableNodes = nodes.map(function(item){
             return {
                 displayName:item.displayName,
                 ctor:item

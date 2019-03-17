@@ -4,19 +4,24 @@ define(function(require) {
         dialog = require('plugins/dialog'),
         nodeRegistry = require('./registry'),
         ko = require('knockout'),
-        system = require('durandal/system');
+        system = require('durandal/system'),
+        selectedGame = require('features/projectSelector/index');
 
     var deepCopy = false;
 
     var ctor = function() {
-        if(NodeCreator.isCreating){
+        if (NodeCreator.isCreating) {
             this.mode = 'write';
             NodeCreator.isCreating = false;
-        }else{
+        } else{
             this.mode = 'read';
         }
 
-        this.availableNodes = nodeRegistry.addableNodes.map(function(item){
+        // Determine if we should show only the basic nodes, or all nodes for 3D scripting
+        var showAdvanced = selectedGame.activeProject.format == 'json';
+        var nodes = showAdvanced ? nodeRegistry.addableNodes : nodeRegistry.baseNodes;
+
+        this.availableNodes = nodes.map(function(item){
             return {
                 displayName:item.displayName,
                 ctor:item

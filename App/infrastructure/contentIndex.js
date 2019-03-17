@@ -19,9 +19,9 @@ define(function(require) {
      
         var i = 0;
 
-        var dataDirectory = path.join(selectedGame.activeProject.dir, '../Game/Assets/Resources/Composer/', that.name);
+        var dataDirectory = path.join(selectedGame.activeProject.dir, selectedGame.activeProject.assetDirectory, that.name);
 
-        //console.log(that.dataDirectory);
+        console.log(dataDirectory);
 
         if (fileSystem.exists(dataDirectory)) {
             that.entries = [];

@@ -32,30 +32,35 @@ define(function(require) {
                     gameName: 'Hero-U: Rogue to Redemption',
                     gameInternalName: "heroU",
                     dir: '../Hero-U/Composer',
+                    assetDirectory: '../Game/Assets/Resources/Composer/',
                     format: 'json'
                 },
                 summerDazeFemale: {
                     gameName: 'Summer Daze: Female Protagonist',
                     gameInternalName: 'SummerDazeF',
                     dir: '',
+                    assetDirectory: '../SummerDaze/Assets/Audio/',
                     format: 'ink'
                 },
                 summerDazeMale: {
                     gameName: 'Summer Daze: Male Protagonist',
                     gameInternalName: 'SummerDazeM',
                     dir: '',
+                    assetDirectory: '../SummerDaze/Assets/Audio/',
                     format: 'ink'
                 },
                 r2rdemo : {
                     gameName: 'Demo: R2R',
                     gameInternalName: 'r2rdemo',
                     dir: '',
+                    assetDirectory: '../Game/Assets/Resources/Composer/',
                     format: 'json'
                 },
                 wizardsway : {
                     gameName: 'Hero-U: Wizards Way',
                     gameInternalName: 'wizardsway',
                     dir: '',
+                    assetDirectory: '../Game/Assets/Resources/Composer/',
                     format: 'json'
                 }
             };

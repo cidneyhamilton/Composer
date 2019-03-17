@@ -140,8 +140,17 @@ define(function(require){
 
     // Handle Invoke Scripts
     ctor.prototype.parseNodeInvokeScript = function(idMap, node, depth) {
-        var knot = this.getInkNameFromId(node.scriptId);
-        var stitch = this.getInkNameFromId(node.entryPointId)
+
+        var knot, stich;
+
+        knot = this.getInkNameFromId(node.scriptId);
+
+        // If the script is in the current scope, use entry points; otherwise, default to Main
+        if (this.currentScope == "Current") {
+            stitch = this.getInkNameFromId(node.entryPointId);
+        } else {
+            stitch = "";
+        }
         
         // Add introductory white space
         var result = indent(depth);

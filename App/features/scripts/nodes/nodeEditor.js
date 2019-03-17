@@ -18,8 +18,7 @@ define(function(require) {
         }
 
         // Determine if we should show only the basic nodes, or all nodes for 3D scripting
-        var showAdvanced = selectedGame.activeProject.format == 'json';
-        var nodes = showAdvanced ? nodeRegistry.addableNodes : nodeRegistry.baseNodes;
+        var nodes = selectedGame.showAdvanced ? nodeRegistry.addableNodes : nodeRegistry.baseNodes;
 
         this.availableNodes = nodes.map(function(item){
             return {

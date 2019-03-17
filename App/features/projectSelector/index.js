@@ -11,6 +11,9 @@ define(function(require) {
         load: function(selectedProject) {
             var that = this;
             that.activeProject = that.projects[selectedProject];
+            // Determines if we should show the full list of nodes in the editor, or just a partial list
+            // TODO: Currently checking the JSON/Ink flag.
+            that.showAdvanced = that.activeProject.format == 'json'
             app.trigger('app:navigate:loadProject', that.activeProject);
         },
         chooseDir:function(selectedProject){

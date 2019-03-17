@@ -40,7 +40,7 @@ Technical discussions take place in the official [Slack channel](http://hero-u.s
 ## Adding a New Game
 
 When adding a new game for Composer loading, please update add the new game name to:
-1. App/features/projectSelector/index.js (for default configurations / so other designres can configure it)
+1. App/features/projectSelector/index.js (for default configurations / so other designers can configure it)
 2. App/shell/toolbar.js (for the build)
 3. Composer.bat (for the build)
 

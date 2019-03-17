@@ -74,8 +74,10 @@ define(function(require) {
         toolbar.hasButtonsEnabled = true;
         selectedGame.activate();
 
-        if (myArgs.indexOf('summerDaze') > -1) {
-            selectedGame.activeProject = selectedGame.projects.summerDaze;
+        if (myArgs.indexOf('SummerDazeM') > -1) {
+            selectedGame.activeProject = selectedGame.projects.SummerDazeM;
+        } else if (myArgs.indexOf('SummerDazeF') > -1) {
+            selectedGame.activeProject = selectedGame.projects.SummerDazeF;
         } else if (myArgs.indexOf('wizardsWay') > -1) {
             selectedGame.activeProject = selectedGame.projects.wizardsWay;
         } else if (myArgs.indexOf('r2rDemo') > -1) {

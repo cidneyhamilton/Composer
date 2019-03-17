@@ -22,8 +22,11 @@ if "%1" == "debug" (
 if "%1" == "heroU" (
 	set Game=heroU
 )
-if "%1" == "summerDaze" (
-	set Game=summerDaze
+if "%1" == "SummerDazeM" (
+	set Game=SummerDazeM
+)
+if "%1" == "SummerDazeF" (
+	set Game=SummerDazeF
 )
 if "%1" == "r2rDemo" (
 	set Game=r2rDemo

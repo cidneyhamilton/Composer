@@ -188,38 +188,63 @@ define(function(require){
     // Handle Show Menu nodes
     ctor.prototype.parseNodeShowMenu = function(idMap, node, depth, epMetadata) {
         var options = node.options;
-        var weaveName = removeWhitespace(node.id);
+
+        // TODO: Make sure these are unique!
+        var optionsName = "opts";
+        var loopName = "loop";
+        var doneName = "done";
 
         var autoAddDone = !!node.AutoAddDone;
 
         // TODO: unique is not used??
-        var unique = !!node.Unique;
+        var loop = !node.Unique;
 
-        var result = indent(depth) + "- ({0})".format(weaveName);
+        var result = indent(depth) + "- ({0})".format(optionsName);
 
+        epMetadata.depth++;
         if (options) {
             for (var i = 0; i < options.length; i++) {
-                result += this.parseOption(idMap, options[i], depth, weaveName);
+                result += this.parseOption(idMap, options[i], depth+1, optionsName, epMetadata);
             }
         }
+
         if (autoAddDone) {
-            result += (indent(depth) + "+ Done\n  -> DONE");
+            result += (indent(depth+1) + "+    Done -> {0}".format(doneName));
         }
+
+        // Loop to the top if this is not unique
+        if (loop) {
+            result += indent(depth) + "- ({0})".format(loopName);
+            if (options) {
+                result += indent(depth + 1);
+                result += "\{& -> {0}\}".format(optionsName);
+            }
+        }
+
+        result += indent(depth) + "- ({0}".format(doneName);
+
+        epMetadata.depth--;
 
         return result;
     };
 
     // Handle Options
     ctor.prototype.parseOption = function(idMap, node, depth, parentId, epMetadata) {
+
+
+        var result = "";
+
         var alwaysShow = !!node.ignoreChildAvailability;
         var expression = node.expression;
 
-        var result = indent(depth);
+        result += indent(depth);
+
+        node.processed = true;
 
         if (alwaysShow) {
-            result += "+ ";
+            result += "+   ";
         } else {
-            result += "* ";
+            result += "*   ";
         }
         if (expression) {
             result += "{{ {0} }} ".format(this.parseExpression(idMap, expression));
@@ -228,8 +253,13 @@ define(function(require){
             result += "{0}".format(node.text);
         }
 
-        result += this.parseNodes(idMap, node.nodes, epMetadata);
-        result += indent(depth) + "-> {0}".format(parentId);
+        var children = "";
+        for (var i = 0; i < node.nodes.length; i ++) {
+            var child = node.nodes[i];
+            children += this.parseChild(idMap, child, epMetadata);
+        }
+
+        result += children;
 
         return result;
     };

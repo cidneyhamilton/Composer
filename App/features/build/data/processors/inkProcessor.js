@@ -429,6 +429,18 @@ define(function(require){
        return result;
     }
 
+    ctor.prototype.parseInvokeCommand = function(idMap, node, depth) {
+        var result = indent(depth);
+
+        if (node.parameter) {
+            result += "~ {0}({1})".format(node.command, node.parameter);
+        } else {
+            result += "~ {0}()".format(node.command);
+        }
+        return result;
+        
+    }
+
     ctor.prototype.parseScene = function(context, idMap, scene) {
         var sceneInkName = this.getInkName(scene);
 
@@ -501,6 +513,9 @@ define(function(require){
                 break;
             case 'nodes.playMusic':
                 output = this.parsePlayMusic(idMap, node, epMetadata.depth + 1);
+                break;
+            case 'nodes.invokeCommand':
+                output = this.parseInvokeCommand(idMap, node, epMetadata.depth +1);
                 break;
             default:
                 output = "\n# TODO - " + node.type;

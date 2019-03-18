@@ -9,18 +9,18 @@
     var baseNodes = [
         require('./speak'),
         require('./branch'),
-        require('./showMenu'),
         require('./changeReputation'),
         require('./changeScene'),
         require('./changeTags'),
         require('./comment'),
         require('./gameOver'),
-        require('./nodeCycle'),
         require('./invokeCommand'),
         require('./invokeScript'),
-        require('./setVariable'),
+        require('./nodeCycle'),
         require('./playMusic'),
         require('./playSoundEffect'),
+        require('./setVariable'),
+        require('./showMenu'),
     ];
 
     // Nodes that should only appear in full games

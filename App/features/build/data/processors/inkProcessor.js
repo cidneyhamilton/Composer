@@ -417,17 +417,41 @@ define(function(require){
         var result = indent(depth);
         result += "~ ChangeScene({0})".format(sceneName);
         return result;
-    }
+    };
 
     ctor.prototype.parsePlayMusic = function(idMap, node, depth) {
-       var result = indent(depth);
-       var musicTrack = node.musicTrack.slice(0, node.musicTrack.indexOf('.'));
+        var musicTrack;
 
-       console.log("Music Track {0}".format(musicTrack));
+        var result = indent(depth);
 
-       result += "~ PlayMusic({0})".format(musicTrack);
-       return result;
-    }
+        if (node.musicTrack != null) {
+            musicTrack = node.musicTrack.slice(0, node.musicTrack.indexOf('.'));
+        } else {
+            debugger;
+        }
+
+        // console.log("Music Track {0}".format(musicTrack));
+
+        result += "~ PlayMusic({0})".format(musicTrack); 
+        return result;
+    };
+
+    ctor.prototype.parsePlaySoundEffect = function(idMap, node, depth) {
+        var soundEffect;
+
+        var result = indent(depth);
+
+        if (node.soundEffectName == null) {
+            debugger;
+        } else {
+            soundEffect = node.soundEffectName.slice(0, node.soundEffectName.indexOf('.'));
+        }
+        
+        // console.log("Sound Effect {0}".format(soundEffect));
+
+        result += ">>> SOUND: {0}".format(soundEffect);
+        return result;
+    };
 
     ctor.prototype.parseInvokeCommand = function(idMap, node, depth) {
         var result = indent(depth);
@@ -487,35 +511,38 @@ define(function(require){
 
     ctor.prototype.parseNode = function(idMap, node, nodeType, nodeIndex, epMetadata) {        
         switch(node.type) {
+            case 'nodes.speak' : 
+                output = this.parseNodeSpeak(idMap, node, epMetadata.depth + 1);
+                break;
             case 'nodes.branch': 
                 output = this.parseNodeBranch(idMap, node, epMetadata.depth + 1);
+                break;
+            case 'nodes.changeScene':
+                output = this.parseChangeScene(idMap, node, epMetadata.depth + 1);
                 break;
             case 'nodes.changeTags' : 
                 output = this.parseNodeChangeTags(idMap, node, epMetadata.depth + 1);
                 break;
+            case 'nodes.comment' :
+                output = this.parseComment(idMap, node, epMetadata.depth + 1);
+                break;
+            case 'nodes.invokeCommand':
+                output = this.parseInvokeCommand(idMap, node, epMetadata.depth +1);
+                break;
             case 'nodes.invokeScript' : 
                 output = this.parseNodeInvokeScript(idMap, node, epMetadata.depth + 1);
+                break;
+            case 'nodes.playMusic':
+                output = this.parsePlayMusic(idMap, node, epMetadata.depth + 1);
+                break;
+            case 'nodes.playSoundEffect':
+                output = this.parsePlaySoundEffect(idMap, node, epMetadata.depth + 1);
                 break;
             case 'nodes.setVariable' : 
                 output = this.parseNodeSetVariable(idMap, node, epMetadata.depth + 1);
                 break;
             case 'nodes.showMenu' : 
                 output = this.parseNodeShowMenu(idMap, node, epMetadata.depth + 1);
-                break;
-            case 'nodes.speak' : 
-                output = this.parseNodeSpeak(idMap, node, epMetadata.depth + 1);
-                break;
-            case 'nodes.comment' :
-                output = this.parseComment(idMap, node, epMetadata.depth + 1);
-                break;
-            case 'nodes.changeScene':
-                output = this.parseChangeScene(idMap, node, epMetadata.depth + 1);
-                break;
-            case 'nodes.playMusic':
-                output = this.parsePlayMusic(idMap, node, epMetadata.depth + 1);
-                break;
-            case 'nodes.invokeCommand':
-                output = this.parseInvokeCommand(idMap, node, epMetadata.depth +1);
                 break;
             default:
                 output = "\n# TODO - " + node.type;

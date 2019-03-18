@@ -186,7 +186,7 @@ define(function(require){
     };
 
     // Handle Show Menu nodes
-    ctor.prototype.parseNodeShowMenu = function(idMap, node, depth) {
+    ctor.prototype.parseNodeShowMenu = function(idMap, node, depth, epMetadata) {
         var options = node.options;
         var weaveName = removeWhitespace(node.id);
 
@@ -210,7 +210,7 @@ define(function(require){
     };
 
     // Handle Options
-    ctor.prototype.parseOption = function(idMap, node, depth, parentId) {
+    ctor.prototype.parseOption = function(idMap, node, depth, parentId, epMetadata) {
         var alwaysShow = !!node.ignoreChildAvailability;
         var expression = node.expression;
 
@@ -228,7 +228,7 @@ define(function(require){
             result += "{0}".format(node.text);
         }
 
-        result += this.parseNodes(idMap, node.nodes, depth);
+        result += this.parseNodes(idMap, node.nodes, epMetadata);
         result += indent(depth) + "-> {0}".format(parentId);
 
         return result;
@@ -258,11 +258,11 @@ define(function(require){
     };
 
     // Handle Branching
-    ctor.prototype.parseNodeBranch = function(idMap, node, depth) {
+    ctor.prototype.parseNodeBranch = function(idMap, node, depth, epMetadata) {
         var result = "";
         if (node.sections && node.sections.length > 0) {
             for (var i = 0; i < node.sections.length; i++) {
-                var s = this.parseNodeBranchSection(idMap, node.sections[i], depth + 1);
+                var s = this.parseNodeBranchSection(idMap, node.sections[i], depth + 1, epMetadata);
                 if (isNotEmpty(s)) {
                     result += indent(depth + 1) + "- {0}".format(s);
                 }
@@ -276,11 +276,11 @@ define(function(require){
     };
 
     // Handle Branch Sections
-    ctor.prototype.parseNodeBranchSection = function(idMap, section, depth) {
+    ctor.prototype.parseNodeBranchSection = function(idMap, section, depth, epMetadata) {
         var expression = section["expression"];
         var result = "";
 
-        var parsed_children = this.parseNodes(idMap, section["nodes"], depth);
+        var parsed_children = this.parseNodes(idMap, section["nodes"], epMetadata);
         if (expression) {
             result += "{0}:".format(this.parseExpression(idMap, expression));
             result += parsed_children;
@@ -411,6 +411,37 @@ define(function(require){
         return result;
     };
 
+    // Handle Cycle nodes
+    ctor.prototype.parseCycle = function(idMap, node, depth, epMetaData) {
+        var result, i, nodes, children;
+        result = indent(depth);
+        children = "";
+
+        // Open cycle
+        result += "\{&";
+
+        nodes = node.nodes;
+
+        for (var i = 0; i < nodes.length; i ++) {
+            var child = nodes[i];
+            children += this.parseChild(idMap, child, epMetaData);
+            if ( nodes.length > i + 1) {
+                children += "|"
+            }
+        }
+
+        // Remove line breaks
+        children = children.replace(/(\r\n|\n|\r)/gm,"");
+        // Remove double (and triple) spaces
+        children = children.replace(/\s+/g," ");
+
+        result += children;
+
+        // Close cycle
+        result += "\}";
+        return result;
+    };
+
     // Handle Change Scene nodes
     ctor.prototype.parseChangeScene = function(idMap, node, depth) {
         var sceneName = this.getInkNameFromId(node.sceneId);
@@ -516,49 +547,63 @@ define(function(require){
     };
 
 
-    ctor.prototype.parseNode = function(idMap, node, nodeType, nodeIndex, epMetadata) {        
+    ctor.prototype.parseNodes = function(idMap, nodes, epMetadata) {
+        return this.parseNodeArray(idMap, nodes, epMetadata);
+    }
+
+    ctor.prototype.parseChild = function(idMap, node, epMetadata) {
+        var output = "";
+        epMetadata.depth++;
         switch(node.type) {
             case 'nodes.speak' : 
-                output = this.parseNodeSpeak(idMap, node, epMetadata.depth + 1);
+                output = this.parseNodeSpeak(idMap, node, epMetadata.depth, epMetadata);
                 break;
             case 'nodes.branch': 
-                output = this.parseNodeBranch(idMap, node, epMetadata.depth + 1);
+                output = this.parseNodeBranch(idMap, node, epMetadata.depth, epMetadata);
                 break;
             case 'nodes.changeScene':
-                output = this.parseChangeScene(idMap, node, epMetadata.depth + 1);
-                break;
-            case 'nodes.changeTags' : 
-                output = this.parseNodeChangeTags(idMap, node, epMetadata.depth + 1);
+                output = this.parseChangeScene(idMap, node, epMetadata.depth, epMetadata);
                 break;
             case 'nodes.comment' :
-                output = this.parseComment(idMap, node, epMetadata.depth + 1);
+                output = this.parseComment(idMap, node, epMetadata.depth, epMetadata);
+                break;
+            case 'nodes.nodeCycle' :
+                output = this.parseCycle(idMap, node, epMetadata.depth, epMetadata);
                 break;
             case 'nodes.gameOver' :
-                output = this.parseGameOver(idMap, node, epMetadata.depth + 1);
+                output = this.parseGameOver(idMap, node, epMetadata.depth, epMetadata);
                 break;
             case 'nodes.invokeCommand':
-                output = this.parseInvokeCommand(idMap, node, epMetadata.depth +1);
+                output = this.parseInvokeCommand(idMap, node, epMetadata.depth, epMetadata);
                 break;
             case 'nodes.invokeScript' : 
-                output = this.parseNodeInvokeScript(idMap, node, epMetadata.depth + 1);
+                output = this.parseNodeInvokeScript(idMap, node, epMetadata.depth, epMetadata);
+                break;
+             case 'nodes.showMenu' : 
+                output = this.parseNodeShowMenu(idMap, node, epMetadata.depth, epMetadata);
                 break;
             case 'nodes.playMusic':
-                output = this.parsePlayMusic(idMap, node, epMetadata.depth + 1);
+                output = this.parsePlayMusic(idMap, node, epMetadata.depth, epMetadata);
                 break;
             case 'nodes.playSoundEffect':
-                output = this.parsePlaySoundEffect(idMap, node, epMetadata.depth + 1);
+                output = this.parsePlaySoundEffect(idMap, node, epMetadata.depth, epMetadata);
+                break;
+            case 'nodes.changeTags' : 
+                output = this.parseNodeChangeTags(idMap, node, epMetadata.depth, epMetadata);
                 break;
             case 'nodes.setVariable' : 
-                output = this.parseNodeSetVariable(idMap, node, epMetadata.depth + 1);
-                break;
-            case 'nodes.showMenu' : 
-                output = this.parseNodeShowMenu(idMap, node, epMetadata.depth + 1);
+                output = this.parseNodeSetVariable(idMap, node, epMetadata.depth, epMetadata);
                 break;
             default:
                 output = "\n# TODO - " + node.type;
                 break;
         }
+        epMetadata.depth--;
+        return output;
+    }
 
+    ctor.prototype.parseNode = function(idMap, node, nodeType, nodeIndex, epMetadata) {        
+        var output = this.parseChild(idMap, node, epMetadata);
         this.appendOutput(epMetadata, output);
     };
 

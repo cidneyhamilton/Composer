@@ -221,7 +221,7 @@ define(function(require){
             }
         }
 
-        result += indent(depth) + "- ({0}".format(doneName);
+        result += indent(depth) + "- ({0})".format(doneName);
 
         epMetadata.depth--;
 
@@ -252,14 +252,9 @@ define(function(require){
         if (node.text) {
             result += "{0}".format(node.text);
         }
+        
 
-        var children = "";
-        for (var i = 0; i < node.nodes.length; i ++) {
-            var child = node.nodes[i];
-            children += this.parseChild(idMap, child, epMetadata);
-        }
-
-        result += children;
+        result += this.parseChildren(idMap, node.nodes, epMetadata);
 
         return result;
     };
@@ -310,14 +305,14 @@ define(function(require){
         var expression = section["expression"];
         var result = "";
 
-        var parsed_children = this.parseNodes(idMap, section["nodes"], epMetadata);
+        var children = this.parseChildren(idMap, section["nodes"], epMetadata);
         if (expression) {
             result += "{0}:".format(this.parseExpression(idMap, expression));
-            result += parsed_children;
+            result += children;
         } else {
             // this is just a block of nodes; no expression to evaluate
-            if (isNotEmpty(parsed_children)) {
-                result += "else: {0}".format(parsed_children);
+            if (isNotEmpty(children)) {
+                result += "else: {0}".format(children);
             }
         }
 
@@ -579,7 +574,16 @@ define(function(require){
 
     ctor.prototype.parseNodes = function(idMap, nodes, epMetadata) {
         return this.parseNodeArray(idMap, nodes, epMetadata);
-    }
+    };
+
+    ctor.prototype.parseChildren = function(idMap, nodes, epMetadata) {
+        var children = "";
+        for (var i = 0; i < nodes.length; i ++) {
+            var child = nodes[i];
+            children += this.parseChild(idMap, child, epMetadata);
+        }    
+        return children;
+    };
 
     ctor.prototype.parseChild = function(idMap, node, epMetadata) {
         var output = "";

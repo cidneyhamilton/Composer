@@ -446,10 +446,17 @@ define(function(require){
         } else {
             soundEffect = node.soundEffectName.slice(0, node.soundEffectName.indexOf('.'));
         }
-        
+
         // console.log("Sound Effect {0}".format(soundEffect));
 
         result += ">>> SOUND: {0}".format(soundEffect);
+        return result;
+    };
+
+    ctor.prototype.parseGameOver = function(idMap, node, depth) {
+        var result = indent(depth);
+
+        result += "-> END";
         return result;
     };
 
@@ -525,6 +532,9 @@ define(function(require){
                 break;
             case 'nodes.comment' :
                 output = this.parseComment(idMap, node, epMetadata.depth + 1);
+                break;
+            case 'nodes.gameOver' :
+                output = this.parseGameOver(idMap, node, epMetadata.depth + 1);
                 break;
             case 'nodes.invokeCommand':
                 output = this.parseInvokeCommand(idMap, node, epMetadata.depth +1);

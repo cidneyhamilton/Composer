@@ -553,52 +553,60 @@ define(function(require){
 
     ctor.prototype.parseChild = function(idMap, node, epMetadata) {
         var output = "";
-        epMetadata.depth++;
-        switch(node.type) {
-            case 'nodes.speak' : 
-                output = this.parseNodeSpeak(idMap, node, epMetadata.depth, epMetadata);
-                break;
-            case 'nodes.branch': 
-                output = this.parseNodeBranch(idMap, node, epMetadata.depth, epMetadata);
-                break;
-            case 'nodes.changeScene':
-                output = this.parseChangeScene(idMap, node, epMetadata.depth, epMetadata);
-                break;
-            case 'nodes.comment' :
-                output = this.parseComment(idMap, node, epMetadata.depth, epMetadata);
-                break;
-            case 'nodes.nodeCycle' :
-                output = this.parseCycle(idMap, node, epMetadata.depth, epMetadata);
-                break;
-            case 'nodes.gameOver' :
-                output = this.parseGameOver(idMap, node, epMetadata.depth, epMetadata);
-                break;
-            case 'nodes.invokeCommand':
-                output = this.parseInvokeCommand(idMap, node, epMetadata.depth, epMetadata);
-                break;
-            case 'nodes.invokeScript' : 
-                output = this.parseNodeInvokeScript(idMap, node, epMetadata.depth, epMetadata);
-                break;
-             case 'nodes.showMenu' : 
-                output = this.parseNodeShowMenu(idMap, node, epMetadata.depth, epMetadata);
-                break;
-            case 'nodes.playMusic':
-                output = this.parsePlayMusic(idMap, node, epMetadata.depth, epMetadata);
-                break;
-            case 'nodes.playSoundEffect':
-                output = this.parsePlaySoundEffect(idMap, node, epMetadata.depth, epMetadata);
-                break;
-            case 'nodes.changeTags' : 
-                output = this.parseNodeChangeTags(idMap, node, epMetadata.depth, epMetadata);
-                break;
-            case 'nodes.setVariable' : 
-                output = this.parseNodeSetVariable(idMap, node, epMetadata.depth, epMetadata);
-                break;
-            default:
-                output = "\n# TODO - " + node.type;
-                break;
+
+        if (node.processed) {
+            // Do nothing; this node has already been processed
+        } else {
+            node.processed = true;
+            epMetadata.depth++;
+            switch(node.type) {
+                case 'nodes.speak' : 
+                    output = this.parseNodeSpeak(idMap, node, epMetadata.depth, epMetadata);
+                    break;
+                case 'nodes.branch': 
+                    output = this.parseNodeBranch(idMap, node, epMetadata.depth, epMetadata);
+                    break;
+                case 'nodes.changeScene':
+                    output = this.parseChangeScene(idMap, node, epMetadata.depth, epMetadata);
+                    break;
+                case 'nodes.comment' :
+                    output = this.parseComment(idMap, node, epMetadata.depth, epMetadata);
+                    break;
+                case 'nodes.nodeCycle' :
+                    output = this.parseCycle(idMap, node, epMetadata.depth, epMetadata);
+                    break;
+                case 'nodes.gameOver' :
+                    output = this.parseGameOver(idMap, node, epMetadata.depth, epMetadata);
+                    break;
+                case 'nodes.invokeCommand':
+                    output = this.parseInvokeCommand(idMap, node, epMetadata.depth, epMetadata);
+                    break;
+                case 'nodes.invokeScript' : 
+                    output = this.parseNodeInvokeScript(idMap, node, epMetadata.depth, epMetadata);
+                    break;
+                 case 'nodes.showMenu' : 
+                    output = this.parseNodeShowMenu(idMap, node, epMetadata.depth, epMetadata);
+                    break;
+                case 'nodes.playMusic':
+                    output = this.parsePlayMusic(idMap, node, epMetadata.depth, epMetadata);
+                    break;
+                case 'nodes.playSoundEffect':
+                    output = this.parsePlaySoundEffect(idMap, node, epMetadata.depth, epMetadata);
+                    break;
+                case 'nodes.changeTags' : 
+                    output = this.parseNodeChangeTags(idMap, node, epMetadata.depth, epMetadata);
+                    break;
+                case 'nodes.setVariable' : 
+                    output = this.parseNodeSetVariable(idMap, node, epMetadata.depth, epMetadata);
+                    break;
+                default:
+                    output = "\n# TODO - " + node.type;
+                    break;
+            }
+            epMetadata.depth--;
         }
-        epMetadata.depth--;
+
+        
         return output;
     }
 

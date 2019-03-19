@@ -475,6 +475,27 @@ define(function(require){
         return result;
     };
 
+    // Change a character's reputation
+    ctor.prototype.parseChangeReputation = function(idMap, node, depth) {
+        var result = indent(depth);
+
+        // Get the actor whose rep is being changed
+        var actor = node.actorId;
+        actor = (actor == null ? "" : idMap[actor]);
+
+        var repVariable = actor + "Reputation";
+
+        var amount = node.amount;
+        // Reputation is stored as a variable in Ink
+        if (node.change) {
+            result += "~ AddReputation({0}, {1})".format(repVariable, amount);
+        } else {
+            result += "~ RemoveReputation({0}, {1})".format(repVariable, amount);
+        }
+        
+        return result;
+    }
+
     ctor.prototype.parsePlayMusic = function(idMap, node, depth) {
         var musicTrack;
 
@@ -599,6 +620,9 @@ define(function(require){
                     break;
                 case 'nodes.branch': 
                     output = this.parseNodeBranch(idMap, node, epMetadata.depth, epMetadata);
+                    break;
+                case 'nodes.changeReputation':
+                    output = this.parseChangeReputation(idMap, node, epMetadata.depth, epMetadata);
                     break;
                 case 'nodes.changeScene':
                     output = this.parseChangeScene(idMap, node, epMetadata.depth, epMetadata);

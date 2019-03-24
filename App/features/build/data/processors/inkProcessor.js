@@ -147,7 +147,7 @@ define(function(require){
         knot = this.getInkNameFromId(node.scriptId);
 
         // If the script hasn't been loaded yet, it won't be in the dictionary of script names
-        if (knot.includes("ERROR_UNKNOWN_ID_")) {
+        if (knot.indexOf("ERROR_UNKNOWN_ID_") > -1) {
             // If we haven't already figured out the name of this script, look it up from the assets DB
             var scripts = db.scripts.entries.filter(function(entry) {
                 return entry.triggerType == 'triggers.manual';
@@ -691,8 +691,12 @@ define(function(require){
         var gameOutput = "\nINCLUDE Tags.ink"
             + "\nINCLUDE Inventory.ink"
             + "\nINCLUDE Constants.ink"
-            + "\nINCLUDE Variables.ink"
-            + "\nINCLUDE Functions.ink";
+            + "\nINCLUDE Variables.ink";
+
+        // Copy over and include all files in both the standalone Composer/Data/Ink directory 
+        // as well as the project's Composer/Data/Ink directory
+        gameOutput += this.importNongeneratedInkFiles(context, process.cwd());
+        gameOutput += this.importNongeneratedInkFiles(context, context.game.dir);
 
         // For each scene, generate its ink file and its associated scripts
         var orderedSceneNames = [];
@@ -785,6 +789,23 @@ define(function(require){
         writer.write(output);
         writer.end();
     };
+
+    ctor.prototype.importNongeneratedInkFiles = function(context, baseDirectory) {
+        var composerDataInkDir = path.join(baseDirectory, '/Data/Ink');
+        if (fileSystem.exists(composerDataInkDir)) {
+            var files = fileSystem.readDir(composerDataInkDir);
+            var output = [];
+            for(var i=0;i<files.length;i++) {
+                var file = files[i];
+                // Copy the non-generated file to the generated output directory, and import it
+                var origFile = path.join(composerDataInkDir, file);
+                var destFile = path.join(context.inkOutputDirectory, file);
+                fileSystem.write(destFile, fileSystem.read(origFile));
+                output.push('INCLUDE ' + file);
+            }
+            return (output.length == 0 ? '' : ('\n' + output.join('\n')));
+        }
+    }
 
     return new ctor();
 });

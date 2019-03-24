@@ -679,19 +679,15 @@ define(function(require){
         // This should generate:
         // One <gameName.ink> file importing all of the tag, inventory, variable, scene, and scene\script entries
         // the inventory, variablee, scene, and scene\script entries
+        var gameOutput = '';
 
         // generate the tags and inventory list files
-        this.writeList(context, "Tags", "Tags", this.tag_list);
-        this.writeList(context, "Inventory", "Inventory", this.inv_list);
+        gameOutput += this.writeList(context, "Tags", "Tags", this.tag_list);
+        gameOutput += this.writeList(context, "Inventory", "Inventory", this.inv_list);
 
         // generate the constants and variables files
-        this.writeAssignment(context, "Constants", this.const_list);
-        this.writeAssignment(context, "Variables", this.var_list);
-
-        var gameOutput = "\nINCLUDE Tags.ink"
-            + "\nINCLUDE Inventory.ink"
-            + "\nINCLUDE Constants.ink"
-            + "\nINCLUDE Variables.ink";
+        gameOutput += this.writeAssignment(context, "Constants", this.const_list);
+        gameOutput += this.writeAssignment(context, "Variables", this.var_list);
 
         // Copy over and include all files in both the standalone Composer/Data/Ink directory 
         // as well as the project's Composer/Data/Ink directory
@@ -775,6 +771,8 @@ define(function(require){
         var writer = baseWriter.createFileWriter(path.join(context.inkOutputDirectory, fileName + '.ink'));
         writer.write(output);
         writer.end();
+
+        return '\nINCLUDE ' + fileName + '.ink';
     };
 
     ctor.prototype.writeAssignment = function(context, fileName, listContents) {
@@ -788,6 +786,8 @@ define(function(require){
         var writer = baseWriter.createFileWriter(path.join(context.inkOutputDirectory, fileName + '.ink'));
         writer.write(output);
         writer.end();
+
+        return '\nINCLUDE ' + fileName + '.ink';
     };
 
     ctor.prototype.importNongeneratedInkFiles = function(context, baseDirectory) {

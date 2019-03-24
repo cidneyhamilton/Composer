@@ -110,7 +110,6 @@ define(function(require){
                         allProcessors[i].finish(context, idMap);
                     } 
                     
-                    context.completed.push('features/build/data/generateAddlOutput');
                     dfd.resolve();
                 }
 

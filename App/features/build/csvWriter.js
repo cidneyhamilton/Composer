@@ -4,11 +4,7 @@ define(function(require){
         ;
 
     var ctor = function(path, callbackOnEnd) {
-        baseWriter.call(this, path);
-
-        if(callbackOnEnd) {
-            this.writeStream.on('finish', callbackOnEnd);
-        }
+        baseWriter.call(this, path, callbackOnEnd);
     };
 
     ctor.prototype = Object.create(baseWriter.prototype);

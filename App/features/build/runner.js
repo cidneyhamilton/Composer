@@ -64,10 +64,8 @@ define(function(require){
             var indicator = new WorkIndicator();
             dialog.show(indicator);
 
-            var completed = [];
             var context = {
                 startTime: new Date(),
-                completed: completed,
                 project:project,
                 mode: mode,
                 indicator:indicator,
@@ -89,7 +87,7 @@ define(function(require){
 
             return cleanDirs(context)
                 .then(runner('features/build/data/generateAddlOutput', context))
-                .then(runner('features/build/data/buildDone', context, 1))
+                .then(runner('features/build/data/buildDone', context))
                 .then(function(){
                     // Try to wait for files to be written.
                     // Node doesn't offer a flush() command so there's no way

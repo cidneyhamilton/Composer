@@ -1,7 +1,8 @@
 ﻿define(function(require) {
     var fs = requireNode('fs'),
         path = requireNode('path'),
-        system = require('durandal/system');
+        system = require('durandal/system'),
+        baseWriter = require('features/build/baseWriter');
 
     function exists(fileName) {
         return fs.existsSync(fileName);
@@ -61,7 +62,11 @@
             data = data.toString('utf8').replace(/^\uFEFF/, '');
             // Only write if the file either doesn't exist, or has been updated
             if (!exists(fileName) || data != String(read(fileName))) {
-                fs.writeFileSync(fileName, data);
+                // fs.writeFileSync doesn't support callbacks or guarantee flush,
+                // so using baseWriter / writeFileStream so we can track the (theoretical) flush
+                var writer = baseWriter.createFileWriter(fileName);
+                writer.write(data);
+                writer.end();
             }
         } catch (err) {
             system.error("Write failed: " + err);

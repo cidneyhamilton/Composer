@@ -1,14 +1,19 @@
 <div class="composite" data-bind="compose: { mode:'templated', view:'nodeEditor' }">
     <div data-part="read" class="text">
         <span class="actor" data-bind="text:actor.name"></span><span>: </span><span data-bind="text: node.text"></span>
+        <!--ko if: node.notes != ''-->
         <div>
             <span>Translation Notes: <span data-bind="text: node.notes"></span>
         </div>
+        <!--/ko-->
 
         <ol class="menu" data-bind="foreach: node.options" style="margin-left: 78px">
             <li>
                 <div>
-                    <span class="keyword" data-bind="text:$index() + 1"></span>.&nbsp;<span data-bind="text: text"></span>&nbsp;(Translation Notes: <span data-bind="text: notes"></span>)
+                    <span class="keyword" data-bind="text:$index() + 1"></span>.&nbsp;<span data-bind="text: text"></span>
+                    <!--ko if: notes != ''-->
+                    &nbsp;(Translation Notes: <span data-bind="text: notes"></span>)
+                    <!--/ko-->
 
                     <!--ko if: $data.expression !== undefined-->
                     <!--ko compose: { model:'features/scripts/expressions/expressionEditor', activationData:$data } --><!--/ko-->

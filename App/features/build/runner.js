@@ -42,7 +42,7 @@ define(function(require){
             fileSystem.makeDirectory(context.internalDocOutputDirectory);
             fileSystem.makeDirectory(context.reportsOutputDirectory);
 
-            task.resolve();
+            setTimeout(function() { task.resolve(); }, 100);
         });
     }
 

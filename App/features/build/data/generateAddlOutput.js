@@ -30,7 +30,7 @@ define(function(require){
 
     return {
         run: function(context, localizationDupes) {
-            context.indicator.message = 'Generating additional output...';
+            context.indicator.message = 'Generating output...';
 
             return system.defer(function(dfd){
                 var allProcessors = [reportTagUsageProcessor, reportHtmlTagsProcessor, reportResourceUsageProcessor, 
@@ -255,7 +255,7 @@ define(function(require){
                     }
                 }
 
-                generate();
+                setTimeout(function() { generate(); }, 100);
             }).promise();
         }
     };

@@ -66,7 +66,7 @@ define(function(require){
         this.data.scenes = {};
         this.inkNameLookup = {};
         this.idToInkNameMap = {};
-        this.tag_list = [];
+        this.tagList = [];
         this.var_list = [];
         this.const_list = [];
         this.inv_list = [];
@@ -134,7 +134,7 @@ define(function(require){
                 result += "{0} {1}".format(prefix, tagList);
             }
 
-            this.append_tag_list(tagList);
+            this.appendTagList(tagList);
         }
         return result;
     };
@@ -374,7 +374,7 @@ define(function(require){
                 }
                 break;
             case "expressions.inTags":
-                this.append_tag_list(tags);
+                this.appendTagList(tags);
                 if (has) {
                     result += "Tags has {0}".format(tags);
                 } else {
@@ -540,7 +540,10 @@ define(function(require){
     ctor.prototype.parseInvokeCommand = function(idMap, node, depth) {
         var result = indent(depth);
 
-        if (node.parameter) {
+        // TODO: Hack to handle the Map invoke command
+        if (node.command == "Map") {
+            result += " -> map";
+        } else if (node.parameter) {
             result += "~ {0}({1})".format(node.command, node.parameter);
         } else {
             result += "~ {0}()".format(node.command);
@@ -681,14 +684,27 @@ define(function(require){
         // the inventory, variablee, scene, and scene\script entries
         var gameOutput = '';
 
+        // TODO: Generate author and name from project
+        gameOutput += "\n# author: Lori Cole";
+        gameOutput += "\n# title: Summer Daze at Hero-U";
+
         // generate the tags and inventory list files
-        gameOutput += this.writeList(context, "Tags", "Tags", this.tag_list);
-        gameOutput += this.writeList(context, "Inventory", "Inventory", this.inv_list);
+        if (this.tagList.length > 0) {
+            gameOutput += this.writeList(context, "Tags", "Tags", this.tagList);    
+        }
+        if (this.inv_list.length > 0) {
+            gameOutput += this.writeList(context, "Inventory", "Inventory", this.inv_list);     
+        }
 
         // generate the constants and variables files
-        gameOutput += this.writeAssignment(context, "Constants", this.const_list);
-        gameOutput += this.writeAssignment(context, "Variables", this.var_list);
+        if (this.const_list.length > 0) {
+            gameOutput += this.writeAssignment(context, "Constants", this.const_list);    
+        }
 
+        if (this.var_list.length > 0) {
+            gameOutput += this.writeAssignment(context, "Variables", this.var_list);    
+        }
+        
         // Copy over and include all files in both the standalone Composer/Data/Ink directory 
         // as well as the project's Composer/Data/Ink directory
         gameOutput += this.importNongeneratedInkFiles(context, process.cwd());
@@ -728,17 +744,19 @@ define(function(require){
                 scriptWriter.end();
             }
         }
+
+        gameOutput += "\n -> Intro";
         // Generate the one ink file to rule them all
         var gameFileWriter = baseWriter.createFileWriter(path.join(context.inkOutputDirectory, context.game.gameInternalName + '.ink'));
         gameFileWriter.write(gameOutput);
         gameFileWriter.end();
     };
 
-    ctor.prototype.append_tag_list = function(tags) {
+    ctor.prototype.appendTagList = function(tags) {
         if (isNotEmpty(tags)) {       
             tags = tags.split(", ");
             for (var i = 0; i < tags.length; i++) {
-                addToArray(this.tag_list, removeWhitespace(tags[i]));
+                addToArray(this.tagList, removeWhitespace(tags[i]));
             }
         }
     }

@@ -5,6 +5,9 @@
 // Potential emotions for talkers
 LIST Moods = neutral, happy, sad, angry, surprised
 
+// Cast of Characters
+LIST Actors = Nobody, Terk, Gerhard, Silvia, Ifeyo, Tilly, Mooella, Rodrigo, Fritz, Max, Kitty, Sitari, Ewe, Kalbin, Gregor
+
 // Set some variables about the interlocutor
 VAR speaker = Nobody
 VAR speakerMood = neutral
@@ -37,16 +40,26 @@ VAR JournalButtonVisible = 0
 === function HideJournal() ===
 		~ JournalOpen = 0
 
-=== function ShowJournalCharacter(name) ==
+=== function ShowJournalDetail(name) ==
 		~ JournalCharacter = name
 		~ JournalDetailOpen = 1
 
-=== function HideJournalCharacter() ==
+=== function HideJournalDetail(name) ==
 		~ JournalDetailOpen = 0
 
 // ************************************************************************
 // System: Reputation
 // ************************************************************************
+
+VAR MooellaReputation = 10
+VAR RodrigoReputation = -20
+VAR FritzReputation = 50
+VAR MaxReputation = 20
+VAR KittyReputation = 20
+VAR GerhardReputation = 20
+VAR TerkReputation = 0
+VAR SitariReputation = 20
+VAR EweReputation = 20
 
 === function AddReputation(reputation, amount) ===
     ~ reputation = reputation + amount
@@ -58,11 +71,33 @@ VAR JournalButtonVisible = 0
 // System: Rooms
 // ************************************************************************
 
+// In-Game Locations
+LIST Rooms = _None, _Outside, Beach, Bedroom, Courtyard, DiningHall, ExerciseRoom, FestivalGrounds, Garden, Infirmary, Kitchen, Library, MagicClass, Overlook, PracticeField, RecRoom, RogueClass, Store, TowerGarden, WineCellar, Workshop
+
+// The current location of the player. IMPORTANT; observed.
+VAR currentRoom = _Outside
+
+VAR kitchenOpen = false
+VAR storeOpen = false
 
 // Changes the scene. Corresponds to the node in Composer.
 === function ChangeScene(newScene) ===
     ~ currentRoom = newScene
     >>> CHANGESCENE
+
+// ************************************************************************
+// System: Sound and Music
+// ************************************************************************
+
+
+// TODO: Read these from the game Resource folder
+LIST MusicTracks = None, SchoolBreak, MiddleEastern, Incidental2
+
+VAR BackgroundMusicTrack = SchoolBreak
+
+=== function PlayMusic(musicTrack) ===
+~ BackgroundMusicTrack = musicTrack
+
 
 // ************************************************************************
 // System: Time

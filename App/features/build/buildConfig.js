@@ -18,7 +18,7 @@ define(function(require) {
                     localizationOutputDirectory: "../Game/Assets/Resources/Locales",
                     translationOutputDirectory: "../Translations",
                     internalDocOutputDirectory: "../Proofread",
-                    inkOutputDirectory: "Output/Ink"
+                    inkOutputDirectory: "../SummerDaze/Assets/Ink"
                 }
             };
 

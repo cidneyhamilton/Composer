@@ -77,9 +77,6 @@ LIST Rooms = _None, _Outside, Beach, Bedroom, Courtyard, DiningHall, ExerciseRoo
 // The current location of the player. IMPORTANT; observed.
 VAR currentRoom = _Outside
 
-VAR kitchenOpen = false
-VAR storeOpen = false
-
 // Changes the scene. Corresponds to the node in Composer.
 === function ChangeScene(newScene) ===
     ~ currentRoom = newScene
@@ -91,7 +88,7 @@ VAR storeOpen = false
 
 
 // TODO: Read these from the game Resource folder
-LIST MusicTracks = None, SchoolBreak, MiddleEastern, Incidental2
+LIST MusicTracks = Silence, DiningHallTheme, Incidental2, MagicClassTheme, MiddleEastern, None, RogueClassTheme, SchoolBreak, StoreTheme, TowerGardenTheme
 
 VAR BackgroundMusicTrack = SchoolBreak
 

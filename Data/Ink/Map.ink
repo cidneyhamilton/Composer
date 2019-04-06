@@ -8,34 +8,180 @@
 // Can now use the journal in the game!
 ~ EnableJournalButton()
 ~ ChangeScene(_None)
--> map.destination
+-> destination
 
-= destination
+=== dinnertime ===
+-> dinner -> map
+
+=== function CourtyardAvailable()=== 
+{
+    - currentRoom == Courtyard:
+        ~ return false
+    - time == Evening:
+        ~ return false
+    - day < 7 || day > 11:
+        ~ return false
+    - else:
+        ~ return true
+}
+
+=== function ExerciseRoomAvailable()=== 
+{
+    - currentRoom == ExerciseRoom:
+        ~ return false
+    - day == 6 || day >= 12:
+        ~ return false
+    - else:
+        ~ return true
+}
+
+=== function FestivalGroundsAvailable()===
+{
+    - currentRoom == FestivalGrounds:
+        ~ return false
+    - time == Evening:
+        ~ return false
+    - day < 3 || day == 6:
+        ~ return false
+    - else:
+        ~ return true
+}
+
+=== function InfirmaryAvailable()=== 
+{
+    - currentRoom == Infirmary:
+        ~ return false
+    - time == Afternoon:
+        ~ return false
+    - day < 2 || day > 12:
+        ~ return false
+    - else:
+        ~ return true
+}
+
+=== function KitchenAvailable()==
+{
+    - currentRoom == Kitchen:
+        ~ return false
+    - time == Afternoon:
+        ~ return false
+    - day < 4:
+        ~ return false
+    - else:
+        ~ return true
+}
+
+=== function LibraryAvailable()==
+{
+    - currentRoom == Library:
+        ~ return false
+    - day == 6 || day >= 12:
+        ~ return false
+    - else:
+        ~ return true
+}
+
+
+
+=== function PracticeFieldAvailable()=== 
+{
+    - currentRoom == PracticeField:
+        ~ return false
+    - time == Evening:
+        ~ return false
+    - day == 6 || day >= 12:
+        ~ return false
+    - else:
+        ~ return true
+}
+
+=== function RecRoomAvailable()=== 
+{
+    - currentRoom == RecRoom:
+        ~ return false
+    - time == Afternoon && day == 1:
+        ~ return false
+    - day == 6 || day >= 12:
+        ~ return false
+    - else:
+        ~ return true
+}
+
+=== function StoreAvailable()==
+{
+    - currentRoom == Store:
+        ~ return false
+    - time == Afternoon && day == 3:
+        ~ return false
+    - day < 3 || day >= 12:
+        ~ return false
+    - else:
+        ~ return true
+}
+
+=== function TowerAvailable()=== 
+{
+    - currentRoom == TowerGarden:
+        ~ return false
+    - time == Afternoon:
+        ~ return false
+    - day < 7 || day >= 12:
+        ~ return false
+    - else:
+        ~ return true
+}
+
+=== function WineCellarAvailable()=== 
+{
+    - currentRoom == WineCellar:
+        ~ return false
+    - time == Afternoon:
+        ~ return false
+    - day < 7 || day >= 12:
+        ~ return false
+    - else:
+        ~ return true
+}
+
+=== function WorkshopAvailable()=== 
+{
+    - currentRoom == Workshop:
+        ~ return false
+    - time == Evening:
+        ~ return false
+    - day == 6 || day >= 12:
+        ~ return false
+    - else:
+        ~ return true
+}
+
+=== destination ===
 - Choose your destination:
-+ { currentRoom != Courtyard } Courtyard
-    ~ ChangeScene(Courtyard)
-+ { currentRoom != ExerciseRoom } Exercise Room
-    ~ ChangeScene(ExerciseRoom)
-+ { currentRoom != FestivalGrounds && time == Afternoon } Festival Grounds
-    ~ ChangeScene(FestivalGrounds)
-+ { currentRoom != Infirmary } Infirmary
-    ~ ChangeScene(Infirmary)
-+ { currentRoom != Kitchen && kitchenOpen && time == Evening } Kitchen
-    ~ ChangeScene(Kitchen)
-+ { currentRoom != Library } Library
++ { LibraryAvailable() } Library
     ~ ChangeScene(Library)
-+ { currentRoom != PracticeField  && time == Afternoon } Practice Field
++ { ExerciseRoomAvailable() } Exercise Room
+    ~ ChangeScene(ExerciseRoom)
++ { PracticeFieldAvailable() } Practice Field
     ~ ChangeScene(PracticeField)
-+ { currentRoom != RecRoom } Rec Room
-    ~ ChangeScene(RecRoom)
-+ { currentRoom != Store && storeOpen && time == Evening } School Store
-    ~ ChangeScene(Store)
-+ { currentRoom != TowerGarden && time == Evening } Tower Garden
-    ~ ChangeScene(TowerGarden)
-+ { currentRoom != WineCellar && time == Evening } Wine Cellar
-    ~ ChangeScene(WineCellar)
-+ { currentRoom != Workshop && time == Afternoon } Workshop
++ { WorkshopAvailable() } Workshop
     ~ ChangeScene(Workshop)
++ { CourtyardAvailable() } Courtyard
+    ~ ChangeScene(Courtyard)
++ { FestivalGroundsAvailable() } Festival Grounds
+    ~ ChangeScene(FestivalGrounds)
++ { InfirmaryAvailable() } Infirmary
+    ~ ChangeScene(Infirmary)
++ { KitchenAvailable() } Kitchen
+    ~ ChangeScene(Kitchen)
++ { RecRoomAvailable() } Rec Room
+    ~ ChangeScene(RecRoom)
++ { StoreAvailable() } School Store
+    ~ ChangeScene(Store)
++ { TowerAvailable() } Tower Garden
+    ~ ChangeScene(TowerGarden)
++ { WineCellarAvailable() } Wine Cellar
+    ~ ChangeScene(WineCellar)
+
 - -> next
 
 === next ===

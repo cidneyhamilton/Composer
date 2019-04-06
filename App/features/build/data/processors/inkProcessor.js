@@ -543,6 +543,8 @@ define(function(require){
         // TODO: Hack to handle the Map invoke command
         if (node.command == "Map") {
             result += " -> map";
+        } else if (node.command == "Dinnertime") {
+            result += " -> dinnertime";
         } else if (node.parameter) {
             result += "~ {0}({1})".format(node.command, node.parameter);
         } else {

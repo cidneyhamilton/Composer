@@ -40,12 +40,23 @@ VAR JournalButtonVisible = 0
 === function HideJournal() ===
 		~ JournalOpen = 0
 
-=== function ShowJournalDetail(name) ==
+=== function ShowJournalDetail(name) ===
 		~ JournalCharacter = name
 		~ JournalDetailOpen = 1
 
-=== function HideJournalDetail(name) ==
+=== function HideJournalDetail(name) ===
 		~ JournalDetailOpen = 0
+
+// ************************************************************************
+// System: Props
+// ************************************************************************
+
+=== function ShowProp(name) ===
+		>>> SHOW: {name}
+
+
+=== function HideProp(name) ===
+		>>> HIDE: {name}
 
 // ************************************************************************
 // System: Reputation

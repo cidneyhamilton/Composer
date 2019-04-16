@@ -517,6 +517,30 @@ define(function(require){
         return result;
     };
 
+    ctor.prototype.parseNodePlaceActor = function(idMap, node, depth) {
+        var actor;
+        var result = indent(depth);
+        
+        // Get the actor whose rep is being changed
+        actor = node.actorId;
+        actor = (actor == null ? "" : idMap[actor]);
+
+        result += "~ ShowActor({0}, neutral)".format(actor);
+        return result;
+    };
+
+    ctor.prototype.parseNodeRemoveActor = function(idMap, node, depth) {
+        var actor;
+        var result = indent(depth);
+        
+        // Get the actor whose rep is being changed
+        actor = node.actorId;
+        actor = (actor == null ? "" : idMap[actor]);
+
+        result += "~ HideActor({0})".format(actor);
+        return result;
+    };
+
     ctor.prototype.parsePlaySoundEffect = function(idMap, node, depth) {
         var soundEffect;
 
@@ -653,6 +677,12 @@ define(function(require){
                     break;
                  case 'nodes.showMenu' : 
                     output = this.parseNodeShowMenu(idMap, node, epMetadata.depth, epMetadata);
+                    break;
+                case 'nodes.placeActor' :
+                    output = this.parseNodePlaceActor(idMap, node, epMetadata.depth, epMetadata);
+                    break;
+                case 'nodes.removeActor' :
+                    output = this.parseNodeRemoveActor(idMap, node, epMetadata.depth, epMetadata);
                     break;
                 case 'nodes.playMusic':
                     output = this.parsePlayMusic(idMap, node, epMetadata.depth, epMetadata);

@@ -4,7 +4,7 @@
 
 === map ===
 ~ AdvanceTime()
-~ PlayMusic(None)
+~ PlayMusic(Silence)
 // Can now use the journal in the game!
 ~ EnableJournalButton()
 ~ ChangeScene(_None)
@@ -192,8 +192,10 @@
 
 === afternoon ===
 { 
+- currentRoom == ExerciseRoom: -> MaxExerciseDaytime1
 - currentRoom == Library: -> LibraryDaytime1
 - currentRoom == PracticeField: -> PracticeFieldDaytime1
+- currentRoom == Workshop: -> WorkshopDaytime1
 - else: You spend all afternoon here, but nothing happens.
 }
 - -> dinner -> map
@@ -205,11 +207,13 @@ You spend all evening here, but nothing happens.
 === dinner ===
 ~ PlayMusic(DiningHall)
 ~ ChangeScene(DiningHall)
-- This is the end of the demo! 
-- ->->
+{
+    - day == 1: -> Dinner1
+    - else: This is the end of the demo! ->->
+}
 
 === sleep ===
-~ PlayMusic(None)
+~ PlayMusic(Silence)
 ~ ChangeScene(Bedroom)
 ~ AdvanceTime()
 >>> SOUND: sleep_stinger

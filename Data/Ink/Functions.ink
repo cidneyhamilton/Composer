@@ -51,6 +51,9 @@ VAR JournalButtonVisible = 0
 // System: Props
 // ************************************************************************
 
+// TODO: Generate this from the game
+LIST Props = LibraryChair, SummerTable, WinterTable
+
 === function ShowProp(name) ===
 		>>> SHOW: {name}
 
@@ -99,7 +102,7 @@ VAR currentRoom = _Outside
 
 
 // TODO: Read these from the game Resource folder
-LIST MusicTracks = Silence, DiningHallTheme, Incidental2, MagicClassTheme, MiddleEastern, None, RogueClassTheme, SchoolBreak, StoreTheme, TowerGardenTheme
+LIST MusicTracks = Silence, DiningHallTheme, Incidental2, MagicClassTheme, MiddleEastern, RogueClassTheme, SchoolBreak, StoreTheme, TowerGardenTheme
 
 VAR BackgroundMusicTrack = SchoolBreak
 

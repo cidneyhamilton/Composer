@@ -573,6 +573,8 @@ define(function(require){
             result += " -> map";
         } else if (node.command == "Dinnertime") {
             result += " -> dinnertime";
+        } else if (node.command == "Sleep") {
+            result += " -> sleep";
         } else if (node.parameter) {
             result += "~ {0}({1})".format(node.command, node.parameter);
         } else {

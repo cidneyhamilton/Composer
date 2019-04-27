@@ -6,12 +6,13 @@
 LIST Moods = neutral, happy, sad, angry, surprised
 
 // Cast of Characters
-LIST Actors = Nobody, Terk, Gerhard, Silvia, Ifeyo, Tilly, Mooella, Rodrigo, Fritz, Max, Kitty, Sitari, Ewe, Kalbin, Gregor
+LIST Actors = Nobody, Terk, Gerhard, Silvia, Tilly, Mooella, Rodrigo, Fritz, Max, Kitty, Sitari, Ewe, Kalbin, Gregor
 
 // Set some variables about the interlocutor
 VAR speaker = Nobody
 VAR speakerMood = neutral
 VAR showSpeaker = false
+VAR player = Tilly
 
 === function ShowActor(name, mood) ===
     ~ showSpeaker = true
@@ -95,6 +96,18 @@ VAR currentRoom = _Outside
 === function ChangeScene(newScene) ===
     ~ currentRoom = newScene
     >>> CHANGESCENE
+
+// ************************************************************************
+// System: Skills
+// ************************************************************************
+
+VAR Smarts = 5
+VAR Fitness = 4
+VAR Charm = 6
+VAR Skills = 5
+
+=== function ImproveSkill(skill, amount) ===
+	~ skill = skill + amount
 
 // ************************************************************************
 // System: Sound and Music

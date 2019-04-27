@@ -9,6 +9,7 @@ define(function(require){
         serializer = require('plugins/serializer'),
         db = require('infrastructure/assetDatabase'),
         system = require('durandal/system'),
+        skillsMap = require('features/constants/skillsAndAttributes'),
         emotionsMap = require('features/constants/emotions');
 
     // Courtesy of https://stackoverflow.com/questions/610406/javascript-equivalent-to-printf-string-format
@@ -565,6 +566,14 @@ define(function(require){
         return result;
     };
 
+    ctor.prototype.parseImproveSkill = function(idMap, node, depth) {
+        var result = indent(depth);
+
+        var skill = node.skill;
+        result += "~ ImproveSkill({0},{1})".format(skill, node.amount);
+        return result;
+    }
+
     ctor.prototype.parseInvokeCommand = function(idMap, node, depth) {
         var result = indent(depth);
 
@@ -670,6 +679,9 @@ define(function(require){
                     break;
                 case 'nodes.gameOver' :
                     output = this.parseGameOver(idMap, node, epMetadata.depth, epMetadata);
+                    break;
+                case 'nodes.improveSkill' :
+                    output = this.parseImproveSkill(idMap, node, epMetadata.depth, epMetadata);
                     break;
                 case 'nodes.invokeCommand':
                     output = this.parseInvokeCommand(idMap, node, epMetadata.depth, epMetadata);

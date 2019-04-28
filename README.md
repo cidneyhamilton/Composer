@@ -43,8 +43,40 @@ When adding a new game for Composer loading, please update add the new game name
 1. App/features/projectSelector/index.js (for default configurations / so other designers can configure it)
 2. App/shell/toolbar.js (for the build)
 3. Composer.bat (for the build)
+4. The "Automated Builds" section below
 
 All games should have a Composer subdirectory.
+
+## Adding Resources for an Existing Game
+
+All game-specific resources (music, movies, vignettes, sound effects, close ups, and languages) should be stored in the game's github repos (not in the standalone Composer's).  
+
+To figure out where they should be placed:
+1. Open Composer
+2. Load your game in Composer
+3. Go to the `Build Settings` tab for your game
+
+### Adding New Music / Movie / Vignette / SoundEffect / CloseUp
+
+These are stored in subdirectores of the `Data Output Directory` listed in your game's Composer `Build Settings`
+
+* Music -> `Music` subdirectory
+* Movies -> `Movies` subdirectory
+* Vignettes -> `vignettes` subdirectory
+* Sound Effects -> `SoundEffects` subdirectory
+* Close Ups -> `CloseUps` subdirectory
+
+Once you add the file, please reload your game in Composer.
+
+### Adding a New Language
+
+These are stored in subdirectories of the `Internal Translation Directory` listed in your game's Composer `Build Settings`. To support a new language:
+
+1. Create a new folder / subdirectory in the `Internal Translation Directory`.
+2. Name your new folder with the [IETF-compliant language tag](https://www.w3.org/International/questions/qa-choosing-language-tags) for your language.  (ex: Your new folder should be named `es` for Spanish, or `es-419` for Latin American Spanish.) 
+3. Add the `translation.csv` file containing the translations for that language into your new directory
+4. Reload your game in Composer
+5. Rebuild Composer (this should generate the Unity-supported text for your new language).
 
 ## Automated Builds
 
@@ -57,7 +89,8 @@ Composer.bat batchBuild heroU
 
 The "valid" options are:
 * [heroU](https://github.com/Transolar/Hero-U)
-* [summerDaze](https://github.com/Transolar/SummerDaze)
+* [SummerDazeF](https://github.com/Transolar/SummerDaze)
+* [SummerDazeM](https://github.com/Transolar/SummerDaze)
 * [r2rDemo](https://github.com/Transolar/R2R-Demo)
 * [wizardsWay](https://github.com/Transolar/WizardWay)
 

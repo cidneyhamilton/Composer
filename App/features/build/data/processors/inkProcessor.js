@@ -364,7 +364,7 @@ define(function(require){
                 result += "{0} {1} {2}".format(varName, operatorVal, constName);
                 break;
             case "expressions.or":
-                result += "{0} {1} {2}".format(this.parseExpression(idMap, left), "||", thisparseExpression(idMap, right));
+                result += "{0} {1} {2}".format(this.parseExpression(idMap, left), "||", this.parseExpression(idMap, right));
                 break;
             case "expressions.and":
                 result += "{0} {1} {2}".format(this.parseExpression(idMap, left), "&&", this.parseExpression(idMap, right));

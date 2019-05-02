@@ -589,6 +589,8 @@ define(function(require){
         // TODO: Hack to handle the Map invoke command
         if (node.command == "Map") {
             result += " -> map";
+        } else if (node.command == "Continue") {
+            result += " ->->";
         } else if (node.command == "Dinnertime") {
             result += " -> dinnertime";
         } else if (node.command == "Sleep") {

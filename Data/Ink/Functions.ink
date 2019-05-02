@@ -128,10 +128,15 @@ VAR Skills = 5
 // TODO: Read these from the game Resource folder
 LIST MusicTracks = Silence, DiningHallTheme, Incidental2, MagicClassTheme, MiddleEastern, RogueClassTheme, SchoolBreak, StoreTheme, TowerGardenTheme
 
+LIST SoundClips = CardDeal, CardShuffleAndDeal, Click, DinnerBell, Placeholder, PoobahBet, PoobahFold, PoobahRaise, SleepStinger
+
 VAR BackgroundMusicTrack = SchoolBreak
 
-=== function PlayMusic(musicTrack) ===
-~ BackgroundMusicTrack = musicTrack
+=== function PlayMusic(musicClip) ===
+~ BackgroundMusicTrack = musicClip
+
+=== function PlaySound(soundClip) ===
+>>> SOUND: {soundClip}
 
 
 // ************************************************************************

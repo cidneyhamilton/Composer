@@ -562,9 +562,7 @@ define(function(require){
             soundEffect = node.soundEffectName.slice(0, node.soundEffectName.indexOf('.'));
         }
 
-        // console.log("Sound Effect {0}".format(soundEffect));
-
-        result += ">>> SOUND: {0}".format(soundEffect);
+        result += "~ PlaySound({0})".format(soundEffect);
         return result;
     };
 

@@ -215,8 +215,8 @@ You spend all evening here, but nothing happens.
 ~ PlayMusic(Silence)
 ~ ChangeScene(Bedroom)
 ~ AdvanceTime()
->>> SOUND: sleep_stinger
-Zzzzz.
+~ PlaySound(SleepStinger)
+Tilly: Zzzzz.
 - ->->
 
 === class ===

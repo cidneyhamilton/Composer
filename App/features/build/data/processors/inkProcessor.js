@@ -633,7 +633,7 @@ define(function(require){
 
     ctor.prototype.parseEntryPoint = function(idMap, entryPoint, entryPointIndex, epMetadata) {
         var formattedName = this.getInkName(entryPoint);
-        this.appendOutput(epMetadata, "\n\n= {0}\n".format(formattedName));
+        this.appendOutput(epMetadata, "\n\n= {0}\n# {0} Entry Point\n".format(formattedName));
     };
 
 

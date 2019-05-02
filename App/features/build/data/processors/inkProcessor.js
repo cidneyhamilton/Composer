@@ -248,7 +248,7 @@ define(function(require){
             result += "*   ";
         }
         if (expression) {
-            result += "{{ {0} }} ".format(this.parseExpression(idMap, expression));
+            result += "{ {0} } ".format(this.parseExpression(idMap, expression));
         }
         if (node.text) {
             result += "{0}".format(node.text);
@@ -381,9 +381,9 @@ define(function(require){
             case "expressions.inTags":
                 this.appendTagList(tags);
                 if (has) {
-                    result += "Tags has {0}".format(tags);
+                    result += "Tags ? {0}".format(tags);
                 } else {
-                    result += "Tags has ({0})".format(tags);
+                    result += "Tags ? ({0})".format(tags);
                 }
                 break;
             case "expressions.skillCheck":

@@ -207,8 +207,9 @@ You spend all evening here, but nothing happens.
 === dinner ===
 ~ PlayMusic(DiningHall)
 ~ ChangeScene(DiningHall)
+# TODO: Temporary gating around the demo.
 {
-    - day == 1: -> Dinner1
+    - day == 1: -> DiningHallSetup
     - else: This is the end of the demo! ->->
 }
 

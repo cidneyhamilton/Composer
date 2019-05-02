@@ -14,6 +14,18 @@ VAR speakerMood = neutral
 VAR showSpeaker = false
 VAR player = Tilly
 
+// Keep track of the last character the player has meet, for Dining Hall events
+VAR MetLast = Nobody
+VAR MetPrev = Nobody
+
+=== function Meet(Actor) ===
+{
+    - MetPrev != Actor && MetLast != Actor:
+        Meeting {Actor}
+        ~ MetPrev = MetLast
+        ~ MetLast = Actor
+}
+
 === function ShowActor(name, mood) ===
     ~ showSpeaker = true
     ~ speakerMood = mood

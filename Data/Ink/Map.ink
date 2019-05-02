@@ -81,8 +81,6 @@
         ~ return true
 }
 
-
-
 === function PracticeFieldAvailable()=== 
 {
     - currentRoom == PracticeField:
@@ -192,26 +190,26 @@
 
 === afternoon ===
 { 
-- currentRoom == ExerciseRoom: -> MaxExerciseDaytime1
-- currentRoom == Library: -> LibraryDaytime1
-- currentRoom == PracticeField: -> PracticeFieldDaytime1
-- currentRoom == Workshop: -> WorkshopDaytime1
-- else: You spend all afternoon here, but nothing happens.
+    - currentRoom == ExerciseRoom: 
+        ~ Meet(Max)
+        -> MaxExerciseDaytime1
+    - currentRoom == Library: 
+        ~ Meet(Fritz)
+        -> LibraryDaytime1
+    - currentRoom == PracticeField: 
+        ~ Meet(Mooella)
+        -> PracticeFieldDaytime1
+    - currentRoom == Workshop: 
+        ~ Meet(Kitty)
+        -> WorkshopDaytime1
+    - else: 
+        You spend all afternoon here, but nothing happens.
 }
 - -> dinner -> map
 
 === evening ===
 You spend all evening here, but nothing happens.
 - -> sleep -> class
-
-=== dinner ===
-~ PlayMusic(DiningHall)
-~ ChangeScene(DiningHall)
-# TODO: Temporary gating around the demo.
-{
-    - day == 1: -> DiningHallSetup
-    - else: This is the end of the demo! ->->
-}
 
 === sleep ===
 ~ PlayMusic(Silence)

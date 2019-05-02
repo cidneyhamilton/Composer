@@ -21,7 +21,6 @@ VAR MetPrev = Nobody
 === function Meet(Actor) ===
 {
     - MetPrev != Actor && MetLast != Actor:
-        Meeting {Actor}
         ~ MetPrev = MetLast
         ~ MetLast = Actor
 }

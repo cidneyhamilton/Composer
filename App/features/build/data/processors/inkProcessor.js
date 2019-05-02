@@ -181,8 +181,17 @@ define(function(require){
     ctor.prototype.parseNodeSetVariable = function(idMap, node, depth) {
         var result = indent(depth);
 
-        // TODO: Implement for values and ranges of values
-        result += "~ {0} = {1}".format(node.name, 0);
+        if (node.add) {
+            // TODO: Implement for values and ranges of values
+            result += "~ {0} += {1}".format(node.name, node.source.value);
+        } else {
+            // TODO: Implement for values and ranges of values
+            result += "~ {0} = {1}".format(node.name, node.source.value);
+        }
+
+        this.append_var_list(node.name);
+
+
         return result;
     };
 
@@ -752,7 +761,13 @@ define(function(require){
         }
 
         if (this.var_list.length > 0) {
-            gameOutput += this.writeAssignment(context, "Variables", this.var_list);    
+            var varInkList = [];
+            var variable;
+            for (var i = 0; i < this.var_list.length; i++) {
+                variable = this.var_list[i];
+                addToArray(varInkList, "\nVAR {0} = 0".format(variable));
+            }
+            gameOutput += this.writeAssignment(context, "Variables", varInkList);    
         }
         
         // Copy over and include all files in both the standalone Composer/Data/Ink directory 
@@ -802,6 +817,7 @@ define(function(require){
         gameFileWriter.end();
     };
 
+    // Keep track of all tags in the Ink story
     ctor.prototype.appendTagList = function(tags) {
         if (isNotEmpty(tags)) {       
             tags = tags.split(", ");
@@ -811,13 +827,21 @@ define(function(require){
         }
     }
 
+    // Keep track of all variables in the Ink story
     ctor.prototype.append_var_list = function(singleVar) {
         if (isNotEmpty(singleVar)) {
             singleVar = singleVar.replace(/\./g,'');
-            addToArray(this.var_list, "\nVAR {0} = false".format(singleVar));
+
+            // Unless it's already in the list of variables in the story, append it
+            if (!this.var_list.includes(singleVar)) {
+                addToArray(this.var_list, singleVar);     
+            }
+            
         }
     }
 
+
+    // Keep track of all constants in the Ink story
     ctor.prototype.append_const_list = function(singleConst) {
         // Check to make sure the constant isn't a number
         if (isNotEmpty(singleConst) && Number.isNaN(singleConst)) {

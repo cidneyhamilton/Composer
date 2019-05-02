@@ -4,7 +4,14 @@ VAR DinnerActors = (Fritz, Mooella, Max, Kitty, Sitari, Rodrigo)
 ~ PlayMusic(DiningHall)
 ~ ChangeScene(DiningHall)
 ~ SetupDiningHall()
--> DinnerChoice
+-> BeforeDinner
+
+
+=== BeforeDinner ===
+{
+    - day == 1: -> BeforeDinner1 -> DinnerChoice
+    - else: -> DinnerChoice
+}
 
 === DinnerChoice ===
 +   { DinnerActors ? Rodrigo } Sit With Rodrigo

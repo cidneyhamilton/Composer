@@ -208,7 +208,13 @@
 - -> dinner -> map
 
 === evening ===
-You spend all evening here, but nothing happens.
+{ 
+    - currentRoom == RecRoom: 
+        ~ Meet(Sitari)
+        -> SitariRecRoomEvening1
+    - else: 
+        You spend all evening here, but nothing happens.
+}
 - -> sleep -> class
 
 === sleep ===

@@ -89,10 +89,10 @@ VAR TerkReputation = 0
 VAR SitariReputation = 20
 VAR EweReputation = 20
 
-=== function AddReputation(reputation, amount) ===
+=== function AddReputation(ref reputation, amount) ===
     ~ reputation = reputation + amount
 
-=== function RemoveReputation(reputation, amount) ===
+=== function RemoveReputation(ref reputation, amount) ===
     ~ reputation = reputation - amount
 
 // ************************************************************************
@@ -119,7 +119,7 @@ VAR Fitness = 4
 VAR Charm = 6
 VAR Skills = 5
 
-=== function ImproveSkill(skill, amount) ===
+=== function ImproveSkill(ref skill, amount) ===
 	~ skill = skill + amount
 
 // ************************************************************************

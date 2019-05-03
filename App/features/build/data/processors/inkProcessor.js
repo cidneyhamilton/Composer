@@ -169,9 +169,9 @@ define(function(require){
         // Add introductory white space
         var result = indent(depth);
         if (isNotEmpty(stitch)) {
-            result += "-> {0}.{1}".format(knot, stitch);
+            result += "<- {0}.{1}".format(knot, stitch);
         } else {
-            result += "-> {0}".format(knot);
+            result += "<- {0}".format(knot);
         }
 
         return result;

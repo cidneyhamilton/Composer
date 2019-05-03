@@ -5,13 +5,8 @@
 === map ===
 ~ AdvanceTime()
 ~ PlayMusic(Silence)
-// Can now use the journal in the game!
-~ EnableJournalButton()
 ~ ChangeScene(_None)
 -> destination
-
-=== dinnertime ===
--> dinner -> map
 
 === function CourtyardAvailable()=== 
 {
@@ -184,51 +179,8 @@
 
 === next ===
 { 
+- time == Morning: -> morning
 - time == Afternoon: -> afternoon
 - time == Evening: -> evening
-}
-
-=== afternoon ===
-{ 
-    - currentRoom == ExerciseRoom: 
-        ~ Meet(Max)
-        -> MaxExerciseDaytime1
-    - currentRoom == Library: 
-        ~ Meet(Fritz)
-        -> LibraryDaytime1
-    - currentRoom == PracticeField: 
-        ~ Meet(Mooella)
-        -> PracticeFieldDaytime1
-    - currentRoom == Workshop: 
-        ~ Meet(Kitty)
-        -> WorkshopDaytime1
-    - else: 
-        You spend all afternoon here, but nothing happens.
-}
-- -> dinner -> map
-
-=== evening ===
-{ 
-    - currentRoom == RecRoom: 
-        ~ Meet(Sitari)
-        -> SitariRecRoomEvening1
-    - else: 
-        You spend all evening here, but nothing happens.
-}
-- -> sleep -> class
-
-=== sleep ===
-~ PlayMusic(Silence)
-~ ChangeScene(Bedroom)
-~ AdvanceTime()
-~ PlaySound(SleepStinger)
-Tilly: Zzzzz.
-- ->->
-
-=== class ===
-~ ChangeScene(RogueClass)
-{
-- day == 1: -> RogueClass1
-- else: This is the end of the demo! -> DONE
 }
 

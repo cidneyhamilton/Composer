@@ -100,7 +100,7 @@ VAR EweReputation = 20
 // ************************************************************************
 
 // In-Game Locations
-LIST Rooms = _None, _Outside, Beach, Bedroom, Courtyard, DiningHall, ExerciseRoom, FestivalGrounds, Garden, Infirmary, Kitchen, Library, MagicClass, Overlook, PracticeField, RecRoom, RogueClass, Store, TowerGarden, WineCellar, Workshop
+LIST Rooms = _None, _Outside, Beach, Bedroom, Courtyard, DiningHall, ExerciseRoom, FestivalGrounds, Garden, Infirmary, Kitchen, Library, MagicClass, Overlook, PracticeField, RecRoom, RogueClass, Store, TillyBedroom, TowerGarden, WineCellar, Workshop
 
 // The current location of the player. IMPORTANT; observed.
 VAR currentRoom = _Outside
@@ -145,7 +145,7 @@ VAR BackgroundMusicTrack = SchoolBreak
 // System: Time
 // ************************************************************************
 
-LIST timeslots = Morning, Afternoon, Evening
+LIST timeslots = Morning, Afternoon, Dinnertime, Evening, Bedtime
 
 VAR day = 1
 VAR time = Morning 
@@ -153,10 +153,12 @@ VAR time = Morning
 === function AdvanceTime() ===
 { 
 	- time == Morning:
-	    ~ time = Afternoon
+	  ~ time = Afternoon
 	- time == Afternoon:
-	    ~ time = Evening
+	  ~ time = Evening
 	- time == Evening:
-	    ~ time = Morning
-	    ~ day++
+		~ time = Bedtime
+	- time == Bedtime:
+	  ~ time = Morning
+	  ~ day++
 }

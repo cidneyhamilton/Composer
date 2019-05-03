@@ -1,11 +1,13 @@
 VAR DinnerActors = (Fritz, Mooella, Max, Kitty, Sitari, Rodrigo)
 
+=== dinnertime ===
+-> dinner -> map
+
 === dinner ===
 ~ PlayMusic(DiningHall)
 ~ ChangeScene(DiningHall)
 ~ SetupDiningHall()
 -> BeforeDinner
-
 
 === BeforeDinner ===
 {

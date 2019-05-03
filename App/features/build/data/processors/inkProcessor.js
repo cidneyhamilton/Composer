@@ -446,7 +446,7 @@ define(function(require){
     // Handle Composer-side comments
     ctor.prototype.parseComment = function(idMap, node, depth) {
         var result = indent(depth);
-        result += "### {0}".format(node.message);
+        result += "// {0}".format(node.message);
         return result;
     };
 
@@ -645,6 +645,11 @@ define(function(require){
         this.appendOutput(epMetadata, "\n\n= {0}\n# {0} Entry Point\n".format(formattedName));
     };
 
+    ctor.prototype.parseEntryPointEnd = function(idMap, entryPoint, entryPointIndex, epMetadata) {
+        var formattedName = this.getInkName(entryPoint);
+        this.appendOutput(epMetadata, "\n->->");
+    };
+
 
     ctor.prototype.parseNodes = function(idMap, nodes, epMetadata) {
         return this.parseNodeArray(idMap, nodes, epMetadata);
@@ -810,7 +815,7 @@ define(function(require){
             }
         }
 
-        gameOutput += "\n -> Intro";
+        gameOutput += "\n-> Intro -> next";
         // Generate the one ink file to rule them all
         var gameFileWriter = baseWriter.createFileWriter(path.join(context.inkOutputDirectory, context.game.gameInternalName + '.ink'));
         gameFileWriter.write(gameOutput);

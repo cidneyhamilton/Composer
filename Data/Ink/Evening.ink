@@ -1,15 +1,14 @@
 === evening ===
 { 
     - currentRoom == RecRoom: 
-        -> recroom
+        -> recroom -> bedtime
     - currentRoom == ExerciseRoom: 
-        -> exerciseroom
+        -> exerciseroom -> bedtime
     - currentRoom == Library: 
-        -> library
+        -> library -> bedtime
     - else: 
-        You spend all evening here, but nothing happens.
+        You spend all evening here, but nothing happens. -> bedtime
 }
-- -> bedtime
 
 = recroom
 ~ Meet(Sitari)

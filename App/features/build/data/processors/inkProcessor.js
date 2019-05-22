@@ -107,7 +107,14 @@ define(function(require){
         if (isNotEmpty(output)) {
             var sceneName = this.getInkNameFromId(epMetadata.script.sceneId);
             var scriptName = this.getInkNameFromId(epMetadata.script.id);
-            this.data.scenes[sceneName].scripts[scriptName] += output;
+
+            var scene = this.data.scenes[sceneName];
+            if (scene) {
+                this.data.scenes[sceneName].scripts[scriptName] += output;    
+            } else {
+                // This script isn't attached to a scene
+            }
+            
         }
     };
 

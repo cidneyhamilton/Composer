@@ -109,11 +109,7 @@ define(function(require){
             var scriptName = this.getInkNameFromId(epMetadata.script.id);
 
             var scene = this.data.scenes[sceneName];
-            if (scene) {
-                this.data.scenes[sceneName].scripts[scriptName] += output;    
-            } else {
-                // This script isn't attached to a scene
-            }
+            this.data.scenes[sceneName].scripts[scriptName] += output;
             
         }
     };
@@ -196,7 +192,7 @@ define(function(require){
             result += "~ {0} = {1}".format(node.name, node.source.value);
         }
 
-        this.append_var_list(node.name);
+        this.appendVarList(node.name);
 
 
         return result;
@@ -374,9 +370,9 @@ define(function(require){
                         break;
                 }
                 var varName = removeWhitespace(node.variableName);
-                this.append_var_list(varName);
+                this.appendVarList(varName);
                 var constName = removeWhitespace(node.compareTo);
-                this.append_const_list(constName);
+                this.appendConstList(constName);
                 result += "{0} {1} {2}".format(varName, operatorVal, constName);
                 break;
             case "expressions.or":
@@ -759,15 +755,20 @@ define(function(require){
         gameOutput += "\n# author: Lori Cole";
         gameOutput += "\n# title: Summer Daze at Hero-U";
 
-        // generate the tags and inventory list files
+        // generate the tag list file
+        if (this.tagList.length == 1) {
+            this.appendTagList("filler");
+        }
+
         if (this.tagList.length > 0) {
             gameOutput += this.writeList(context, "Tags", "Tags", this.tagList);    
         }
-        if (this.inv_list.length > 0) {
-            gameOutput += this.writeList(context, "Inventory", "Inventory", this.inv_list);     
-        }
 
         // generate the constants and variables files
+        if (this.const_list.length == 1) {
+            this.appendConstList(["filler"]);
+        }
+
         if (this.const_list.length > 0) {
             gameOutput += this.writeAssignment(context, "Constants", this.const_list);    
         }
@@ -840,7 +841,7 @@ define(function(require){
     }
 
     // Keep track of all variables in the Ink story
-    ctor.prototype.append_var_list = function(singleVar) {
+    ctor.prototype.appendVarList = function(singleVar) {
         if (isNotEmpty(singleVar)) {
             singleVar = singleVar.replace(/\./g,'');
 
@@ -854,7 +855,7 @@ define(function(require){
 
 
     // Keep track of all constants in the Ink story
-    ctor.prototype.append_const_list = function(singleConst) {
+    ctor.prototype.appendConstList = function(singleConst) {
         // Check to make sure the constant isn't a number
         if (isNotEmpty(singleConst) && Number.isNaN(singleConst)) {
             addToArray(this.const_list, "\nCONST {0} = {1}".format(singleConst));

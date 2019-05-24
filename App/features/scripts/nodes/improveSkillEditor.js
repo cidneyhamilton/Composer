@@ -4,7 +4,7 @@ define(function(require) {
 
     var ctor = function() {
         NodeEditor.call(this);
-        this.skillsAndAtts = loadedConstants.SkillsAndStats.skillsAndAttributes;
+        this.skillsAndAtts = loadedConstants.constants.SkillsAndStats.skillsAndAttributes;
     };
 
     NodeEditor.baseOn(ctor);

@@ -27,14 +27,19 @@ define(function(require) {
     };
 
     var ctor = function () {
+    };
+
+    ctor.prototype.load = function() {
+        this.constants = {};
+
         // First scan all constants and load any required ones
         var constantCategories = {};
         for (var i = 0; i < assetDatabase.constants.entries.length; i++) {
             var constantEntry = assetDatabase.constants.entries[i];
             if ("SkillsAndStats" === constantEntry.name) {
-                this[constantEntry.name] = skillsAndAttributes.init(constantEntry);
+                this.constants[constantEntry.name] = skillsAndAttributes.init(constantEntry);
             } else {
-                this[constantEntry.name] = new generatedConstants(constantEntry);
+                this.constants[constantEntry.name] = new generatedConstants(constantEntry);
             }
         }
 
@@ -53,7 +58,7 @@ define(function(require) {
                 this.questsSceneId = sceneEntry.id;
             }
         }
-    };
+    }
 
     return new ctor();
 });

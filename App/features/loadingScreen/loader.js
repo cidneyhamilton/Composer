@@ -1,7 +1,8 @@
 define(function(require) {
     var system = require('durandal/system'),
         $ = require('jquery'),
-        assetDatabase = require('infrastructure/assetDatabase');
+        assetDatabase = require('infrastructure/assetDatabase'),
+        loadedConstants = require('features/constants/loadedConstants');
 
     var featureMains = [];
 
@@ -28,7 +29,8 @@ define(function(require) {
     	load: function() {
 			setTimeout(function(){
 				assetDatabase.load(),
-				installFeatures();
+				installFeatures(),
+                loadedConstants.load();
 			});
 		}
     };

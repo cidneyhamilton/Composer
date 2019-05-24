@@ -3,7 +3,7 @@ define(function(require) {
         loadedConstants = require('features/constants/loadedConstants');
 
     var ctor = function() { 
-        this.skillsAndAtts = loadedConstants.SkillsAndStats.skillsAndAttributes;
+        this.skillsAndAtts = loadedConstants.constants.SkillsAndStats.skillsAndAttributes;
     };
 
     ConditionEditor.baseOn(ctor);

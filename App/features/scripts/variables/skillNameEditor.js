@@ -8,7 +8,7 @@
     ctor.prototype.activate = function (node, skillName) {
         this.node = node;
         this.skillName = skillName;
-        this.skills = loadedConstants.SkillsAndStats.skills;
+        this.skills = loadedConstants.constants.SkillsAndStats.skills;
 
         observable.defineProperty(this, 'description', function () {
             // If skillName is defined, return a user-friendly description for it.

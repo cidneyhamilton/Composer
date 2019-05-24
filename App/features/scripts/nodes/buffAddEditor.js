@@ -7,7 +7,7 @@ define(function(require) {
         NodeEditor.call(this);
 
         observable.defineProperty(this, 'skillsAndAttributesMap', function() {
-        	return loadedConstants.SkillsAndStats;
+        	return loadedConstants.constants.SkillsAndStats;
         });
     };
 

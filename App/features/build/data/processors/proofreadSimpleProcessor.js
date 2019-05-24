@@ -46,14 +46,14 @@ define(function(require){
                 returnVal = inventoryPicklists.getThrowModelTypeById(component.modelType);
                 break;
             case "BuffTargetType" :
-                returnVal = loadedConstants.SkillsAndStats.getNameById(component.BuffTargetType);
+                returnVal = loadedConstants.constants.SkillsAndStats.getNameById(component.BuffTargetType);
                 break;
             case "BuffA":
             case "BuffB":
             case "BuffC":
                 var buff = component[property];
                 if (buff.Value) {
-                    buff = loadedConstants.SkillsAndStats.getNameById(buff.Target) + ' (' + buff.Value + ')';
+                    buff = loadedConstants.constants.SkillsAndStats.getNameById(buff.Target) + ' (' + buff.Value + ')';
                     if (!!buff) {
                         returnVal = buff;
                     } else {

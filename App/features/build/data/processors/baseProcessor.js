@@ -11,6 +11,7 @@ define(function(require){
     ctor.prototype.parseLocalizationGroup = function(context, idMap, localizationGroup) {};
     ctor.prototype.parseScene = function(context, idMap, scene) {};
     ctor.prototype.parseActor = function(context, idMap, actor) {};
+    ctor.prototype.parseConstant = function(context, idMap, constant) {};
     ctor.prototype.parseStoryEvent = function(context, idMap, storyEvent) {};
     ctor.prototype.parseProp = function(context, idMap, prop) {};
     ctor.prototype.parseScript = function(context, idMap, script, sceneName) {};

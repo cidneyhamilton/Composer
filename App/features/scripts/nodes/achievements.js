@@ -1,12 +1,13 @@
 define(function(require) {
-    var system = require('durandal/system');
+    var system = require('durandal/system'),
+        loadedConstants = require('features/constants/loadedConstants');
 
     var ctor = function(attributes) {
         attributes = attributes || {};
 
         this.type = ctor.type;
         this.id = attributes.id || system.guid();
-        this.sceneId = 'a4d66827-dd60-451f-8015-62b8abb42f0c';  // Achivements Scene
+        this.sceneId = loadedConstants.achievementsSceneId;
         this.propId = attributes.propId || null;
     };
 

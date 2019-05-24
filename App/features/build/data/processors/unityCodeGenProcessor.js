@@ -7,6 +7,7 @@ define(function(require){
         system = require('durandal/system'),
         selectedGame = require('features/projectSelector/index'),
         getSlug = require('infrastructure/getSlug'),
+        loadedConstants = require('features/constants/loadedConstants'),
 
         achievementsTemplate = require('text!features/build/unity3d/csharp/achievementsTemplate.txt'),
         inventoryIdsTemplate = require('text!features/build/unity3d/csharp/inventoryIdsTemplate.txt'),
@@ -18,7 +19,8 @@ define(function(require){
         propDrawerTemplate = require('text!features/build/unity3d/csharp/propDrawerTemplate.txt'),
         scriptDrawerTemplate = require('text!features/build/unity3d/csharp/scriptDrawerTemplate.txt'),
 
-        registryTemplate = require('text!features/build/unity3d/csharp/registryTemplate.txt')
+        registryTemplate = require('text!features/build/unity3d/csharp/registryTemplate.txt'),
+        constantsTemplate = require('text!features/build/unity3d/csharp/constantsTemplate.txt')
         ;
 
     var baseItem = function(contextOutputDir, fileName, template, templateFormat, lineFormat) {
@@ -113,9 +115,9 @@ define(function(require){
     ctor.prototype.constructor = baseProcessor;
 
     ctor.prototype.init = function() {
-        var achievementsSceneId = 'a4d66827-dd60-451f-8015-62b8abb42f0c';
-        var inventorySceneId = 'a2508b7e-a177-4a96-93bd-4d8ab88dffc4';
-        var questsSceneId = 'e8520824-d970-4c6e-8aec-6c308c8846ab';
+        var achievementsSceneId = loadedConstants.achievementsSceneId;
+        var inventorySceneId = loadedConstants.inventorySceneId;
+        var questsSceneId = loadedConstants.questsSceneId;
 
         this.achievements = codeGenItem('Achievements', achievementsSceneId, achievementsTemplate, '            {new Guid("{id}"), new Achievement(new Guid("{id}")) },');
         this.inventory = codeGenItem('InventoryItems', inventorySceneId, inventoryIdsTemplate, '            {new Guid("{id}"), new InventoryId(new Guid("{id}")) },');
@@ -130,6 +132,8 @@ define(function(require){
         this.scenesRegistry = registryInstancedGenItem('Scene');
         this.storyEventsRegistry = registryInstancedGenItem('StoryEvent');
 
+        this.constantsRegistry = baseItemWithSubItems('codeGenOutputDirectory', 'ConstantEnums', constantsTemplate, '{constantEnums}', '    public enum {name}Type {\r\n{childData}\r\n    }\r\n\r\n', '        {childName} = {childIndex},', true);
+
         this.actorDrawer = drawerGenItem('ActorDrawer', actorDrawerTemplate, '            new Item("{id}", "{name}"),');
         this.propDrawer = drawerGenItem('PropDrawer', propDrawerTemplate, '            new Item("{name}") { \r\n                Children = new List<Item.ChildItem> {\r\n{childData}\r\n                }\r\n            },');
         this.scriptDrawer = drawerGenItem('ScriptDrawer', scriptDrawerTemplate, '            new Item("{name}") { \r\n                Children = new List<Item.ChildItem> {\r\n{childData}\r\n                }\r\n            },');
@@ -138,7 +142,8 @@ define(function(require){
                          this.localizationGroups, 
                          this.nonLocalizedNames,
                          this.actorsRegistry, this.scenesRegistry, this.storyEventsRegistry, 
-                         this.actorDrawer, this.propDrawer, this.scriptDrawer
+                         this.actorDrawer, this.propDrawer, this.scriptDrawer,
+                         this.constantsRegistry
                          ];
     };
 
@@ -221,6 +226,22 @@ define(function(require){
             this.scriptDrawer.addSubEntry(script.sceneId, this.scriptDrawer.subEntryFormat.replace(/{childId}/g, script.id).replace(/{childName}/g, script.name));
         }
     };
+
+    ctor.prototype.parseConstant = function(context, idMap, constant) {
+        // These internal-only enums are not localized
+
+        // update the constant registry
+        this.constantsRegistry.addOutput(this.constantsRegistry.format.replace(/{name}/g, constant.name.replace(/\s/g,'')).replace('{childData}', '{' + constant.id + '}'));
+        this.constantsRegistry.initSubEntry(constant.id); // Explicitly generate a subentry for this; it's possible we may not have any constants
+
+        for (var i = 0; i < constant.entries.length; i ++) {
+            var constantEntry = constant.entries[i];
+            if (constantEntry.active) {
+                this.constantsRegistry.addSubEntry(constant.id, this.constantsRegistry.subEntryFormat.replace(/{childName}/g, constantEntry.name.replace(/\s/g,'')).replace(/{childIndex}/g, constantEntry.index));
+            }
+        }
+    };
+
 
     ctor.prototype.finish = function(context, idMap) {
         baseProcessor.prototype.finish.call(this, context, idMap);

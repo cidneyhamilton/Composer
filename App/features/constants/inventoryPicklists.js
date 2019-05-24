@@ -1,7 +1,7 @@
 define(function(require) {
     var db = require('infrastructure/assetDatabase'),
-        system = require('durandal/system');
-    var inventorySceneId = "a2508b7e-a177-4a96-93bd-4d8ab88dffc4";
+        system = require('durandal/system'),
+        loadedConstants = require('features/constants/loadedConstants');
 
 	var inventoryItemTypes = [
         { name: 'Other', id: '0'},
@@ -86,7 +86,7 @@ define(function(require) {
     function populateProps() {
         return system.defer(function(dfd){
             for (var i = 0; i < db.props.entries.length ; i++) {
-                if (db.props.entries[i].sceneId == inventorySceneId) {
+                if (db.props.entries[i].sceneId == loadedConstants.inventorySceneId) {
                     var prop = {};
                     prop.name = db.props.entries[i].name;
                     prop.id = db.props.entries[i].id;

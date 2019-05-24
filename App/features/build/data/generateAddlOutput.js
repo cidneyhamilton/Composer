@@ -81,7 +81,7 @@ define(function(require){
                 };
 
                 function generate() {
-                    var assets = ['actors', 'props', 'storyEvents', 'scenes', 'scripts', 'localizationGroups'];
+                    var assets = ['actors', 'constants', 'props', 'storyEvents', 'scenes', 'scripts', 'localizationGroups'];
                 
                     // Initialize the processors
                     for(var i = 0; i < allProcessors.length; i++) {
@@ -134,6 +134,9 @@ define(function(require){
                         switch (assetType) {
                             case 'actors':
                                 processor.parseActor(context, idMap, assetEntry.item);
+                                break;
+                            case 'constants':
+                                processor.parseConstant(context, idMap, assetEntry.item);
                                 break;
                             case 'localizationGroups':
                                 processor.parseLocalizationGroup(context, idMap, assetEntry.item);

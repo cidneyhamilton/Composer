@@ -22,7 +22,7 @@ define(function(require) {
         }
     }
 
-    features('components', 'scripts', 'actors', 'storyEvents', 'props', 'scenes', 'localization');
+    features('components', 'constants', 'scripts', 'actors', 'storyEvents', 'props', 'scenes', 'localization');
 
     var ctor = {
     	load: function() {

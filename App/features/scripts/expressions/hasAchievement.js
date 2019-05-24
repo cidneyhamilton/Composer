@@ -1,13 +1,14 @@
 define(function(require) {
     var assetDatabase = require('infrastructure/assetDatabase'),
-        achievementStatusMap = require('features/constants/achievementStatus');
+        achievementStatusMap = require('features/constants/achievementStatus'),
+        loadedConstants = require('features/constants/loadedConstants');
 
     var ctor = function(attributes) {
         attributes = attributes || {};
 
         this.type = ctor.type;
         this.propId = attributes.propId || null;
-        this.sceneId = 'a4d66827-dd60-451f-8015-62b8abb42f0c';  // Achievements Scene
+        this.sceneId = loadedConstants.achievementsSceneId; 
         this.achievementStatus = attributes.achievementStatus || 0;
     };
 

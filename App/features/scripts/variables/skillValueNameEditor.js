@@ -1,6 +1,6 @@
 ﻿define(function (require) {
     var observable = require('plugins/observable'),
-        skillsAndAttributes = require('features/constants/skillsAndAttributes');
+        loadedConstants = require('features/constants/loadedConstants');
 
     var ctor = function () {
     };
@@ -8,7 +8,7 @@
     ctor.prototype.activate = function (node, skillValueName) {
         this.node = node;
         this.skillValueName = skillValueName;
-        this.skills = skillsAndAttributes.skills;
+        this.skills = loadedConstants.SkillsAndStats.skills;
 
         observable.defineProperty(this, 'description', function () {
             // If skillValueName is defined, return a user-friendly description for it.

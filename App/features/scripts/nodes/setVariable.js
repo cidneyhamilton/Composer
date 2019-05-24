@@ -1,5 +1,6 @@
 ﻿define(function (require) {
-    var Literal = require('../variables/literal');
+    var Literal = require('../variables/literal'),
+        loadedConstants = require('features/constants/loadedConstants');
 
     var ctor = function (attributes) {
         attributes = attributes || {};
@@ -8,7 +9,7 @@
         this.name = attributes.name || '';
         this.scope = attributes.scope || 'script';
         this.scopeId = attributes.scopeId;
-        this.sceneId = attributes.sceneId || "a2508b7e-a177-4a96-93bd-4d8ab88dffc4";
+        this.sceneId = attributes.sceneId || loadedConstants.inventorySceneId;
         this.source = attributes.source || new Literal();
 		this.add = !!attributes.add;
     };

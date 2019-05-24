@@ -1,0 +1,66 @@
+<section>
+    <header>
+        <button class="back hint--bottom hint--rounded" data-hint="Go Back" accesskey="b" data-bind="click: goBack">
+            <i class="icon-circle-arrow-left"></i>
+        </button>
+        <span class="model-title" data-bind="text:item.name"></span>
+        <span>
+            <button class="delete hint--left hint--rounded" data-hint="Delete" data-bind="click: remove">
+                <i class="icon-trash"></i>
+            </button>
+        </span>
+
+        <span class="button-panel">
+            <button class="save hint--left hint--rounded" data-hint="Save" accesskey="s" data-bind="click: save">
+                <i class="icon-save"></i>
+            </button>
+        </span>
+    </header>
+
+    <div>
+        <form>
+            <fieldset>
+                <label>Name</label>
+                <input type="text" placeholder="group name" style="margin:0" data-bind="enumSafe, value: item.name, valueUpdate: 'afterkeydown'">
+                <button class="btn" data-bind="click:addEntry">Add Entry</button>
+            </fieldset>
+        </form>
+
+        <div class="items-container">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th style="width: 5%">Index</th>
+                        <th style="width: 5%">Active</th>
+                        <th style="width: 30%">Internal Name</th>
+                        <th style="width: 30%">Category</th>
+                        <th style="width: 30%">Translation Notes</th>
+                    </tr>
+                </thead>
+            </table>
+            <div class="rows" style="top: 185px">
+                <table class="table table-striped table-hover table-bordered">
+                    <tbody data-bind="foreach: item.entries.sort(function(a,b){return (a.index - b.index);})">
+                        <tr>
+                            <td style="width: 5%">
+                                <span data-bind="text:$parent.item.entries[$index()].index"></span>
+                            </td>
+                            <td style="width: 5%">
+                                <input type="checkbox" style="margin:0" value="true" data-bind="checked: $parent.item.entries[$index()].active">
+                            </td>
+                            <td style="width: 30%">
+                                <input type="text" style="margin:0" placeholder="name" data-bind="enumSafe, value:$parent.item.entries[$index()].name, valueUpdate: 'afterkeydown', enable: $parent.item.entries[$index()].active">
+                            </td>
+                            <td style="width: 30%">
+                                <select style="margin:0" data-bind="options: $parent.categories, value: $parent.item.entries[$index()].category, valueUpdate: 'afterkeydown', enable: $parent.item.entries[$index()].active"></select>
+                            </td>
+                            <td style="width: 30%">
+                                <input type="text" style="margin:0" placeholder="Translation Notes" data-bind="value:$parent.item.entries[$index()].notes, valueUpdate: 'afterkeydown', enable: $parent.item.entries[$index()].active">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>

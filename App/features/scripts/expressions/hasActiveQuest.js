@@ -1,13 +1,14 @@
 define(function(require) {
     var assetDatabase = require('infrastructure/assetDatabase'),
-        questStatusMap = require('features/constants/questStatus');
+        questStatusMap = require('features/constants/questStatus'),
+        loadedConstants = require('features/constants/loadedConstants');
 
     var ctor = function(attributes) {
         attributes = attributes || {};
 
         this.type = ctor.type;
         this.propId = attributes.propId || null;
-        this.sceneId = 'e8520824-d970-4c6e-8aec-6c308c8846ab';  // Quests Scene
+        this.sceneId = loadedConstants.questsSceneId; 
         this.questStatus = attributes.questStatus || 0;
 
     };

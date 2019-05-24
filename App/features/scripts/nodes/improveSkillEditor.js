@@ -1,10 +1,10 @@
 define(function(require) {
     var NodeEditor = require('./nodeEditor'),
-    	skillsAndAttributes = require('features/constants/skillsAndAttributes');
+    	loadedConstants = require('features/constants/loadedConstants');
 
     var ctor = function() {
         NodeEditor.call(this);
-        this.skillsAndAtts = skillsAndAttributes.skillsAndAttributes;
+        this.skillsAndAtts = loadedConstants.SkillsAndStats.skillsAndAttributes;
     };
 
     NodeEditor.baseOn(ctor);

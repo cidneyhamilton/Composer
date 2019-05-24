@@ -2,7 +2,8 @@ var skillOrStatMap;
 
 define(function(require) {
     if (!skillOrStatMap) {
-        skillOrStatMap = require('features/constants/skillsAndAttributes');
+        var loadedConstants = require('features/constants/loadedConstants');
+        skillOrStatMap = loadedConstants.SkillsAndStats;
     }
     var ctor = function(attributes) {
         attributes = attributes || {};

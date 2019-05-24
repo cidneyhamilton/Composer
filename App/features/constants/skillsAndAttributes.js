@@ -1,48 +1,53 @@
 define(function(require) {
 
-    var skills = { 
-        group: 'Skills',
-        options: ['Combat', 'Defense', 'Stealth', 'Tool Use', 'Climbing', 'Throwing', 'Traps', 'Gotcha', 'Spot', 'Listen', 'Gaming']
-    };
-    var atts =  {
-        group: 'Attributes',
-        options: ['Agility', 'Charm', 'Fitness', 'Magic', 'Perception', 'Smarts', 'Moxie', 'Luck']
+    var ctor = function () {
     };
 
+    ctor.prototype.init = function(skillsAndAttributesEntry) {
+        var allSkills = { 
+            group: 'Skills',
+            options: []
+        };
+        var allAtts =  {
+            group: 'Attributes',
+            options: []
+        };
+        this.entries = [];
+        this.allEntries = [];
 
-    var skillOrStats = [
-        { id:'0', name: 'None'},
-        { id:'1', name: 'All'},
-        { id:'2', name: 'AllSkills'},
-        { id:'3', name: 'AllStats'},
-        { id:'4', name: 'Climbing'},
-        { id:'5', name: 'Combat'},
-        { id:'6', name: 'Defense'},
-        { id:'7', name: 'Listen'},
-        { id:'8', name: 'Tool Use'},
-        { id:'9', name: 'Spot'},
-        { id:'10', name: 'Stealth'},
-        { id:'11', name: 'Throwing'},
-        { id:'12', name: 'Agility'},
-        { id:'13', name: 'Charm'},
-        { id:'14', name: 'Fitness'},
-        { id:'15', name: 'Luck'},
-        { id:'16', name: 'Magic'},
-        { id:'17', name: 'Moxie'},
-        { id:'18', name: 'Perception'},
-        { id:'19', name: 'Smarts'}
-    ];
-
-    return {
-        skills: skills.options,
-        attributes: atts.options,
-        skillsAndAttributes: [skills, atts],
-
-        skillOrStats: skillOrStats,
-        getSkillOrStatById: function(id) {
-            if (typeof id !== 'undefined') {
-                 return skillOrStats[parseInt(id)].name;
+        if (skillsAndAttributesEntry) {
+            // If there are SkillsAndStats defined, parse them.
+            skillsAndAttributesEntry.open();
+            var skillStatEntries = skillsAndAttributesEntry.item.entries;
+            for (var i = 0; i < skillStatEntries.length; i ++) {
+                // Only add active entries into the mappings
+                if (skillStatEntries[i].active) {
+                    if ('Skill' === skillStatEntries[i].category) {
+                        allSkills.options.push(skillStatEntries[i].name);
+                    } else if ('Stat' === skillStatEntries[i].category) {
+                        allAtts.options.push(skillStatEntries[i].name);
+                    }
+                    // Add the thing to the ordered list of active skills and stats.
+                    this.entries.push({id: '' + skillStatEntries[i].index, name: skillStatEntries[i].name});
+                }
+                // Add the thing to the ordered list of all skills and stats.
+                this.allEntries.push({id: '' + skillStatEntries[i].index, name: skillStatEntries[i].name});
             }
+            skillsAndAttributesEntry.close();
+        }
+
+        this.skills = allSkills.options;
+        this.stats = allAtts.options;
+        this.skillsAndAttributes = [allSkills, allAtts];
+
+        return this;
+    };
+
+    ctor.prototype.getNameById = function(id) {
+        if (typeof id !== 'undefined') {
+             return this.allEntries[parseInt(id)].name;
         }
     };
+
+    return new ctor();
 });

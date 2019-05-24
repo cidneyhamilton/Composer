@@ -29,6 +29,7 @@ define(function(require) {
         sections: [
             new Section('Select Game', 'icon-play', 'features/projectSelector/index', true),
             new Section('Home', 'icon-home'),
+            new Section('Constants', 'icon-pushpin'),
             new Section('Events', 'icon-film', 'features/storyEvents/index'),
             new Section('Actors', 'icon-user'),
             new Section('Scenes', 'icon-picture'),

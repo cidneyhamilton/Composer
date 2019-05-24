@@ -1,7 +1,7 @@
 define(function(require){
     var baseProofreadProcessor = require('features/build/data/processors/baseProofreadProcessor'),
         heroStatusEffects = require('features/constants/heroStatusEffects'),
-        skillOrStatMap = require('features/constants/skillsAndAttributes'),
+        loadedConstants = require('features/constants/loadedConstants'),
         damageSourceTypes = require('features/constants/damageSourceTypes'),
 
         SKIPME = "~*~*~ {SKIP ME} ~*~*~";
@@ -46,14 +46,14 @@ define(function(require){
                 returnVal = inventoryPicklists.getThrowModelTypeById(component.modelType);
                 break;
             case "BuffTargetType" :
-                returnVal = skillOrStatMap.getSkillOrStatById(component.BuffTargetType);
+                returnVal = loadedConstants.SkillsAndStats.getNameById(component.BuffTargetType);
                 break;
             case "BuffA":
             case "BuffB":
             case "BuffC":
                 var buff = component[property];
                 if (buff.Value) {
-                    buff = skillOrStatMap.getSkillOrStatById(buff.Target) + ' (' + buff.Value + ')';
+                    buff = loadedConstants.SkillsAndStats.getNameById(buff.Target) + ' (' + buff.Value + ')';
                     if (!!buff) {
                         returnVal = buff;
                     } else {
@@ -144,10 +144,10 @@ define(function(require){
                     }
                 }, this);
                 output += this.listEnd 
-                    + this.listEntryEnd
-                    + this.listEnd;
+                    + this.listEntryEnd;
             }
         }
+        output += this.listEnd;
         return output;
     };
 

@@ -3,6 +3,7 @@
 
     var index = {
         assets: [
+            assetDatabase.constants,
             assetDatabase.storyEvents,
             assetDatabase.scenes,
             assetDatabase.actors,

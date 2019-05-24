@@ -9,6 +9,7 @@ define(function(require) {
         StoryEvent = require('features/storyEvents/storyEvent'),
         Actor = require('features/actors/actor'),
         LocalizationGroup = require('features/localization/group'),
+        Constant = require('features/constants/constant'),
         $ = require('jquery');
 
     return {
@@ -23,6 +24,7 @@ define(function(require) {
         storyEvents: new AssetIndex("Events", StoryEvent, null, 'StoryEvents', 'storyEvent'),
         scripts: new AssetIndex("Scripts", Script.New, ScriptEntry),
         localizationGroups: new AssetIndex("Localization Groups", LocalizationGroup),
+        constants: new AssetIndex("Constants", Constant),
         load: function() {
             return $.when(
                 this.musicTracks.load(),
@@ -33,6 +35,7 @@ define(function(require) {
                 this.storyEvents.load(),
                 this.scripts.load(),
                 this.localizationGroups.load(),
+                this.constants.load(),
                 this.vignettes.load(),
                 this.soundEffects.load(),
                 this.closeUps.load()

@@ -1,9 +1,9 @@
 define(function(require) {
     var ConditionEditor = require('./conditionEditor'),
-    	skillsAndAttributes = require('features/constants/skillsAndAttributes');
+        loadedConstants = require('features/constants/loadedConstants');
 
     var ctor = function() { 
-        this.skillsAndAtts = skillsAndAttributes.skillsAndAttributes;
+        this.skillsAndAtts = loadedConstants.SkillsAndStats.skillsAndAttributes;
     };
 
     ConditionEditor.baseOn(ctor);

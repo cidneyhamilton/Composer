@@ -9,7 +9,7 @@ define(function(require){
         serializer = require('plugins/serializer'),
         db = require('infrastructure/assetDatabase'),
         system = require('durandal/system'),
-        skillsMap = require('features/constants/skillsAndAttributes'),
+        loadedConstants = require('features/constants/loadedConstants'),
         emotionsMap = require('features/constants/emotions');
 
     // Courtesy of https://stackoverflow.com/questions/610406/javascript-equivalent-to-printf-string-format

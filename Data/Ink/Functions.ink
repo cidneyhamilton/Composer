@@ -128,7 +128,7 @@ VAR Skills = 5
 
 
 // TODO: Read these from the game Resource folder
-LIST MusicTracks = Silence, DiningHallTheme, Incidental2, MagicClassTheme, MiddleEastern, RogueClassTheme, SchoolBreak, StoreTheme, TowerGardenTheme
+LIST MusicTracks = Silence, DiningHallTheme, Incidental2, MagicClassTheme, MiddleEastern, RogueClassTheme, SchoolBreak, StoreTheme, TowerGardenTheme, WIP5, WIP9, WIP12, WIP17, WIP19
 
 LIST SoundClips = CardDeal, CardShuffleAndDeal, Click, DinnerBell, Placeholder, PoobahBet, PoobahFold, PoobahRaise, SleepStinger
 

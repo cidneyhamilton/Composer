@@ -78,6 +78,27 @@ These are stored in subdirectories of the `Internal Translation Directory` liste
 4. Reload your game in Composer
 5. Rebuild Composer (this should generate the Unity-supported text for your new language).
 
+### Defining Skills and Attributes in a new game
+
+1. In Composer, load your game
+1. Create a new 'Constant' object named 'SkillsAndStats'
+1 (Optional, but recommended) create 4 entries for 'None', 'All', 'AllSkills', and 'AllStats', with a blank Category
+1. Create your Stat / skill entries, updating the Category (to determine whether they should be skills or stats) appropriately.
+1. Save
+1. Reload Composer
+
+After reloading, your new skills and stats should be accessible from any script / node which requires skills and stats!
+
+### Defining the Inventory, Achievements, and Quests in a new game
+
+1. In Composer, load your game
+1. Create a scene named `_Inventory` (it will be picked up as the Inventory scene)
+1. Create a scene named `_Achievements` (it will be picked up as the Achievements scene)
+1. Create a scene named `_Tasks` (it will be picked up as the Quests scene)
+1. Reload Composer
+
+After reloading, all Composer elements (ex: isInInventory, HasQuest, HasAchievement, etc.) will automatically work!
+
 ## Automated Builds
 
 To run composer in automated builds, it's much like the same process, except you pass the game name in as a parameter.  (It will default to "heroU", aka "Rogue to Redemption").

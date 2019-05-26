@@ -43,9 +43,15 @@ define(function(require) {
             }
         }
 
-        this.inventorySceneId = '';
-        this.achievementsSceneId = '';
-        this.questsSceneId = '';
+        // If "Skills and Stats" is undefined, just generate an empty one.
+        // (so things downstream depending on skills / stats don't crash)
+        if (!this.constants["SkillsAndStats"]) {
+            this.constants["SkillsAndStats"] = skillsAndAttributes.init();
+        }
+
+        this.inventorySceneId = 'INVALID_INVENTORY_SCENE_ID';
+        this.achievementsSceneId = 'INVALID_ACHIEVEMENTS_SCENE_ID';
+        this.questsSceneId = 'INVALID_QUESTS_SCENE_ID';
 
         // Also parse all scenes and retrieve the _Inventory, _Achievements, and _Tasks SceneIds
         for (var i = 0; i < assetDatabase.scenes.entries.length; i++) {

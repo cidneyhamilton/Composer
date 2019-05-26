@@ -38,7 +38,14 @@ define(function(require) {
 
         this.skills = allSkills.options;
         this.stats = allAtts.options;
-        this.skillsAndAttributes = [allSkills, allAtts];
+        this.skillsAndAttributes = [];
+        // For readability, only display items that actually have entries
+        if (allSkills.options.length > 0) {
+            this.skillsAndAttributes.push(allSkills);
+        }
+        if (allAtts.options.length > 0) {
+            this.skillsAndAttributes.push(allAtts);
+        }
 
         return this;
     };

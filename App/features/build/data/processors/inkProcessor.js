@@ -173,11 +173,11 @@ define(function(require){
         var result = indent(depth);
         var sceneName = this.getInkNameFromId(node.currentSceneId);
         if (isNotEmpty(stitch)) {
-            result += "<- {0}_{1}.{2}".format(sceneName, knot, stitch);
+            result += "-> {0}_{1}.{2} ->".format(sceneName, knot, stitch);
         } else if (sceneName != "ERROR_UNKNOWN_ID_null"){
-            result += "<- {0}_{1}".format(sceneName, knot);
+            result += "-> {0}_{1} -> ".format(sceneName, knot);
         } else {
-            result += "<- {0}".format(knot);
+            result += "-> {0} ->".format(knot);
         }
 
         return result;

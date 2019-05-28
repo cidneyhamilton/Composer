@@ -118,6 +118,7 @@ VAR Smarts = 5
 VAR Fitness = 4
 VAR Charm = 6
 VAR Skills = 5
+VAR Luck = 5
 
 === function ImproveSkill(ref skill, amount) ===
 	~ skill = skill + amount

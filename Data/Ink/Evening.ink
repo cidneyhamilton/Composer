@@ -13,7 +13,7 @@
 = recroom
 ~ Meet(Sitari)
 {
-    - day == 1: -> SitariRecRoomEvening1
+    - day == 1: -> RecRoom_SitariRecRoomEvening1
     - else: This is the end of the demo! -> DONE
 }
 ->->

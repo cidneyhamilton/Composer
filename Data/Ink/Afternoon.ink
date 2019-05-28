@@ -18,28 +18,28 @@
 
 = exercise
 {
-    - day == 1: -> MaxExerciseDaytime1
+    - day == 1: -> ExerciseRoom_MaxExerciseDaytime1
     - else: This is the end of the demo! -> DONE
 }
 ->->
 
 = library
 {
-    - day == 1: -> LibraryDaytime1
+    - day == 1: -> Library_LibraryDaytime1
     - else: This is the end of the demo! -> DONE
 }
 ->->
 
 = practice_field
 {
-    - day == 1: -> PracticeFieldDaytime1
+    - day == 1: -> PracticeField_PracticeFieldDaytime1
     - else: This is the end of the demo! -> DONE
 }
 ->->
 
 = workshop
 {
-    - day == 1: -> WorkshopDaytime1 
+    - day == 1: -> Workshop_WorkshopDaytime1 
     - else: This is the end of the demo! -> DONE
 }
 ->->

@@ -171,8 +171,11 @@ define(function(require){
         
         // Add introductory white space
         var result = indent(depth);
+        var sceneName = this.getInkNameFromId(node.currentSceneId);
         if (isNotEmpty(stitch)) {
-            result += "<- {0}.{1}".format(knot, stitch);
+            result += "<- {0}_{1}.{2}".format(sceneName, knot, stitch);
+        } else if (sceneName != "ERROR_UNKNOWN_ID_null"){
+            result += "<- {0}_{1}".format(sceneName, knot);
         } else {
             result += "<- {0}".format(knot);
         }
@@ -637,7 +640,7 @@ define(function(require){
             } else if (!this.data.scenes[sceneInkName].scripts) {
                 debugger;
             } else {
-                this.data.scenes[sceneInkName].scripts[knotname] = "\n=== {0} ===".format(knotname);
+                this.data.scenes[sceneInkName].scripts[knotname] = "\n=== {0}_{1} ===".format(sceneInkName, knotname);
                 // TODO: parse any other script-level data
             }
         }
@@ -823,7 +826,7 @@ define(function(require){
             }
         }
 
-        gameOutput += "\n-> Intro -> next";
+        gameOutput += "\n-> _Outside_Intro -> next";
         // Generate the one ink file to rule them all
         var gameFileWriter = baseWriter.createFileWriter(path.join(context.inkOutputDirectory, context.game.gameInternalName + '.ink'));
         gameFileWriter.write(gameOutput);

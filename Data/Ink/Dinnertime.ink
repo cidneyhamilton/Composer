@@ -11,7 +11,7 @@ VAR DinnerActors = (Fritz, Mooella, Max, Kitty, Sitari, Rodrigo)
 
 === BeforeDinner ===
 {
-    - day == 1: -> BeforeDinner1 -> DinnerChoice
+    - day == 1: -> DiningHall_BeforeDinner1 -> DinnerChoice
     - else: -> DinnerChoice
 }
 
@@ -30,31 +30,31 @@ VAR DinnerActors = (Fritz, Mooella, Max, Kitty, Sitari, Rodrigo)
     
 === DinnerRodrigo ===
 {
-    - day == 1: -> DinnerRodrigo1
+    - day == 1: -> DiningHall_DinnerRodrigo1
     - else: This is the end of the demo! ->->
 }
 
 === DinnerKitty ===
 {
-    - day == 1: -> DinnerKitty1
+    - day == 1: -> DiningHall_DinnerKitty1
     - else: This is the end of the demo! ->->
 }
 
 === DinnerFritz ==
 {
-    - day == 1: -> DinnerFritz1
+    - day == 1: -> DiningHall_DinnerFritz1
     - else: This is the end of the demo! ->->
 }
 
 === DinnerSitari ===
 {
-    - day == 1: -> DinnerSitari1
+    - day == 1: -> DiningHall_DinnerSitari1
     - else: This is the end of the demo! ->->
 }
 
 === DinnerMax ===
 {
-    - day == 1: -> DinnerMax1
+    - day == 1: -> DiningHall_DinnerMax1
     - else: This is the end of the demo! ->->
 }
 

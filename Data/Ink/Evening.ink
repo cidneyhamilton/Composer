@@ -32,9 +32,10 @@ This is the end of the demo! -> DONE
 ~ AdvanceTime()
 ~ PlayMusic(Silence)
 ~ ChangeScene(TillyBedroom)
-WAITING FOR BEDTIME EVENT
-SOME CHOICES HERE
--> sleep -> class
+{
+    - day == 1: -> Bedroom_BedroomOne -> sleep -> class
+    - else: WAITING FOR BEDTIME EVENT -> sleep -> class 
+}
 
 === sleep ===
 ~ PlayMusic(Silence)

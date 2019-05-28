@@ -16,6 +16,8 @@ VAR DinnerActors = (Fritz, Mooella, Max, Kitty, Sitari, Rodrigo)
 }
 
 === DinnerChoice ===
++   { DinnerActors ? Mooella } Sit With Mooella
+    -> DinnerMooella
 +   { DinnerActors ? Rodrigo } Sit With Rodrigo
     -> DinnerRodrigo
 +   { DinnerActors ? Sitari } Sit With Sitari
@@ -53,6 +55,13 @@ VAR DinnerActors = (Fritz, Mooella, Max, Kitty, Sitari, Rodrigo)
 }
 
 === DinnerMax ===
+{
+    - day == 1: -> DiningHall_DinnerMooella1
+    - else: This is the end of the demo! ->->
+}
+
+
+=== DinnerMooella ===
 {
     - day == 1: -> DiningHall_DinnerMax1
     - else: This is the end of the demo! ->->

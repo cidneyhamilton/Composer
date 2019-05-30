@@ -56,14 +56,14 @@ VAR DinnerActors = (Fritz, Mooella, Max, Kitty, Sitari, Rodrigo)
 
 === DinnerMax ===
 {
-    - day == 1: -> DiningHall_DinnerMooella1
+    - day == 1: -> DiningHall_DinnerMax1
     - else: This is the end of the demo! ->->
 }
 
 
 === DinnerMooella ===
 {
-    - day == 1: -> DiningHall_DinnerMax1
+    - day == 1: -> DiningHall_DinnerMooella1
     - else: This is the end of the demo! ->->
 }
 

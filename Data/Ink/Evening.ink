@@ -20,7 +20,10 @@
 
 = exerciseroom
 ~ Meet(Max)
-This is the end of the demo! -> DONE
+{
+    - day == 1: -> ExerciseRoom_MaxEvening1
+    - else: This is the end of the demo! -> DONE
+}
 ->->
 
 = library

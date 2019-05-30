@@ -18,7 +18,7 @@
 
 = exercise
 {
-    - day == 1: -> ExerciseRoom_MaxExerciseDaytime1
+    - day == 1: -> ExerciseRoom_MaxDaytime1
     - else: This is the end of the demo! -> DONE
 }
 ->->

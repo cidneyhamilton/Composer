@@ -291,11 +291,11 @@ define(function(require){
 
         // If both the speaker and the listener have emotions
         if (node.emotion != 0 && listener != "" && node.emotion2 != 0) {
-            tagString += "# {0} {1} ".format(emotionsMap.getEmotionById(node.emotion), emotionsMap.getEmotionById(node.emotion2));
+            tagString += "# {0} # {1} ".format(emotionsMap.getEmotionById(node.emotion), emotionsMap.getEmotionById(node.emotion2));
         } else if (node.emotion != 0) {
-            tagString += "# {0} neutral".format(emotionsMap.getEmotionById(node.emotion));
+            tagString += "# {0} # neutral".format(emotionsMap.getEmotionById(node.emotion));
         } else if (listener != "" && node.emotion2 != 0) {
-            tagString += "# neutral {0} ".format(emotionsMap.getEmotionById(node.emotion2));
+            tagString += "# neutral # {0} ".format(emotionsMap.getEmotionById(node.emotion2));
         }
 
         result += "{0}: {1} {2}".format(speaker, node.text, tagString);

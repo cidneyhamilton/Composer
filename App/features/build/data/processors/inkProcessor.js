@@ -849,7 +849,7 @@ define(function(require){
             singleVar = singleVar.replace(/\./g,'');
 
             // Unless it's already in the list of variables in the story, append it
-            if (!this.var_list.includes(singleVar)) {
+            if (-1 == this.var_list.indexOf(singleVar)) {
                 addToArray(this.var_list, singleVar);     
             }
             

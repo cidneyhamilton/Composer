@@ -251,6 +251,7 @@ define(function(require){
 
         var alwaysShow = !!node.ignoreChildAvailability;
         var expression = node.expression;
+        var exitMenu = node.ExitMenu;
 
         result += indent(depth);
 
@@ -270,6 +271,12 @@ define(function(require){
         
 
         result += this.parseChildren(idMap, node.nodes, epMetadata);
+
+        // Exit the menu immediately after its children are displayed
+        if (exitMenu) {
+            result += indent(depth+1);
+            result += "-> done";
+        }
 
         return result;
     };

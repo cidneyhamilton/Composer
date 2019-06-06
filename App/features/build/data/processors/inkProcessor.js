@@ -197,7 +197,6 @@ define(function(require){
 
         this.appendVarList(node.name);
 
-
         return result;
     };
 
@@ -846,12 +845,17 @@ define(function(require){
     // Keep track of all variables in the Ink story
     ctor.prototype.appendVarList = function(singleVar) {
         if (isNotEmpty(singleVar)) {
-            singleVar = singleVar.replace(/\./g,'');
+            // Cidney: Day and Time are special, and the potential values are in Lists
+            if (singleVar != "time" && singleVar != "day") {
 
-            // Unless it's already in the list of variables in the story, append it
-            if (!this.var_list.includes(singleVar)) {
-                addToArray(this.var_list, singleVar);     
+                singleVar = singleVar.replace(/\./g,'');
+
+                // Unless it's already in the list of variables in the story, append it
+                if (!this.var_list.includes(singleVar)) {
+                    addToArray(this.var_list, singleVar);     
+                }    
             }
+            
             
         }
     }

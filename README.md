@@ -1,41 +1,13 @@
 # Composer
 
-Composer is (now) a standalone(ish) frontend for Hero-U game design, built on Durandal.
+Composer is a standalone frontend for script writing, built on [Durandal](http://durandaljs.com/)
 
-Release and testing platforms: Windows, Mac, Linux
+Release and testing platforms: Windows, Mac. (On Linux, run in Wine)
 
 ## Dependencies
 
-These will need to be installed for everything else to work.
-
-On Mac:
-* [Node-Webkit](https://github.com/rogerwang/node-webkit/wiki/Downloads-of-old-versions) version 0.10.4 to run Composer on a Mac.
-
-On Windows:
-*  Node-Webkit version v0.8.0-rc1 is automatically provided by this repo (see; Platforms/Windows/nw.pak)
-
-### Version Control
-
-We use Git for version control and Github to host the code. You'll need to have LFS enabled for larger files.
-
-On Mac:
-
-1. Install [Homebrew](https://brew.sh/)
-```
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-```
-2. Install Git and Git LFS.
-```
-brew install git git-lfs
-```
-
-On Windows, download the LFS installer from the [official website](https://git-lfs.github.com/) and run it. Afterwards, run `git lfs install` in your git bash to activate it.
-
-## Project Roadmap
-
-We use [Github Issues](https://github.com/Transolar/Composer/issues) for bug tracking.
-
-Technical discussions take place in the official [Slack channel](http://hero-u.slack.com), over email, and at weekly meetings.
+Requires Node-Webkit. Mac users will need to install this separately:
+* [Node-Webkit](https://github.com/rogerwang/node-webkit/wiki/Downloads-of-old-versions) version 0.10.4
 
 ## Adding a New Game
 

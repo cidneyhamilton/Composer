@@ -7,6 +7,30 @@ define(function(require) {
         observable = require('plugins/observable'),
         system = require('durandal/system');
 
+    // Define editor behaviours for specific constant groups here
+    // Currently supported behaviours:
+    //      multiSelect: (true if you can select > 1 category per option)
+    //      categories: (array of {id: , value:} objects describing the stored value (id) and display value (name))
+    var specialCases = {
+        SkillsAndStats: {
+            categories: [
+                { id:'', name: ''},
+                { id:'Skill', name: 'Skill'},
+                { id:'Stat', name: 'Stat'}
+            ]
+        },
+        Tags: {
+            multiSelect: true,
+            categories:  [
+                { id:'script', name: 'Script'},
+                { id:'storyEvent', name: 'Event'},
+                { id:'scene', name: 'Scene'},
+                { id:'actor', name: 'Actor'},
+                { id:'prop', name: 'Prop'}
+            ]
+        }
+    }
+
     ko.bindingHandlers.enumSafe = {
         init: function (element, valueAccessor) {
             $(element).on("keydown", function (event) {
@@ -41,16 +65,26 @@ define(function(require) {
         this.owner = owner;
         this.entry = entry;
 
-        observable.defineProperty(this, 'categories', function() {
-            // This isn't locale-independent, but I think most of these are in English anyway, so...
-            if (this.item.name) {
-                // If we're doing skills / attributes, return a map with that type.
-                if ("SkillsAndStats".toUpperCase() === this.item.name.toUpperCase()) {
-                    return ['', 'Skill', 'Stat'];
-                }
-
+        observable.defineProperty(this, 'categorySelectAttrs', function() {
+            // If this item explicitly has a multiselect category,
+            // we also need to override attributes on the <select> for the category
+            if (this.item.name && specialCases[this.item.name].multiSelect) {
+                return { multiple: true, size: specialCases[this.item.name].categories.length };
             }
-            return [''];
+            return {};
+        });
+
+        observable.defineProperty(this, 'multiSelectCategory', function() {
+            // If this item explicitly has a multiselect category...
+            return this.item.name && specialCases[this.item.name].multiSelect;
+        });
+
+        observable.defineProperty(this, 'categories', function() {
+            // If this has a category available...
+            if (this.item.name && specialCases[this.item.name].categories) {
+                return specialCases[this.item.name].categories;
+            }
+            return [ { id:'', name: ''} ];
         });
     };
 
@@ -59,7 +93,7 @@ define(function(require) {
             id: system.guid(),
             index: this.item.entries.length,
             name: '',
-            category: '',
+            category: [],
             active: true,
             notes:''
         });

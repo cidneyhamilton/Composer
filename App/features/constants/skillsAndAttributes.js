@@ -22,9 +22,9 @@ define(function(require) {
             for (var i = 0; i < skillStatEntries.length; i ++) {
                 // Only add active entries into the mappings
                 if (skillStatEntries[i].active) {
-                    if ('Skill' === skillStatEntries[i].category) {
+                    if ('Skill' === skillStatEntries[i].category[0]) {
                         allSkills.options.push(skillStatEntries[i].name);
-                    } else if ('Stat' === skillStatEntries[i].category) {
+                    } else if ('Stat' === skillStatEntries[i].category[0]) {
                         allAtts.options.push(skillStatEntries[i].name);
                     }
                     // Add the thing to the ordered list of active skills and stats.

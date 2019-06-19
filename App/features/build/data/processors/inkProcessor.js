@@ -171,14 +171,21 @@ define(function(require){
         
         // Add introductory white space
         var result = indent(depth);
-        var sceneName = this.getInkNameFromId(node.currentSceneId);
-        if (isNotEmpty(stitch)) {
-            result += "-> {0}_{1}.{2} ->".format(sceneName, knot, stitch);
-        } else if (sceneName != "ERROR_UNKNOWN_ID_null"){
-            result += "-> {0}_{1} -> ".format(sceneName, knot);
+
+        // TODO: Support invoking scripts attached to things that are not scenes
+        if (node.currentSceneId != null) {
+            var sceneName = this.getInkNameFromId(node.currentSceneId);
+            if (isNotEmpty(stitch)) {
+                result += "-> {0}_{1}.{2} ->".format(sceneName, knot, stitch);
+            } else if (sceneName != "ERROR_UNKNOWN_ID_null"){
+                result += "-> {0}_{1} -> ".format(sceneName, knot);
+            } else {
+                result += "-> {0} ->".format(knot);
+            }  
         } else {
-            result += "-> {0} ->".format(knot);
+            result += "-> {0} ->".format(knot);  
         }
+
 
         return result;
     };
@@ -858,7 +865,7 @@ define(function(require){
                 singleVar = singleVar.replace(/\./g,'');
 
                 // Unless it's already in the list of variables in the story, append it
-                if (!this.var_list.indexOf(singleVar)) {
+                if (this.var_list.indexOf(singleVar) == -1) {
                     addToArray(this.var_list, singleVar);     
                 }    
             }

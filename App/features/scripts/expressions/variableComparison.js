@@ -1,6 +1,7 @@
 define(function(require) {
 
-    var assetDatabase = require('infrastructure/assetDatabase');
+    var assetDatabase = require('infrastructure/assetDatabase'),
+        selectedGame = require('features/projectSelector/index');
 
     var ctor = function(attributes) {
         attributes = attributes || {};
@@ -14,32 +15,9 @@ define(function(require) {
         this.propId = attributes.propId || null;
     };
 
-    ctor.prototype.getDescription = function(){
-        var that = this;
-        var desc = '<span class="variable">' + this.variableName + '</span> is ';
-
-        switch(this.operator){
-            case 'eq':
-                break;
-            case 'gt':
-                desc += "greater than ";
-                break;
-            case 'gte':
-                desc += "greater than or equal to ";
-                break;
-            case 'lt':
-                desc += "less than ";
-                break;
-            case 'lte':
-                desc += "less than or equal to ";
-                break;
-            case 'ne':
-                desc += "not ";
-                break;
-        }
-
-        desc += this.compareTo;
-
+    // Get descriptive text for the scope of the variable. Used in the advanced view.
+    ctor.prototype.getScopeDescription = function() {
+        var desc;
         if (this.variableScope == 'global') {
             desc += " on global scope";
         }
@@ -90,6 +68,38 @@ define(function(require) {
             }
         }
 
+        return desc;
+    }
+
+    ctor.prototype.getDescription = function(){
+        var that = this;
+        var desc = '<span class="variable">' + this.variableName + '</span> is ';
+
+        switch(this.operator){
+            case 'eq':
+                break;
+            case 'gt':
+                desc += "greater than ";
+                break;
+            case 'gte':
+                desc += "greater than or equal to ";
+                break;
+            case 'lt':
+                desc += "less than ";
+                break;
+            case 'lte':
+                desc += "less than or equal to ";
+                break;
+            case 'ne':
+                desc += "not ";
+                break;
+        }
+
+        desc += this.compareTo;
+
+        if (selectedGame.showAdvanced) {
+          desc += this.getScopeDescription();
+        }
 
         return desc;
     };

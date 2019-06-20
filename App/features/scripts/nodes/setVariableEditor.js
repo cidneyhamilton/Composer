@@ -12,6 +12,8 @@
 
         NodeEditor.call(this);
 
+        this.showAdvanced = selectedGame.showAdvanced;
+
         if (selectedGame.showAdvanced) {
             this.scopes = ['script', 'target', 'scene', 'event', 'ego', 'prop'];
         } else {

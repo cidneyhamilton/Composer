@@ -1,13 +1,15 @@
 define(function(require) {
     var assetDatabase = require('infrastructure/assetDatabase'),
         observable = require('plugins/observable'),
-        ConditionEditor = require('./conditionEditor');
+        ConditionEditor = require('./conditionEditor'),
+        selectedGame = require('features/projectSelector/index');
 
     var ctor = function() {
         this.actors = assetDatabase.actors.entries;
         this.props = assetDatabase.props.entries;
         this.scenes = assetDatabase.scenes.entries;
         this.storyEvents = assetDatabase.storyEvents.entries;
+        this.showAdvanced = selectedGame.showAdvanced;
     };
 
     ConditionEditor.baseOn(ctor);

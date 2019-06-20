@@ -1,15 +1,19 @@
 define(function(require) {
     var serializer = require('plugins/serializer');
 
-    return {
-        addableExpressions: [
+
+    // Define a basic and advanced list of variable sources
+    var addableExpressions = [
+        require('./variableComparison'),
+        require('./reputationComparison'),
+        require('./inTags'),
+    ];
+    
+    var advancedExpressions = [
             require('./actorPresent'),
-            require('./inTags'),
             require('./inInventory'),
             require('./inventoryItemSelected'),
             require('./enteredScene'),
-            require('./variableComparison'),
-            require('./reputationComparison'),
             require('./skillCheck'),
             require('./inEvent'),
             require('./previousScene'),
@@ -23,7 +27,13 @@ define(function(require) {
             require('./isPoisoned'),
             require('./nextScene'),
             require('./movementStatus')
-        ],
+        ];
+
+
+    return {
+        baseExpressions: addableExpressions,
+        advancedExpressions: advancedExpressions,
+        addableExpressions: addableExpressions.concat(advancedExpressions),
         install: function() {
             this.addableExpressions.forEach(function(type) { serializer.registerType(type); });
             serializer.registerType(require('./and'));

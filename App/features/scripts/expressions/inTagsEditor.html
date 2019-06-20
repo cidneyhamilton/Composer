@@ -1,5 +1,7 @@
 <div data-bind="compose: { mode:'templated', view:'conditionEditor' }">
     <div data-part="write">
+
+        <!--ko if: showAdvanced -->
         <select data-bind="value: expression.scope">
             <option value="script">Script Scope</option>
             <option value="storyEvent">Event Scope</option>
@@ -8,6 +10,7 @@
             <option value="prop">Prop Scope</option>
             <option value="target">Target Scope</option>
         </select>
+        <!--/ko-->
 
         <!--ko if: expression.scope == 'prop'-->
         <select data-bind="options: scenes, optionsText: 'name', optionsValue: 'id', value: expression.scopeFilterId, optionsCaption: 'Select Scene'"></select>

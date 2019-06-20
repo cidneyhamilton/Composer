@@ -1,11 +1,13 @@
 <div data-bind="compose: { mode:'templated', view:'nodeEditor' }">
     <div data-part="read" class="text">
-        Change tags for 
+        Change tags
         
-        <span data-bind="text: entity.name, css: node.scope"></span>.
+        <!--ko if: showAdvanced -->
+         for <span data-bind="text: entity.name, css: node.scope"></span>.
 
         <!--ko if: node.scope == 'prop' || node.scope == 'scene'||  node.scope == 'actor' ||  node.scope == 'storyEvent' -->
         (<span data-bind="text: node.scope"></span>)
+        <!--/ko-->
         <!--/ko-->
 
         <!--ko if: node.tagsToRemove--> &nbsp;
@@ -18,6 +20,7 @@
 
     <div data-part="write">
 
+        <!--ko if: showAdvanced -->
         <select data-bind="value: node.scope, event: { 'change': setDefaultScopeValues }">
             <option value="script">Script Scope</option>
             <option value="storyEvent">Event Scope</option>
@@ -26,6 +29,7 @@
             <option value="prop">Prop Scope</option>
             <option value="target">Target Scope</option>
         </select>
+        <!-- /ko-->
 
         <!--ko if: node.scope == 'prop'-->
         <select data-bind="options: scenesWithProps, optionsText: 'name', optionsValue: 'id', value: node.scopeFilterId, optionsCaption: 'Select Scene'" style="float: right"></select>

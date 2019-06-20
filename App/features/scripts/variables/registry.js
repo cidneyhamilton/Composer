@@ -1,6 +1,5 @@
 ﻿define(function (require) {
-    var serializer = require('plugins/serializer'),
-        selectedGame = require('features/projectSelector/index');
+    var serializer = require('plugins/serializer');
 
 
     // Define a basic and advanced list of variable sources
@@ -8,8 +7,7 @@
         require('./literal')
     ];
     
-    if (selectedGame.showAdvanced) {
-        addableSources.concat([
+    var advancedSources = [
             require('./movement'),
             require('./count'),
             require('./countDemerits'),
@@ -21,12 +19,12 @@
             require('./random'),
             require('./scopedVariable'),
             require('./killCount')
-        ]);
-    };
+    ];
 
 
     return {
-        addableSources: addableSources,
+        baseSources: addableSources,
+        addableSources: addableSources.concat(advancedSources),
         install: function () {
             this.addableSources.forEach(function (type) { serializer.registerType(type); });
         }

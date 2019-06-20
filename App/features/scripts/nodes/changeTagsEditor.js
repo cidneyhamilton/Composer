@@ -2,7 +2,8 @@ define(function(require) {
     var assetDatabase = require('infrastructure/assetDatabase'),
         observable = require('plugins/observable'),
         NodeEditor = require('./nodeEditor'),
-        Editor = require('features/shared/editor');
+        Editor = require('features/shared/editor'),
+        selectedGame = require('features/projectSelector/index');
 
     var ctor = function() {
         NodeEditor.call(this);
@@ -11,6 +12,7 @@ define(function(require) {
         this.props = assetDatabase.props.entries;
         this.scenes = assetDatabase.scenes.entries;
         this.storyEvents = assetDatabase.storyEvents.entries;
+        this.showAdvanced = selectedGame.showAdvanced;
 
         // All scenes with at least one prop
         this.scenesWithProps = assetDatabase.scenes.entries.filter(function(item){

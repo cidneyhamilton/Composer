@@ -2,7 +2,8 @@ define(function(require){
     var dialog = require('plugins/dialog'),
         registry = require('./registry'),
         And = require('./and'),
-        Editor = require('../editor');
+        Editor = require('../editor'),
+        selectedGame = require('features/projectSelector/index');
 
     function sequenceExpressions(seq, exp){
         if(!exp){
@@ -39,7 +40,14 @@ define(function(require){
     var Modal = function(owner){
         this.owner = owner;
         this.sequence = [];
-        this.availableExpressions = registry.addableExpressions.map(function(item){
+
+        var expressions;
+        if (selectedGame.showAdvanced) {
+            expressions = registry.addableExpressions;
+        } else {
+            expressions = registry.baseExpressions;
+        }
+        this.availableExpressions = expressions.map(function(item){
             return {
                 displayName:item.displayName,
                 ctor:item

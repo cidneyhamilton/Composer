@@ -66,7 +66,11 @@
             var sources = [];
             var nodeSource = that.node.source;
             
-            variableRegistry.addableSources.forEach(function(source) {
+            var variables = variableRegistry.baseSources;
+            if (selectedGame.showAdvanced) {
+                variables = variableRegistry.addableSources;
+            }
+            variables.forEach(function(source) {
                 if (source.type == nodeSource.type) {
                     sources.push(nodeSource);
                 } else {

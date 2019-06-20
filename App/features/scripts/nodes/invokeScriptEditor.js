@@ -2,7 +2,8 @@ define(function(require) {
     var NodeEditor = require('./nodeEditor'),
         ScriptEditor = require('features/scripts/editor'),
         assetDatabase = require('infrastructure/assetDatabase'),
-        observable = require('plugins/observable');
+        observable = require('plugins/observable'),
+        selectedGame = require('features/projectSelector/index');
 
     var ctor = function () {
         NodeEditor.call(this);
@@ -12,7 +13,10 @@ define(function(require) {
         this.storyEvents = assetDatabase.storyEvents.entries;
         this.props = assetDatabase.props.entries;
         
-        this.availableScope = ["Current","Actors","Props","Scenes", "StoryEvents"];
+        this.availableScope = ["Current", "Scenes"];
+        if (selectedGame.showAdvanced) {
+            this.availableScope.concat(["Actors","Props","StoryEvents"]);
+        }
 
         observable.defineProperty(this, 'scope', function(){    
             var name = this.node.currentScope;

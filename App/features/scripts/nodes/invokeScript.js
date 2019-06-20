@@ -1,6 +1,6 @@
 define(function(require) {
-    var system = require('durandal/system');
-    var assetDatabase = require('infrastructure/assetDatabase');
+    var system = require('durandal/system'),
+        assetDatabase = require('infrastructure/assetDatabase');
 
     var ctor = function(attributes) {
         attributes = attributes || {};

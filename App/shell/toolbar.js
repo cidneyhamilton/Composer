@@ -10,6 +10,20 @@ define(function(require) {
     loader = require('features/loadingScreen/loader'),
     selectedGame = require('features/projectSelector/index');
 
+    var sections = [
+            new Section('Select Game', 'icon-play', 'features/projectSelector/index', true),
+            new Section('Home', 'icon-home'),
+            new Section('Constants', 'icon-pushpin'),
+            new Section('Actors', 'icon-user'),
+            new Section('Scenes', 'icon-picture'),
+        ];
+
+    if (selectedGame.showAdvanced) {
+        sections.push(new Section('Events', 'icon-film', 'features/storyEvents/index'));
+        sections.push(new Section('Labels', 'icon-tag', 'features/localization/index'));
+        sections.push(new Section('Build Config', 'icon-building', 'features/build/index'));
+    }
+
     var toolbar = {
         hasButtonsEnabled: false,
         isVisible: true,
@@ -26,16 +40,7 @@ define(function(require) {
                 app.trigger('app:navigate:feature', section);
             }
         },
-        sections: [
-            new Section('Select Game', 'icon-play', 'features/projectSelector/index', true),
-            new Section('Home', 'icon-home'),
-            new Section('Constants', 'icon-pushpin'),
-            new Section('Events', 'icon-film', 'features/storyEvents/index'),
-            new Section('Actors', 'icon-user'),
-            new Section('Scenes', 'icon-picture'),
-            new Section('Labels', 'icon-tag', 'features/localization/index'),
-            new Section('Build Config', 'icon-building', 'features/build/index')
-        ],
+        sections: sections,
         build: function() {
             buildConfig.activate();
             runner.run(buildConfig.project, 'debug');

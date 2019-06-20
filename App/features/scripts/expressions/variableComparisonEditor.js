@@ -1,10 +1,18 @@
 define(function(require) {
     var ConditionEditor = require('./conditionEditor');
     var assetDatabase = require('infrastructure/assetDatabase');
-    var observable = require('plugins/observable');
+    var observable = require('plugins/observable'),
+        selectedGame = require('features/projectSelector/index');
+
+    var scopes;
+    if (selectedGame.showAdvanced) {
+        scopes = ['global', 'script', 'target', 'scene', 'event', 'ego', 'prop'];
+    } else {
+        scopes = ['ego'];
+    }
 
     var ctor = function() {
-        this.scopes = ['global', 'script', 'target', 'scene', 'event', 'ego', 'prop'];
+        this.scopes = scopes;
         this.props = assetDatabase.props.entries;
         this.scenes = assetDatabase.scenes.entries;
     };

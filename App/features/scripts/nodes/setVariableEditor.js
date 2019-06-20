@@ -2,7 +2,8 @@
     var NodeEditor = require('./nodeEditor'),
         observable = require('plugins/observable'),
         assetDatabase = require('infrastructure/assetDatabase'),
-        variableRegistry = require('../variables/registry');
+        variableRegistry = require('../variables/registry'),
+        selectedGame = require('features/projectSelector/index');
 
     var props = assetDatabase.props.entries;
 
@@ -11,9 +12,13 @@
 
         NodeEditor.call(this);
 
-        this.scopes = ['script', 'target', 'scene', 'event', 'ego', 'prop'];
-        this.scenes = assetDatabase.scenes.entries;
+        if (selectedGame.showAdvanced) {
+            this.scopes = ['script', 'target', 'scene', 'event', 'ego', 'prop'];
+        } else {
+            this.scopes = ['ego'];
+        }
 
+        this.scenes = assetDatabase.scenes.entries;
 
         observable.defineProperty(this, 'propstring', function () {
 
@@ -34,12 +39,9 @@
 
                     desc += " on (" + results[0].name + ")";
 
-                    if (sceneId == null) 
-                    {
+                    if (sceneId == null) {
                         desc += " in Undefined"
-                    } 
-                    else 
-                    {
+                    } else {
                         var results = assetDatabase.scenes.entries.filter(function(item){
                             return item.id == sceneId;
                         });

@@ -9,7 +9,8 @@
         EntryPointName = require('./entryPointName'),
         system = require('durandal/system'),
         observable = require('plugins/observable'),
-        NodeEditor = require('./nodes/nodeEditor');
+        NodeEditor = require('./nodes/nodeEditor'),
+        selectedGame = require('features/projectSelector/index');
 
     var props = assetDatabase.props.entries;
     var actors = assetDatabase.actors.entries;
@@ -49,10 +50,13 @@
         }
         
         var item = that.entry.open({ trigger:trigger });
+
+        var triggers = selectedGame.showAdvanced ? triggerRegistry.all : triggerRegistry.base;
+
         that.availableTriggers = [item.trigger];
 
-        for (var i = 0; i < triggerRegistry.all.length; i++) {
-            var current = triggerRegistry.all[i];
+        for (var i = 0; i < triggers.length; i++) {
+            var current = triggers[i];
 
             if (current.type != item.trigger.type) {
                 if(!current.restrictions || current.restrictions.indexOf(that.owner.item.type) != -1){

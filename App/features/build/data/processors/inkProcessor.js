@@ -106,7 +106,13 @@ define(function(require){
     ctor.prototype.appendOutput = function(epMetadata, output) {
         if (isNotEmpty(output)) {
             var sceneName = this.getInkNameFromId(epMetadata.script.sceneId);
-            var scriptName = this.getInkNameFromId(epMetadata.script.id);
+
+            var scriptName;
+            if (epMetadata.script.trigger.type === "triggers.manual") {
+                scriptName = this.getKnotNameFromScriptId(epMetadata.script.id);
+            } else {
+                scriptName = epMetadata.script.name;
+            } 
 
             var scene = this.data.scenes[sceneName];
             this.data.scenes[sceneName].scripts[scriptName] += output;
@@ -145,50 +151,45 @@ define(function(require){
 
     // Handle Invoke Scripts
     ctor.prototype.parseNodeInvokeScript = function(idMap, node, depth) {
-
-        var knot, stich;
-        
-        knot = this.getInkNameFromId(node.scriptId);
-
-        // If the script hasn't been loaded yet, it won't be in the dictionary of script names
-        if (knot.indexOf("ERROR_UNKNOWN_ID_") > -1) {
-            // If we haven't already figured out the name of this script, look it up from the assets DB
-            var scripts = db.scripts.entries.filter(function(entry) {
-                return entry.triggerType == 'triggers.manual';
-            }).filter(function(item){
-                return item.id == node.scriptId;
-            });
-
-            knot = scripts[0].name || '???';
-        }
-
-        // If the script is in the current scope, use entry points; otherwise, default to Main
-        if (this.currentScope == "Current") {
-            stitch = this.getInkNameFromId(node.entryPointId);
-        } else {
-            stitch = "";
-        }
         
         // Add introductory white space
         var result = indent(depth);
 
-        // TODO: Support invoking scripts attached to things that are not scenes
-        if (node.currentSceneId != null) {
-            var sceneName = this.getInkNameFromId(node.currentSceneId);
-            if (isNotEmpty(stitch)) {
-                result += "-> {0}_{1}.{2} ->".format(sceneName, knot, stitch);
-            } else if (sceneName != "ERROR_UNKNOWN_ID_null"){
-                result += "-> {0}_{1} -> ".format(sceneName, knot);
-            } else {
-                result += "-> {0} ->".format(knot);
-            }  
-        } else {
-            result += "-> {0} ->".format(knot);  
-        }
-
+        var knotName = this.getKnotName(node);
+        result += "-> {0} ->".format(knotName);
 
         return result;
     };
+
+    ctor.prototype.getKnotNameFromScriptId = function(scriptId) {
+        // Get the name of the knot when passed in a script
+
+        // TODO: Map these to something more human readable/unique?
+        
+        if (!this.idToInkNameMap[scriptId]) {
+            // Strip hyphens from output
+            return scriptId.replace(/-/g,"_");
+        } else {
+            return this.idToInkNameMap[scriptId];
+        }
+    };
+
+    // Get the name of the knot to jump to in an invoke script node
+    ctor.prototype.getKnotName = function(node) {
+        var knotName, stitch;
+
+        // TODO: Validation to make sure this is a valid script?
+        knotName = this.getKnotNameFromScriptId(node.scriptId);
+        
+        // If the script is in the current scope, use entry points; otherwise, default to Main
+        if (this.currentScope == "Current") {
+            stitch = this.getInkNameFromId(node.entryPointId);
+            return "{0}.{1}".format(knotName, stitch);
+        } else {
+            return knotName;
+        }
+    }
+
 
     // Handle setting variables
     ctor.prototype.parseNodeSetVariable = function(idMap, node, depth) {
@@ -415,23 +416,28 @@ define(function(require){
                 }
                 break;
             case "expressions.skillCheck":
+                // TODO: Implement Skill Check
                 result += "true";
                 break;
             case "expressions.previousScene":
+                // TODO: Implement Previous Scene
                 result += "true";
                 break;
             case "expressions.isPoisoned":
+                // TODO: Implement IsPoisoned
                 result += "false";
                 break;
             case "expressions.propStatus":
+                // TODO: Implement Prop Status
                 result += "true";
                 break;
             case "expressions.debugOnly":
+                // TODO: Implement Debug Only
                 result += "true";
                 break;
 
             case "expressions.currentScene":
-                // TODO: Implement Has Active Quest
+                // TODO: Implement Current Scene
                 result += "true";
                 break;
             case "expressions.actorPresent":
@@ -540,8 +546,6 @@ define(function(require){
             debugger;
         }
 
-        // console.log("Music Track {0}".format(musicTrack));
-
         result += "~ PlayMusic({0})".format(musicTrack); 
         return result;
     };
@@ -639,8 +643,15 @@ define(function(require){
     };
 
     ctor.prototype.parseScript = function(context, idMap, script, sceneName) {
-        var knotname = this.getInkName(script);
 
+        var knotName;
+        if (script.trigger.type === "triggers.manual") {
+            knotName = this.getKnotNameFromScriptId(script.id);   
+        } else {
+            // For OnEnter scripts, just use the script name
+            knotName = script.name;
+        }
+        
         if (!script.sceneId) {
             debugger;
             // TODO: Cidney - not sure how / if scripts on Actors / Props should be parsed in Ink,
@@ -653,7 +664,7 @@ define(function(require){
             } else if (!this.data.scenes[sceneInkName].scripts) {
                 debugger;
             } else {
-                this.data.scenes[sceneInkName].scripts[knotname] = "\n=== {0}_{1} ===".format(sceneInkName, knotname);
+                this.data.scenes[sceneInkName].scripts[knotName] = "\n=== {0} ===".format(knotName);
                 // TODO: parse any other script-level data
             }
         }
@@ -668,7 +679,6 @@ define(function(require){
         var formattedName = this.getInkName(entryPoint);
         this.appendOutput(epMetadata, "\n->->");
     };
-
 
     ctor.prototype.parseNodes = function(idMap, nodes, epMetadata) {
         return this.parseNodeArray(idMap, nodes, epMetadata);
@@ -798,6 +808,8 @@ define(function(require){
             }
             gameOutput += this.writeAssignment(context, "Variables", varInkList);    
         }
+
+        gameOutput += "\n";
         
         // Copy over and include all files in both the standalone Composer/Data/Ink directory 
         // as well as the project's Composer/Data/Ink directory
@@ -839,7 +851,12 @@ define(function(require){
             }
         }
 
-        gameOutput += "\n-> _Outside_Intro -> next";
+        // Start at the bootstrapped scene
+        // TODO: Get this knot name dynamically
+        var startKnot = "Intro";
+
+        gameOutput += "\n-> {0} -> next".format(startKnot);
+
         // Generate the one ink file to rule them all
         var gameFileWriter = baseWriter.createFileWriter(path.join(context.inkOutputDirectory, context.game.gameInternalName + '.ink'));
         gameFileWriter.write(gameOutput);
@@ -930,6 +947,8 @@ define(function(require){
                 output.push('INCLUDE ' + file);
             }
             return (output.length == 0 ? '' : ('\n' + output.join('\n')));
+        } else {
+            return "";
         }
     }
 

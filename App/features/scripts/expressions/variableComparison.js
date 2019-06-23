@@ -47,23 +47,23 @@ define(function(require) {
         }
 
         if (this.variableScope == 'prop') {
-            if (that.propId == null) {
+            if (this.propId == null) {
                 desc += " on Undefined";
             } else {
                 var results = assetDatabase.props.entries.filter(function(item){
-                    return item.id == that.propId;
+                    return item.id == this.propId;
                 });
 
-                desc += " on (" + results[0].name + ")";
+                desc += " on (" + (results[0] ? results[0].name : this.propId) + ")";
 
-                if (that.sceneId == null) {
+                if (this.sceneId == null) {
                     desc += " in Undefined"
                 } else {
                     var results = assetDatabase.scenes.entries.filter(function(item){
-                        return item.id == that.sceneId;
+                        return item.id == this.sceneId;
                     });
 
-                    desc += " in (" + results[0].name + ")";
+                    desc += " in (" + (results[0] ? results[0].name : this.sceneId) + ")";
                 }
             }
         }
@@ -95,7 +95,9 @@ define(function(require) {
                 break;
         }
 
-        desc += this.compareTo;
+        if (this.compareTo) {
+           desc += this.compareTo;
+        }
 
         if (selectedGame.showAdvanced) {
           desc += this.getScopeDescription();

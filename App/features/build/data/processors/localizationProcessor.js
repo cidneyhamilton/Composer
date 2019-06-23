@@ -214,7 +214,7 @@ define(function(require){
                         }
 
                         localizationGoldKeys[guid] = true;
-                        toBeLocalized[guid] = [guid, entry[0]];
+                        toBeLocalized[guid] = [guid, entry[1]];
                     } else {
                         // If this key is not a localization gold key...
                         translationErrors.log(language, 'Unknown GUID(s) - possibly removed from English master', guid);

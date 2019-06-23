@@ -65,7 +65,6 @@ define(function(require) {
 
     app.on('app:navigate:projectLoaded').then(function(project) {
         setTimeout(function(){
-            toolbar.sections[0].name = project.gameName;
             return $.when(
                 toolbar.select(toolbar.sections[1])
             ).done(
@@ -75,6 +74,7 @@ define(function(require) {
                     toolbar.hasButtonsEnabled = true;
                     toolbar.isVisible = true;
                     toolbar.sections = getSections()
+                    toolbar.sections[0].name = project.gameName;
                 }, 1300)
             )
         }, 1000);

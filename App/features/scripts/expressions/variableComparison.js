@@ -50,20 +50,16 @@ define(function(require) {
             if (this.propId == null) {
                 desc += " on Undefined";
             } else {
-                var results = assetDatabase.props.entries.filter(function(item){
-                    return item.id == this.propId;
-                });
+                var prop = assetDatabase.props.lookup[this.propId];
 
-                desc += " on (" + (results[0] ? results[0].name : this.propId) + ")";
+                desc += " on (" + (prop ? prop.name : this.propId) + ")";
 
                 if (this.sceneId == null) {
                     desc += " in Undefined"
                 } else {
-                    var results = assetDatabase.scenes.entries.filter(function(item){
-                        return item.id == this.sceneId;
-                    });
+                    var scene = assetDatabase.scenes.lookup[this.sceneId];
 
-                    desc += " in (" + (results[0] ? results[0].name : this.sceneId) + ")";
+                    desc += " in (" + (scene ? scene.name : this.sceneId) + ")";
                 }
             }
         }

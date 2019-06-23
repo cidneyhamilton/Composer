@@ -10,9 +10,7 @@
         this.killCount = killCount;
         observable.defineProperty(this, 'actors', function () {
             var actorId = node.actorId;
-            return assetDatabase.actors.entries.filter(function (item) {
-                return item.actorId == actorId;
-            });
+            return assetDatabase.actors.lookup[actorId];
         });
 
         observable.defineProperty(this, 'description', function () {

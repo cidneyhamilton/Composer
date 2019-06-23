@@ -35,20 +35,16 @@
                 } 
                 else 
                 {
-                    var results = assetDatabase.props.entries.filter(function(item){
-                        return item.id == propId;
-                    });
+                    var prop = assetDatabase.props.lookup[propId];
 
-                    desc += " on (" + results[0].name + ")";
+                    desc += " on (" + prop ? prop.name : propId + ")";
 
                     if (sceneId == null) {
                         desc += " in Undefined"
                     } else {
-                        var results = assetDatabase.scenes.entries.filter(function(item){
-                            return item.id == sceneId;
-                        });
+                        var scene = assetDatabase.scenes.lookup[sceneId];
 
-                        desc += " in (" + results[0].name + ")";
+                        desc += " in (" + scene ? scene.name : sceneId + ")";
                         
                     }
                 }

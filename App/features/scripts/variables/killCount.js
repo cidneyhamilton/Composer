@@ -17,11 +17,9 @@
         }
 
         var that = this;
-	      var results = assetDatabase.actors.entries.filter(function(item){
-                return item.id == that.actorId;
-            });
+        var actor = assetDatabase.actors.lookup[that.actorId];
 
-        return results[0].displayName;
+        return (actor ? actor.displayName : that.actorId);
     }
 
     return ctor;

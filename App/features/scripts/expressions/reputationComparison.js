@@ -13,11 +13,7 @@ define(function(require) {
     ctor.prototype.getDescription = function(){
         var that = this;
 
-        var results = assetDatabase.actors.entries.filter(function(item){
-            return item.id == that.actorId;
-        });
-
-        var actor = results[0] || { name:'???' };
+        var actor = assetDatabase.actors.lookup[that.actorId] || { name:'???' };
 
         var desc = 'reputation with <span class="actor">' + actor.name + '</span> is ';
 

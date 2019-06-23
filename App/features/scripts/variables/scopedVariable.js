@@ -29,20 +29,15 @@
             } 
 			else 
 			{
-                var results = assetDatabase.props.entries.filter(function(item){
-                    return item.id == that.scopeId;
-                });
-
-                desc += '(' + results[0].name + ')';
+                var prop = assetDatabase.props.lookup[that.scopeId];
+                desc += '(' + (prop ? prop.name : that.scopeId) + ')';
 
                 if (that.sceneId == null) {
                     desc += " in Undefined"
                 } else {
-                    var results = assetDatabase.scenes.entries.filter(function(item){
-                        return item.id == that.sceneId;
-                    });
+                    var scene = assetDatabase.scenes.lookup[that.sceneId];
 
-                    desc += ' in (' + results[0].name + ')';
+                    desc += ' in (' + (scene ? scene.name : that.sceneId) + ')';
                 }
             }
         }

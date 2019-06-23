@@ -11,11 +11,7 @@
     ctor.prototype.getDescription = function () {
         var that = this;
 
-        var results = assetDatabase.storyEvents.entries.filter(function (item) {
-            return item.id == that.eventId;
-        });
-
-        var storyEvent = results[0] || { name: '???' };
+        var storyEvent = assetDatabase.storyEvents.lookup[that.eventId] || { name: '???' };
 
         return 'during <span class="event">' + storyEvent.name + '</span>';
     };

@@ -18,28 +18,19 @@ define(function(require) {
         observable.defineProperty(this, 'startGameScript', function(){
             var scriptId = this.node.startGameScript;
 
-            var scripts = assetDatabase.scripts.entries.filter(function(entry){
-                        return entry.id == scriptId;
-                    });
-            return scripts[0] || { name: '???' };
+            return assetDatabase.scripts.lookup[scriptId] || { name: '???' };
         });
 
         observable.defineProperty(this, 'endRoundScript', function(){
             var scriptId = this.node.endRoundScript;
 
-            var scripts = assetDatabase.scripts.entries.filter(function(entry){
-                        return entry.id == scriptId;
-                    });
-            return scripts[0] || { name: '???' };
+            return assetDatabase.scripts.lookup[scriptId] || { name: '???' };
         });
 
         observable.defineProperty(this, 'endGameScript', function(){
             var scriptId = this.node.endGameScript;
 
-            var scripts = assetDatabase.scripts.entries.filter(function(entry){
-                        return entry.id == scriptId;
-                    });
-            return scripts[0] || { name: '???' };
+            return assetDatabase.scripts.lookup[scriptId] || { name: '???' };
         });
 
 

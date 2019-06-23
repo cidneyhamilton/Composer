@@ -12,11 +12,7 @@ define(function(require) {
     ctor.prototype.getDescription = function(){
         var that = this;
 
-        var results = assetDatabase.props.entries.filter(function(item){
-            return item.id == that.propId;
-        });
-
-        var prop = results[0] || (this.propId == ctor.otherItem ? { name:'Other Item' } : { name:'???' });
+        var prop =  assetDatabase.props.lookup[that.propId] || (this.propId == ctor.otherItem ? { name:'Other Item' } : { name:'???' });
 
         return '<span class="prop">' + prop.name + '</span> selected from inventory';
     };

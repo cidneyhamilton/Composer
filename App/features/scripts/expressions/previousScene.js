@@ -11,11 +11,7 @@ define(function(require) {
     ctor.prototype.getDescription = function(){
         var that = this;
 
-        var results = assetDatabase.scenes.entries.filter(function(item){
-            return item.id == that.sceneId;
-        });
-
-        var scene = results[0] || { name:'???' };
+        var scene = assetDatabase.scenes.lookup[that.sceneId] || { name:'???' };
 
         var desc = 'previous scene was <span class="scene">' + scene.name + '</span> ';
 

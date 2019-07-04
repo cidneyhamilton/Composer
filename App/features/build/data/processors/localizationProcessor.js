@@ -249,14 +249,21 @@ define(function(require){
                 var missingTranslationsWriter = CSVWriter.createFileWriter(missingTranslationsFile);
                 missingTranslationsWriter.writeRecord(translationHeaders);
 
+                var knownMissingText = {};
+
                 for (var missingIndex in missingLocalizedLabels) {
                     // get the guid from missingLocalizedLabels
                     var missingGuid = missingLocalizedLabels[missingIndex];
                     // localizationTable uses [guid] as its index, returns [guid, text]
                     var missingVal = this.localizationTable[missingGuid];
-                    // translationTable uses [text] as its index
-                    var missingText = this.translationTable[missingVal[1]];
-                    missingTranslationsWriter.writeRecord([missingText]);
+                    // Get the text entry
+                    var missingText = missingVal[1];
+                    // Only add it to the table if we haven't seen it before, to avoid duplicate entries
+                    if (! knownMissingText[missingText]) {
+                        knownMissingText[missingText] = true;
+                        // translationTable uses [text] as its index
+                        missingTranslationsWriter.writeRecord([this.translationTable[missingText]]);
+                    }
                 }
                 missingTranslationsWriter.end();
             }

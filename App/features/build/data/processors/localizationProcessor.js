@@ -223,13 +223,16 @@ define(function(require){
                 }, this);
             }, this);
 
+            var missingLocalizedLabels = [];
+
             // Once we've built a table with all of the localized rows, 
             // write them to the localized file with the same ordering as the English file.
             for (var lgkIndex in localizationGoldKeyOrder) {
                 var lgk = localizationGoldKeyOrder[lgkIndex];
                 // If the key was missing in this language, add it to the list of missing keys
                 if (! localizationGoldKeys[lgk]) {
-                    translationErrors.log(language, 'Missing (untranslated) GUID(s)', lgk);
+                    missingLocalizedLabels.push(lgk);
+                    translationErrors.log(language, 'Missing (untranslated) GUID(s) - see Proofread/MissingTranslations/' + language + '/translations.csv for translation file', lgk);
                 }  else {
                     toBeLocalizedFileWriter.writeRecord([toBeLocalized[lgk]]);
                 }
@@ -237,6 +240,26 @@ define(function(require){
                 localizationGoldKeys[lgk] = false;
             }
             toBeLocalizedFileWriter.end();
+
+            // If there are missing localized labels, generate a mini translation file for them.
+            if (missingLocalizedLabels.length > 0) {
+                var missingTranslationsDir = path.join(context.internalDocOutputDirectory, 'MissingTranslations', language);
+                fileSystem.makeDirectory(missingTranslationsDir);
+                var missingTranslationsFile = path.join(missingTranslationsDir, '/translation.csv');
+                var missingTranslationsWriter = CSVWriter.createFileWriter(missingTranslationsFile);
+                missingTranslationsWriter.writeRecord(translationHeaders);
+
+                for (var missingIndex in missingLocalizedLabels) {
+                    // get the guid from missingLocalizedLabels
+                    var missingGuid = missingLocalizedLabels[missingIndex];
+                    // localizationTable uses [guid] as its index, returns [guid, text]
+                    var missingVal = this.localizationTable[missingGuid];
+                    // translationTable uses [text] as its index
+                    var missingText = this.translationTable[missingVal[1]];
+                    missingTranslationsWriter.writeRecord([missingText]);
+                }
+                missingTranslationsWriter.end();
+            }
         }, this);
 
         // Write the list of localized languages

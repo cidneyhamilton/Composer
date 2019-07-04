@@ -49,6 +49,18 @@ These are stored in subdirectories of the `Internal Translation Directory` liste
 3. Add the `translation.csv` file containing the translations for that language into your new directory
 4. Reload your game in Composer
 5. Rebuild Composer (this should generate the Unity-supported text for your new language).
+6. Check in the translations.csv and game_text.txt files
+
+#### Updating labels for a language
+
+If you've already created a translation, but then added new labels, you'll need to:
+
+1. Reload your game in Composer
+2. Rebuild Composer (this will generate a file for you in `Proofread\MissingTranslations\<locale>\translations.csv`)
+3. Send the mini translations.csv file to your translators
+4. Once it's translated, append the contents to the full translation.csv file for that language
+5. Rebuild Composer to generate the Unity-supported text
+6. Check in the updated translations.csv and game_text.txt files
 
 ### Defining Skills and Attributes in a new game
 

@@ -188,7 +188,7 @@ define(function(require){
                         var originalLabelParams = this.localizationTable[guid][1].match(labelWithParamInputRegex);
                         if(originalLabelParams != null) {
                             originalLabelParams.sort();
-                            var localizedlabelParams = entry[0].match(labelWithParamInputRegex);
+                            var localizedlabelParams = entry[1].match(labelWithParamInputRegex);
                             var missingLocalizedLabelParams = [];
                             var badLocalizedLabelParams = [];
                             if (null == localizedlabelParams) {
@@ -209,7 +209,7 @@ define(function(require){
 
                             // If the params were missing, or there are unexpected label params in the localized label, log an error.
                             if (missingLocalizedLabelParams.length > 0 || badLocalizedLabelParams.length > 0) {
-                                translationErrors.log(language, 'Mistranslated label - missing or unknown format params.  Expected the following params: ' + originalLabelParams, entry[0]);
+                                translationErrors.log(language, 'Mistranslated label - missing or unknown format params.  Expected the following params: ' + originalLabelParams, entry[1] + " [Original: " + entry[0] + "]");
                             }
                         }
 

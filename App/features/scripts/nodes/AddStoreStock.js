@@ -19,5 +19,14 @@ define(function(require) {
     ctor.type = 'nodes.addStoreStock';
     ctor.displayName = 'Add Store Stock';
 
+    ctor.prototype.localize = function(context){
+        // If it's the default onlook / onPurchase, don't translate it.  Just return blank.
+        context.addLocalizationEntry(this.propId + "_OnLook", ("On Look Description" == this.onLookField ? "" : this.onLookField));
+        delete this.onLookField;
+
+        context.addLocalizationEntry(this.propId + "_OnPurchase", ("On Purchase Description" == this.onPurchaseField ? "" : this.onPurchaseField));
+        delete this.onPurchaseField;
+    };
+
     return ctor;
 });

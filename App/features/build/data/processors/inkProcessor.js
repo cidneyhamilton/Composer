@@ -197,13 +197,13 @@ define(function(require){
 
         if (node.add) {
             // TODO: Implement for values and ranges of values
-            result += "~ {0} += {1}".format(node.name, node.source.value);
+            result += "~ {0} += {1}".format(node.name.toLowerCase(), node.source.value);
         } else {
             // TODO: Implement for values and ranges of values
-            result += "~ {0} = {1}".format(node.name, node.source.value);
+            result += "~ {0} = {1}".format(node.name.toLowerCase(), node.source.value);
         }
 
-        this.appendVarList(node.name);
+        this.appendVarList(node.name.toLowerCase());
 
         return result;
     };
@@ -386,8 +386,8 @@ define(function(require){
                         operatorVal = "!=";
                         break;
                 }
-                var varName = removeWhitespace(node.variableName);
-                this.appendVarList(varName);
+                var varName = removeWhitespace(node.variableName.toLowerCase());
+                this.appendVarList(varName.toLowerCase());
                 var constName = removeWhitespace(node.compareTo);
                 this.appendConstList(constName);
                 result += "{0} {1} {2}".format(varName, operatorVal, constName);

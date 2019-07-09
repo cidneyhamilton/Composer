@@ -67,6 +67,7 @@ define(function(require){
         this.data.scenes = {};
         this.inkNameLookup = {};
         this.idToInkNameMap = {};
+        this.entryPoints = {};
         this.tagList = [];
         this.var_list = [];
         this.const_list = [];
@@ -175,15 +176,18 @@ define(function(require){
     };
 
     // Get the name of the knot to jump to in an invoke script node
-    ctor.prototype.getKnotName = function(node) {
+    ctor.prototype.getKnotName = function(node, currentScope) {
         var knotName, stitch;
 
         // TODO: Validation to make sure this is a valid script?
         knotName = this.getKnotNameFromScriptId(node.scriptId);
         
         // If the script is in the current scope, use entry points; otherwise, default to Main
-        if (this.currentScope == "Current") {
-            stitch = this.getInkNameFromId(node.entryPointId);
+        if (node.currentScope == "Current") {
+            stitch = this.entryPoints[node.entryPointId].replace(/\s+/g, '');
+            if (stitch == null) {
+                stitch = "Main";
+            }
             return "{0}.{1}".format(knotName, stitch);
         } else {
             return knotName;
@@ -651,6 +655,14 @@ define(function(require){
             // For OnEnter scripts, just use the script name
             knotName = script.name;
         }
+
+        // Parse entry points
+        var entryPointId, entryPointName;
+        for (var i = 0; i < script.entryPoints.length; i++) {
+            entryPointId = script.entryPoints[i].id;
+            entryPointName = script.entryPoints[i].name;
+            this.entryPoints[entryPointId] = entryPointName.replace(/\s+/g, '');
+        }
         
         if (!script.sceneId) {
             debugger;
@@ -671,7 +683,7 @@ define(function(require){
     };
 
     ctor.prototype.parseEntryPoint = function(idMap, entryPoint, entryPointIndex, epMetadata) {
-        var formattedName = this.getInkName(entryPoint);
+        var formattedName = this.getInkName(entryPoint).replace(/\s+/g, '');
         this.appendOutput(epMetadata, "\n\n= {0}\n# {0} Entry Point\n".format(formattedName));
     };
 

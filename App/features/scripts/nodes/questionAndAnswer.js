@@ -24,6 +24,7 @@ define(function(require) {
     ctor.displayName = 'Q&A';
 
     ctor.prototype.localize = function(context){
+        context.addLocalizationEntry(this.id + "_header", this.header);
         context.addLocalizationEntry(this.id, this.text, this.notes);
         delete this.text;
 

@@ -9,7 +9,6 @@
     var baseNodes = [
         require('./speak'),
         require('./branch'),
-        require('./changeScene'),
         require('./comment'),
         require('./nodeCycle'),
         require('./gameOver'),
@@ -34,6 +33,7 @@
         require('./autosave'),
         require('./buffAdd'),
         require('./changeHealth'),
+        require('./changeScene'),
         require('./changeStoryEvent'),
         require('./clearStoreStock'),
         require('./endScript'),

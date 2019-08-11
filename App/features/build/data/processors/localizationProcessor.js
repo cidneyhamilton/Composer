@@ -165,6 +165,9 @@ define(function(require){
                 translationErrors.log(language, 'Parsing error(s)', errText);
             });
 
+            // This will track labels that were not localized (added or updated since the translation file was sent)
+            var missingLocalizedLabels = [];
+
             // For each line in the translation.csv file...
             translatedText.data.forEach(function(entry) {
                 // Ignore the header
@@ -184,6 +187,14 @@ define(function(require){
                         if(localizationGoldKeys[guid]) {
                             translationErrors.log(language, 'Duplicate GUID(s) (more than one entry for the same GUID in the translation.csv file)', guid);
                         }
+
+                        // If the original label has been updated since the translation was sent, flag it for re-translation.
+                        // NOTE: the translation could have a different newline char, so we standardize the newlines
+                        if (this.localizationTable[guid][1].replace(/\s+/g, ' ').trim() !== entry[0].replace(/\s+/g, ' ').trim()) {
+                            missingLocalizedLabels.push(guid);
+                            translationErrors.log(language, 'Potential Translation Mismatch (English label has changed since last translation)', guid);
+                        }
+
                         // If the original label had a parameter (ex: {0}), make sure the translated label does too.
                         var originalLabelParams = this.localizationTable[guid][1].match(labelWithParamInputRegex);
                         if(originalLabelParams != null) {
@@ -222,8 +233,6 @@ define(function(require){
 
                 }, this);
             }, this);
-
-            var missingLocalizedLabels = [];
 
             // Once we've built a table with all of the localized rows, 
             // write them to the localized file with the same ordering as the English file.

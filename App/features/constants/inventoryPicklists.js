@@ -69,7 +69,8 @@ define(function(require) {
         { id:'3', name: 'Sleep'},
         { id:'4', name: 'Gooey'},
         { id:'5', name: 'Blind'},
-        { id:'6', name: 'Itchy'}      
+        { id:'6', name: 'Itchy'},
+        { id:'7', name: 'SuperGluey'}
     ];
 
     var throwModelTypes = [

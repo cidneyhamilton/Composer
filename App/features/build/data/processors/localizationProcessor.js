@@ -181,6 +181,11 @@ define(function(require){
                 }
 
                 // Get the GUIDs
+                if (! entry[4]) {
+                    // If the guids are null, there's an issue with this line in the translation file.
+                    translationErrors.log(language, 'No GUIDs defined for the following English text - issue with translation file', entry[0]);
+                    return;
+                }
                 var guids = entry[4].split(",");
 
                 // For each guid, generate a localized label for that entry in the expected format

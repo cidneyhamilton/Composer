@@ -69,19 +69,19 @@ define(function(require){
         var labelWithParamInputRegex = /{\d+}(?=)/g;
 
         // Generate the English translation master file
-        var translationsDir = path.join(context.translationOutputDirectory, '/Translations');
+        var translationsDir = path.join(context.translationOutputDirectory, 'Translations');
 
         if (!fileSystem.exists(translationsDir)) {
             fileSystem.makeDirectory(translationsDir);
         }
 
-        var enUsTranslationFileDir = path.join(translationsDir, '/en-US');
+        var enUsTranslationFileDir = path.join(translationsDir, 'en-US');
 
         if (!fileSystem.exists(enUsTranslationFileDir)) {
             fileSystem.makeDirectory(enUsTranslationFileDir);
         }
 
-        var enUsTranslationFile = path.join(enUsTranslationFileDir, '/translation.csv');
+        var enUsTranslationFile = path.join(enUsTranslationFileDir, 'translation.csv');
         var translationGoldFileWriter = CSVWriter.createFileWriter(enUsTranslationFile);
         var translationHeaders = [ { 0: 'Original Text', 1: 'Translation', 2 : 'Speaker (DO NOT TRANSLATE)',  3: 'Translation Notes (DO NOT TRANSLATE)', 4: 'Keys (DO NOT TRANSLATE OR DELETE)' }]
         translationGoldFileWriter.writeRecord(translationHeaders);
@@ -100,7 +100,7 @@ define(function(require){
         translationGoldFileWriter.end();
 
         // Generate the English game_text file; after that's done, copy over all the localized game output files
-        var localizedGoldFilesDir = path.join(context.translationOutputDirectory, '/Locales');
+        var localizedGoldFilesDir = path.join(context.translationOutputDirectory, 'Locales');
 
         if (!fileSystem.exists(localizedGoldFilesDir)) {
             fileSystem.makeDirectory(localizedGoldFilesDir);
@@ -108,13 +108,13 @@ define(function(require){
 
         var localizedLanguageListWriter = baseWriter.createFileWriter(path.join(localizedGoldFilesDir, 'supportedLanguages.txt'));
 
-        var enUsGoldFileDir = path.join(localizedGoldFilesDir, '/en-US');
+        var enUsGoldFileDir = path.join(localizedGoldFilesDir, 'en-US');
 
         if (!fileSystem.exists(enUsGoldFileDir)) {
             fileSystem.makeDirectory(enUsGoldFileDir);
         }
 
-        var enUsGoldFile = path.join(enUsGoldFileDir, '/game_text.txt');
+        var enUsGoldFile = path.join(enUsGoldFileDir, 'game_text.txt');
         var enUsGoldFileWriter = CSVWriter.createFileWriter(enUsGoldFile, function() {
             fileSystem.copyDirectory(localizedGoldFilesDir, context.localizationOutputDirectory);
         });
@@ -143,8 +143,13 @@ define(function(require){
                 return;
             }
 
-            var translatedLanguageFile = path.join(translationsDir, "/" + language + "/translation.csv");
-            var toBeLocalizedFile = path.join(localizedGoldFilesDir, "/" + language + "/game_text.txt");
+            var toBeLocalizedDir = path.join(localizedGoldFilesDir, language);
+            if (!fileSystem.exists(toBeLocalizedDir)) {
+                fileSystem.makeDirectory(toBeLocalizedDir);
+            }
+
+            var translatedLanguageFile = path.join(translationsDir, language, "translation.csv");
+            var toBeLocalizedFile = path.join(toBeLocalizedDir, "game_text.txt");
             var toBeLocalizedFileWriter = CSVWriter.createFileWriter(toBeLocalizedFile);
             var toBeLocalized = {};
 
@@ -176,6 +181,11 @@ define(function(require){
                 }
 
                 // Get the GUIDs
+                if (! entry[4]) {
+                    // If the guids are null, there's an issue with this line in the translation file.
+                    translationErrors.log(language, 'No GUIDs defined for the following English text - issue with translation file', entry[0]);
+                    return;
+                }
                 var guids = entry[4].split(",");
 
                 // For each guid, generate a localized label for that entry in the expected format
@@ -192,7 +202,7 @@ define(function(require){
                         // NOTE: the translation could have a different newline char, so we standardize the newlines
                         if (this.localizationTable[guid][1].replace(/\s+/g, ' ').trim() !== entry[0].replace(/\s+/g, ' ').trim()) {
                             missingLocalizedLabels.push(guid);
-                            translationErrors.log(language, 'Potential Translation Mismatch (English label has changed since last translation)', guid);
+                            translationErrors.log(language, 'Potential Translation Mismatch (English label has changed since last translation)  - see Proofread/MissingTranslations/' + language + '/translations.csv for translation file', guid);
                         }
 
                         // If the original label had a parameter (ex: {0}), make sure the translated label does too.
@@ -254,7 +264,7 @@ define(function(require){
             if (missingLocalizedLabels.length > 0) {
                 var missingTranslationsDir = path.join(context.internalDocOutputDirectory, 'MissingTranslations', language);
                 fileSystem.makeDirectory(missingTranslationsDir);
-                var missingTranslationsFile = path.join(missingTranslationsDir, '/translation.csv');
+                var missingTranslationsFile = path.join(missingTranslationsDir, 'translation.csv');
                 var missingTranslationsWriter = CSVWriter.createFileWriter(missingTranslationsFile);
                 missingTranslationsWriter.writeRecord(translationHeaders);
 

@@ -13,6 +13,7 @@ define(function(require) {
 
     ctor.prototype.refreshFromItem = function() {
         this.name = this.item.name;
+        this.displayName = (!!this.item.displayName) ? this.item.displayName : this.item.name;
         this.sceneId = this.item.sceneId;
         this.value = this.item.value;
     };
@@ -21,6 +22,7 @@ define(function(require) {
         return {
             id: this.id,
             name: this.name,
+            displayName: (!!this.displayName) ? this.displayName : this.name,
             sceneId: this.sceneId,
             value: this.value
         };

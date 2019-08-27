@@ -42,9 +42,33 @@ Once you add the file, please reload your game in Composer.
 
 ### Adding a New Language
 
-These are stored in subdirectories of the `Internal Translation Directory` listed in your game's Composer `Build Settings`. To support a new language:
+#### Send Labels out For Translation
 
-1. Create a new folder / subdirectory in the `Internal Translation Directory`.
+The Composer build generates a single `translation.csv` file containing all labels / items which may need translation.  You can find this file by:
+
+1. Do a Composer build for your selected game
+2. Open your local computer's File Explorer
+3. Go to the `Internal Translation Directory` listed in your game's Composer `Build Settings` (ex: `Hero-U/Translations` for Hero-U)
+4. Go to the `Translations/en-US/` subdirectory (ex: `Hero-U/Translations/Translations/en-US` for Hero-U)
+5. Send the `translation.csv` file there to a translator.
+
+#### (Optional) Download Translations from Google Drive
+
+If your translator has uploaded the file to Google Drive, you can download them in .csv (comma-separate-value) format:
+
+1. Open the translation file in Google Drive
+2. Click on the `File` option
+3. Select `Download`
+4. Select `Comma-Separated-Values (.csv)`
+5. Save the file to a location on your hard drive
+6. On your computer, open a file browser and go to the folder where you saved the file
+7. Rename the file to `translation.csv`
+
+#### Add the file to Composer
+
+All translation files should be added to in subdirectories of the `Internal Translation Directory` listed in your game's Composer `Build Settings`. To support a new language:
+
+1. Create a new folder / subdirectory in the `Internal Translation Directory` (Ex: `Hero-U\Translations\Translations`)
 2. Name your new folder with the [IETF-compliant language tag](https://www.w3.org/International/questions/qa-choosing-language-tags) for your language.  (ex: Your new folder should be named `es` for Spanish, or `es-419` for Latin American Spanish.) 
 3. Add the `translation.csv` file containing the translations for that language into your new directory
 4. Reload your game in Composer

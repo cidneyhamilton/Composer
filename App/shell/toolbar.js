@@ -23,8 +23,9 @@ define(function(require) {
         if (selectedGame.showAdvanced) {
             sections.push(new Section('Events', 'icon-film', 'features/storyEvents/index'));
             sections.push(new Section('Labels', 'icon-tag', 'features/localization/index'));
-            sections.push(new Section('Build Config', 'icon-building', 'features/build/index'));
         }
+
+        sections.push(new Section('Build Config', 'icon-building', 'features/build/index'));
 
         return sections;
     };

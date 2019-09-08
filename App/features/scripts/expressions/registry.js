@@ -7,6 +7,7 @@ define(function(require) {
         require('./variableComparison'),
         require('./reputationComparison'),
         require('./inTags'),
+        require('./demoOnly')
     ];
     
     var advancedExpressions = [

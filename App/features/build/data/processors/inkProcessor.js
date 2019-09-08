@@ -439,7 +439,10 @@ define(function(require){
                 // TODO: Implement Debug Only
                 result += "true";
                 break;
-
+            case "expressions.demoOnly":
+                // TODO: Implement Demo Only
+                result += "IsDemo()";
+                break;
             case "expressions.currentScene":
                 // TODO: Implement Current Scene
                 result += "true";

@@ -684,7 +684,7 @@ define(function(require){
 
     ctor.prototype.parseEntryPoint = function(idMap, entryPoint, entryPointIndex, epMetadata) {
         var formattedName = this.getInkName(entryPoint).replace(/\s+/g, '');
-        this.appendOutput(epMetadata, "\n\n= {0}\n# {0} Entry Point\n".format(formattedName));
+        this.appendOutput(epMetadata, "\n\n= {0}\n// {0} Entry Point\n".format(formattedName));
     };
 
     ctor.prototype.parseEntryPointEnd = function(idMap, entryPoint, entryPointIndex, epMetadata) {
@@ -766,7 +766,7 @@ define(function(require){
                     output = this.parseNodeSetVariable(idMap, node, epMetadata.depth, epMetadata);
                     break;
                 default:
-                    output = "\n# TODO - " + node.type;
+                    output = "\n// TODO - " + node.type;
                     break;
             }
             epMetadata.depth--;

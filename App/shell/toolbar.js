@@ -50,7 +50,7 @@ define(function(require) {
         sections: getSections(),
         build: function() {
             buildConfig.activate();
-            runner.run(buildConfig.project, 'debug');
+            runner.run(buildConfig.project, 'debug', false);
         }
     };
 

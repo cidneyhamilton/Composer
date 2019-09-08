@@ -24,9 +24,10 @@
         build:function(){
             var that = this;
             fileSystem.write(projectPath, serializer.serialize(that.project, 4));
-            runner.run(this.project, this.mode);
+            runner.run(this.project, this.mode, this.demo);
         },
         mode:'debug',
+        demo: 'true',
         chooseDataOutputDirectory:function(){
             var that = this;
             commonDialogs.chooseDirectory().then(function(result){

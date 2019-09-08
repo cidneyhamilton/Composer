@@ -440,8 +440,8 @@ define(function(require){
                 result += "true";
                 break;
             case "expressions.demoOnly":
-                // TODO: Implement Demo Only
-                result += "IsDemo()";
+                // Check to see if this is the Demo
+                result += "IsDemo";
                 break;
             case "expressions.currentScene":
                 // TODO: Implement Current Scene
@@ -795,6 +795,7 @@ define(function(require){
         // TODO: Generate author and name from project
         gameOutput += "\n# author: Lori Cole";
         gameOutput += "\n# title: Summer Daze at Hero-U";
+        gameOutput += "\nVAR IsDemo = {0}".format(context.isDemo);
 
         // generate the tag list file
         if (this.tagList.length == 1) {

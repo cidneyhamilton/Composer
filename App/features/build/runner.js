@@ -60,7 +60,7 @@ define(function(require){
 
     return {
         // This is the thing that actually does the build!
-        run:function(project, mode){
+        run:function(project, mode, isDemo){
             var indicator = new WorkIndicator();
             dialog.show(indicator);
 
@@ -68,6 +68,7 @@ define(function(require){
                 startTime: new Date(),
                 project:project,
                 mode: mode,
+                isDemo: isDemo,
                 indicator:indicator,
                 game: selectedGame.activeProject,
                 dataOutputDirectory:path.resolve(selectedGame.activeProject.dir, project.build.dataOutputDirectory),

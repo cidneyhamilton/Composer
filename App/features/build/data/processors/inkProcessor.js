@@ -226,12 +226,13 @@ define(function(require){
         // TODO: unique is not used??
         var loop = !node.Unique;
 
-        var result = indent(depth) + "- ({0})".format(optionsName);
+        var result = "";
+        result = indent(depth) + "- ({0})".format(optionsName);
 
         epMetadata.depth++;
         if (options) {
             for (var i = 0; i < options.length; i++) {
-                result += this.parseOption(idMap, options[i], depth+1, optionsName, epMetadata);
+                result += this.parseOption(idMap, options[i], depth+1, epMetadata);
             }
         }
 
@@ -256,7 +257,7 @@ define(function(require){
     };
 
     // Handle Options
-    ctor.prototype.parseOption = function(idMap, node, depth, parentId, epMetadata) {
+    ctor.prototype.parseOption = function(idMap, node, depth, epMetadata) {
 
 
         var result = "";

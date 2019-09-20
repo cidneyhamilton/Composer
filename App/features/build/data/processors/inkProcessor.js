@@ -344,6 +344,7 @@ define(function(require){
         var expression = section["expression"];
         var result = "";
 
+        epMetadata.depth++;
         var children = this.parseChildren(idMap, section["nodes"], epMetadata);
         if (expression) {
             result += "{0}:".format(this.parseExpression(idMap, expression));
@@ -354,6 +355,8 @@ define(function(require){
                 result += "else: {0}".format(children);
             }
         }
+
+        epMetadata.depth--;
 
         return result;
     };

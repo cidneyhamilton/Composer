@@ -8,6 +8,7 @@ define(function(require) {
         metadata.depth = depth || 0;
         metadata.unique = isUniqueNode;
         metadata.autoAddDone = nodeAutoAddDone;
+
         metadata.isSuccessFailure = isParsingNodeSuccessFailure;
         return metadata;
     };

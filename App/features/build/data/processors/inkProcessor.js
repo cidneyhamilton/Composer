@@ -49,7 +49,7 @@ define(function(require){
 
     function indent(depth) {
         var result = '\n';
-        for (var i = 0; i < depth; i++) {
+        for (var i = 1; i < depth; i++) {
             result += "    ";
         }
         return result;
@@ -117,7 +117,6 @@ define(function(require){
 
             var scene = this.data.scenes[sceneName];
             this.data.scenes[sceneName].scripts[scriptName] += output;
-            
         }
     };
 
@@ -257,7 +256,7 @@ define(function(require){
     };
 
     // Handle Options
-    ctor.prototype.parseOption = function(idMap, node, depth, epMetadata) {
+    ctor.prototype.parseOption = function(idMap, node, epMetadata) {
 
 
         var result = "";
@@ -266,7 +265,7 @@ define(function(require){
         var expression = node.expression;
         var exitMenu = node.ExitMenu;
 
-        result += indent(depth);
+        result += indent(epMetadata.depth);
 
         node.processed = true;
 
@@ -283,13 +282,13 @@ define(function(require){
         }
         
 
-        result += this.parseChildren(idMap, node.nodes, epMetadata);
+        // result += this.parseChildren(idMap, node.nodes, epMetadata);
 
         // Exit the menu immediately after its children are displayed
-        if (exitMenu) {
-            result += indent(depth+1);
-            result += "-> done";
-        }
+        // if (exitMenu) {
+        //     result += indent(epMetadata.depth+1);
+        //     result += "-> done";
+        // }
 
         return result;
     };
@@ -695,13 +694,64 @@ define(function(require){
     };
 
     ctor.prototype.parseEntryPointEnd = function(idMap, entryPoint, entryPointIndex, epMetadata) {
-        var formattedName = this.getInkName(entryPoint);
         this.appendOutput(epMetadata, "\n->->");
     };
 
-    ctor.prototype.parseNodes = function(idMap, nodes, epMetadata) {
-        return this.parseNodeArray(idMap, nodes, epMetadata);
+    ctor.prototype.parseSection = function(idMap, section, sectionIndex, epMetadata) {
+        var result = "";
+
+        epMetadata.depth++;
+        result += indent(epMetadata.depth);
+        if (section.type == "nodes.branchSection") {
+            if (section.expression) {
+                result += "- {0}:".format(this.parseExpression(idMap, section.expression));
+            } else {
+                result += "- else:";
+            }
+            this.appendOutput(epMetadata, result);
+        } else if (section.type == "options.text") {
+            this.appendOutput(epMetadata, this.parseOption(idMap, section, epMetadata));
+        }
+        epMetadata.depth--;
+        
     };
+
+    ctor.prototype.parseSectionEnd = function(idMap, section, sectionIndex, epMetadata) {
+        
+    }
+
+    ctor.prototype.parseSectionArray = function(idMap, sectionArray, epMetadata, sectionType) {
+        var result = "";
+
+        epMetadata.depth++;
+
+        if (sectionType == "nodes.branch") {
+            result += indent(epMetadata.depth);
+            result += "{";
+        }
+        this.appendOutput(epMetadata, result);
+
+        epMetadata.depth--;
+    };
+
+    ctor.prototype.parseSectionArrayEnd = function(idMap, sectionArray, epMetadata, sectionType) {
+        var result = ""; 
+
+        epMetadata.depth++;
+
+        if (sectionType == "nodes.branch") {
+            result += indent(epMetadata.depth);
+            result += "}";
+        } 
+
+        if (sectionType == "nodes.showMenu" && epMetadata.depth == 2) {
+            result += indent(epMetadata.depth);
+            result += "- (done)";
+        }
+        this.appendOutput(epMetadata, result);
+
+        epMetadata.depth--;
+    }
 
     ctor.prototype.parseChildren = function(idMap, nodes, epMetadata) {
         var children = "";
@@ -719,13 +769,12 @@ define(function(require){
             // Do nothing; this node has already been processed
         } else {
             node.processed = true;
-            epMetadata.depth++;
             switch(node.type) {
                 case 'nodes.speak' : 
                     output = this.parseNodeSpeak(idMap, node, epMetadata.depth, epMetadata);
                     break;
                 case 'nodes.branch': 
-                    output = this.parseNodeBranch(idMap, node, epMetadata.depth, epMetadata);
+                    // output = this.parseNodeBranch(idMap, node, epMetadata.depth, epMetadata);
                     break;
                 case 'nodes.changeReputation':
                     output = this.parseChangeReputation(idMap, node, epMetadata.depth, epMetadata);
@@ -752,7 +801,7 @@ define(function(require){
                     output = this.parseNodeInvokeScript(idMap, node, epMetadata.depth, epMetadata);
                     break;
                  case 'nodes.showMenu' : 
-                    output = this.parseNodeShowMenu(idMap, node, epMetadata.depth, epMetadata);
+                    // output = this.parseNodeShowMenu(idMap, node, epMetadata.depth, epMetadata);
                     break;
                 case 'nodes.placeActor' :
                     output = this.parseNodePlaceActor(idMap, node, epMetadata.depth, epMetadata);
@@ -776,7 +825,6 @@ define(function(require){
                     output = "\n// TODO - " + node.type;
                     break;
             }
-            epMetadata.depth--;
         }
 
         
@@ -784,8 +832,10 @@ define(function(require){
     }
 
     ctor.prototype.parseNode = function(idMap, node, nodeType, nodeIndex, epMetadata) {        
+        epMetadata.depth++;
         var output = this.parseChild(idMap, node, epMetadata);
         this.appendOutput(epMetadata, output);
+        epMetadata.depth--;
     };
 
     ctor.prototype.finish = function(context, idMap) {
@@ -906,8 +956,7 @@ define(function(require){
                     addToArray(this.var_list, singleVar);     
                 }    
             }
-            
-            
+                
         }
     }
 

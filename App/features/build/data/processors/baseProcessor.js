@@ -20,8 +20,8 @@ define(function(require){
     ctor.prototype.parseEntryPoint = function(idMap, entryPoint, entryPointIndex, epMetadata) {};
     ctor.prototype.parseEntryPointEnd = function(idMap, entryPoint, entryPointIndex, epMetadata) {};
 
-    ctor.prototype.parseSectionArray = function(idMap, sectionArray, epMetadata) {};
-    ctor.prototype.parseSectionArrayEnd = function(idMap, sectionArray, epMetadata) {};
+    ctor.prototype.parseSectionArray = function(idMap, sectionArray, epMetadata, sectionType) {};
+    ctor.prototype.parseSectionArrayEnd = function(idMap, sectionArray, epMetadata, sectionType) {};
 
     ctor.prototype.parseSection = function(idMap, section, sectionIndex, epMetadata) {};
     ctor.prototype.parseSectionEnd = function(idMap, section, sectionIndex, epMetadata) {};

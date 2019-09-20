@@ -209,23 +209,23 @@ define(function(require){
                     }
 
                     if (node.sections && node.sections.length > 0) {
-                        processSectionArray(processor, node.sections, epMetadataBuilder, epMetadataBuilder.buildUniqueAutoAdd(epMetadata.depth, node.Unique, node.AutoAddDone));
+                        processSectionArray(processor, node.sections, epMetadataBuilder, epMetadataBuilder.buildUniqueAutoAdd(epMetadata.depth, node.Unique, node.AutoAddDone), node.type);
                     }
 
                     if (node.options && node.options.length > 0) {
-                        processSectionArray(processor, node.options, epMetadataBuilder, epMetadataBuilder.buildUniqueAutoAdd(epMetadata.depth, node.Unique, node.AutoAddDone));
+                        processSectionArray(processor, node.options, epMetadataBuilder, epMetadataBuilder.buildUniqueAutoAdd(epMetadata.depth, node.Unique, node.AutoAddDone), node.type);
                     }
                     processor.parseNodeEnd(idMap, node, nodeType, nodeIndex, epMetadata);
                 }
 
                 // Process an array of Sections in the script
-                function processSectionArray(processor, sectionArray, epMetadataBuilder, epMetadata) {
-                    processor.parseSectionArray(idMap, sectionArray, epMetadata);
+                function processSectionArray(processor, sectionArray, epMetadataBuilder, epMetadata, sectionType) {
+                    processor.parseSectionArray(idMap, sectionArray, epMetadata, sectionType);
 
                     for (var i = 0; i < sectionArray.length; i++) {
                         processSection(processor, sectionArray[i], i, epMetadataBuilder, epMetadata);
                     }
-                    processor.parseSectionArrayEnd(idMap, sectionArray, epMetadata);
+                    processor.parseSectionArrayEnd(idMap, sectionArray, epMetadata, sectionType);
                 }
 
                 function processSection(processor, section, sectionIndex, epMetadataBuilder, epMetadata) {

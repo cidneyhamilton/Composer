@@ -136,7 +136,7 @@ define(function(require){
     ctor.prototype.parseNodeChangeTagsHelper = function(idMap, tagList, prefix, depth) {
         var result = "";
         if (isNotEmpty(tagList)) {
-            tagList = tagList.replace(",", ", ");
+            tagList = tagList.replace(",", ", ").toLowerCase().replace(/[`~!@#$%^&*()_|+\-=?;:'".<>\{\}\[\]\\\/]/gi, '');
             result += indent(depth);
             var tags = tagList.split(",");
             if (tags.length > 1) {
@@ -362,11 +362,15 @@ define(function(require){
         return result;
     };
 
+
     // Handle Expressions in Branches
     ctor.prototype.parseExpression = function(idMap, node) {
         var left = node.left;
         var right = node.right;
         var tags = node.tags;
+        if (tags !== undefined) {
+            tags = tags.toLowerCase().replace(/[`~!@#$%^&*()_|+\-=?;:'".<>\{\}\[\]\\\/]/gi, '');
+        }
         var has = node.has;
         var prop = node.propId;
 

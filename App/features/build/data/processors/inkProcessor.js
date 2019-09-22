@@ -72,6 +72,7 @@ define(function(require){
         this.var_list = [];
         this.const_list = [];
         this.inv_list = [];
+        this.menuList = [];
     };
 
     ctor.prototype.getInkName = function(asset) {
@@ -212,7 +213,7 @@ define(function(require){
     };
 
     // Handle Show Menu nodes
-    ctor.prototype.parseNodeShowMenu = function(idMap, node, depth, epMetadata) {
+    ctor.prototype.parseNodeShowMenu = function(idMap, node, epMetadata) {
         var options = node.options;
 
         // TODO: Make sure these are unique!
@@ -226,14 +227,16 @@ define(function(require){
         var loop = !node.Unique;
 
         var result = "";
-        result = indent(depth) + "- ({0})".format(optionsName);
+        result = indent(epMetadata.depth) + "- ({0})".format(optionsName);
 
         epMetadata.depth++;
         if (options) {
             for (var i = 0; i < options.length; i++) {
-                result += this.parseOption(idMap, options[i], depth+1, epMetadata);
+                result += this.parseOption(idMap, options[i], epMetadata);
             }
         }
+
+        epMetadata.depth--;
 
         if (autoAddDone) {
             result += (indent(depth+1) + "+    Done -> {0}".format(doneName));
@@ -241,16 +244,14 @@ define(function(require){
 
         // Loop to the top if this is not unique
         if (loop) {
-            result += indent(depth) + "- ({0})".format(loopName);
+            result += indent(epMetadata.depth) + "- ({0})".format(loopName);
             if (options) {
-                result += indent(depth + 1);
+                result += indent(epMetadata.depth + 1);
                 result += "\{& -> {0}\}".format(optionsName);
             }
         }
 
-        result += indent(depth) + "- ({0})".format(doneName);
-
-        epMetadata.depth--;
+        result += indent(epMetadata.depth) + "- ({0})".format(doneName);
 
         return result;
     };
@@ -281,14 +282,15 @@ define(function(require){
             result += "{0}".format(node.text);
         }
         
-
-        // result += this.parseChildren(idMap, node.nodes, epMetadata);
+        epMetadata.depth++;
+        result += this.parseChildren(idMap, node.nodes, epMetadata);
+        epMetadata.depth--;
 
         // Exit the menu immediately after its children are displayed
-        // if (exitMenu) {
-        //     result += indent(epMetadata.depth+1);
-        //     result += "-> done";
-        // }
+        if (exitMenu) {
+            result += indent(epMetadata.depth+1);
+            result += "-> done";
+        }
 
         return result;
     };
@@ -688,70 +690,27 @@ define(function(require){
         }
     };
 
+    ctor.prototype.getFormattedName = function(entryPoint) {
+        return this.getInkName(entryPoint).replace(/\s+/g, '');
+    }
+
     ctor.prototype.parseEntryPoint = function(idMap, entryPoint, entryPointIndex, epMetadata) {
-        var formattedName = this.getInkName(entryPoint).replace(/\s+/g, '');
-        this.appendOutput(epMetadata, "\n\n= {0}\n// {0} Entry Point\n".format(formattedName));
+        this.appendOutput(epMetadata, "\n\n= {0}\n// {0} Entry Point\n".format(this.getFormattedName(entryPoint)));
     };
 
     ctor.prototype.parseEntryPointEnd = function(idMap, entryPoint, entryPointIndex, epMetadata) {
         this.appendOutput(epMetadata, "\n->->");
-    };
 
-    ctor.prototype.parseSection = function(idMap, section, sectionIndex, epMetadata) {
-        var result = "";
+        var formattedName = this.getFormattedName(entryPoint);
 
-        epMetadata.depth++;
-        result += indent(epMetadata.depth);
-        if (section.type == "nodes.branchSection") {
-            if (section.expression) {
-                result += "- {0}:".format(this.parseExpression(idMap, section.expression));
-            } else {
-                result += "- else:";
-            }
-            this.appendOutput(epMetadata, result);
-        } else if (section.type == "options.text") {
-            this.appendOutput(epMetadata, this.parseOption(idMap, section, epMetadata));
+        for (var i = 0; i < this.menuList.length; i++) {
+            this.appendOutput(epMetadata, "\n\n= {0}_Menu_{1}\n".format(formattedName, i+1));
+            this.appendOutput(epMetadata, this.menuList[i]);
+            this.appendOutput(epMetadata, "\n->->");
         }
-        epMetadata.depth--;
-        
+
+        this.menuList = [];
     };
-
-    ctor.prototype.parseSectionEnd = function(idMap, section, sectionIndex, epMetadata) {
-        
-    }
-
-    ctor.prototype.parseSectionArray = function(idMap, sectionArray, epMetadata, sectionType) {
-        var result = "";
-
-        epMetadata.depth++;
-
-        if (sectionType == "nodes.branch") {
-            result += indent(epMetadata.depth);
-            result += "{";
-        }
-        this.appendOutput(epMetadata, result);
-
-        epMetadata.depth--;
-    };
-
-    ctor.prototype.parseSectionArrayEnd = function(idMap, sectionArray, epMetadata, sectionType) {
-        var result = ""; 
-
-        epMetadata.depth++;
-
-        if (sectionType == "nodes.branch") {
-            result += indent(epMetadata.depth);
-            result += "}";
-        } 
-
-        if (sectionType == "nodes.showMenu" && epMetadata.depth == 2) {
-            result += indent(epMetadata.depth);
-            result += "- (done)";
-        }
-        this.appendOutput(epMetadata, result);
-
-        epMetadata.depth--;
-    }
 
     ctor.prototype.parseChildren = function(idMap, nodes, epMetadata) {
         var children = "";
@@ -774,7 +733,7 @@ define(function(require){
                     output = this.parseNodeSpeak(idMap, node, epMetadata.depth, epMetadata);
                     break;
                 case 'nodes.branch': 
-                    // output = this.parseNodeBranch(idMap, node, epMetadata.depth, epMetadata);
+                    output = this.parseNodeBranch(idMap, node, epMetadata.depth, epMetadata);
                     break;
                 case 'nodes.changeReputation':
                     output = this.parseChangeReputation(idMap, node, epMetadata.depth, epMetadata);
@@ -801,7 +760,10 @@ define(function(require){
                     output = this.parseNodeInvokeScript(idMap, node, epMetadata.depth, epMetadata);
                     break;
                  case 'nodes.showMenu' : 
-                    // output = this.parseNodeShowMenu(idMap, node, epMetadata.depth, epMetadata);
+                    this.menuList.push(this.parseNodeShowMenu(idMap, node, epMetadata));
+
+                    output += indent(epMetadata.depth) + "-> {0}_Menu_{1} -> ".format(this.getFormattedName(epMetadata.entryPoint), this.menuList.length);
+
                     break;
                 case 'nodes.placeActor' :
                     output = this.parseNodePlaceActor(idMap, node, epMetadata.depth, epMetadata);

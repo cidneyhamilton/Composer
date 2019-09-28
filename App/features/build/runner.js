@@ -99,7 +99,6 @@ define(function(require){
                         setTimeout(function() { }, 500);
                     }
                     // Here is where we close the build indicator.
-                    dialog.close(indicator);
 
                     // BATCH MODE CHECK!
                     // In batch builds we want to shutdown after the build.
@@ -109,7 +108,16 @@ define(function(require){
                         // Shutdown at some point in the future giving lots of time
                         // for data to flush to disk! This is a problem as we don't
                         // know when all data has fully flushed to the HD.
-                        setTimeout(function() {  window.close(true); }, 30000);
+                        var countDown = 30;
+                        var countDowner = setInterval(function() {
+                            countDown--;
+                            if(countDown == 0) { clearInterval(countDowner); dialog.close(indicator); window.close(true); }
+                            else { indicator.message="Waiting " + countDown.toString() + " seconds for everything to be flushed..."; }
+                        }, 1000);
+                    }
+                    else
+                    {
+                        dialog.close(indicator);
                     }
                 });
         }

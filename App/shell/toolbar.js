@@ -1,6 +1,6 @@
 define(function(require) {
     var Section = require('./section'),
-	app = require('durandal/app'),
+    app = require('durandal/app'),
     path = requireNode('path'),
     fileSystem = require('infrastructure/fileSystem'),
     serializer = require('plugins/serializer'),
@@ -87,6 +87,7 @@ define(function(require) {
     {
         toolbar.hasButtonsEnabled = true;
         selectedGame.activate();
+        var isDemo="false";
 
         if (myArgs.indexOf('SummerDazeM') > -1) {
             selectedGame.activeProject = selectedGame.projects.SummerDazeM;
@@ -96,12 +97,18 @@ define(function(require) {
             selectedGame.activeProject = selectedGame.projects.wizardsWay;
         } else if (myArgs.indexOf('r2rDemo') > -1) {
             selectedGame.activeProject = selectedGame.projects.r2rDemo;
+            isDemo="true";
         } else {
             selectedGame.activeProject = selectedGame.projects.heroU;
+            isDemo="false";
         }
 
         loader.load();
-        toolbar.select(toolbar.sections[6]);
+        var buildConfigSectionNum = -1;
+        for(var i = 0; i < toolbar.sections.length; i++) { if(toolbar.sections[i].name == "Build Config") { buildConfigSectionNum = i; } }
+        if(buildConfigSectionNum == -1) { alert("Unable to batch build: error locating section 'Build Config'"); }
+        toolbar.sections[buildConfigSectionNum].name="BATCH BUILD MODE!!!";
+        toolbar.select(toolbar.sections[buildConfigSectionNum]);
         // HACK: We can't click the build button right away because of the transition
         // above. If we click the build button right away then we won't
         // have the full build transition handled.
@@ -114,8 +121,15 @@ define(function(require) {
                 document.getElementById("buildTypeOption").value="debug";
             }
 
-            // Click the build button! 
-            document.getElementById("buildClick").click(); 
+            if(myArgs.indexOf('demo') > -1) {
+                var isDemo="true";
+            }
+
+            document.getElementById("demoOption").value="false";
+
+            // Click the build button!
+            toolbar.sections[buildConfigSectionNum].name="BATCH BUILD MODE: Initiating Build";
+            document.getElementById("buildClick").click();
             // NOTE: Exit is handled by a parallel check at the
             //       end of the build runner as it is tearing
             //       down the build indicator.

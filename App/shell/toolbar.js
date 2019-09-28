@@ -125,7 +125,7 @@ define(function(require) {
                 var isDemo="true";
             }
 
-            document.getElementById("demoOption").value="false";
+            document.getElementById("demoOption").value=isDemo;
 
             // Click the build button!
             toolbar.sections[buildConfigSectionNum].name="BATCH BUILD MODE: Initiating Build";

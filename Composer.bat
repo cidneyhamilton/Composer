@@ -3,6 +3,7 @@ cd Platforms\Windows\
 
 set BatchBuild=
 set DebugOption=
+set DemoOption=
 set Game=heroU
 
 REM ==========================================================
@@ -18,6 +19,9 @@ if "%1" == "batchBuild" (
 )
 if "%1" == "debug" ( 
 	set DebugOption=debug
+)
+if "%1" == "demo" ( 
+	set DemoOption=demo
 )
 if "%1" == "heroU" (
 	set Game=heroU
@@ -46,7 +50,7 @@ if "%BatchBuild%" == "batchBuild" (
 	echo .
 	echo .   BATCH BUILD
 	echo .
-	start /WAIT nw ..\..\ %BatchBuild% %DebugOption% %Game%
+	start /WAIT nw ..\..\ %BatchBuild% %DebugOption% %DemoOption% %Game%
 ) ELSE (
 	echo GUI MODE
 	start nw ..\..\ 

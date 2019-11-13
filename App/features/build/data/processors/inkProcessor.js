@@ -1,7 +1,9 @@
 // Generate .ink scripts within Composer
-// See https://github.com/inkle/ink/blob/master/Documentation/WritingWithInk.md for documentation
+// See https://github.com/inkle/ink/blob/master/Documentation/WritingWithInk.md for documentation on syntax
 
 define(function(require){
+
+	// Initialize dependencies
     var baseProcessor = require('features/build/data/processors/baseProcessor'), 
         baseWriter = require('features/build/baseWriter'),
         path = requireNode('path'),
@@ -309,12 +311,14 @@ define(function(require){
         // Tag the speak node with an emotion.
         var tagString = "";
 
-        // If both the speaker and the listener have emotions
         if (node.emotion != 0 && listener != "" && node.emotion2 != 0) {
+			// If both the speaker and the listener have emotions, tag both
             tagString += "# {0} # {1} ".format(emotionsMap.getEmotionById(node.emotion), emotionsMap.getEmotionById(node.emotion2));
         } else if (node.emotion != 0) {
+			// Tag the speaker with a default emotion
             tagString += "# {0} # neutral".format(emotionsMap.getEmotionById(node.emotion));
         } else if (listener != "" && node.emotion2 != 0) {
+			// Tag the listener with a default emotion
             tagString += "# neutral # {0} ".format(emotionsMap.getEmotionById(node.emotion2));
         }
 
@@ -327,6 +331,7 @@ define(function(require){
         var result = "";
         if (node.sections && node.sections.length > 0) {
             for (var i = 0; i < node.sections.length; i++) {
+				// Go through each section and parse each branch node
                 var s = this.parseNodeBranchSection(idMap, node.sections[i], depth + 1, epMetadata);
                 if (isNotEmpty(s)) {
                     result += indent(depth + 1) + "- {0}".format(s);
@@ -526,6 +531,8 @@ define(function(require){
     ctor.prototype.parseChangeScene = function(idMap, node, depth) {
         var sceneName = this.getInkNameFromId(node.sceneId);
         var result = indent(depth);
+
+		// Invoke an Ink function to change the scene (provided in Functions.ink)
         result += "~ ChangeScene({0})".format(sceneName);
         return result;
     };
@@ -543,8 +550,10 @@ define(function(require){
         var amount = node.amount;
         // Reputation is stored as a variable in Ink
         if (node.change) {
+			// Invoke an Ink function to increase reputation
             result += "~ AddReputation({0}, {1})".format(repVariable, amount);
         } else {
+			// Invoke an Ink function to decrease reputation
             result += "~ RemoveReputation({0}, {1})".format(repVariable, amount);
         }
         
@@ -562,6 +571,7 @@ define(function(require){
             debugger;
         }
 
+		// Invoke an Ink function to play Music
         result += "~ PlayMusic({0})".format(musicTrack); 
         return result;
     };
@@ -574,6 +584,7 @@ define(function(require){
         actor = node.actorId;
         actor = (actor == null ? "" : idMap[actor]);
 
+		// Invoke an Ink function to show the actor
         result += "~ ShowActor({0}, neutral)".format(actor);
         return result;
     };
@@ -586,7 +597,9 @@ define(function(require){
         actor = node.actorId;
         actor = (actor == null ? "" : idMap[actor]);
 
+		// Invoke an Ink function to hide the actor
         result += "~ HideActor({0})".format(actor);
+		
         return result;
     };
 
@@ -601,7 +614,9 @@ define(function(require){
             soundEffect = node.soundEffectName.slice(0, node.soundEffectName.indexOf('.'));
         }
 
+		// Invoke an Ink function to play the sound
         result += "~ PlaySound({0})".format(soundEffect);
+		
         return result;
     };
 
@@ -616,7 +631,10 @@ define(function(require){
         var result = indent(depth);
 
         var skill = node.skill;
+
+		// Invoke an Ink function to improve the skill
         result += "~ ImproveSkill({0},{1})".format(skill, node.amount);
+		
         return result;
     }
 
@@ -817,7 +835,39 @@ define(function(require){
         gameOutput += "\n# title: Summer Daze at Hero-U";
         gameOutput += "\nVAR IsDemo = {0}".format(context.isDemo);
 
-        // generate the tag list file
+		var getListFromDB = function(composerListName, inkListName, getName) {
+			var composerList = db[composerListName].entries;
+			
+			if (composerList.length > 0) {
+				var inkList = "";
+				var inkItem;
+				
+				for(var i = 0; i < composerList.length; i++) {
+					inkItem = getName(composerList[i]);
+					if (i < composerList.length - 1) {
+						inkItem += ", ";
+					}
+					inkList += inkItem;
+				}
+				
+				return "\n\nLIST {0} = {1}\n".format(inkListName, inkList);				
+			} else {
+				return "";
+			}
+		}
+
+		var getMusicTrackName = function(item) {
+			return item.slice(0, item.indexOf('.'));
+		};
+
+		var getActorName = function(item) {
+			return item.name;
+		}
+		
+		gameOutput += getListFromDB("musicTracks", "MusicTracks", getMusicTrackName);
+		gameOutput += getListFromDB("actors", "Actors", getActorName);									
+		
+		// generate the tag list file
         if (this.tagList.length == 1) {
             this.appendTagList("filler");
         }

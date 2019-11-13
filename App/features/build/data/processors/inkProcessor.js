@@ -42,6 +42,13 @@ define(function(require){
         }
     }
 
+	function removeSpecialCharacters(text) {
+		if (text && text != null) {
+			text = text.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '');
+		}
+		return text;
+	}
+	
     function removeWhitespace(text) {
         if(text && null != text) {
             return text.replace(/\s/g,'');
@@ -833,7 +840,7 @@ define(function(require){
         // TODO: Generate author and name from project
         gameOutput += "\n# author: Lori Cole";
         gameOutput += "\n# title: Summer Daze at Hero-U";
-        gameOutput += "\nVAR IsDemo = {0}".format(context.isDemo);
+        gameOutput += "\n\nVAR IsDemo = {0}\n".format(context.isDemo);
 
 		var getListFromDB = function(composerListName, inkListName, getName) {
 			var composerList = db[composerListName].entries;
@@ -850,22 +857,27 @@ define(function(require){
 					inkList += inkItem;
 				}
 				
-				return "\n\nLIST {0} = {1}\n".format(inkListName, inkList);				
+				return "\n// List of Assets\nLIST {0} = {1}\n".format(inkListName, inkList);				
 			} else {
 				return "";
 			}
 		}
 
-		var getMusicTrackName = function(item) {
-			return item.slice(0, item.indexOf('.'));
+		// Get the name of an audio clip for Ink
+		var getClipName = function(item) {
+			return removeSpecialCharacters(removeWhitespace(item.slice(0, item.indexOf('.'))));
 		};
 
-		var getActorName = function(item) {
-			return item.name;
+		// Get the name of a composer entity (actor, scene, etc) for Ink
+		var getEntityName = function(item) {
+			return removeSpecialCharacters(removeWhitespace(item.name));
 		}
-		
-		gameOutput += getListFromDB("musicTracks", "MusicTracks", getMusicTrackName);
-		gameOutput += getListFromDB("actors", "Actors", getActorName);									
+
+		gameOutput += getListFromDB("musicTracks", "MusicTracks", getClipName);
+		gameOutput += getListFromDB("soundEffects", "SoundClips", getClipName);
+		gameOutput += getListFromDB("actors", "Actors", getEntityName);									
+		gameOutput += getListFromDB("scenes", "Rooms", getEntityName);
+
 		
 		// generate the tag list file
         if (this.tagList.length == 1) {

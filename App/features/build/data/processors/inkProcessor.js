@@ -74,6 +74,8 @@ define(function(require){
     ctor.prototype.init = function() {
         this.data = {};
         this.data.scenes = {};
+		this.data.actors = {};
+		
         this.inkNameLookup = {};
         this.idToInkNameMap = {};
         this.entryPoints = {};
@@ -683,6 +685,20 @@ define(function(require){
         }
     };
 
+	ctor.prototype.parseActor = function(context, idMap, actor) {
+		var actorName = actor.name;
+		
+		if (actor.components && actor.components != null) {
+			for (var i = 0; i < actor.components.length; i++) {
+				if (actor.components[i].type == "components.reputationComponent") {
+					// Store actor's reputation
+					this.data.actors[actorName] = {};
+					this.data.actors[actorName].reputation = actor.components[i].reputation;
+				}
+			}			
+		}
+	};
+	
     ctor.prototype.parseScript = function(context, idMap, script, sceneName) {
 
         var knotName;
@@ -829,6 +845,56 @@ define(function(require){
         epMetadata.depth--;
     };
 
+
+	ctor.prototype.getReputationInitData = function() {
+		var result = "";
+		var actors = db.actors.entries;
+		
+		for (var i = 0; i < actors.length; i++) {
+			var actor = actors[i];
+			
+			var value = 0;
+			if (this.data.actors[actor.name] && this.data.actors[actor.name].reputation) {
+				value = this.data.actors[actor.name].reputation;
+			}
+			result += "\nVAR {0}Reputation = {1}".format(actor.name, value);
+		}
+		
+		return result;
+	};
+	
+	ctor.prototype.getListFromDB = function(composerListName, inkListName, getName) {
+		var composerList = db[composerListName].entries;
+		
+		if (composerList.length > 0) {
+			var inkList = "";
+			var inkItem;
+			
+			for(var i = 0; i < composerList.length; i++) {
+				inkItem = getName(composerList[i]);
+				if (i < composerList.length - 1) {
+					inkItem += ", ";
+				}
+				inkList += inkItem;
+			}
+				
+			return "\n// List of Assets\nLIST {0} = {1}\n".format(inkListName, inkList);				
+		} else {
+			return "";
+		}
+	};
+
+	// Get the name of an audio clip for Ink
+	ctor.prototype.getClipName = function(item) {
+		return removeSpecialCharacters(removeWhitespace(item.slice(0, item.indexOf('.'))));
+	};
+	
+	// Get the name of a composer entity (actor, scene, etc) for Ink
+	ctor.prototype.getEntityName = function(item) {
+		return removeSpecialCharacters(removeWhitespace(item.name));
+	};
+
+	
     ctor.prototype.finish = function(context, idMap) {
         baseProcessor.prototype.finish.call(this, context, idMap);
 
@@ -842,42 +908,12 @@ define(function(require){
         gameOutput += "\n# title: Summer Daze at Hero-U";
         gameOutput += "\n\nVAR IsDemo = {0}\n".format(context.isDemo);
 
-		var getListFromDB = function(composerListName, inkListName, getName) {
-			var composerList = db[composerListName].entries;
-			
-			if (composerList.length > 0) {
-				var inkList = "";
-				var inkItem;
-				
-				for(var i = 0; i < composerList.length; i++) {
-					inkItem = getName(composerList[i]);
-					if (i < composerList.length - 1) {
-						inkItem += ", ";
-					}
-					inkList += inkItem;
-				}
-				
-				return "\n// List of Assets\nLIST {0} = {1}\n".format(inkListName, inkList);				
-			} else {
-				return "";
-			}
-		}
+		gameOutput += this.getListFromDB("musicTracks", "MusicTracks", this.getClipName);
+		gameOutput += this.getListFromDB("soundEffects", "SoundClips", this.getClipName);
+		gameOutput += this.getListFromDB("actors", "Actors", this.getEntityName);
+		gameOutput += this.getListFromDB("scenes", "Rooms", this.getEntityName);
 
-		// Get the name of an audio clip for Ink
-		var getClipName = function(item) {
-			return removeSpecialCharacters(removeWhitespace(item.slice(0, item.indexOf('.'))));
-		};
-
-		// Get the name of a composer entity (actor, scene, etc) for Ink
-		var getEntityName = function(item) {
-			return removeSpecialCharacters(removeWhitespace(item.name));
-		}
-
-		gameOutput += getListFromDB("musicTracks", "MusicTracks", getClipName);
-		gameOutput += getListFromDB("soundEffects", "SoundClips", getClipName);
-		gameOutput += getListFromDB("actors", "Actors", getEntityName);									
-		gameOutput += getListFromDB("scenes", "Rooms", getEntityName);
-
+		gameOutput += this.getReputationInitData();
 		
 		// generate the tag list file
         if (this.tagList.length == 1) {

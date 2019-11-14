@@ -7,17 +7,18 @@ define(function(require) {
         require('./combatEffectComponent'),
         require('./consumableBuffComponent'),
         require('./damageComponent'),
-        require('./defenceComponent'),
         require('./debuffComponent'),
+        require('./defenceComponent'),
         require('./equipableBuffComponent'),
         require('./healingComponent'),
         require('./initialTags'),
         require('./inventoryItemComponent'),
         require('./picklockComponent'),
         require('./poisonComponent'),
-        require('./throwingComponent'),
         require('./prefabReferenceComponent'),
-        require('./requiresTargetComponent')
+		require('./reputationComponent'),
+        require('./requiresTargetComponent'),
+        require('./throwingComponent')
     ];
 
     var Controller = function(y){

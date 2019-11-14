@@ -73,6 +73,7 @@ define(function(require){
 
     ctor.prototype.init = function() {
         this.data = {};
+
         this.data.scenes = {};
 		this.data.actors = {};
 		
@@ -80,7 +81,7 @@ define(function(require){
         this.idToInkNameMap = {};
         this.entryPoints = {};
         this.tagList = [];
-        this.var_list = [];
+        this.varList = [];
         this.const_list = [];
         this.inv_list = [];
         this.menuList = [];
@@ -690,10 +691,28 @@ define(function(require){
 		
 		if (actor.components && actor.components != null) {
 			for (var i = 0; i < actor.components.length; i++) {
-				if (actor.components[i].type == "components.reputationComponent") {
-					// Store actor's reputation
+				var component = actor.components[i];
+				
+				if (!this.data.actors[actorName]) {
 					this.data.actors[actorName] = {};
-					this.data.actors[actorName].reputation = actor.components[i].reputation;
+				}
+				
+				if (component.type == "components.reputationComponent") {
+					// Store actor's reputation
+					
+					this.data.actors[actorName].reputation = component.reputation;
+				} else if (component.type == "character.simpleModel") {
+					// This character must be the player
+					this.data.player = actorName;
+					
+					// Store character sheet
+					
+					// TODO: Define this list in Composer					
+					this.data.actors[actorName].Smarts = component.smarts;
+					this.data.actors[actorName].Fitness = component.fitness;
+					this.data.actors[actorName].Charm = component.charm;
+					this.data.actors[actorName].Skills = component.skills;
+					this.data.actors[actorName].Luck = component.luck;
 				}
 			}			
 		}
@@ -884,6 +903,21 @@ define(function(require){
 		}
 	};
 
+	
+	ctor.prototype.getPlayerInitData = function() {
+		var result = "\n\nVAR PLAYER = {0}\n".format(this.data.player);
+		
+		var playerData = this.data.actors[this.data.player];
+		for (var key in playerData) {
+			var value = playerData[key];
+			result += "\nVAR {0} = {1}".format(key, value);
+		}
+
+		result +="\n";
+		
+		return result;
+	};
+	
 	// Get the name of an audio clip for Ink
 	ctor.prototype.getClipName = function(item) {
 		return removeSpecialCharacters(removeWhitespace(item.slice(0, item.indexOf('.'))));
@@ -915,6 +949,8 @@ define(function(require){
 
 		gameOutput += this.getReputationInitData();
 		
+		gameOutput += this.getPlayerInitData();
+		
 		// generate the tag list file
         if (this.tagList.length == 1) {
             this.appendTagList("filler");
@@ -933,11 +969,11 @@ define(function(require){
             gameOutput += this.writeAssignment(context, "Constants", this.const_list);    
         }
 
-        if (this.var_list.length > 0) {
+        if (this.varList.length > 0) {
             var varInkList = [];
             var variable;
-            for (var i = 0; i < this.var_list.length; i++) {
-                variable = this.var_list[i];
+            for (var i = 0; i < this.varList.length; i++) {
+                variable = this.varList[i];
                 addToArray(varInkList, "\nVAR {0} = 0".format(variable));
             }
             gameOutput += this.writeAssignment(context, "Variables", varInkList);    
@@ -1016,8 +1052,8 @@ define(function(require){
                 singleVar = singleVar.replace(/\./g,'');
 
                 // Unless it's already in the list of variables in the story, append it
-                if (this.var_list.indexOf(singleVar) == -1) {
-                    addToArray(this.var_list, singleVar);     
+                if (this.varList.indexOf(singleVar) == -1) {
+                    addToArray(this.varList, singleVar);     
                 }    
             }
                 

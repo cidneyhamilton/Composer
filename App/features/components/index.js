@@ -1,8 +1,16 @@
 define(function(require) {
     var app = require('durandal/app'),
-        assetDatabase = require('infrastructure/assetDatabase')
+        assetDatabase = require('infrastructure/assetDatabase'),
+        selectedGame = require('features/projectSelector/index');
 
-    var allComponents = [
+	var showAdvanced = selectedGame.activeProject.format == 'json';
+
+	var baseComponents = [
+		require('./reputationComponent'),
+		require('./simpleCharSheet')
+	];
+	
+    var advancedComponents = [
         require('./characterModel'),
         require('./combatEffectComponent'),
         require('./consumableBuffComponent'),
@@ -16,7 +24,6 @@ define(function(require) {
         require('./picklockComponent'),
         require('./poisonComponent'),
         require('./prefabReferenceComponent'),
-		require('./reputationComponent'),
         require('./requiresTargetComponent'),
         require('./throwingComponent')
     ];
@@ -26,12 +33,17 @@ define(function(require) {
         this.y = y || '500px';
     };
 
-    Controller.allComponents = allComponents;
-
+	if (showAdvanced) {
+		Controller.allComponents = advancedComponents;
+	} else {
+		Controller.allComponents = baseComponents;
+	}
     Controller.prototype.activate = function(entity){
         this.entity = entity;
 
-        this.availableComponents = allComponents
+		var components = showAdvanced ? advancedComponents : baseComponents;
+		
+        this.availableComponents = components
             .filter(function(item){
                 return item.isCompatibleWith(entity);
             }).map(function(item){

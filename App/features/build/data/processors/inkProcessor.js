@@ -74,6 +74,7 @@ define(function(require){
     ctor.prototype.init = function() {
         this.data = {};
 
+		this.data.props = {};
         this.data.scenes = {};
 		this.data.actors = {};
 		
@@ -119,17 +120,27 @@ define(function(require){
 
     ctor.prototype.appendOutput = function(epMetadata, output) {
         if (isNotEmpty(output)) {
-            var sceneName = this.getInkNameFromId(epMetadata.script.sceneId);
-
-            var scriptName;
+			var scriptName;
             if (epMetadata.script.trigger.type === "triggers.manual") {
                 scriptName = this.getKnotNameFromScriptId(epMetadata.script.id);
             } else {
                 scriptName = epMetadata.script.name;
-            } 
+            }
 
-            var scene = this.data.scenes[sceneName];
-            this.data.scenes[sceneName].scripts[scriptName] += output;
+			var sceneId = epMetadata.script.sceneId;
+			var propId = epMetadata.script.propId;
+			if (sceneId != null) {
+				// This script is attached to a scene
+				var sceneName = this.getInkNameFromId(sceneId);				
+				var scene = this.data.scenes[sceneName];
+				this.data.scenes[sceneName].scripts[scriptName] += output;
+			} else {
+				// This script is not attached to a scene; check propId
+				var prop = this.data.props[propId];
+				if (prop != null) {
+					this.data.props[propId].scripts[scriptName] += output;
+				}
+			}             
         }
     };
 
@@ -251,7 +262,7 @@ define(function(require){
         epMetadata.depth--;
 
         if (autoAddDone) {
-            result += (indent(depth+1) + "+    Done -> {0}".format(doneName));
+            result += (indent(epMetadata.depth+1) + "+    Done -> {0}".format(doneName));
         }
 
         // Loop to the top if this is not unique
@@ -688,44 +699,66 @@ define(function(require){
 
 	ctor.prototype.parseActor = function(context, idMap, actor) {
 		var actorName = actor.name;
-		
-		if (actor.components && actor.components != null) {
-			for (var i = 0; i < actor.components.length; i++) {
-				var component = actor.components[i];
-				
-				if (!this.data.actors[actorName]) {
-					this.data.actors[actorName] = {};
-				}
-				
-				if (component.type == "components.reputationComponent") {
-					// Store actor's reputation
+
+		if (this.data.actors[actorName]) {
+			debugger;
+			// TODO: Actor names must be unique
+		} else {
+			this.data.actors[actorName] = {};
+
+			// Handle components
+			if (actor.components && actor.components != null) {
+				for (var i = 0; i < actor.components.length; i++) {
+					var component = actor.components[i];
 					
-					this.data.actors[actorName].reputation = component.reputation;
-				} else if (component.type == "character.simpleModel") {
-					// This character must be the player
-					this.data.player = actorName;
-					
-					// Store character sheet
-					
-					// TODO: Define this list in Composer					
-					this.data.actors[actorName].Smarts = component.smarts;
-					this.data.actors[actorName].Fitness = component.fitness;
-					this.data.actors[actorName].Charm = component.charm;
-					this.data.actors[actorName].Skills = component.skills;
-					this.data.actors[actorName].Luck = component.luck;
-				}
-			}			
+					if (component.type == "components.reputationComponent") {
+						// Store actor's reputation
+						
+						this.data.actors[actorName].reputation = component.reputation;
+					} else if (component.type == "character.simpleModel") {
+						// This character must be the player
+						this.data.player = actorName;
+						
+						// Store character sheet
+						
+						// TODO: Define this list in Composer					
+						this.data.actors[actorName].Smarts = component.smarts;
+						this.data.actors[actorName].Fitness = component.fitness;
+						this.data.actors[actorName].Charm = component.charm;
+						this.data.actors[actorName].Skills = component.skills;
+						this.data.actors[actorName].Luck = component.luck;
+					}
+				}			
+			}
 		}
+	};
+
+	ctor.prototype.parseProp = function(context, idMap, prop) {
+		var propId = prop.id;
+		var propName = removeWhitespace(prop.name);
+
+		if (this.data.props[propId]) {
+			// debugger;
+			// TODO: prop names are not guaranteed to be unique in Composer,
+            // leaving this as a debug step for now		
+		} else {
+			// Add to data
+			this.data.props[propId] = {};
+			this.data.props[propId].inkName = propName;
+			this.data.props[propId].scripts = {};
+		}
+		
 	};
 	
     ctor.prototype.parseScript = function(context, idMap, script, sceneName) {
 
         var knotName;
-        if (script.trigger.type === "triggers.manual") {
-            knotName = this.getKnotNameFromScriptId(script.id);   
-        } else {
+
+        if (script.trigger.type === "triggers.enter") {		
             // For OnEnter scripts, just use the script name
             knotName = script.name;
+		} else {
+            knotName = this.getKnotNameFromScriptId(script.id);
         }
 
         // Parse entry points
@@ -737,9 +770,18 @@ define(function(require){
         }
         
         if (!script.sceneId) {
-            debugger;
-            // TODO: Cidney - not sure how / if scripts on Actors / Props should be parsed in Ink,
-            // so leaving this as a debug step for now.
+			// If this script is attached to a prop
+            if (script.propId) {
+				var prop = this.data.props[script.propId];
+				prop.scripts[knotName] = "\n=== {0} ===".format(knotName);
+			} else if (script.actorId) {
+				// TODO: Handle scripts attached to actors
+				// TODO: Look up actor by id
+				// var actor = this.data.actors[script.actorId];
+				// actor.scripts[knotName] = "\n=== {0} ===".format(knotName);
+			} else {
+				debugger;
+			}
         } else {
             var sceneInkName = this.getInkNameFromId(script.sceneId);
             if (!this.data.scenes[sceneInkName]) {
@@ -889,7 +931,7 @@ define(function(require){
 			var inkList = "";
 			var inkItem;
 			
-			for(var i = 0; i < composerList.length; i++) {
+			for (var i = 0; i < composerList.length; i++) {
 				inkItem = getName(composerList[i]);
 				if (i < composerList.length - 1) {
 					inkItem += ", ";
@@ -928,7 +970,32 @@ define(function(require){
 		return removeSpecialCharacters(removeWhitespace(item.name));
 	};
 
+	// Get a list of props and include it in the script
+	ctor.prototype.getPropList = function() {
 	
+		var propList = "";
+		var orderedPropNames = [];
+		for (var propId in this.data.props) {
+			var prop = this.data.props[propId];
+			orderedPropNames.push(prop.inkName);
+		}
+
+		orderedPropNames.sort();
+		for (var i = 0; i < orderedPropNames.length; i++) {
+			var propItem = orderedPropNames[i];
+			if (i < orderedPropNames.length - 1) {
+				propItem += ", ";
+			}
+			propList += propItem;
+		}
+		
+		if (propList != "") {
+			return "\nLIST Props = {0}\n".format(propList);
+		} else {
+			return "";
+		}	
+	};
+	   
     ctor.prototype.finish = function(context, idMap) {
         baseProcessor.prototype.finish.call(this, context, idMap);
 
@@ -938,7 +1005,7 @@ define(function(require){
         var gameOutput = '';
 
         // TODO: Generate author and name from project
-        gameOutput += "\n# author: Lori Cole";
+        gameOutput += "\n# author: Corey and Lori Cole";
         gameOutput += "\n# title: Summer Daze at Hero-U";
         gameOutput += "\n\nVAR IsDemo = {0}\n".format(context.isDemo);
 
@@ -950,6 +1017,8 @@ define(function(require){
 		gameOutput += this.getReputationInitData();
 		
 		gameOutput += this.getPlayerInitData();
+
+		gameOutput += this.getPropList();
 		
 		// generate the tag list file
         if (this.tagList.length == 1) {
@@ -985,13 +1054,14 @@ define(function(require){
         // as well as the project's Composer/Data/Ink directory
         gameOutput += this.importNongeneratedInkFiles(context, process.cwd());
         gameOutput += this.importNongeneratedInkFiles(context, context.game.dir);
-
+		
         // For each scene, generate its ink file and its associated scripts
         var orderedSceneNames = [];
         for(var scene in this.data.scenes){
             orderedSceneNames.push(scene);
         }
-        orderedSceneNames.sort();
+
+		orderedSceneNames.sort();
         for (var i = 0; i < orderedSceneNames.length; i++) {
             // add its file to the final game output too
             gameOutput += "\nINCLUDE " + orderedSceneNames[i] + ".ink";

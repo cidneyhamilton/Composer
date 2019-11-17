@@ -38,13 +38,15 @@ define(function(require){
                                      reportAutosaveUsageProcessor, reportInvokeCommandUsageProcessor, 
                                      reportBadExpressionsProcessor, reportTimeUsageProcessor, reportBadInvokeScriptProcessor, 
                                      reportQuestUsageProcessor, reportBadGuidProcessor, 
-                                     gameModelProcessor, unityCodeGenProcessor, localizationProcessor, scriptDataProcessor,
+                                     gameModelProcessor, localizationProcessor, scriptDataProcessor,
                                      proofreadSimpleProcessor, proofreadScriptProcessor
                                      ];
 
                 if (selectedGame.activeProject.format == 'ink') {
                     allProcessors.push(inkProcessor);
-                }
+                } else {
+					allProcessors.push(unityCodeGenProcessor);
+				}
 
                 // Map of [GUID, <Name of [Actor | Prop | Scene | Script | StoryEvent]> ]
                 var idMap = {

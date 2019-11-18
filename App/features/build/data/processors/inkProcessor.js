@@ -83,8 +83,8 @@ define(function(require){
         this.entryPoints = {};
         this.tagList = [];
         this.varList = [];
-        this.const_list = [];
-        this.inv_list = [];
+        this.constList = [];
+        this.invList = [];
         this.menuList = [];
     };
 
@@ -159,7 +159,7 @@ define(function(require){
     ctor.prototype.parseNodeChangeTagsHelper = function(idMap, tagList, prefix, depth) {
         var result = "";
         if (isNotEmpty(tagList)) {
-            tagList = tagList.replace(",", ", ").toLowerCase().replace(/[`~!@#$%^&*()_|+\-=?;:'".<>\{\}\[\]\\\/]/gi, '');
+            tagList = removeSpecialCharacters(tagList.replace(",", ", ").toLowerCase());
             result += indent(depth);
             var tags = tagList.split(",");
             if (tags.length > 1) {
@@ -395,7 +395,7 @@ define(function(require){
         var right = node.right;
         var tags = node.tags;
         if (tags !== undefined) {
-            tags = tags.toLowerCase().replace(/[`~!@#$%^&*()_|+\-=?;:'".<>\{\}\[\]\\\/]/gi, '');
+            tags = removeSpecialCharacters(tags.toLowerCase());
         }
         var has = node.has;
         var prop = node.propId;
@@ -439,7 +439,7 @@ define(function(require){
                 break;
             case "expressions.inInventory":
                 prop = this.getInkNameFromId[prop];
-                addToArray(this.inv_list, prop);
+                addToArray(this.invList, prop);
                 if (has) {
                     result += "Inventory has {0}".format(prop);
                 } else {
@@ -894,7 +894,6 @@ define(function(require){
                     break;
             }
         }
-
         
         return output;
     }
@@ -1032,12 +1031,12 @@ define(function(require){
         }
 
         // generate the constants and variables files
-        if (this.const_list.length == 1) {
+        if (this.constList.length == 1) {
             this.appendConstList(["filler"]);
         }
 
-        if (this.const_list.length > 0) {
-            gameOutput += this.writeAssignment(context, "Constants", this.const_list);    
+        if (this.constList.length > 0) {
+            gameOutput += this.writeAssignment(context, "Constants", this.constList);    
         }
 
         if (this.varList.length > 0) {
@@ -1137,7 +1136,7 @@ define(function(require){
     ctor.prototype.appendConstList = function(singleConst) {
         // Check to make sure the constant isn't a number
         if (isNotEmpty(singleConst) && Number.isNaN(singleConst)) {
-            addToArray(this.const_list, "\nCONST {0} = {1}".format(singleConst));
+            addToArray(this.constList, "\nCONST {0} = {1}".format(singleConst));
         }
     }
 

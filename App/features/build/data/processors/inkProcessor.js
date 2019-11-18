@@ -947,16 +947,18 @@ define(function(require){
 
 	
 	ctor.prototype.getPlayerInitData = function() {
-		var result = "\n\nVAR PLAYER = {0}\n".format(this.data.player);
+		var result = "";
+		if (this.data.player) {
+			result = "\n\nVAR PLAYER = {0}\n".format(this.data.player);
 		
-		var playerData = this.data.actors[this.data.player];
-		for (var key in playerData) {
-			var value = playerData[key];
-			result += "\nVAR {0} = {1}".format(key, value);
+			var playerData = this.data.actors[this.data.player];
+			for (var key in playerData) {
+				var value = playerData[key];
+				result += "\nVAR {0} = {1}".format(key, value);
+			}
+			
+			result +="\n";
 		}
-
-		result +="\n";
-		
 		return result;
 	};
 	

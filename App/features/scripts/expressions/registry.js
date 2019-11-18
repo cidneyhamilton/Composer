@@ -7,7 +7,8 @@ define(function(require) {
         require('./variableComparison'),
         require('./reputationComparison'),
         require('./inTags'),
-        require('./demoOnly')
+        require('./demoOnly'),
+		require('./skillCheck')
     ];
     
     var advancedExpressions = [
@@ -15,7 +16,6 @@ define(function(require) {
             require('./inInventory'),
             require('./inventoryItemSelected'),
             require('./enteredScene'),
-            require('./skillCheck'),
             require('./inEvent'),
             require('./previousScene'),
             require('./currentScene'),

@@ -399,114 +399,112 @@ define(function(require){
         }
         var has = node.has;
         var prop = node.propId;
-
+		
         var result = "";
-
+		
         switch(node.type) {
-            case "expressions.variableComparison":
-                var operatorVal;
-                switch(node.operator) {
-                     case "lt":
-                        operatorVal = "<";
-                        break;
-                    case "lte":
-                        operatorVal = "<=";
-                        break;
-                    case "gt":
-                        operatorVal = ">";
-                        break;
-                    case "gte":
-                        operatorVal = ">=";
-                        break;
-                    case "eq":
-                        operatorVal = "==";
-                        break;
-                    case "ne":
-                        operatorVal = "!=";
-                        break;
-                }
-                var varName = removeWhitespace(node.variableName.toLowerCase());
-                this.appendVarList(varName.toLowerCase());
-                var constName = removeWhitespace(node.compareTo);
-                this.appendConstList(constName);
-                result += "{0} {1} {2}".format(varName, operatorVal, constName);
+        case "expressions.variableComparison":
+            var operatorVal;
+            switch(node.operator) {
+            case "lt":
+                operatorVal = "<";
                 break;
-            case "expressions.or":
-                result += "{0} {1} {2}".format(this.parseExpression(idMap, left), "||", this.parseExpression(idMap, right));
+            case "lte":
+                operatorVal = "<=";
                 break;
-            case "expressions.and":
-                result += "{0} {1} {2}".format(this.parseExpression(idMap, left), "&&", this.parseExpression(idMap, right));
+            case "gt":
+                operatorVal = ">";
+                    break;
+            case "gte":
+                operatorVal = ">=";
                 break;
-            case "expressions.inInventory":
-                prop = this.getInkNameFromId[prop];
-                addToArray(this.invList, prop);
-                if (has) {
-                    result += "Inventory has {0}".format(prop);
-                } else {
-                    result += "Inventory has ({0})".format(prop);
-                }
+            case "eq":
+                operatorVal = "==";
                 break;
-            case "expressions.inTags":
-                this.appendTagList(tags);
-                if (has) {
-                    result += "Tags ? {0}".format(tags);
-                } else {
-                    result += "Tags ? ({0})".format(tags);
-                }
+            case "ne":
+                operatorVal = "!=";
                 break;
-            case "expressions.skillCheck":
-                // TODO: Implement Skill Check
+            }
+            var varName = removeWhitespace(node.variableName.toLowerCase());
+            this.appendVarList(varName.toLowerCase());
+            var constName = removeWhitespace(node.compareTo);
+            this.appendConstList(constName);
+            result += "{0} {1} {2}".format(varName, operatorVal, constName);
+            break;
+        case "expressions.or":
+            result += "{0} {1} {2}".format(this.parseExpression(idMap, left), "||", this.parseExpression(idMap, right));
+            break;
+        case "expressions.and":
+            result += "{0} {1} {2}".format(this.parseExpression(idMap, left), "&&", this.parseExpression(idMap, right));
+            break;
+        case "expressions.inInventory":
+            prop = this.getInkNameFromId[prop];
+            addToArray(this.invList, prop);
+            if (has) {
+                result += "Inventory has {0}".format(prop);
+            } else {
+                result += "Inventory has ({0})".format(prop);
+            }
+            break;
+        case "expressions.inTags":
+            this.appendTagList(tags);
+            if (has) {
+                result += "Tags ? {0}".format(tags);
+            } else {
+                result += "Tags ? ({0})".format(tags);
+            }
+            break;
+        case "expressions.skillCheck":
+			result += "SkillCheck({0}, {1})".format(node.skill, node.target);
+            break;
+        case "expressions.previousScene":
+            // TODO: Implement Previous Scene
+            result += "true";
+            break;
+        case "expressions.isPoisoned":
+            // TODO: Implement IsPoisoned
+            result += "false";
+            break;
+        case "expressions.propStatus":
+            // TODO: Implement Prop Status
+            result += "true";
+            break;
+        case "expressions.debugOnly":
+            // TODO: Implement Debug Only
                 result += "true";
-                break;
-            case "expressions.previousScene":
-                // TODO: Implement Previous Scene
-                result += "true";
-                break;
-            case "expressions.isPoisoned":
-                // TODO: Implement IsPoisoned
-                result += "false";
-                break;
-            case "expressions.propStatus":
-                // TODO: Implement Prop Status
-                result += "true";
-                break;
-            case "expressions.debugOnly":
-                // TODO: Implement Debug Only
-                result += "true";
-                break;
-            case "expressions.demoOnly":
-                // Check to see if this is the Demo
-                result += "IsDemo";
-                break;
-            case "expressions.currentScene":
-                // TODO: Implement Current Scene
-                result += "true";
-                break;
-            case "expressions.actorPresent":
-                // TODO: Implement Actor Present
-                result += "true";
-                break;
-            case "expressions.isEquipped":
-                // TODO: Implement Is Equipped
-                result += "true";
-                break;
-            case "expressions.hasActiveQuest":
-                // TODO: Implement Has Active Quest
-                result += "true";
-                break;
-            case "expressions.reputationComparison":
-                // TODO: Implement Reputation Comparison
-                result += "true";
-                break;
-            case "expressions.enteredScene":
-                // TODO: Implement Entered Scene
-                result += "true";
-                break;
-            default:
-                result += "ERROR_NOT_IMPLEMENTED_" + node.type;
-                break;
+            break;
+        case "expressions.demoOnly":
+            // Check to see if this is the Demo
+            result += "IsDemo";
+            break;
+        case "expressions.currentScene":
+            // TODO: Implement Current Scene
+            result += "true";
+            break;
+        case "expressions.actorPresent":
+            // TODO: Implement Actor Present
+            result += "true";
+            break;
+        case "expressions.isEquipped":
+            // TODO: Implement Is Equipped
+            result += "true";
+            break;
+        case "expressions.hasActiveQuest":
+            // TODO: Implement Has Active Quest
+            result += "true";
+            break;
+        case "expressions.reputationComparison":
+            // TODO: Implement Reputation Comparison
+            result += "true";
+            break;
+        case "expressions.enteredScene":
+            // TODO: Implement Entered Scene
+            result += "true";
+            break;
+        default:
+            result += "ERROR_NOT_IMPLEMENTED_" + node.type;
+            break;
         }
-
         return result;
     };
 

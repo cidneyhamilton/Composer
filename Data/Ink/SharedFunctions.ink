@@ -98,6 +98,9 @@ VAR JournalButtonVisible = 0
 // System: Skills
 // ************************************************************************
 
+=== function SkillCheck(ref skill, target) ===
+	~ return skill >= target
+	
 === function ImproveSkill(ref skill, amount) ===
 	~ skill = skill + amount
 

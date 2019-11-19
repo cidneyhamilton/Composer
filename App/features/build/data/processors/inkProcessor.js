@@ -682,6 +682,21 @@ define(function(require){
         return result;
     }
 
+	ctor.prototype.parseChangePropVisibility = function(idMap, node, epMetadata) {
+		var result = indent(depth);
+
+		// TODO: Better ink name lookup
+		var propName = this.data.props[propId].inkName;
+		if (node.status == "Visible") {
+			result += "~ ShowProp(propName)";
+		} else if (node.status == "Hidden") {
+			result += "~ HideProp(propName)";
+		} else {
+			// TODO: Implement Open, Closed, Opening, and Closing
+		}
+
+		return result;
+	};
     ctor.prototype.parseInvokeCommand = function(idMap, node, depth) {
         var result = indent(depth);
 
@@ -866,6 +881,9 @@ define(function(require){
                 break;
 			case 'nodes.changeMoney':
 				output = this.parseNodeChangeMoney(idMap, node, epMetadata);
+				break;
+			case 'nodes.changePropVisibility':
+				output = this.parseChangePropVisibility(idMap, node, epMetadata);
 				break;
             case 'nodes.changeReputation':
                 output = this.parseChangeReputation(idMap, node, epMetadata.depth, epMetadata);

@@ -556,6 +556,24 @@ define(function(require){
         return result;
     };
 
+	// Adds or Removes in-Game Currency (Lyra, Deeds, Demerits, Health)
+	ctor.prototype.parseNodeChangeMoney = function(idMap, node, epMetadata) {
+		var result = indent(epMetadata.depth);
+
+		// TODO: Lookup currency in reference table
+		var currencyLookup = ["Lyra", "Deeds", "Demerits", "Health"];
+		var currency = currencyLookup[node.currency];
+
+		// Add amount to currency
+		if (node.change == 0) {
+			result += "~ RemoveCurrency({0}, {1})".format(currency, node.amount);
+		} else {
+			result += "~ AddCurrency({0}, {1})".format(currency, node.amount);
+		}
+	
+		return result;
+	};
+	
     // Change a character's reputation
     ctor.prototype.parseChangeReputation = function(idMap, node, depth) {
         var result = indent(depth);
@@ -833,63 +851,66 @@ define(function(require){
         } else {
             node.processed = true;
             switch(node.type) {
-                case 'nodes.speak' : 
-                    output = this.parseNodeSpeak(idMap, node, epMetadata.depth, epMetadata);
-                    break;
-                case 'nodes.branch': 
-                    output = this.parseNodeBranch(idMap, node, epMetadata.depth, epMetadata);
-                    break;
-                case 'nodes.changeReputation':
-                    output = this.parseChangeReputation(idMap, node, epMetadata.depth, epMetadata);
-                    break;
-                case 'nodes.changeScene':
-                    output = this.parseChangeScene(idMap, node, epMetadata.depth, epMetadata);
-                    break;
-                case 'nodes.comment' :
-                    output = this.parseComment(idMap, node, epMetadata.depth, epMetadata);
-                    break;
-                case 'nodes.nodeCycle' :
-                    output = this.parseCycle(idMap, node, epMetadata.depth, epMetadata);
-                    break;
-                case 'nodes.gameOver' :
-                    output = this.parseGameOver(idMap, node, epMetadata.depth, epMetadata);
-                    break;
-                case 'nodes.improveSkill' :
-                    output = this.parseImproveSkill(idMap, node, epMetadata.depth, epMetadata);
-                    break;
-                case 'nodes.invokeCommand':
-                    output = this.parseInvokeCommand(idMap, node, epMetadata.depth, epMetadata);
-                    break;
-                case 'nodes.invokeScript' : 
-                    output = this.parseNodeInvokeScript(idMap, node, epMetadata.depth, epMetadata);
-                    break;
-                 case 'nodes.showMenu' : 
-                    this.menuList.push(this.parseNodeShowMenu(idMap, node, epMetadata));
-
-                    output += indent(epMetadata.depth) + "-> {0}_Menu_{1} -> ".format(this.getFormattedName(epMetadata.entryPoint), this.menuList.length);
-
-                    break;
-                case 'nodes.placeActor' :
-                    output = this.parseNodePlaceActor(idMap, node, epMetadata.depth, epMetadata);
-                    break;
-                case 'nodes.removeActor' :
-                    output = this.parseNodeRemoveActor(idMap, node, epMetadata.depth, epMetadata);
-                    break;
-                case 'nodes.playMusic':
-                    output = this.parsePlayMusic(idMap, node, epMetadata.depth, epMetadata);
-                    break;
-                case 'nodes.playSoundEffect':
-                    output = this.parsePlaySoundEffect(idMap, node, epMetadata.depth, epMetadata);
-                    break;
+            case 'nodes.speak' : 
+                output = this.parseNodeSpeak(idMap, node, epMetadata.depth, epMetadata);
+                break;
+            case 'nodes.branch': 
+                output = this.parseNodeBranch(idMap, node, epMetadata.depth, epMetadata);
+                break;
+			case 'nodes.changeMoney':
+				output = this.parseNodeChangeMoney(idMap, node, epMetadata);
+				break;
+            case 'nodes.changeReputation':
+                output = this.parseChangeReputation(idMap, node, epMetadata.depth, epMetadata);
+                break;
+            case 'nodes.changeScene':
+                output = this.parseChangeScene(idMap, node, epMetadata.depth, epMetadata);
+                break;
+            case 'nodes.comment' :
+                output = this.parseComment(idMap, node, epMetadata.depth, epMetadata);
+                break;
+            case 'nodes.nodeCycle' :
+                output = this.parseCycle(idMap, node, epMetadata.depth, epMetadata);
+                break;
+            case 'nodes.gameOver' :
+                output = this.parseGameOver(idMap, node, epMetadata.depth, epMetadata);
+                break;
+            case 'nodes.improveSkill' :
+                output = this.parseImproveSkill(idMap, node, epMetadata.depth, epMetadata);
+                break;
+            case 'nodes.invokeCommand':
+                output = this.parseInvokeCommand(idMap, node, epMetadata.depth, epMetadata);
+                break;
+            case 'nodes.invokeScript' : 
+                output = this.parseNodeInvokeScript(idMap, node, epMetadata.depth, epMetadata);
+                break;
+            case 'nodes.showMenu' : 
+                this.menuList.push(this.parseNodeShowMenu(idMap, node, epMetadata));
+				
+                output += indent(epMetadata.depth) + "-> {0}_Menu_{1} -> ".format(this.getFormattedName(epMetadata.entryPoint), this.menuList.length);
+				
+                break;
+            case 'nodes.placeActor' :
+                output = this.parseNodePlaceActor(idMap, node, epMetadata.depth, epMetadata);
+                break;
+            case 'nodes.removeActor' :
+                output = this.parseNodeRemoveActor(idMap, node, epMetadata.depth, epMetadata);
+                break;
+            case 'nodes.playMusic':
+                output = this.parsePlayMusic(idMap, node, epMetadata.depth, epMetadata);
+                break;
+            case 'nodes.playSoundEffect':
+                output = this.parsePlaySoundEffect(idMap, node, epMetadata.depth, epMetadata);
+                break;
                 case 'nodes.changeTags' : 
-                    output = this.parseNodeChangeTags(idMap, node, epMetadata.depth, epMetadata);
-                    break;
-                case 'nodes.setVariable' : 
-                    output = this.parseNodeSetVariable(idMap, node, epMetadata.depth, epMetadata);
-                    break;
-                default:
-                    output = "\n// TODO - " + node.type;
-                    break;
+                output = this.parseNodeChangeTags(idMap, node, epMetadata.depth, epMetadata);
+                break;
+            case 'nodes.setVariable' : 
+                output = this.parseNodeSetVariable(idMap, node, epMetadata.depth, epMetadata);
+                break;
+            default:
+                output = "\n// TODO - " + node.type;
+                break;
             }
         }
         

@@ -33,6 +33,21 @@ VAR MetPrev = Nobody
     >>> HIDEACTOR: {name}
 
 // ************************************************************************
+// System: Currency
+// ************************************************************************
+
+VAR Lyra = 0
+VAR Deeds = 0
+VAR Demerits = 0
+VAR Health = 0
+
+=== function AddCurrency(ref currency, amount) ===
+	~ currency = currency + amount
+
+=== function RemoveCurrency(ref currency, amount) ===
+	~ currency = currency - amount
+	
+// ************************************************************************
 // System: Journal
 // ************************************************************************
 

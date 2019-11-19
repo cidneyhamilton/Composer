@@ -20,6 +20,7 @@
         require('./playMusic'),
         require('./playSoundEffect'),
         require('./removeActor'),
+		require('./changeMoney'), // Change Player Value
         require('./changeReputation'),
         require('./changeTags'),
         require('./setVariable'),
@@ -53,7 +54,6 @@
         require('./playMovie'),
         require('./playPoobah'),
         require('./poisonCounters'),
-        require('./changeMoney'), // Player Value
         require('./changePropVisibility'),
         require('./questionAndAnswer'),
         require('./quests'),

@@ -1,37 +1,35 @@
 define(function(require) {
     var serializer = require('plugins/serializer');
 
-
     // Define a basic and advanced list of variable sources
     var addableExpressions = [
-        require('./variableComparison'),
-        require('./reputationComparison'),
-        require('./inTags'),
+		require('./currencyCheck'),
+		require('./currentScene'),
         require('./demoOnly'),
+		require('./inTags'),
+		require('./reputationComparison'),
 		require('./skillCheck'),
-		require('./currencyCheck')
+		require('./variableComparison')
     ];
     
     var advancedExpressions = [
-            require('./actorPresent'),
-            require('./inInventory'),
-            require('./inventoryItemSelected'),
-            require('./enteredScene'),
-            require('./inEvent'),
-            require('./previousScene'),
-            require('./currentScene'),
-            require('./propStatus'),
-            require('./isEquipped'),
-            require('./isAlphaBuild'),
-            require('./debugOnly'),
-            require('./hasActiveQuest'),
-            require('./hasAchievement'),
-            require('./isPoisoned'),
-            require('./nextScene'),
-            require('./movementStatus')
-        ];
-
-
+        require('./actorPresent'),
+        require('./inInventory'),
+        require('./inventoryItemSelected'),
+        require('./enteredScene'),
+        require('./inEvent'),
+        require('./previousScene'),    
+        require('./propStatus'),
+        require('./isEquipped'),
+        require('./isAlphaBuild'),
+        require('./debugOnly'),
+        require('./hasActiveQuest'),
+        require('./hasAchievement'),
+        require('./isPoisoned'),
+        require('./nextScene'),
+        require('./movementStatus')
+    ];
+	
     return {
         baseExpressions: addableExpressions,
         advancedExpressions: advancedExpressions,

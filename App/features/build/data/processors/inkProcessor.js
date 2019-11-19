@@ -460,6 +460,10 @@ define(function(require){
 		case "expressions.currencyCheck":
 			result += "CheckCurrency({0}, {1})".format(node.currency, node.target);
 			break;
+		case "expressions.currentScene":
+			var sceneName = this.getInkNameFromId(node.sceneId);
+			result += "CheckCurrentScene({0})".format(sceneName);
+			break;
         case "expressions.previousScene":
             // TODO: Implement Previous Scene
             result += "true";

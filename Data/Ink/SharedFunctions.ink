@@ -112,6 +112,9 @@ VAR JournalButtonVisible = 0
     ~ currentRoom = newScene
     >>> CHANGESCENE: { delay } 
 
+=== function CheckCurrentScene(testScene) ===
+	~ return currentRoom == testScene
+	
 // ************************************************************************
 // System: Skills
 // ************************************************************************

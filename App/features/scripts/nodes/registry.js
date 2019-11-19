@@ -67,7 +67,6 @@
         require('./showCloseUp'),
         require('./showDescription'),
         require('./showStore'),
-        require('./showWardrobe'),
         require('./showVignette'),
         require('./stopPlayer'),
         require('./trace'),

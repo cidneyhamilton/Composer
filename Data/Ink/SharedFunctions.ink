@@ -46,6 +46,9 @@ VAR Health = 0
 
 === function RemoveCurrency(ref currency, amount) ===
 	~ currency = currency - amount
+
+=== function CheckCurrency(ref currency, amount) ===
+	~ return currency >= amount
 	
 // ************************************************************************
 // System: Journal

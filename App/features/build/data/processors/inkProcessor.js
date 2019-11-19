@@ -414,7 +414,7 @@ define(function(require){
                 break;
             case "gt":
                 operatorVal = ">";
-                    break;
+                break;
             case "gte":
                 operatorVal = ">=";
                 break;
@@ -457,6 +457,9 @@ define(function(require){
         case "expressions.skillCheck":
 			result += "SkillCheck({0}, {1})".format(node.skill, node.target);
             break;
+		case "expressions.currencyCheck":
+			result += "CheckCurrency({0}, {1})".format(node.currency, node.target);
+			break;
         case "expressions.previousScene":
             // TODO: Implement Previous Scene
             result += "true";

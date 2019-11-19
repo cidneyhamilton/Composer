@@ -8,7 +8,8 @@ define(function(require) {
         require('./reputationComparison'),
         require('./inTags'),
         require('./demoOnly'),
-		require('./skillCheck')
+		require('./skillCheck'),
+		require('./currencyCheck')
     ];
     
     var advancedExpressions = [

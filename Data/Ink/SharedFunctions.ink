@@ -103,6 +103,18 @@ VAR JournalButtonVisible = 0
 === function RemoveReputation(ref reputation, amount) ===
     ~ reputation = reputation - amount
 
+=== function CheckReputation(ref reputation, amount) ===
+	~ return reputation >= amount
+
+=== function CheckReputationEquals(ref reputation, amount) ===
+	~ return reputation == amount
+
+=== function CheckReputationLTE(ref reputation, amount) ==
+	~ return reputation <= amount
+
+=== function CheckReputationNot(ref reputation, amount) ==
+	~ return reputation != amount
+
 // ************************************************************************
 // System: Rooms
 // ************************************************************************

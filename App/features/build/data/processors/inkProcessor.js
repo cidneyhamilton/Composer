@@ -234,7 +234,7 @@ define(function(require){
 
         return result;
     };
-
+	
     // Handle Show Menu nodes
     ctor.prototype.parseNodeShowMenu = function(idMap, node, epMetadata) {
         var options = node.options;
@@ -464,6 +464,28 @@ define(function(require){
 			var sceneName = this.getInkNameFromId(node.sceneId);
 			result += "CheckCurrentScene({0})".format(sceneName);
 			break;
+        case "expressions.reputationComparison":
+			var actorName = idMap[node.actorId] + "Reputation";
+			var target = node.value;
+
+			// TODO: Can operator be passed to ink in a more streamlined manner?
+			if (node.operator == "eq") {
+				result += "CheckReputationEquals({0}, {1})".format(actorName, target);
+			} else if (node.operator == "gte") {
+				result += "CheckReputation({0}, {1})".format(actorName, target);
+			} else if (node.operator == "gt") {
+				result += "CheckReputation({0}, {1})".format(actorName, target + 1);
+			} else if (node.operator == "lte") {
+				result += "CheckReputationLTE({0}, {1})".format(actorName, target);
+			} else if (node.operator == "lte") {
+				result += "CheckReputationLTE({0}, {1})".format(actorName, target + 1);
+			} else if (node.operator == "not") {
+				result += "CheckReputationNot({0}, {1})".format(actorName, target + 1);
+			} else {
+				// Unknown comparison operator
+				debugger;
+			}
+            break;
         case "expressions.previousScene":
             // TODO: Implement Previous Scene
             result += "true";
@@ -478,15 +500,11 @@ define(function(require){
             break;
         case "expressions.debugOnly":
             // TODO: Implement Debug Only
-                result += "true";
+            result += "true";
             break;
         case "expressions.demoOnly":
             // Check to see if this is the Demo
             result += "IsDemo";
-            break;
-        case "expressions.currentScene":
-            // TODO: Implement Current Scene
-            result += "true";
             break;
         case "expressions.actorPresent":
             // TODO: Implement Actor Present
@@ -498,10 +516,6 @@ define(function(require){
             break;
         case "expressions.hasActiveQuest":
             // TODO: Implement Has Active Quest
-            result += "true";
-            break;
-        case "expressions.reputationComparison":
-            // TODO: Implement Reputation Comparison
             result += "true";
             break;
         case "expressions.enteredScene":
@@ -688,9 +702,9 @@ define(function(require){
 		// TODO: Better ink name lookup
 		var propName = this.data.props[node.propId].inkName;
 		if (node.status == "Visible") {
-			result += "~ ShowProp(propName)";
+			result += "~ ShowProp({0})".format(propName);
 		} else if (node.status == "Hidden") {
-			result += "~ HideProp(propName)";
+			result += "~ HideProp({0})".format(propName);
 		} else {
 			// TODO: Implement Open, Closed, Opening, and Closing
 		}
@@ -932,6 +946,9 @@ define(function(require){
                 break;
             case 'nodes.setVariable' : 
                 output = this.parseNodeSetVariable(idMap, node, epMetadata.depth, epMetadata);
+                break;				
+            case 'nodes.skillBranch' : 
+                output = this.parseNodeSkillBranch(idMap, node, epMetadata);
                 break;
             default:
                 output = "\n// TODO - " + node.type;

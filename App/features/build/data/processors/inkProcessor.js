@@ -683,10 +683,10 @@ define(function(require){
     }
 
 	ctor.prototype.parseChangePropVisibility = function(idMap, node, epMetadata) {
-		var result = indent(depth);
+		var result = indent(epMetadata.depth);
 
 		// TODO: Better ink name lookup
-		var propName = this.data.props[propId].inkName;
+		var propName = this.data.props[node.propId].inkName;
 		if (node.status == "Visible") {
 			result += "~ ShowProp(propName)";
 		} else if (node.status == "Hidden") {

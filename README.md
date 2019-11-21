@@ -2,12 +2,11 @@
 
 Composer is a standalone frontend for script writing, built on [Durandal](http://durandaljs.com/)
 
-Release and testing platforms: Windows, Mac. (On Linux, run in Wine)
+Release and testing platforms: Windows.
 
 ## Dependencies
 
-Requires Node-Webkit. Mac users will need to install this separately:
-* [Node-Webkit](https://github.com/rogerwang/node-webkit/wiki/Downloads-of-old-versions) version 0.10.4
+NW.js . Use wine when running on Mac or Linux.
 
 ## Adding a New Game
 

@@ -779,6 +779,7 @@ define(function(require){
 						this.data.actors[actorName].Charm = component.charm;
 						this.data.actors[actorName].Skills = component.skills;
 						this.data.actors[actorName].Luck = component.luck;
+						this.data.actors[actorName].Moxie = component.moxie;
 					}
 				}			
 			}

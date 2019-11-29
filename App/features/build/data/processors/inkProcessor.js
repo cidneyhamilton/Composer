@@ -758,6 +758,8 @@ define(function(require){
 		} else {
 			this.data.actors[actorName] = {};
 
+			this.data.actors[actorName].description = actor.description;
+			
 			// Handle components
 			if (actor.components && actor.components != null) {
 				for (var i = 0; i < actor.components.length; i++) {
@@ -773,13 +775,14 @@ define(function(require){
 						
 						// Store character sheet
 						
-						// TODO: Define this list in Composer					
-						this.data.actors[actorName].Smarts = component.smarts;
-						this.data.actors[actorName].Fitness = component.fitness;
-						this.data.actors[actorName].Charm = component.charm;
-						this.data.actors[actorName].Skills = component.skills;
-						this.data.actors[actorName].Luck = component.luck;
-						this.data.actors[actorName].Moxie = component.moxie;
+						// TODO: Define this list in Composer
+						this.data.actors[actorName].stats = {};
+						this.data.actors[actorName].stats.Smarts = component.smarts;
+						this.data.actors[actorName].stats.Fitness = component.fitness;
+						this.data.actors[actorName].stats.Charm = component.charm;
+						this.data.actors[actorName].stats.Skills = component.skills;
+						this.data.actors[actorName].stats.Luck = component.luck;
+						this.data.actors[actorName].stats.Moxie = component.moxie;
 					}
 				}			
 			}
@@ -968,6 +971,25 @@ define(function(require){
     };
 
 
+	// Create a variable with the description of each actor
+	ctor.prototype.getActorDescriptions = function() {
+		var result = "";
+		var actors = db.actors.entries;
+		
+		for (var i = 0; i < actors.length; i++) {
+			var actor = actors[i];
+			var value = "";
+			if (this.data.actors[actor.name] && this.data.actors[actor.name].description) {
+				value = this.data.actors[actor.name].description;
+				value = value.replace(/(\r\n|\n|\r)/gm, " ");
+				result += "\nVAR {0}Description = \"{1}\"\n".format(actor.name, value);
+			}
+		}
+		
+		return result;
+
+	};
+
 	ctor.prototype.getReputationInitData = function() {
 		var result = "";
 		var actors = db.actors.entries;
@@ -1012,7 +1034,7 @@ define(function(require){
 		if (this.data.player) {
 			result = "\n\nVAR PLAYER = {0}\n".format(this.data.player);
 		
-			var playerData = this.data.actors[this.data.player];
+			var playerData = this.data.actors[this.data.player].stats;
 			for (var key in playerData) {
 				var value = playerData[key];
 				result += "\nVAR {0} = {1}".format(key, value);
@@ -1078,6 +1100,8 @@ define(function(require){
 		gameOutput += this.getListFromDB("scenes", "Rooms", this.getEntityName);
 
 		gameOutput += this.getReputationInitData();
+
+		gameOutput += this.getActorDescriptions();
 		
 		gameOutput += this.getPlayerInitData();
 

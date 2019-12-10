@@ -451,7 +451,7 @@ define(function(require){
             if (has) {
                 result += "Tags ? {0}".format(tags);
             } else {
-                result += "Tags ? ({0})".format(tags);
+                result += "Tags !? {0}".format(tags);
             }
             break;
         case "expressions.skillCheck":
@@ -585,9 +585,14 @@ define(function(require){
 		var currencyLookup = ["Lyra", "Deeds", "Demerits", "Health"];
 		var currency = currencyLookup[node.currency];
 
+		// NO amount specified; don't do anything
+		if (node.amount == null) {
+			return;
+		}
+
 		// Add amount to currency
 		if (node.change == 0) {
-			result += "~ RemoveCurrency({0}, {1})".format(currency, node.amount);
+			result += "~ RemoveCurrency({0}, {1})".format(currency, node.amount)
 		} else {
 			result += "~ AddCurrency({0}, {1})".format(currency, node.amount);
 		}
@@ -1232,7 +1237,7 @@ define(function(require){
         }
         var output = indent(0) + "LIST " + listName + " = ";
         for (var i = 0; i < listContents.length; i++) {
-            output += "({0})".format(listContents[i]);
+            output += "{0}".format(listContents[i]);
             if (i < (listContents.length - 1)) {
                 output += ", ";
             }

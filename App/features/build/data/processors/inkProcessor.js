@@ -788,6 +788,8 @@ define(function(require){
 						this.data.actors[actorName].stats.Skills = component.skills;
 						this.data.actors[actorName].stats.Luck = component.luck;
 						this.data.actors[actorName].stats.Moxie = component.moxie;
+					} else if (component.type == "components.journalQuoteComponent") {
+						this.data.actors[actorName].quote = component.quote;
 					}
 				}			
 			}
@@ -975,42 +977,27 @@ define(function(require){
         epMetadata.depth--;
     };
 
-
-	// Create a variable with the description of each actor
-	ctor.prototype.getActorDescriptions = function() {
-		var result = "";
-		var actors = db.actors.entries;
-		
-		for (var i = 0; i < actors.length; i++) {
-			var actor = actors[i];
-			var value = "";
-			if (this.data.actors[actor.name] && this.data.actors[actor.name].description) {
-				value = this.data.actors[actor.name].description;
-				value = value.replace(/(\r\n|\n|\r)/gm, " ");
-				result += "\nVAR {0}Description = \"{1}\"\n".format(actor.name, value);
-			}
-		}
-		
-		return result;
-
-	};
-
-	ctor.prototype.getReputationInitData = function() {
+	ctor.prototype.getActorData = function(fieldName, isInt) {
 		var result = "";
 		var actors = db.actors.entries;
 		
 		for (var i = 0; i < actors.length; i++) {
 			var actor = actors[i];
 			
-			var value = 0;
-			if (this.data.actors[actor.name] && this.data.actors[actor.name].reputation) {
-				value = this.data.actors[actor.name].reputation;
+			var value = isInt ? 0 : "";
+			var component = fieldName.toLowerCase();
+			if (this.data.actors[actor.name] && this.data.actors[actor.name][component]) {
+				value = this.data.actors[actor.name][component];
+				value = value.replace(/(\r\n|\n|\r)/gm, " ");
+				result += "\nVAR {0}{1} = \"{2}\"\n".format(actor.name, fieldName, value);
+			} else if (isInt) {
+				result += "\nVar {0}{1} = {2}".format(actor.name, fieldName, value);
 			}
-			result += "\nVAR {0}Reputation = {1}".format(actor.name, value);
 		}
 		
 		return result;
-	};
+
+	};	
 	
 	ctor.prototype.getListFromDB = function(composerListName, inkListName, getName) {
 		var composerList = db[composerListName].entries;
@@ -1104,10 +1091,12 @@ define(function(require){
 		gameOutput += this.getListFromDB("actors", "Actors", this.getEntityName);
 		gameOutput += this.getListFromDB("scenes", "Rooms", this.getEntityName);
 
-		gameOutput += this.getReputationInitData();
+		// Get the description field from Composer
+		gameOutput += this.getActorData("Description");
 
-		gameOutput += this.getActorDescriptions();
-		
+		// Get components attached to actors
+		gameOutput += this.getActorData("Quote");
+		gameOutput += this.getActorData("Reputation", true);				
 		gameOutput += this.getPlayerInitData();
 
 		gameOutput += this.getPropList();

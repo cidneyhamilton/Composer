@@ -3,7 +3,7 @@ define(function(require) {
 		attributes = attributes || {};
 
 		this.type = ctor.type;
-		this.quote = attributes.quote || 0;
+		this.quote = attributes.quote || "";
 	};
 
 	ctor.displayName = "Journal Quote";

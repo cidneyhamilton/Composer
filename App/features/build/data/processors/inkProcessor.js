@@ -790,6 +790,19 @@ define(function(require){
 						this.data.actors[actorName].stats.Moxie = component.moxie;
 					} else if (component.type == "components.journalQuoteComponent") {
 						this.data.actors[actorName].quote = component.quote;
+					} else if (component.type == "components.journalPlayerCommentComponent") {
+						this.data.actors[actorName].lowcomment1 = component.lowcomment1;
+						this.data.actors[actorName].lowcomment2 = component.lowcomment2;
+						this.data.actors[actorName].lowcomment3 = component.lowcomment3;
+
+						this.data.actors[actorName].mediumcomment1 = component.mediumcomment1;
+						this.data.actors[actorName].mediumcomment2 = component.mediumcomment2;
+						this.data.actors[actorName].mediumcomment3 = component.mediumcomment3;
+
+						this.data.actors[actorName].highcomment1 = component.highcomment1;
+						this.data.actors[actorName].highcomment2 = component.highcomment2;
+						this.data.actors[actorName].highcomment3 = component.highcomment3;
+						
 					}
 				}			
 			}
@@ -991,7 +1004,7 @@ define(function(require){
 				value = value.replace(/(\r\n|\n|\r)/gm, " ");
 				result += "\nVAR {0}{1} = \"{2}\"\n".format(actor.name, fieldName, value);
 			} else if (isInt) {
-				result += "\nVar {0}{1} = {2}".format(actor.name, fieldName, value);
+				result += "\nVAR {0}{1} = {2}".format(actor.name, fieldName, value);
 			}
 		}
 		
@@ -1096,6 +1109,18 @@ define(function(require){
 
 		// Get components attached to actors
 		gameOutput += this.getActorData("Quote");
+		gameOutput += this.getActorData("LowComment1");
+		gameOutput += this.getActorData("LowComment2");
+		gameOutput += this.getActorData("LowComment3");
+		
+		gameOutput += this.getActorData("MediumComment1");
+		gameOutput += this.getActorData("MediumComment2");
+		gameOutput += this.getActorData("MediumComment3");
+		
+		gameOutput += this.getActorData("HighComment1");
+		gameOutput += this.getActorData("HighComment2");
+		gameOutput += this.getActorData("HighComment3");
+		
 		gameOutput += this.getActorData("Reputation", true);				
 		gameOutput += this.getPlayerInitData();
 

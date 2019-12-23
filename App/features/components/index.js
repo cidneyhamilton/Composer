@@ -6,6 +6,7 @@ define(function(require) {
 	var showAdvanced = selectedGame.activeProject.format == 'json';
 
 	var baseComponents = [
+		require('./journalPlayerCommentComponent'),
 		require('./journalQuoteComponent'),
 		require('./reputationComponent'),
 		require('./simpleCharSheet')

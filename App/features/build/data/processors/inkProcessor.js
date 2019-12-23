@@ -754,6 +754,29 @@ define(function(require){
         }
     };
 
+	ctor.prototype.initJournalComments = function(actorName, component) {
+		this.data.actors[actorName].comments = [];
+		for (var j = 0; j < component.comments.length; j++) {
+			this.data.actors[actorName].comments[j] = component.comments[j];
+		}		
+	};
+
+	ctor.prototype.initCharSheet = function(actorName, component) {
+		// This character must be the player
+		this.data.player = actorName;
+		
+		// Store character sheet
+		
+		// TODO: Define this list in Composer
+		this.data.actors[actorName].stats = {};
+		this.data.actors[actorName].stats.Smarts = component.smarts;
+		this.data.actors[actorName].stats.Fitness = component.fitness;
+		this.data.actors[actorName].stats.Charm = component.charm;
+		this.data.actors[actorName].stats.Skills = component.skills;
+		this.data.actors[actorName].stats.Luck = component.luck;
+		this.data.actors[actorName].stats.Moxie = component.moxie;		
+	};
+	
 	ctor.prototype.parseActor = function(context, idMap, actor) {
 		var actorName = actor.name;
 
@@ -771,38 +794,13 @@ define(function(require){
 					var component = actor.components[i];
 					
 					if (component.type == "components.reputationComponent") {
-						// Store actor's reputation
-						
 						this.data.actors[actorName].reputation = component.reputation;
 					} else if (component.type == "character.simpleModel") {
-						// This character must be the player
-						this.data.player = actorName;
-						
-						// Store character sheet
-						
-						// TODO: Define this list in Composer
-						this.data.actors[actorName].stats = {};
-						this.data.actors[actorName].stats.Smarts = component.smarts;
-						this.data.actors[actorName].stats.Fitness = component.fitness;
-						this.data.actors[actorName].stats.Charm = component.charm;
-						this.data.actors[actorName].stats.Skills = component.skills;
-						this.data.actors[actorName].stats.Luck = component.luck;
-						this.data.actors[actorName].stats.Moxie = component.moxie;
+						this.initCharSheet(actorName, component);
 					} else if (component.type == "components.journalQuoteComponent") {
 						this.data.actors[actorName].quote = component.quote;
 					} else if (component.type == "components.journalPlayerCommentComponent") {
-						this.data.actors[actorName].lowcomment1 = component.lowcomment1;
-						this.data.actors[actorName].lowcomment2 = component.lowcomment2;
-						this.data.actors[actorName].lowcomment3 = component.lowcomment3;
-
-						this.data.actors[actorName].mediumcomment1 = component.mediumcomment1;
-						this.data.actors[actorName].mediumcomment2 = component.mediumcomment2;
-						this.data.actors[actorName].mediumcomment3 = component.mediumcomment3;
-
-						this.data.actors[actorName].highcomment1 = component.highcomment1;
-						this.data.actors[actorName].highcomment2 = component.highcomment2;
-						this.data.actors[actorName].highcomment3 = component.highcomment3;
-						
+						this.initJournalComments(actorName, component);
 					}
 				}			
 			}
@@ -990,21 +988,33 @@ define(function(require){
         epMetadata.depth--;
     };
 
-	ctor.prototype.getActorData = function(fieldName, isInt) {
+	ctor.prototype.getActorData = function(fieldName) {
 		var result = "";
 		var actors = db.actors.entries;
 		
 		for (var i = 0; i < actors.length; i++) {
-			var actor = actors[i];
-			
-			var value = isInt ? 0 : "";
+			var actor = actors[i];			
 			var component = fieldName.toLowerCase();
+			
 			if (this.data.actors[actor.name] && this.data.actors[actor.name][component]) {
-				value = this.data.actors[actor.name][component];
-				value = value.replace(/(\r\n|\n|\r)/gm, " ");
-				result += "\nVAR {0}{1} = \"{2}\"\n".format(actor.name, fieldName, value);
-			} else if (isInt) {
-				result += "\nVAR {0}{1} = {2}".format(actor.name, fieldName, value);
+				var value = this.data.actors[actor.name][component];
+				if (Array.isArray(value)) {
+					// Output a value for each member of the array
+					for (var j = 0; j < value.length; j++) {
+						result += "\nVAR {0}{1}{2} = \"{3}\"\n".format(actor.name, fieldName, j+1, value[j]);							
+					}					
+				} else if (value % 1 === 0) {
+					// If the value is an integer
+					result += "\nVAR {0}{1} = {2}".format(actor.name, fieldName, value);				
+				} else {
+					value = value.replace(/(\r\n|\n|\r)/gm, " ");
+					result += "\nVAR {0}{1} = \"{2}\"\n".format(actor.name, fieldName, value);
+				}
+			} else {
+				// No component found for this actor; but all characters have a reputation
+				if (component == "reputation") {
+					result += "\nVAR {0}{1} = {2}".format(actor.name, fieldName, 0);
+				}
 			}
 		}
 		
@@ -1109,19 +1119,8 @@ define(function(require){
 
 		// Get components attached to actors
 		gameOutput += this.getActorData("Quote");
-		gameOutput += this.getActorData("LowComment1");
-		gameOutput += this.getActorData("LowComment2");
-		gameOutput += this.getActorData("LowComment3");
-		
-		gameOutput += this.getActorData("MediumComment1");
-		gameOutput += this.getActorData("MediumComment2");
-		gameOutput += this.getActorData("MediumComment3");
-		
-		gameOutput += this.getActorData("HighComment1");
-		gameOutput += this.getActorData("HighComment2");
-		gameOutput += this.getActorData("HighComment3");
-		
-		gameOutput += this.getActorData("Reputation", true);				
+		gameOutput += this.getActorData("Comments");
+		gameOutput += this.getActorData("Reputation");				
 		gameOutput += this.getPlayerInitData();
 
 		gameOutput += this.getPropList();

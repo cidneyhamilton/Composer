@@ -1114,6 +1114,12 @@ define(function(require){
 		gameOutput += this.getListFromDB("actors", "Actors", this.getEntityName);
 		gameOutput += this.getListFromDB("scenes", "Rooms", this.getEntityName);
 
+		// Get room display names from Composer
+		var rooms = db["scenes"].entries;
+		for (var i = 0; i < rooms.length; i++) {
+			gameOutput += "\nVAR {0}Name = \"{1}\"\n".format(this.getEntityName(rooms[i]), rooms[i].displayName || rooms[i].name);
+		}		
+		
 		// Get the description field from Composer
 		gameOutput += this.getActorData("Description");
 

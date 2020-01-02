@@ -24,7 +24,9 @@
 		require('./changePropVisibility'),
         require('./changeReputation'),
         require('./changeTags'),
+		require('./questionAndAnswer'),
         require('./setVariable'),
+		require('./showStore'),
     ];
 
     // Nodes that should only appear in full games
@@ -55,7 +57,6 @@
         require('./playMovie'),
         require('./playPoobah'),
         require('./poisonCounters'),
-        require('./questionAndAnswer'),
         require('./quests'),
         require('./resetCamera'),
         require('./selectInventoryItem'),
@@ -66,13 +67,12 @@
         require('./setTimer'),
         require('./showCloseUp'),
         require('./showDescription'),
-        require('./showStore'),
         require('./showVignette'),
+		require('./skillBranch'),
         require('./stopPlayer'),
         require('./trace'),
         require('./turnActor'),
         require('./useItem'),
-        require('./skillBranch'),
         require('./wait')  
     ];
 

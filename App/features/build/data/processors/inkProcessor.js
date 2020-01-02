@@ -145,8 +145,10 @@ define(function(require){
     };
 
     // Handle Tag Changing
-    ctor.prototype.parseNodeChangeTags = function(idMap, node, depth) {
+    ctor.prototype.parseNodeChangeTags = function(idMap, node, epMetadata) {
         var result = "";
+		var depth = epMetadata.depth;
+		
         if (node.tagsToAdd) {
             result = appendIfNotEmpty(result, this.parseNodeChangeTagsHelper(idMap, node.tagsToAdd, "~ Tags +=", depth));
         }
@@ -174,16 +176,38 @@ define(function(require){
     };
 
     // Handle Invoke Scripts
-    ctor.prototype.parseNodeInvokeScript = function(idMap, node, depth) {
+    ctor.prototype.parseNodeInvokeScript = function(idMap, node, epMetadata) {
         
         // Add introductory white space
-        var result = indent(depth);
+        var result = indent(epMetadata.depth);
 
         var knotName = this.getKnotName(node);
         result += "-> {0} ->".format(knotName);
 
         return result;
     };
+
+	ctor.prototype.parseNodeQuestionAndAnswer = function(idMap, node, epMetadata) {
+		var options = node.options;
+
+		var result = indent(epMetadata.depth);
+
+		result += "Quiz: {0}".format(node.text);
+
+		epMetadata.depth++;
+
+		if (options) {
+			for (var i = 0; i < options.length; i++) {
+				result += this.parseOption(idMap, options[i], epMetadata);
+			}
+		}
+
+		result += indent(epMetadata.depth) + "-";
+		
+		epMetadata.depth--;
+		
+		return result;
+	};
 
     ctor.prototype.getKnotNameFromScriptId = function(scriptId) {
         // Get the name of the knot when passed in a script
@@ -201,39 +225,49 @@ define(function(require){
     // Get the name of the knot to jump to in an invoke script node
     ctor.prototype.getKnotName = function(node, currentScope) {
         var knotName, stitch;
-
-        // TODO: Validation to make sure this is a valid script?
-        knotName = this.getKnotNameFromScriptId(node.scriptId);
         
-        // If the script is in the current scope, use entry points; otherwise, default to Main
         if (node.currentScope == "Current") {
-            stitch = this.entryPoints[node.entryPointId].replace(/\s+/g, '');
+			// If the script is in the current scope, use entry points
+			stitch = this.entryPoints[node.entryPointId].replace(/\s+/g, '');
             if (stitch == null) {
+				// otherwise, default to Main
                 stitch = "Main";
             }
-            return "{0}.{1}".format(knotName, stitch);
+            return stitch;
         } else {
+			// TODO: Validation to make sure this is a valid script?
+			knotName = this.getKnotNameFromScriptId(node.scriptId);			
             return knotName;
         }
     }
 
 
     // Handle setting variables
-    ctor.prototype.parseNodeSetVariable = function(idMap, node, depth) {
-        var result = indent(depth);
+    ctor.prototype.parseNodeSetVariable = function(idMap, node, epMetadata) {
+        var result = indent(epMetadata.depth);
 
+		var varName = node.name.toLowerCase();
         if (node.add) {
             // TODO: Implement for values and ranges of values
-            result += "~ {0} += {1}".format(node.name.toLowerCase(), node.source.value);
+            result += "~ {0} += {1}".format(varName, node.source.value);
         } else {
             // TODO: Implement for values and ranges of values
-            result += "~ {0} = {1}".format(node.name.toLowerCase(), node.source.value);
+            result += "~ {0} = {1}".format(varName, node.source.value);
         }
 
-        this.appendVarList(node.name.toLowerCase());
+        this.appendVarList(varName);
 
         return result;
     };
+
+	ctor.prototype.parseNodeShowStore = function(idMap, node, epMetadata) {
+		var result = indent(epMetadata.depth);
+
+		// TODO: Implement on Unity side
+		result += ">>> SHOWSTORE";
+		
+		return result;
+	};
 	
     // Handle Show Menu nodes
     ctor.prototype.parseNodeShowMenu = function(idMap, node, epMetadata) {
@@ -695,8 +729,11 @@ define(function(require){
 
         var skill = node.skill;
 
+		// Default to 1 if no amount is specified
+		var amount = node.amount ? node.amount : 1;
+		
 		// Invoke an Ink function to improve the skill
-        result += "~ ImproveSkill({0},{1})".format(skill, node.amount);
+        result += "~ ImproveSkill({0}, {1})".format(skill, amount);
 		
         return result;
     }
@@ -943,13 +980,12 @@ define(function(require){
                 output = this.parseInvokeCommand(idMap, node, epMetadata.depth, epMetadata);
                 break;
             case 'nodes.invokeScript' : 
-                output = this.parseNodeInvokeScript(idMap, node, epMetadata.depth, epMetadata);
+                output = this.parseNodeInvokeScript(idMap, node, epMetadata);
                 break;
             case 'nodes.showMenu' : 
                 this.menuList.push(this.parseNodeShowMenu(idMap, node, epMetadata));
 				
-                output += indent(epMetadata.depth) + "-> {0}_Menu_{1} -> ".format(this.getFormattedName(epMetadata.entryPoint), this.menuList.length);
-				
+                output += indent(epMetadata.depth) + "-> {0}_Menu_{1} -> ".format(this.getFormattedName(epMetadata.entryPoint), this.menuList.length);				
                 break;
             case 'nodes.placeActor' :
                 output = this.parseNodePlaceActor(idMap, node, epMetadata.depth, epMetadata);
@@ -963,15 +999,18 @@ define(function(require){
             case 'nodes.playSoundEffect':
                 output = this.parsePlaySoundEffect(idMap, node, epMetadata.depth, epMetadata);
                 break;
-                case 'nodes.changeTags' : 
-                output = this.parseNodeChangeTags(idMap, node, epMetadata.depth, epMetadata);
+            case 'nodes.changeTags' : 
+                output = this.parseNodeChangeTags(idMap, node, epMetadata);
                 break;
+			case 'nodes.questionAndAnswer':
+				output = this.parseNodeQuestionAndAnswer(idMap, node, epMetadata);
+				break;
             case 'nodes.setVariable' : 
-                output = this.parseNodeSetVariable(idMap, node, epMetadata.depth, epMetadata);
-                break;				
-            case 'nodes.skillBranch' : 
-                output = this.parseNodeSkillBranch(idMap, node, epMetadata);
+                output = this.parseNodeSetVariable(idMap, node, epMetadata);
                 break;
+			case 'nodes.showStore' :
+				output = this.parseNodeShowStore(idMap, node, epMetadata);
+				break;
             default:
                 output = "\n// TODO - " + node.type;
                 break;

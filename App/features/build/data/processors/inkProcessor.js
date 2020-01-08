@@ -192,7 +192,7 @@ define(function(require){
 
 		var result = indent(epMetadata.depth);
 
-		result += "Quiz: {0}".format(node.text);
+		result += "Quiz: {0}: {1}".format(node.header, node.text);
 
 		epMetadata.depth++;
 

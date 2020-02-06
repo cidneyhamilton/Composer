@@ -112,7 +112,8 @@ define(function(require) {
         // HACK: We can't click the build button right away because of the transition
         // above. If we click the build button right away then we won't
         // have the full build transition handled.
-        setTimeout(function() 
+
+        var StartBuild = function() 
         { 
             // Automated builds always build in release mode.
             // but you can override that if need be.
@@ -134,7 +135,18 @@ define(function(require) {
             //       end of the build runner as it is tearing
             //       down the build indicator.
 
-        }, 5000);
+        }
+
+        var WaitForPageLoad = function()
+        {
+            if(!document.getElementById("buildTypeOption") || !document.getElementById("demoOption") || !document.getElementById("buildClick")) {
+                setTimeout(WaitForPageLoad, 1000);
+            } else {
+                setTimeout(StartBuild, 2000);
+            }
+        }
+
+        setTimeout(WaitForPageLoad, 1000);
     } else {
         // For the normal UI flow, go to the project select screen.
         toolbar.select(toolbar.sections[0]);

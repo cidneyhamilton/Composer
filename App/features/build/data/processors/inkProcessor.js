@@ -74,9 +74,9 @@ define(function(require){
     ctor.prototype.init = function() {
         this.data = {};
 
-		this.data.props = {};
+	this.data.props = {};
         this.data.scenes = {};
-		this.data.actors = {};
+	this.data.actors = {};
 		
         this.inkNameLookup = {};
         this.idToInkNameMap = {};
@@ -1030,37 +1030,37 @@ define(function(require){
     };
 
 	ctor.prototype.getActorData = function(fieldName) {
-		var result = "";
-		var actors = db.actors.entries;
+	    var result = "";
+	    var actors = db.actors.entries;
+	    
+	    for (var i = 0; i < actors.length; i++) {
+		var actor = actors[i];			
+		var component = fieldName.toLowerCase();
 		
-		for (var i = 0; i < actors.length; i++) {
-			var actor = actors[i];			
-			var component = fieldName.toLowerCase();
-			
-			if (this.data.actors[actor.name] && this.data.actors[actor.name][component]) {
-				var value = this.data.actors[actor.name][component];
-				if (Array.isArray(value)) {
-					// Output a value for each member of the array
-					for (var j = 0; j < value.length; j++) {
-						result += "\nVAR {0}{1}{2} = \"{3}\"\n".format(actor.name, fieldName, j+1, value[j]);							
-					}					
-				} else if (value % 1 === 0) {
-					// If the value is an integer
-					result += "\nVAR {0}{1} = {2}".format(actor.name, fieldName, value);				
-				} else {
-					value = value.replace(/(\r\n|\n|\r)/gm, " ");
-					result += "\nVAR {0}{1} = \"{2}\"\n".format(actor.name, fieldName, value);
-				}
-			} else {
-				// No component found for this actor; but all characters have a reputation
-				if (component == "reputation") {
-					result += "\nVAR {0}{1} = {2}".format(actor.name, fieldName, 0);
-				}
-			}
+		if (this.data.actors[actor.name] && this.data.actors[actor.name][component]) {
+		    var value = this.data.actors[actor.name][component];
+		    if (Array.isArray(value)) {
+			// Output a value for each member of the array
+			for (var j = 0; j < value.length; j++) {
+			    result += "\nVAR {0}{1}{2} = \"{3}\"\n".format(actor.name, fieldName, j+1, value[j]);							
+			}					
+		    } else if (value % 1 === 0) {
+			// If the value is an integer
+			result += "\nVAR {0}{1} = {2}".format(actor.name, fieldName, value);				
+		    } else {
+			value = value.replace(/(\r\n|\n|\r)/gm, " ");
+			result += "\nVAR {0}{1} = \"{2}\"\n".format(actor.name, fieldName, value);
+		    }
+		} else {
+		    // No component found for this actor; but all characters have a reputation
+		    if (component == "reputation") {
+			result += "\nVAR {0}{1} = {2}".format(actor.name, fieldName, 0);
+		    }
 		}
-		
-		return result;
-
+	    }
+	    
+	    return result;
+	    
 	};	
 	
 	ctor.prototype.getListFromDB = function(composerListName, inkListName, getName) {
@@ -1150,29 +1150,29 @@ define(function(require){
         gameOutput += "\n# title: Summer Daze at Hero-U";
         gameOutput += "\n\nVAR IsDemo = {0}\n".format(context.isDemo);
 
-		gameOutput += this.getListFromDB("musicTracks", "MusicTracks", this.getClipName);
-		gameOutput += this.getListFromDB("soundEffects", "SoundClips", this.getClipName);
-		gameOutput += this.getListFromDB("actors", "Actors", this.getEntityName);
-		gameOutput += this.getListFromDB("scenes", "Rooms", this.getEntityName);
-
-		// Get room display names from Composer
-		var rooms = db["scenes"].entries;
-		for (var i = 0; i < rooms.length; i++) {
-			gameOutput += "\nVAR {0}Name = \"{1}\"\n".format(this.getEntityName(rooms[i]), rooms[i].displayName || rooms[i].name);
-		}		
-		
-		// Get the description field from Composer
-		gameOutput += this.getActorData("Description");
-
-		// Get components attached to actors
-		gameOutput += this.getActorData("Quote");
-		gameOutput += this.getActorData("Comments");
-		gameOutput += this.getActorData("Reputation");				
-		gameOutput += this.getPlayerInitData();
-
-		gameOutput += this.getPropList();
-		
-		// generate the tag list file
+	gameOutput += this.getListFromDB("musicTracks", "MusicTracks", this.getClipName);
+	gameOutput += this.getListFromDB("soundEffects", "SoundClips", this.getClipName);
+	gameOutput += this.getListFromDB("actors", "Actors", this.getEntityName);
+	gameOutput += this.getListFromDB("scenes", "Rooms", this.getEntityName);
+	
+	// Get room display names from Composer
+	var rooms = db["scenes"].entries;
+	for (var i = 0; i < rooms.length; i++) {
+	    gameOutput += "\nVAR {0}Name = \"{1}\"\n".format(this.getEntityName(rooms[i]), rooms[i].displayName || rooms[i].name);
+	}		
+	
+	// Get the description field from Composer
+	gameOutput += this.getActorData("Description");
+	
+	// Get components attached to actors
+	gameOutput += this.getActorData("Quote");
+	gameOutput += this.getActorData("Comments");
+	gameOutput += this.getActorData("Reputation");				
+	gameOutput += this.getPlayerInitData();
+	
+	gameOutput += this.getPropList();
+	
+	// generate the tag list file
         if (this.tagList.length == 1) {
             this.appendTagList("filler");
         }

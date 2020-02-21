@@ -49,13 +49,6 @@ define(function(require) {
                     assetDirectory: '../Game/Assets/Audio/',
                     format: 'ink'
                 },
-                r2rdemo : {
-                    gameName: 'Demo: R2R',
-                    gameInternalName: 'r2rdemo',
-                    dir: '',
-                    assetDirectory: '../Game/Assets/Resources/Composer/',
-                    format: 'json'
-                },
                 wizardsway : {
                     gameName: 'Hero-U: Wizards Way',
                     gameInternalName: 'wizardsway',

@@ -121,7 +121,6 @@ The "valid" options are:
 * [heroU](https://github.com/Transolar/Hero-U)
 * [SummerDazeF](https://github.com/Transolar/SummerDaze)
 * [SummerDazeM](https://github.com/Transolar/SummerDaze)
-* [r2rDemo](https://github.com/Transolar/R2R-Demo)
 * [wizardsWay](https://github.com/Transolar/WizardWay)
 
 ## Generating more code / documentation

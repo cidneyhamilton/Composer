@@ -32,9 +32,6 @@ if "%1" == "SummerDazeM" (
 if "%1" == "SummerDazeF" (
 	set Game=SummerDazeF
 )
-if "%1" == "r2rDemo" (
-	set Game=r2rDemo
-)
 if "%1" == "wizardsWay" (
 	set Game=wizardsWay
 )

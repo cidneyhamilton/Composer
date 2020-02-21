@@ -95,9 +95,6 @@ define(function(require) {
             selectedGame.activeProject = selectedGame.projects.SummerDazeF;
         } else if (myArgs.indexOf('wizardsWay') > -1) {
             selectedGame.activeProject = selectedGame.projects.wizardsWay;
-        } else if (myArgs.indexOf('r2rDemo') > -1) {
-            selectedGame.activeProject = selectedGame.projects.r2rDemo;
-            isDemo="true";
         } else {
             selectedGame.activeProject = selectedGame.projects.heroU;
             isDemo="false";

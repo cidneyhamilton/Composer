@@ -173,20 +173,33 @@ define(function(require){
             // This will track labels that were not localized (added or updated since the translation file was sent)
             var missingLocalizedLabels = [];
 
+            // These are the default indexes we want to look up;
+            // however, they may be different if the translator inserted columns in the middle.
+            // We'll parse the headers and get the correct values in a bit.
+            var englishTextIndex = 0;
+            var translatedTextIndex = 1;
+            var guidIndex = 4;
+
+            var isHeader = true;
+
             // For each line in the translation.csv file...
             translatedText.data.forEach(function(entry) {
-                // Ignore the header
-                if (translationHeaders[0][0] == entry[0]) {
+                if (isHeader) {
+                    // Get the indexes for the required columns from the header
+                    englishTextIndex = entry.indexOf(translationHeaders[0][englishTextIndex]);
+                    translatedTextIndex= entry.indexOf(translationHeaders[0][translatedTextIndex]);
+                    guidIndex = entry.indexOf(translationHeaders[0][guidIndex]);
+                    isHeader = false;
                     return;
                 }
 
                 // Get the GUIDs
-                if (! entry[4]) {
+                if (! entry[guidIndex]) {
                     // If the guids are null, there's an issue with this line in the translation file.
-                    translationErrors.log(language, 'No GUIDs defined for the following English text - issue with translation file', entry[0]);
+                    translationErrors.log(language, 'No GUIDs defined for the following English text - issue with translation file', entry[englishTextIndex]);
                     return;
                 }
-                var guids = entry[4].split(",");
+                var guids = entry[guidIndex].split(",");
 
                 // For each guid, generate a localized label for that entry in the expected format
                 guids.forEach(function(guid) {
@@ -200,16 +213,16 @@ define(function(require){
 
                         // If the original label has been updated since the translation was sent, flag it for re-translation.
                         // NOTE: the translation could have a different newline char, so we standardize the newlines
-                        if (this.localizationTable[guid][1].replace(/\s+/g, ' ').trim() !== entry[0].replace(/\s+/g, ' ').trim()) {
+                        if (this.localizationTable[guid][1].replace(/\s+/g, ' ').trim() !== entry[englishTextIndex].replace(/\s+/g, ' ').trim()) {
                             missingLocalizedLabels.push(guid);
                             translationErrors.log(language, 'Potential Translation Mismatch (English label has changed since last translation)  - see Proofread/MissingTranslations/' + language + '/translations.csv for translation file', guid);
                         }
 
                         // If the original label had a parameter (ex: {0}), make sure the translated label does too.
-                        var originalLabelParams = this.localizationTable[guid][1].match(labelWithParamInputRegex);
+                        var originalLabelParams = entry[englishTextIndex].match(labelWithParamInputRegex);
                         if(originalLabelParams != null) {
                             originalLabelParams.sort();
-                            var localizedlabelParams = entry[1].match(labelWithParamInputRegex);
+                            var localizedlabelParams = entry[translatedTextIndex].match(labelWithParamInputRegex);
                             var missingLocalizedLabelParams = [];
                             var badLocalizedLabelParams = [];
                             if (null == localizedlabelParams) {
@@ -230,12 +243,12 @@ define(function(require){
 
                             // If the params were missing, or there are unexpected label params in the localized label, log an error.
                             if (missingLocalizedLabelParams.length > 0 || badLocalizedLabelParams.length > 0) {
-                                translationErrors.log(language, 'Mistranslated label - missing or unknown format params.  Expected the following params: ' + originalLabelParams, entry[1] + " [Original: " + entry[0] + "]");
+                                translationErrors.log(language, 'Mistranslated label - missing or unknown format params.  Expected the following params: ' + originalLabelParams, entry[translatedTextIndex] + " [Original: " + entry[englishTextIndex] + "]");
                             }
                         }
 
                         localizationGoldKeys[guid] = true;
-                        toBeLocalized[guid] = [guid, entry[1]];
+                        toBeLocalized[guid] = [guid, entry[translatedTextIndex]];
                     } else {
                         // If this key is not a localization gold key...
                         translationErrors.log(language, 'Unknown GUID(s) - possibly removed from English master', guid);

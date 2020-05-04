@@ -9,10 +9,11 @@ define(function(require){
 
     ctor.type = 'nodes.branchSection';
 
-    ctor.prototype.localize = function(context){
+    ctor.prototype.localize = function(localizationId, context){
+        var i = 0;
         this.nodes.forEach(function(x){
             if(x.localize){
-                x.localize(context);
+                x.localize(localizationId + " BranchSection #" + (i++), context);
             }
         });
     };

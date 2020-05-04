@@ -30,13 +30,24 @@ define(function(require) {
     ctor.type = 'nodes.speak';
     ctor.displayName = 'Speak';
 
-    ctor.prototype.localize = function(context){
+    ctor.prototype.localize = function(localizationId, context){
         var db = require('infrastructure/assetDatabase');
         var localActorId = this.actorId;
+        var localActorId2 = this.actorId2;
         var actors = db.actors.entries.filter(function(entry) {
           return entry.id == localActorId;
         });
-        context.addLocalizationEntry(this.id, this.text, this.notes, actors[0].name);
+        var actors2;
+        if (localActorId2) {
+            actors2 = db.actors.entries.filter(function(entry) {
+              return entry.id == localActorId2;
+            });
+        }
+        var speakerText = actors[0].name;
+        if (localActorId2) {
+            speakerText += " to " + actors2[0].name;
+        }
+        context.addLocalizationEntry(localizationId, this.id, this.text, this.notes, speakerText);
         delete this.text;
     };
 

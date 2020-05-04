@@ -10,6 +10,16 @@ define(function(require){
         papaParse = require('papaparse'),
         reporter = require('features/build/data/report');
 
+    const translationHeaders = [ { 
+                                    0: 'Original Text (DO NOT TRANSLATE)', 
+                                    1: 'Translation', 
+                                    2: 'Context (DO NOT TRANSLATE)',
+                                    3: 'Speaker / Target (DO NOT TRANSLATE)',  
+                                    4: 'Translation Notes (DO NOT TRANSLATE)', 
+                                    5: 'Keys (DO NOT TRANSLATE OR DELETE)' 
+                                } ];
+       
+
     var ctor = function () {
         baseProcessor.call(this);
     };
@@ -18,10 +28,16 @@ define(function(require){
     ctor.prototype.constructor = baseProcessor;
 
     ctor.prototype.init = function() {
-        this.localizationDupes = {};
+        // All Composer ids and text
         this.localizationTable = {};
+
+        // The text to be translated
         this.translationTable = {};
-        this.translationTableKeys = [];        
+        // The keys to the text for translation (so we can ensure some order)
+        this.translationTableKeys = [];
+
+        // a lookup of {ComposerId  -> localizationId} used only for translating files into the new format
+        this.idToLocalizationIdLookup = {};
     };
 
     ctor.prototype.localize = function(context, asset, friendlyId) {
@@ -33,43 +49,40 @@ define(function(require){
         clone.localize(that);
     };
 
-    ctor.prototype.addLocalizationEntry = function(id, text, notes, speaker) {
+    ctor.prototype.addLocalizationEntry = function(localizationId, id, text, translationNotes, speaker) {
         // If the text was undefined, treat it as empty.
         if (text == undefined) {
             text = '';
         }
         var that = this;
-        // If a localizationTable entry has been defined multiple times for different values...
-        if (that.localizationTable.hasOwnProperty(id) && that.localizationTable[id][1] != text) {
-            if (!that.localizationDupes[id]) {
-                that.localizationDupes[id] = [];
-                that.localizationDupes[id].push(that.localizationTable[id][1]);
-            }
-            that.localizationDupes[id].push(text);
-        }
+        that.idToLocalizationIdLookup[id] = localizationId;
         that.localizationTable[id] = [id,text];
 
-        // The translationTable is basically a reverse lookup of the localizationTable,
-        // as the same text could be defined for multiple ids.
-        if (!that.translationTable[text]) {
-            that.translationTableKeys.push(text);
-            that.translationTable[text] = { 0: text, translations : [], speakers : [], notes : [], ids : [] };
-        }
+        that.translationTableKeys.push(localizationId);
+        that.translationTable[localizationId] = {0: text, translations: [], context: [], speakers: [], notes: [], ids: [] };
+
         if (speaker) {
-            that.translationTable[text].speakers.push(speaker);
+            that.translationTable[localizationId].speakers.push(speaker);
         }
-        if (notes) {
-            that.translationTable[text].notes.push(notes);
+        if (translationNotes) {
+            that.translationTable[localizationId].notes.push(translationNotes);
         }
-        that.translationTable[text].ids.push(id);
+        if (localizationId) {
+            that.translationTable[localizationId].context.push(localizationId);
+        }
+        that.translationTable[localizationId].ids.push(id);
     };
 
     ctor.prototype.generateOutput = function(context) {
+        
         // This will be used to parse labels with {x} input params
         var labelWithParamInputRegex = /{\d+}(?=)/g;
 
         // Generate the English translation master file
         var translationsDir = path.join(context.translationOutputDirectory, 'Translations');
+
+        // Generate the English game_text file; after that's done, copy over all the localized game output files
+        var localizedGoldFilesDir = path.join(context.translationOutputDirectory, 'Locales');
 
         if (!fileSystem.exists(translationsDir)) {
             fileSystem.makeDirectory(translationsDir);
@@ -83,24 +96,17 @@ define(function(require){
 
         var enUsTranslationFile = path.join(enUsTranslationFileDir, 'translation.csv');
         var translationGoldFileWriter = CSVWriter.createFileWriter(enUsTranslationFile);
-        var translationHeaders = [ { 0: 'Original Text', 1: 'Translation', 2 : 'Speaker (DO NOT TRANSLATE)',  3: 'Translation Notes (DO NOT TRANSLATE)', 4: 'Keys (DO NOT TRANSLATE OR DELETE)' }]
         translationGoldFileWriter.writeRecord(translationHeaders);
 
         // Ensure the translation file rows are always in the same order (by default, it's just "wherever Composer chooses to order them")
-        this.translationTableKeys.sort();
+        var collator = new Intl.Collator(undefined, {numeric: true, sensitivity: 'base'});
+        this.translationTableKeys.sort(collator.compare);
 
         for (var keyIndex in this.translationTableKeys) {
             var key = this.translationTableKeys[keyIndex];
-            // Remove duplicate values for the same text, and ensure the speakers + ids are in sorted order for better translation consistency
-            this.translationTable[key].speakers = this.translationTable[key].speakers.filter(function(item, i, ar){ return ar.indexOf(item) === i; }).sort();
-            this.translationTable[key].notes = this.translationTable[key].notes.filter(function(item, i, ar){ return ar.indexOf(item) === i; });
-            this.translationTable[key].ids = this.translationTable[key].ids.filter(function(item, i, ar){ return ar.indexOf(item) === i; }).sort();
             translationGoldFileWriter.writeRecord([this.translationTable[key]]);
         }
         translationGoldFileWriter.end();
-
-        // Generate the English game_text file; after that's done, copy over all the localized game output files
-        var localizedGoldFilesDir = path.join(context.translationOutputDirectory, 'Locales');
 
         if (!fileSystem.exists(localizedGoldFilesDir)) {
             fileSystem.makeDirectory(localizedGoldFilesDir);
@@ -153,19 +159,19 @@ define(function(require){
             var toBeLocalizedFileWriter = CSVWriter.createFileWriter(toBeLocalizedFile);
             var toBeLocalized = {};
 
-            // Format: (see "var translationHeaders" above).  We are interested in 1 (Translation) and 4 (Keys).
+            // Format: (see "var translationHeaders" above).  We are interested in 1 (Translation) and 5 (Key).
             var translatedText = papaParse.parse(fileSystem.read(translatedLanguageFile), { skipEmptyLines: true });                           
 
             // If there were errors during parsing, add them to the error doc
             translatedText.errors.forEach(function(err) {
-                /** papaParse.errors format, from https://www.papaparse.com/docs#errors
-                    {
-                        type: "",     // A generalization of the error
-                        code: "",     // Standardized error code
-                        message: "",  // Human-readable details
-                        row: 0,       // Row index of parsed data where error is
-                    }
-                **/
+                // papaParse.errors format, from https://www.papaparse.com/docs#errors
+                //    {
+                //        type: "",     // A generalization of the error
+                //        code: "",     // Standardized error code
+                //        message: "",  // Human-readable details
+                //        row: 0,       // Row index of parsed data where error is
+                //    }
+                //
                 var errText = "Row: [" + err.row + "] Code:[" + err.code + "] Type: [" + err.type + "] message: [" + err.message + "]";
                 translationErrors.log(language, 'Parsing error(s)', errText);
             });
@@ -178,7 +184,7 @@ define(function(require){
             // We'll parse the headers and get the correct values in a bit.
             var englishTextIndex = 0;
             var translatedTextIndex = 1;
-            var guidIndex = 4;
+            var guidIndex = 5;
 
             var isHeader = true;
 
@@ -313,11 +319,13 @@ define(function(require){
         }
 
         enUsGoldFileWriter.end();
+        
     };
 
     ctor.prototype.parseLocalizationGroup = function(context, idMap, localizationGroup) {
+        var localizationIdBase = 'LocalizationGroup_';
         localizationGroup.entries.forEach(function(locEntry) {
-            this.addLocalizationEntry(locEntry.id, locEntry.value, locEntry.notes);
+            this.addLocalizationEntry(localizationIdBase + locEntry.id, locEntry.id, locEntry.value, locEntry.notes);
         }, this);
     };
 

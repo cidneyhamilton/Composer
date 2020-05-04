@@ -17,9 +17,9 @@ define(function(require) {
     ctor.type = 'nodes.skillBranch';
     ctor.displayName = 'Use Skill Branch';
 
-    ctor.prototype.localize = function(context){
-        this.success.localize(context);
-        this.failure.localize(context);
+    ctor.prototype.localize = function(localizationId, context){
+        this.success.localize(localizationId + " (success)", context);
+        this.failure.localize(localizationId + " (failure)", context);
     };
 
     return ctor;

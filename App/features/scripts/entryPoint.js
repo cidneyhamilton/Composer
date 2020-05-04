@@ -10,10 +10,12 @@ define(function (require) {
 
     ctor.type = 'scripts.entryPoint';
 
-    ctor.prototype.localize = function(context){
+    ctor.prototype.localize = function(localizationIdBase, context){
+        var i = 0;
+        var entrypointName = this.name;
         this.nodes.forEach(function(x){
             if(x.localize){
-                x.localize(context);
+                x.localize(localizationIdBase + " EP: " + entrypointName + " #" + (i++), context);
             }
         });
     };

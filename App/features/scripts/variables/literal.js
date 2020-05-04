@@ -10,8 +10,8 @@
     ctor.type = 'variables.literal';
     ctor.prototype.displayName = 'Literal';
 
-    ctor.prototype.localize = function (context) {
-        context.addLocalizationEntry(this.value, this.value, this.notes);
+    ctor.prototype.localize = function (localizationId, context) {
+        context.addLocalizationEntry(localizationId + this.value, this.value, this.value, this.notes);
     };
 
     ctor.prototype.getDescription = function(){

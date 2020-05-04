@@ -18,10 +18,12 @@
     ctor.type = 'prop';
 
     ctor.prototype.localize = function(context){
-        context.addLocalizationEntry(this.id, (!!this.displayName) ? this.displayName : this.name);
+        var actualDisplayName = (!!this.displayName) ? this.displayName : this.name;
+        var localizationIdBase = 'Prop: ' + actualDisplayName + "(" + this.id + ")";
+        context.addLocalizationEntry(localizationIdBase, this.id, actualDisplayName);
         delete this.name;
 
-        context.addLocalizationEntry(this.id + '_Description', this.description, this.notes);
+        context.addLocalizationEntry(localizationIdBase + " (Description)", this.id + '_Description', this.description, this.notes);
         delete this.description;
     };
 

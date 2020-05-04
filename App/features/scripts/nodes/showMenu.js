@@ -22,10 +22,11 @@ define(function(require){
     ctor.type = 'nodes.showMenu';
     ctor.displayName = 'Menu';
 
-    ctor.prototype.localize = function(context){
+    ctor.prototype.localize = function(localizationId, context){
+        var i = 0;
         this.options.forEach(function(x){
             if(x.localize){
-                x.localize(context);
+                x.localize(localizationId + " Menu #" + (i++), context);
             }
         });
     };

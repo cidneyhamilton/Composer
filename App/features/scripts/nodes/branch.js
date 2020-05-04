@@ -9,8 +9,11 @@ define(function(require){
     ctor.type = 'nodes.branch';
     ctor.displayName = 'Branch';
 
-    ctor.prototype.localize = function(context){
-        this.sections.forEach(function(x){ x.localize(context); });
+    ctor.prototype.localize = function(localizationId, context){
+        var i = 0;
+        this.sections.forEach(function(x){
+            x.localize(localizationId + " Branch #" + (i++), context); 
+        });
     };
 
     return ctor;

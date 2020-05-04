@@ -8,10 +8,11 @@ define(function(require){
 
     ctor.type = 'nodes.block';
 
-    ctor.prototype.localize = function(context){
+    ctor.prototype.localize = function(localizationId, context){
+        var i = 0;
         this.nodes.forEach(function(x){
             if(x.localize){
-                x.localize(context);
+                x.localize(localizationId + " Block#" + (i++), context);
             }
         });
     };

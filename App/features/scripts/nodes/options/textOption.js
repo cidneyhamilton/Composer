@@ -18,13 +18,14 @@ define(function(){
     ctor.displayName = 'Text';
     ctor.type = 'options.text';
 
-    ctor.prototype.localize = function(context){
-        context.addLocalizationEntry(this.id, this.text, this.notes);
+    ctor.prototype.localize = function(localizationId, context){
+        context.addLocalizationEntry(localizationId, this.id, this.text, this.notes);
         delete this.text;
 
+        var i = 0;
         this.nodes.forEach(function(x){
             if(x.localize){
-                x.localize(context);
+                x.localize(localizationId + " Option # " + (i++), context);
             }
         });
     };

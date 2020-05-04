@@ -22,8 +22,8 @@
     ctor.type = 'nodes.noCombineMatch';
     ctor.displayName = 'No Combine Match';
 
-    ctor.prototype.localize = function (context) {
-        context.addLocalizationEntry(this.id, this.text, this.notes);
+    ctor.prototype.localize = function (localizationId, context) {
+        context.addLocalizationEntry(localizationId, this.id, this.text, this.notes);
         delete this.text;
     };
 

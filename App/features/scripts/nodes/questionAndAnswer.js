@@ -23,14 +23,15 @@ define(function(require) {
     ctor.type = 'nodes.questionAndAnswer';
     ctor.displayName = 'Q&A';
 
-    ctor.prototype.localize = function(context){
-        context.addLocalizationEntry(this.id + "_header", this.header);
-        context.addLocalizationEntry(this.id, this.text, this.notes);
+    ctor.prototype.localize = function(localizationId, context){
+        var localizationIdBase = localizationId + " Q&A ";
+        context.addLocalizationEntry(localizationIdBase + "Header", this.id + "_header", this.header);
+        context.addLocalizationEntry(localizationIdBase + "Question", this.id, this.text, this.notes);
         delete this.text;
-
+        var i = 0;
         this.options.forEach(function(x){
             if(x.localize){
-                x.localize(context);
+                x.localize(localizationIdBase + "Answer #" + (i++), context);
             }
         });
     };

@@ -13,7 +13,7 @@
     ctor.type = 'storyEvent';
 
     ctor.prototype.localize = function(context){
-        context.addLocalizationEntry(this.id, this.name, this.notes);
+        context.addLocalizationEntry("StoryEvent: " + this.name, this.id, this.name, this.notes);
         delete this.name;
     };
 

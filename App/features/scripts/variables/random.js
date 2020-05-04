@@ -11,10 +11,6 @@
     ctor.type = 'variables.random';
     ctor.prototype.displayName = 'Random';
 
-    ctor.prototype.localize = function (context) {
-        context.addLocalizationEntry(this.value, this.value);
-    };
-
     ctor.prototype.getDescription = function(){
         return "Random Value: [" + this.min + " , " + this.max + "]";
     }

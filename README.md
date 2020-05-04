@@ -83,9 +83,10 @@ If you've already created a translation, but then added new labels, you'll need 
 2. Rebuild Composer (this will generate a file for you in `Proofread\MissingTranslations\<locale>\translations.csv`)
 3. Send the mini translations.csv file to your translators
 4. Once it's translated, append the contents to the full translation.csv file for that language
-5. Rebuild Composer to generate the Unity-supported text
-6. Verify there are no errors in the `Proofread\Reports\badTranslations.txt` file
-7. `git commit` the updated `translations.csv` and `game_text.txt` files for your language
+5. (Hero-U:R2R) Verify the "Version Number" key value is updated / correct.
+6. Rebuild Composer to generate the Unity-supported text
+7. Verify there are no errors in the `Proofread\Reports\badTranslations.txt` file
+8. `git commit` the updated `translations.csv` and `game_text.txt` files for your language
 
 ### Defining Skills and Attributes in a new game
 

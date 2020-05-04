@@ -46,7 +46,9 @@ define(function (require) {
     };
 
     ctor.prototype.localize = function(context){
-        this.entryPoints.forEach(function(x){ x.localize(context); });
+        var scriptName = this.name;
+        var scriptId = this.id;
+        this.entryPoints.forEach(function(x){ x.localize('Script: ' + scriptName + "(" + scriptId + ")", context); });
     };
 
     return ctor;

@@ -15,7 +15,9 @@
     ctor.type = 'scene';
 
     ctor.prototype.localize = function(context){
-        context.addLocalizationEntry(this.id, (!!this.displayName) ? this.displayName : this.name, this.notes);
+        var actualDisplayName = (!!this.displayName) ? this.displayName : this.name;
+        var localizationIdBase = 'Scene: ' + actualDisplayName;
+        context.addLocalizationEntry(localizationIdBase, this.id, actualDisplayName, this.notes);
         delete this.name;
     };
 

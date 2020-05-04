@@ -17,9 +17,9 @@
     ctor.type = 'nodes.setVariable';
     ctor.displayName = 'Variable';
 
-    ctor.prototype.localize = function (context) {
+    ctor.prototype.localize = function (localizationId, context) {
         if(this.source.localize) {
-            this.source.localize(context);
+            this.source.localize(localizationId + "_setVariable", context);
         }
 
         delete this.sceneId;

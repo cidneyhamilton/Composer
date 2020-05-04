@@ -18,11 +18,12 @@ define(function(require) {
     ctor.type = 'nodes.addJournalEntry';
     ctor.displayName = 'Journal Entry';
 
-    ctor.prototype.localize = function(context){
-        context.addLocalizationEntry(this.id + "_Name", this.name);
+    ctor.prototype.localize = function(localizationId, context){
+        var localizationIdBase = localizationId + " Journal: " + this.name;
+        context.addLocalizationEntry(localizationIdBase, this.id + "_Name", this.name);
         delete this.name;
 
-        context.addLocalizationEntry(this.id + "_Description", this.description, this.notes);
+        context.addLocalizationEntry(localizationIdBase + " (Desc)", this.id + "_Description", this.description, this.notes);
         delete this.description;
     };
 

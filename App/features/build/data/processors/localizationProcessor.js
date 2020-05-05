@@ -11,7 +11,7 @@ define(function(require){
         reporter = require('features/build/data/report');
 
     const translationHeaders = [ { 
-                                    0: 'Original Text (DO NOT TRANSLATE)', 
+                                    0: 'Original Text', 
                                     1: 'Translation', 
                                     2: 'Context (DO NOT TRANSLATE)',
                                     3: 'Speaker / Target (DO NOT TRANSLATE)',  

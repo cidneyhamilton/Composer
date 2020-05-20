@@ -120,35 +120,35 @@ define(function(require){
 
     ctor.prototype.appendOutput = function(epMetadata, output) {
         if (isNotEmpty(output)) {
-			var scriptName;
+	    var scriptName;
             if (epMetadata.script.trigger.type === "triggers.manual") {
                 scriptName = this.getKnotNameFromScriptId(epMetadata.script.id);
             } else {
-                scriptName = epMetadata.script.name;
+                scriptName = removeWhitespace(epMetadata.script.name);
             }
-
-			var sceneId = epMetadata.script.sceneId;
-			var propId = epMetadata.script.propId;
-			if (sceneId != null) {
-				// This script is attached to a scene
-				var sceneName = this.getInkNameFromId(sceneId);				
-				var scene = this.data.scenes[sceneName];
-				this.data.scenes[sceneName].scripts[scriptName] += output;
-			} else {
-				// This script is not attached to a scene; check propId
-				var prop = this.data.props[propId];
-				if (prop != null) {
-					this.data.props[propId].scripts[scriptName] += output;
-				}
-			}             
+	    
+	    var sceneId = epMetadata.script.sceneId;
+	    var propId = epMetadata.script.propId;
+	    if (sceneId != null) {
+		// This script is attached to a scene
+		var sceneName = this.getInkNameFromId(sceneId);				
+		var scene = this.data.scenes[sceneName];
+		this.data.scenes[sceneName].scripts[scriptName] += output;
+	    } else {
+		// This script is not attached to a scene; check propId
+		var prop = this.data.props[propId];
+		if (prop != null) {
+		    this.data.props[propId].scripts[scriptName] += output;
+		}
+	    }             
         }
     };
-
+    
     // Handle Tag Changing
     ctor.prototype.parseNodeChangeTags = function(idMap, node, epMetadata) {
         var result = "";
-		var depth = epMetadata.depth;
-		
+	var depth = epMetadata.depth;
+	
         if (node.tagsToAdd) {
             result = appendIfNotEmpty(result, this.parseNodeChangeTagsHelper(idMap, node.tagsToAdd, "~ Tags +=", depth));
         }
@@ -157,7 +157,7 @@ define(function(require){
         }
         return result;
     };
-
+    
     ctor.prototype.parseNodeChangeTagsHelper = function(idMap, tagList, prefix, depth) {
         var result = "";
         if (isNotEmpty(tagList)) {
@@ -186,29 +186,29 @@ define(function(require){
 
         return result;
     };
+    
+    ctor.prototype.parseNodeQuestionAndAnswer = function(idMap, node, epMetadata) {
+	var options = node.options;
+	
+	var result = indent(epMetadata.depth);
+	
+	result += "Quiz: {0}: {1}".format(node.header, node.text);
+	
+	epMetadata.depth++;
+	
+	if (options) {
+	    for (var i = 0; i < options.length; i++) {
+		result += this.parseOption(idMap, options[i], epMetadata);
+	    }
+	}
 
-	ctor.prototype.parseNodeQuestionAndAnswer = function(idMap, node, epMetadata) {
-		var options = node.options;
-
-		var result = indent(epMetadata.depth);
-
-		result += "Quiz: {0}: {1}".format(node.header, node.text);
-
-		epMetadata.depth++;
-
-		if (options) {
-			for (var i = 0; i < options.length; i++) {
-				result += this.parseOption(idMap, options[i], epMetadata);
-			}
-		}
-
-		result += indent(epMetadata.depth) + "-";
-		
-		epMetadata.depth--;
-		
-		return result;
-	};
-
+	result += indent(epMetadata.depth) + "-";
+	
+	epMetadata.depth--;
+	
+	return result;
+    };
+    
     ctor.prototype.getKnotNameFromScriptId = function(scriptId) {
         // Get the name of the knot when passed in a script
 
@@ -227,26 +227,26 @@ define(function(require){
         var knotName, stitch;
         
         if (node.currentScope == "Current") {
-			// If the script is in the current scope, use entry points
-			stitch = this.entryPoints[node.entryPointId].replace(/\s+/g, '');
+	    // If the script is in the current scope, use entry points
+	    stitch = this.entryPoints[node.entryPointId].replace(/\s+/g, '');
             if (stitch == null) {
-				// otherwise, default to Main
+		// otherwise, default to Main
                 stitch = "Main";
             }
             return stitch;
         } else {
-			// TODO: Validation to make sure this is a valid script?
-			knotName = this.getKnotNameFromScriptId(node.scriptId);			
+	    // TODO: Validation to make sure this is a valid script?
+	    knotName = this.getKnotNameFromScriptId(node.scriptId);			
             return knotName;
         }
     }
-
-
+    
+    
     // Handle setting variables
     ctor.prototype.parseNodeSetVariable = function(idMap, node, epMetadata) {
         var result = indent(epMetadata.depth);
-
-		var varName = node.name.toLowerCase();
+	
+	var varName = node.name.toLowerCase();
         if (node.add) {
             // TODO: Implement for values and ranges of values
             result += "~ {0} += {1}".format(varName, node.source.value);
@@ -254,7 +254,7 @@ define(function(require){
             // TODO: Implement for values and ranges of values
             result += "~ {0} = {1}".format(varName, node.source.value);
         }
-
+	
         this.appendVarList(varName);
 
         return result;
@@ -755,17 +755,16 @@ define(function(require){
 	};
     ctor.prototype.parseInvokeCommand = function(idMap, node, depth) {
         var result = indent(depth);
-
-        // TODO: Hack to handle the Map invoke command
-        if (node.command == "Map") {
+	var command = node.command.toLowerCase();
+        if (node.command == "map") {
             result += " -> map";
-		} else if (node.command == "PlayMiniGame") {
-			result += ">>> PLAYMINIGAME: {0}".format(node.parameter); 
-        } else if (node.command == "Continue") {
+	} else if (node.command == "playminigame") {
+	    result += ">>> PLAYMINIGAME: {0}".format(node.parameter); 
+        } else if (node.command == "continue") {
             result += " ->->";
-        } else if (node.command == "Dinnertime") {
+        } else if (node.command == "dinnertime") {
             result += " -> dinnertime";
-        } else if (node.command == "Sleep") {
+        } else if (node.command == "sleep") {
             result += " -> sleep";
         } else if (node.parameter) {
             result += "~ {0}({1})".format(node.command, node.parameter);
@@ -869,8 +868,8 @@ define(function(require){
 
         if (script.trigger.type === "triggers.enter") {		
             // For OnEnter scripts, just use the script name
-            knotName = script.name;
-		} else {
+            knotName = removeWhitespace(script.name);
+	} else {
             knotName = this.getKnotNameFromScriptId(script.id);
         }
 
@@ -883,18 +882,18 @@ define(function(require){
         }
         
         if (!script.sceneId) {
-			// If this script is attached to a prop
+	    // If this script is attached to a prop
             if (script.propId) {
-				var prop = this.data.props[script.propId];
-				prop.scripts[knotName] = "\n=== {0} ===".format(knotName);
-			} else if (script.actorId) {
-				// TODO: Handle scripts attached to actors
-				// TODO: Look up actor by id
-				// var actor = this.data.actors[script.actorId];
-				// actor.scripts[knotName] = "\n=== {0} ===".format(knotName);
-			} else {
-				debugger;
-			}
+		var prop = this.data.props[script.propId];
+		prop.scripts[knotName] = "\n=== {0} ===".format(knotName);
+	    } else if (script.actorId) {
+		// TODO: Handle scripts attached to actors
+		// TODO: Look up actor by id
+		// var actor = this.data.actors[script.actorId];
+		// actor.scripts[knotName] = "\n=== {0} ===".format(knotName);
+	    } else {
+		debugger;
+	    }
         } else {
             var sceneInkName = this.getInkNameFromId(script.sceneId);
             if (!this.data.scenes[sceneInkName]) {
@@ -1103,14 +1102,14 @@ define(function(require){
 	
 	// Get the name of an audio clip for Ink
 	ctor.prototype.getClipName = function(item) {
-		return removeSpecialCharacters(removeWhitespace(item.slice(0, item.indexOf('.'))));
+	    return removeSpecialCharacters(removeWhitespace(item.slice(0, item.indexOf('.'))));
 	};
-	
+    
 	// Get the name of a composer entity (actor, scene, etc) for Ink
-	ctor.prototype.getEntityName = function(item) {
-		return removeSpecialCharacters(removeWhitespace(item.name));
-	};
-
+    ctor.prototype.getEntityName = function(item) {
+	return removeSpecialCharacters(removeWhitespace(item.name));
+    };
+    
 	// Get a list of props and include it in the script
 	ctor.prototype.getPropList = function() {
 	

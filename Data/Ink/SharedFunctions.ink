@@ -14,12 +14,12 @@ VAR MetLast = Nobody
 VAR MetPrev = Nobody
 
 === function Meet(Actor) ===
-	~ Acquaintances += Actor
-	{
-		- MetPrev != Actor && MetLast != Actor:
-   		~ MetPrev = MetLast
- 		~ MetLast = Actor
-	}
+    ~ Acquaintances += Actor
+    {	
+	- MetPrev != Actor && MetLast != Actor:
+   	~ MetPrev = MetLast
+ 	~ MetLast = Actor
+    }
 
 === function ShowActor(name, mood) ===
 	~ showSpeaker = true
@@ -81,6 +81,12 @@ VAR JournalButtonVisible = 0
 
 === function HideJournalDetail(name) ===
 	~ JournalDetailOpen = 0
+
+// ************************************************************************
+// System: Minigames
+// ************************************************************************
+
+LIST Minigames = laboomba, wizbang
 
 // ************************************************************************
 // System: Props

@@ -7,7 +7,8 @@
 
     var baseTriggers = [
         require('./enter'),
-        require('./manual')
+        require('./manual'),
+	require('./map')
     ];
 
     var advanced = [

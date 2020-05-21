@@ -123,9 +123,11 @@ define(function(require){
 	    var scriptName;
             if (epMetadata.script.trigger.type === "triggers.manual") {
                 scriptName = this.getKnotNameFromScriptId(epMetadata.script.id);
-            } else {
+            } else if (epMetadata.script.trigger.type === "triggers.enter") {
                 scriptName = removeWhitespace(epMetadata.script.name);
-            }
+            } else if (epMetadata.script.trigger.type === "triggers.map") {
+		scriptName = this.getMapKnotName(epMetadata.script.sceneId);		
+	    }
 	    
 	    var sceneId = epMetadata.script.sceneId;
 	    var propId = epMetadata.script.propId;
@@ -310,6 +312,12 @@ define(function(require){
 
         result += indent(epMetadata.depth) + "- ({0})".format(doneName);
 
+	// If this is a map trigger, DONE should take you back to the main menu
+	// TODO: Hack
+	// TODO: Remove if more complex behavior is desired
+	if (epMetadata.script.trigger.type == "triggers.map") {
+	    result += indent(epMetadata.depth+1) + "-> DONE";
+	}
         return result;
     };
 
@@ -606,8 +614,21 @@ define(function(require){
         var sceneName = this.getInkNameFromId(node.sceneId);
         var result = indent(depth);
 
-		// Invoke an Ink function to change the scene (provided in Functions.ink)
-        result += "~ ChangeScene({0})".format(sceneName);
+	result += "~ showMapConfirmation = false";
+
+	result += indent(depth);
+	
+	// Invoke an Ink function to change the scene (provided in Functions.ink)
+        result += "~ ChangeScene({0},{1})".format(sceneName, node.fadeTime);
+
+	result += indent(depth);
+
+	result += "~showMap = false";
+
+	result += indent(depth);
+
+	result += "-> next";
+	
         return result;
     };
 
@@ -711,7 +732,7 @@ define(function(require){
             soundEffect = node.soundEffectName.slice(0, node.soundEffectName.indexOf('.'));
         }
 
-		// Invoke an Ink function to play the sound
+	// Invoke an Ink function to play the sound
         result += "~ PlaySound({0})".format(soundEffect);
 		
         return result;
@@ -861,17 +882,33 @@ define(function(require){
 		}
 		
 	};
-	
+
+    // Get a unique name for the knot corresponding to the Map trigger for a given scene ID
+    ctor.prototype.getMapKnotName = function(sceneId) {
+	if (sceneId == null) {
+	    // All map triggers must have a scene ID
+	    debugger;
+	    return "";
+	} else {
+	    var sceneName = this.getInkNameFromId(sceneId);
+	    return sceneName + "Map";
+	}
+    }
     ctor.prototype.parseScript = function(context, idMap, script, sceneName) {
 
         var knotName;
-
+	
         if (script.trigger.type === "triggers.enter") {		
             // For OnEnter scripts, just use the script name
             knotName = removeWhitespace(script.name);
-	} else {
+	} else if (script.trigger.type == "triggers.manual") {
             knotName = this.getKnotNameFromScriptId(script.id);
-        }
+        } else if (script.trigger.type == "triggers.map") {
+	    knotName = this.getMapKnotName(script.sceneId);
+	} else {
+	    // Unknown trigger type
+	    debugger;
+	}
 
         // Parse entry points
         var entryPointId, entryPointName;
@@ -953,12 +990,12 @@ define(function(require){
             case 'nodes.branch': 
                 output = this.parseNodeBranch(idMap, node, epMetadata.depth, epMetadata);
                 break;
-			case 'nodes.changeMoney':
-				output = this.parseNodeChangeMoney(idMap, node, epMetadata);
-				break;
-			case 'nodes.changePropVisibility':
-				output = this.parseChangePropVisibility(idMap, node, epMetadata);
-				break;
+	    case 'nodes.changeMoney':
+		output = this.parseNodeChangeMoney(idMap, node, epMetadata);
+		break;
+	    case 'nodes.changePropVisibility':
+		output = this.parseChangePropVisibility(idMap, node, epMetadata);
+		break;
             case 'nodes.changeReputation':
                 output = this.parseChangeReputation(idMap, node, epMetadata.depth, epMetadata);
                 break;

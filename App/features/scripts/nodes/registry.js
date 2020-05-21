@@ -9,6 +9,7 @@
     var baseNodes = [
         require('./speak'),
         require('./branch'),
+	require('./changeScene'),
         require('./comment'),
         require('./nodeCycle'),
         require('./gameOver'),
@@ -20,15 +21,15 @@
         require('./playMusic'),
         require('./playSoundEffect'),
         require('./removeActor'),
-		require('./changeMoney'), // Change Player Value
-		require('./changePropVisibility'),
+	require('./changeMoney'), // Change Player Value
+	require('./changePropVisibility'),
         require('./changeReputation'),
-        require('./changeTags'),
-		require('./questionAndAnswer'),
+	require('./questionAndAnswer'),
+	require('./showStore'),
+	require('./changeTags'),
         require('./setVariable'),
-		require('./showStore'),
     ];
-
+    
     // Nodes that should only appear in full games
     // TODO -- Make these separate dropdowns in the UI?
     var advancedNodes = [
@@ -37,7 +38,6 @@
         require('./autosave'),
         require('./buffAdd'),
         require('./changeHealth'),
-        require('./changeScene'),
         require('./changeStoryEvent'),
         require('./clearStoreStock'),
         require('./endScript'),
@@ -68,7 +68,7 @@
         require('./showCloseUp'),
         require('./showDescription'),
         require('./showVignette'),
-		require('./skillBranch'),
+	require('./skillBranch'),
         require('./stopPlayer'),
         require('./trace'),
         require('./turnActor'),

@@ -777,20 +777,20 @@ define(function(require){
     ctor.prototype.parseInvokeCommand = function(idMap, node, depth) {
         var result = indent(depth);
 	var command = node.command.toLowerCase();
-        if (node.command == "map") {
+        if (command == "map") {
             result += " -> map";
-	} else if (node.command == "playminigame") {
+	} else if (command == "playminigame") {
 	    result += ">>> PLAYMINIGAME: {0}".format(node.parameter); 
-        } else if (node.command == "continue") {
+        } else if (command == "continue") {
             result += " ->->";
-        } else if (node.command == "dinnertime") {
+        } else if (command == "dinnertime") {
             result += " -> dinnertime";
-        } else if (node.command == "sleep") {
+        } else if (command == "sleep") {
             result += " -> sleep";
         } else if (node.parameter) {
-            result += "~ {0}({1})".format(node.command, node.parameter);
+            result += "~ {0}({1})".format(command, node.parameter);
         } else {
-            result += "~ {0}()".format(node.command);
+            result += "~ {0}()".format(command);
         }
         return result;
         

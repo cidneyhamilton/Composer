@@ -57,29 +57,25 @@ VAR Health = 0
 VAR JournalOpen = 0
 VAR JournalDetailOpen = 0
 VAR JournalCharacter = Nobody
-VAR JournalButtonVisible = 0
 
 // Open the journal from Ink
-=== function OpenJournal() ===
+=== function openjournal() ===
 	>>> SHOWJOURNAL
 
-=== function EnableJournalButton() ===
-	~ JournalButtonVisible = 1
-
 // Show the list of NPCs as a vignette
-=== function ShowJournal() ===
+=== function showjournal() ===
 	~ JournalOpen = 1
 
 // Hide journal vignettes
-=== function HideJournal() ===
+=== function hidejournal() ===
 	~ JournalOpen = 0
 
 // Show an NPC as a journal vignette
-=== function ShowJournalDetail(name) ===
+=== function showjournaldetail(name) ===
 	~ JournalCharacter = name
 	~ JournalDetailOpen = 1
 
-=== function HideJournalDetail(name) ===
+=== function hidejournaldetail(name) ===
 	~ JournalDetailOpen = 0
 
 // ************************************************************************

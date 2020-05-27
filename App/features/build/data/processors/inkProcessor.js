@@ -278,8 +278,11 @@ define(function(require){
         // TODO: Make sure these are unique!
         var optionsName = "opts";
         var loopName = "loop";
-        var doneName = "done";
-
+        var doneLabel = "done";
+	
+	// TODO: Localize these labels
+	var doneText = epMetadata.script.trigger.type == "triggers.map" ? "Go Back" : "Done";
+	
         var autoAddDone = !!node.AutoAddDone;
 
         // TODO: unique is not used??
@@ -298,7 +301,7 @@ define(function(require){
         epMetadata.depth--;
 
         if (autoAddDone) {
-            result += (indent(epMetadata.depth+1) + "+    Done -> {0}".format(doneName));
+            result += (indent(epMetadata.depth+1) + "+    {0} -> {1}".format(doneText, doneLabel));
         }
 
         // Loop to the top if this is not unique
@@ -310,7 +313,7 @@ define(function(require){
             }
         }
 
-        result += indent(epMetadata.depth) + "- ({0})".format(doneName);
+        result += indent(epMetadata.depth) + "- ({0})".format(doneLabel);
 
 	// If this is a map trigger, DONE should take you back to the main menu
 	// TODO: Hack

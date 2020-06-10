@@ -1,6 +1,7 @@
 define(function(require) {
     var system = require('durandal/system');
-
+    var selectedGame = require('features/projectSelector/index');
+    
     var ctor = function(attributes) {
         attributes = attributes || {};
 
@@ -9,7 +10,9 @@ define(function(require) {
         this.spawnId = attributes.spawnId || null;
         this.pose = attributes.pose || null;
         this.behaviour = attributes.behaviour || null;
-		this.immediate = attributes.immediate || null;
+	this.immediate = attributes.immediate || null;
+
+	this.advanced = selectedGame.activeProject.format == 'json';
     };
 
     ctor.type = 'nodes.placeActor';

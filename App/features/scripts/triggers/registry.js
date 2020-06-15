@@ -14,7 +14,14 @@
     // TODO: more generic handling?
     var inkOnlyTriggers = [
 	require('./map'),
-	require('./dealCards')
+	require('./dealCards'),
+	require('./playerWin'),
+	require('./playerLose'),
+	
+	require('./playerBomb'),
+	require('./playerWater'),
+	require('./villainBomb'),
+	require('./villainWater')
     ];
 
     var advanced = [

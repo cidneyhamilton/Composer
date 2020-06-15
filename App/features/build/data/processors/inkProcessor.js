@@ -308,12 +308,14 @@ define(function(require){
 
         result += indent(epMetadata.depth) + "- ({0})".format(doneLabel);
 
-	// If this is a map trigger, DONE should take you back to the main menu
+	// If this is a custom trigger, DONE should take you back to the main menu
 	// TODO: Hack
 	// TODO: Remove if more complex behavior is desired
-	if (epMetadata.script.trigger.type == "triggers.map") {
+	var trigger = epMetadata.script.trigger.type;
+	if (["triggers.map"].indexOf(trigger) > -1) {
 	    result += indent(epMetadata.depth+1) + "-> DONE";
 	}
+
         return result;
     };
 
@@ -685,7 +687,7 @@ define(function(require){
             debugger;
         }
 
-		// Invoke an Ink function to play Music
+	// Invoke an Ink function to play Music
         result += "~ PlayMusic({0})".format(musicTrack); 
         return result;
     };
@@ -698,7 +700,7 @@ define(function(require){
         actor = node.actorId;
         actor = (actor == null ? "" : idMap[actor]);
 
-		// Invoke an Ink function to show the actor
+	// Invoke an Ink function to show the actor
         result += "~ ShowActor({0}, neutral)".format(actor);
         return result;
     };
@@ -746,10 +748,10 @@ define(function(require){
 
         var skill = node.skill;
 
-		// Default to 1 if no amount is specified
-		var amount = node.amount ? node.amount : 1;
+	// Default to 1 if no amount is specified
+	var amount = node.amount ? node.amount : 1;
 		
-		// Invoke an Ink function to improve the skill
+	// Invoke an Ink function to improve the skill
         result += "~ ImproveSkill({0}, {1})".format(skill, amount);
 		
         return result;
@@ -770,6 +772,7 @@ define(function(require){
 
 		return result;
 	};
+    
     ctor.prototype.parseInvokeCommand = function(idMap, node, depth) {
         var result = indent(depth);
 	var command = node.command.toLowerCase();
@@ -893,19 +896,42 @@ define(function(require){
 
     ctor.prototype.getKnotNameFromScript = function(script) {
 	var knotName;
-	if (script.trigger.type === "triggers.enter") {		
+	
+	switch (script.trigger.type) {
+	case "triggers.enter":
             // For OnEnter scripts, just use the script name
-            knotName = removeWhitespace(script.name);
-	} else if (script.trigger.type == "triggers.manual") {
+	    knotName = removeWhitespace(script.name);
+	    break;
+	case "triggers.manual":
             knotName = this.getKnotNameFromScriptId(script.id);
-        } else if (script.trigger.type == "triggers.map") {
+	    break;
+	case "triggers.map":
 	    knotName = this.getMapKnotName(script.sceneId);
-	} else if (script.trigger.type == "triggers.dealCards") {
-	    // TODO: Add check so that there cannot be more than one deal cards script
+	    break;
+	case "triggers.dealCards":
 	    knotName = "OnDealCards";
-	} else {
-	    // Unknown trigger type
+	    break;
+	case "triggers.playerWin":
+	    knotName = "OnPlayerWin";
+	    break;
+	case "triggers.playerLose":
+	    knotName = "OnPlayerLose";
+	    break;
+	case "triggers.playerBomb":
+	    knotName = "OnPlayerBomb";
+	    break;
+	case "triggers.playerWater":
+	    knotName = "OnPlayerWater";
+	    break;
+	case "triggers.villainBomb":
+	    knotName = "OnVillainBomb";
+	    break;
+	case "triggers.villainWater":
+	    knotName = "OnVillainWater";
+	    break;	    
+	default:
 	    debugger;
+	    break;
 	}
 	return knotName;
     };
@@ -958,8 +984,16 @@ define(function(require){
     };
 
     ctor.prototype.parseEntryPointEnd = function(idMap, entryPoint, entryPointIndex, epMetadata) {
-        this.appendOutput(epMetadata, "\n->->");
 
+	var triggerType = epMetadata.script.trigger.type;
+	if (triggerType == "triggers.dealCards") {
+	    this.appendOutput(epMetadata, "\n->DONE");
+	} else if (triggerType == "triggers.playerWin" || triggerType == "triggers.playerLose") {
+	    // Hack; direct this to dinner for now
+	    this.appendOutput(epMetadata, "\n->dinnertime");
+	} else {
+            this.appendOutput(epMetadata, "\n->->");
+	}
         var formattedName = this.getFormattedName(entryPoint);
 
         for (var i = 0; i < this.menuList.length; i++) {

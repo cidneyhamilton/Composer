@@ -3,13 +3,13 @@ define(function(require) {
 
     // Define a basic and advanced list of variable sources
     var addableExpressions = [
-		require('./currencyCheck'),
-		require('./currentScene'),
+	require('./currencyCheck'),
+	require('./currentScene'),
         require('./demoOnly'),
-		require('./inTags'),
-		require('./reputationComparison'),
-		require('./skillCheck'),
-		require('./variableComparison')
+	require('./inTags'),
+	require('./reputationComparison'),
+	require('./skillCheck'),
+	require('./variableComparison')
     ];
     
     var advancedExpressions = [

@@ -120,17 +120,10 @@ define(function(require){
 
     ctor.prototype.appendOutput = function(epMetadata, output) {
         if (isNotEmpty(output)) {
-	    var scriptName;
-            if (epMetadata.script.trigger.type === "triggers.manual") {
-                scriptName = this.getKnotNameFromScriptId(epMetadata.script.id);
-            } else if (epMetadata.script.trigger.type === "triggers.enter") {
-                scriptName = removeWhitespace(epMetadata.script.name);
-            } else if (epMetadata.script.trigger.type === "triggers.map") {
-		scriptName = this.getMapKnotName(epMetadata.script.sceneId);		
-	    }
-	    
+	    var scriptName = this.getKnotNameFromScript(epMetadata.script);	    
 	    var sceneId = epMetadata.script.sceneId;
 	    var propId = epMetadata.script.propId;
+	    
 	    if (sceneId != null) {
 		// This script is attached to a scene
 		var sceneName = this.getInkNameFromId(sceneId);				
@@ -718,7 +711,7 @@ define(function(require){
         actor = node.actorId;
         actor = (actor == null ? "" : idMap[actor]);
 
-		// Invoke an Ink function to hide the actor
+	// Invoke an Ink function to hide the actor
         result += "~ HideActor({0})".format(actor);
 		
         return result;
@@ -896,23 +889,31 @@ define(function(require){
 	    var sceneName = this.getInkNameFromId(sceneId);
 	    return sceneName + "Map";
 	}
-    }
-    ctor.prototype.parseScript = function(context, idMap, script, sceneName) {
+    };
 
-        var knotName;
-	
-        if (script.trigger.type === "triggers.enter") {		
+    ctor.prototype.getKnotNameFromScript = function(script) {
+	var knotName;
+	if (script.trigger.type === "triggers.enter") {		
             // For OnEnter scripts, just use the script name
             knotName = removeWhitespace(script.name);
 	} else if (script.trigger.type == "triggers.manual") {
             knotName = this.getKnotNameFromScriptId(script.id);
         } else if (script.trigger.type == "triggers.map") {
 	    knotName = this.getMapKnotName(script.sceneId);
+	} else if (script.trigger.type == "triggers.dealCards") {
+	    // TODO: Add check so that there cannot be more than one deal cards script
+	    knotName = "OnDealCards";
 	} else {
 	    // Unknown trigger type
 	    debugger;
 	}
+	return knotName;
+    };
+    
+    ctor.prototype.parseScript = function(context, idMap, script, sceneName) {
 
+        var knotName = this.getKnotNameFromScript(script);
+	        
         // Parse entry points
         var entryPointId, entryPointName;
         for (var i = 0; i < script.entryPoints.length; i++) {

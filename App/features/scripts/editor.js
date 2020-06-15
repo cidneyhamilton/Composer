@@ -51,6 +51,7 @@
         
         var item = that.entry.open({ trigger:trigger });
 
+	// Show a separate list of triggers for Summer Daze vs. Hero -U
         var triggers = selectedGame.showAdvanced ? triggerRegistry.all : triggerRegistry.base;
 
         that.availableTriggers = [item.trigger];

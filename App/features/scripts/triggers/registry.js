@@ -8,7 +8,13 @@
     var baseTriggers = [
         require('./enter'),
         require('./manual'),
-	require('./map')
+    ];
+
+    // These nodes are only used in Summer Daze.
+    // TODO: more generic handling?
+    var inkOnlyTriggers = [
+	require('./map'),
+	require('./dealCards')
     ];
 
     var advanced = [
@@ -38,7 +44,7 @@
         ];
 
     return {
-        base: baseTriggers,
+        base: baseTriggers.concat(inkOnlyTriggers),
         all: baseTriggers.concat(advanced),
         install: function() {
             this.all.forEach(function(type) { serializer.registerType(type); });

@@ -10,6 +10,7 @@ define(function(require){
         reportBadExpressionsProcessor = require('features/build/data/processors/reportBadExpressionsProcessor'),
         reportBadGuidProcessor = require('features/build/data/processors/reportBadGuidProcessor'),
         reportBadInvokeScriptProcessor = require('features/build/data/processors/reportBadInvokeScriptProcessor'),
+	reportBadResources = require('features/build/data/processors/reportBadResourceProcessor'),
         reportTagUsageProcessor = require('features/build/data/processors/reportTagUsageProcessor'),
         reportHtmlTagsProcessor = require('features/build/data/processors/reportHtmlTagsProcessor'),
         reportResourceUsageProcessor = require('features/build/data/processors/reportResourceUsageProcessor'),
@@ -36,7 +37,7 @@ define(function(require){
                 var allProcessors = [reportTagUsageProcessor, reportHtmlTagsProcessor, reportResourceUsageProcessor, 
                                      reportVariableUsageProcessor, reportSpeechVariableUsageProcessor,
                                      reportAutosaveUsageProcessor, reportInvokeCommandUsageProcessor, 
-                                     reportBadExpressionsProcessor, reportTimeUsageProcessor, reportBadInvokeScriptProcessor, 
+                                     reportBadExpressionsProcessor, reportBadResources, reportTimeUsageProcessor, reportBadInvokeScriptProcessor, 
                                      reportQuestUsageProcessor, reportBadGuidProcessor, 
                                      gameModelProcessor, localizationProcessor, scriptDataProcessor,
                                      proofreadSimpleProcessor, proofreadScriptProcessor

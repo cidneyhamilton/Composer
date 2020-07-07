@@ -9,8 +9,6 @@ define(function(require) {
 
         this.vignettes = assetDatabase.vignettes.entries;
 
-
-
         observable.defineProperty(this, 'vignette', function(){
             var name = this.node.vignetteName;
 

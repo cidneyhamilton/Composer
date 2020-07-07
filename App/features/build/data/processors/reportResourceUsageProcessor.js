@@ -8,7 +8,8 @@ define(function(require){
     ctor.prototype = Object.create(baseReportProcessor.prototype);
     ctor.prototype.constructor = baseReportProcessor;
 
-    ctor.prototype.parseNode = function(idMap, node, nodeType, nodeIndex, epMetadata) {
+    ctor.prototype.parseNode = function(idMap, node, nodeType, nodeIndex, epMetadata) {	
+
         if (node.movie) {
            this.report.log("Movies", node.movie, epMetadata.sceneName + ' : ' + epMetadata.script.name);
         }

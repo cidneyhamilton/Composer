@@ -540,7 +540,7 @@ define(function(require){
             break;
         case "expressions.debugOnly":
             // TODO: Implement Debug Only
-            result += "true";
+            result += "IsDebug";
             break;
         case "expressions.demoOnly":
             // Check to see if this is the Demo
@@ -1222,7 +1222,8 @@ define(function(require){
         // TODO: Generate author and name from project
         gameOutput += "\n# author: Corey and Lori Cole";
         gameOutput += "\n# title: Summer Daze at Hero-U";
-        gameOutput += "\n\nVAR IsDemo = {0}\n".format(context.isDemo);
+	gameOutput +="\n\nVAR IsDebug = {0}".format(context.mode == "debug");
+        gameOutput += "\nVAR IsDemo = {0}\n".format(context.isDemo);
 
 	gameOutput += this.getListFromDB("musicTracks", "MusicTracks", this.getClipName);
 	gameOutput += this.getListFromDB("soundEffects", "SoundClips", this.getClipName);
@@ -1351,8 +1352,7 @@ define(function(require){
                 if (this.varList.indexOf(singleVar) == -1) {
                     addToArray(this.varList, singleVar);     
                 }    
-            }
-                
+            }                
         }
     }
 

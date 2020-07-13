@@ -5,6 +5,7 @@ define(function(require) {
     var addableExpressions = [
 	require('./currencyCheck'),
 	require('./currentScene'),
+	require('./debugOnly'),
         require('./demoOnly'),
 	require('./inTags'),
 	require('./reputationComparison'),
@@ -22,7 +23,6 @@ define(function(require) {
         require('./propStatus'),
         require('./isEquipped'),
         require('./isAlphaBuild'),
-        require('./debugOnly'),
         require('./hasActiveQuest'),
         require('./hasAchievement'),
         require('./isPoisoned'),

@@ -32,9 +32,7 @@
             if (scope == 'prop') {
                 if (propId == null) {
                     desc += " on Undefined";
-                } 
-                else 
-                {
+                } else {
                     var prop = assetDatabase.props.lookup[propId];
 
                     desc += " on (" + prop ? prop.name : propId + ")";
@@ -43,9 +41,7 @@
                         desc += " in Undefined"
                     } else {
                         var scene = assetDatabase.scenes.lookup[sceneId];
-
-                        desc += " in (" + scene ? scene.name : sceneId + ")";
-                        
+                        desc += " in (" + scene ? scene.name : sceneId + ")";                        
                     }
                 }
             }

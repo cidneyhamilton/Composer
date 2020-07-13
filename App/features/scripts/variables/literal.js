@@ -3,7 +3,7 @@
         attributes = attributes || {};
 
         this.type = ctor.type;
-        this.value = attributes.value || '';
+        this.value = attributes.value || 0;
         this.notes = attributes.notes || "";
     };
 

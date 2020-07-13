@@ -11,7 +11,7 @@
         this.scopeId = attributes.scopeId;
         this.sceneId = attributes.sceneId || loadedConstants.inventorySceneId;
         this.source = attributes.source || new Literal();
-		this.add = !!attributes.add;
+	this.add = !!attributes.add;
     };
 
     ctor.type = 'nodes.setVariable';

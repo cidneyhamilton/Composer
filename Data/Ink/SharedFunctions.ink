@@ -21,12 +21,12 @@ VAR MetPrev = Nobody
  	~ MetLast = Actor
     }
 
-=== function ShowActor(name, mood) ===
-	~ showSpeaker = true
-    ~ speakerMood = mood
-    ~ speaker = name
-    >>> SHOWACTOR: {name}
-
+=== function ShowActor(name, mood, transition) ===
+   ~ showSpeaker = true
+   ~ speakerMood = mood
+   ~ speaker = true
+   >>> SHOWACTOR: {name}, {transition}
+   
 === function HideActor(name) ===
     ~ showSpeaker = false
     ~ speaker = Nobody

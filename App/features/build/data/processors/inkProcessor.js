@@ -700,8 +700,10 @@ define(function(require){
         actor = node.actorId;
         actor = (actor == null ? "" : idMap[actor]);
 
+	var transition = node.immediate ? false : true;
+	
 	// Invoke an Ink function to show the actor
-        result += "~ ShowActor({0}, neutral)".format(actor);
+        result += "~ ShowActor({0}, neutral, {1})".format(actor, transition);
         return result;
     };
 

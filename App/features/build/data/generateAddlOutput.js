@@ -6,6 +6,7 @@ define(function(require){
         scriptMetadataBuilder = require('features/build/data/scriptParsingMetadata'),
 
         // Processors
+	reportTypoProcessor = require('features/build/data/processors/reportTypoProcessor'),
         reportAutosaveUsageProcessor = require('features/build/data/processors/reportAutosaveUsageProcessor'),
         reportBadExpressionsProcessor = require('features/build/data/processors/reportBadExpressionsProcessor'),
         reportBadGuidProcessor = require('features/build/data/processors/reportBadGuidProcessor'),
@@ -40,14 +41,14 @@ define(function(require){
                                      reportBadExpressionsProcessor, reportBadResources, reportTimeUsageProcessor, reportBadInvokeScriptProcessor, 
                                      reportQuestUsageProcessor, reportBadGuidProcessor, 
                                      gameModelProcessor, localizationProcessor, scriptDataProcessor,
-                                     proofreadSimpleProcessor, proofreadScriptProcessor
+                                     proofreadSimpleProcessor, proofreadScriptProcessor, reportTypoProcessor
                                      ];
 
                 if (selectedGame.activeProject.format == 'ink') {
                     allProcessors.push(inkProcessor);
                 } else {
-					allProcessors.push(unityCodeGenProcessor);
-				}
+		    allProcessors.push(unityCodeGenProcessor);
+		}
 
                 // Map of [GUID, <Name of [Actor | Prop | Scene | Script | StoryEvent]> ]
                 var idMap = {

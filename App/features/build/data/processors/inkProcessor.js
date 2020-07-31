@@ -256,12 +256,12 @@ define(function(require){
     };
 
 	ctor.prototype.parseNodeShowStore = function(idMap, node, epMetadata) {
-		var result = indent(epMetadata.depth);
-
-		// TODO: Implement on Unity side
-		result += ">>> SHOWSTORE";
+	    var result = indent(epMetadata.depth);
+	    
+	    // TODO: Implement on Unity side
+	    result += ">>> SHOWSTORE";
 		
-		return result;
+	    return result;
 	};
 	
     // Handle Show Menu nodes
@@ -1086,9 +1086,15 @@ define(function(require){
             case 'nodes.setVariable' : 
                 output = this.parseNodeSetVariable(idMap, node, epMetadata);
                 break;
-			case 'nodes.showStore' :
-				output = this.parseNodeShowStore(idMap, node, epMetadata);
-				break;
+	    case 'nodes.showStore' :
+		output = this.parseNodeShowStore(idMap, node, epMetadata);
+		break;
+	    case 'nodes.showVignette':
+		output = this.parseNodeShowVignette(idMap, node, epMetadata);
+		break;		
+	    case 'nodes.hideVignette':
+		output = this.parseNodeHideVignette(idMap, node, epMetadata);
+		break;
             default:
                 output = "\n// TODO - " + node.type;
                 break;
@@ -1098,6 +1104,22 @@ define(function(require){
         return output;
     }
 
+    ctor.prototype.parseNodeShowVignette = function(idMap, node, epMetadata) {
+	var result = indent(epMetadata.depth);
+
+	result += ">>> SHOWVIGNETTE: {0}".format(node.vignetteName);
+	
+	return result;
+    };
+
+    ctor.prototype.parseNodeHideVignette = function(idMap, node, epMetadata) {
+	var result = indent(epMetadata.depth);
+
+	result += ">>> HIDEVIGNETTE";
+	
+	return result;
+    };
+    
     ctor.prototype.parseNode = function(idMap, node, nodeType, nodeIndex, epMetadata) {        
         epMetadata.depth++;
         var output = this.parseChild(idMap, node, epMetadata);

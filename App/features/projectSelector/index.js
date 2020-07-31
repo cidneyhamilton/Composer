@@ -39,22 +39,15 @@ define(function(require) {
                     gameName: 'Summer Daze: Female Protagonist',
                     gameInternalName: 'SummerDazeF',
                     dir: '',
-                    assetDirectory: '../Game/Assets/Audio/',
+                    assetDirectory: '../Game/Assets/Resources/Composer/',                    
                     format: 'ink'
                 },
                 summerDazeMale: {
                     gameName: 'Summer Daze: Male Protagonist',
                     gameInternalName: 'SummerDazeM',
                     dir: '',
-                    assetDirectory: '../Game/Assets/Audio/',
-                    format: 'ink'
-                },
-                wizardsway : {
-                    gameName: 'Hero-U: Wizards Way',
-                    gameInternalName: 'wizardsway',
-                    dir: '',
                     assetDirectory: '../Game/Assets/Resources/Composer/',
-                    format: 'json'
+                    format: 'ink'
                 }
             };
             if(fileSystem.exists(projectPath)) {

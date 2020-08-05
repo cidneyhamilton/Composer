@@ -274,7 +274,7 @@ define(function(require){
         var doneLabel = "done";
 	
 	// TODO: Localize these labels
-	var doneText = epMetadata.script.trigger.type == "triggers.map" ? "Go Back" : "Done";
+	var doneText = epMetadata.script.trigger.type == "triggers.map" ? "Return to Map" : "Done";
 	
         var autoAddDone = !!node.AutoAddDone;
 

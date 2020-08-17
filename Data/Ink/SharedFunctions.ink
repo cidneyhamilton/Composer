@@ -22,14 +22,14 @@ VAR MetPrev = Nobody
     }
 
 === function ShowActor(name, mood, transition) ===
-   ~ showSpeaker = true
-   ~ speakerMood = mood
-   ~ speaker = true
+//   ~ showSpeaker = true
+//   ~ speakerMood = mood
+//   ~ speaker = true
    >>> SHOWACTOR: {name} {transition}
    
 === function HideActor(name) ===
-    ~ showSpeaker = false
-    ~ speaker = Nobody
+//    ~ showSpeaker = false
+//    ~ speaker = Nobody
     >>> HIDEACTOR: {name}
 
 // ************************************************************************

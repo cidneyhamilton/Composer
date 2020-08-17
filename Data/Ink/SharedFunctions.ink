@@ -25,7 +25,7 @@ VAR MetPrev = Nobody
    ~ showSpeaker = true
    ~ speakerMood = mood
    ~ speaker = true
-   >>> SHOWACTOR: {name}, {transition}
+   >>> SHOWACTOR: {name} {transition}
    
 === function HideActor(name) ===
     ~ showSpeaker = false

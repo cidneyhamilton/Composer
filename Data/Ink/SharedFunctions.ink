@@ -2,6 +2,8 @@
 // System: Actors
 // ************************************************************************
 
+VAR VisibleActors = ()
+
 // Potential emotions for talkers
 LIST Moods = neutral, happy, sad, angry, surprised
 
@@ -21,16 +23,15 @@ VAR MetPrev = Nobody
  	~ MetLast = Actor
     }
 
-=== function ShowActor(name, mood, transition) ===
-//   ~ showSpeaker = true
-//   ~ speakerMood = mood
-//   ~ speaker = true
-   >>> SHOWACTOR: {name} {transition}
+=== function ShowActor(Actor, mood, transition) ===
+~ VisibleActors += Actor
+
+>>> SHOWACTOR: {Actor} {transition}
    
-=== function HideActor(name) ===
-//    ~ showSpeaker = false
-//    ~ speaker = Nobody
-    >>> HIDEACTOR: {name}
+=== function HideActor(Actor) ===
+~ VisibleActors -= Actor
+
+>>> HIDEACTOR: {Actor}
 
 // ************************************************************************
 // System: Currency

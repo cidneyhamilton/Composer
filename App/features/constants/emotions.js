@@ -1,13 +1,15 @@
 define(function(require) {
 
 	var emotions = [
-		{ id:'0', name: 'Neutral'},
-		{ id:'1', name: 'Happy'},
-		{ id:'2', name: 'Sad'},
-		{ id:'3', name: 'Angry'},
-		{ id:'4', name: 'Surprised'},
-		{ id:'5', name: 'Special'},
-        { id:'6', name: 'Boggled'}
+	    { id:'0', name: 'Neutral'},
+	    { id:'1', name: 'Happy'},
+	    { id:'2', name: 'Sad'},
+	    { id:'3', name: 'Angry'},
+	    { id:'4', name: 'Surprised'},
+	    { id:'5', name: 'Special'},
+            { id:'6', name: 'Boggled'},
+	    { id:'7', name: 'Gloating'},
+	    { id:'8', name: 'Singing'}
     ];
 
 	var devices = [

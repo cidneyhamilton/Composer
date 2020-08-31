@@ -9,7 +9,10 @@ define(function(require) {
 	    { id:'5', name: 'Special'},
             { id:'6', name: 'Boggled'},
 	    { id:'7', name: 'Gloating'},
-	    { id:'8', name: 'Singing'}
+	    { id:'8', name: 'Singing'},
+	    { id:'9', name: 'Laughing'},
+	    { id:'10', name: 'Shouting'},
+	    { id:'11', name: 'Whispering'}
     ];
 
 	var devices = [

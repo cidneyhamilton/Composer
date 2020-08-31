@@ -42,12 +42,13 @@ define(function(require){
         }
     }
 
-	function removeSpecialCharacters(text) {
-		if (text && text != null) {
-			text = text.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '');
-		}
-		return text;
+    // Strip special characters from Composer input
+    function removeSpecialCharacters(text) {
+	if (text && text != null) {
+	    text = text.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '');
 	}
+	return text;
+    }
 	
     function removeWhitespace(text) {
         if(text && null != text) {
@@ -156,14 +157,14 @@ define(function(require){
     ctor.prototype.parseNodeChangeTagsHelper = function(idMap, tagList, prefix, depth) {
         var result = "";
         if (isNotEmpty(tagList)) {
-            tagList = removeSpecialCharacters(tagList.replace(",", ", ").toLowerCase());
+            tagList = tagList.toLowerCase();
             result += indent(depth);
             var tags = tagList.split(",");
-            if (tags.length > 1) {
-                result += "{0} ({1})".format(prefix, tagList);
-            } else {
-                result += "{0} {1}".format(prefix, tagList);
-            }
+
+	    // Go through the list of tags and add or remove each separately
+	    for (var i = 0; i < tags.length; i++) {
+		result += "\n{0} {1}".format(prefix, removeSpecialCharacters(removeWhitespace(tags[i])));
+	    }
 
             this.appendTagList(tagList);
         }

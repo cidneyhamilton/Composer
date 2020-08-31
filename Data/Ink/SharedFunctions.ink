@@ -164,9 +164,11 @@ VAR time = Morning
 	- time == Morning:
 	  ~ time = Afternoon
 	- time == Afternoon:
+	  ~ time = Dinnertime
+	- time == Dinnertime:
 	  ~ time = Evening
 	- time == Evening:
-		~ time = Bedtime
+	  ~ time = Bedtime
 	- time == Bedtime:
 	  ~ time = Morning
 	  ~ day++

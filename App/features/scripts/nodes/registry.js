@@ -29,7 +29,8 @@
 	require('./changeTags'),
         require('./setVariable'),
 	require('./showVignette'),
-	require('./hideVignette')
+	require('./hideVignette'),
+	require('./fade')
     ];
     
     // Nodes that should only appear in full games
@@ -43,7 +44,6 @@
         require('./changeStoryEvent'),
         require('./clearStoreStock'),
         require('./endScript'),
-        require('./fade'),
         require('./futureScript'),
         require('./hideCloseUp'),
         require('./incrementTime'),

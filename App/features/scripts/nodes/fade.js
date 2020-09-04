@@ -1,6 +1,10 @@
 define(function (require) {
+    var selectedGame = require('features/projectSelector/index');
+
     var ctor = function (attributes) {
         attributes = attributes || {};
+
+	this.advanced = selectedGame.activeProject.format == 'json';
 
         this.type = ctor.type;
         this.scope = attributes.scope || 'FadeOutAndIn';

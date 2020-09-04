@@ -631,6 +631,12 @@ define(function(require){
         return result;
     };
 
+    ctor.prototype.parseNodeFade = function(idMap, node, epMetadata) {
+	var result = indent(epMetadata.depth);
+	result += ">>> FADE";	
+	return result;
+    };
+
 	// Adds or Removes in-Game Currency (Lyra, Deeds, Demerits, Health)
 	ctor.prototype.parseNodeChangeMoney = function(idMap, node, epMetadata) {
 		var result = indent(epMetadata.depth);
@@ -1031,6 +1037,9 @@ define(function(require){
             case 'nodes.branch': 
                 output = this.parseNodeBranch(idMap, node, epMetadata.depth, epMetadata);
                 break;
+	    case 'nodes.fade':
+		output = this.parseNodeFade(idMap, node, epMetadata);
+		break;
 	    case 'nodes.changeMoney':
 		output = this.parseNodeChangeMoney(idMap, node, epMetadata);
 		break;

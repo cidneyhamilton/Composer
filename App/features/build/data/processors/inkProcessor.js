@@ -722,8 +722,10 @@ define(function(require){
         actor = node.actorId;
         actor = (actor == null ? "" : idMap[actor]);
 
+	var transition = node.hasTransition;
+	
 	// Invoke an Ink function to hide the actor
-        result += "~ HideActor({0})".format(actor);
+        result += "~ HideActor({0}, {1})".format(actor, transition);
 		
         return result;
     };

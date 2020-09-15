@@ -6,9 +6,13 @@
 
         this.type = ctor.type;
         this.id = attributes.id || system.guid();
-        //this.sceneId = attributes.sceneId || null;
-        //this.visible = attributes.visible || false;
+
+	// Reference to the actor
         this.actorId = attributes.actorId || null;
+
+	// True if the actor should disappear gradually
+	// End result of graudal removal is handled by the game engine
+	this.hasTransition = attributes.hasTransition || false;
     };
 
     ctor.type = 'nodes.removeActor';

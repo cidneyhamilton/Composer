@@ -28,10 +28,10 @@ VAR MetPrev = Nobody
 
 >>> SHOWACTOR: {Actor} {transition}
    
-=== function HideActor(Actor) ===
+=== function HideActor(Actor, transition) ===
 ~ VisibleActors -= Actor
 
->>> HIDEACTOR: {Actor}
+>>> HIDEACTOR: {Actor} {transition}
 
 // ************************************************************************
 // System: Currency

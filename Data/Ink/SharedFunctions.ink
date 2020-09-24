@@ -26,7 +26,7 @@ VAR MetPrev = Nobody
 === function ShowActor(Actor, mood, transition) ===
 ~ VisibleActors += Actor
 
->>> SHOWACTOR: {Actor} {transition}
+>>> SHOWACTOR: {Actor} {mood} {transition}
    
 === function HideActor(Actor, transition) ===
 ~ VisibleActors -= Actor

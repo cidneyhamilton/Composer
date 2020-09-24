@@ -707,10 +707,14 @@ define(function(require){
         actor = node.actorId;
         actor = (actor == null ? "" : idMap[actor]);
 
+	// Check to see if there's a transition
 	var transition = node.immediate ? false : true;
+
+	// Get the emotion. Convert to lowercase for ink output.
+	var emotion = emotionsMap.getEmotionById(node.emotion).toLowerCase();
 	
 	// Invoke an Ink function to show the actor
-        result += "~ ShowActor({0}, neutral, {1})".format(actor, transition);
+        result += "~ ShowActor({0}, {1}, {2})".format(actor, emotion, transition);
         return result;
     };
 

@@ -39,14 +39,14 @@ define(function(require) {
                     gameName: 'Summer Daze: Female Protagonist',
                     gameInternalName: 'SummerDazeF',
                     dir: '',
-                    assetDirectory: '../Game/Assets/Resources/Composer/',                    
+                    assetDirectory: '../Game/Assets/Data/',                    
                     format: 'ink'
                 },
                 summerDazeMale: {
                     gameName: 'Summer Daze: Male Protagonist',
                     gameInternalName: 'SummerDazeM',
                     dir: '',
-                    assetDirectory: '../Game/Assets/Resources/Composer/',
+                    assetDirectory: '../Game/Assets/Data/',
                     format: 'ink'
                 }
             };

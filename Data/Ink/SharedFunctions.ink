@@ -5,7 +5,7 @@
 VAR VisibleActors = ()
 
 // Potential emotions for talkers
-LIST Moods = neutral, happy, sad, angry, surprised
+LIST Moods = neutral, happy, sad, angry, surprised, special, boggled, gloating, singing, laughing, shouting, whispering
 
 VAR speaker = Nobody
 VAR speakerMood = neutral
@@ -90,11 +90,11 @@ LIST Minigames = laboomba, wizbang
 // ************************************************************************
 
 === function ShowProp(name) ===
-		>>> SHOW: {name}
+>>> SHOW: {name}
 
 
 === function HideProp(name) ===
-		>>> HIDE: {name}
+>>> HIDE: {name}
 
 // ************************************************************************
 // System: Reputation

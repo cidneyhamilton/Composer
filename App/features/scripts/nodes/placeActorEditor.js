@@ -1,5 +1,6 @@
 define(function(require) {
     var assetDatabase = require('infrastructure/assetDatabase'),
+        emotionsMap = require('features/constants/emotions'),	
         observable = require('plugins/observable'),
         NodeEditor = require('./nodeEditor'),
         Editor = require('features/shared/editor');
@@ -38,6 +39,11 @@ define(function(require) {
 
             return results[0] || { name:'Current' };
         });
+
+	observable.defineProperty(this, 'emotionsMap', function() {
+            return emotionsMap;
+        });
+
     };
 
     NodeEditor.baseOn(ctor);

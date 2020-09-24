@@ -5,6 +5,7 @@
     <!--/ko-->
     <!-- ko ifnot: node.advanced-->
     <span>Place actor </span><span class="actor" data-bind="text:actor.name"></span>
+    <span style="font-size:small; color: green">[<span data-bind="text: emotionsMap.getEmotionById(node.emotion)"></span>]</span>
     <!--/ko-->
   </div>
 
@@ -14,14 +15,11 @@
         <!--
         <input type="text" data-bind="value: node.pose, valueUpdate: 'afterkeydown'" placeholder="pose"/>
 		-->
-	<span>Pose:</span><select data-bind="options: availableBehaviours, value: node.behaviour, optionsCaption: 'Select Pose'"></select><br>
-		
-	<!--/ko-->
-
-	<!-- ko if: node.advanced -->
+	<span>Pose:</span><select data-bind="options: availableBehaviours, value: node.behaviour, optionsCaption: 'Select Pose'"></select><br>		
 	<label class="control-label">Immediate</label>	
 	<!-- /ko -->
 	<!-- ko ifnot: node.advanced -->
+	<select data-bind="options: emotionsMap.emotions, optionsText: 'name', optionsValue: 'id', value: node.emotion" style="float: right"></select>
 	<label class="control-label">With Transition</label>	
 	<!-- /ko -->
 	<input type="checkbox" data-bind="checked: node.immediate" />

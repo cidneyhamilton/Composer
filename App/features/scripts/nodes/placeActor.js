@@ -9,6 +9,7 @@ define(function(require) {
         this.actorId = attributes.actorId || null;
         this.spawnId = attributes.spawnId || null;
         this.pose = attributes.pose || null;
+	this.emotion = attributes.emotion || 0;
         this.behaviour = attributes.behaviour || null;
 	this.immediate = attributes.immediate || null;
 

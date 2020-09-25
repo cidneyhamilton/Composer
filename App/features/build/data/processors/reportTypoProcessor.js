@@ -9,7 +9,7 @@ define(function(require){
     ctor.prototype.constructor = baseReportProcessor;
 
     ctor.prototype.parseTypos = function(text, sceneName, scriptName) {
-	this.report.log(text, scriptName, sceneName);
+	this.report.log(text, "", "");
     };
     
     ctor.prototype.parseNode = function(idMap, node, nodeType, nodeIndex, epMetadata) {

@@ -2,40 +2,43 @@
 // See https://github.com/inkle/ink/blob/master/Documentation/WritingWithInk.md for documentation on syntax
 
 define(function(require){
-
-	// Initialize dependencies
+    
+    // Initialize dependencies
     var baseProcessor = require('features/build/data/processors/baseProcessor'), 
         baseWriter = require('features/build/baseWriter'),
-        path = requireNode('path'),
-        fileSystem = require('infrastructure/fileSystem'),
-        serializer = require('plugins/serializer'),
         db = require('infrastructure/assetDatabase'),
-        system = require('durandal/system'),
+        emotionsMap = require('features/constants/emotions'),
+	fileSystem = require('infrastructure/fileSystem'),
         loadedConstants = require('features/constants/loadedConstants'),
-        emotionsMap = require('features/constants/emotions');
+	path = requireNode('path'),
+        serializer = require('plugins/serializer'),
+        system = require('durandal/system');
 
     // Courtesy of https://stackoverflow.com/questions/610406/javascript-equivalent-to-printf-string-format
     // First, checks if it isn't implemented yet.
     if (!String.prototype.format) {
-      String.prototype.format = function() {
-        var args = arguments;
-        return this.replace(/{(\d+)}/g, function(match, number) { 
-          return typeof args[number] != 'undefined'
-            ? args[number]
-            : match
-          ;
-        });
-      };
+	String.prototype.format = function() {
+            var args = arguments;
+            return this.replace(/{(\d+)}/g, function(match, number) { 
+		return typeof args[number] != 'undefined'
+		    ? args[number]
+		    : match
+		;
+            });
+	};
     }
 
+    // Returns true if the given text string is not empty, false if empty
     function isNotEmpty(someText) {
         return someText && null != someText && someText.length > 0;
     }
 
+    // Append potentiallyAppend to original string if not empty
     function appendIfNotEmpty(origVal, potentiallyAppend) {
         return (isNotEmpty(potentiallyAppend) ? (origVal + potentiallyAppend) : origVal);
     }
 
+    // Add potentialValue to a list if it's not null
     function addToArray(list, potentialValue) {
         if (list && isNotEmpty(potentialValue) && list.indexOf(potentialValue) == -1) {
             list.push(potentialValue);
@@ -49,7 +52,8 @@ define(function(require){
 	}
 	return text;
     }
-	
+
+    // Remove the whitespace from a string
     function removeWhitespace(text) {
         if(text && null != text) {
             return text.replace(/\s/g,'');
@@ -57,6 +61,7 @@ define(function(require){
         return text;
     }
 
+    // Start with an indent of depth
     function indent(depth) {
         var result = '\n';
         for (var i = 1; i < depth; i++) {
@@ -75,6 +80,7 @@ define(function(require){
     ctor.prototype.init = function() {
         this.data = {};
 
+	// Composer data types; props, scenes, and actors
 	this.data.props = {};
         this.data.scenes = {};
 	this.data.actors = {};
@@ -82,13 +88,18 @@ define(function(require){
         this.inkNameLookup = {};
         this.idToInkNameMap = {};
         this.entryPoints = {};
+
+	// Tags, variables, and constants used within ink
         this.tagList = [];
         this.varList = [];
         this.constList = [];
         this.invList = [];
+
+	// Used for menus within ink
         this.menuList = [];
     };
 
+    // Get the ink name of an asset
     ctor.prototype.getInkName = function(asset) {
         if (typeof asset === 'string') {
             if (!this.inkNameLookup[asset]) {
@@ -119,6 +130,39 @@ define(function(require){
         return assetName;
     };
 
+    
+    // Get the name of the knot to jump to in an invoke script node
+    ctor.prototype.getKnotName = function(node, currentScope) {
+        var knotName, stitch;
+        
+        if (node.currentScope == "Current") {
+	    // If the script is in the current scope, use entry points
+	    stitch = this.entryPoints[node.entryPointId].replace(/\s+/g, '');
+            if (stitch == null) {
+		// otherwise, default to Main
+                stitch = "Main";
+            }
+            return stitch;
+        } else {
+	    // TODO: Validation to make sure this is a valid script?
+	    knotName = this.getKnotNameFromScriptId(node.scriptId);			
+            return knotName;
+        }
+    }
+    
+    ctor.prototype.getKnotNameFromScriptId = function(scriptId) {
+        // Get the name of the knot when passed in a script
+
+        // TODO: Map these to something more human readable/unique?
+        
+        if (!this.idToInkNameMap[scriptId]) {
+            // Strip hyphens from output
+            return scriptId.replace(/-/g,"_");
+        } else {
+            return this.idToInkNameMap[scriptId];
+        }
+    };
+    
     ctor.prototype.appendOutput = function(epMetadata, output) {
         if (isNotEmpty(output)) {
 	    var scriptName = this.getKnotNameFromScript(epMetadata.script);	    
@@ -142,33 +186,31 @@ define(function(require){
     
     // Handle Tag Changing
     ctor.prototype.parseNodeChangeTags = function(idMap, node, epMetadata) {
-        var result = "";
-	var depth = epMetadata.depth;
+	var $that = this;
+	var helper = function(idMap, tagList, prefix, depth) {
+            var result = "";
+            if (isNotEmpty(tagList)) {
+		tagList = tagList.toLowerCase();
+		result += indent(depth);
+		var tags = tagList.split(",");		
+		// Go through the list of tags and add or remove each separately
+		for (var i = 0; i < tags.length; i++) {
+		    result += "\n{0} {1}".format(prefix, removeSpecialCharacters(removeWhitespace(tags[i])));
+		}
+		
+		$that.appendTagList(tagList);
+            }
+            return result;
+	};
 	
         if (node.tagsToAdd) {
-            result = appendIfNotEmpty(result, this.parseNodeChangeTagsHelper(idMap, node.tagsToAdd, "~ Tags +=", depth));
-        }
-        if (node.tagsToRemove) {
-            result = appendIfNotEmpty(result, this.parseNodeChangeTagsHelper(idMap, node.tagsToRemove, "~ Tags -=", depth));
-        }
-        return result;
-    };
-    
-    ctor.prototype.parseNodeChangeTagsHelper = function(idMap, tagList, prefix, depth) {
-        var result = "";
-        if (isNotEmpty(tagList)) {
-            tagList = tagList.toLowerCase();
-            result += indent(depth);
-            var tags = tagList.split(",");
-
-	    // Go through the list of tags and add or remove each separately
-	    for (var i = 0; i < tags.length; i++) {
-		result += "\n{0} {1}".format(prefix, removeSpecialCharacters(removeWhitespace(tags[i])));
-	    }
-
-            this.appendTagList(tagList);
-        }
-        return result;
+            return appendIfNotEmpty("", helper(idMap, node.tagsToAdd, "~ Tags +=", epMetadata.depth));
+        } else if (node.tagsToRemove) {
+            return appendIfNotEmpty("", helper(idMap, node.tagsToRemove, "~ Tags -=", epMetadata.depth));
+        } else {
+	    // Unclear value; do nothing
+	    return "";
+	}
     };
 
     // Handle Invoke Scripts
@@ -182,14 +224,13 @@ define(function(require){
 
         return result;
     };
-    
+
+    // Handle Quiz nodes
     ctor.prototype.parseNodeQuestionAndAnswer = function(idMap, node, epMetadata) {
 	var options = node.options;
 	
-	var result = indent(epMetadata.depth);
-	
-	result += "Quiz: {0}: {1}".format(node.header, node.text);
-	
+	var result = indent(epMetadata.depth);	
+	result += "Quiz: {0}: {1}".format(node.header, node.text);	
 	epMetadata.depth++;
 	
 	if (options) {
@@ -198,51 +239,17 @@ define(function(require){
 	    }
 	}
 
-	result += indent(epMetadata.depth) + "-";
-	
+	result += indent(epMetadata.depth) + "-";	
 	epMetadata.depth--;
 	
 	return result;
     };
-    
-    ctor.prototype.getKnotNameFromScriptId = function(scriptId) {
-        // Get the name of the knot when passed in a script
-
-        // TODO: Map these to something more human readable/unique?
         
-        if (!this.idToInkNameMap[scriptId]) {
-            // Strip hyphens from output
-            return scriptId.replace(/-/g,"_");
-        } else {
-            return this.idToInkNameMap[scriptId];
-        }
-    };
-
-    // Get the name of the knot to jump to in an invoke script node
-    ctor.prototype.getKnotName = function(node, currentScope) {
-        var knotName, stitch;
-        
-        if (node.currentScope == "Current") {
-	    // If the script is in the current scope, use entry points
-	    stitch = this.entryPoints[node.entryPointId].replace(/\s+/g, '');
-            if (stitch == null) {
-		// otherwise, default to Main
-                stitch = "Main";
-            }
-            return stitch;
-        } else {
-	    // TODO: Validation to make sure this is a valid script?
-	    knotName = this.getKnotNameFromScriptId(node.scriptId);			
-            return knotName;
-        }
-    }
-    
-    
     // Handle setting variables
     ctor.prototype.parseNodeSetVariable = function(idMap, node, epMetadata) {
-        var result = indent(epMetadata.depth);
-	
+        var result = indent(epMetadata.depth);	
 	var varName = node.name.toLowerCase();
+	
         if (node.add) {
             // TODO: Implement for values and ranges of values
             result += "~ {0} += {1}".format(varName, node.source.value);
@@ -252,19 +259,16 @@ define(function(require){
         }
 	
         this.appendVarList(varName);
-
         return result;
     };
 
-	ctor.prototype.parseNodeShowStore = function(idMap, node, epMetadata) {
-	    var result = indent(epMetadata.depth);
-	    
-	    // TODO: Implement on Unity side
-	    result += ">>> SHOWSTORE";
-		
-	    return result;
-	};
-	
+    // Show store node.
+    ctor.prototype.parseNodeShowStore = function(idMap, node, epMetadata) {
+	var result = indent(epMetadata.depth);
+	result += ">>> SHOWSTORE";	
+	return result;
+    };
+    
     // Handle Show Menu nodes
     ctor.prototype.parseNodeShowMenu = function(idMap, node, epMetadata) {
         var options = node.options;
@@ -290,8 +294,7 @@ define(function(require){
             for (var i = 0; i < options.length; i++) {
                 result += this.parseOption(idMap, options[i], epMetadata);
             }
-        }
-
+        }	
         epMetadata.depth--;
 
         if (autoAddDone) {
@@ -316,14 +319,11 @@ define(function(require){
 	if (["triggers.map"].indexOf(trigger) > -1) {
 	    result += indent(epMetadata.depth+1) + "-> DONE";
 	}
-
         return result;
     };
 
-    // Handle Options
+    // Handle Options in Menu nodes
     ctor.prototype.parseOption = function(idMap, node, epMetadata) {
-
-
         var result = "";
 
         var alwaysShow = !!node.ignoreChildAvailability;
@@ -339,6 +339,7 @@ define(function(require){
         } else {
             result += "*   ";
         }
+	
         if (expression) {
             result += "{ {0} } ".format(this.parseExpression(idMap, expression));
         }
@@ -372,18 +373,20 @@ define(function(require){
 
         // Tag the speak node with an emotion.
         var tagString = "";
-
+	var emotion = emotionsMap.getEmotionById(node.emotion);
+	var emotion2 = emotionsMap.getEmotionById(node.emotion2);
+	
         if (node.emotion != 0 && listener != "" && node.emotion2 != 0) {
-			// If both the speaker and the listener have emotions, tag both
-            tagString += "# {0} # {1} ".format(emotionsMap.getEmotionById(node.emotion), emotionsMap.getEmotionById(node.emotion2));
+	    // If both the speaker and the listener have emotions, tag both
+            tagString += "# {0} # {1} ".format(emotion, emotion2);
         } else if (node.emotion != 0) {
-			// Tag the speaker with a default emotion
-            tagString += "# {0} # neutral".format(emotionsMap.getEmotionById(node.emotion));
+	    // Tag the speaker with a default emotion
+            tagString += "# {0} # neutral".format(emotion);
         } else if (listener != "" && node.emotion2 != 0) {
-			// Tag the listener with a default emotion
-            tagString += "# neutral # {0} ".format(emotionsMap.getEmotionById(node.emotion2));
+	    // Tag the listener with a default emotion
+            tagString += "# neutral # {0} ".format(emotion2);
         }
-
+	
         result += "{0}: {1} {2}".format(speaker, node.text, tagString);
         return result;
     };
@@ -393,7 +396,7 @@ define(function(require){
         var result = "";
         if (node.sections && node.sections.length > 0) {
             for (var i = 0; i < node.sections.length; i++) {
-				// Go through each section and parse each branch node
+		// Go through each section and parse each branch node
                 var s = this.parseNodeBranchSection(idMap, node.sections[i], depth + 1, epMetadata);
                 if (isNotEmpty(s)) {
                     result += indent(depth + 1) + "- {0}".format(s);
@@ -445,7 +448,7 @@ define(function(require){
 		
         switch(node.type) {
         case "expressions.variableComparison":
-            var operatorVal;
+            var operatorVal, varName, constName;
             switch(node.operator) {
             case "lt":
                 operatorVal = "<";
@@ -466,9 +469,9 @@ define(function(require){
                 operatorVal = "!=";
                 break;
             }
-            var varName = removeWhitespace(node.variableName.toLowerCase());
+            varName = removeWhitespace(node.variableName.toLowerCase());
             this.appendVarList(varName.toLowerCase());
-            var constName = removeWhitespace(node.compareTo);
+            constName = removeWhitespace(node.compareTo);
             this.appendConstList(constName);
             result += "{0} {1} {2}".format(varName, operatorVal, constName);
             break;
@@ -496,36 +499,36 @@ define(function(require){
             }
             break;
         case "expressions.skillCheck":
-			result += "SkillCheck({0}, {1})".format(node.skill, node.target);
+	    result += "SkillCheck({0}, {1})".format(node.skill, node.target);
             break;
-		case "expressions.currencyCheck":
-			result += "CheckCurrency({0}, {1})".format(node.currency, node.target);
-			break;
-		case "expressions.currentScene":
-			var sceneName = this.getInkNameFromId(node.sceneId);
-			result += "CheckCurrentScene({0})".format(sceneName);
-			break;
+	case "expressions.currencyCheck":
+	    result += "CheckCurrency({0}, {1})".format(node.currency, node.target);
+	    break;
+	case "expressions.currentScene":
+	    var sceneName = this.getInkNameFromId(node.sceneId);
+	    result += "CheckCurrentScene({0})".format(sceneName);
+	    break;
         case "expressions.reputationComparison":
-			var actorName = idMap[node.actorId] + "Reputation";
-			var target = node.value;
-
-			// TODO: Can operator be passed to ink in a more streamlined manner?
-			if (node.operator == "eq") {
-				result += "CheckReputationEquals({0}, {1})".format(actorName, target);
-			} else if (node.operator == "gte") {
-				result += "CheckReputation({0}, {1})".format(actorName, target);
-			} else if (node.operator == "gt") {
-				result += "CheckReputation({0}, {1})".format(actorName, target + 1);
-			} else if (node.operator == "lte") {
-				result += "CheckReputationLTE({0}, {1})".format(actorName, target);
-			} else if (node.operator == "lte") {
-				result += "CheckReputationLTE({0}, {1})".format(actorName, target + 1);
-			} else if (node.operator == "not") {
-				result += "CheckReputationNot({0}, {1})".format(actorName, target + 1);
-			} else {
-				// Unknown comparison operator
-				debugger;
-			}
+	    var actorName = idMap[node.actorId] + "Reputation";
+	    var target = node.value;
+	    
+	    // TODO: Can operator be passed to ink in a more streamlined manner?
+	    if (node.operator == "eq") {
+		result += "CheckReputationEquals({0}, {1})".format(actorName, target);
+	    } else if (node.operator == "gte") {
+		result += "CheckReputation({0}, {1})".format(actorName, target);
+	    } else if (node.operator == "gt") {
+		result += "CheckReputation({0}, {1})".format(actorName, target + 1);
+	    } else if (node.operator == "lte") {
+		result += "CheckReputationLTE({0}, {1})".format(actorName, target);
+	    } else if (node.operator == "lte") {
+		result += "CheckReputationLTE({0}, {1})".format(actorName, target + 1);
+	    } else if (node.operator == "not") {
+		result += "CheckReputationNot({0}, {1})".format(actorName, target + 1);
+	    } else {
+		// Unknown comparison operator
+		debugger;
+	    }
             break;
         case "expressions.previousScene":
             // TODO: Implement Previous Scene
@@ -631,35 +634,36 @@ define(function(require){
         return result;
     };
 
+    // Fade node
     ctor.prototype.parseNodeFade = function(idMap, node, epMetadata) {
 	var result = indent(epMetadata.depth);
 	result += ">>> FADE";	
 	return result;
     };
 
-	// Adds or Removes in-Game Currency (Lyra, Deeds, Demerits, Health)
-	ctor.prototype.parseNodeChangeMoney = function(idMap, node, epMetadata) {
-		var result = indent(epMetadata.depth);
-
-		// TODO: Lookup currency in reference table
-		var currencyLookup = ["Lyra", "Deeds", "Demerits", "Health"];
-		var currency = currencyLookup[node.currency];
-
-		// NO amount specified; don't do anything
-		if (node.amount == null) {
-			return;
-		}
-
-		// Add amount to currency
-		if (node.change == 0) {
-			result += "~ RemoveCurrency({0}, {1})".format(currency, node.amount)
-		} else {
-			result += "~ AddCurrency({0}, {1})".format(currency, node.amount);
-		}
+    // Adds or Removes in-Game Currency (Lyra, Deeds, Demerits, Health)
+    ctor.prototype.parseNodeChangeMoney = function(idMap, node, epMetadata) {
+	var result = indent(epMetadata.depth);
 	
-		return result;
-	};
+	// TODO: Lookup currency in reference table
+	var currencyLookup = ["Lyra", "Deeds", "Demerits", "Health"];
+	var currency = currencyLookup[node.currency];
 	
+	// NO amount specified; don't do anything
+	if (node.amount == null) {
+	    return;
+	}
+	
+	// Add amount to currency
+	if (node.change == 0) {
+	    result += "~ RemoveCurrency({0}, {1})".format(currency, node.amount)
+	} else {
+	    result += "~ AddCurrency({0}, {1})".format(currency, node.amount);
+	}
+	
+	return result;
+    };
+    
     // Change a character's reputation
     ctor.prototype.parseChangeReputation = function(idMap, node, depth) {
         var result = indent(depth);
@@ -673,10 +677,10 @@ define(function(require){
         var amount = node.amount;
         // Reputation is stored as a variable in Ink
         if (node.change) {
-			// Invoke an Ink function to increase reputation
+	    // Invoke an Ink function to increase reputation
             result += "~ AddReputation({0}, {1})".format(repVariable, amount);
         } else {
-			// Invoke an Ink function to decrease reputation
+	    // Invoke an Ink function to decrease reputation
             result += "~ RemoveReputation({0}, {1})".format(repVariable, amount);
         }
         
@@ -736,7 +740,6 @@ define(function(require){
 
     ctor.prototype.parsePlaySoundEffect = function(idMap, node, depth) {
         var soundEffect;
-
         var result = indent(depth);
 
         if (node.soundEffectName == null) {
@@ -772,22 +775,24 @@ define(function(require){
         return result;
     }
 
-	ctor.prototype.parseChangePropVisibility = function(idMap, node, epMetadata) {
-		var result = indent(epMetadata.depth);
+    ctor.prototype.parseChangePropVisibility = function(idMap, node, epMetadata) {
+	var result = indent(epMetadata.depth);
+	
+	// TODO: Better ink name lookup
+	var propName = this.data.props[node.propId].inkName;
+	if (node.status == "Visible") {
+	    result += "~ ShowProp({0})".format(propName);
+	} else if (node.status == "Hidden") {
+	    result += "~ HideProp({0})".format(propName);
+	} else {
+	    // TODO: Implement Open, Closed, Opening, and Closing
+	}
+	
+	return result;
+    };
 
-		// TODO: Better ink name lookup
-		var propName = this.data.props[node.propId].inkName;
-		if (node.status == "Visible") {
-			result += "~ ShowProp({0})".format(propName);
-		} else if (node.status == "Hidden") {
-			result += "~ HideProp({0})".format(propName);
-		} else {
-			// TODO: Implement Open, Closed, Opening, and Closing
-		}
-
-		return result;
-	};
-    
+    // Mostly overrides command invoke commands
+    // TODO: Move this out of Composer
     ctor.prototype.parseInvokeCommand = function(idMap, node, depth) {
         var result = indent(depth);
 	var command = node.command.toLowerCase();
@@ -812,10 +817,9 @@ define(function(require){
 
     ctor.prototype.parseScene = function(context, idMap, scene) {
         var sceneInkName = this.getInkName(scene);
-
         if (this.data.scenes[sceneInkName]) {
             debugger;
-            // TODO: Cidney - scene names are not guaranteed to be unique in Composer,
+            // TODO: scene names are not guaranteed to be unique in Composer,
             // leaving this as a debug step for now
         } else {            
             this.data.scenes[sceneInkName] = {};
@@ -827,76 +831,76 @@ define(function(require){
         }
     };
 
-	ctor.prototype.initJournalComments = function(actorName, component) {
-		this.data.actors[actorName].comments = [];
-		for (var j = 0; j < component.comments.length; j++) {
-			this.data.actors[actorName].comments[j] = component.comments[j];
-		}		
-	};
-
-	ctor.prototype.initCharSheet = function(actorName, component) {
-		// This character must be the player
-		this.data.player = actorName;
-		
-		// Store character sheet
-		
-		// TODO: Define this list in Composer
-		this.data.actors[actorName].stats = {};
-		this.data.actors[actorName].stats.Smarts = component.smarts;
-		this.data.actors[actorName].stats.Fitness = component.fitness;
-		this.data.actors[actorName].stats.Charm = component.charm;
-		this.data.actors[actorName].stats.Skills = component.skills;
-		this.data.actors[actorName].stats.Luck = component.luck;
-		this.data.actors[actorName].stats.Moxie = component.moxie;		
-	};
+    ctor.prototype.initJournalComments = function(actorName, component) {
+	this.data.actors[actorName].comments = [];
+	for (var j = 0; j < component.comments.length; j++) {
+	    this.data.actors[actorName].comments[j] = component.comments[j];
+	}		
+    };
+    
+    ctor.prototype.initCharSheet = function(actorName, component) {
+	// This character must be the player
+	this.data.player = actorName;
 	
-	ctor.prototype.parseActor = function(context, idMap, actor) {
-		var actorName = actor.name;
-
-		if (this.data.actors[actorName]) {
-			debugger;
-			// TODO: Actor names must be unique
-		} else {
-			this.data.actors[actorName] = {};
-
-			this.data.actors[actorName].description = actor.description;
-			
-			// Handle components
-			if (actor.components && actor.components != null) {
-				for (var i = 0; i < actor.components.length; i++) {
-					var component = actor.components[i];
-					
-					if (component.type == "components.reputationComponent") {
-						this.data.actors[actorName].reputation = component.reputation;
-					} else if (component.type == "character.simpleModel") {
-						this.initCharSheet(actorName, component);
-					} else if (component.type == "components.journalQuoteComponent") {
-						this.data.actors[actorName].quote = component.quote;
-					} else if (component.type == "components.journalPlayerCommentComponent") {
-						this.initJournalComments(actorName, component);
-					}
-				}			
-			}
-		}
-	};
-
-	ctor.prototype.parseProp = function(context, idMap, prop) {
-		var propId = prop.id;
-		var propName = removeWhitespace(prop.name);
-
-		if (this.data.props[propId]) {
-			// debugger;
-			// TODO: prop names are not guaranteed to be unique in Composer,
+	// Store character sheet
+	
+	// TODO: Define stat list in Composer
+	this.data.actors[actorName].stats = {};
+	this.data.actors[actorName].stats.Smarts = component.smarts;
+	this.data.actors[actorName].stats.Fitness = component.fitness;
+	this.data.actors[actorName].stats.Charm = component.charm;
+	this.data.actors[actorName].stats.Skills = component.skills;
+	this.data.actors[actorName].stats.Luck = component.luck;
+	this.data.actors[actorName].stats.Moxie = component.moxie;		
+    };
+    
+    ctor.prototype.parseActor = function(context, idMap, actor) {
+	var actorName = actor.name;
+	
+	if (this.data.actors[actorName]) {
+	    debugger;
+	    // TODO: Actor names must be unique
+	} else {
+	    this.data.actors[actorName] = {};
+	    
+	    this.data.actors[actorName].description = actor.description;
+	    
+	    // Handle components
+	    if (actor.components && actor.components != null) {
+		for (var i = 0; i < actor.components.length; i++) {
+		    var component = actor.components[i];
+		    
+		    if (component.type == "components.reputationComponent") {
+			this.data.actors[actorName].reputation = component.reputation;
+		    } else if (component.type == "character.simpleModel") {
+			this.initCharSheet(actorName, component);
+		    } else if (component.type == "components.journalQuoteComponent") {
+			this.data.actors[actorName].quote = component.quote;
+		    } else if (component.type == "components.journalPlayerCommentComponent") {
+			this.initJournalComments(actorName, component);
+		    }
+		}			
+	    }
+	}
+    };
+    
+    ctor.prototype.parseProp = function(context, idMap, prop) {
+	var propId = prop.id;
+	var propName = removeWhitespace(prop.name);
+	
+	if (this.data.props[propId]) {
+	    // debugger;
+	    // TODO: prop names are not guaranteed to be unique in Composer,
             // leaving this as a debug step for now		
-		} else {
-			// Add to data
-			this.data.props[propId] = {};
-			this.data.props[propId].inkName = propName;
-			this.data.props[propId].scripts = {};
-		}
+	} else {
+	    // Add to data
+	    this.data.props[propId] = {};
+	    this.data.props[propId].inkName = propName;
+	    this.data.props[propId].scripts = {};
+	}
 		
-	};
-
+    };
+    
     // Get a unique name for the knot corresponding to the Map trigger for a given scene ID
     ctor.prototype.getMapKnotName = function(sceneId) {
 	if (sceneId == null) {
@@ -1096,9 +1100,9 @@ define(function(require){
             case 'nodes.changeTags' : 
                 output = this.parseNodeChangeTags(idMap, node, epMetadata);
                 break;
-			case 'nodes.questionAndAnswer':
-				output = this.parseNodeQuestionAndAnswer(idMap, node, epMetadata);
-				break;
+	    case 'nodes.questionAndAnswer':
+		output = this.parseNodeQuestionAndAnswer(idMap, node, epMetadata);
+		break;
             case 'nodes.setVariable' : 
                 output = this.parseNodeSetVariable(idMap, node, epMetadata);
                 break;
@@ -1143,117 +1147,117 @@ define(function(require){
         epMetadata.depth--;
     };
 
-	ctor.prototype.getActorData = function(fieldName) {
-	    var result = "";
-	    var actors = db.actors.entries;
+    ctor.prototype.getActorData = function(fieldName) {
+	var result = "";
+	var actors = db.actors.entries;
+	
+	for (var i = 0; i < actors.length; i++) {
+	    var actor = actors[i];			
+	    var component = fieldName.toLowerCase();
 	    
-	    for (var i = 0; i < actors.length; i++) {
-		var actor = actors[i];			
-		var component = fieldName.toLowerCase();
-		
-		if (this.data.actors[actor.name] && this.data.actors[actor.name][component]) {
-		    var value = this.data.actors[actor.name][component];
-		    if (Array.isArray(value)) {
-			// Output a value for each member of the array
-			for (var j = 0; j < value.length; j++) {
-			    result += "\nVAR {0}{1}{2} = \"{3}\"\n".format(actor.name, fieldName, j+1, value[j]);							
-			}					
-		    } else if (value % 1 === 0) {
-			// If the value is an integer
-			result += "\nVAR {0}{1} = {2}".format(actor.name, fieldName, value);				
+	    if (this.data.actors[actor.name] && this.data.actors[actor.name][component]) {
+		var value = this.data.actors[actor.name][component];
+		if (Array.isArray(value)) {
+		    // Output a value for each member of the array
+		    for (var j = 0; j < value.length; j++) {
+			result += "\nVAR {0}{1}{2} = \"{3}\"\n".format(actor.name, fieldName, j+1, value[j]);							
+		    }					
+		} else if (value % 1 === 0) {
+		    // If the value is an integer
+		    result += "\nVAR {0}{1} = {2}".format(actor.name, fieldName, value);				
 		    } else {
 			value = value.replace(/(\r\n|\n|\r)/gm, " ");
 			result += "\nVAR {0}{1} = \"{2}\"\n".format(actor.name, fieldName, value);
 		    }
-		} else {
-		    // No component found for this actor; but all characters have a reputation
-		    if (component == "reputation") {
-			result += "\nVAR {0}{1} = {2}".format(actor.name, fieldName, 0);
-		    }
+	    } else {
+		// No component found for this actor; but all characters have a reputation
+		if (component == "reputation") {
+		    result += "\nVAR {0}{1} = {2}".format(actor.name, fieldName, 0);
 		}
 	    }
+	}
+	
+	return result;
+	
+    };	
+    
+    ctor.prototype.getListFromDB = function(composerListName, inkListName, getName) {
+	var composerList = db[composerListName].entries;
+	
+	if (composerList.length > 0) {
+	    var inkList = "";
+	    var inkItem;
 	    
-	    return result;
+	    for (var i = 0; i < composerList.length; i++) {
+		inkItem = getName(composerList[i]);
+		if (i < composerList.length - 1) {
+		    inkItem += ", ";
+		}
+		inkList += inkItem;
+	    }
 	    
-	};	
-	
-	ctor.prototype.getListFromDB = function(composerListName, inkListName, getName) {
-		var composerList = db[composerListName].entries;
-		
-		if (composerList.length > 0) {
-			var inkList = "";
-			var inkItem;
-			
-			for (var i = 0; i < composerList.length; i++) {
-				inkItem = getName(composerList[i]);
-				if (i < composerList.length - 1) {
-					inkItem += ", ";
-				}
-				inkList += inkItem;
-			}
-				
-			return "\n// List of Assets\nLIST {0} = {1}\n".format(inkListName, inkList);				
-		} else {
-			return "";
-		}
-	};
-
-	
-	ctor.prototype.getPlayerInitData = function() {
-		var result = "";
-		if (this.data.player) {
-			result = "\n\nVAR PLAYER = {0}\n".format(this.data.player);
-		
-			var playerData = this.data.actors[this.data.player].stats;
-			for (var key in playerData) {
-				var value = playerData[key];
-				result += "\nVAR {0} = {1}".format(key, value);
-			}
-			
-			result +="\n";
-		}
-		return result;
-	};
-	
-	// Get the name of an audio clip for Ink
-	ctor.prototype.getClipName = function(item) {
-	    return removeSpecialCharacters(removeWhitespace(item.slice(0, item.indexOf('.'))));
-	};
+	    return "\n// List of Assets\nLIST {0} = {1}\n".format(inkListName, inkList);				
+	} else {
+	    return "";
+	}
+    };
+    
+    
+    ctor.prototype.getPlayerInitData = function() {
+	var result = "";
+	if (this.data.player) {
+	    result = "\n\nVAR PLAYER = {0}\n".format(this.data.player);
+	    
+	    var playerData = this.data.actors[this.data.player].stats;
+	    for (var key in playerData) {
+		var value = playerData[key];
+		result += "\nVAR {0} = {1}".format(key, value);
+	    }
+	    
+	    result +="\n";
+	}
+	return result;
+    };
+    
+    // Get the name of an audio clip for Ink
+    ctor.prototype.getClipName = function(item) {
+	return removeSpecialCharacters(removeWhitespace(item.slice(0, item.indexOf('.'))));
+    };
     
 	// Get the name of a composer entity (actor, scene, etc) for Ink
     ctor.prototype.getEntityName = function(item) {
 	return removeSpecialCharacters(removeWhitespace(item.name));
     };
     
-	// Get a list of props and include it in the script
-	ctor.prototype.getPropList = function() {
+    // Get a list of props and include it in the script
+    ctor.prototype.getPropList = function() {
 	
-		var propList = "";
-		var orderedPropNames = [];
-		for (var propId in this.data.props) {
-			var prop = this.data.props[propId];
-			orderedPropNames.push(prop.inkName);
-		}
-
-		orderedPropNames.sort();
-		for (var i = 0; i < orderedPropNames.length; i++) {
-			var propItem = orderedPropNames[i];
-			if (i < orderedPropNames.length - 1) {
-				propItem += ", ";
-			}
-			propList += propItem;
-		}
-		
-		if (propList != "") {
-			return "\nLIST Props = {0}\n".format(propList);
-		} else {
-			return "";
+	var propList = "";
+	var orderedPropNames = [];
+	for (var propId in this.data.props) {
+	    var prop = this.data.props[propId];
+	    orderedPropNames.push(prop.inkName);
+	}
+	
+	orderedPropNames.sort();
+	for (var i = 0; i < orderedPropNames.length; i++) {
+	    var propItem = orderedPropNames[i];
+	    if (i < orderedPropNames.length - 1) {
+		propItem += ", ";
+	    }
+	    propList += propItem;
+	}
+	
+	if (propList != "") {
+	    return "\nLIST Props = {0}\n".format(propList);
+	} else {
+	    return "";
 		}	
-	};
-	   
+    };
+    
     ctor.prototype.finish = function(context, idMap) {
         baseProcessor.prototype.finish.call(this, context, idMap);
-
+	
         // This should generate:
         // One <gameName.ink> file importing all of the tag, inventory, variable, scene, and scene\script entries
         // the inventory, variablee, scene, and scene\script entries
@@ -1328,7 +1332,7 @@ define(function(require){
             orderedSceneNames.push(scene);
         }
 
-		orderedSceneNames.sort();
+	orderedSceneNames.sort();
         for (var i = 0; i < orderedSceneNames.length; i++) {
             // add its file to the final game output too
             gameOutput += "\nINCLUDE " + orderedSceneNames[i] + ".ink";
@@ -1395,7 +1399,6 @@ define(function(require){
             }                
         }
     }
-
 
     // Keep track of all constants in the Ink story
     ctor.prototype.appendConstList = function(singleConst) {

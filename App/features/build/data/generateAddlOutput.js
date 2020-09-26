@@ -24,10 +24,10 @@ define(function(require){
         localizationProcessor = require('features/build/data/processors/localizationProcessor'),
         scriptDataProcessor = require('features/build/data/processors/scriptDataProcessor'),
         inkProcessor = require('features/build/data/processors/inkProcessor'),
+	voiceActingProcessor = require('features/build/data/processors/voiceActingProcessor'),
         gameModelProcessor = require('features/build/data/processors/gameModelProcessor'),
         proofreadSimpleProcessor = require('features/build/data/processors/proofreadSimpleProcessor'),
         proofreadScriptProcessor = require('features/build/data/processors/proofreadScriptProcessor'),
-
         selectedGame = require('features/projectSelector/index');
 
     return {
@@ -38,16 +38,19 @@ define(function(require){
                 var allProcessors = [reportTagUsageProcessor, reportHtmlTagsProcessor, reportResourceUsageProcessor, 
                                      reportVariableUsageProcessor, reportSpeechVariableUsageProcessor,
                                      reportAutosaveUsageProcessor, reportInvokeCommandUsageProcessor, 
-                                     reportBadExpressionsProcessor, reportBadResources, reportTimeUsageProcessor, reportBadInvokeScriptProcessor, 
-                                     reportQuestUsageProcessor, reportBadGuidProcessor, 
+                                     reportBadExpressionsProcessor, reportBadResources, reportBadInvokeScriptProcessor, 
+                                     reportBadGuidProcessor, 
                                      gameModelProcessor, localizationProcessor, scriptDataProcessor,
                                      proofreadSimpleProcessor, proofreadScriptProcessor, reportTypoProcessor
                                      ];
 
                 if (selectedGame.activeProject.format == 'ink') {
                     allProcessors.push(inkProcessor);
+		    allProcessors.push(voiceActingProcessor);
                 } else {
 		    allProcessors.push(unityCodeGenProcessor);
+		    allProcessors.push(reportQuestUsageProcessor);
+		    allProcessors.push(reportTimeUsageProcessor);
 		}
 
                 // Map of [GUID, <Name of [Actor | Prop | Scene | Script | StoryEvent]> ]

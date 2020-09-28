@@ -17,6 +17,7 @@ define(function(require) {
         movies : new ContentIndex("Movies"),
         vignettes: new ContentIndex("vignettes"),
         soundEffects: new ContentIndex("SoundEffects"),
+	voiceClips: new ContentIndex("VoiceClips"),
         closeUps : new ContentIndex("CloseUps"),
         scenes: new AssetIndex("Scenes", Scene),
         actors: new AssetIndex("Actors", Actor),
@@ -38,6 +39,7 @@ define(function(require) {
                 this.constants.load(),
                 this.vignettes.load(),
                 this.soundEffects.load(),
+		this.voiceClips.load(),
                 this.closeUps.load()
             );
         }

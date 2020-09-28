@@ -15,10 +15,13 @@
             <!--ko if: node.device2 == "1"-->
                 <span style="font-style: italic">(Interior Monologue)</span>
             <!--/ko-->
-        <!--/ko-->
-        <span>: </span><span data-bind="text: node.text" style="white-space: pre-wrap"></span>
-        <br/>
-
+	<!--/ko-->
+		<span>: </span><span data-bind="text: node.text" style="white-space: pre-wrap"></span>
+		<!--ko ifnot: node.advanced -->
+		<span style="font-size: small; font-style: italic; color: blue;">[Voice Clip: <span data-bind="text:node.voiceClip"></span>]</span>
+		<!--/ko-->
+		<br/>
+	
         <!--ko if:  node.notes != ''-->
         <span>Translation Notes: </span><span data-bind="text: node.notes" style="white-space: pre-wrap"></span>
         <!--/ko-->
@@ -37,6 +40,8 @@
             <textarea rows="3" data-bind="value: node.text, valueUpdate: 'afterkeydown'" placeholder="speech"></textarea>
         </div>
 
+	<select data-bind="options: voiceClips, value: node.voiceClip, optionsCaption: 'Select Voice Clip'"></select>
+	
         <div>
             <h3>Translation Notes</h3>
             <textarea rows="3" data-bind="value: node.notes, valueUpdate: 'afterkeydown'" placeholder="Translation Notes"></textarea>

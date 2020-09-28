@@ -10,6 +10,8 @@ define(function(require) {
         this.actorId2 = attributes.actorId2 || null;
 
         this.text = attributes.text;
+	this.voiceClip = attributes.voiceClip || null;
+	
         this.emotion = attributes.emotion;
         this.emotion2 = attributes.emotion2;
 

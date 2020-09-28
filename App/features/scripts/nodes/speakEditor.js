@@ -2,7 +2,8 @@ define(function(require) {
     var assetDatabase = require('infrastructure/assetDatabase'),
         emotionsMap = require('features/constants/emotions'),
         observable = require('plugins/observable'),
-        NodeEditor = require('./nodeEditor');
+        NodeEditor = require('./nodeEditor'),
+	selectedGame = require('features/projectSelector/index');
 
     var ctor = function() {
         NodeEditor.call(this);
@@ -10,6 +11,14 @@ define(function(require) {
         this.actors = assetDatabase.actors.entries;
         this.actors2 = assetDatabase.actors.entries;
 
+	this.voiceClips = assetDatabase.voiceClips.entries;
+	this.advanced = selectedGame.activeProject.format == 'json';
+	
+	observable.defineProperty(this, 'voiceClipSrc', function() {
+	    var fullName = assetDatabase.voiceClips.dataDirectory + "/" + this.voiceClip;
+	    return fullName;
+	});
+	
         observable.defineProperty(this, 'actor', function(){
             var that = this;
 

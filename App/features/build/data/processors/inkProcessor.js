@@ -386,6 +386,10 @@ define(function(require){
 	    // Tag the listener with a default emotion
             tagString += "# neutral # {0} ".format(emotion2);
         }
+
+	if (node.voiceClip != null) {
+	    tagString += "# {0}".format(node.voiceClip);
+	}
 	
         result += "{0}: {1} {2}".format(speaker, node.text, tagString);
         return result;
